@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 17/04/2026 20:28</span>
+    <span class="update-badge">&#10003; Atualizado 17/04/2026 20:42</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -879,7 +879,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; 17/04/2026 20:28
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; 17/04/2026 20:42
 </div>
 <script>
 
@@ -1321,24 +1321,11 @@ function buildSellerInv(g,px){
   var tbl=document.getElementById(px+'-inv-table');
   if(tbl)tbl.innerHTML=hdr+bdy;
 }
-function slugify(s){
-  return (s||'').toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^\w\s-]/g,'').replace(/[\s_]+/g,'-')
-    .replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,80);
-}
 function mlLink(it){
-  var mlbId=it.mlb_id||('MLB'+(it.item_id||it.id||''));
-  var catProd=it.cat_prod||'';
-  var nm=it.nm||it.title||'';
-  // Use full product page URL: /slug/p/MLB_CATALOG_ID?pdp_filters=item_id:MLB_ITEM_ID
-  if(catProd&&catProd!=='MLBNaN'&&catProd!=='MLB0'&&nm){
-    return 'https://www.mercadolivre.com.br/'+slugify(nm)+'/p/'+catProd+'?pdp_filters=item_id:'+mlbId;
-  }
-  // Fallback: use permalink from BT table
-  if(it.permalink&&it.permalink.length>10)return it.permalink.replace('produto.','www.');
-  // Last resort
-  return 'https://www.mercadolivre.com.br/'+mlbId;
+  // Formato: https://produto.mercadolivre.com.br/MLB-{ID}-{slug}_JM
+  if(it.permalink&&it.permalink.length>10) return it.permalink;
+  var mlbId=(it.mlb_id||('MLB'+(it.item_id||it.id||''))).replace('MLB','MLB-');
+  return 'https://produto.mercadolivre.com.br/'+mlbId+'-_JM';
 }
 function mlImgTag(it){
   var thumb=it.thumb||(it.thumbnail||'');
