@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 17/04/2026 16:45</span>
+    <span class="update-badge">&#10003; Atualizado 17/04/2026 16:59</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -826,7 +826,7 @@
 </div>
 <div id="footer">
   Fonte: <strong>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB + LK_COMP_FAVORABILITIES</strong> &nbsp;&middot;&nbsp;
-  Metas: Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; Gerado em 17/04/2026 16:45
+  Metas: Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; Gerado em 17/04/2026 16:59
 </div>
 <script>
 
@@ -876,128 +876,31 @@ var CAT_DATA={};
 var PERIODO=MESES_DONE.slice();
 
 
-var REAL_REC_FRETE={
-  'ALUMINIO NACIONAL': {'jan':22158, 'feb':23475, 'mar':20723, 'apr':10613},
-  'ATOZ': {'jan':27593, 'feb':15379, 'mar':14615, 'apr':8643},
-  'BRINOX': {'jan':13784, 'feb':10334, 'mar':12916, 'apr':8425},
-  'OIKOS': {'jan':5093, 'feb':6352, 'mar':7616, 'apr':2885},
-  'SHOPGRA': {'jan':39740, 'feb':48331, 'mar':85610, 'apr':18711}
-};
-var BPC_OFFENDERS=[{"g": "BRINOX", "id": "5810626260", "t": "JOGO DE PANELAS 7 CERAMIC LIFE SMART PLUS AREIA BRINOX AREIA", "gsb": 2914590, "gtot": 2914590, "pct_sb": 100.0, "asp": 999.99, "pm": 1474, "ac": 1474, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "5768690226", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS MÁRMORE", "gsb": 1431768, "gtot": 1431768, "pct_sb": 100.0, "asp": 649.85, "pm": 0, "ac": 0, "sc": 996, "reb": 0}, {"g": "SHOPGRA", "id": "5924928132", "t": "VENTILADOR DE PAREDE VENTISOL OSCILANTE 50CM PREMIUN", "gsb": 1415258, "gtot": 1415258, "pct_sb": 100.0, "asp": 287.14, "pm": 1170, "ac": 1305, "sc": 135, "reb": 0}, {"g": "ATOZ", "id": "5064763160", "t": "VARAL DE CHÃO REFORÇADO COM ABAS DOBRÁVEL RETRÁTIL SLIM MOR COR BRANCO BRANCO", "gsb": 1015293, "gtot": 1015293, "pct_sb": 100.0, "asp": 101.99, "pm": 0, "ac": 3024, "sc": 3024, "reb": 0}, {"g": "ATOZ", "id": "5768690230", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS GRAFITE", "gsb": 968651, "gtot": 968651, "pct_sb": 100.0, "asp": 649.85, "pm": 0, "ac": 0, "sc": 862, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1528603100", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL HOTEL 15L", "gsb": 828766, "gtot": 828766, "pct_sb": 100.0, "asp": 470.9, "pm": 0, "ac": 0, "sc": 16, "reb": 0}, {"g": "SHOPGRA", "id": "5913486812", "t": "VENTILADOR DE PAREDE VENTISOL NEW AZUL 3 VELOCIDADES", "gsb": 731930, "gtot": 731930, "pct_sb": 100.0, "asp": 281.28, "pm": 470, "ac": 470, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "5768690228", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS BLACK", "gsb": 575923, "gtot": 575923, "pct_sb": 100.0, "asp": 649.74, "pm": 0, "ac": 0, "sc": 644, "reb": 0}, {"g": "ATOZ", "id": "4238600761", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS MÁRMORE", "gsb": 485151, "gtot": 485151, "pct_sb": 100.0, "asp": 646.88, "pm": 0, "ac": 0, "sc": 796, "reb": 0}, {"g": "BRINOX", "id": "5669967878", "t": "JOGO PANELAS 7 PÇ C/ INDUÇÃO CERAMIC SMART PLUS AREIA BRINOX", "gsb": 373339, "gtot": 373339, "pct_sb": 100.0, "asp": 999.99, "pm": 82, "ac": 82, "sc": 0, "reb": 0}, {"g": "SHOPGRA", "id": "5770615860", "t": "VENTILADOR DE MESA VENTISOL TURBO 6 PÁS 50CM PREMIUM 127V 50 CM PRETO 127V CINZA", "gsb": 242405, "gtot": 242405, "pct_sb": 100.0, "asp": 269.99, "pm": 0, "ac": 1322, "sc": 1322, "reb": 0}, {"g": "ATOZ", "id": "5844686666", "t": "JOGO DE PANELAS ANTIADERENTE INDUÇÃO CERÂMICA ATOZ 16 PEÇAS MÁRMORE", "gsb": 176367, "gtot": 176367, "pct_sb": 100.0, "asp": 766.33, "pm": 0, "ac": 0, "sc": 39, "reb": 0}, {"g": "ATOZ", "id": "5768690234", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS VENTURINA", "gsb": 172485, "gtot": 172485, "pct_sb": 100.0, "asp": 649.8, "pm": 0, "ac": 0, "sc": 204, "reb": 0}, {"g": "SHOPGRA", "id": "5770616124", "t": "VENTILADOR DE MESA VENTISOL TURBO 6 PÁS 50CM PREMIUM 220V 50 CM PRETO 220V CINZA", "gsb": 137017, "gtot": 137017, "pct_sb": 100.0, "asp": 298.88, "pm": 0, "ac": 17, "sc": 17, "reb": 0}, {"g": "ATOZ", "id": "5768690232", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS QUARTZO", "gsb": 112557, "gtot": 112557, "pct_sb": 100.0, "asp": 649.74, "pm": 0, "ac": 0, "sc": 132, "reb": 0}, {"g": "ATOZ", "id": "5893761076", "t": "JOGO DE PANELAS INDUCAO 3X MAIS ANTIADERENTE CERÂMICA 7PEÇAS LIVRE DE PFOA GRAFI", "gsb": 93560, "gtot": 93560, "pct_sb": 100.0, "asp": 688.79, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "SHOPGRA", "id": "4254478445", "t": "LAVADORA DE ALTA PRESSÃO PHILCO FORCE 1300W PLP2200", "gsb": 75471, "gtot": 75471, "pct_sb": 100.0, "asp": 379.99, "pm": 0, "ac": 7, "sc": 107, "reb": 0}, {"g": "BRINOX", "id": "4819050860", "t": "JOGO DE PANELAS BRINOX CERAMIC LIFE 8 PÇS SMART PLUS VANILLA BAUNILHA", "gsb": 61810, "gtot": 61810, "pct_sb": 100.0, "asp": 1099.99, "pm": 37, "ac": 37, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "4452227387", "t": "JOGO DE FRIGIDEIRAS FRANCESAS 3 PEÇAS 14 18 24CM PRETO NACIO", "gsb": 60309, "gtot": 60309, "pct_sb": 100.0, "asp": 67.11, "pm": 210, "ac": 210, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1783775759", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL HOTEL 24L ALUMÍNIO POLIDO", "gsb": 53289, "gtot": 53289, "pct_sb": 100.0, "asp": 589.75, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "BRINOX", "id": "4164075597", "t": "JOGO DE PANELAS EMPILHÁVEL LOFT 7 PEÇAS CERAMIC LIFE VERDE", "gsb": 51637, "gtot": 51637, "pct_sb": 100.0, "asp": 799.99, "pm": 8, "ac": 8, "sc": 48, "reb": 0}, {"g": "BRINOX", "id": "5761415776", "t": "CHALEIRA COM APITO BRINOX 2,7 L ROMA AREIA", "gsb": 47751, "gtot": 47751, "pct_sb": 100.0, "asp": 236.54, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "4060075417", "t": "ESCADA DE ALUMÍNIO 6 DEGRAUS RESIDENCIAL REFORÇADA PLATAFORM ALUMÍNIO", "gsb": 44666, "gtot": 44666, "pct_sb": 100.0, "asp": 269.9, "pm": 0, "ac": 0, "sc": 158, "reb": 0}, {"g": "ATOZ", "id": "5844686668", "t": "JOGO DE PANELAS ANTIADERENTE INDUÇÃO CERÂMICA ATOZ 16 PEÇAS GRAFITE", "gsb": 43117, "gtot": 43117, "pct_sb": 100.0, "asp": 759.4, "pm": 0, "ac": 0, "sc": 3, "reb": 0}, {"g": "BRINOX", "id": "4164023405", "t": "JOGO DE PANELAS EMPILHÁVEL LOFT 7 PEÇAS CERAMIC LIFE AREIA", "gsb": 41608, "gtot": 41608, "pct_sb": 100.0, "asp": 799.99, "pm": 18, "ac": 18, "sc": 36, "reb": 0}, {"g": "BRINOX", "id": "5780298762", "t": "JOGO DE PANELAS PRO FLON 10 PEÇAS RUBY VERMELHO BRINOX", "gsb": 38816, "gtot": 38816, "pct_sb": 100.0, "asp": 574.99, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5389732598", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO 24 LITROS POLIDA CINZA", "gsb": 37098, "gtot": 37098, "pct_sb": 100.0, "asp": 661.36, "pm": 0, "ac": 0, "sc": 10, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1528606399", "t": "PANELA DE PRESSÃO PROFISSIONAL 20 LITROS HOTEL RESTAURANTE", "gsb": 36021, "gtot": 36021, "pct_sb": 100.0, "asp": 503.77, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "BRINOX", "id": "5665482542", "t": "PIPOQUEIRA 22CM 5,5L PIC POC CERAMIC LIFE VERDE BRINOX", "gsb": 35615, "gtot": 35615, "pct_sb": 100.0, "asp": 239.99, "pm": 0, "ac": 0, "sc": 26, "reb": 0}, {"g": "OIKOS", "id": "1612410895", "t": "KIT 3 BOWLS CANELADOS DE BAMBU - OIKOS MARROM-CLARO", "gsb": 30031, "gtot": 30031, "pct_sb": 100.0, "asp": 388.54, "pm": 78, "ac": 78, "sc": 5, "reb": 0}, {"g": "SHOPGRA", "id": "4415919403", "t": "JOGO DE PANELAS INDUÇÃO TUUT ECOGLIDE 8 PEÇAS GRAPHITE", "gsb": 29915, "gtot": 29915, "pct_sb": 100.0, "asp": 599.92, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1553409794", "t": "JOGO DE FRIGIDEIRAS 3 PEÇAS 14 18 24CM NACIONAL", "gsb": 28196, "gtot": 28196, "pct_sb": 100.0, "asp": 65.72, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "6427840638", "t": "PANELA DE PRESSÃO FAST FECHAMENTO EXTERNO 4,5L NACIONAL VERMELHO", "gsb": 26910, "gtot": 26910, "pct_sb": 100.0, "asp": 205.93, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "BRINOX", "id": "5949899590", "t": "JOGO DE PANELAS CERAMIC LIFE EASY CARBONO 6 PEÇAS BRINOX", "gsb": 25805, "gtot": 25805, "pct_sb": 100.0, "asp": 899.99, "pm": 13, "ac": 13, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1970846620", "t": "PANELA DE PRESSÃO FAST FECHAMENTO EXTERNO 4,5L NACIONAL", "gsb": 24274, "gtot": 24274, "pct_sb": 100.0, "asp": 205.9, "pm": 2, "ac": 2, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "3823823105", "t": "MOR COLCHÃO INFLÁVEL SOLTEIRO COM FOLE ACAMPAMENTO MULTIUSO AZUL SOLTEIRO AZUL", "gsb": 24137, "gtot": 24137, "pct_sb": 100.0, "asp": 76.64, "pm": 1, "ac": 1, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "4098669043", "t": "JOGO DE PANELAS 6 PEÇAS COM PANELA DE PRESSÃO 3L PRETO PRETO", "gsb": 22371, "gtot": 22371, "pct_sb": 100.0, "asp": 480.06, "pm": 0, "ac": 5, "sc": 10, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3982549833", "t": "FRIGIDEIRA ANTIADERENTE 4 OVOS ALUMÍNIO NACIONAL BEGE CEREJA CEREJA", "gsb": 22277, "gtot": 22277, "pct_sb": 100.0, "asp": 49.19, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "3972350983", "t": "ESCADA DE ALUMÍNIO 6 DEGRAUS RESIDENCIAL REFORÇADA PLATAFORM", "gsb": 21990, "gtot": 21990, "pct_sb": 100.0, "asp": 299.0, "pm": 0, "ac": 69, "sc": 80, "reb": 0}, {"g": "ATOZ", "id": "4259130749", "t": "TRATOR ELÉTRICO INFANTIL COM CONTROLE REMOTO 12V ZIPPY TOYS VERDE 127V VERDE 127", "gsb": 21461, "gtot": 148513, "pct_sb": 14.8, "asp": 1430.04, "pm": 0, "ac": 0, "sc": 44, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3770521946", "t": "CONJUNTO DE ASSADEIRAS ANTIADERENTE RETANGULAR ALTA 1 A 3 VERMELHO", "gsb": 20803, "gtot": 20803, "pct_sb": 100.0, "asp": 97.95, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3982119117", "t": "FRIGIDEIRA DUPLA HAMBURGUEIRA ANTIADERENTE 14CM BEGE  CEREJA CINZA-ESCURO", "gsb": 20695, "gtot": 20695, "pct_sb": 100.0, "asp": 42.98, "pm": 0, "ac": 190, "sc": 190, "reb": 0}, {"g": "OIKOS", "id": "2804453787", "t": "CAIXA ORGANIZADORA COM TAMPA DE BAMBU 12L", "gsb": 20610, "gtot": 20610, "pct_sb": 100.0, "asp": 99.89, "pm": 0, "ac": 0, "sc": 166, "reb": 0}, {"g": "ATOZ", "id": "5893743090", "t": "JOGO DE PANELAS INDUCAO 3X MAIS ANTIADERENTE CERÂMICA 7PEÇAS LIVRE DE PFOA VANIL", "gsb": 19570, "gtot": 19570, "pct_sb": 100.0, "asp": 688.81, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "5725031414", "t": "AR CONDICIONADO HW ECO II INVERTER CONNECT ELGIN 9K F COR B BRANCO 220V", "gsb": 18880, "gtot": 18880, "pct_sb": 100.0, "asp": 2360.0, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "BRINOX", "id": "4177829003", "t": "JOGO DE PANELAS CERAMIC LIFE SMART PLUS AREIA 7 PEÇAS BRINOX AREIA", "gsb": 18868, "gtot": 18868, "pct_sb": 100.0, "asp": 999.99, "pm": 0, "ac": 0, "sc": 25, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5909537744", "t": "JOGO DE PANELAS 6 PEÇAS COM PANELA DE PRESSÃO 4,5L PRETO PRETO", "gsb": 18294, "gtot": 18294, "pct_sb": 100.0, "asp": 411.86, "pm": 0, "ac": 1, "sc": 7, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5337584604", "t": "CAÇAROLA A VAPOR 30CM ALUMÍNIO INDUSTRIAL PROFISSIONAL", "gsb": 18272, "gtot": 18272, "pct_sb": 100.0, "asp": 279.76, "pm": 0, "ac": 24, "sc": 72, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "6408068918", "t": "JOGO ASSADEIRA RETANGULAR ANTIADERENTE 3 PEÇAS NACIONAL VERMELHO", "gsb": 18139, "gtot": 18139, "pct_sb": 100.0, "asp": 121.45, "pm": 0, "ac": 0, "sc": 30, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5911103932", "t": "JOGO DE PANELAS 6 PEÇAS COM PANELA DE PRESSÃO 4,5L CEREJA", "gsb": 16685, "gtot": 16685, "pct_sb": 100.0, "asp": 420.03, "pm": 0, "ac": 1, "sc": 10, "reb": 0}, {"g": "BRINOX", "id": "4190506511", "t": "GRILL 28CM COM INDUÇÃO CERAMIC LIFE SIRIUS VANILLA BRINOX VANILLA", "gsb": 16618, "gtot": 16618, "pct_sb": 100.0, "asp": 309.99, "pm": 0, "ac": 7, "sc": 32, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5301842238", "t": "FRIGIDEIRA ANTIADERENTE DUPLA OMELETEIRA NACIONAL 18CM PRETO", "gsb": 16452, "gtot": 16452, "pct_sb": 100.0, "asp": 51.27, "pm": 32, "ac": 32, "sc": 255, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "1625352345", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO 12L NACIONAL ALUMÍNIO POLIDO", "gsb": 16159, "gtot": 16159, "pct_sb": 100.0, "asp": 455.25, "pm": 0, "ac": 0, "sc": 3, "reb": 0}, {"g": "OIKOS", "id": "2791865923", "t": "CAIXA ORGANIZADORA COM TAMPA DE BAMBU 18L OIKOS", "gsb": 15617, "gtot": 15617, "pct_sb": 100.0, "asp": 110.99, "pm": 0, "ac": 7, "sc": 131, "reb": 0}, {"g": "ATOZ", "id": "4060045067", "t": "ESCADA DE ALUMÍNIO 6 DEGRAUS RESIDENCIAL REFORÇADA PLATAFORM PRATA", "gsb": 15412, "gtot": 15412, "pct_sb": 100.0, "asp": 269.0, "pm": 0, "ac": 0, "sc": 59, "reb": 0}, {"g": "BRINOX", "id": "3491588580", "t": "JOGO DE PANELAS  7 PEÇAS BRINOX CERAMIC LIFE VANILLA BAUNILHA", "gsb": 14405, "gtot": 14405, "pct_sb": 100.0, "asp": 1099.99, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5301830464", "t": "FRITADEIRA ANTIADERENTE COM TAMPA NACIONAL 20CM 3,7 LITROS", "gsb": 13921, "gtot": 13921, "pct_sb": 100.0, "asp": 127.64, "pm": 0, "ac": 0, "sc": 18, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3413658509", "t": "BULE ANTIADERENTE IPANEMA 1 LITRO GRAFITE GRAFITE", "gsb": 13766, "gtot": 13766, "pct_sb": 100.0, "asp": 49.07, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "6419936386", "t": "VARAL DE CHÃO REFORÇADO COM ABAS DOBRÁVEL RETRÁTIL SLIM MOR  PRETO", "gsb": 13686, "gtot": 13686, "pct_sb": 100.0, "asp": 114.9, "pm": 0, "ac": 29, "sc": 45, "reb": 0}, {"g": "OIKOS", "id": "4280589845", "t": "KIT 7 POTES DE VIDRO COM TAMPA INOX HERMÉTICO REDONDO - TUD CINZA", "gsb": 12870, "gtot": 12870, "pct_sb": 100.0, "asp": 223.77, "pm": 0, "ac": 0, "sc": 2, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3989013943", "t": "FRIGIDEIRA DUPLA HAMBURGUEIRA ANTIADERENTE 14 CM COR PRETO PRETO", "gsb": 12823, "gtot": 12823, "pct_sb": 100.0, "asp": 42.16, "pm": 0, "ac": 0, "sc": 212, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5298931114", "t": "FRIGIDEIRA PANQUEQUEIRA ANTIADERENTE 22 CM  COR VERMELHO VERMELHO", "gsb": 12666, "gtot": 12666, "pct_sb": 100.0, "asp": 35.92, "pm": 2, "ac": 2, "sc": 0, "reb": 0}, {"g": "ATOZ", "id": "4483942329", "t": "TRATOR ELÉTRICO INFANTIL CONTROLE REMOTO 12V ZIPPY ROSA 127V ROSA-CHICLETE 127V", "gsb": 12075, "gtot": 12075, "pct_sb": 100.0, "asp": 1800.0, "pm": 0, "ac": 3, "sc": 7, "reb": 0}, {"g": "OIKOS", "id": "2933555519", "t": "KIT 3 CAIXAS ORGANIZADORAS TAMPA DE BAMBU 18L CINZA - OIKOS ORGANIZADORA LISO", "gsb": 10902, "gtot": 10902, "pct_sb": 100.0, "asp": 434.14, "pm": 6, "ac": 6, "sc": 0, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "5339127242", "t": "FRIGIDEIRA ANTIADERENTE 38CM HOTEL INDUSTRIAL PROFISSIONAL UNICA", "gsb": 10812, "gtot": 10812, "pct_sb": 100.0, "asp": 210.59, "pm": 0, "ac": 0, "sc": 33, "reb": 0}, {"g": "ALUMINIO NACIONAL", "id": "3987419541", "t": "FRIGIDEIRA DUPLA HAMBURGUEIRA ANTIADERENTE 14CM COR VERMELHO VERMELHO", "gsb": 10496, "gtot": 10496, "pct_sb": 100.0, "asp": 43.16, "pm": 0, "ac": 29, "sc": 29, "reb": 0}, {"g": "ATOZ", "id": "4086892597", "t": "JOGO TALHERES FAQUEIRO BÚZIOS AÇO INOX 24 PEÇAS TRAMONTINA AÇO INOXIDÁVEL", "gsb": 10167, "gtot": 10167, "pct_sb": 100.0, "asp": 69.19, "pm": 0, "ac": 0, "sc": 0, "reb": 0}, {"g": "OIKOS", "id": "4826388526", "t": "KIT 3 CAIXAS ORGANIZADORAS 4 LITROS CINZA TAMPA BAMBU OIKOS CINZA LISA", "gsb": 10125, "gtot": 10125, "pct_sb": 100.0, "asp": 199.99, "pm": 0, "ac": 0, "sc": 0, "reb": 0}];
-var DIAS_MES=["01/Abr", "02/Abr", "03/Abr", "04/Abr", "05/Abr", "06/Abr", "07/Abr", "08/Abr", "09/Abr", "10/Abr", "11/Abr", "12/Abr", "13/Abr", "14/Abr", "15/Abr", "16/Abr", "17/Abr"];
-var TOP_ITEMS=[{"g": "BRINOX", "id": "3797364569", "t": "CONJ DE PANELAS 8 PEÇAS CERAMIC LIFE SMART PLUS VANILLA - BRINOX BAUNILHA", "gmv": 8197310, "si": 13330, "asp": 614.95, "inv": 182786, "cup": 164250, "sh": 11.92}, {"g": "BRINOX", "id": "3500865809", "t": "BRINOX PRESSURE PANELA DE PRESSÃO REVESTIMENTO CERÂMICA INDUÇÃO 4,2L COR VANILLA", "gmv": 3474333, "si": 17347, "asp": 200.28, "inv": 380516, "cup": 156306, "sh": 5.05}, {"g": "BRINOX", "id": "5810626260", "t": "JOGO DE PANELAS 7 CERAMIC LIFE SMART PLUS AREIA BRINOX AREIA", "gmv": 2914590, "si": 5439, "asp": 535.87, "inv": 68072, "cup": 37337, "sh": 4.24}, {"g": "SHOPGRA", "id": "4105122785", "t": "FREEZER HORIZONTAL 99L PHILCO PFH105B 2 EM 1 BRANCO 127V", "gmv": 2345286, "si": 1824, "asp": 1285.79, "inv": 10677, "cup": 5319, "sh": 3.41}, {"g": "ALUMINIO NACIONAL", "id": "3887765354", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL 20L NACIONAL ALUMÍNIO POLIDO", "gmv": 2114965, "si": 5501, "asp": 384.47, "inv": 0, "cup": 9546, "sh": 3.07}, {"g": "BRINOX", "id": "5790390488", "t": "PANELA DE PRESSÃO CERAMIC LIFE PRESSURE 4,2L AREIA BRINOX BEGE", "gmv": 1531918, "si": 6662, "asp": 229.95, "inv": 0, "cup": 34351, "sh": 2.23}, {"g": "BRINOX", "id": "5391227810", "t": "JOGO DE PANELAS ANTIADERENTE 6PÇ SIRIUS VANILLA BRINOX BAUNILHA", "gmv": 1506659, "si": 1941, "asp": 776.23, "inv": 14680, "cup": 12615, "sh": 2.19}, {"g": "ATOZ", "id": "5768690226", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS MÁRMORE", "gmv": 1431768, "si": 2791, "asp": 512.99, "inv": 0, "cup": 9265, "sh": 2.08}, {"g": "SHOPGRA", "id": "5924928132", "t": "VENTILADOR DE PAREDE VENTISOL OSCILANTE 50CM PREMIUN", "gmv": 1415258, "si": 6348, "asp": 222.95, "inv": 8104, "cup": 5726, "sh": 2.06}, {"g": "ATOZ", "id": "5946286600", "t": "JOGO DE PANELAS INDUÇAO ANTIADERENTE CERÂMICA 10 PEÇAS PPG PFOA FREE BAUNILHA", "gmv": 1391657, "si": 3531, "asp": 394.13, "inv": 0, "cup": 14878, "sh": 2.02}, {"g": "BRINOX", "id": "4122755649", "t": "JOGO PANELAS BRINOX CERAMIC LIFE 6 PEÇAS SIRIUS INDUCAO PRETO", "gmv": 1270716, "si": 1625, "asp": 781.98, "inv": 42116, "cup": 14287, "sh": 1.85}, {"g": "BRINOX", "id": "3754134803", "t": "PANELA PRESSAO BRINOX 4952/103 CERAMIC PRESSURE INDUÇÃO 6,8L VANILLA", "gmv": 1206228, "si": 3929, "asp": 307.01, "inv": 53262, "cup": 19435, "sh": 1.75}, {"g": "SHOPGRA", "id": "5991440302", "t": "JOGO DE PANELAS INDUÇÃO MIMO CERÂMICA 12 PEÇAS MÁRMOL COR MARMOL MÁRMORE", "gmv": 1165710, "si": 2958, "asp": 394.09, "inv": 0, "cup": 15527, "sh": 1.69}, {"g": "ATOZ", "id": "5064763160", "t": "VARAL DE CHÃO REFORÇADO COM ABAS DOBRÁVEL RETRÁTIL SLIM MOR COR BRANCO BRANCO", "gmv": 1015293, "si": 10514, "asp": 96.57, "inv": 907, "cup": 8610, "sh": 1.48}, {"g": "ATOZ", "id": "5768690230", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS GRAFITE", "gmv": 968651, "si": 1930, "asp": 501.89, "inv": 0, "cup": 10719, "sh": 1.41}, {"g": "SHOPGRA", "id": "4169412315", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 5 PEÇAS COR BAUNILHA", "gmv": 917119, "si": 3126, "asp": 293.38, "inv": 1338, "cup": 27991, "sh": 1.33}, {"g": "ALUMINIO NACIONAL", "id": "6062170130", "t": "PANELA PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL 24L ALUMÍNIO NACIONAL CINZA", "gmv": 909147, "si": 2051, "asp": 443.27, "inv": 108, "cup": 3633, "sh": 1.32}, {"g": "ALUMINIO NACIONAL", "id": "1528603100", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL HOTEL 15L", "gmv": 828766, "si": 2314, "asp": 358.15, "inv": 0, "cup": 1969, "sh": 1.2}, {"g": "SHOPGRA", "id": "5997110544", "t": "FREEZER HORIZONTAL 99L PHILCO PFH105B 2 EM 1 BRANCO 220V", "gmv": 791402, "si": 631, "asp": 1254.2, "inv": 21981, "cup": 1361, "sh": 1.15}, {"g": "SHOPGRA", "id": "5213846130", "t": "JOGO DE PANELAS TRAMONTINA TURIM EM ALUMÍNIO COM REVESTIMENTO INTERNO E EXTERNO ", "gmv": 754615, "si": 2467, "asp": 305.88, "inv": 0, "cup": 12398, "sh": 1.1}, {"g": "SHOPGRA", "id": "5890429550", "t": "VENTILADO DE COLUNA TURBO 6 PÁS 40CM PRETO VENTISOL DIÂMETRO 40 CM FREQUÊNCIA 80", "gmv": 754539, "si": 4169, "asp": 180.99, "inv": 34099, "cup": 7528, "sh": 1.1}, {"g": "SHOPGRA", "id": "5913486812", "t": "VENTILADOR DE PAREDE VENTISOL NEW AZUL 3 VELOCIDADES", "gmv": 731930, "si": 3759, "asp": 194.71, "inv": 2568, "cup": 4421, "sh": 1.06}, {"g": "SHOPGRA", "id": "5859689396", "t": "JOGO DE PANELAS INDUÇÃO MIMO STYLE CERÂMICA 10 PEÇAS COR GRAFITE", "gmv": 713754, "si": 2337, "asp": 305.41, "inv": 605, "cup": 9069, "sh": 1.04}, {"g": "SHOPGRA", "id": "5751311390", "t": "JOGO DE PANELAS INDUÇÃO MIMO STYLE CERÂMICA 10 PEÇAS COR MÁRMORE", "gmv": 659713, "si": 2089, "asp": 315.8, "inv": 0, "cup": 36306, "sh": 0.96}, {"g": "ALUMINIO NACIONAL", "id": "3799529869", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL 20L NACIONAL ALUMÍNIO POLIDO", "gmv": 639928, "si": 1602, "asp": 399.46, "inv": 8495, "cup": 4432, "sh": 0.93}, {"g": "ATOZ", "id": "5768690228", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS BLACK", "gmv": 575923, "si": 1137, "asp": 506.53, "inv": 0, "cup": 7044, "sh": 0.84}, {"g": "ALUMINIO NACIONAL", "id": "3891577746", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO ANTIADERENTE 4,5L CEREJA NACIONAL", "gmv": 559174, "si": 4017, "asp": 139.2, "inv": 2708, "cup": 34334, "sh": 0.81}, {"g": "ATOZ", "id": "5915142756", "t": "JOGO DE PANELAS INDUÇAO ANTIADERENTE CERÂMICA 10 PEÇAS PPG PFOA FREE GRAFITE", "gmv": 545807, "si": 1360, "asp": 401.33, "inv": 0, "cup": 5531, "sh": 0.79}, {"g": "BRINOX", "id": "4577537208", "t": "JOGO DE PANELAS 7 PEÇAS BRINOX CERAMIC LIFE VANILLA BAUNILHA", "gmv": 538871, "si": 951, "asp": 566.64, "inv": 1260, "cup": 5837, "sh": 0.78}, {"g": "SHOPGRA", "id": "5714932932", "t": "JOGO DE PANELAS INDUÇÃO MIMO STYLE CERÂMICA 10 PEÇAS COR GRAFITE", "gmv": 520181, "si": 1726, "asp": 301.38, "inv": 19729, "cup": 33055, "sh": 0.76}, {"g": "SHOPGRA", "id": "6080663858", "t": "JOGO DE PANELAS INDUÇÃO TUUT ECOGLID 4 PEÇAS COR CREAM", "gmv": 514475, "si": 2108, "asp": 244.06, "inv": 0, "cup": 10458, "sh": 0.75}, {"g": "SHOPGRA", "id": "5538371690", "t": "BEBEDOURO BRITÂNIA BBE13B AQUAPLUS PARA 10L OU 20L 127/220V", "gmv": 505034, "si": 1555, "asp": 324.78, "inv": 63, "cup": 4167, "sh": 0.73}, {"g": "ALUMINIO NACIONAL", "id": "3246956263", "t": "PANELA PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL 12L NACIONAL ALUMÍNIO POLIDO", "gmv": 495653, "si": 1446, "asp": 342.78, "inv": 0, "cup": 1910, "sh": 0.72}, {"g": "ATOZ", "id": "4238600761", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS MÁRMORE", "gmv": 485151, "si": 926, "asp": 523.92, "inv": 0, "cup": 3211, "sh": 0.71}, {"g": "SHOPGRA", "id": "4224500745", "t": "JOGO DE PANELAS INDUÇÃO MIMO STYLE CERÂMICA 10 PEÇAS COR GRANITO", "gmv": 471888, "si": 1508, "asp": 312.92, "inv": 0, "cup": 15427, "sh": 0.69}, {"g": "BRINOX", "id": "4572016690", "t": "JOGO DE PANELAS 7 PEÇAS CERAMIC LIFE MARBLE BLEND BRINOX COR CINZA", "gmv": 463291, "si": 782, "asp": 592.44, "inv": 65, "cup": 10796, "sh": 0.67}, {"g": "SHOPGRA", "id": "4238395335", "t": "VENTILADOR DE MESA VENTISOL TURBO 6 PÁS 40CM COR DA ESTRUTURA PRETO COR DAS PÁS ", "gmv": 458087, "si": 3119, "asp": 146.87, "inv": 2388, "cup": 1648, "sh": 0.67}, {"g": "SHOPGRA", "id": "4510427231", "t": "VENTILADOR DE PAREDE VENTISOL NEW AZUL 3 VELOCIDADES ESTRUTURA PRETO DIÂMETRO 50", "gmv": 440413, "si": 2250, "asp": 195.74, "inv": 0, "cup": 3224, "sh": 0.64}, {"g": "SHOPGRA", "id": "4039537511", "t": "JOGO DE PANELAS TRAMONTINA TURIM EM ALUMÍNIO COM REVESTIMENTO INTERNO E EXTERNO ", "gmv": 428953, "si": 1421, "asp": 301.87, "inv": 0, "cup": 4005, "sh": 0.62}, {"g": "ALUMINIO NACIONAL", "id": "6087656726", "t": "PANELA DE PRESSÃO ALUMINIO NACIONAL 7L FECHAMENTO EXTERNO COR ALUMÍNIO POLIDO", "gmv": 419454, "si": 2073, "asp": 202.34, "inv": 2134, "cup": 2300, "sh": 0.61}, {"g": "ALUMINIO NACIONAL", "id": "3936844182", "t": "PANELA DE PRESSÃO FECHAMENTO EXTERNO 10L ALUMÍNIO NACIONAL", "gmv": 380114, "si": 1514, "asp": 251.07, "inv": 4379, "cup": 3135, "sh": 0.55}, {"g": "BRINOX", "id": "5669967878", "t": "JOGO PANELAS 7 PÇ C/ INDUÇÃO CERAMIC SMART PLUS AREIA BRINOX", "gmv": 373339, "si": 666, "asp": 560.57, "inv": 3602, "cup": 3312, "sh": 0.54}, {"g": "SHOPGRA", "id": "5714542650", "t": "JOGO DE PANELAS INDUÇÃO MIMO STYLE CERÂMICA 10 PEÇAS COR MÁRMORE", "gmv": 356078, "si": 1197, "asp": 297.48, "inv": 29107, "cup": 16661, "sh": 0.52}, {"g": "SHOPGRA", "id": "4169348681", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 5 PEÇAS COR MARBLE MÁRMORE", "gmv": 343997, "si": 1110, "asp": 309.91, "inv": 1378, "cup": 22103, "sh": 0.5}, {"g": "SHOPGRA", "id": "4288066505", "t": "JOGO DE PANELAS INDUÇÃO BRINOX CERÂMICA 7 PEÇAS EASY GRIS", "gmv": 319230, "si": 894, "asp": 357.08, "inv": 0, "cup": 6483, "sh": 0.46}, {"g": "SHOPGRA", "id": "4147185609", "t": "SMART TV 32 PHILCO PTV32K34RKGB ROKU TV LED DOLBY AUDIO", "gmv": 308615, "si": 364, "asp": 847.84, "inv": 0, "cup": 2267, "sh": 0.45}, {"g": "ATOZ", "id": "4296633455", "t": "JOGO DE PANELAS INDUCAO 3X MAIS ANTIADERENTE CERÂMICA 7PEÇAS LIVRE DE PFOA GRANI", "gmv": 305634, "si": 938, "asp": 325.84, "inv": 0, "cup": 3498, "sh": 0.44}, {"g": "SHOPGRA", "id": "4371417855", "t": "JOGO DE PANELAS MIMO INDUÇÃO CERÂMICO 12 PEÇAS GRIS CINZA COR GRAFITE", "gmv": 301884, "si": 733, "asp": 411.85, "inv": 4033, "cup": 15540, "sh": 0.44}, {"g": "SHOPGRA", "id": "4449888791", "t": "VENTILADOR DE PAREDE VENTISOL NEW AZUL 3 VELOCIDADES ESTRUTURA PRETO DIÂMETRO 50", "gmv": 296477, "si": 1609, "asp": 184.26, "inv": 44, "cup": 749, "sh": 0.43}, {"g": "SHOPGRA", "id": "4147112587", "t": "FURADEIRA PHILCO FORCE MALETA 99 ACESSÓRIOS 650W PFU03MF AZUL 127V", "gmv": 287644, "si": 1437, "asp": 200.17, "inv": 6744, "cup": 1983, "sh": 0.42}, {"g": "SHOPGRA", "id": "5213942860", "t": "JOGO DE PANELAS COM 10 PEÇAS MIMO STYLE PRATIC COOK MÁRMOL COR BRANCO MARMOL / V", "gmv": 268654, "si": 684, "asp": 392.77, "inv": 772, "cup": 3586, "sh": 0.39}, {"g": "BRINOX", "id": "3624589987", "t": "JOGO DE PANELAS SMART PLUS VANILLA INDUÇÃO CERÂMICO 5PEÇAS BRINOX 4774/101", "gmv": 265528, "si": 636, "asp": 417.5, "inv": 2331, "cup": 7027, "sh": 0.39}, {"g": "SHOPGRA", "id": "4456919769", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 5 PEÇAS COR PRETO GRANITO", "gmv": 255611, "si": 868, "asp": 294.48, "inv": 0, "cup": 5413, "sh": 0.37}, {"g": "SHOPGRA", "id": "5890795706", "t": "VENTILADOR DE COLUNA VENTISOL TURBO COM 6 PÁS DE 40CM 40 CM 80 WATT PRETO 220V P", "gmv": 246917, "si": 1324, "asp": 186.49, "inv": 7753, "cup": 2120, "sh": 0.36}, {"g": "SHOPGRA", "id": "5770615860", "t": "VENTILADOR DE MESA VENTISOL TURBO 6 PÁS 50CM PREMIUM 127V 50 CM PRETO 127V CINZA", "gmv": 242405, "si": 1386, "asp": 174.9, "inv": 13558, "cup": 3110, "sh": 0.35}, {"g": "SHOPGRA", "id": "6080702612", "t": "JOGO DE PANELAS INDUÇÃO TUUT ECOGLID 4 PEÇAS COR GRANITE", "gmv": 224609, "si": 898, "asp": 250.12, "inv": 0, "cup": 1481, "sh": 0.33}, {"g": "BRINOX", "id": "3823294499", "t": "PANELA DE PRESSÃOBRINOX4,2L ANTIADERENTECERAMICLIFEC/INDUÇÃO CINZA", "gmv": 222681, "si": 949, "asp": 234.65, "inv": 4938, "cup": 4546, "sh": 0.32}, {"g": "SHOPGRA", "id": "6238470246", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 8 PEÇAS COR BAUNILHA", "gmv": 200458, "si": 608, "asp": 329.7, "inv": 1233, "cup": 3002, "sh": 0.29}, {"g": "ATOZ", "id": "6250790866", "t": "CONJUNTO JOGO DE PANELAS CERAMICA ANTIADERENTE FOGÃO INDUÇÃO MIMO STYLE GRAFITO ", "gmv": 186452, "si": 519, "asp": 359.25, "inv": 217, "cup": 4168, "sh": 0.27}, {"g": "SHOPGRA", "id": "4069082671", "t": "CONJUNTO DE 5 PANELAS GRIS BRINOX CERAMIC LIFE EASY CINZA", "gmv": 183032, "si": 598, "asp": 306.07, "inv": 2449, "cup": 7163, "sh": 0.27}, {"g": "BRINOX", "id": "4102234884", "t": "BRINOX PRESSURE PANELA DE PRESSÃO REVESTIMENTO CERÂMICA INDUÇÃO 4,2L COR VANILLA", "gmv": 180431, "si": 944, "asp": 191.13, "inv": 13653, "cup": 8317, "sh": 0.26}, {"g": "ATOZ", "id": "5844686666", "t": "JOGO DE PANELAS ANTIADERENTE INDUÇÃO CERÂMICA ATOZ 16 PEÇAS MÁRMORE", "gmv": 176367, "si": 268, "asp": 658.09, "inv": 0, "cup": 904, "sh": 0.26}, {"g": "ATOZ", "id": "5768690234", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS VENTURINA", "gmv": 172485, "si": 320, "asp": 539.02, "inv": 0, "cup": 704, "sh": 0.25}, {"g": "SHOPGRA", "id": "6238330924", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 8 PEÇAS COR MARBLE MÁRMORE", "gmv": 171995, "si": 504, "asp": 341.26, "inv": 5879, "cup": 5169, "sh": 0.25}, {"g": "SHOPGRA", "id": "6184804168", "t": "JOGO DE PANELAS CERÂMICO INDUÇÃO TUUT ECOGLIDE 10 PEÇAS BRANCO", "gmv": 170912, "si": 451, "asp": 378.96, "inv": 0, "cup": 1437, "sh": 0.25}, {"g": "SHOPGRA", "id": "4432826505", "t": "JOGO DE PANELAS CERÂMICO INDUÇÃO TUUT ECOGLIDE 10 PEÇAS GRAPHITE", "gmv": 167976, "si": 441, "asp": 380.9, "inv": 0, "cup": 4256, "sh": 0.24}, {"g": "SHOPGRA", "id": "5100611162", "t": "CONJUNTO JOGO DE PANELAS CERAMICA ANTIADERENTE FOGÃO INDUÇÃO MIMO STYLE GRAFITO ", "gmv": 164868, "si": 439, "asp": 375.55, "inv": 0, "cup": 14743, "sh": 0.24}, {"g": "BRINOX", "id": "5406889220", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICO 10 PEÇAS BRINOX FIT COR AREIA", "gmv": 161147, "si": 352, "asp": 457.8, "inv": 2121, "cup": 1892, "sh": 0.23}, {"g": "ATOZ", "id": "4091591753", "t": "PANELA DE PRESSÃO 20 CM 4,5L TRAMONTINA ALUMÍNIO COR VERMELHO", "gmv": 156898, "si": 806, "asp": 194.66, "inv": 0, "cup": 1068, "sh": 0.23}, {"g": "SHOPGRA", "id": "5219507672", "t": "JOGO DE PANELAS MIMO STYLE FUNDO TRIPLO INDUÇÃO 5 PEÇAS COR BEGE", "gmv": 156185, "si": 561, "asp": 278.4, "inv": 0, "cup": 2441, "sh": 0.23}, {"g": "SHOPGRA", "id": "4553154172", "t": "CONJUNTO DE 5 PANELAS GRIS BRINOX CERAMIC LIFE EASY CINZA", "gmv": 148872, "si": 420, "asp": 354.46, "inv": 0, "cup": 18038, "sh": 0.22}, {"g": "ATOZ", "id": "4259130749", "t": "TRATOR ELÉTRICO INFANTIL COM CONTROLE REMOTO 12V ZIPPY TOYS VERDE 127V VERDE 127", "gmv": 148513, "si": 108, "asp": 1375.12, "inv": 0, "cup": 296, "sh": 0.22}, {"g": "ALUMINIO NACIONAL", "id": "3463595575", "t": "JOGO DE FRIGIDEIRAS FRANCESAS 3 PEÇAS 14 18 24CM PRETO NACIONAL", "gmv": 142261, "si": 3021, "asp": 47.09, "inv": 0, "cup": 1844, "sh": 0.21}, {"g": "ATOZ", "id": "3990181351", "t": "JOGO DE PANELAS DE COZINHA MIMO STYLE COOK FUNDO DE TRIPLA INDUÇÃO COM 10 PEÇAS ", "gmv": 141650, "si": 261, "asp": 542.72, "inv": 593, "cup": 2946, "sh": 0.21}, {"g": "BRINOX", "id": "6167666314", "t": "BRINOX - JOGO DE PANELAS ANTIADERENTE CERAMIC LIFE 6 PEÇAS EASY - CARBONO CINZA-", "gmv": 140950, "si": 433, "asp": 325.52, "inv": 5734, "cup": 6329, "sh": 0.2}, {"g": "SHOPGRA", "id": "5770616124", "t": "VENTILADOR DE MESA VENTISOL TURBO 6 PÁS 50CM PREMIUM 220V 50 CM PRETO 220V CINZA", "gmv": 137017, "si": 953, "asp": 143.77, "inv": 102, "cup": 2240, "sh": 0.2}, {"g": "ATOZ", "id": "5454865350", "t": "JOGO TALHERES FAQUEIRO BÚZIOS AÇO INOX 24 PEÇAS TRAMONTINA AÇO INOXIDÁVEL", "gmv": 136609, "si": 1947, "asp": 70.16, "inv": 0, "cup": 2179, "sh": 0.2}, {"g": "ATOZ", "id": "3935867039", "t": "TENDA DE PRAIA SANFONADA GAZEBO 3X3 ARTICULADO PÉ ALUMINIO COR AZUL", "gmv": 135819, "si": 252, "asp": 538.96, "inv": 0, "cup": 867, "sh": 0.2}, {"g": "ALUMINIO NACIONAL", "id": "5498320710", "t": "PANELA PRESSÃO FECHAMENTO EXTERNO PROFISSIONAL 15L NACIONAL PRATA", "gmv": 134630, "si": 335, "asp": 401.88, "inv": 267, "cup": 971, "sh": 0.2}, {"g": "SHOPGRA", "id": "4187680835", "t": "JOGO DE PANELAS MIMO STYLE SARTIN COOK 5 PEÇAS COR AQUAMINT VERDE-CLARO", "gmv": 129860, "si": 635, "asp": 204.5, "inv": 0, "cup": 4857, "sh": 0.19}, {"g": "BRINOX", "id": "4332365845", "t": "JOGO DE PANELAS CERAMIC LIFE NEVADA 10 PEÇAS BRINOX", "gmv": 126042, "si": 323, "asp": 390.22, "inv": 2368, "cup": 2108, "sh": 0.18}, {"g": "ATOZ", "id": "4483810085", "t": "CONJUNTO DE PANELAS INDUÇÃO STYLE COOK 10 PEÇAS GRAFITO - MIMO STYLE", "gmv": 120824, "si": 248, "asp": 487.19, "inv": 3440, "cup": 1622, "sh": 0.18}, {"g": "ATOZ", "id": "4379815221", "t": "COLCHÃO INFLÁVEL KING SIZE GRANDE BARRACA ACAMPAMENTO CASA AZUL", "gmv": 120535, "si": 655, "asp": 184.02, "inv": 0, "cup": 644, "sh": 0.18}, {"g": "BRINOX", "id": "4086539421", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICO 10 PEÇAS BRINOX FIT COR PRETO", "gmv": 119680, "si": 259, "asp": 462.08, "inv": 1208, "cup": 2129, "sh": 0.17}, {"g": "SHOPGRA", "id": "4432690825", "t": "JOGO DE PANELAS CERÂMICO INDUÇÃO TUUT ECOGLIDE 5 PEÇAS BRANCO", "gmv": 117641, "si": 577, "asp": 203.88, "inv": 0, "cup": 6322, "sh": 0.17}, {"g": "OIKOS", "id": "4245163759", "t": "TUD KIT 11 POTES VIDRO HERMÉTICOS TAMPA BAMBU 200ML A 2L ARMAZENAMENTO MARROM-CL", "gmv": 114598, "si": 669, "asp": 171.3, "inv": 8770, "cup": 9603, "sh": 0.17}, {"g": "ATOZ", "id": "5768690232", "t": "JOGO DE PANELAS ANTIADERENTE CERÂMICA MIMO STYLE 10 PEÇAS QUARTZO", "gmv": 112557, "si": 214, "asp": 525.97, "inv": 0, "cup": 1399, "sh": 0.16}, {"g": "ATOZ", "id": "4242855739", "t": "JOGO DE PANELAS BRINOX ANTIADERENTE CERAMIC INDUÇÃO 5 PEÇAS PRETO", "gmv": 109142, "si": 279, "asp": 391.19, "inv": 0, "cup": 3545, "sh": 0.16}, {"g": "SHOPGRA", "id": "4235655375", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 8 PEÇAS COR BAUNILHA", "gmv": 108989, "si": 309, "asp": 352.72, "inv": 0, "cup": 908, "sh": 0.16}, {"g": "SHOPGRA", "id": "3766077365", "t": "JOGO DE PANELAS COM 10 PEÇAS MIMO STYLE PRATIC COOK MÁRMOL COR BRANCO MARMOL / V", "gmv": 108353, "si": 258, "asp": 419.97, "inv": 2810, "cup": 552, "sh": 0.16}, {"g": "SHOPGRA", "id": "4235643151", "t": "JOGO DE PANELAS CERÂMICO TRIPLO INDUÇÃO TUUT ECOGLID 8 PEÇAS COR MARBLE", "gmv": 108130, "si": 302, "asp": 358.05, "inv": 0, "cup": 779, "sh": 0.16}, {"g": "SHOPGRA", "id": "6199943960", "t": "JOGO DE PANELAS CERÂMICO INDUÇÃO TUUT ECOGLIDE 10 PEÇAS MARBLE MÁRMORE", "gmv": 107686, "si": 286, "asp": 376.52, "inv": 0, "cup": 956, "sh": 0.16}, {"g": "BRINOX", "id": "4536187572", "t": "JOGO DE PANELAS BRINOX 4814/100 INDUÇÃO CERAMIC LIFE SIRIUS KIT 4 UN COR VANILLA", "gmv": 106245, "si": 189, "asp": 562.14, "inv": 0, "cup": 1529, "sh": 0.15}, {"g": "SHOPGRA", "id": "4311386993", "t": "ÁRVORE DE NATAL ROUXINOL GRANDE 210 CM VERDE COM 1500 GALHOS", "gmv": 101037, "si": 558, "asp": 181.07, "inv": 74, "cup": 1822, "sh": 0.15}, {"g": "BRINOX", "id": "3677349561", "t": "JOGO DE PANELAS BRINOX CERAMIC LIFE SMART PLUS 8 PEÇAS PRETO", "gmv": 98201, "si": 149, "asp": 659.07, "inv": 0, "cup": 1444, "sh": 0.14}, {"g": "ALUMINIO NACIONAL", "id": "4119140741", "t": "JOGO DE FRIGIDEIRAS 3 PEÇAS 14 18 24CM CEREJA NACIONAL", "gmv": 96965, "si": 1988, "asp": 48.78, "inv": 408, "cup": 2428, "sh": 0.14}, {"g": "BRINOX", "id": "5320404976", "t": "JOGO DE PANELAS ANTIADERENTE 6PÇ SIRIUS VANILLA BRINOX BAUNILHA", "gmv": 96962, "si": 129, "asp": 751.65, "inv": 0, "cup": 495, "sh": 0.14}, {"g": "BRINOX", "id": "4533000520", "t": "CONJ DE PANELAS 8 PEÇAS CERAMIC LIFE SMART PLUS VANILLA - BRINOX BAUNILHA", "gmv": 95150, "si": 142, "asp": 670.07, "inv": 9466, "cup": 1314, "sh": 0.14}, {"g": "OIKOS", "id": "4315252533", "t": "KIT 3 BOWLS CANELADOS DE BAMBU - OIKOS MARROM-CLARO", "gmv": 93868, "si": 554, "asp": 169.44, "inv": 367, "cup": 7615, "sh": 0.14}, {"g": "ATOZ", "id": "5893761076", "t": "JOGO DE PANELAS INDUCAO 3X MAIS ANTIADERENTE CERÂMICA 7PEÇAS LIVRE DE PFOA GRAFI", "gmv": 93560, "si": 292, "asp": 320.41, "inv": 0, "cup": 2923, "sh": 0.14}];
-
-function initFiltroMeses() {
-  updateFiltroInfo();
-}
-function applyDateRange() {
-  var dtI = document.getElementById('dt-inicio');
-  var dtF = document.getElementById('dt-fim');
-  if (!dtI || !dtF) return;
-  var start = new Date(dtI.value + 'T00:00:00');
-  var end   = new Date(dtF.value + 'T23:59:59');
-  if (isNaN(start.getTime()) || isNaN(end.getTime()) || start > end) return;
-  var yr = start.getFullYear();
-  var keys = MESES_DONE_FULL.filter(function(mk) {
-    var idx = MESES_KEYS.indexOf(mk);
-    var mStart = new Date(yr, idx, 1);
-    var mEnd   = new Date(yr, idx+1, 0, 23, 59, 59);
-    return mStart <= end && mEnd >= start;
-  });
-  if (keys.length === 0) return;
-  PERIODO = keys;
-  document.querySelectorAll('#filtro-bar .filtro-pill').forEach(function(b){b.classList.remove('active');});
-  updateFiltroInfo();
-  rebuildAll();
-}
-function setFiltro(preset, btnEl) {
-  var keys = [];
-  if (preset==='ytd') { keys = MESES_DONE_FULL.slice(); }
-  else if (preset==='mtd') { keys = [MESES_DONE_FULL[MESES_DONE_FULL.length-1]]; }
-  else if (preset==='q1'||preset==='q2'||preset==='q3'||preset==='q4') {
-    var qkeys = Q_MAP[preset.toUpperCase()];
-    keys = qkeys.filter(function(k){ return MESES_DONE_FULL.indexOf(k)>=0; });
-  } else if (preset==='ult30') {
-    keys = [MESES_DONE_FULL[MESES_DONE_FULL.length-1]];
-  } else if (preset==='ult3m') {
-    keys = MESES_DONE_FULL.slice(-3);
-  }
-  if (keys.length === 0) keys = MESES_DONE_FULL.slice();
-  PERIODO = keys;
-  document.querySelectorAll('#filtro-bar .filtro-pill').forEach(function(b){b.classList.remove('active');});
-  if (btnEl) btnEl.classList.add('active');
-  // Sync date inputs
-  var yr = 2026;
-  var firstIdx = MESES_KEYS.indexOf(PERIODO[0]);
-  var lastIdx  = MESES_KEYS.indexOf(PERIODO[PERIODO.length-1]);
-  var dtI = document.getElementById('dt-inicio');
-  var dtF = document.getElementById('dt-fim');
-  if (dtI) dtI.value = yr+'-'+(firstIdx+1<10?'0':'')+(firstIdx+1)+'-01';
-  if (dtF) {
-    var lastDay = new Date(yr, lastIdx+1, 0).getDate();
-    dtF.value = yr+'-'+(lastIdx+1<10?'0':'')+(lastIdx+1)+'-'+(lastDay<10?'0':'')+lastDay;
-  }
-  updateFiltroInfo();
-  rebuildAll();
-}
-function updateFiltroInfo() {
-  var el = document.getElementById('filtro-info');
-  if (!el) return;
-  if (PERIODO.length === MESES_DONE_FULL.length) {
-    el.textContent = 'Jan \u2013 '+MESES_PT_CURTO[PERIODO[PERIODO.length-1]]+' (YTD)';
-  } else {
-    el.textContent = PERIODO.map(function(k){return MESES_PT_CURTO[k];}).join(', ');
-  }
-}
-function rebuildAll() {
-  Object.keys(chartInstances).forEach(function(k){destroyChart(k);});
-  _builtSubTab = {};
-  buildVisaoGeral(); buildVGQuarters(); buildVGMesControl();
-  ['al','az','br','ok','sg'].forEach(function(px){
-    var g=PREFIX_TO_GRUPO[px];
-    if(g){buildGrupo(g,px);buildMesControl(g,px);}
-  });
-}
-
-// ── Nav ──
-var chartInstances={};
-function destroyChart(id){if(chartInstances[id]){chartInstances[id].destroy();delete chartInstances[id];}}
-function showTab(name,el){
-  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('#sidebar a').forEach(function(a){a.classList.remove('active');});
-  document.getElementById('tab-'+name).classList.add('active');
-  if(el)el.classList.add('active');
-}
-var _builtSubTab={};
-function showSubTab(prefix,name,btnEl){
-  var tabEl=document.getElementById(prefix+'-inner-tabs');
-  if(tabEl)tabEl.querySelectorAll('.inner-tab').forEach(function(b){b.classList.remove('active');});
-  var sections=document.querySelectorAll('[id^="'+prefix+'-section-"]');
-  sections.forEach(function(s){s.classList.remove('active');});
-  document.getElementById(prefix+'-section-'+name).classList.add('active');
-  if(btnEl)btnEl.classList.add('active');
-  var key=prefix+'-'+name;
-  if(!_builtSubTab[key]){
-    _builtSubTab[key]=true;
-    var g=PREFIX_TO_GRUPO[prefix];
-    if(name==='full'){if(g)buildSellerFull(g,prefix);else buildLogistica();}
-    else if(name==='ads'){if(g)buildSellerADS(g,prefix);else buildADS();}
-    else if(name==='inv'){if(g)buildSellerInv(g,prefix);else buildInvestimentos();}
-    else if(name==='cat'){if(g)buildSellerCat(g,prefix);else{filterItens('');}}
-    else if(name==='bpc'){if(g)buildSellerBPC(g,prefix);else buildVGBPC();}
-    else if(name==='cat2'){if(g)buildCategorias(g,prefix);}
-    else if(name==='yoy'){if(g)buildYoY(g,prefix);}
-  }
-}
-
-// ── Quarter & Month shared ──
-var MESES_PT_MAP={jan:'Janeiro',feb:'Fevereiro',mar:'Mar\u00e7o',apr:'Abril',may:'Maio',jun:'Junho',jul:'Julho',aug:'Agosto',sep:'Setembro',oct:'Outubro',nov:'Novembro',dec:'Dezembro'};
-function qtdReal(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(REAL_MENSAL[g][k]||0);},0);}
-function qtdMF(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(META_FIN[g][k]||0);},0);}
-function qtdMD(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(META_DES[g][k]||0);},0);}
+// ── Utils ──
+function fmt(v){if(v===null||v===undefined)return '-';var av=Math.abs(v),s=v<0?'-':'';if(av>=1e6)return s+'R$ '+(av/1e6).toFixed(2).replace('.',',')+' M';if(av>=1e3)return s+'R$ '+(av/1e3).toFixed(0)+' K';return s+'R$ '+av.toFixed(0);}
+function fmtN(v){if(!v&&v!==0)return '-';var av=Math.abs(v),s=v<0?'-':'';if(av>=1e6)return s+(av/1e6).toFixed(1).replace('.',',')+' M';if(av>=1e3)return s+(av/1e3).toFixed(1).replace('.',',')+' K';return s+Math.round(av).toLocaleString('pt-BR');}
+function pctNum(a,b){return b?(a/b*100):0;}
+function pillHtml(a,b){var p=pctNum(a,b);var cls=p>=100?'pill-green':p>=80?'pill-yellow':'pill-red';return '<span class="pill '+cls+'">'+p.toFixed(1)+'%</span>';}
+function pillPct(p){var cls=p>=80?'pill-green':p>=60?'pill-yellow':'pill-red';return '<span class="pill '+cls+'">'+p.toFixed(0)+'%</span>';}
+function kpiHtml(arr){return arr.map(function(k){return '<div class="kpi-card '+(k.cls||'')+'"><div class="kpi-label">'+k.label+'</div><div class="kpi-value">'+k.val+'</div><div class="kpi-sub">'+(k.sub||'')+'</div></div>';}).join('');}
+// ── YTD helpers ──
+function ytdReal(g){return PERIODO.reduce(function(s,k){return s+(REAL_MENSAL[g]?REAL_MENSAL[g][k]||0:0);},0);}
+function ytdMF(g){return PERIODO.reduce(function(s,k){return s+(META_FIN[g]?META_FIN[g][k]||0:0);},0);}
+function ytdMD(g){return PERIODO.reduce(function(s,k){return s+(META_DES[g]?META_DES[g][k]||0:0);},0);}
+function ytdSI(g){return PERIODO.reduce(function(s,k){return s+(REAL_SI[g]?REAL_SI[g][k]||0:0);},0);}
+function ytdInvAds(g){return PERIODO.reduce(function(s,k){return s+(REAL_INV_ADS[g]?REAL_INV_ADS[g][k]||0:0);},0);}
+function ytdCupons(g){return PERIODO.reduce(function(s,k){return s+(REAL_CUPONS[g]?REAL_CUPONS[g][k]||0:0);},0);}
+function ytdInvTot(g){return PERIODO.reduce(function(s,k){return s+(REAL_INV_TOT[g]?REAL_INV_TOT[g][k]||0:0);},0);}
+function ytdFF(g){return PERIODO.reduce(function(s,k){return s+(REAL_FF[g]?REAL_FF[g][k]||0:0);},0);}
+function ytdXD(g){return PERIODO.reduce(function(s,k){return s+(REAL_XD[g]?REAL_XD[g][k]||0:0);},0);}
+function aprProj(g){var cur=MESES_DONE[MESES_DONE.length-1];return (REAL_MENSAL[g]?REAL_MENSAL[g][cur]||0:0)*FAT_PROJ;}
+// ── Quarter ──
+function qtdReal(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(REAL_MENSAL[g]?REAL_MENSAL[g][k]||0:0);},0);}
+function qtdMF(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(META_FIN[g]?META_FIN[g][k]||0:0);},0);}
+function qtdMD(g,q){return QUARTER_KEYS[q].reduce(function(s,k){return s+(META_DES[g]?META_DES[g][k]||0:0);},0);}
 function qStatus(q){
   var last=MESES_KEYS.indexOf(QUARTER_KEYS[q][2]);
-  var done=MESES_KEYS.indexOf(MESES_DONE[MESES_DONE.length-1]);
+  var done=MESES_DONE.length?MESES_KEYS.indexOf(MESES_DONE[MESES_DONE.length-1]):-1;
   if(done>last)return 'closed';
   if(done<MESES_KEYS.indexOf(QUARTER_KEYS[q][0]))return 'future';
   return 'partial';
@@ -1010,57 +913,81 @@ function quarterCardHtml(grupo,q){
   var h='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
   h+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div>';
   h+='<div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
+  h+='<div class="quarter-meta-line" style="color:#888;font-size:10px">Meta Des: '+fmt(qMD)+'</div>';
   if(qR>0){h+='<div style="margin-bottom:5px;font-size:11px;">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div><div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';}
   h+='</div>';return h;
 }
+// ── Mes Control ──
 function buildMesControl(grupo,prefix){
   var html='<div class="mes-pills">';
   MESES_DONE.forEach(function(mk,i){
     var label=MESES_LABEL[MESES_KEYS.indexOf(mk)],isCur=(i===MESES_DONE.length-1);
-    html+='<button class="mes-pill'+(isCur?' active':'')+'" onclick="showMes(\''+grupo+'\',\''+prefix+'\',\''+mk+'\',this)">'+label+(isCur?' <span class="mtd-tag">MTD</span>':'')+'</button>';
+    html+='<button class="mes-pill'+(isCur?' active':'')+'" onclick="showMes(''+grupo+'',''+prefix+'',''+mk+'',this)">'+label+(isCur?' <span class="mtd-tag">MTD</span>':'')+'</button>';
   });
   html+='</div>';
-  document.getElementById(prefix+'-mes-pills').innerHTML=html;
+  var elP=document.getElementById(prefix+'-mes-pills');
+  if(elP)elP.innerHTML=html;
   var activeQs=['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';});
-  document.getElementById(prefix+'-quarters').innerHTML='<div class="quarter-row">'+activeQs.map(function(q){return quarterCardHtml(grupo,q);}).join('')+'</div>';
+  var elQ=document.getElementById(prefix+'-quarters');
+  if(elQ)elQ.innerHTML='<div class="quarter-row">'+activeQs.map(function(q){return quarterCardHtml(grupo,q);}).join('')+'</div>';
   showMes(grupo,prefix,MESES_DONE[MESES_DONE.length-1],null);
 }
 function showMes(grupo,prefix,mk,btnEl){
   if(btnEl){document.querySelectorAll('#'+prefix+'-mes-pills .mes-pill').forEach(function(b){b.classList.remove('active');});btnEl.classList.add('active');}
   var isCur=(mk===MESES_DONE[MESES_DONE.length-1]);
-  var rv=REAL_MENSAL[grupo][mk]||0,disp=isCur?rv*FAT_PROJ:rv;
-  var mf=META_FIN[grupo][mk]||0,md=META_DES[grupo][mk]||0;
-  var si=REAL_SI[grupo][mk]||0,asp=si>0?rv/si:0;
-  var invA=REAL_INV_ADS[grupo][mk]||0,cup=REAL_CUPONS[grupo][mk]||0,invT=REAL_INV_TOT[grupo][mk]||0;
+  var rv=(REAL_MENSAL[grupo]||{})[mk]||0,disp=isCur?rv*FAT_PROJ:rv;
+  var mf=(META_FIN[grupo]||{})[mk]||0,md=(META_DES[grupo]||{})[mk]||0;
+  var si=(REAL_SI[grupo]||{})[mk]||0,asp=si>0?rv/si:0;
+  var invA=(REAL_INV_ADS[grupo]||{})[mk]||0,cup=(REAL_CUPONS[grupo]||{})[mk]||0,invT=(REAL_INV_TOT[grupo]||{})[mk]||0;
   var pFin=pctNum(disp,mf),pDes=pctNum(disp,md);
-  var mesNome=MESES_PT_MAP[mk];
-  document.getElementById(prefix+'-mes-kpi').innerHTML=kpiHtml([
-    {label:mesNome+(isCur?' \u2014 MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' \u2014 Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'M\u00eas encerrado',cls:'blue'},
+  var mesNome=MESES_PT_MAP[mk]||mk;
+  var elKpi=document.getElementById(prefix+'-mes-kpi');
+  if(elKpi)elKpi.innerHTML=kpiHtml([
+    {label:mesNome+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
     {label:'Gap Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
   ]);
   destroyChart(prefix+'-mes');
-  var ctx=document.getElementById(prefix+'-mes-canvas').getContext('2d');
-  if(isCur){
-    var dd=REAL_DIARIO[grupo],cum=[],s=0;
-    dd.forEach(function(v){s+=v;cum.push(s);});
-    var mdia=mf/DIAS_MES_TOTAL,mcum=dd.map(function(_,i){return mdia*(i+1);});
-    chartInstances[prefix+'-mes']=new Chart(ctx,{type:'line',data:{labels:DIAS_MES,datasets:[
-      {label:'GMV Di\u00e1rio',data:dd,borderColor:C_BLUE,backgroundColor:'rgba(52,131,250,0.1)',fill:true,tension:0.3,pointRadius:3,yAxisID:'y'},
-      {label:'Acumulado Real',data:cum,borderColor:C_GREEN,backgroundColor:'transparent',tension:0.3,pointRadius:2,yAxisID:'y1'},
-      {label:'Meta Acum.',data:mcum,borderColor:C_YELLOW,backgroundColor:'transparent',borderDash:[6,3],tension:0,pointRadius:0,borderWidth:2,yAxisID:'y1'}
-    ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}}},y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return fmt(v);}}}}}});
-  } else {
-    chartInstances[prefix+'-mes']=new Chart(ctx,{type:'bar',
-      data:{labels:['Realizado','Meta Financeira','Meta Desafio'],datasets:[{data:[rv,mf,md],backgroundColor:[C_BLUE,C_YELLOW,C_GREEN],borderRadius:6}]},
-      options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return fmt(c.raw);}}}},scales:{x:{ticks:{callback:function(v){return fmt(v);}}}}}});
-  }
+  var canEl=document.getElementById(prefix+'-mes-canvas');
+  if(!canEl)return;
+  var ctx=canEl.getContext('2d');
+  chartInstances[prefix+'-mes']=new Chart(ctx,{type:'bar',
+    data:{labels:['Realizado','Proj.','Meta Fin.','Meta Des.'],datasets:[{data:[rv,disp,mf,md],backgroundColor:[C_BLUE,'rgba(52,131,250,.4)',C_YELLOW,C_GREEN],borderRadius:6}]},
+    options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return fmt(c.raw);}}}},scales:{x:{ticks:{callback:function(v){return fmt(v);}}}}}});
 }
-
+// ── Filtro ──
+function initFiltroMeses(){updateFiltroInfo();}
+function applyDateRange(){
+  var dtI=document.getElementById('dt-inicio'),dtF=document.getElementById('dt-fim');
+  if(!dtI||!dtF)return;
+  var yr=2026,start=new Date(dtI.value+'T00:00:00'),end=new Date(dtF.value+'T23:59:59');
+  var keys=MESES_DONE_FULL.filter(function(mk){var idx=MESES_KEYS.indexOf(mk);var ms=new Date(yr,idx,1),me=new Date(yr,idx+1,0,23,59,59);return ms<=end&&me>=start;});
+  if(keys.length===0)return;
+  PERIODO=keys;
+  document.querySelectorAll('#filtro-bar .filtro-pill').forEach(function(b){b.classList.remove('active');});
+  updateFiltroInfo();rebuildAll();
+}
+function setFiltro(preset,btnEl){
+  var keys=[];
+  if(preset==='ytd')keys=MESES_DONE_FULL.slice();
+  else if(preset==='mtd')keys=[MESES_DONE_FULL[MESES_DONE_FULL.length-1]];
+  else if(preset==='q1'||preset==='q2'||preset==='q3'||preset==='q4'){var qk=Q_MAP[preset.toUpperCase()];keys=qk.filter(function(k){return MESES_DONE_FULL.indexOf(k)>=0;});}
+  else if(preset==='ult30')keys=[MESES_DONE_FULL[MESES_DONE_FULL.length-1]];
+  else if(preset==='ult3m')keys=MESES_DONE_FULL.slice(-3);
+  if(keys.length===0)keys=MESES_DONE_FULL.slice();
+  PERIODO=keys;
+  document.querySelectorAll('#filtro-bar .filtro-pill').forEach(function(b){b.classList.remove('active');});
+  if(btnEl)btnEl.classList.add('active');
+  updateFiltroInfo();rebuildAll();
+}
+function updateFiltroInfo(){
+  var el=document.getElementById('filtro-info');if(!el)return;
+  if(PERIODO.length===MESES_DONE_FULL.length)el.textContent='Jan – '+(MESES_PT_CURTO[PERIODO[PERIODO.length-1]]||'')+' (YTD)';
+  else el.textContent=PERIODO.map(function(k){return MESES_PT_CURTO[k];}).join(', ');
+}
 // ── Visão Geral ──
 function buildVisaoGeral(){
   var totalYTD=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
@@ -1069,1040 +996,112 @@ function buildVisaoGeral(){
   var totalSI=GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
   var totalInv=GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
   var totalFF=GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
-  var pFin=pctNum(totalYTD,totalMF),pDes=pctNum(totalYTD,totalMD);
-  var pFF=pctNum(totalFF,totalYTD);
+  var pFin=pctNum(totalYTD,totalMF),pDes=pctNum(totalYTD,totalMD),pFF=pctNum(totalFF,totalYTD);
   var asp=totalSI>0?totalYTD/totalSI:0;
-  var best=GRUPOS[0],worst=GRUPOS[0];
-  GRUPOS.forEach(function(g){
-    if(pctNum(ytdReal(g),ytdMF(g))>pctNum(ytdReal(best),ytdMF(best)))best=g;
-    if(pctNum(ytdReal(g),ytdMF(g))<pctNum(ytdReal(worst),ytdMF(worst)))worst=g;
-  });
-  document.getElementById('vg-kpi-row').innerHTML=kpiHtml([
-    {label:'GMV YTD Total',val:fmt(totalYTD),sub:'Jan-'+MES_ATUAL_PT+' parcial ('+DIA_MES+' dias)',cls:'blue'},
+  var elKpi=document.getElementById('vg-kpi-row');
+  if(elKpi)elKpi.innerHTML=kpiHtml([
+    {label:'GMV YTD Total',val:fmt(totalYTD),sub:'Jan-Abr parcial ('+DIA_MES+' dias)',cls:'blue'},
     {label:'% Meta Financeira YTD',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio YTD',val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs YTD',val:fmtN(totalSI),sub:'ASP m\u00e9dio: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
-    {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF GMV: '+fmt(totalFF),cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
+    {label:'% Meta Desafio YTD',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'SIs YTD',val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
+    {label:'Invest. Total',val:fmt(totalInv),sub:'ADS+Cupons+Rebates',cls:'purple'},
+    {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF GMV: '+fmt(totalFF),cls:pFF>=60?'green':pFF>=30?'yellow':'red'}
   ]);
-  // ── Heatmap de Atingimento ──
+  // Heatmap
   function heatBg(p){return p>=100?'#00A650':p>=90?'#43B97F':p>=80?'#FFB900':p>=65?'#FF8C00':'#F23D4F';}
-  function heatFg(p){return p>=65?'#fff':'#fff';}
-  function heatCell(rv,meta,isCur,proj){
-    var disp=isCur?proj:rv;
-    var p=meta>0?pctNum(disp,meta):0;
-    var bg=heatBg(p),fg=heatFg(p);
-    var bar='<div style="height:3px;background:rgba(255,255,255,0.3);border-radius:2px;margin-top:3px;overflow:hidden;"><div style="width:'+Math.min(p,100).toFixed(0)+'%;height:100%;background:#fff;border-radius:2px;"></div></div>';
-    return '<td style="background:'+bg+';color:'+fg+';font-weight:700;text-align:center;padding:7px 8px;border:1px solid rgba(255,255,255,0.3);">'+p.toFixed(1)+'%'+bar+'</td>';
-  }
   var tbl=document.getElementById('vg-table');
-  var mes_short=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  var hdr='<thead><tr style="background:#3483FA;"><th style="text-align:left;padding:9px 12px;color:#fff;font-size:12px;">Grupo</th>';
-  MESES_DONE.forEach(function(mk,i){
-    var ms=mes_short[MESES_KEYS.indexOf(mk)];
-    var isL=(i===MESES_DONE.length-1);
-    hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">'+ms+(isL?' *':'')+'<br><span style="font-size:9px;opacity:.7;">%Fin / %Des</span></th>';
-  });
-  hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">YTD<br><span style="font-size:9px;opacity:.7;">%Fin / %Des</span></th></tr></thead>';
-  var body='<tbody>';
-  GRUPOS.forEach(function(g,gi){
-    var r=REAL_MENSAL[g],mf=META_FIN[g],md=META_DES[g];
-    var ytd=ytdReal(g),proj=aprProj(g);
-    var rowBg=gi%2===0?'#FAFAFA':'#fff';
-    body+='<tr style="background:'+rowBg+';">';
-    body+='<td style="font-weight:700;font-size:12px;padding:8px 12px;border-bottom:1px solid #F0F0F0;white-space:nowrap;">'+g+'<br><span style="font-size:10px;color:#888;font-weight:400;">'+fmt(ytd)+'</span></td>';
-    MESES_DONE.forEach(function(mk,i){
-      var rv=r[mk]||0,isL=(i===MESES_DONE.length-1);
-      var pFin=mf[mk]>0?pctNum(isL?proj:rv,mf[mk]):0;
-      var pDes=md[mk]>0?pctNum(isL?proj:rv,md[mk]):0;
-      var bgFin=heatBg(pFin),bgDes=heatBg(pDes);
-      body+='<td style="padding:6px 8px;border-bottom:1px solid #F0F0F0;text-align:center;">';
-      body+='<div style="display:flex;gap:3px;justify-content:center;">';
-      body+='<span style="background:'+bgFin+';color:#fff;font-weight:700;font-size:11px;padding:2px 6px;border-radius:4px;">'+pFin.toFixed(1)+'%</span>';
-      body+='<span style="background:'+bgDes+';color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;opacity:.85;">'+pDes.toFixed(1)+'%</span>';
-      body+='</div>';
-      if(isL)body+='<div style="font-size:9px;color:#AAA;margin-top:2px;">proj.</div>';
-      body+='</td>';
+  if(tbl){
+    var mes_short=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    var hdr='<thead><tr style="background:#3483FA;"><th style="text-align:left;padding:9px 12px;color:#fff;font-size:12px;">Grupo</th>';
+    MESES_DONE.forEach(function(mk,i){var ms=mes_short[MESES_KEYS.indexOf(mk)];var isL=(i===MESES_DONE.length-1);hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">'+ms+(isL?' *':'')+'<br><span style="font-size:9px;opacity:.7;">%Fin/%Des</span></th>';});
+    hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">YTD<br><span style="font-size:9px;opacity:.7;">%Fin/%Des</span></th></tr></thead>';
+    var body='<tbody>';
+    GRUPOS.forEach(function(g,gi){
+      var r=REAL_MENSAL[g]||{},mf=META_FIN[g]||{},md=META_DES[g]||{};
+      var ytd=ytdReal(g),rowBg=gi%2===0?'#FAFAFA':'#fff';
+      body+='<tr style="background:'+rowBg+';">';
+      body+='<td style="font-weight:700;font-size:12px;padding:8px 12px;white-space:nowrap;">'+g+'<br><span style="font-size:10px;color:#888;font-weight:400;">'+fmt(ytd)+'</span></td>';
+      var proj=aprProj(g);
+      MESES_DONE.forEach(function(mk,i){
+        var rv=r[mk]||0,isL=(i===MESES_DONE.length-1),dv=isL?proj:rv;
+        var pFin=mf[mk]>0?pctNum(dv,mf[mk]):0,pDes=md[mk]>0?pctNum(dv,md[mk]):0;
+        body+='<td style="padding:6px 8px;border-bottom:1px solid #F0F0F0;text-align:center;"><div style="display:flex;gap:3px;justify-content:center;"><span style="background:'+heatBg(pFin)+';color:#fff;font-weight:700;font-size:11px;padding:2px 6px;border-radius:4px;">'+pFin.toFixed(0)+'%</span><span style="background:'+heatBg(pDes)+';color:#fff;font-size:10px;padding:2px 5px;border-radius:4px;opacity:.85;">'+pDes.toFixed(0)+'%</span></div>'+(isL?'<div style="font-size:9px;color:#AAA">proj.</div>':'')+'</td>';
+      });
+      var ytdPFin=ytdMF(g)>0?pctNum(ytd,ytdMF(g)):0,ytdPDes=ytdMD(g)>0?pctNum(ytd,ytdMD(g)):0;
+      body+='<td style="padding:6px 8px;text-align:center;background:#F5F7FF;"><div style="display:flex;gap:3px;justify-content:center;"><span style="background:'+heatBg(ytdPFin)+';color:#fff;font-weight:800;font-size:12px;padding:3px 8px;border-radius:4px;">'+ytdPFin.toFixed(0)+'%</span><span style="background:'+heatBg(ytdPDes)+';color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;opacity:.85;">'+ytdPDes.toFixed(0)+'%</span></div></td></tr>';
     });
-    // YTD
-    var ytdPFin=ytdMF(g)>0?pctNum(ytd,ytdMF(g)):0;
-    var ytdPDes=ytdMD(g)>0?pctNum(ytd,ytdMD(g)):0;
-    body+='<td style="padding:6px 8px;border-bottom:1px solid #F0F0F0;text-align:center;background:#F5F7FF;">';
-    body+='<div style="display:flex;gap:3px;justify-content:center;">';
-    body+='<span style="background:'+heatBg(ytdPFin)+';color:#fff;font-weight:800;font-size:12px;padding:3px 8px;border-radius:4px;">'+ytdPFin.toFixed(1)+'%</span>';
-    body+='<span style="background:'+heatBg(ytdPDes)+';color:#fff;font-size:11px;padding:3px 6px;border-radius:4px;opacity:.85;">'+ytdPDes.toFixed(1)+'%</span>';
-    body+='</div></td>';
-    body+='</tr>';
-  });
-  body+='</tbody>';tbl.innerHTML=hdr+body;
-  // ── Cards Unificados: Ring + Variações + Barras ──
-  var GRUPO_COR_MAP={'ALUMINIO NACIONAL':'#FF7A00','ATOZ':'#00A650','BRINOX':'#3483FA','OIKOS':'#9B59B6','SHOPGRA':'#B8860B'};
-  var curKey=MESES_DONE[MESES_DONE.length-1];
-  var prevKey=MESES_DONE.length>1?MESES_DONE[MESES_DONE.length-2]:null;
-  function makeRing(pct,color,sz){
-    var r=sz/2-8,circ=2*Math.PI*r,offset=circ-Math.min(pct/100,1.1)*circ;
-    return '<svg width="'+sz+'" height="'+sz+'" style="transform:rotate(-90deg)">'
-      +'<circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="#F0F0F0" stroke-width="10"/>'
-      +'<circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+offset.toFixed(1)+'"/>'
-      +'</svg>';
+    body+='</tbody>';tbl.innerHTML=hdr+body;
   }
-  function varBadge(val,suffix,color){
-    if(val===null)return '';
-    var c=color||(val>=0?'#00A650':'#F23D4F');
-    return '<span class="u-v" style="background:'+c+'18;color:'+c+';">'+(val>=0?'\u25b2':'\u25bc')+' '+(val>=0?'+':'')+val.toFixed(1)+'%'+(suffix?' '+suffix:'')+'</span>';
-  }
+  // Unified cards
+  var GRUPO_COR_MAP=GRUPO_COLOR;
+  var curKey=MESES_DONE[MESES_DONE.length-1],prevKey=MESES_DONE.length>1?MESES_DONE[MESES_DONE.length-2]:null;
+  function makeRing(pct,color,sz){var r=sz/2-8,circ=2*Math.PI*r,offset=circ-Math.min(pct/100,1.1)*circ;return '<svg width="'+sz+'" height="'+sz+'" style="transform:rotate(-90deg)"><circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="#F0F0F0" stroke-width="10"/><circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+offset.toFixed(1)+'"/></svg>';}
+  function varBadge(val,suffix,color){if(val===null)return '';var c=color||(val>=0?'#00A650':'#F23D4F');return '<span class="u-v" style="background:'+c+'18;color:'+c+';">'+(val>=0?'▲':'▼')+' '+(val>=0?'+':'')+val.toFixed(1)+'%'+(suffix?' '+suffix:'')+'</span>';}
   var uHtml='';
   GRUPOS.forEach(function(g){
-    var cor=GRUPO_COR_MAP[g]||C_BLUE;
-    var ytd=ytdReal(g),ymf=ytdMF(g),ymd=ytdMD(g);
-    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd);
-    var perfColor=heatBg(pFin);
-    var proj=aprProj(g);
-    var curGMV=REAL_MENSAL[g][curKey]||0;
-    var prevGMV=prevKey?(REAL_MENSAL[g][prevKey]||0):0;
+    var cor=GRUPO_COR_MAP[g]||C_BLUE,ytd=ytdReal(g),ymf=ytdMF(g),ymd=ytdMD(g);
+    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd),perfColor=heatBg(pFin);
+    var curGMV=(REAL_MENSAL[g]||{})[curKey]||0,prevGMV=prevKey?((REAL_MENSAL[g]||{})[prevKey]||0):0;
     var mom=prevGMV>0?((curGMV/prevGMV-1)*100):null;
-    var g25v=(REAL_2025[g]||{});
-    var gmv25=PERIODO.reduce(function(s,k){return s+(g25v[k]?g25v[k].gmv:0);},0);
+    var g25v=(REAL_2025[g]||{}),gmv25=PERIODO.reduce(function(s,k){return s+(g25v[k]?g25v[k].gmv:0);},0);
     var yoy=gmv25>0?((ytd/gmv25-1)*100):null;
-    var wow=REAL_WOW_PCT[g]||0;
-    var wowColor=wow>=3?'#00A650':wow<=-3?'#F23D4F':'#888';
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+';">';
-    // Header
-    uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+';"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+';">'+pFin.toFixed(1)+'%</span></div>';
-    // Body: ring + data
-    uHtml+='<div class="u-body">';
-    uHtml+='<div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+';">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub">Meta Fin</div></div></div>';
-    uHtml+='<div class="u-data">';
-    uHtml+='<div class="u-gmv-val" style="color:'+cor+';">'+fmt(ytd)+'</div>';
-    uHtml+='<div class="u-meta-txt">Meta: '+fmt(ymf)+'</div>';
-    uHtml+='<div class="u-proj-txt">Proj.: '+fmt(proj)+'</div>';
-    uHtml+='</div></div>';
-    // Bars
-    uHtml+='<div class="u-bars">';
-    uHtml+='<div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+';"></div></div><span class="u-bval" style="color:'+perfColor+';">'+pFin.toFixed(1)+'%</span></div>';
-    uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7;"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+';">'+pDes.toFixed(1)+'%</span></div>';
-    uHtml+='</div>';
-    // Variations
-    uHtml+='<hr class="u-divider">';
-    uHtml+='<div class="u-vars">';
-    uHtml+=varBadge(mom,'MoM',null);
-    uHtml+=varBadge(yoy,'YoY','#3483FA');
-    uHtml+=varBadge(wow,'WoW',wowColor);
-    uHtml+='</div></div>';
+    uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub">Meta Fin</div></div></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmt(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmt(ymd)+'</div><div class="u-proj-txt">Proj.: '+fmt(aprProj(g))+'</div></div></div>';
+    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
+    uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
   });
-  document.getElementById('vg-unified-cards').innerHTML=uHtml;
-  // Line proj acumulada
-  var lColors=[C_BLUE,C_RED,C_ORANGE,C_PURPLE,'#00BCD4'];
-  var ds=[];
+  var ucEl=document.getElementById('vg-unified-cards');if(ucEl)ucEl.innerHTML=uHtml;
+  // Projeção acumulada
+  var ds=[];var lColors=[C_BLUE,C_RED,C_ORANGE,C_PURPLE,'#00BCD4','#FF7A00','#9B59B6','#3498DB','#2ECC71','#95A5A6'];
   GRUPOS.forEach(function(g,gi){
     var cumP=[],cumM=[],cumR=0,cumMv=0,done=false;
-    MESES_KEYS.forEach(function(mk,mi){
-      cumMv+=META_FIN[g][mk];cumM.push(cumMv);
-      var rv=REAL_MENSAL[g][mk];
-      if(rv!==undefined&&!done){cumR+=(mk===MESES_DONE[MESES_DONE.length-1])?rv*FAT_PROJ:rv;cumP.push(cumR);if(mk===MESES_DONE[MESES_DONE.length-1])done=true;}
-      else{cumP.push(null);}
+    MESES_KEYS.forEach(function(mk){
+      cumMv+=(META_FIN[g]||{})[mk]||0;cumM.push(cumMv);
+      var rv=(REAL_MENSAL[g]||{})[mk];
+      if(rv!==undefined&&!done){cumR+=mk===MESES_DONE[MESES_DONE.length-1]?rv*FAT_PROJ:rv;cumP.push(cumR);if(mk===MESES_DONE[MESES_DONE.length-1])done=true;}
+      else cumP.push(null);
     });
     var lbl=g.length>12?g.substring(0,12)+'...':g;
-    ds.push({label:lbl+' Proj.',data:cumP,borderColor:lColors[gi],backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,tension:0.3,spanGaps:false});
-    ds.push({label:lbl+' Meta',data:cumM,borderColor:lColors[gi],backgroundColor:'transparent',borderWidth:1.5,pointRadius:2,tension:0.3});
+    ds.push({label:lbl+' Proj.',data:cumP,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderDash:[5,3],pointRadius:3,tension:0.3,spanGaps:false});
+    ds.push({label:lbl+' Meta',data:cumM,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderWidth:1.5,pointRadius:2,tension:0.3});
   });
   destroyChart('vg-line');
-  chartInstances['vg-line']=new Chart(document.getElementById('vg-line-chart').getContext('2d'),{type:'line',data:{labels:MESES_LABEL,datasets:ds},
-    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:10}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-  buildVGScorecard();
-  buildCorpAcionaveis();
+  var lcEl=document.getElementById('vg-line-chart');
+  if(lcEl)chartInstances['vg-line']=new Chart(lcEl.getContext('2d'),{type:'line',data:{labels:MESES_LABEL,datasets:ds},
+    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:9}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}});
+  buildVGScorecard();buildCorpAcionaveis();buildVGInsights();
 }
 function buildVGMesControl(){
   var html='<div class="mes-pills">';
-  MESES_DONE.forEach(function(mk,i){
-    var label=MESES_LABEL[MESES_KEYS.indexOf(mk)],isCur=(i===MESES_DONE.length-1);
-    html+='<button class="mes-pill'+(isCur?' active':'')+'" onclick="showVGMes(\''+mk+'\',this)">'+label+(isCur?' <span class="mtd-tag">MTD</span>':'')+'</button>';
-  });
+  MESES_DONE.forEach(function(mk,i){var label=MESES_LABEL[MESES_KEYS.indexOf(mk)],isCur=(i===MESES_DONE.length-1);html+='<button class="mes-pill'+(isCur?' active':'')+'" onclick="showVGMes(''+mk+'',this)">'+label+(isCur?' <span class="mtd-tag">MTD</span>':'')+'</button>';});
   html+='</div>';
-  document.getElementById('vg-mes-pills').innerHTML=html;
+  var el=document.getElementById('vg-mes-pills');if(el)el.innerHTML=html;
   showVGMes(MESES_DONE[MESES_DONE.length-1],null);
 }
 function showVGMes(mk,btnEl){
   if(btnEl){document.querySelectorAll('#vg-mes-pills .mes-pill').forEach(function(b){b.classList.remove('active');});btnEl.classList.add('active');}
   var isCur=(mk===MESES_DONE[MESES_DONE.length-1]);
-  var totalReal=GRUPOS.reduce(function(s,g){return s+(REAL_MENSAL[g][mk]||0);},0);
-  var totalDisp=isCur?totalReal*FAT_PROJ:totalReal;
-  var totalMF=GRUPOS.reduce(function(s,g){return s+(META_FIN[g][mk]||0);},0);
-  var totalMD=GRUPOS.reduce(function(s,g){return s+(META_DES[g][mk]||0);},0);
-  var totalSI=GRUPOS.reduce(function(s,g){return s+(REAL_SI[g][mk]||0);},0);
-  var totalInv=GRUPOS.reduce(function(s,g){return s+(REAL_INV_TOT[g][mk]||0);},0);
-  var asp=totalSI>0?totalReal/totalSI:0;
-  var pFin=pctNum(totalDisp,totalMF),pDes=pctNum(totalDisp,totalMD);
-  document.getElementById('vg-mes-kpi').innerHTML=kpiHtml([
-    {label:MESES_PT_MAP[mk]+(isCur?' \u2014 MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' \u2014 Fechado'),val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs Total',val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
-    {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'Gap Meta Fin.',val:fmt(totalDisp-totalMF),sub:totalDisp>=totalMF?'Acima da meta':'Faltam '+fmt(totalMF-totalDisp),cls:totalDisp>=totalMF?'green':'red'}
+  var totalReal=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
+  var disp=isCur?totalReal*FAT_PROJ:totalReal;
+  var mf=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
+  var md=GRUPOS.reduce(function(s,g){return s+((META_DES[g]||{})[mk]||0);},0);
+  var pFin=pctNum(disp,mf),pDes=pctNum(disp,md);
+  var el=document.getElementById('vg-mes-kpi');
+  if(el)el.innerHTML=kpiHtml([
+    {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD':' — Fechado'),val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(disp):'Fechado',cls:'blue'},
+    {label:'% Meta Fin.',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Des.',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'GAP Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'},
   ]);
   destroyChart('vg-mes');
-  var ctx=document.getElementById('vg-mes-canvas').getContext('2d');
-  if(isCur){
-    var len=REAL_DIARIO[GRUPOS[0]].length,dd=[],cum=[],s=0;
-    for(var i=0;i<len;i++)dd.push(GRUPOS.reduce(function(acc,g){return acc+(REAL_DIARIO[g][i]||0);},0));
-    dd.forEach(function(v){s+=v;cum.push(s);});
-    var mdia=totalMF/DIAS_MES_TOTAL,mcum=dd.map(function(_,j){return mdia*(j+1);});
-    chartInstances['vg-mes']=new Chart(ctx,{type:'line',data:{labels:DIAS_MES,datasets:[
-      {label:'GMV Di\u00e1rio Total',data:dd,borderColor:C_BLUE,backgroundColor:'rgba(52,131,250,0.1)',fill:true,tension:0.3,pointRadius:3,yAxisID:'y'},
-      {label:'Acumulado Real',data:cum,borderColor:C_GREEN,backgroundColor:'transparent',tension:0.3,pointRadius:2,yAxisID:'y1'},
-      {label:'Meta Acum.',data:mcum,borderColor:C_YELLOW,backgroundColor:'transparent',borderDash:[6,3],tension:0,pointRadius:0,borderWidth:2,yAxisID:'y1'}
-    ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}}},y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return fmt(v);}}}}}});
-  } else {
-    var realArr=GRUPOS.map(function(g){return REAL_MENSAL[g][mk]||0;});
-    var mfArr=GRUPOS.map(function(g){return META_FIN[g][mk]||0;});
-    chartInstances['vg-mes']=new Chart(ctx,{type:'bar',
-      data:{labels:GRUPOS.map(function(g){return g.length>12?g.substring(0,12)+'...':g;}),datasets:[
-        {label:'Realizado',data:realArr,backgroundColor:C_BLUE,borderRadius:4},
-        {label:'Meta Fin.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4}
-      ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}});
-  }
+  var canEl=document.getElementById('vg-mes-canvas');if(!canEl)return;
+  var ds=GRUPOS.map(function(g,i){var colors=['#3483FA','#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];return {label:g.substring(0,10),data:[(REAL_MENSAL[g]||{})[mk]||0],backgroundColor:colors[i%colors.length],borderRadius:3};});
+  chartInstances['vg-mes']=new Chart(canEl.getContext('2d'),{type:'bar',data:{labels:[MESES_PT_MAP[mk]||mk],datasets:ds},
+    options:{responsive:true,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom',labels:{font:{size:9}}}}}});
 }
-function buildVGQuarters(){
-  var qHtml='<div class="quarter-row">';
-  ['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';}).forEach(function(q){
-    var status=qStatus(q);
-    var qR=GRUPOS.reduce(function(s,g){return s+qtdReal(g,q);},0);
-    var qMF=GRUPOS.reduce(function(s,g){return s+qtdMF(g,q);},0);
-    var qMD=GRUPOS.reduce(function(s,g){return s+qtdMD(g,q);},0);
-    var pFin=pctNum(qR,qMF);
-    var sLabel=status==='closed'?'Fechado':status==='partial'?'Em andamento':'Futuro';
-    var clr=status==='future'?'q-grey':status==='partial'?'q-blue':pFin>=100?'q-green':'q-red';
-    var fillCls=pFin>=100?'pf-green':pFin>=80?'pf-yellow':'pf-red';
-    qHtml+='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
-    qHtml+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div><div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
-    if(qR>0){qHtml+='<div style="margin-bottom:5px;font-size:11px;">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div><div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';}
-    qHtml+='</div>';
-  });
-  qHtml+='</div>';
-  var GRUPO_COR={'ALUMINIO NACIONAL':'#FF7A00','ATOZ':'#00A650','BRINOX':'#3483FA','OIKOS':'#9B59B6','SHOPGRA':'#B8860B'};
-  var progHtml='<div class="group-cards-grid">';
-  GRUPOS.forEach(function(g){
-    var ytd=ytdReal(g),ymf=ytdMF(g),ymd=ytdMD(g),si=ytdSI(g),inv=ytdInvTot(g);
-    var asp=si>0?ytd/si:0;
-    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd);
-    var ytdPed=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[g][k]||0);},0);
-    var ytdBB=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[g][k]||0);},0);
-    var pBPC=ytdPed>0?pctNum(ytdBB,ytdPed):0;
-    var cor=GRUPO_COR[g]||'#3483FA';
-    var finColor=pFin>=100?'#00A650':pFin>=80?'#B8860B':'#F23D4F';
-    var finFill=pFin>=100?cor:'pf-'+(pFin>=80?'yellow':'red');
-    var desFill=pDes>=100?cor:'pf-'+(pDes>=80?'yellow':'red');
-    var finW=Math.min(pFin,100).toFixed(1);
-    var desW=Math.min(pDes,100).toFixed(1);
-    var bpcColor=pBPC>=80?'#00A650':pBPC>=60?'#B8860B':'#F23D4F';
-    progHtml+='<div class="group-card" style="border-top-color:'+cor+';">';
-    // Header
-    progHtml+='<div class="gc-head"><span class="gc-name">'+g+'</span><div class="gc-pcts"><div class="gc-pct-fin" style="color:'+finColor+';">'+pFin.toFixed(1)+'%</div><div class="gc-pct-des">'+pDes.toFixed(1)+'% Desafio</div></div></div>';
-    // KPIs row
-    progHtml+='<div class="gc-kpis">';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">GMV YTD</div><div class="gc-kpi-val">'+fmt(ytd)+'</div></div>';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">Meta Fin.</div><div class="gc-kpi-val">'+fmt(ymf)+'</div></div>';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">SIs</div><div class="gc-kpi-val">'+fmtN(si)+'</div></div>';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">ASP</div><div class="gc-kpi-val">R$'+Math.round(asp).toLocaleString('pt-BR')+'</div></div>';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">BPC</div><div class="gc-kpi-val" style="color:'+bpcColor+';">'+pBPC.toFixed(0)+'%</div></div>';
-    progHtml+='<div class="gc-kpi"><div class="gc-kpi-lbl">Inv. Total</div><div class="gc-kpi-val">'+fmt(inv)+'</div></div>';
-    progHtml+='</div>';
-    // Progress bars
-    progHtml+='<div class="gc-prog-row"><div class="gc-prog-label"><strong>Meta Financeira</strong><strong style="color:'+finColor+';">'+pFin.toFixed(1)+'%</strong></div><div class="gc-prog-bg"><div class="gc-prog-fill" style="width:'+finW+'%;background:'+finColor+';"></div></div></div>';
-    progHtml+='<div class="gc-prog-row"><div class="gc-prog-label"><strong>Meta Desafio</strong><strong style="color:'+(pDes>=100?'#00A650':pDes>=80?'#B8860B':'#F23D4F')+';">'+pDes.toFixed(1)+'%</strong></div><div class="gc-prog-bg"><div class="gc-prog-fill" style="width:'+desW+'%;background:'+(pDes>=100?'#00A650':pDes>=80?'#FFB900':'#F23D4F')+';"></div></div></div>';
-    progHtml+='</div>';
-  });
-  progHtml+='</div>';
-  document.getElementById('vg-quarters').innerHTML=qHtml+progHtml;
-}
-
-// ── Presentation Mode ──
-function togglePresentation() {
-  document.body.classList.toggle('presentation-mode');
-  var btn = document.getElementById('btn-present');
-  if(document.body.classList.contains('presentation-mode')) {
-    btn.innerHTML='&#9646;&#9646; Sair';btn.style.background='#F23D4F';
-  } else { btn.innerHTML='&#9654; Apresentar';btn.style.background='#3483FA'; }
-}
-
-// ── Export CSV ──
-function exportCSV(tblId, fname) {
-  var tbl = document.getElementById(tblId);
-  if (!tbl) return;
-  var rows = tbl.querySelectorAll('tr');
-  var csv = [];
-  rows.forEach(function(row) {
-    var cells = row.querySelectorAll('th,td');
-    var line = Array.from(cells).map(function(c) {
-      return '"' + c.innerText.replace(/"/g,'""').replace(/\n/g,' ') + '"';
-    }).join(',');
-    csv.push(line);
-  });
-  var blob = new Blob(['\ufeff'+csv.join('\n')], {type:'text/csv;charset=utf-8;'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = (fname||'export') + '.csv';
-  a.click();
-}
-
-// ── WoW Badge ──
-function wowBadge(pct) {
-  if (pct > 3) return '<span class="wow-badge wow-up">&#9650;'+pct.toFixed(1)+'% WoW</span>';
-  if (pct < -3) return '<span class="wow-badge wow-down">&#9660;'+Math.abs(pct).toFixed(1)+'% WoW</span>';
-  return '<span class="wow-badge wow-flat">&#9644; '+pct.toFixed(1)+'% WoW</span>';
-}
-
-// ── Projeção Melhorada (média ponderada 7 dias) ──
-function aprProjWA(g) {
-  var dd = REAL_DIARIO[g];
-  if (!dd || dd.length === 0) return 0;
-  var n = Math.min(7, dd.length);
-  var recent = dd.slice(-n);
-  var tw = n*(n+1)/2;
-  var wsum = recent.reduce(function(s,v,i){return s+v*(i+1);},0);
-  return tw > 0 ? (wsum/tw)*DIAS_MES_TOTAL : 0;
-}
-
-// ── Categorias ──
-function buildCategorias(g, px) {
-  var items = CAT_DATA[g] || [];
-  var totalGMV = items.reduce(function(s,i){return s+i.gmv;},0);
-  // KPIs
-  var top3GMV = items.slice(0,3).reduce(function(s,i){return s+i.gmv;},0);
-  var top3pct = totalGMV>0?pctNum(top3GMV,totalGMV):0;
-  document.getElementById(px+'-cat2-kpi').innerHTML = kpiHtml([
-    {label:'Categorias Ativas',val:items.length,sub:'Categorias com GMV YTD',cls:'blue'},
-    {label:'Top 3 Categorias',val:top3pct.toFixed(1)+'%',sub:'Concentra\u00e7\u00e3o nas 3 maiores',cls:top3pct>=80?'red':top3pct>=60?'yellow':'green'},
-    {label:'Maior Categoria',val:(items[0]||{cat:'-'}).cat,sub:'GMV: '+fmt((items[0]||{gmv:0}).gmv),cls:'blue'},
-    {label:'Itens \u00danicos',val:fmtN(items.reduce(function(s,i){return s+i.n;},0)),sub:'SKUs com venda YTD',cls:'blue'}
-  ]);
-  // Donut chart
-  var top8 = items.slice(0,8);
-  var outroGMV = items.slice(8).reduce(function(s,i){return s+i.gmv;},0);
-  var labels = top8.map(function(i){return i.cat.length>20?i.cat.substring(0,20)+'...':i.cat;});
-  var data = top8.map(function(i){return i.gmv;});
-  if (outroGMV > 0) { labels.push('Outros'); data.push(outroGMV); }
-  var colors = [C_BLUE,C_YELLOW,C_GREEN,C_RED,C_ORANGE,C_PURPLE,'#00BCD4','#795548','#9E9E9E'];
-  destroyChart(px+'-cat2-chart');
-  chartInstances[px+'-cat2-chart'] = new Chart(document.getElementById(px+'-cat2-chart').getContext('2d'),{
-    type:'doughnut', data:{labels:labels,datasets:[{data:data,backgroundColor:colors,borderWidth:2}]},
-    options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw)+' ('+pctNum(c.raw,totalGMV).toFixed(1)+'%)';}}}}}
-  });
-  // Pareto chart
-  var cumPct=[],cumGMV=0;
-  items.forEach(function(i){cumGMV+=i.gmv;cumPct.push(+(pctNum(cumGMV,totalGMV).toFixed(1)));});
-  destroyChart(px+'-pareto-chart');
-  chartInstances[px+'-pareto-chart'] = new Chart(document.getElementById(px+'-pareto-chart').getContext('2d'),{
-    type:'bar',
-    data:{labels:items.map(function(i,idx){return idx<8?(i.cat.length>15?i.cat.substring(0,15)+'...':i.cat):'#'+(idx+1);}),
-    datasets:[
-      {label:'GMV',data:items.map(function(i){return i.gmv;}),backgroundColor:C_BLUE,borderRadius:3,yAxisID:'y'},
-      {label:'Acumulado %',data:cumPct,type:'line',borderColor:C_RED,backgroundColor:'transparent',pointRadius:3,yAxisID:'y1'}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'}},
-      scales:{y:{ticks:{callback:function(v){return fmt(v);}}},y1:{type:'linear',position:'right',min:0,max:100,grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+'%';}}}}}
-  });
-  // Table
-  var tbl=document.getElementById(px+'-cat2-tbl');
-  var hdr='<thead><tr><th style="text-align:left;">Categoria</th><th>GMV YTD</th><th>Share</th><th>SIs</th><th>Itens</th><th>ASP m\u00e9d.</th></tr></thead><tbody>';
-  var body='';
-  items.forEach(function(item){
-    var sh=totalGMV>0?pctNum(item.gmv,totalGMV):0;
-    var asp=item.si>0?item.gmv/item.si:0;
-    body+='<tr><td style="text-align:left;">'+item.cat+'</td><td>'+fmt(item.gmv)+'</td><td><span class="pill pill-blue" style="font-size:10px;">'+sh.toFixed(1)+'%</span></td><td>'+fmtN(item.si)+'</td><td>'+item.n+'</td><td>R$ '+Math.round(asp).toLocaleString('pt-BR')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── YoY 2025 vs 2026 ──
-function buildYoY(g, px) {
-  var m25=REAL_2025[g]||{}, m26=REAL_MENSAL[g]||{};
-  var ytd26=PERIODO.reduce(function(s,k){return s+(m26[k]||0);},0);
-  var ytd25=PERIODO.reduce(function(s,k){return s+(m25[k]?m25[k].gmv:0);},0);
-  var pYoY=ytd25>0?((ytd26/ytd25-1)*100):0;
-  var si26=PERIODO.reduce(function(s,k){return s+(REAL_SI[g][k]||0);},0);
-  var si25=PERIODO.reduce(function(s,k){return s+(m25[k]?m25[k].si:0);},0);
-  var pSiYoY=si25>0?((si26/si25-1)*100):0;
-  document.getElementById(px+'-yoy-kpi').innerHTML=kpiHtml([
-    {label:'GMV 2026 (per\u00edodo)',val:fmt(ytd26),sub:'GMV 2025: '+fmt(ytd25),cls:'blue'},
-    {label:'Crescimento YoY GMV',val:(pYoY>=0?'+':'')+pYoY.toFixed(1)+'%',sub:'2026 vs mesmo per\u00edodo 2025',cls:pYoY>=20?'green':pYoY>=0?'yellow':'red'},
-    {label:'SIs 2026',val:fmtN(si26),sub:'SIs 2025: '+fmtN(si25),cls:'blue'},
-    {label:'Crescimento YoY SIs',val:(pSiYoY>=0?'+':'')+pSiYoY.toFixed(1)+'%',sub:'Unidades vendidas',cls:pSiYoY>=10?'green':pSiYoY>=0?'yellow':'red'}
-  ]);
-  var doneKeys=MESES_DONE.slice();
-  var labels=doneKeys.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var d26=doneKeys.map(function(k){return m26[k]||0;});
-  var d25=doneKeys.map(function(k){return m25[k]?m25[k].gmv:0;});
-  destroyChart(px+'-yoy-chart');
-  chartInstances[px+'-yoy-chart']=new Chart(document.getElementById(px+'-yoy-chart').getContext('2d'),{type:'bar',
-    data:{labels:labels,datasets:[
-      {label:'2026',data:d26,backgroundColor:C_BLUE,borderRadius:4},
-      {label:'2025',data:d25,backgroundColor:'rgba(0,0,0,0.12)',borderRadius:4}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-  var tbl=document.getElementById(px+'-yoy-tbl');
-  var hdr='<thead><tr><th>M\u00eas</th><th>GMV 2026</th><th>GMV 2025</th><th>Var. GMV</th><th>SIs 2026</th><th>SIs 2025</th><th>Var. SIs</th></tr></thead><tbody>';
-  var body='';
-  doneKeys.forEach(function(k,i){
-    var g26=m26[k]||0,g25=m25[k]?m25[k].gmv:0;
-    var s26=REAL_SI[g][k]||0,s25=m25[k]?m25[k].si:0;
-    var vg=g25>0?((g26/g25-1)*100):null,vs=s25>0?((s26/s25-1)*100):null;
-    var vgHtml=vg!==null?'<span style="color:'+(vg>=0?'#00A650':'#F23D4F')+';">'+(vg>=0?'+':'')+vg.toFixed(1)+'%</span>':'-';
-    var vsHtml=vs!==null?'<span style="color:'+(vs>=0?'#00A650':'#F23D4F')+';">'+(vs>=0?'+':'')+vs.toFixed(1)+'%</span>':'-';
-    body+='<tr><td>'+MESES_LABEL[MESES_KEYS.indexOf(k)]+'</td><td>'+fmt(g26)+'</td><td>'+fmt(g25)+'</td><td>'+vgHtml+'</td><td>'+fmtN(s26)+'</td><td>'+fmtN(s25)+'</td><td>'+vsHtml+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── Visitas & Conversão ──
-function buildVisitas(g, px) {
-  // embedded in Geral's KPI section — called from buildGrupo
-  return PERIODO.reduce(function(s,k){return s+(REAL_VISITAS[g][k]||0);},0);
-}
-
-// ── BPC Ofensores, Negociação & Acionáveis ──
-function getSinaisComerciais(item) {
-  var sinais = [];
-  if (item.pm > 0) sinais.push({lbl:'Price Match',cls:'pill-green'});
-  if (item.ac > 0) sinais.push({lbl:'Camp. Auto',cls:'pill-blue'});
-  if (item.sc > 0) sinais.push({lbl:'Smart Camp.',cls:'pill-blue'});
-  if (item.reb > 0) sinais.push({lbl:'Rebate',cls:'pill-green'});
-  return sinais;
-}
-function getPreAcordoStatus(item) {
-  var key = 'bpc_neg_' + item.g.replace(/\s/g,'_');
-  var saved = JSON.parse(localStorage.getItem(key)||'{}');
-  var d = saved[item.id] || {};
-  return d.status || '';
-}
-function renderBPCOffenders(items, tblId, acId, negId) {
-  var tbl = document.getElementById(tblId);
-  if (!tbl) return;
-  var hdr = '<thead><tr><th>#</th><th style="text-align:left;">Item</th><th>GMV s/Buybox</th><th>% s/BB</th><th>ASP</th><th>Sinais Comerciais</th><th>Pr\u00e9-acordo</th><th>Diagn\u00f3stico</th></tr></thead><tbody>';
-  var body = '';
-  items.slice(0, 30).forEach(function(item, i) {
-    var badgeCls = item.pct_sb >= 60 ? 'ob-critical' : item.pct_sb >= 30 ? 'ob-warning' : 'ob-ok';
-    var diag = item.pct_sb >= 60 ? 'Pre\u00e7o n\u00e3o competitivo' : item.pct_sb >= 30 ? 'Em risco' : 'Monitorar';
-    var sinais = getSinaisComerciais(item);
-    var negSt = getPreAcordoStatus(item);
-    var negDisp = negSt === 'fechado' ? '<span class="pill pill-green" style="font-size:10px;">&#10003; Fechado</span>'
-                : negSt === 'negociando' ? '<span class="pill pill-blue" style="font-size:10px;">Em negoci.</span>'
-                : negSt === 'semacordo' ? '<span class="pill pill-red" style="font-size:10px;">Sem acordo</span>'
-                : '<span style="font-size:10px;color:#AAA;">N/A</span>';
-    body += '<tr>';
-    body += '<td style="color:#888;font-weight:400;">' + (i+1) + '</td>';
-    body += '<td class="itens-title-cell" title="' + item.t + '">' + item.t + '</td>';
-    body += '<td><strong>' + fmt(item.gsb) + '</strong></td>';
-    body += '<td><span class="offender-badge ' + badgeCls + '">' + item.pct_sb.toFixed(0) + '%</span></td>';
-    body += '<td>R$ ' + item.asp.toFixed(2).replace('.', ',') + '</td>';
-    body += '<td>' + (sinais.length > 0 ? sinais.map(function(s){return '<span class="pill '+s.cls+'" style="font-size:10px;margin-right:2px;">'+s.lbl+'</span>';}).join('') : '<span style="color:#CCC;font-size:11px;">Nenhum</span>') + '</td>';
-    body += '<td>' + negDisp + '</td>';
-    body += '<td><span class="offender-badge ' + badgeCls + '">' + diag + '</span></td>';
-    body += '</tr>';
-  });
-  tbl.innerHTML = hdr + body + '</tbody>';
-  if (negId) buildNegPanel(items.slice(0, 20), negId);
-  // Acionáveis
-  var ac = document.getElementById(acId);
-  if (!ac) return;
-  var actions = [];
-  var critical = items.filter(function(i){return i.pct_sb >= 60 && i.gsb > 50000;});
-  var nopm = items.filter(function(i){return i.pm === 0 && i.pct_sb >= 30;});
-  var highGMVlost = items.slice(0, 5);
-  if (critical.length > 0) {
-    actions.push({icon:'🔴', cls:'corp-red', title:'Itens cr\u00edticos sem buybox (>60% pedidos fora)',
-      body:'<strong>' + critical.length + ' item(s)</strong> com mais de 60% dos pedidos sem buybox e GMV relevante. Esses itens est\u00e3o vendendo abaixo do potencial m\u00e1ximo.',
-      list:['Analisar pre\u00e7o praticado vs concorrentes para: <em>' + critical.slice(0,3).map(function(i){return i.t.substring(0,35)+'...';}).join(', ') + '</em>',
-            'Verificar se h\u00e1 vendedor com pre\u00e7o menor ativo no cat\u00e1logo',
-            'Ajustar pre\u00e7o para reconquistar buybox (ganho estimado: ' + fmt(critical.reduce(function(s,i){return s+i.gsb;},0)) + ' em GMV recuper\u00e1vel)']});
-  }
-  if (nopm.length > 0) {
-    actions.push({icon:'⚙️', cls:'corp-yellow', title:'Ativar Pre\u00e7o Competitivo Autom\u00e1tico',
-      body:'<strong>' + nopm.length + ' item(s)</strong> est\u00e3o perdendo buybox sem price match ativo. A ferramenta ajusta o pre\u00e7o automaticamente para reconquistar buybox sem necessitar interven\u00e7\u00e3o manual.',
-      list:['Ativar Pre\u00e7o Competitivo Autom\u00e1tico nos ' + nopm.length + ' itens identificados','Definir limite de pre\u00e7o m\u00ednimo para prote\u00e7\u00e3o de margem','Monitorar BPC % nos pr\u00f3ximos 7 dias ap\u00f3s ativa\u00e7\u00e3o']});
-  }
-  if (highGMVlost.length > 0) {
-    actions.push({icon:'💰', cls:'corp-yellow', title:'Top 5 oportunidades de GMV recup\u00e9ravel',
-      body:'Os 5 maiores ofensores representam <strong>' + fmt(highGMVlost.reduce(function(s,i){return s+i.gsb;},0)) + '</strong> em GMV que passou sem buybox YTD.',
-      list:highGMVlost.map(function(i){return '"' + i.t.substring(0,40) + '..." &mdash; ' + fmt(i.gsb) + ' sem BB (' + i.pct_sb.toFixed(0) + '%)';})});
-  }
-  if (actions.length === 0) {
-    actions.push({icon:'✅', cls:'corp-green', title:'BPC dentro do esperado', body:'Nenhum ofensor cr\u00edtico identificado para este grupo.', list:['Manter monitoramento semanal do BPC %','Continuar com price match ativo nos itens estrat\u00e9gicos']});
-  }
-  ac.innerHTML = actions.map(function(a){
-    return '<div class="action-card" style="border-left-color:' + (a.cls==='corp-red'?'#F23D4F':a.cls==='corp-yellow'?'#FFB900':'#00A650') + ';min-width:280px;">' +
-      '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="font-size:20px;">' + a.icon + '</span><span style="font-weight:700;font-size:13px;color:#333;">' + a.title + '</span></div>' +
-      '<p style="font-size:12px;color:#555;margin-bottom:8px;">' + a.body + '</p>' +
-      '<ul class="corp-actions-list">' + a.list.map(function(l){return '<li>'+l+'</li>';}).join('') + '</ul></div>';
-  }).join('');
-}
-
-// ── Painel de Negociação BPC ──
-function buildNegPanel(items, panelId) {
-  var el = document.getElementById(panelId);
-  if (!el || items.length === 0) { if(el) el.innerHTML='<p style="color:#AAA;font-size:12px;padding:12px;">Nenhum item ofensor identificado.</p>'; return; }
-  // Carrega dados salvos
-  function getKey(item){ return 'bpc_neg_'+item.g.replace(/\s/g,'_'); }
-  function getSaved(item){ return JSON.parse(localStorage.getItem(getKey(item))||'{}')[item.id]||{}; }
-  // Summary
-  var stats = {identificado:0, negociando:0, fechado:0, semacordo:0};
-  items.forEach(function(item){ var st=getSaved(item).status||'identificado'; stats[st]=(stats[st]||0)+1; });
-  var sumHtml = '<div class="neg-summary">';
-  sumHtml += '<div class="neg-stat"><div class="neg-stat-val" style="color:#888;">'+stats.identificado+'</div><div class="neg-stat-lbl">Identificados</div></div>';
-  sumHtml += '<div class="neg-stat"><div class="neg-stat-val" style="color:#3483FA;">'+stats.negociando+'</div><div class="neg-stat-lbl">Em negociação</div></div>';
-  sumHtml += '<div class="neg-stat"><div class="neg-stat-val" style="color:#00A650;">'+stats.fechado+'</div><div class="neg-stat-lbl">Acordos fechados</div></div>';
-  sumHtml += '<div class="neg-stat"><div class="neg-stat-val" style="color:#F23D4F;">'+stats.semacordo+'</div><div class="neg-stat-lbl">Sem acordo</div></div>';
-  sumHtml += '<div style="margin-left:auto;align-self:center;font-size:11px;color:#AAA;">Dados salvos localmente no navegador</div>';
-  sumHtml += '</div>';
-  // Tabela
-  var rows = '';
-  items.forEach(function(item, idx) {
-    var saved = getSaved(item);
-    var st = saved.status || 'identificado';
-    var nota = (saved.nota || '').replace(/"/g,'&quot;');
-    var meta = (saved.meta || '').replace(/"/g,'&quot;');
-    var prazo = saved.prazo || '';
-    var sinais = getSinaisComerciais(item);
-    var sinaislbl = sinais.length > 0 ? sinais.map(function(s){return s.lbl;}).join(', ') : 'Nenhum';
-    var badgeCls = item.pct_sb >= 60 ? 'ob-critical' : item.pct_sb >= 30 ? 'ob-warning' : 'ob-ok';
-    var uid = 'neg_'+panelId+'_'+idx;
-    rows += '<tr>';
-    rows += '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+item.t+'"><strong>'+item.t+'</strong><br><span style="font-size:10px;color:#AAA;">'+item.g+' &nbsp;|&nbsp; GMV s/BB: '+fmt(item.gsb)+'</span></td>';
-    rows += '<td><span class="offender-badge '+badgeCls+'">'+item.pct_sb.toFixed(0)+'% s/BB</span></td>';
-    rows += '<td style="font-size:11px;color:#666;">'+sinaislbl+'</td>';
-    rows += '<td><select id="'+uid+'_st" class="neg-select st-'+st+'" onchange="negUpdateStyle(this);negSave(\''+getKey(item)+'\',\''+item.id+'\',\'status\',this.value)">';
-    ['identificado','negociando','fechado','semacordo'].forEach(function(s){
-      rows += '<option value="'+s+'"'+(st===s?' selected':'')+'>'+{identificado:'Identificado',negociando:'Em negociação',fechado:'Acordo fechado',semacordo:'Sem acordo'}[s]+'</option>';
-    });
-    rows += '</select></td>';
-    rows += '<td><input id="'+uid+'_meta" class="neg-input" type="text" placeholder="Ex: R$ 450,00 ou -8%" value="'+meta+'" style="width:100px;" onchange="negSave(\''+getKey(item)+'\',\''+item.id+'\',\'meta\',this.value)"></td>';
-    rows += '<td><input id="'+uid+'_prazo" class="neg-input" type="date" value="'+prazo+'" onchange="negSave(\''+getKey(item)+'\',\''+item.id+'\',\'prazo\',this.value)"></td>';
-    rows += '<td><input id="'+uid+'_nota" class="neg-input" type="text" placeholder="Observações..." value="'+nota+'" style="min-width:160px;" onchange="negSave(\''+getKey(item)+'\',\''+item.id+'\',\'nota\',this.value)"></td>';
-    rows += '<td><span id="'+uid+'_ok" class="neg-saved-badge" style="display:none;">&#10003; Salvo</span></td>';
-    rows += '</tr>';
-  });
-  el.innerHTML = '<div class="neg-panel">'+sumHtml+'<div style="overflow-x:auto;"><table class="neg-tbl"><thead><tr><th>Item</th><th>BPC</th><th>Sinais Comerc.</th><th>Status</th><th>Meta Pre\u00e7o</th><th>Prazo</th><th>Observa\u00e7\u00f5es</th><th></th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
-}
-function negSave(storageKey, itemId, field, value) {
-  var saved = JSON.parse(localStorage.getItem(storageKey)||'{}');
-  if (!saved[itemId]) saved[itemId] = {};
-  saved[itemId][field] = value;
-  localStorage.setItem(storageKey, JSON.stringify(saved));
-  // Flash saved badge — find closest row
-  var inputs = document.querySelectorAll('[id*="_'+itemId+'"]');
-  if (inputs.length > 0) {
-    var rowEl = inputs[0].closest('tr');
-    if (rowEl) {
-      var badge = rowEl.querySelector('.neg-saved-badge');
-      if (badge) { badge.style.display='inline-block'; setTimeout(function(){badge.style.display='none';},2000); }
-    }
-  }
-}
-function negUpdateStyle(sel) {
-  sel.className = 'neg-select st-' + sel.value;
-}
-
-// ── Scorecard 360 & Pontos Corporativos ──
-function buildVGScorecard() {
-  var ytdGMV  = GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var ytdMFtot= GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
-  var ytdSIa  = GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
-  var asp     = ytdSIa > 0 ? ytdGMV/ytdSIa : 0;
-  var ytdFFa  = GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
-  var pFF     = ytdGMV > 0 ? pctNum(ytdFFa, ytdGMV) : 0;
-  var ytdInv  = GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
-  var ytdCup  = GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
-  var ytdInvT = GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
-  var pAds    = ytdGMV > 0 ? ytdInv/ytdGMV*100 : 0;
-  var roas    = ytdInv > 0 ? ytdGMV/ytdInv : 0;
-  var pMF     = pctNum(ytdGMV, ytdMFtot);
-  var ytdPed  = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_PED_TOT[g][k]||0);},0);},0);
-  var ytdBB   = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_PED_BB[g][k]||0);},0);},0);
-  var pBPC    = ytdPed > 0 ? pctNum(ytdBB, ytdPed) : 0;
-  var pInvGMV = ytdGMV > 0 ? ytdInvT/ytdGMV*100 : 0;
-  var cards = [
-    {label:'GMV YTD', val:fmt(ytdGMV), sub:pMF.toFixed(1)+'% da Meta Fin.', cls:pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red'},
-    {label:'% Meta Financeira', val:pMF.toFixed(1)+'%', sub:'Meta: '+fmt(ytdMFtot), cls:pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red'},
-    {label:'SIs YTD', val:fmtN(ytdSIa), sub:'ASP m\u00e9d: R$ '+Math.round(asp).toLocaleString('pt-BR'), cls:'sc-blue'},
-    {label:'% Fulfillment', val:pFF.toFixed(1)+'%', sub:'FF GMV: '+fmt(ytdFFa), cls:pFF>=80?'sc-green':pFF>=60?'sc-yellow':'sc-red'},
-    {label:'BPC (Buybox %)', val:pBPC.toFixed(1)+'%', sub:'Pedidos com buybox', cls:pBPC>=80?'sc-green':pBPC>=60?'sc-yellow':'sc-red'},
-    {label:'Inv. ADS YTD', val:fmt(ytdInv), sub:'ADS/GMV: '+pAds.toFixed(2)+'%', cls:'sc-blue'},
-    {label:'ROAS (GMV/ADS)', val:roas>0?roas.toFixed(1)+'x':'-', sub:'Retorno bruto ADS', cls:roas>=20?'sc-green':roas>=10?'sc-yellow':'sc-red'},
-    {label:'Cupons YTD', val:fmt(ytdCup), sub:(ytdGMV>0?(ytdCup/ytdGMV*100).toFixed(2)+'% do GMV':''), cls:'sc-blue'},
-    {label:'Investimento Total', val:fmt(ytdInvT), sub:'Inv/GMV: '+pInvGMV.toFixed(2)+'%', cls:'sc-blue'}
-  ];
-  document.getElementById('vg-scorecard').innerHTML =
-    '<div class="scorecard-grid">' +
-    cards.map(function(c){return '<div class="sc-card '+c.cls+'"><div class="sc-label">'+c.label+'</div><div class="sc-value">'+c.val+'</div><div class="sc-sub">'+c.sub+'</div></div>';}).join('') +
-    '</div>';
-}
-function buildCorpAcionaveis() {
-  var points = [];
-  // Análise por grupo
-  GRUPOS.forEach(function(g) {
-    var pFin = pctNum(ytdReal(g), ytdMF(g));
-    var pFF  = ytdReal(g) > 0 ? pctNum(ytdFF(g), ytdReal(g)) : 0;
-    var ytdPed = MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[g][k]||0);},0);
-    var ytdBB  = MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[g][k]||0);},0);
-    var pBPC = ytdPed > 0 ? pctNum(ytdBB, ytdPed) : 0;
-    var invA = ytdInvAds(g), gmv = ytdReal(g);
-    var pAds = gmv > 0 ? invA/gmv*100 : 0;
-    if (pFin < 80) points.push({priority:'ALTA', cls:'corp-red', icon:'📉', group:g,
-      issue:'GMV abaixo de 80% da Meta Financeira ('+pFin.toFixed(1)+'%)',
-      actions:['Revisar calendário de ações táticas para os meses restantes do quarter','Identificar categorias/itens com maior potencial de crescimento rápido','Avaliar incentivo via cupons em itens com alta elasticidade de demanda']});
-    if (pFF < 70) points.push({priority:'ALTA', cls:'corp-red', icon:'🚚', group:g,
-      issue:'Fulfillment abaixo de 70% ('+pFF.toFixed(1)+'%) — risco de perda de posição orgânica',
-      actions:['Migrar top 10 itens por GMV para Fulfillment imediatamente','Verificar ruptura de estoque nos centros de distribuição','Acompanhar impacto no ranking orgânico após a migração']});
-    if (pBPC < 65) points.push({priority:'ALTA', cls:'corp-red', icon:'🏷️', group:g,
-      issue:'BPC crítico em '+pBPC.toFixed(1)+'% — mais de 35% dos pedidos sem buybox',
-      actions:['Ativar revisão de preços nos top 20 itens por GMV sem buybox','Habilitar Preço Competitivo Automático nos itens elegíveis','Definir gatilho semanal de monitoramento: BPC < 70% = ação imediata']});
-    if (pAds > 8) points.push({priority:'MÉDIA', cls:'corp-yellow', icon:'💸', group:g,
-      issue:'Investimento ADS elevado ('+pAds.toFixed(2)+'% do GMV) — verificar eficiência',
-      actions:['Auditar campanhas com ROAS abaixo de 10x e pausar as ineficientes','Concentrar budget nos itens com maior volume orgânico e maior ticket médio','Revisar bid automático — reduzir lances em itens já com buybox conquistado']});
-    if (pFF >= 85 && pBPC >= 80 && pFin >= 90) points.push({priority:'POSITIVO', cls:'corp-green', icon:'✅', group:g,
-      issue:'Grupo com boa performance em todas as alavancas',
-      actions:['Expandir catálogo nos domínios com maior ticket médio','Avaliar incremento de verba de ADS nos itens com ROAS > 20x','Replicar estratégia para novos itens do mix']});
-  });
-  // Pontos de carteira geral
-  var totalYTD = GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var totalMFc = GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
-  var pTotal   = pctNum(totalYTD, totalMFc);
-  if (pTotal < 85) points.unshift({priority:'CARTEIRA', cls:'corp-red', icon:'🎯', group:'CARTEIRA TOTAL',
-    issue:'Carteira em '+pTotal.toFixed(1)+'% da Meta Financeira YTD — necessita aceleração',
-    actions:['Agendar revisão semanal de forecasting com cada grupo','Priorizar ações nos grupos com maior GAP absoluto de GMV','Avaliar oportunidades cross-sell entre os sellers da carteira']});
-  if (points.length === 0) points.push({priority:'POSITIVO', cls:'corp-green', icon:'🏆', group:'CARTEIRA',
-    issue:'Carteira com bom desempenho em todas as alavancas',
-    actions:['Manter cadência de acompanhamento semanal','Planejar expansão de catálogo para o próximo quarter']});
-  document.getElementById('vg-corp-actions').innerHTML = points.map(function(p){
-    return '<div class="corp-card '+p.cls+'">' +
-      '<div class="corp-header"><span class="corp-icon">'+p.icon+'</span>' +
-      '<span class="corp-title">'+p.group+' &mdash; '+p.issue+'</span>' +
-      '<span class="corp-badge">'+p.priority+'</span></div>' +
-      '<ul class="corp-actions-list">'+p.actions.map(function(a){return '<li>'+a+'</li>';}).join('')+'</ul>' +
-      '</div>';
-  }).join('');
-}
-
-// ── Seller sub-tab builders ──
-function buildSellerFull(g,px){
-  var ytd=ytdReal(g),ff=ytdFF(g),xd=ytdXD(g),ss=MESES_DONE.reduce(function(s,k){return s+(REAL_SS[g][k]||0);},0);
-  var pFF=ytd>0?pctNum(ff,ytd):0;
-  document.getElementById(px+'-full-kpi').innerHTML=kpiHtml([
-    {label:'Fulfillment YTD',val:fmt(ff),sub:(ytd>0?(ff/ytd*100).toFixed(1)+'% do total':''),cls:'green'},
-    {label:'Cross Docking YTD',val:fmt(xd),sub:(ytd>0?(xd/ytd*100).toFixed(1)+'% do total':''),cls:'blue'},
-    {label:'Self Service YTD',val:fmt(ss),sub:(ytd>0?(ss/ytd*100).toFixed(1)+'% do total':''),cls:'yellow'},
-    {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'Meta: >80%',cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
-  ]);
-  var dL=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  destroyChart(px+'-full-chart');
-  chartInstances[px+'-full-chart']=new Chart(document.getElementById(px+'-full-canvas').getContext('2d'),{type:'bar',
-    data:{labels:dL,datasets:[
-      {label:'Fulfillment',data:MESES_DONE.map(function(mk){return REAL_FF[g][mk]||0;}),backgroundColor:C_GREEN,borderRadius:4},
-      {label:'Cross Docking',data:MESES_DONE.map(function(mk){return REAL_XD[g][mk]||0;}),backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Self Service',data:MESES_DONE.map(function(mk){return REAL_SS[g][mk]||0;}),backgroundColor:C_YELLOW,borderRadius:4}
-    ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}});
-  var tbl=document.getElementById(px+'-full-table');
-  var hdr='<thead><tr><th>M\u00eas</th><th>GMV Total</th><th>FF GMV</th><th>XD GMV</th><th>% FF</th></tr></thead><tbody>';
-  var body='';
-  MESES_DONE.forEach(function(mk,i){
-    var tot=REAL_MENSAL[g][mk]||0,ff=REAL_FF[g][mk]||0,xd=REAL_XD[g][mk]||0;
-    body+='<tr><td>'+MESES_TABELA[i]+'</td><td>'+fmt(tot)+'</td><td>'+fmt(ff)+'</td><td>'+fmt(xd)+'</td><td>'+(tot>0?pillPct(pctNum(ff,tot)):'-')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-function buildSellerADS(g,px){
-  var invA=ytdInvAds(g),cup=ytdCupons(g),gmv=ytdReal(g);
-  var roas=invA>0?gmv/invA:0,adsShare=gmv>0?invA/gmv*100:0;
-  document.getElementById(px+'-ads-kpi').innerHTML=kpiHtml([
-    {label:'Investimento ADS YTD',val:fmt(invA),sub:'Campanhas autom\u00e1ticas',cls:'blue'},
-    {label:'Cupons YTD',val:fmt(cup),sub:'Cuponera + seller',cls:'yellow'},
-    {label:'ADS / GMV',val:adsShare.toFixed(2)+'%',sub:'Taxa de investimento',cls:adsShare<=5?'green':adsShare<=10?'yellow':'red'},
-    {label:'ROAS',val:roas>0?roas.toFixed(1)+'x':'-',sub:'GMV / Inv. ADS',cls:roas>=20?'green':roas>=10?'yellow':'red'}
-  ]);
-  var dL=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  destroyChart(px+'-ads-chart');
-  chartInstances[px+'-ads-chart']=new Chart(document.getElementById(px+'-ads-canvas').getContext('2d'),{type:'bar',
-    data:{labels:dL,datasets:[
-      {label:'ADS',data:MESES_DONE.map(function(mk){return REAL_INV_ADS[g][mk]||0;}),backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Cupons',data:MESES_DONE.map(function(mk){return REAL_CUPONS[g][mk]||0;}),backgroundColor:C_YELLOW,borderRadius:4}
-    ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}});
-  var tbl=document.getElementById(px+'-ads-table');
-  var hdr='<thead><tr><th>M\u00eas</th><th>GMV</th><th>ADS Inv.</th><th>Cupons</th><th>ADS/GMV</th><th>ROAS</th></tr></thead><tbody>';
-  var body='';
-  MESES_DONE.forEach(function(mk,i){
-    var gv=REAL_MENSAL[g][mk]||0,inv=REAL_INV_ADS[g][mk]||0,c=REAL_CUPONS[g][mk]||0;
-    body+='<tr><td>'+MESES_TABELA[i]+'</td><td>'+fmt(gv)+'</td><td>'+fmt(inv)+'</td><td>'+fmt(c)+'</td><td>'+(gv>0?(inv/gv*100).toFixed(2)+'%':'--')+'</td><td>'+(inv>0?(gv/inv).toFixed(1)+'x':'-')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-function buildSellerInv(g,px){
-  var invA=ytdInvAds(g),cup=ytdCupons(g),reb=MESES_DONE.reduce(function(s,k){return s+(REAL_REBATES[g][k]||0);},0);
-  var tot=invA+cup+reb,gmv=ytdReal(g);
-  document.getElementById(px+'-inv-kpi').innerHTML=kpiHtml([
-    {label:'Investimento Total YTD',val:fmt(tot),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'ADS',val:fmt(invA),sub:(tot>0?(invA/tot*100).toFixed(1)+'% do total':''),cls:'blue'},
-    {label:'Cupons',val:fmt(cup),sub:(tot>0?(cup/tot*100).toFixed(1)+'% do total':''),cls:'yellow'},
-    {label:'Inv. / GMV',val:(gmv>0?(tot/gmv*100).toFixed(2)+'%':'-'),sub:'Taxa total',cls:'blue'}
-  ]);
-  var dL=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  destroyChart(px+'-inv-chart');
-  chartInstances[px+'-inv-chart']=new Chart(document.getElementById(px+'-inv-canvas').getContext('2d'),{type:'bar',
-    data:{labels:dL,datasets:[
-      {label:'ADS',data:MESES_DONE.map(function(mk){return REAL_INV_ADS[g][mk]||0;}),backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Cupons',data:MESES_DONE.map(function(mk){return REAL_CUPONS[g][mk]||0;}),backgroundColor:C_YELLOW,borderRadius:4},
-      {label:'Rebates',data:MESES_DONE.map(function(mk){return REAL_REBATES[g][mk]||0;}),backgroundColor:C_PURPLE,borderRadius:4}
-    ]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}});
-  var tbl=document.getElementById(px+'-inv-table');
-  var hdr='<thead><tr><th>M\u00eas</th><th>GMV</th><th>ADS</th><th>Cupons</th><th>Total Inv.</th><th>Inv/GMV</th></tr></thead><tbody>';
-  var body='';
-  MESES_DONE.forEach(function(mk,i){
-    var gv=REAL_MENSAL[g][mk]||0,inv=REAL_INV_ADS[g][mk]||0,c=REAL_CUPONS[g][mk]||0,t=REAL_INV_TOT[g][mk]||0;
-    body+='<tr><td>'+MESES_TABELA[i]+'</td><td>'+fmt(gv)+'</td><td>'+fmt(inv)+'</td><td>'+fmt(c)+'</td><td>'+fmt(t)+'</td><td>'+(gv>0?(t/gv*100).toFixed(2)+'%':'--')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-function buildSellerBPC(g,px){
-  var ytdPed=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[g][k]||0);},0);
-  var ytdBB=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[g][k]||0);},0);
-  var ytdGMV=ytdReal(g),ytdGMVBB=MESES_DONE.reduce(function(s,k){return s+(REAL_GMV_BB[g][k]||0);},0);
-  var ytdPM=MESES_DONE.reduce(function(s,k){return s+(REAL_PRICE_MATCH[g][k]||0);},0);
-  var pBB=ytdPed>0?pctNum(ytdBB,ytdPed):0,pGMVBB=ytdGMV>0?pctNum(ytdGMVBB,ytdGMV):0;
-  document.getElementById(px+'-bpc-kpi').innerHTML=kpiHtml([
-    {label:'BPC % (Pedidos c/ Buybox)',val:pBB.toFixed(1)+'%',sub:fmtN(ytdBB)+' de '+fmtN(ytdPed)+' pedidos YTD',cls:pBB>=80?'green':pBB>=60?'yellow':'red'},
-    {label:'GMV com Buybox YTD',val:fmt(ytdGMVBB),sub:(ytdGMV>0?(ytdGMVBB/ytdGMV*100).toFixed(1)+'% do GMV total':''),cls:pGMVBB>=80?'green':pGMVBB>=60?'yellow':'red'},
-    {label:'GMV sem Buybox YTD',val:fmt(ytdGMV-ytdGMVBB),sub:'Oportunidade de reconquista de buybox',cls:pGMVBB<80?'red':pGMVBB<90?'yellow':'green'},
-    {label:'Price Match YTD',val:fmtN(ytdPM),sub:'Pedidos com precifica\u00e7\u00e3o competitiva autom\u00e1tica',cls:'blue'}
-  ]);
-  var dL=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var bbPctArr=MESES_DONE.map(function(mk){var p=REAL_PED_TOT[g][mk]||0;return p>0?pctNum(REAL_PED_BB[g][mk]||0,p):null;});
-  var gmvBBPctArr=MESES_DONE.map(function(mk){var gv=REAL_MENSAL[g][mk]||0;return gv>0?pctNum(REAL_GMV_BB[g][mk]||0,gv):null;});
-  destroyChart(px+'-bpc-chart');
-  chartInstances[px+'-bpc-chart']=new Chart(document.getElementById(px+'-bpc-canvas').getContext('2d'),{type:'line',
-    data:{labels:dL,datasets:[
-      {label:'BPC % (Pedidos)',data:bbPctArr,borderColor:C_BLUE,backgroundColor:'rgba(52,131,250,0.1)',fill:true,tension:0.3,pointRadius:5,borderWidth:2.5},
-      {label:'BPC % (GMV)',data:gmvBBPctArr,borderColor:C_GREEN,backgroundColor:'transparent',tension:0.3,pointRadius:5,borderWidth:2.5,borderDash:[5,3]},
-      {label:'Meta 80%',data:dL.map(function(){return 80;}),borderColor:'#F23D4F',backgroundColor:'transparent',borderDash:[6,4],pointRadius:0,borderWidth:1.5}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!==null?c.raw.toFixed(1)+'%':'-');}}}},
-      scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}}}});
-  var tbl=document.getElementById(px+'-bpc-table');
-  var hdr='<thead><tr><th>M\u00eas</th><th>Pedidos Total</th><th>Com Buybox</th><th>Sem Buybox</th><th>BPC %</th><th>GMV c/ Buybox</th><th>GMV BPC %</th><th>Price Match</th></tr></thead><tbody>';
-  var body='';
-  MESES_DONE.forEach(function(mk,i){
-    var tot=REAL_PED_TOT[g][mk]||0,bb=REAL_PED_BB[g][mk]||0,gv=REAL_MENSAL[g][mk]||0,gbb=REAL_GMV_BB[g][mk]||0,pm=REAL_PRICE_MATCH[g][mk]||0;
-    var pct=tot>0?pctNum(bb,tot):0,gpct=gv>0?pctNum(gbb,gv):0;
-    body+='<tr><td>'+MESES_TABELA[i]+'</td><td>'+fmtN(tot)+'</td><td>'+fmtN(bb)+'</td><td>'+fmtN(tot-bb)+'</td><td>'+pillPct(pct)+'</td><td>'+fmt(gbb)+'</td><td>'+pillPct(gpct)+'</td><td>'+fmtN(pm)+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-  var items=BPC_OFFENDERS.filter(function(i){return i.g===g;});
-  renderBPCOffenders(items, px+'-bpc-offenders', px+'-bpc-actions', px+'-bpc-neg');
-}
-function buildVGBPC(){
-  var ytdPed=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_PED_TOT[g][k]||0);},0);},0);
-  var ytdBB=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_PED_BB[g][k]||0);},0);},0);
-  var ytdGMV=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var ytdGMVBB=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_GMV_BB[g][k]||0);},0);},0);
-  var pBB=ytdPed>0?pctNum(ytdBB,ytdPed):0,pGMVBB=ytdGMV>0?pctNum(ytdGMVBB,ytdGMV):0;
-  document.getElementById('vg-bpc-kpi').innerHTML=kpiHtml([
-    {label:'BPC % M\u00e9dio (Pedidos)',val:pBB.toFixed(1)+'%',sub:fmtN(ytdBB)+' de '+fmtN(ytdPed)+' pedidos YTD',cls:pBB>=80?'green':pBB>=60?'yellow':'red'},
-    {label:'GMV com Buybox YTD',val:fmt(ytdGMVBB),sub:pGMVBB.toFixed(1)+'% do GMV total',cls:pGMVBB>=80?'green':pGMVBB>=60?'yellow':'red'},
-    {label:'GMV sem Buybox',val:fmt(ytdGMV-ytdGMVBB),sub:'Oportunidade de recupera\u00e7\u00e3o',cls:pGMVBB<80?'red':'yellow'},
-    {label:'Melhor BPC',val:(function(){var best=GRUPOS[0];GRUPOS.forEach(function(g){var p=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[g][k]||0);},0);var b=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[g][k]||0);},0);var pb=p>0?b/p:0;var bp=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[best][k]||0);},0);var bb=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[best][k]||0);},0);if(pb>bb/bp)best=g;});return best;}()),sub:'Maior % de buybox YTD',cls:'green'}
-  ]);
-  var dL=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var lColors=[C_BLUE,C_GREEN,C_ORANGE,C_PURPLE,'#00BCD4'];
-  var ds=GRUPOS.map(function(g,gi){
-    return {label:g,data:MESES_DONE.map(function(mk){var p=REAL_PED_TOT[g][mk]||0;return p>0?+(pctNum(REAL_PED_BB[g][mk]||0,p).toFixed(1)):null;}),
-      borderColor:lColors[gi],backgroundColor:'transparent',tension:0.3,pointRadius:5,borderWidth:2.5};
-  });
-  ds.push({label:'Meta 80%',data:dL.map(function(){return 80;}),borderColor:'#F23D4F',backgroundColor:'transparent',borderDash:[6,4],pointRadius:0,borderWidth:1.5});
-  destroyChart('vg-bpc-chart');
-  chartInstances['vg-bpc-chart']=new Chart(document.getElementById('vg-bpc-canvas').getContext('2d'),{type:'line',data:{labels:dL,datasets:ds},
-    options:{responsive:true,plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:10}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!==null?c.raw+'%':'-');}}}},
-      scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}}}});
-  var tbl=document.getElementById('vg-bpc-table');
-  var hdr='<thead><tr><th>Grupo</th>';
-  MESES_DONE.forEach(function(mk){hdr+='<th>'+MESES_LABEL[MESES_KEYS.indexOf(mk)]+'<br>BPC %</th>';});
-  hdr+='<th>YTD BPC %</th><th>GMV BPC %</th></tr></thead><tbody>';
-  var body='';
-  GRUPOS.forEach(function(g){
-    body+='<tr><td>'+g+'</td>';
-    MESES_DONE.forEach(function(mk){var p=REAL_PED_TOT[g][mk]||0,b=REAL_PED_BB[g][mk]||0;body+='<td>'+(p>0?pillPct(pctNum(b,p)):'-')+'</td>';});
-    var tp=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_TOT[g][k]||0);},0);
-    var tb=MESES_DONE.reduce(function(s,k){return s+(REAL_PED_BB[g][k]||0);},0);
-    var tg=ytdReal(g),tgb=MESES_DONE.reduce(function(s,k){return s+(REAL_GMV_BB[g][k]||0);},0);
-    body+='<td>'+(tp>0?pillPct(pctNum(tb,tp)):'-')+'</td><td>'+(tg>0?pillPct(pctNum(tgb,tg)):'-')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-  renderBPCOffenders(BPC_OFFENDERS, 'vg-bpc-offenders', 'vg-bpc-actions', 'vg-bpc-neg');
-}
-function buildSellerCat(g,px){
-  var items=TOP_ITEMS.filter(function(i){return i.g===g;});
-  var totalGMV=items.reduce(function(s,i){return s+i.gmv;},0);
-  var tbl=document.getElementById(px+'-cat-table');
-  var hdr='<thead><tr><th>#</th><th style="text-align:left;">Item</th><th>GMV YTD</th><th>Share</th><th>SIs</th><th>ASP</th><th>ADS Inv.</th><th>Cupons</th></tr></thead><tbody>';
-  var body='';
-  items.slice(0,50).forEach(function(item,i){
-    var sh=totalGMV>0?(item.gmv/totalGMV*100).toFixed(1)+'%':'-';
-    body+='<tr><td style="color:#888;font-weight:400;">'+(i+1)+'</td>';
-    body+='<td class="itens-title-cell" title="'+item.t+'">'+item.t+'</td>';
-    body+='<td>'+fmt(item.gmv)+'</td><td><span class="pill pill-blue">'+sh+'</span></td>';
-    body+='<td>'+fmtN(item.si)+'</td><td>R$ '+item.asp.toFixed(2).replace('.',',')+'</td>';
-    body+='<td>'+(item.inv>0?fmt(item.inv):'-')+'</td><td>'+(item.cup>0?fmt(item.cup):'-')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── Full & Logística ──
-function buildLogistica(){
-  var ytdFFall=GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
-  var ytdXDall=GRUPOS.reduce(function(s,g){return s+ytdXD(g);},0);
-  var ytdSSall=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_SS[g][k]||0);},0);},0);
-  var ytdTot=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var pFF=ytdTot>0?pctNum(ytdFFall,ytdTot):0;
-  document.getElementById('log-kpi-row').innerHTML=kpiHtml([
-    {label:'GMV Fulfillment YTD',val:fmt(ytdFFall),sub:(ytdTot>0?(ytdFFall/ytdTot*100).toFixed(1)+'% do total':''),cls:'green'},
-    {label:'GMV Cross Docking YTD',val:fmt(ytdXDall),sub:(ytdTot>0?(ytdXDall/ytdTot*100).toFixed(1)+'% do total':''),cls:'blue'},
-    {label:'GMV Self Service YTD',val:fmt(ytdSSall),sub:(ytdTot>0?(ytdSSall/ytdTot*100).toFixed(1)+'% do total':''),cls:'yellow'},
-    {label:'% Fulfillment Total',val:pFF.toFixed(1)+'%',sub:'Meta recomendada: >80%',cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
-  ]);
-  var dLabels=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var ffArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_FF[g][mk]||0);},0);});
-  var xdArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_XD[g][mk]||0);},0);});
-  var ssArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_SS[g][mk]||0);},0);});
-  destroyChart('log-bar');
-  chartInstances['log-bar']=new Chart(document.getElementById('log-bar-chart').getContext('2d'),{type:'bar',
-    data:{labels:dLabels,datasets:[
-      {label:'Fulfillment',data:ffArr,backgroundColor:C_GREEN,borderRadius:4},
-      {label:'Cross Docking',data:xdArr,backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Self Service',data:ssArr,backgroundColor:C_YELLOW,borderRadius:4}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-  var tbl=document.getElementById('log-table');
-  var hdr='<thead><tr><th>Grupo</th>';
-  MESES_DONE.forEach(function(mk){hdr+='<th>'+MESES_LABEL[MESES_KEYS.indexOf(mk)]+'<br>% FF</th>';});
-  hdr+='<th>YTD GMV</th><th>YTD % FF</th></tr></thead><tbody>';
-  var body='';
-  GRUPOS.forEach(function(g){
-    body+='<tr><td>'+g+'</td>';
-    MESES_DONE.forEach(function(mk){
-      var ff=REAL_FF[g][mk]||0,tot=REAL_MENSAL[g][mk]||0;
-      body+='<td>'+(tot>0?pillPct(pctNum(ff,tot)):'-')+'</td>';
-    });
-    var yt=ytdReal(g),yf=ytdFF(g);
-    body+='<td>'+fmt(yt)+'</td><td>'+(yt>0?pillPct(pctNum(yf,yt)):'-')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── ADS ──
-function buildADS(){
-  var ytdInvAll=GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
-  var ytdCupAll=GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
-  var ytdGMVAll=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var adsShare=ytdGMVAll>0?ytdInvAll/ytdGMVAll*100:0;
-  var roasAll=ytdInvAll>0?ytdGMVAll/ytdInvAll:0;
-  document.getElementById('ads-kpi-row').innerHTML=kpiHtml([
-    {label:'Investimento ADS YTD',val:fmt(ytdInvAll),sub:'Campanhas autom\u00e1ticas',cls:'blue'},
-    {label:'Cupons YTD',val:fmt(ytdCupAll),sub:'Cuponera + seller cupons',cls:'yellow'},
-    {label:'Inv. ADS / GMV',val:adsShare.toFixed(2)+'%',sub:'Taxa de investimento ADS',cls:adsShare<=5?'green':adsShare<=10?'yellow':'red'},
-    {label:'ROAS (GMV / Inv.ADS)',val:roasAll>0?roasAll.toFixed(1)+'x':'-',sub:'Retorno bruto sobre ADS',cls:roasAll>=20?'green':roasAll>=10?'yellow':'red'}
-  ]);
-  var dLabels=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var lColors=[C_BLUE,C_GREEN,C_ORANGE,C_PURPLE,C_YELLOW];
-  var ds=GRUPOS.map(function(g,gi){
-    return {label:g,data:MESES_DONE.map(function(mk){return REAL_INV_ADS[g][mk]||0;}),backgroundColor:lColors[gi%5],borderRadius:4};
-  });
-  destroyChart('ads-bar');
-  chartInstances['ads-bar']=new Chart(document.getElementById('ads-bar-chart').getContext('2d'),{type:'bar',
-    data:{labels:dLabels,datasets:ds},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-  var tbl=document.getElementById('ads-table');
-  var hdr='<thead><tr><th>Grupo</th><th>Inv. ADS YTD</th><th>Cupons YTD</th><th>Inv. Total</th><th>GMV YTD</th><th>ADS/GMV</th><th>ROAS</th></tr></thead><tbody>';
-  var body='';
-  GRUPOS.forEach(function(g){
-    var invA=ytdInvAds(g),cup=ytdCupons(g),invT=ytdInvTot(g),gmv=ytdReal(g);
-    var pAds=gmv>0?(invA/gmv*100).toFixed(2)+'%':'--';
-    var r=invA>0?(gmv/invA).toFixed(1)+'x':'-';
-    body+='<tr><td>'+g+'</td><td>'+fmt(invA)+'</td><td>'+fmt(cup)+'</td><td>'+fmt(invT)+'</td><td>'+fmt(gmv)+'</td><td>'+pAds+'</td><td>'+r+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── Investimentos ──
-function buildInvestimentos(){
-  var ytdInvAll=GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
-  var ytdCupAll=GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
-  var ytdRebAll=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+(REAL_REBATES[g][k]||0);},0);},0);
-  var ytdTotAll=ytdInvAll+ytdCupAll+ytdRebAll;
-  var ytdGMVAll=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  document.getElementById('inv-kpi-row').innerHTML=kpiHtml([
-    {label:'Investimento Total YTD',val:fmt(ytdTotAll),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'ADS (Camp. Auto.)',val:fmt(ytdInvAll),sub:(ytdTotAll>0?(ytdInvAll/ytdTotAll*100).toFixed(1)+'% do investimento':''),cls:'blue'},
-    {label:'Cupons',val:fmt(ytdCupAll),sub:(ytdTotAll>0?(ytdCupAll/ytdTotAll*100).toFixed(1)+'% do investimento':''),cls:'yellow'},
-    {label:'Inv. Total / GMV',val:(ytdGMVAll>0?(ytdTotAll/ytdGMVAll*100).toFixed(2)+'%':'-'),sub:'Taxa total sobre GMV',cls:'blue'}
-  ]);
-  var dLabels=MESES_DONE.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
-  var invArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_INV_ADS[g][mk]||0);},0);});
-  var cupArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_CUPONS[g][mk]||0);},0);});
-  var rebArr=MESES_DONE.map(function(mk){return GRUPOS.reduce(function(s,g){return s+(REAL_REBATES[g][mk]||0);},0);});
-  destroyChart('inv-bar');
-  chartInstances['inv-bar']=new Chart(document.getElementById('inv-bar-chart').getContext('2d'),{type:'bar',
-    data:{labels:dLabels,datasets:[
-      {label:'ADS',data:invArr,backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Cupons',data:cupArr,backgroundColor:C_YELLOW,borderRadius:4},
-      {label:'Rebates',data:rebArr,backgroundColor:C_PURPLE,borderRadius:4}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-  var tbl=document.getElementById('inv-table');
-  var hdr='<thead><tr><th>Grupo</th><th>ADS</th><th>Cupons</th><th>Rebates</th><th>Total</th><th>GMV</th><th>Inv/GMV</th></tr></thead><tbody>';
-  var body='';
-  GRUPOS.forEach(function(g){
-    var invA=ytdInvAds(g),cup=ytdCupons(g),reb=MESES_DONE.reduce(function(s,k){return s+(REAL_REBATES[g][k]||0);},0);
-    var tot=invA+cup+reb,gmv=ytdReal(g);
-    body+='<tr><td>'+g+'</td><td>'+fmt(invA)+'</td><td>'+fmt(cup)+'</td><td>'+fmt(reb)+'</td><td>'+fmt(tot)+'</td><td>'+fmt(gmv)+'</td><td>'+(gmv>0?(tot/gmv*100).toFixed(2)+'%':'--')+'</td></tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── Top Itens ──
-function buildTopItens(){filterItens('');}
-function filterItens(grupo){
-  var pills='<div class="mes-pills" style="margin-bottom:12px;">';
-  pills+='<button class="mes-pill'+(grupo===''?' active':'')+'" onclick="filterItens(\'\')">Todos</button>';
-  GRUPOS.forEach(function(g){pills+='<button class="mes-pill'+(grupo===g?' active':'')+'" onclick="filterItens(\''+g+'\')">'+g+'</button>';});
-  pills+='</div>';
-  document.getElementById('itens-filter').innerHTML=pills;
-  var items=grupo===''?TOP_ITEMS:TOP_ITEMS.filter(function(i){return i.g===grupo;});
-  var totalGMV=items.reduce(function(s,i){return s+i.gmv;},0);
-  var tbl=document.getElementById('itens-table');
-  var hdr='<thead><tr><th>#</th><th>Grupo</th><th style="text-align:left;">Item</th><th>GMV YTD</th><th>Share</th><th>SIs</th><th>ASP</th><th>ADS Inv.</th><th>Cupons</th></tr></thead><tbody>';
-  var body='';
-  items.slice(0,100).forEach(function(item,i){
-    var shareDisp=totalGMV>0?(item.gmv/totalGMV*100).toFixed(1)+'%':'-';
-    body+='<tr>';
-    body+='<td style="color:#888;font-weight:400;">'+(i+1)+'</td>';
-    body+='<td><span class="pill pill-grey" style="font-size:10px;">'+item.g+'</span></td>';
-    body+='<td class="itens-title-cell" title="'+item.t+'">'+item.t+'</td>';
-    body+='<td>'+fmt(item.gmv)+'</td>';
-    body+='<td><span class="pill pill-blue">'+shareDisp+'</span></td>';
-    body+='<td>'+fmtN(item.si)+'</td>';
-    body+='<td>R$ '+item.asp.toFixed(2).replace('.',',')+'</td>';
-    body+='<td>'+(item.inv>0?fmt(item.inv):'-')+'</td>';
-    body+='<td>'+(item.cup>0?fmt(item.cup):'-')+'</td>';
-    body+='</tr>';
-  });
-  tbl.innerHTML=hdr+body+'</tbody>';
-}
-
-// ── Sellers individuais ──
-function buildGrupo(grupo,prefix){
-  var mf=META_FIN[grupo],md=META_DES[grupo];
-  var curKey=MESES_DONE[MESES_DONE.length-1];
-  var proj=aprProj(grupo),ytd=ytdReal(grupo);
-  var pFin=pctNum(ytd,ytdMF(grupo)),pDes=pctNum(ytd,ytdMD(grupo));
-  var si=ytdSI(grupo),asp=si>0?ytd/si:0;
-  var ffPct=ytd>0?pctNum(ytdFF(grupo),ytd):0;
-  var invTot=ytdInvTot(grupo);
-  var novos=ytdNovos(grupo),ped=ytdPedTot(grupo);
-  var pNovos=ped>0?pctNum(novos,ped):0;
-  var orgGMV=ytdOrgGMV(grupo),pOrg=ytd>0?pctNum(orgGMV,ytd):0;
-  var rep=getRepAtual(grupo);
-  var pFreteG=ped>0?pctNum(ytdFreteGratis(grupo),ped):0;
-  var wow=REAL_WOW_PCT[grupo]||0;
-  var visitas=buildVisitas(grupo,prefix);
-  var conv=visitas>0?pctNum(PERIODO.reduce(function(s,k){return s+(REAL_PED_TOT[grupo][k]||0);},0),visitas):0;
-  var ytd25=(REAL_2025[grupo]||{});
-  var gmv25=PERIODO.reduce(function(s,k){return s+(ytd25[k]?ytd25[k].gmv:0);},0);
-  var pYoY=gmv25>0?((ytd/gmv25-1)*100):null;
-  document.getElementById(prefix+'-kpi-row').innerHTML=kpiHtml([
-    {label:'GMV no Per\u00edodo',val:fmt(ytd),sub:wowBadge(wow),cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(ytdMF(grupo)),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(ytdMD(grupo)),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs | ASP',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
-    {label:'Novos Compradores',val:fmtN(novos),sub:pNovos.toFixed(1)+'% dos pedidos',cls:pNovos>=30?'green':pNovos>=20?'yellow':'red'},
-    {label:'GMV Org\u00e2nico',val:fmt(orgGMV),sub:pOrg.toFixed(1)+'% do GMV total',cls:pOrg>=60?'green':pOrg>=40?'yellow':'red'},
-    {label:'% Fulfillment',val:ffPct.toFixed(1)+'%',sub:'FF GMV: '+fmt(ytdFF(grupo)),cls:ffPct>=80?'green':ffPct>=60?'yellow':'red'},
-    {label:'Frete Gr\u00e1tis',val:pFreteG.toFixed(1)+'% pedidos',sub:'Impacto no BM do seller',cls:pFreteG>=90?'red':pFreteG>=70?'yellow':'green'},
-    {label:'Investimento Total',val:fmt(invTot),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'Reputa\u00e7\u00e3o',val:rep||'-',sub:'N\u00edvel atual',cls:'blue'},
-    {label:'Visitas YTD',val:visitas>0?fmtN(visitas):'-',sub:'Convers\u00e3o: '+(visitas>0?conv.toFixed(2)+'%':'N/D'),cls:conv>=3?'green':conv>=1?'yellow':'blue'},
-    {label:'YoY vs 2025',val:pYoY!==null?(pYoY>=0?'+':'')+pYoY.toFixed(1)+'%':'-',sub:'Mesmo per\u00edodo 2025: '+fmt(gmv25),cls:pYoY===null?'blue':pYoY>=15?'green':pYoY>=0?'yellow':'red'}
-  ]);
-  var realArr=MESES_KEYS.map(function(mk){var rv=REAL_MENSAL[grupo][mk];if(rv===undefined)return null;return mk===curKey?rv*FAT_PROJ:rv;});
-  destroyChart(prefix+'-bar');
-  chartInstances[prefix+'-bar']=new Chart(document.getElementById(prefix+'-bar-chart').getContext('2d'),{type:'bar',
-    data:{labels:MESES_LABEL,datasets:[
-      {label:'Realizado',data:realArr,backgroundColor:C_BLUE,borderRadius:4},
-      {label:'Meta Financeira',data:MESES_KEYS.map(function(mk){return mf[mk];}),backgroundColor:C_YELLOW,borderRadius:4},
-      {label:'Meta Desafio',data:MESES_KEYS.map(function(mk){return md[mk];}),backgroundColor:C_GREEN,borderRadius:4}
-    ]},
-    options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!==null?fmt(c.raw):'-');}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
-  });
-}
-
-// ── Acionáveis ──
-var ACOES={
-  'ALUMINIO NACIONAL':[
-    {icon:'📦',text:'Revisar mix de produtos — ticket medio R$165 (meta implica ~R$200+). Priorizar itens acima de R$250.'},
-    {icon:'🚚',text:'Converter 14% XD restante para Fulfillment — ganho de posicao organica sem custo adicional.'},
-    {icon:'📉',text:'Volume caindo desde marco — verificar ruptura de catalogo e precificacao dos top itens.'}
-  ],
-  'ATOZ':[
-    {icon:'🚚',text:'Converter 8% XD para Fulfillment — esta no limiar de zerar o BM (-R$61k).'},
-    {icon:'📊',text:'Volume caiu em marco vs fevereiro — verificar precificacao e mix de categorias.'},
-    {icon:'✅',text:'DC positivo +R$343k — defender volume e expandir catalogo nos dominios com maior ticket.'}
-  ],
-  'BRINOX':[
-    {icon:'⚡',text:'Conta BRINOXMETALURGICA ainda 0% FF — migrar top itens para Fulfillment urgente para ganhar buybox.'},
-    {icon:'💸',text:'Custo de frete -R$1,04M/90d com apenas R$37k de receita — reprecificar com frete incluso nos itens de volume.'},
-    {icon:'📈',text:'Grupo crescendo forte — expandir catalogo de MIMORADA para sustentar o momentum.'}
-  ],
-  'OIKOS':[
-    {icon:'✅',text:'Unico grupo com BM positivo (+R$10k) — proteger estrutura e expandir catalogo adjacente.'},
-    {icon:'🚚',text:'Apenas 10% Fulfillment — avaliar migracao dos itens de maior giro para acelerar GMV organico.'},
-    {icon:'⚠️',text:'Abril fraco (parcial abaixo) — verificar ruptura de estoque e posicao nos principais anuncios.'}
-  ],
-  'SHOPGRA':[
-    {icon:'🔴',text:'Conta SHOPGRA caiu 95% em volume — diagnosticar ruptura de estoque no FF e penalizacoes de reputacao.'},
-    {icon:'💸',text:'Frete -R$1,37M/90d com 93% free shipping — revisar politica de frete em toda a base de itens do grupo.'},
-    {icon:'📉',text:'MGSHOPGRA com queda desde marco — investigar precificacao e se houve migracao de catalogo entre contas.'}
-  ]
-};
-function buildAcoes(grupo,id){
-  document.getElementById(id).innerHTML=ACOES[grupo].map(function(a){
-    return '<div class="action-card"><div class="action-icon">'+a.icon+'</div><p>'+a.text+'</p></div>';
-  }).join('');
-}
-
-// ── Init ──
-window.addEventListener('DOMContentLoaded',function(){
-  initFiltroMeses();
-  buildVisaoGeral(); buildVGQuarters(); buildVGMesControl();
-  buildLogistica();
-  buildADS();
-  buildInvestimentos();
-  buildTopItens();
-  buildGrupo('ALUMINIO NACIONAL','al'); buildAcoes('ALUMINIO NACIONAL','al-actions'); buildMesControl('ALUMINIO NACIONAL','al');
-  buildGrupo('ATOZ','az');             buildAcoes('ATOZ','az-actions');             buildMesControl('ATOZ','az');
-  buildGrupo('BRINOX','br');           buildAcoes('BRINOX','br-actions');           buildMesControl('BRINOX','br');
-  buildGrupo('OIKOS','ok');            buildAcoes('OIKOS','ok-actions');            buildMesControl('OIKOS','ok');
-  buildGrupo('SHOPGRA','sg');          buildAcoes('SHOPGRA','sg-actions');          buildMesControl('SHOPGRA','sg');
-});
-
 
 
 function rebuildAll(){
