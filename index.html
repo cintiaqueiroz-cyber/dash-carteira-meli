@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 17/04/2026 16:59</span>
+    <span class="update-badge">&#10003; Atualizado 17/04/2026 17:22</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -826,7 +826,7 @@
 </div>
 <div id="footer">
   Fonte: <strong>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB + LK_COMP_FAVORABILITIES</strong> &nbsp;&middot;&nbsp;
-  Metas: Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; Gerado em 17/04/2026 16:59
+  Metas: Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; Gerado em 17/04/2026 17:22
 </div>
 <script>
 
@@ -1928,11 +1928,121 @@ function buildVGBPC(){{
 }}
 
 window.addEventListener('DOMContentLoaded',function(){{
-  buildVisaoGeral();
+  // Render only fast elements first (no charts)
   buildVGQuarters();
-  buildVGMesControl();
+  buildVGKPIsOnly();
+  buildVGHeatmap();
+  buildVGUnifiedCards();
+  buildVGScorecard();
+  buildVGInsights();
+  buildCorpAcionaveis();
   document.getElementById('loadingOverlay').style.display='none';
+  // Defer heavy charts
+  setTimeout(function(){{
+    buildVGMesControl();
+    buildVGLineChart();
+  }}, 100);
 }});
+
+function buildVGKPIsOnly(){{
+  var totalYTD=GRUPOS.reduce(function(s,g){{return s+ytdReal(g);}},0);
+  var totalMF=GRUPOS.reduce(function(s,g){{return s+ytdMF(g);}},0);
+  var totalMD=GRUPOS.reduce(function(s,g){{return s+ytdMD(g);}},0);
+  var totalSI=GRUPOS.reduce(function(s,g){{return s+ytdSI(g);}},0);
+  var totalInv=GRUPOS.reduce(function(s,g){{return s+ytdInvTot(g);}},0);
+  var totalFF=GRUPOS.reduce(function(s,g){{return s+ytdFF(g);}},0);
+  var pFin=pctNum(totalYTD,totalMF),pDes=pctNum(totalYTD,totalMD),pFF=pctNum(totalFF,totalYTD);
+  var asp=totalSI>0?totalYTD/totalSI:0;
+  var elKpi=document.getElementById('vg-kpi-row');
+  if(elKpi)elKpi.innerHTML=kpiHtml([
+    {{label:'GMV YTD Total',val:fmt(totalYTD),sub:'Jan-Abr parcial',cls:'blue'}},
+    {{label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'}},
+    {{label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'}},
+    {{label:'SIs YTD',val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'}},
+    {{label:'Invest. Total',val:fmt(totalInv),sub:'ADS+Cupons+Rebates',cls:'purple'}},
+    {{label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF: '+fmt(totalFF),cls:pFF>=60?'green':pFF>=30?'yellow':'red'}}
+  ]);
+}}
+
+function buildVGHeatmap(){{
+  function heatBg(p){{return p>=100?'#00A650':p>=90?'#43B97F':p>=80?'#FFB900':p>=65?'#FF8C00':'#F23D4F';}}
+  var tbl=document.getElementById('vg-table');
+  if(!tbl)return;
+  var ms=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var hdr='<thead><tr style="background:#3483FA;"><th style="text-align:left;padding:9px 12px;color:#fff;font-size:12px;">Grupo</th>';
+  MESES_DONE.forEach(function(mk,i){{var lab=ms[MESES_KEYS.indexOf(mk)];hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">'+lab+(i===MESES_DONE.length-1?' *':'')+'</th>';}});
+  hdr+='<th style="padding:9px 8px;color:#fff;font-size:11px;text-align:center;">YTD</th></tr></thead>';
+  var body='<tbody>';
+  var proj=FAT_PROJ;
+  GRUPOS.forEach(function(g,gi){{
+    var r=REAL_MENSAL[g]||{{}},mf=META_FIN[g]||{{}},md=META_DES[g]||{{}};
+    var ytd=ytdReal(g),rowBg=gi%2===0?'#FAFAFA':'#fff';
+    body+='<tr style="background:'+rowBg+'"><td style="font-weight:700;font-size:12px;padding:8px 12px;white-space:nowrap;">'+g+'<br><span style="font-size:10px;color:#888;font-weight:400">'+fmt(ytd)+'</span></td>';
+    MESES_DONE.forEach(function(mk,i){{
+      var rv=r[mk]||0,isL=(i===MESES_DONE.length-1),dv=isL?rv*proj:rv;
+      var pF=mf[mk]>0?pctNum(dv,mf[mk]):0,pD=md[mk]>0?pctNum(dv,md[mk]):0;
+      body+='<td style="padding:5px 6px;border-bottom:1px solid #F0F0F0;text-align:center;"><div style="display:flex;gap:2px;justify-content:center;"><span style="background:'+heatBg(pF)+';color:#fff;font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px">'+pF.toFixed(0)+'%</span><span style="background:'+heatBg(pD)+';color:#fff;font-size:9px;padding:1px 4px;border-radius:3px;opacity:.8">'+pD.toFixed(0)+'%</span></div></td>';
+    }});
+    var ytdPF=ytdMF(g)>0?pctNum(ytd,ytdMF(g)):0,ytdPD=ytdMD(g)>0?pctNum(ytd,ytdMD(g)):0;
+    body+='<td style="padding:5px 6px;text-align:center;background:#F5F7FF"><div style="display:flex;gap:2px;justify-content:center"><span style="background:'+heatBg(ytdPF)+';color:#fff;font-weight:800;font-size:11px;padding:2px 6px;border-radius:3px">'+ytdPF.toFixed(0)+'%</span><span style="background:'+heatBg(ytdPD)+';color:#fff;font-size:10px;padding:2px 5px;border-radius:3px;opacity:.8">'+ytdPD.toFixed(0)+'%</span></div></td></tr>';
+  }});
+  tbl.innerHTML=hdr+body+'</tbody>';
+}}
+
+function buildVGUnifiedCards(){{
+  function heatBg(p){{return p>=100?'#00A650':p>=90?'#43B97F':p>=80?'#FFB900':p>=65?'#FF8C00':'#F23D4F';}}
+  function makeRing(pct,color,sz){{var r=sz/2-8,circ=2*Math.PI*r,offset=circ-Math.min(pct/100,1.1)*circ;return '<svg width="'+sz+'" height="'+sz+'" style="transform:rotate(-90deg)"><circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="#F0F0F0" stroke-width="10"/><circle cx="'+sz/2+'" cy="'+sz/2+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+offset.toFixed(1)+'"/></svg>';}}
+  var curKey=MESES_DONE[MESES_DONE.length-1],prevKey=MESES_DONE.length>1?MESES_DONE[MESES_DONE.length-2]:null;
+  var uHtml='';
+  GRUPOS.forEach(function(g){{
+    var cor=GRUPO_COLOR[g]||C_BLUE,ytd=ytdReal(g),ymf=ytdMF(g),ymd=ytdMD(g);
+    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd),perfColor=heatBg(pFin);
+    var curGMV=(REAL_MENSAL[g]||{{}})[curKey]||0,prevGMV=prevKey?((REAL_MENSAL[g]||{{}})[prevKey]||0):0;
+    var mom=prevGMV>0?((curGMV/prevGMV-1)*100):null;
+    var g25v=REAL_2025[g]||{{}},gmv25=PERIODO.reduce(function(s,k){{return s+(g25v[k]?g25v[k].gmv:0);}},0);
+    var yoy=gmv25>0?((ytd/gmv25-1)*100):null;
+    function varBadge(val,suffix,color){{if(val===null)return '';var c=color||(val>=0?'#00A650':'#F23D4F');return '<span class="u-v" style="background:'+c+'18;color:'+c+'">'+(val>=0?'▲':'▼')+' '+(val>=0?'+':'')+val.toFixed(1)+'%'+(suffix?' '+suffix:'')+'</span>';}}
+    uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
+    uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub">Meta Fin</div></div></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmt(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmt(ymd)+'</div><div class="u-proj-txt">Proj.: '+fmt(aprProj(g))+'</div></div></div>';
+    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
+    uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
+  }});
+  var el=document.getElementById('vg-unified-cards');if(el)el.innerHTML=uHtml;
+}}
+
+function buildVGLineChart(){{
+  var ds=[];var lColors=[C_BLUE,C_RED,C_ORANGE,C_PURPLE,'#00BCD4','#FF7A00','#9B59B6','#3498DB','#2ECC71','#95A5A6'];
+  GRUPOS.forEach(function(g,gi){{
+    var cumP=[],cumM=[],cumR=0,cumMv=0,done=false;
+    MESES_KEYS.forEach(function(mk){{
+      cumMv+=(META_FIN[g]||{{}})[mk]||0;cumM.push(cumMv);
+      var rv=(REAL_MENSAL[g]||{{}})[mk];
+      if(rv!==undefined&&!done){{cumR+=mk===MESES_DONE[MESES_DONE.length-1]?rv*FAT_PROJ:rv;cumP.push(cumR);if(mk===MESES_DONE[MESES_DONE.length-1])done=true;}}
+      else cumP.push(null);
+    }});
+    var lbl=g.length>12?g.substring(0,12)+'...':g;
+    ds.push({{label:lbl+' Proj.',data:cumP,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderDash:[5,3],pointRadius:2,tension:0.3,spanGaps:false}});
+    ds.push({{label:lbl+' Meta',data:cumM,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderWidth:1,pointRadius:0,tension:0.3}});
+  }});
+  destroyChart('vg-line');
+  var lcEl=document.getElementById('vg-line-chart');
+  if(lcEl)chartInstances['vg-line']=new Chart(lcEl.getContext('2d'),{{type:'line',data:{{labels:MESES_LABEL,datasets:ds}},
+    options:{{responsive:true,animation:false,plugins:{{legend:{{position:'bottom',labels:{{boxWidth:8,font:{{size:9}}}}}},tooltip:{{callbacks:{{label:function(c){{return c.dataset.label+': '+fmt(c.raw);}}}}}}}},scales:{{y:{{ticks:{{callback:function(v){{return fmt(v);}}}}}}}}}}}});
+}}
+
+// Override buildVisaoGeral to use split functions
+function buildVisaoGeral(){{
+  buildVGKPIsOnly();
+  buildVGHeatmap();
+  buildVGUnifiedCards();
+  buildVGScorecard();
+  buildVGInsights();
+  buildCorpAcionaveis();
+  setTimeout(buildVGLineChart, 200);
+}}
 
 </script>
 </body>
