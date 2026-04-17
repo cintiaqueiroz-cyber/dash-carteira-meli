@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 17/04/2026 17:44</span>
+    <span class="update-badge">&#10003; Atualizado 17/04/2026 18:59</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -825,7 +825,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; 17/04/2026 17:44
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 17/30 dias &nbsp;&middot;&nbsp; 17/04/2026 18:59
 </div>
 <script>
 
@@ -1266,15 +1266,55 @@ function buildSellerInv(g,px){
   var tbl=document.getElementById(px+'-inv-table');
   if(tbl)tbl.innerHTML=hdr+bdy;
 }
+function mlLink(id){return 'https://www.mercadolivre.com.br/MLB'+id;}
+function mlImgTag(id){
+  return '<a href="'+mlLink(id)+'" target="_blank">'
+    +'<img data-mlid="MLB'+id+'" src="" alt="" '
+    +'style="width:52px;height:52px;object-fit:contain;border-radius:6px;border:1px solid #eee;background:#f9f9f9;display:block" '
+    +'onerror="this.src=\'https://http2.mlstatic.com/resources/frontend/statics/img/no-img-lg-v2.png\'" />'
+    +'</a>';
+}
+var _imgCache={};
+function loadMLImages(container){
+  var imgs=container?container.querySelectorAll('img[data-mlid]'):document.querySelectorAll('img[data-mlid]');
+  var ids=[];
+  imgs.forEach(function(img){if(!_imgCache[img.dataset.mlid])ids.push(img.dataset.mlid);else img.src=_imgCache[img.dataset.mlid];});
+  if(!ids.length)return;
+  // Batch fetch: up to 20 per request
+  var batches=[];
+  for(var i=0;i<ids.length;i+=20)batches.push(ids.slice(i,i+20));
+  batches.forEach(function(batch){
+    fetch('https://api.mercadolibre.com/items?ids='+batch.join(',')+'&attributes=id,thumbnail')
+      .then(function(r){return r.json();})
+      .then(function(data){
+        if(!Array.isArray(data))return;
+        data.forEach(function(d){
+          if(!d.body)return;
+          var thumb=(d.body.thumbnail||'').replace('http://','https://').replace('-I.jpg','-O.jpg');
+          if(!thumb)return;
+          _imgCache['MLB'+d.body.id]=thumb;
+          document.querySelectorAll('img[data-mlid="MLB'+d.body.id+'"]').forEach(function(el){el.src=thumb;});
+        });
+      }).catch(function(){});
+  });
+}
 function buildSellerCat(g,px){
   var items=TOP_ITEMS[g]||[];
-  var hdr='<thead><tr><th>#</th><th>Título</th><th>GMV</th><th>SIs</th><th>ASP</th><th>BPC%</th></tr></thead>';
+  var hdr='<thead><tr><th>#</th><th>Foto</th><th>Título</th><th>GMV</th><th>SIs</th><th>ASP</th><th>BPC%</th></tr></thead>';
   var bdy='<tbody>'+items.map(function(it,i){
     var bb=it.bb,bc=bb>=80?'pill-green':bb>=65?'pill-yellow':'pill-red';
-    return '<tr><td>'+(i+1)+'</td><td class="itens-title-cell"><a href="https://www.mercadolivre.com.br/p/'+it.id+'" target="_blank" style="color:#3483FA;text-decoration:none">'+it.nm+'</a></td><td>'+fmt(it.gmv)+'</td><td>'+fmtN(it.si)+'</td><td>R$ '+Math.round(it.asp).toLocaleString('pt-BR')+'</td><td><span class="pill '+bc+'">'+bb+'%</span></td></tr>';
+    return '<tr>'
+      +'<td style="color:#aaa;font-size:11px">'+(i+1)+'</td>'
+      +'<td>'+mlImgTag(it.id)+'</td>'
+      +'<td class="itens-title-cell"><a href="'+mlLink(it.id)+'" target="_blank" style="color:#3483FA;text-decoration:none;font-size:12px">'+it.nm+'</a></td>'
+      +'<td>'+fmt(it.gmv)+'</td>'
+      +'<td>'+fmtN(it.si)+'</td>'
+      +'<td>R$ '+Math.round(it.asp).toLocaleString('pt-BR')+'</td>'
+      +'<td><span class="pill '+bc+'">'+bb+'%</span></td>'
+      +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-cat-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl){tbl.innerHTML=hdr+bdy;setTimeout(function(){loadMLImages(tbl);},50);}
 }
 function buildSellerBPC(g,px){
   var mks=MESES_DONE,pt=REAL_PED_TOT[g]||{},pb=REAL_PED_BB[g]||{};
@@ -1691,10 +1731,22 @@ function buildVGCat(){
   var allItems=[];
   GRUPOS.forEach(function(g){(TOP_ITEMS[g]||[]).forEach(function(it){allItems.push(Object.assign({},it,{g:g}));});});
   allItems.sort(function(a,b){return b.gmv-a.gmv;});
-  var hdr='<thead><tr><th>#</th><th>Grupo</th><th>Título</th><th>GMV</th><th>SIs</th><th>ASP</th><th>BPC%</th></tr></thead>';
-  var bdy='<tbody>'+allItems.slice(0,30).map(function(it,i){var bb=it.bb,bc=bb>=80?'pill-green':bb>=65?'pill-yellow':'pill-red';return '<tr><td>'+(i+1)+'</td><td><span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:#F0F4FF;color:#3483FA">'+it.g+'</span></td><td class="itens-title-cell">'+it.nm+'</td><td>'+fmt(it.gmv)+'</td><td>'+fmtN(it.si)+'</td><td>R$ '+Math.round(it.asp).toLocaleString('pt-BR')+'</td><td><span class="pill '+bc+'">'+bb+'%</span></td></tr>';}).join('')+'</tbody>';
+  var hdr='<thead><tr><th>#</th><th>Foto</th><th>Grupo</th><th>Título</th><th>GMV</th><th>SIs</th><th>ASP</th><th>BPC%</th></tr></thead>';
+  var bdy='<tbody>'+allItems.slice(0,30).map(function(it,i){
+    var bb=it.bb,bc=bb>=80?'pill-green':bb>=65?'pill-yellow':'pill-red';
+    return '<tr>'
+      +'<td style="color:#aaa;font-size:11px">'+(i+1)+'</td>'
+      +'<td>'+mlImgTag(it.id)+'</td>'
+      +'<td><span style="font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;background:#F0F4FF;color:#3483FA">'+it.g+'</span></td>'
+      +'<td class="itens-title-cell"><a href="'+mlLink(it.id)+'" target="_blank" style="color:#3483FA;text-decoration:none;font-size:12px">'+it.nm+'</a></td>'
+      +'<td>'+fmt(it.gmv)+'</td>'
+      +'<td>'+fmtN(it.si)+'</td>'
+      +'<td>R$ '+Math.round(it.asp).toLocaleString('pt-BR')+'</td>'
+      +'<td><span class="pill '+bc+'">'+bb+'%</span></td>'
+      +'</tr>';
+  }).join('')+'</tbody>';
   var tbl=document.getElementById('itens-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl){tbl.innerHTML=hdr+bdy;setTimeout(function(){loadMLImages(tbl);},50);}
 }
 function buildVGBPC(){
   var mks=MESES_DONE;
