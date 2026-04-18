@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:46</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:51</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -284,7 +284,13 @@
       <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:280px;"></canvas></div>
     </div>
     <div class="section"><div class="section-title">Performance por Grupo &mdash; Atingimento &bull; Varia&#231;&#245;es &bull; Meta</div><div id="vg-unified-cards" class="unified-cards-grid"></div></div>
-    <div class="section"><div class="section-title">Heatmap de Atingimento Mensal</div><div class="table-wrap"><table id="vg-table"></table></div></div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+        <span style="font-size:18px">&#128197;</span>
+        <span style="font-size:14px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Heatmap de Atingimento Mensal por Grupo</span>
+      </div>
+      <div class="table-wrap"><table id="vg-table"></table></div>
+    </div>
     <div class="section"><div class="section-title">Proje&#231;&#227;o Acumulada vs Meta Financeira 2026</div><div class="chart-box"><canvas id="vg-line-chart" style="max-height:280px;"></canvas></div></div>
     <div class="section"><div class="section-title">&#128161; Insights Ecossistema &mdash; Carteira Total</div>
       <div id="vg-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="vg-ins-list"><span class="ins">Carregando...</span></div></div>
@@ -893,7 +899,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:46
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:51
 </div>
 <script>
 
@@ -1845,9 +1851,12 @@ function buildVGHeatmap(){
   var tbl=document.getElementById('vg-table');
   if(!tbl)return;
   var ms=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  var hdr='<thead><tr style="background:#3483FA"><th style="text-align:left;padding:9px 12px;color:#fff">Grupo</th>';
-  MESES_DONE.forEach(function(mk,i){hdr+='<th style="padding:8px;color:#fff;text-align:center;font-size:11px">'+ms[MESES_KEYS.indexOf(mk)]+(i===MESES_DONE.length-1?' *':'')+'</th>';});
-  hdr+='<th style="padding:8px;color:#fff;text-align:center;font-size:11px">YTD</th></tr></thead>';
+  var hdr='<thead><tr style="background:#3483FA"><th style="text-align:left;padding:11px 14px;color:#fff;font-size:12px;font-weight:700">Grupo</th>';
+  MESES_DONE.forEach(function(mk,i){
+    var lbl=ms[MESES_KEYS.indexOf(mk)]+(i===MESES_DONE.length-1?' *':'');
+    hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">'+lbl+'<br><span style="font-size:9px;opacity:.75;font-weight:500">%Fin / %Des</span></th>';
+  });
+  hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">YTD<br><span style="font-size:9px;opacity:.75;font-weight:500">%Fin / %Des</span></th></tr></thead>';
   var body='<tbody>';
   GRUPOS.forEach(function(g,gi){
     var r=REAL_MENSAL[g]||{},mf=META_FIN[g]||{},md=META_DES[g]||{},ytd=ytdReal(g);
