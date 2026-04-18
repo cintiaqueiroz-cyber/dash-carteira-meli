@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:53</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:56</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -290,6 +290,13 @@
         <span style="font-size:14px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Heatmap de Atingimento Mensal por Grupo</span>
       </div>
       <div class="table-wrap"><table id="vg-table"></table></div>
+    </div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+        <span style="font-size:20px">&#128640;</span>
+        <span style="font-size:14px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Proje&#231;&#227;o Acumulada vs Meta Financeira 2026</span>
+      </div>
+      <div class="chart-box"><canvas id="vg-line-chart" style="max-height:320px;"></canvas></div>
     </div>
     <div class="section"><div class="section-title">&#128161; Insights Ecossistema &mdash; Carteira Total</div>
       <div id="vg-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="vg-ins-list"><span class="ins">Carregando...</span></div></div>
@@ -898,7 +905,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:53
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:56
 </div>
 <script>
 
@@ -1822,7 +1829,7 @@ function buildVisaoGeral(){
   buildVGUnifiedCards();
   buildVGInsights();
   buildHighsLows();
-  // buildVGLineChart removido a pedido do usuário
+  setTimeout(buildVGLineChart, 200);
   buildVGScorecard();
   buildCorpAcionaveis();
 }
@@ -1894,22 +1901,60 @@ function buildVGUnifiedCards(){
   if(el)el.innerHTML=uHtml;
 }
 function buildVGLineChart(){
-  var ds=[],lColors=[C_BLUE,C_RED,C_ORANGE,C_PURPLE,'#00BCD4','#FF7A00','#9B59B6','#3498DB','#2ECC71','#95A5A6'];
-  GRUPOS.forEach(function(g,gi){
-    var cumP=[],cumM=[],cumR=0,cumMv=0,done=false;
-    MESES_KEYS.forEach(function(mk){
-      cumMv+=((META_FIN[g]||{})[mk]||0);cumM.push(cumMv);
-      var rv=(REAL_MENSAL[g]||{})[mk];
-      if(rv!==undefined&&!done){cumR+=mk===MESES_DONE[MESES_DONE.length-1]?rv*FAT_PROJ:rv;cumP.push(cumR);if(mk===MESES_DONE[MESES_DONE.length-1])done=true;}
-      else cumP.push(null);
-    });
-    var lbl=g.length>12?g.substring(0,12)+'...':g;
-    ds.push({label:lbl+' Proj.',data:cumP,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderDash:[5,3],pointRadius:2,tension:0.3,spanGaps:false});
-    ds.push({label:lbl+' Meta',data:cumM,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',borderWidth:1,pointRadius:0,tension:0.3});
+  // Formato correto: Total Carteira (preto grosso) + sellers individuais finos + Meta Total (cinza tracejado)
+  var lColors=[C_BLUE,'#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];
+  var ds=[];
+
+  // ── Total Carteira: acumulado real (linha preta grossa)
+  var cumTotal=[],cumTotalR=0,doneTot=false;
+  MESES_KEYS.forEach(function(mk){
+    var rv=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
+    if(rv>0&&!doneTot){
+      cumTotalR+=mk===MESES_DONE[MESES_DONE.length-1]?rv*FAT_PROJ:rv;
+      cumTotal.push(cumTotalR);
+      if(mk===MESES_DONE[MESES_DONE.length-1])doneTot=true;
+    } else cumTotal.push(null);
   });
+  ds.push({label:'Total Carteira',data:cumTotal,borderColor:'#1A1A1A',backgroundColor:'rgba(0,0,0,.07)',fill:true,borderWidth:3,pointRadius:function(ctx){return ctx.dataIndex===MESES_DONE.length-1?7:0;},pointBackgroundColor:'#1A1A1A',tension:0.3,spanGaps:false,order:0});
+
+  // ── Sellers individuais: linhas finas coloridas
+  GRUPOS.forEach(function(g,gi){
+    var cumP=[],cumR=0,done=false;
+    MESES_KEYS.forEach(function(mk){
+      var rv=(REAL_MENSAL[g]||{})[mk];
+      if(rv!==undefined&&!done){
+        cumR+=mk===MESES_DONE[MESES_DONE.length-1]?rv*FAT_PROJ:rv;
+        cumP.push(cumR);
+        if(mk===MESES_DONE[MESES_DONE.length-1])done=true;
+      } else cumP.push(null);
+    });
+    var lbl=g.length>14?g.substring(0,14)+'...':g;
+    ds.push({label:lbl,data:cumP,borderColor:lColors[gi%lColors.length],backgroundColor:'transparent',
+      borderWidth:1.5,pointRadius:function(ctx){return ctx.dataIndex===MESES_DONE.length-1?4:0;},
+      pointBackgroundColor:lColors[gi%lColors.length],tension:0.3,spanGaps:false,order:1});
+  });
+
+  // ── Meta Financeira Total: linha cinza tracejada
+  var cumMF=[],cumMv=0;
+  MESES_KEYS.forEach(function(mk){
+    cumMv+=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
+    cumMF.push(cumMv);
+  });
+  ds.push({label:'Meta Financeira Total',data:cumMF,borderColor:'#CCCCCC',backgroundColor:'transparent',
+    borderDash:[8,4],borderWidth:2,pointRadius:0,tension:0,order:2});
+
   destroyChart('vg-line');
   var el=document.getElementById('vg-line-chart');
-  if(el)chartInstances['vg-line']=new Chart(el.getContext('2d'),{type:'line',data:{labels:MESES_LABEL,datasets:ds},options:{responsive:true,animation:false,plugins:{legend:{position:'bottom',labels:{boxWidth:8,font:{size:9}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}});
+  if(!el)return;
+  chartInstances['vg-line']=new Chart(el.getContext('2d'),{type:'line',
+    data:{labels:MESES_LABEL,datasets:ds},
+    options:{responsive:true,animation:false,
+      plugins:{
+        legend:{position:'bottom',labels:{boxWidth:10,font:{size:10},filter:function(item){return item.datasetIndex===0||item.datasetIndex===ds.length-1||item.datasetIndex<=GRUPOS.length;}}},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}
+      },
+      scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}
+    }});
 }
 function buildVGMesControl(){
   var html='<div class="mes-pills">';
