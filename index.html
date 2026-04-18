@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:37</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:46</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -289,8 +289,20 @@
     <div class="section"><div class="section-title">&#128161; Insights Ecossistema &mdash; Carteira Total</div>
       <div id="vg-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="vg-ins-list"><span class="ins">Carregando...</span></div></div>
     </div>
-    <div class="section"><div class="section-title">&#128200; Highs &amp; Lows &mdash; Carteira</div><div id="vg-highs-lows"></div></div>
-    <div class="section"><div class="section-title">&#128203; Pontos Corporativos &amp; Acion&#225;veis Priorit&#225;rios</div><div id="vg-corp-actions"></div></div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+        <span style="font-size:20px">&#128308;</span>
+        <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Highs &amp; Lows &mdash; Insights &mdash; Plano de A&#231;&#227;o</span>
+      </div>
+      <div id="vg-highs-lows"></div>
+    </div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+        <span style="font-size:20px">&#128203;</span>
+        <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Plano de A&#231;&#227;o Priorit&#225;rio</span>
+      </div>
+      <div id="vg-corp-actions"></div>
+    </div>
   </div>
 
   <div id="vg-section-full" class="sub-section">
@@ -881,7 +893,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:37
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:46
 </div>
 <script>
 
@@ -1688,7 +1700,7 @@ function buildHighsLows(){
   var el=document.getElementById('vg-highs-lows');
   if(!el)return;
 
-  // Build full ranking for each group
+  // Build stats for all groups
   var stats=GRUPOS.map(function(g){
     var ytd=ytdReal(g),mf=ytdMF(g),md=ytdMD(g);
     var pFin=mf>0?pctNum(ytd,mf):0,pDes=md>0?pctNum(ytd,md):0;
@@ -1703,76 +1715,100 @@ function buildHighsLows(){
     return {g:g,ytd:ytd,mf:mf,md:md,pFin:pFin,pDes:pDes,yoy:yoy,bpc:bpc,pFF:pFF,fav:fav.pct_favorable||0,rival:fav.rival||''};
   });
 
-  // Sort by % Meta Fin desc
+  // Sort by % Meta Fin
   var sorted=[].concat(stats).sort(function(a,b){return b.pFin-a.pFin;});
   var n=sorted.length;
+  var bestFin=sorted[0],worstFin=sorted[n-1];
+  var bestBPC=[].concat(stats).sort(function(a,b){return b.bpc-a.bpc;})[0];
+  var worstBPC=[].concat(stats).sort(function(a,b){return a.bpc-b.bpc;})[0];
+  var bestFF=[].concat(stats).sort(function(a,b){return b.pFF-a.pFF;})[0];
+  var worstFF=[].concat(stats).sort(function(a,b){return a.pFF-b.pFF;})[0];
 
-  // HIGHS: top 3 performers
-  var highs=sorted.slice(0,3);
-  // LOWS: bottom 3 performers
-  var lows=sorted.slice(n-3).reverse();
+  // MoM: compare last month vs previous month
+  var mks=MESES_DONE;
+  var curMk=mks[mks.length-1],prevMk=mks.length>1?mks[mks.length-2]:null;
+  var bestMoM=null,worstMoM=null;
+  if(prevMk){
+    stats.forEach(function(s){
+      var c=(REAL_MENSAL[s.g]||{})[curMk]||0,p=(REAL_MENSAL[s.g]||{})[prevMk]||0;
+      var mom=p>0?(c-p)/p*100:null;
+      if(mom===null)return;
+      if(!bestMoM||mom>bestMoM.mom)bestMoM={g:s.g,mom:mom};
+      if(!worstMoM||mom<worstMoM.mom)worstMoM={g:s.g,mom:mom};
+    });
+  }
 
-  function medal(i){return ['🥇','🥈','🥉'][i]||'';}
-  function hlCard(s,rank,isHigh){
-    var cor=GRUPO_COLOR[s.g]||'#3483FA';
-    var bg=isHigh?'#F0FFF4':'#FFF5F5';
-    var borderColor=isHigh?'#00A650':'#F23D4F';
-    var icon=isHigh?medal(rank):'⚠️';
-    var yoyTxt=s.yoy!==null?((s.yoy>=0?'+':'')+s.yoy.toFixed(1)+'% YoY'):'—';
-    var yoyColor=s.yoy===null?'#888':s.yoy>=0?'#00A650':'#F23D4F';
-    var pFinColor=s.pFin>=100?'#00A650':s.pFin>=80?'#FFB900':'#F23D4F';
-    return '<div style="background:'+bg+';border:1.5px solid '+borderColor+';border-radius:14px;padding:18px 20px;flex:1;min-width:200px">'
-      +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
-        +'<span style="font-size:22px">'+icon+'</span>'
-        +'<span style="font-size:13px;font-weight:800;color:#1A1A1A">'+s.g+'</span>'
-        +'<span style="margin-left:auto;font-size:11px;font-weight:700;color:'+yoyColor+'">'+yoyTxt+'</span>'
+  // Best YoY
+  var statsWithYoY=stats.filter(function(s){return s.yoy!==null;});
+  var bestYoY=statsWithYoY.sort(function(a,b){return b.yoy-a.yoy;})[0];
+
+  // ── Row item helper (Larissa style)
+  function hlRow(icon,iconBg,name,label,value,valueColor){
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #F5F5F5">'
+      +'<div style="width:38px;height:38px;border-radius:10px;background:'+iconBg+';display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+icon+'</div>'
+      +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:12px;font-weight:800;color:#1A1A1A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+name+'</div>'
+        +'<div style="font-size:10.5px;color:#888;margin-top:1px">'+label+'</div>'
       +'</div>'
-      +'<div style="margin-bottom:8px">'
-        +'<div style="font-size:11px;color:#888;margin-bottom:2px">GMV YTD</div>'
-        +'<div style="font-size:20px;font-weight:900;color:'+cor+'">'+fmt(s.ytd)+'</div>'
-      +'</div>'
-      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">'
-        +'<div style="background:#fff;border-radius:8px;padding:8px">'
-          +'<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">% Meta Fin.</div>'
-          +'<div style="font-size:17px;font-weight:800;color:'+pFinColor+'">'+s.pFin.toFixed(1)+'%</div>'
-          +'<div style="font-size:9px;color:#aaa">'+fmt(s.mf)+'</div>'
-        +'</div>'
-        +'<div style="background:#fff;border-radius:8px;padding:8px">'
-          +'<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">% Meta Des.</div>'
-          +'<div style="font-size:17px;font-weight:800;color:'+(s.pDes>=100?'#00A650':s.pDes>=80?'#FFB900':'#F23D4F')+'">'+s.pDes.toFixed(1)+'%</div>'
-          +'<div style="font-size:9px;color:#aaa">'+fmt(s.md)+'</div>'
-        +'</div>'
-      +'</div>'
-      +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
-        +'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;font-weight:700;color:'+(s.bpc>=80?'#00A650':s.bpc>=65?'#FFB900':'#F23D4F')+'">BPC '+s.bpc.toFixed(0)+'%</span>'
-        +'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;font-weight:700;color:'+(s.pFF>=60?'#00A650':s.pFF>=30?'#FFB900':'#F23D4F')+'">Full '+s.pFF.toFixed(0)+'%</span>'
-        +(s.rival?'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;color:#555">'+s.fav+'% fav. vs '+s.rival.split(' ')[0]+'</span>':'')
-      +'</div>'
+      +'<div style="font-size:12.5px;font-weight:800;color:'+valueColor+';white-space:nowrap;text-align:right">'+value+'</div>'
       +'</div>';
   }
 
-  var html='';
-  // HIGHS block
-  html+='<div style="margin-bottom:20px">'
-    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
-      +'<span style="font-size:16px">🟢</span>'
-      +'<span style="font-size:12px;font-weight:800;color:#00A650;text-transform:uppercase;letter-spacing:.5px">HIGHS — Top performers do período</span>'
+  // ── HIGHS column
+  var highsHTML='<div style="background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.07);flex:1;min-width:260px">'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
+      +'<span style="background:#E6F7EE;color:#00A650;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▲ HIGHS</span>'
     +'</div>'
-    +'<div style="display:flex;gap:14px;flex-wrap:wrap">'
-    +highs.map(function(s,i){return hlCard(s,i,true);}).join('')
-    +'</div></div>';
+    +hlRow('🏆','#FFF9E6',bestFin.g,'Melhor atingimento',bestFin.pFin.toFixed(1)+'% Meta Fin','#00A650')
+    +hlRow('🎯','#E6F0FF',bestBPC.g,'Melhor BPC',bestBPC.bpc.toFixed(1)+'% buybox','#00A650')
+    +hlRow('🚚','#FFF0E6',bestFF.g,'Maior Fulfillment',bestFF.pFF.toFixed(1)+'% FF','#00A650')
+    +(bestYoY?hlRow('📈','#E6F7EE',bestYoY.g,'Maior crescimento YoY',(bestYoY.yoy>=0?'+':'')+bestYoY.yoy.toFixed(1)+'% vs 2025','#00A650'):'')
+    +'</div>';
 
-  // LOWS block
-  html+='<div>'
-    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
-      +'<span style="font-size:16px">🔴</span>'
-      +'<span style="font-size:12px;font-weight:800;color:#F23D4F;text-transform:uppercase;letter-spacing:.5px">LOWS — Atenção imediata</span>'
+  // ── LOWS column
+  var lowsHTML='<div style="background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.07);flex:1;min-width:260px">'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
+      +'<span style="background:#FDECEA;color:#F23D4F;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▼ LOWS</span>'
     +'</div>'
-    +'<div style="display:flex;gap:14px;flex-wrap:wrap">'
-    +lows.map(function(s,i){return hlCard(s,i,false);}).join('')
-    +'</div></div>';
+    +hlRow('🔴','#FDECEA',worstFin.g,'Menor atingimento',worstFin.pFin.toFixed(1)+'% Meta Fin','#F23D4F')
+    +hlRow('🎯','#FFF0F0',worstBPC.g,'BPC mais cr\u00edtico',worstBPC.bpc.toFixed(1)+'% buybox','#F23D4F')
+    +hlRow('🚫','#FFF3E0',worstFF.g,'Menor Fulfillment',worstFF.pFF.toFixed(1)+'% FF','#FF7A00')
+    +(worstMoM?hlRow('📋','#FFF5F5',worstMoM.g,'Maior queda MoM',(worstMoM.mom>=0?'+':'')+worstMoM.mom.toFixed(1)+'% vs m\u00eas anterior','#F23D4F'):'')
+    +'</div>';
 
-  el.innerHTML=html;
+  // ── INSIGHTS column
+  var totalGMV=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
+  var totalMF=GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
+  var above100=stats.filter(function(s){return s.pFin>=100;});
+  var below80=stats.filter(function(s){return s.pFin<80;});
+  var avgBPC=stats.reduce(function(s,x){return s+x.bpc;},0)/Math.max(stats.length,1);
+  var totalYTD25=GRUPOS.reduce(function(s,g){var g25=REAL_2025[g]||{};return s+PERIODO.reduce(function(ss,k){return ss+(g25[k]?g25[k].gmv:0);},0);},0);
+  var yoyCart=totalYTD25>0?((totalGMV-totalYTD25)/totalYTD25*100):null;
+  // Top item
+  var topItem=null;
+  GRUPOS.forEach(function(g){var items=TOP_ITEMS[g]||[];if(items.length&&(!topItem||items[0].gmv>topItem.gmv))topItem=Object.assign({},items[0],{g:g});});
+
+  function insRow(icon,text){
+    return '<div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #F5F5F5">'
+      +'<span style="font-size:18px;flex-shrink:0;margin-top:1px">'+icon+'</span>'
+      +'<span style="font-size:12px;color:#444;line-height:1.5">'+text+'</span>'
+      +'</div>';
+  }
+
+  var insHTML='<div style="background:#F5F7FF;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.07);flex:1;min-width:260px">'
+    +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
+      +'<span style="background:#DDEEFF;color:#3483FA;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">💡 INSIGHTS</span>'
+    +'</div>'
+    +insRow('💡',above100.length>0
+      ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Financeira YTD.'
+      :'Nenhum grupo atingiu 100% da Meta Financeira ainda — aten\u00e7\u00e3o no ritmo.')
+    +(below80.length>0?insRow('⚠️','<strong>'+below80.length+' grupo(s)</strong> abaixo de 80% da meta: '+below80.map(function(s){return s.g+' ('+s.pFin.toFixed(0)+'%)';}).join(', ')+'.'):'')
+    +insRow('📊','BPC m\u00e9dio da carteira: <strong>'+avgBPC.toFixed(1)+'%</strong>. '+(avgBPC<80?'Abaixo da refer\u00eancia de 80% \u2014 oportunidade de recupera\u00e7\u00e3o de GMV.':'Dentro da zona de conforto.'))
+    +(yoyCart!==null?insRow('📅','Carteira cresceu <strong style="color:'+(yoyCart>=0?'#00A650':'#F23D4F')+'">'+(yoyCart>=0?'+':'')+yoyCart.toFixed(1)+'%</strong> vs mesmo per\u00edodo de 2025.'):'')
+    +(topItem?insRow('🎯','Item top: <strong>'+(topItem.nm||'').substring(0,40)+'...</strong> representa <strong>'+pctNum(topItem.gmv,totalGMV).toFixed(1)+'%</strong> do GMV total da carteira.'):'')
+    +'</div>';
+
+  el.innerHTML='<div style="display:flex;gap:16px;flex-wrap:wrap">'+highsHTML+lowsHTML+insHTML+'</div>';
 }
 
 function buildVisaoGeral(){
@@ -2066,41 +2102,51 @@ function buildVGInsights(){
   el.innerHTML=ins.map(function(i){return '<span class="ins '+i.c+'">'+i.t+'</span>';}).join('');
 }
 function buildCorpAcionaveis(){
-  // Mesma lógica da Larissa — analisa cada grupo e gera pontos priorizados
+  // PLANO DE AÇÃO PRIORITÁRIO — design igual ao screenshot
   var points=[];
   GRUPOS.forEach(function(g){
-    var pFin=pctNum(ytdReal(g),ytdMF(g));
-    var pFF=ytdReal(g)>0?pctNum(ytdFF(g),ytdReal(g)):0;
+    var gmv=ytdReal(g),pFin=pctNum(gmv,ytdMF(g));
+    var pFF=gmv>0?pctNum(ytdFF(g),gmv):0;
     var ytdPed=MESES_DONE.reduce(function(s,k){return s+((REAL_PED_TOT[g]||{})[k]||0);},0);
     var ytdBB=MESES_DONE.reduce(function(s,k){return s+((REAL_PED_BB[g]||{})[k]||0);},0);
     var pBPC=ytdPed>0?pctNum(ytdBB,ytdPed):0;
-    var invA=ytdInvAds(g),gmv=ytdReal(g);
-    var pAds=gmv>0?invA/gmv*100:0;
-    if(pFin<80)points.push({priority:'ALTA',cls:'corp-red',icon:'📉',group:g,
-      issue:'GMV abaixo de 80% da Meta Financeira ('+pFin.toFixed(1)+'%)',
-      actions:['Revisar calendário de ações táticas para os meses restantes do quarter','Identificar categorias/itens com maior potencial de crescimento rápido','Avaliar incentivo via cupons em itens com alta elasticidade de demanda']});
-    if(pFF<70)points.push({priority:'ALTA',cls:'corp-red',icon:'🚚',group:g,
-      issue:'Fulfillment abaixo de 70% ('+pFF.toFixed(1)+'%) — risco de perda de posição orgânica',
-      actions:['Migrar top 10 itens por GMV para Fulfillment imediatamente','Verificar ruptura de estoque nos centros de distribuição','Acompanhar impacto no ranking orgânico após a migração']});
-    if(pBPC<65)points.push({priority:'ALTA',cls:'corp-red',icon:'🏷️',group:g,
-      issue:'BPC crítico em '+pBPC.toFixed(1)+'% — mais de 35% dos pedidos sem buybox',
-      actions:['Ativar revisão de preços nos top 20 itens por GMV sem buybox','Habilitar Preço Competitivo Automático nos itens elegíveis','Definir gatilho semanal de monitoramento: BPC < 70% = ação imediata']});
-    if(pAds>8)points.push({priority:'MÉDIA',cls:'corp-yellow',icon:'💸',group:g,
-      issue:'Investimento ADS elevado ('+pAds.toFixed(2)+'% do GMV) — verificar eficiência',
-      actions:['Auditar campanhas com ROAS abaixo de 10x e pausar as ineficientes','Concentrar budget nos itens com maior volume orgânico e maior ticket médio','Revisar bid automático — reduzir lances em itens já com buybox conquistado']});
-    if(pFF>=85&&pBPC>=80&&pFin>=90)points.push({priority:'POSITIVO',cls:'corp-green',icon:'✅',group:g,
-      issue:'Grupo com boa performance em todas as alavancas',
-      actions:['Expandir catálogo nos domínios com maior ticket médio','Avaliar incremento de verba de ADS nos itens com ROAS > 20x','Replicar estratégia para novos itens do mix']});
+    var pAds=gmv>0?ytdInvAds(g)/gmv*100:0;
+    if(pBPC<70)points.push({pri:'ALTA',border:'#F23D4F',badgeBg:'#FDECEA',badgeColor:'#F23D4F',icon:'🎯',
+      title:'BPC cr\u00edtico em '+g+'('+pBPC.toFixed(0)+'%)',
+      actions:['Revisar precifica\u00e7\u00e3o dos top 20 itens por GMV sem buybox em cada grupo','Ativar Pre\u00e7o Competitivo Autom\u00e1tico nos itens eleg\u00edveis','Meta semanal: elevar BPC acima de 70% em 2 semanas']});
+    if(pFin<80)points.push({pri:'ALTA',border:'#F23D4F',badgeBg:'#FDECEA',badgeColor:'#F23D4F',icon:'🔴',
+      title:'Acelerar GMV em: '+g+' ('+pFin.toFixed(0)+'% Meta Fin.)',
+      actions:['Acionar cupons estrat\u00e9gicos nos itens de maior volume para impulsionar convers\u00e3o','Ampliar cat\u00e1logo nos dom\u00ednios de melhor ticket m\u00e9dio','Revisar forecast e replanejar calend\u00e1rio de a\u00e7\u00f5es t\u00e1ticas do quarter']});
+    if(pFF<70)points.push({pri:'M\u00c9DIA',border:'#FFB900',badgeBg:'#FFF3CD',badgeColor:'#B07A00',icon:'🚛',
+      title:'Fulfillment abaixo de 80%: '+g+'('+pFF.toFixed(0)+'%)',
+      actions:['Migrar itens de maior giro para Fulfillment \u2014 ganho direto em posi\u00e7\u00e3o org\u00e2nica','Verificar ruptura de estoque nos CDs para os top itens','Monitorar impacto no buybox ap\u00f3s migra\u00e7\u00e3o']});
+    if(pFin>=100&&pBPC>=80&&pFF>=80)points.push({pri:'OPORTUNIDADE',border:'#00A650',badgeBg:'#E6F7EE',badgeColor:'#00A650',icon:'✅',
+      title:'Capitalizar performance: '+g,
+      actions:['Expandir cat\u00e1logo nos dom\u00ednios com maior ticket m\u00e9dio','Aumentar verba ADS nos itens com ROAS acima de 20x','Replicar estrat\u00e9gia vencedora em novos dom\u00ednios']});
   });
-  if(!points.length){points.push({priority:'POSITIVO',cls:'corp-green',icon:'✅',group:'Carteira',
-    issue:'Carteira dentro dos parâmetros esperados',
-    actions:['Manter monitoramento semanal das alavancas','Focar em expansão de sortimento nos grupos com maior ROAS']});}
-  points.sort(function(a,b){var o={ALTA:0,MÉDIA:1,POSITIVO:2};return (o[a.priority]||1)-(o[b.priority]||1);});
+  // Dedupe similar issues
+  var seen={};var deduped=[];
+  points.forEach(function(p){var k=p.pri+p.icon;if(!seen[k]||p.title.length>seen[k]){seen[k]=p.title.length;deduped.push(p);}});
+  points=deduped;
+  points.sort(function(a,b){var o={'ALTA':0,'MÉDIA':1,'OPORTUNIDADE':2};return (o[a.pri]||1)-(o[b.pri]||1);});
+  if(!points.length)points.push({pri:'OPORTUNIDADE',border:'#00A650',badgeBg:'#E6F7EE',badgeColor:'#00A650',icon:'✅',title:'Carteira dentro dos par\u00e2metros esperados',actions:['Manter monitoramento semanal','Focar em expans\u00e3o de sortimento nos grupos com maior ROAS']});
+
   var el=document.getElementById('vg-corp-actions');
   if(!el)return;
-  el.innerHTML=points.slice(0,6).map(function(p){
-    var badge='<span class="corp-badge">'+p.priority+'</span>';
-    return '<div class="corp-card '+p.cls+'"><div class="corp-header"><span class="corp-icon">'+p.icon+'</span><span class="corp-title">'+p.group+' — '+p.issue+'</span>'+badge+'</div><div class="corp-body"><ul class="corp-actions-list">'+p.actions.map(function(a){return '<li>'+a+'</li>';}).join('')+'</ul></div></div>';
+  el.innerHTML=points.slice(0,6).map(function(p,i){
+    var actionColor=p.pri==='ALTA'?'#F23D4F':p.pri==='M\u00c9DIA'?'#B07A00':'#3483FA';
+    return '<div style="background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-left:5px solid '+p.border+';margin-bottom:14px">'
+      +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">'
+        +'<div style="width:40px;height:40px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+p.icon+'</div>'
+        +'<div>'
+          +'<span style="background:'+p.badgeBg+';color:'+p.badgeColor+';font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;margin-right:8px">'+(i+1)+'. '+p.pri+'</span>'
+          +'<strong style="font-size:13.5px;color:#1A1A1A">'+p.title+'</strong>'
+        +'</div>'
+      +'</div>'
+      +'<div style="padding-left:52px">'
+        +p.actions.map(function(a){return '<div style="font-size:12.5px;color:'+actionColor+';margin-bottom:6px;line-height:1.45">\u2192 '+a+'</div>';}).join('')
+      +'</div>'
+      +'</div>';
   }).join('');
 }
 function buildLogistica(){
