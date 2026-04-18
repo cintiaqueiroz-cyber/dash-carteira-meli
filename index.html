@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:20</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:25</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -882,7 +882,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:20
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:25
 </div>
 <script>
 
@@ -1894,25 +1894,26 @@ function showVGMes(mk,btnEl){
   var mesLabel=(MESES_PT_MAP[mk]||mk).toUpperCase()+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' DIAS)':' \u2014 FECHADO');
   var gap=disp-mf;
 
-  // 5 KPI cards
+  // 5 KPI cards — cores do topo iguais ao screenshot
   var elKpi=document.getElementById('vg-mes-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
-    {label:mesLabel,            val:fmt(tReal),          sub:(isCur?'Proj.: '+fmt(disp):'M\u00eas encerrado'),  cls:'blue'},
-    {label:'% META FINANCEIRA', val:pFin.toFixed(1)+'%', sub:'Meta: '+fmt(mf),                                  cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% META DESAFIO',    val:pDes.toFixed(1)+'%', sub:'Meta: '+fmt(md),                                  cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIS TOTAL',         val:fmtN(tSI),           sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
-    {label:'INVESTIMENTO TOTAL',val:fmt(tInv),           sub:'ADS + Cupons + Rebates',                          cls:'purple'}
+    {label:mesLabel,            val:fmt(tReal),          sub:(isCur?'Proj.: '+fmt(disp):'M\u00eas encerrado'),                            cls:'blue'},
+    {label:'% META FINANCEIRA', val:pFin.toFixed(1)+'%', sub:'Meta: '+fmt(mf),                                                           cls:'green'},
+    {label:'% META DESAFIO',    val:pDes.toFixed(1)+'%', sub:'Meta: '+fmt(md),                                                           cls:'red'},
+    {label:'SIS TOTAL',         val:fmtN(tSI),           sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),            cls:'blue'},
+    {label:'INVESTIMENTO TOTAL',val:fmt(tInv),           sub:'ADS + Cupons + Rebates',                                                   cls:'purple'}
   ]);
 
-  // GAP card standalone
+  // GAP card — full width, top border (igual screenshot)
   var gapEl=document.getElementById('vg-mes-gap');
   if(gapEl){
     var gc=gap>=0?'#00A650':'#F23D4F';
     var gtxt=gap>=0?'Acima da meta':'Faltam '+fmt(-gap)+' para a meta';
-    gapEl.innerHTML='<div style="background:#fff;border-radius:12px;padding:18px 24px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:5px solid '+gc+';display:inline-block;min-width:220px">'
-      +'<div style="font-size:10px;color:#999;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">GAP META FIN.</div>'
-      +'<div style="font-size:28px;font-weight:900;color:'+gc+'">'+fmt(Math.abs(gap))+'</div>'
-      +'<div style="font-size:11px;color:#888;margin-top:3px">'+gtxt+'</div></div>';
+    gapEl.innerHTML='<div class="kpi-card" style="border-top-color:'+gc+';width:100%;box-sizing:border-box">'
+      +'<div class="kpi-label">GAP META FIN.</div>'
+      +'<div class="kpi-value">'+fmt(Math.abs(gap))+'</div>'
+      +'<div class="kpi-sub">'+gtxt+'</div>'
+      +'</div>';
   }
 
   // Chart: GMV Diário + Acumulado Real + Meta Acum. (igual screenshot)
