@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:25</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:32</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -271,7 +271,7 @@
   <div class="inner-tabs" id="vg-inner-tabs"><button class="inner-tab active" onclick="showSubTab('vg','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('vg','full',this)">Full &amp; Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('vg','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('vg','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('vg','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('vg','bpc',this)">BPC</button></div>
 
   <div id="vg-section-geral" class="sub-section active">
-    <div class="kpi-row" id="vg-kpi-row"></div>
+    <div class="kpi-row" id="vg-kpi-row" style="flex-wrap:nowrap;"></div>
     <div class="section"><div class="section-title">Scorecard de Alavancas &mdash; Vis&#227;o 360&#176;</div><div id="vg-scorecard"></div></div>
     <div class="section"><div class="section-title">Quarters 2026 &mdash; Total Carteira</div><div id="vg-quarters"></div></div>
     <div class="section">
@@ -280,7 +280,9 @@
         <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">MTD &amp; Controle M&#234;s a M&#234;s &mdash; Total Carteira</span>
       </div>
       <div id="vg-mes-pills" style="margin-bottom:16px;"></div>
-      <div id="vg-mes-kpi" style="margin-bottom:12px;"></div>
+      <div style="overflow-x:auto;margin-bottom:12px;">
+        <div id="vg-mes-kpi" class="kpi-row" style="flex-wrap:nowrap;min-width:700px;"></div>
+      </div>
       <div id="vg-mes-gap" style="margin-bottom:16px;"></div>
       <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:300px;"></canvas></div>
     </div>
@@ -341,7 +343,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="ml-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="ml-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="ml-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ml-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -396,7 +398,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="ad-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="ad-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="ad-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ad-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -451,7 +453,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="ba-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="ba-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="ba-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ba-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -506,7 +508,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="ci-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="ci-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="ci-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ci-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -561,7 +563,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="bp-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="bp-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="bp-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="bp-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -616,7 +618,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="pa-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="pa-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="pa-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="pa-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -671,7 +673,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="to-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="to-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="to-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="to-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -726,7 +728,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="we-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="we-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="we-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="we-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -781,7 +783,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="kh-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="kh-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="kh-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="kh-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -836,7 +838,7 @@
   <div class="section-title">Controle M&#234;s a M&#234;s</div>
   <div id="ma-mes-pills"></div>
   <div class="mes-detail">
-    <div class="kpi-row" id="ma-mes-kpi" style="margin-bottom:16px;"></div>
+    <div class="kpi-row" id="ma-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ma-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
@@ -882,7 +884,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:25
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:32
 </div>
 <script>
 
