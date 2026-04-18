@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:16</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:20</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -882,7 +882,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:16
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:20
 </div>
 <script>
 
@@ -1983,29 +1983,30 @@ function buildVGQuarters(){
   el.innerHTML=html;
 }
 function buildVGScorecard(){
-  var ytdGMV = GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var ytdMFt = GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
-  var ytdMDt = GRUPOS.reduce(function(s,g){return s+ytdMD(g);},0);
-  var ytdSI  = GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
-  var ytdFF_ = GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
-  var ytdInv = GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
-  var ytdCup = GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
-  var ytdInvT= GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
-  var ytdPed = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+((REAL_PED_TOT[g]||{})[k]||0);},0);},0);
-  var ytdBB  = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+((REAL_PED_BB[g]||{})[k]||0);},0);},0);
-  // Visitas YTD
-  var ytdVis = GRUPOS.reduce(function(s,g){return s+PERIODO.reduce(function(ss,k){return ss+((REAL_VISITAS[g]||{})[k]||0);},0);},0);
+  var scGMV  = GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
+  var scMFt  = GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
+  var scMDt  = GRUPOS.reduce(function(s,g){return s+ytdMD(g);},0);
+  var scSI   = GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
+  var scFF   = GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
+  var scAds  = GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
+  var scCup  = GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
+  var scInvT = GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
+  var scPed  = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+((REAL_PED_TOT[g]||{})[k]||0);},0);},0);
+  var scBB   = GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+((REAL_PED_BB[g]||{})[k]||0);},0);},0);
+  var scVis  = GRUPOS.reduce(function(s,g){return s+PERIODO.reduce(function(ss,k){return ss+((typeof REAL_VISITAS!=='undefined'?(REAL_VISITAS[g]||{})[k]:0)||0);},0);},0);
 
-  var pMF  = pctNum(ytdGMV,ytdMFt);
-  var pDes = pctNum(ytdGMV,ytdMDt);
-  var pFF  = ytdGMV>0?ytdFF_/ytdGMV*100:0;
-  var pBPC = ytdPed>0?pctNum(ytdBB,ytdPed):0;
-  var pAds = ytdGMV>0?ytdInv/ytdGMV*100:0;
-  var pInv = ytdGMV>0?ytdInvT/ytdGMV*100:0;
-  var pCup = ytdGMV>0?ytdCup/ytdGMV*100:0;
-  var roas = ytdInv>0?ytdGMV/ytdInv:0;
-  var asp  = ytdSI>0?ytdGMV/ytdSI:0;
-  var cvr  = ytdVis>0?ytdPed/ytdVis*100:0;
+  var pMF  = pctNum(scGMV,scMFt);
+  var pDes = pctNum(scGMV,scMDt);
+  var pFF  = scGMV>0?scFF/scGMV*100:0;
+  var pBPC = scPed>0?pctNum(scBB,scPed):0;
+  var pAds = scGMV>0?scAds/scGMV*100:0;
+  var pInv = scGMV>0?scInvT/scGMV*100:0;
+  var pCup = scGMV>0?scCup/scGMV*100:0;
+  var roas = scAds>0?scGMV/scAds:0;
+  var asp  = scSI>0?scGMV/scSI:0;
+  var cvr  = scVis>0?scPed/scVis*100:0;
+  // aliases for html block
+  var ytdGMV=scGMV,ytdMFt=scMFt,ytdMDt=scMDt,ytdSIv=scSI,ytdFF_=scFF,ytdInv=scAds,ytdCup=scCup,ytdInvT=scInvT,ytdVis=scVis;
 
   function sc(label,val,sub,cls){
     return '<div class="sc-card '+cls+'"><div class="sc-label">'+label+'</div><div class="sc-value">'+val+'</div><div class="sc-sub">'+sub+'</div></div>';
@@ -2015,7 +2016,7 @@ function buildVGScorecard(){
     // Row 1
     +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Fin.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
     +sc('% META FINANCEIRA',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
-    +sc('SIS YTD',            fmtN(ytdSI),                  'Unidades vendidas',                                       'sc-blue')
+    +sc('SIS YTD',            fmtN(ytdSIv),                 'Unidades vendidas',                                       'sc-blue')
     +sc('ASP (TICKET M\u00c9DIO)', 'R$ '+Math.round(asp).toLocaleString('pt-BR'), 'GMV \u00f7 SIs',                   'sc-blue')
     +sc('INVESTIMENTO TOTAL', fmt(ytdInvT),                  'Inv/GMV: '+pInv.toFixed(2)+'%',                          'sc-blue')
     // Row 2
