@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 15:51</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 16:06</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -288,6 +288,7 @@
     <div class="section"><div class="section-title">&#128161; Insights Ecossistema &mdash; Carteira Total</div>
       <div id="vg-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="vg-ins-list"><span class="ins">Carregando...</span></div></div>
     </div>
+    <div class="section"><div class="section-title">&#128200; Highs &amp; Lows &mdash; Carteira</div><div id="vg-highs-lows"></div></div>
     <div class="section"><div class="section-title">&#128203; Pontos Corporativos &amp; Acion&#225;veis Priorit&#225;rios</div><div id="vg-corp-actions"></div></div>
   </div>
 
@@ -879,7 +880,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 15:51
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 16:06
 </div>
 <script>
 
@@ -1580,12 +1581,104 @@ function exportCSV(tid,name){
 }
 
 // ── Visão Geral ──
+function buildHighsLows(){
+  var el=document.getElementById('vg-highs-lows');
+  if(!el)return;
+
+  // Build full ranking for each group
+  var stats=GRUPOS.map(function(g){
+    var ytd=ytdReal(g),mf=ytdMF(g),md=ytdMD(g);
+    var pFin=mf>0?pctNum(ytd,mf):0,pDes=md>0?pctNum(ytd,md):0;
+    var g25=REAL_2025[g]||{};
+    var ytd25=PERIODO.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
+    var yoy=ytd25>0?((ytd-ytd25)/ytd25*100):null;
+    var pt=PERIODO.reduce(function(a,k){return a+((REAL_PED_TOT[g]||{})[k]||0);},0);
+    var pb=PERIODO.reduce(function(a,k){return a+((REAL_PED_BB[g]||{})[k]||0);},0);
+    var bpc=pt>0?pb/pt*100:0;
+    var ff=ytdFF(g),pFF=ytd>0?ff/ytd*100:0;
+    var fav=(FAV_DATA[g]||{}).latest||{};
+    return {g:g,ytd:ytd,mf:mf,md:md,pFin:pFin,pDes:pDes,yoy:yoy,bpc:bpc,pFF:pFF,fav:fav.pct_favorable||0,rival:fav.rival||''};
+  });
+
+  // Sort by % Meta Fin desc
+  var sorted=[].concat(stats).sort(function(a,b){return b.pFin-a.pFin;});
+  var n=sorted.length;
+
+  // HIGHS: top 3 performers
+  var highs=sorted.slice(0,3);
+  // LOWS: bottom 3 performers
+  var lows=sorted.slice(n-3).reverse();
+
+  function medal(i){return ['🥇','🥈','🥉'][i]||'';}
+  function hlCard(s,rank,isHigh){
+    var cor=GRUPO_COLOR[s.g]||'#3483FA';
+    var bg=isHigh?'#F0FFF4':'#FFF5F5';
+    var borderColor=isHigh?'#00A650':'#F23D4F';
+    var icon=isHigh?medal(rank):'⚠️';
+    var yoyTxt=s.yoy!==null?((s.yoy>=0?'+':'')+s.yoy.toFixed(1)+'% YoY'):'—';
+    var yoyColor=s.yoy===null?'#888':s.yoy>=0?'#00A650':'#F23D4F';
+    var pFinColor=s.pFin>=100?'#00A650':s.pFin>=80?'#FFB900':'#F23D4F';
+    return '<div style="background:'+bg+';border:1.5px solid '+borderColor+';border-radius:14px;padding:18px 20px;flex:1;min-width:200px">'
+      +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
+        +'<span style="font-size:22px">'+icon+'</span>'
+        +'<span style="font-size:13px;font-weight:800;color:#1A1A1A">'+s.g+'</span>'
+        +'<span style="margin-left:auto;font-size:11px;font-weight:700;color:'+yoyColor+'">'+yoyTxt+'</span>'
+      +'</div>'
+      +'<div style="margin-bottom:8px">'
+        +'<div style="font-size:11px;color:#888;margin-bottom:2px">GMV YTD</div>'
+        +'<div style="font-size:20px;font-weight:900;color:'+cor+'">'+fmt(s.ytd)+'</div>'
+      +'</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">'
+        +'<div style="background:#fff;border-radius:8px;padding:8px">'
+          +'<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">% Meta Fin.</div>'
+          +'<div style="font-size:17px;font-weight:800;color:'+pFinColor+'">'+s.pFin.toFixed(1)+'%</div>'
+          +'<div style="font-size:9px;color:#aaa">'+fmt(s.mf)+'</div>'
+        +'</div>'
+        +'<div style="background:#fff;border-radius:8px;padding:8px">'
+          +'<div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">% Meta Des.</div>'
+          +'<div style="font-size:17px;font-weight:800;color:'+(s.pDes>=100?'#00A650':s.pDes>=80?'#FFB900':'#F23D4F')+'">'+s.pDes.toFixed(1)+'%</div>'
+          +'<div style="font-size:9px;color:#aaa">'+fmt(s.md)+'</div>'
+        +'</div>'
+      +'</div>'
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap">'
+        +'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;font-weight:700;color:'+(s.bpc>=80?'#00A650':s.bpc>=65?'#FFB900':'#F23D4F')+'">BPC '+s.bpc.toFixed(0)+'%</span>'
+        +'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;font-weight:700;color:'+(s.pFF>=60?'#00A650':s.pFF>=30?'#FFB900':'#F23D4F')+'">Full '+s.pFF.toFixed(0)+'%</span>'
+        +(s.rival?'<span style="background:#fff;border:1px solid #eee;border-radius:8px;padding:4px 8px;font-size:10px;color:#555">'+s.fav+'% fav. vs '+s.rival.split(' ')[0]+'</span>':'')
+      +'</div>'
+      +'</div>';
+  }
+
+  var html='';
+  // HIGHS block
+  html+='<div style="margin-bottom:20px">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
+      +'<span style="font-size:16px">🟢</span>'
+      +'<span style="font-size:12px;font-weight:800;color:#00A650;text-transform:uppercase;letter-spacing:.5px">HIGHS — Top performers do período</span>'
+    +'</div>'
+    +'<div style="display:flex;gap:14px;flex-wrap:wrap">'
+    +highs.map(function(s,i){return hlCard(s,i,true);}).join('')
+    +'</div></div>';
+
+  // LOWS block
+  html+='<div>'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">'
+      +'<span style="font-size:16px">🔴</span>'
+      +'<span style="font-size:12px;font-weight:800;color:#F23D4F;text-transform:uppercase;letter-spacing:.5px">LOWS — Atenção imediata</span>'
+    +'</div>'
+    +'<div style="display:flex;gap:14px;flex-wrap:wrap">'
+    +lows.map(function(s,i){return hlCard(s,i,false);}).join('')
+    +'</div></div>';
+
+  el.innerHTML=html;
+}
+
 function buildVisaoGeral(){
   buildVGKPIs();
   buildVGHeatmap();
   buildVGUnifiedCards();
   buildVGScorecard();
   buildVGInsights();
+  buildHighsLows();
   buildCorpAcionaveis();
   setTimeout(buildVGLineChart,150);
 }
