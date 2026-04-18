@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:32</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 18:37</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -280,11 +280,8 @@
         <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">MTD &amp; Controle M&#234;s a M&#234;s &mdash; Total Carteira</span>
       </div>
       <div id="vg-mes-pills" style="margin-bottom:16px;"></div>
-      <div style="overflow-x:auto;margin-bottom:12px;">
-        <div id="vg-mes-kpi" class="kpi-row" style="flex-wrap:nowrap;min-width:700px;"></div>
-      </div>
-      <div id="vg-mes-gap" style="margin-bottom:16px;"></div>
-      <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:300px;"></canvas></div>
+      <div class="kpi-row" id="vg-mes-kpi" style="margin-bottom:16px;"></div>
+      <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:280px;"></canvas></div>
     </div>
     <div class="section"><div class="section-title">Performance por Grupo &mdash; Atingimento &bull; Varia&#231;&#245;es &bull; Meta</div><div id="vg-unified-cards" class="unified-cards-grid"></div></div>
     <div class="section"><div class="section-title">Heatmap de Atingimento Mensal</div><div class="table-wrap"><table id="vg-table"></table></div></div>
@@ -884,7 +881,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:32
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 18:37
 </div>
 <script>
 
@@ -1782,30 +1779,30 @@ function buildVisaoGeral(){
   buildVGKPIs();
   buildVGHeatmap();
   buildVGUnifiedCards();
-  buildVGScorecard();
   buildVGInsights();
   buildHighsLows();
-  buildCorpAcionaveis();
   setTimeout(buildVGLineChart,150);
+  buildVGScorecard();
+  buildCorpAcionaveis();
 }
 function buildVGKPIs(){
-  // Mesmos KPIs do topo da Larissa
-  var tYTD=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
-  var tMF=GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
-  var tMD=GRUPOS.reduce(function(s,g){return s+ytdMD(g);},0);
-  var tSI=GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
-  var tInv=GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
-  var tFF=GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
-  var pFin=pctNum(tYTD,tMF),pDes=pctNum(tYTD,tMD),pFF=pctNum(tFF,tYTD);
-  var asp=tSI>0?tYTD/tSI:0;
+  // Idêntico Larissa: 6 KPIs
+  var totalYTD=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
+  var totalMF =GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
+  var totalMD =GRUPOS.reduce(function(s,g){return s+ytdMD(g);},0);
+  var totalSI =GRUPOS.reduce(function(s,g){return s+ytdSI(g);},0);
+  var totalInv=GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
+  var totalFF =GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
+  var pFin=pctNum(totalYTD,totalMF),pDes=pctNum(totalYTD,totalMD),pFF=pctNum(totalFF,totalYTD);
+  var asp=totalSI>0?totalYTD/totalSI:0;
   var el=document.getElementById('vg-kpi-row');
   if(el)el.innerHTML=kpiHtml([
-    {label:'GMV YTD Total',      val:fmt(tYTD),          sub:'Jan-Abr parcial ('+DIA_MES+' dias)',                        cls:'blue'},
-    {label:'% Meta Financeira YTD', val:pFin.toFixed(1)+'%', sub:'Meta: '+fmt(tMF),                                      cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio YTD', val:pDes.toFixed(1)+'%', sub:'Meta: '+fmt(tMD),                                         cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs YTD',            val:fmtN(tSI),          sub:'ASP médio: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'), cls:'blue'},
-    {label:'Investimento Total',  val:fmt(tInv),          sub:'ADS + Cupons + Rebates',                                   cls:'purple'},
-    {label:'% Fulfillment',      val:pFF.toFixed(1)+'%', sub:'FF GMV: '+fmt(tFF),                                        cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
+    {label:'GMV YTD Total',        val:fmt(totalYTD),  sub:'Jan-'+MES_ATUAL_PT+' parcial ('+DIA_MES+' dias)',                           cls:'blue'},
+    {label:'% Meta Financeira YTD',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),                                                  cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Desafio YTD',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),                                                  cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'SIs YTD',              val:fmtN(totalSI),  sub:'ASP m\u00e9dio: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'), cls:'blue'},
+    {label:'Investimento Total',   val:fmt(totalInv),  sub:'ADS + Cupons + Rebates',                                                   cls:'purple'},
+    {label:'% Fulfillment',        val:pFF.toFixed(1)+'%',sub:'FF GMV: '+fmt(totalFF),                                                 cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
   ]);
 }
 function buildVGHeatmap(){
@@ -1882,108 +1879,123 @@ function buildVGMesControl(){
   showVGMes(MESES_DONE[MESES_DONE.length-1],null);
 }
 function showVGMes(mk,btnEl){
+  // Exatamente igual Larissa — 6 KPIs + gráfico dual-axis
   if(btnEl){document.querySelectorAll('#vg-mes-pills .mes-pill').forEach(function(b){b.classList.remove('active');});btnEl.classList.add('active');}
   var isCur=(mk===MESES_DONE[MESES_DONE.length-1]);
-  var tReal=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
-  var tSI=GRUPOS.reduce(function(s,g){return s+((REAL_SI[g]||{})[mk]||0);},0);
-  var tInv=GRUPOS.reduce(function(s,g){return s+((REAL_INV_TOT[g]||{})[mk]||0);},0);
-  var mf=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
-  var md=GRUPOS.reduce(function(s,g){return s+((META_DES[g]||{})[mk]||0);},0);
+  var totalReal=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
+  var totalDisp=isCur?totalReal*FAT_PROJ:totalReal;
+  var totalMF=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
+  var totalMD=GRUPOS.reduce(function(s,g){return s+((META_DES[g]||{})[mk]||0);},0);
+  var totalSI=GRUPOS.reduce(function(s,g){return s+((REAL_SI[g]||{})[mk]||0);},0);
+  var totalInv=GRUPOS.reduce(function(s,g){return s+((REAL_INV_TOT[g]||{})[mk]||0);},0);
+  var asp=totalSI>0?totalReal/totalSI:0;
+  var pFin=pctNum(totalDisp,totalMF),pDes=pctNum(totalDisp,totalMD);
   var diasTot=DIAS_MES_MAP[mk]||30;
-  var disp=isCur?tReal*FAT_PROJ:tReal;
-  var pFin=pctNum(disp,mf),pDes=pctNum(disp,md);
-  var asp=tSI>0?tReal/tSI:0;
-  var mesLabel=(MESES_PT_MAP[mk]||mk).toUpperCase()+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' DIAS)':' \u2014 FECHADO');
-  var gap=disp-mf;
 
-  // 5 KPI cards — cores do topo iguais ao screenshot
-  var elKpi=document.getElementById('vg-mes-kpi');
-  if(elKpi)elKpi.innerHTML=kpiHtml([
-    {label:mesLabel,            val:fmt(tReal),          sub:(isCur?'Proj.: '+fmt(disp):'M\u00eas encerrado'),                            cls:'blue'},
-    {label:'% META FINANCEIRA', val:pFin.toFixed(1)+'%', sub:'Meta: '+fmt(mf),                                                           cls:'green'},
-    {label:'% META DESAFIO',    val:pDes.toFixed(1)+'%', sub:'Meta: '+fmt(md),                                                           cls:'red'},
-    {label:'SIS TOTAL',         val:fmtN(tSI),           sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),            cls:'blue'},
-    {label:'INVESTIMENTO TOTAL',val:fmt(tInv),           sub:'ADS + Cupons + Rebates',                                                   cls:'purple'}
+  document.getElementById('vg-mes-kpi').innerHTML=kpiHtml([
+    {label:(MESES_PT_MAP[mk]||mk)+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' dias)':' \u2014 Fechado'),
+     val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
+    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'SIs Total',        val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
+    {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
+    {label:'Gap Meta Fin.',    val:fmt(totalDisp-totalMF),
+     sub:totalDisp>=totalMF?'Acima da meta':'Faltam '+fmt(totalMF-totalDisp),
+     cls:totalDisp>=totalMF?'green':'red'}
   ]);
 
-  // GAP card — full width, top border (igual screenshot)
-  var gapEl=document.getElementById('vg-mes-gap');
-  if(gapEl){
-    var gc=gap>=0?'#00A650':'#F23D4F';
-    var gtxt=gap>=0?'Acima da meta':'Faltam '+fmt(-gap)+' para a meta';
-    gapEl.innerHTML='<div class="kpi-card" style="border-top-color:'+gc+';width:100%;box-sizing:border-box">'
-      +'<div class="kpi-label">GAP META FIN.</div>'
-      +'<div class="kpi-value">'+fmt(Math.abs(gap))+'</div>'
-      +'<div class="kpi-sub">'+gtxt+'</div>'
-      +'</div>';
-  }
-
-  // Chart: GMV Diário + Acumulado Real + Meta Acum. (igual screenshot)
   destroyChart('vg-mes');
-  var canEl=document.getElementById('vg-mes-canvas');
-  if(!canEl)return;
+  var ctx=document.getElementById('vg-mes-canvas').getContext('2d');
   if(isCur&&typeof REAL_DIARIO_TOTAL!=='undefined'&&REAL_DIARIO_TOTAL.some(function(v){return v>0;})){
     var dd=REAL_DIARIO_TOTAL.slice(0,DIA_MES);
-    var cum=[],cs=0;
-    dd.forEach(function(v){cs+=v;cum.push(cs);});
-    var mdia=mf/diasTot;
-    var mcum=dd.map(function(_,i){return Math.round(mdia*(i+1));});
-    var labels=dd.map(function(_,i){return i+1;});
-    chartInstances['vg-mes']=new Chart(canEl.getContext('2d'),{type:'bar',
-      data:{labels:labels,datasets:[
-        {label:'GMV Di\u00e1rio Total',data:dd,backgroundColor:'rgba(52,131,250,0.25)',borderColor:'rgba(52,131,250,0.8)',borderWidth:1.5,borderRadius:2,yAxisID:'y'},
-        {label:'Acumulado Real',data:cum,type:'line',borderColor:'#00A650',backgroundColor:'transparent',tension:0.3,pointRadius:3,borderWidth:2.5,yAxisID:'y1'},
-        {label:'Meta Acum.',data:mcum,type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',tension:0,pointRadius:0,borderWidth:2,borderDash:[6,4],yAxisID:'y1'}
-      ]},
-      options:{responsive:true,animation:false,
-        plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:18,font:{size:11}}},
-                 tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
-        scales:{
-          y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}},grid:{color:'rgba(0,0,0,.04)'}},
-          y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return fmt(v);}}}
-        }}});
+    var cum=[],s=0;
+    dd.forEach(function(v){s+=v;cum.push(s);});
+    var mdia=totalMF/diasTot;
+    var mcum=dd.map(function(_,j){return +(mdia*(j+1)).toFixed(0);});
+    var labels=dd.map(function(_,j){return j+1;});
+    chartInstances['vg-mes']=new Chart(ctx,{type:'line',data:{labels:labels,datasets:[
+      {label:'GMV Di\u00e1rio Total',data:dd,borderColor:C_BLUE,backgroundColor:'rgba(52,131,250,0.1)',fill:true,tension:0.3,pointRadius:3,yAxisID:'y'},
+      {label:'Acumulado Real',data:cum,borderColor:C_GREEN,backgroundColor:'transparent',tension:0.3,pointRadius:2,yAxisID:'y1'},
+      {label:'Meta Acum.',data:mcum,borderColor:C_YELLOW,backgroundColor:'transparent',borderDash:[6,3],tension:0,pointRadius:0,borderWidth:2,yAxisID:'y1'}
+    ]},options:{responsive:true,animation:false,
+      plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
+      scales:{
+        y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}}},
+        y1:{type:'linear',position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return fmt(v);}}}
+      }}});
   } else {
-    // Mês fechado: barras empilhadas por grupo
-    var dsF=GRUPOS.map(function(g,i){var cols=[C_BLUE,'#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];return {label:g.substring(0,10),data:[(REAL_MENSAL[g]||{})[mk]||0],backgroundColor:cols[i%cols.length],borderRadius:3};});
-    chartInstances['vg-mes']=new Chart(canEl.getContext('2d'),{type:'bar',data:{labels:[MESES_PT_MAP[mk]||mk],datasets:dsF},
-      options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom',labels:{font:{size:9}}}}}});
+    var realArr=GRUPOS.map(function(g){return (REAL_MENSAL[g]||{})[mk]||0;});
+    var mfArr=GRUPOS.map(function(g){return (META_FIN[g]||{})[mk]||0;});
+    chartInstances['vg-mes']=new Chart(ctx,{type:'bar',
+      data:{labels:GRUPOS.map(function(g){return g.length>12?g.substring(0,12)+'...':g;}),datasets:[
+        {label:'Realizado',data:realArr,backgroundColor:C_BLUE,borderRadius:4},
+        {label:'Meta Fin.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4}
+      ]},options:{responsive:true,animation:false,
+        plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
+        scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}});
   }
 }
 function buildVGQuarters(){
-  var activeQs=['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';});
+  // Idêntico Larissa: aggregate quarter cards + per-seller grid below
   var el=document.getElementById('vg-quarters');
   if(!el)return;
+  var activeQs=['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';});
 
-  function qSellerCard(g,q){
-    var t=qtdReal(g,q),mf=qtdMF(g,q),md=qtdMD(g,q);
-    var pFin=mf>0?pctNum(t,mf):0,pDes=md>0?pctNum(t,md):0;
-    var cor=GRUPO_COLOR[g]||'#3483FA';
-    var finColor=pFin>=100?'#00A650':pFin>=80?'#B07A00':'#F23D4F';
-    var barColor=pFin>=100?'#00A650':pFin>=80?'#FFB900':'#F23D4F';
-    return '<div style="background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:4px solid '+cor+';flex:1;min-width:140px">'
-      +'<div style="font-size:10px;font-weight:800;color:#333;text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px">'+g+'</div>'
-      +'<div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px">'
-        +'<span style="font-size:17px;font-weight:900;color:#1A1A1A">'+(t>0?fmt(t):'-')+'</span>'
-        +(mf>0?'<span style="font-size:12px;font-weight:700;color:'+finColor+'">'+pFin.toFixed(1)+'% Fin</span>':'')
-      +'</div>'
-      +(mf>0?'<div style="background:#F0F0F0;border-radius:4px;height:5px;overflow:hidden;margin-bottom:5px"><div style="width:'+Math.min(pFin,100).toFixed(1)+'%;height:100%;background:'+barColor+';border-radius:4px"></div></div>':'')
-      +(md>0?'<div style="font-size:10px;color:#888">Des: '+pDes.toFixed(1)+'%</div>':'')
-      +'</div>';
-  }
-
-  var html='';
+  // ── Aggregate quarter cards (row) ──
+  var qHtml='<div class="quarter-row">';
   activeQs.forEach(function(q){
     var status=qStatus(q);
+    var qR=GRUPOS.reduce(function(s,g){return s+qtdReal(g,q);},0);
+    var qMF=GRUPOS.reduce(function(s,g){return s+qtdMF(g,q);},0);
+    var qMD=GRUPOS.reduce(function(s,g){return s+qtdMD(g,q);},0);
+    var pFin=pctNum(qR,qMF);
     var sLabel=status==='closed'?'Fechado':status==='partial'?'Em andamento':'Futuro';
-    var sColor=status==='closed'?'#888':status==='partial'?'#3483FA':'#ccc';
-    html+='<div style="margin-bottom:20px">';
-    html+='<div style="font-size:13px;font-weight:700;color:#333;margin-bottom:10px">'
-      +q+' <span style="font-size:11px;font-weight:500;color:'+sColor+'">'+sLabel+'</span></div>';
-    html+='<div style="display:flex;gap:10px;flex-wrap:wrap">';
-    GRUPOS.forEach(function(g){html+=qSellerCard(g,q);});
-    html+='</div></div>';
+    var clr=status==='future'?'q-grey':status==='partial'?'q-blue':pFin>=100?'q-green':'q-red';
+    var fillCls=pFin>=100?'pf-green':pFin>=80?'pf-yellow':'pf-red';
+    qHtml+='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
+    qHtml+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div>';
+    qHtml+='<div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
+    if(qR>0){qHtml+='<div style="margin-bottom:5px;font-size:11px;">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div>'
+      +'<div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';}
+    qHtml+='</div>';
   });
-  el.innerHTML=html;
+  qHtml+='</div>';
+
+  // ── Per-seller grid por quarter (como Larissa) ──
+  var summHtml='<div style="margin-top:16px;">';
+  activeQs.forEach(function(q){
+    var status=qStatus(q);
+    var qkeys=QUARTER_KEYS[q];
+    var months=qkeys.filter(function(k){return MESES_DONE.indexOf(k)>=0;});
+    if(!months.length)return;
+    var sLabel=status==='closed'?'Fechado':status==='partial'?'Em andamento':'';
+    summHtml+='<div style="margin-bottom:14px;">';
+    summHtml+='<div style="font-size:11px;font-weight:700;color:#555;margin-bottom:6px;display:flex;align-items:center;gap:8px;">'
+      +q+' <span style="font-size:10px;font-weight:600;color:#AAA;">'+sLabel+'</span></div>';
+    summHtml+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;">';
+    GRUPOS.forEach(function(g){
+      var qR=months.reduce(function(s,k){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
+      var qMF=months.reduce(function(s,k){return s+((META_FIN[g]||{})[k]||0);},0);
+      var qMD=months.reduce(function(s,k){return s+((META_DES[g]||{})[k]||0);},0);
+      var pFin=qMF>0?pctNum(qR,qMF):0,pDes=qMD>0?pctNum(qR,qMD):0;
+      var clr=pFin>=100?'#00A650':pFin>=80?'#B8860B':'#F23D4F';
+      var cor=GRUPO_COLOR[g]||'#3483FA';
+      var fillW=Math.min(pFin,100).toFixed(0);
+      summHtml+='<div style="background:#fff;border-radius:8px;padding:10px 12px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:3px solid '+cor+';">'
+        +'<div style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;">'+g+'</div>'
+        +'<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">'
+          +'<span style="font-size:13px;font-weight:800;color:#222;">'+fmt(qR)+'</span>'
+          +'<span style="font-size:11px;font-weight:700;color:'+clr+';">'+pFin.toFixed(1)+'% Fin</span>'
+        +'</div>'
+        +'<div style="background:#F0F0F0;border-radius:3px;height:4px;overflow:hidden;">'
+          +'<div style="width:'+fillW+'%;height:100%;background:'+clr+';border-radius:3px;"></div></div>'
+        +'<div style="font-size:10px;color:#AAA;margin-top:3px;">Des: '+pDes.toFixed(1)+'%</div>'
+        +'</div>';
+    });
+    summHtml+='</div></div>';
+  });
+  summHtml+='</div>';
+  el.innerHTML=qHtml+summHtml;
 }
 function buildVGScorecard(){
   var scGMV  = GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
