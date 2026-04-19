@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 19/04/2026 00:18</span>
+    <span class="update-badge">&#10003; Atualizado 19/04/2026 00:22</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 00:18
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 00:22
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1324,7 +1324,7 @@ function showMes(grupo,prefix,mk,btnEl){
   var pFin=pctNum(disp,mf),pDes=pctNum(disp,md);
   var elKpi=document.getElementById(prefix+'-mes-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
-    {label:(MESES_PT_MAP[mk]||mk)+(isCur?' ÔÇö MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' ÔÇö Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'M¬s encerrado',cls:'blue'},
+    {label:(MESES_PT_MAP[mk]||mk)+(isCur?' ÔÇö MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' ÔÇö Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
@@ -1386,9 +1386,9 @@ function buildActions(g,px){
   var acts=[];
   if(pFin<80)acts.push({icon:'­ƒö┤',title:'Meta Fin. em risco ('+pFin.toFixed(1)+'%)',body:'GMV abaixo de 80% da meta. Acionar campanhas e Full SC.',color:'#F23D4F'});
   else if(pFin>=100)acts.push({icon:'Ô£à',title:'Meta Financeira atingida!',body:'Foque em crescer a Meta Desafio ('+pDes.toFixed(1)+'%).',color:'#00A650'});
-  if(pDes<60)acts.push({icon:'ÔÜá´©Å',title:'Meta Desafio cr¡tica ('+pDes.toFixed(1)+'%)',body:'Revisar sortimento, preºo e log¡stica.',color:'#FF7A00'});
+  if(pDes<60)acts.push({icon:'ÔÜá´©Å',title:'Meta Desafio crítica ('+pDes.toFixed(1)+'%)',body:'Revisar sortimento, preço e logística.',color:'#FF7A00'});
   if(pFF<30)acts.push({icon:'­ƒôª',title:'Baixo Fulfillment ('+pFF.toFixed(1)+'%)',body:'Ativar Full SC para melhorar BPC e conversúo.',color:'#3483FA'});
-  if(!acts.length)acts.push({icon:'­ƒôè',title:'Performance estível',body:'Manter ritmo e monitorar mensalmente.',color:'#888'});
+  if(!acts.length)acts.push({icon:'­ƒôè',title:'Performance estável',body:'Manter ritmo e monitorar mensalmente.',color:'#888'});
   var el=document.getElementById(px+'-actions');
   if(!el)return;
   el.innerHTML=acts.map(function(a){
@@ -1440,7 +1440,7 @@ function buildSellerFull(g,px){
              scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},
              plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}}}
   });
-  var hdr='<thead><tr><th>M¬s</th><th>Full</th><th>XD</th><th>SS</th><th>Total</th><th>% Full</th></tr></thead>';
+  var hdr='<thead><tr><th>Mês</th><th>Full</th><th>XD</th><th>SS</th><th>Total</th><th>% Full</th></tr></thead>';
   var bdy='<tbody>'+mks.map(function(k){
     var f=ff[k]||0,x=xd[k]||0,s=ss[k]||0,t=rm[k]||0,p=t>0?f/t*100:0;
     return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(f)+'</td><td>'+fmt(x)+'</td><td>'+fmt(s)+'</td><td>'+fmt(t)+'</td><td><span class="pill '+(p>=60?'pill-green':p>=30?'pill-yellow':'pill-red')+'">'+p.toFixed(1)+'%</span></td></tr>';
@@ -1468,7 +1468,7 @@ function buildSellerADS(g,px){
     ]},
     options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom'}}}
   });
-  var hdr='<thead><tr><th>M¬s</th><th>ADS</th><th>Cupons</th><th>Total</th><th>% GMV</th></tr></thead>';
+  var hdr='<thead><tr><th>Mês</th><th>ADS</th><th>Cupons</th><th>Total</th><th>% GMV</th></tr></thead>';
   var bdy='<tbody>'+mks.map(function(k){
     var a=ads[k]||0,c=cup[k]||0,gv=rm[k]||0,t=a+c,p=gv>0?t/gv*100:0;
     return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(a)+'</td><td>'+fmt(c)+'</td><td>'+fmt(t)+'</td><td>'+p.toFixed(1)+'%</td></tr>';
@@ -1497,7 +1497,7 @@ function buildSellerInv(g,px){
     ]},
     options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom'}}}
   });
-  var hdr='<thead><tr><th>M¬s</th><th>ADS</th><th>Cupons</th><th>Rebates</th><th>Total</th><th>% GMV</th></tr></thead>';
+  var hdr='<thead><tr><th>Mês</th><th>ADS</th><th>Cupons</th><th>Rebates</th><th>Total</th><th>% GMV</th></tr></thead>';
   var bdy='<tbody>'+mks.map(function(k){
     var a=ads[k]||0,c=cup[k]||0,r=reb[k]||0,t=tot[k]||0,gv=(REAL_MENSAL[g]||{})[k]||0,p=gv>0?t/gv*100:0;
     return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(a)+'</td><td>'+fmt(c)+'</td><td>'+fmt(r)+'</td><td>'+fmt(t)+'</td><td>'+p.toFixed(1)+'%</td></tr>';
@@ -1645,8 +1645,8 @@ function buildSellerBPC(g,px){
   if(tbl)tbl.innerHTML=hdr+bdy;
   var offs=(TOP_ITEMS[g]||[]).filter(function(it){return it.bb<70&&it.gmv>0;}).slice(0,10);
   var otbl=document.getElementById(px+'-bpc-offenders');
-  if(otbl)otbl.innerHTML='<thead><tr><th>T¡tulo</th><th>GMV</th><th>BPC%</th></tr></thead><tbody>'+offs.map(function(it){return '<tr><td class="itens-title-cell">'+it.nm+'</td><td>'+fmt(it.gmv)+'</td><td><span class="pill '+(it.bb<50?'pill-red':'pill-yellow')+'">'+it.bb+'%</span></td></tr>';}).join('')+'</tbody>';
-  // ÔöÇÔöÇ BOX_ALL_ABC: favorabilidade de preºo vs todos concorrentes ÔöÇÔöÇ
+  if(otbl)otbl.innerHTML='<thead><tr><th>Título</th><th>GMV</th><th>BPC%</th></tr></thead><tbody>'+offs.map(function(it){return '<tr><td class="itens-title-cell">'+it.nm+'</td><td>'+fmt(it.gmv)+'</td><td><span class="pill '+(it.bb<50?'pill-red':'pill-yellow')+'">'+it.bb+'%</span></td></tr>';}).join('')+'</tbody>';
+  // ÔöÇÔöÇ BOX_ALL_ABC: favorabilidade de preço vs todos concorrentes ÔöÇÔöÇ
   var fa=(FAV_ABC[g]||{});
   var latL=fa.latest_local||{},latP=fa.latest_pix||{};
   var pFavL=latL.pct_favorable||0,pFavP=latP.pct_favorable||0;
@@ -1733,7 +1733,7 @@ function buildSellerBPC(g,px){
 
   buildBPCNeg(g,px);
   var ba=document.getElementById(px+'-bpc-actions');
-  if(ba)ba.innerHTML='<div class="action-card"><strong>­ƒôï Revisar itens com BPC &lt; 70%</strong><p>Use o painel acima para acompanhar negociaºÁes.</p></div>';
+  if(ba)ba.innerHTML='<div class="action-card"><strong>­ƒôï Revisar itens com BPC &lt; 70%</strong><p>Use o painel acima para acompanhar negociações.</p></div>';
 }
 function buildBPCNeg(g,px){
   var el=document.getElementById(px+'-bpc-neg');
@@ -1743,11 +1743,11 @@ function buildBPCNeg(g,px){
   var rows=items.map(function(it,i){
     return '<tr><td>'+it.iid+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">'+it.nm+'</td><td>R$'+it.pa+'</td><td>R$'+it.pp+'</td><td>'+it.st+'</td><td>'+it.nt+'</td><td><button onclick="delBPCNeg(\''+px+'\','+i+')" style="background:#F23D4F;color:#fff;border:none;border-radius:4px;padding:1px 6px;cursor:pointer;font-size:10px">Del</button></td></tr>';
   }).join('');
-  el.innerHTML='<table class="tbl" style="width:100%;margin-bottom:12px"><thead><tr style="background:#3483FA"><th style="color:#fff">ID</th><th style="color:#fff">T¡tulo</th><th style="color:#fff">Preºo Atual</th><th style="color:#fff">Proposto</th><th style="color:#fff">Status</th><th style="color:#fff">Notas</th><th style="color:#fff">Del</th></tr></thead><tbody>'+(rows||'<tr><td colspan="7" style="text-align:center;color:#aaa;padding:16px">Nenhum item</td></tr>')+'</tbody></table>'+
+  el.innerHTML='<table class="tbl" style="width:100%;margin-bottom:12px"><thead><tr style="background:#3483FA"><th style="color:#fff">ID</th><th style="color:#fff">Título</th><th style="color:#fff">Preço Atual</th><th style="color:#fff">Proposto</th><th style="color:#fff">Status</th><th style="color:#fff">Notas</th><th style="color:#fff">Del</th></tr></thead><tbody>'+(rows||'<tr><td colspan="7" style="text-align:center;color:#aaa;padding:16px">Nenhum item</td></tr>')+'</tbody></table>'+
   '<form onsubmit="addBPCNeg(event,\''+px+'\')" style="background:#F5F7FF;border-radius:8px;padding:12px;display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end">'+
   '<input id="bpcni_'+px+'" placeholder="Item ID" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:100px">'+
-  '<input id="bpcnn_'+px+'" placeholder="T¡tulo" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:160px">'+
-  '<input id="bpcpa_'+px+'" placeholder="Preºo Atual" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:90px">'+
+  '<input id="bpcnn_'+px+'" placeholder="Título" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:160px">'+
+  '<input id="bpcpa_'+px+'" placeholder="Preço Atual" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:90px">'+
   '<input id="bpcpp_'+px+'" placeholder="Proposto" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:90px">'+
   '<select id="bpcst_'+px+'" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px"><option>Identificado</option><option>Negociando</option><option>Fechado</option><option>Sem acordo</option></select>'+
   '<input id="bpcnt_'+px+'" placeholder="Notas" style="border:1px solid #ddd;border-radius:5px;padding:4px 7px;font-size:11px;width:140px">'+
@@ -1776,7 +1776,7 @@ function buildCategorias(g,px){
   var cats=catRaw.slice(0,8).map(function(c){return [c.cat,{gmv:c.gmv,si:c.si,n:c.n}];});
   var total=cats.reduce(function(a,c){return a+c[1].gmv;},0);
   var elKpi=document.getElementById(px+'-cat2-kpi');
-  if(elKpi)elKpi.innerHTML=kpiHtml([{label:'Categorias',val:cats.length,sub:'Top por GMV',cls:'blue'},{label:'GMV Total',val:fmt(total),sub:'║ltimos 90 dias',cls:'blue'}]);
+  if(elKpi)elKpi.innerHTML=kpiHtml([{label:'Categorias',val:cats.length,sub:'Top por GMV',cls:'blue'},{label:'GMV Total',val:fmt(total),sub:'Últimos 90 dias',cls:'blue'}]);
   var colors=['#3483FA','#00A650','#FF7A00','#F23D4F','#9B59B6','#FFB900','#3498DB','#E74C3C'];
   destroyChart(px+'-cat2');
   var c1=document.getElementById(px+'-cat2-chart');
@@ -1797,8 +1797,8 @@ function buildYoY(g,px){
   var elKpi=document.getElementById(px+'-yoy-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:'GMV YTD 2026',val:fmt(ytd26),sub:'atual',cls:'blue'},
-    {label:'GMV YTD 2025',val:fmt(ytd25),sub:'mesmo per¡odo',cls:'blue'},
-    {label:'YoY %',val:(yoy>=0?'+':'')+yoy.toFixed(1)+'%',sub:'variaºúo anual',cls:yoy>=0?'green':'red'}
+    {label:'GMV YTD 2025',val:fmt(ytd25),sub:'mesmo período',cls:'blue'},
+    {label:'YoY %',val:(yoy>=0?'+':'')+yoy.toFixed(1)+'%',sub:'variação anual',cls:yoy>=0?'green':'red'}
   ]);
   destroyChart(px+'-yoy');
   var canEl=document.getElementById(px+'-yoy-chart');
@@ -1812,7 +1812,7 @@ function buildYoY(g,px){
       options:{responsive:true,animation:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
     });
   }
-  var hdr='<thead><tr><th>M¬s</th><th>2026</th><th>2025</th><th>YoY%</th></tr></thead>';
+  var hdr='<thead><tr><th>Mês</th><th>2026</th><th>2025</th><th>YoY%</th></tr></thead>';
   var bdy='<tbody>'+mks.map(function(k){
     var v26=rm[k]||0,v25=r25[k]?r25[k].gmv:0,yy=v25>0?((v26-v25)/v25*100):0;
     return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(v26)+'</td><td>'+fmt(v25)+'</td><td><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td></tr>';
@@ -1826,8 +1826,8 @@ function buildComp(g,px){
   var pFav=lat.pct_favorable||0,pExp=lat.pct_expensive||0,rival=lat.rival||'N/A';
   var elKpi=document.getElementById(px+'-comp-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
-    {label:'% Favorível (║lt. m¬s)',val:pFav+'%',sub:'Preºo Ôëñ concorrente',cls:pFav>=70?'green':pFav>=50?'yellow':'red'},
-    {label:'% Desfavorível',val:pExp+'%',sub:'Mais caro que concorrente',cls:pExp>50?'red':'yellow'},
+    {label:'% Favorável (Últ. mês)',val:pFav+'%',sub:'Preço Ôëñ concorrente',cls:pFav>=70?'green':pFav>=50?'yellow':'red'},
+    {label:'% Desfavorável',val:pExp+'%',sub:'Mais caro que concorrente',cls:pExp>50?'red':'yellow'},
     {label:'Principal Rival',val:rival,sub:'maior volume comparado',cls:'blue'}
   ]);
   var mks=Object.keys(monthly).sort();
@@ -1837,8 +1837,8 @@ function buildComp(g,px){
     chartInstances[px+'-comp']=new Chart(canEl.getContext('2d'),{
       type:'bar',
       data:{labels:mks.map(function(m){return m.slice(0,4)+'/'+m.slice(4);}),datasets:[
-        {label:'% Favorível',data:mks.map(function(k){return monthly[k].pct_favorable||0;}),backgroundColor:'rgba(0,166,80,.75)',borderRadius:3},
-        {label:'% Desfavorível',data:mks.map(function(k){return monthly[k].pct_expensive||0;}),backgroundColor:'rgba(242,61,79,.6)',borderRadius:3}
+        {label:'% Favorável',data:mks.map(function(k){return monthly[k].pct_favorable||0;}),backgroundColor:'rgba(0,166,80,.75)',borderRadius:3},
+        {label:'% Desfavorável',data:mks.map(function(k){return monthly[k].pct_expensive||0;}),backgroundColor:'rgba(242,61,79,.6)',borderRadius:3}
       ]},
       options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,max:100,ticks:{callback:function(v){return v+'%';}}}},plugins:{legend:{position:'bottom'}}}
     });
@@ -1985,7 +1985,7 @@ function buildVisaoGeral(){
   setTimeout(buildSellersConsolidated,300);
 }
 function buildVGKPIs(){
-  // Id¬ntico Larissa: 6 KPIs
+  // Idêntico Larissa: 6 KPIs
   var totalYTD=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
   var totalMF =GRUPOS.reduce(function(s,g){return s+ytdMF(g);},0);
   var totalMD =GRUPOS.reduce(function(s,g){return s+ytdMD(g);},0);
@@ -2176,7 +2176,7 @@ function showVGMes(mk,btnEl){
   }
 }
 function buildVGQuarters(){
-  // Id¬ntico Larissa: aggregate quarter cards + per-seller grid below
+  // Idêntico Larissa: aggregate quarter cards + per-seller grid below
   var el=document.getElementById('vg-quarters');
   if(!el)return;
   var activeQs=['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';});
@@ -2301,7 +2301,7 @@ function buildVGInsights(){
     {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmt(tMF)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
     {t:pDes.toFixed(1)+'% da Meta Desafio ('+fmt(tMD)+')',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Melhor: '+best+' ('+pctNum(ytdReal(best),ytdMF(best)).toFixed(1)+'%)',c:'g'},
-    {t:'Atenºúo: '+worst+' ('+pctNum(ytdReal(worst),ytdMF(worst)).toFixed(1)+'%)',c:'r'}
+    {t:'Atenção: '+worst+' ('+pctNum(ytdReal(worst),ytdMF(worst)).toFixed(1)+'%)',c:'r'}
   ];
   el.innerHTML=ins.map(function(i){return '<span class="ins '+i.c+'">'+i.t+'</span>';}).join('');
 }
@@ -2370,7 +2370,7 @@ function buildLogistica(){
     {label:'% FULFILLMENT TOTAL',val:pFF.toFixed(1)+'%',sub:'Meta recomendada: >80%',cls:pFF>=80?'green':pFF>=60?'yellow':'red'}
   ]);
 
-  // Stacked bar: total carteira por m¬s (FF + XD + SS)
+  // Stacked bar: total carteira por mês (FF + XD + SS)
   destroyChart('log-bar');
   var canEl=document.getElementById('log-bar-chart');
   if(canEl)chartInstances['log-bar']=new Chart(canEl.getContext('2d'),{type:'bar',
@@ -2618,7 +2618,7 @@ function filterVGGroup(g,btn){
   // Reset group pills
   var pills=document.querySelectorAll('#vg-items-container button, #itens-table button');
   pills.forEach(function(b){
-    if(['Todos','GMV','Units','Preºo','all'].some(function(t){return b.textContent.includes(t)||b.id&&b.id.includes('gpill')})){
+    if(['Todos','GMV','Units','Preço','all'].some(function(t){return b.textContent.includes(t)||b.id&&b.id.includes('gpill')})){
       // only group pills, skip sort/status
     }
   });
@@ -2740,7 +2740,7 @@ function buildVGBPC(){
     {label:'Melhor BPC',val:best,sub:'Maior % de buybox YTD',cls:'green'}
   ]);
 
-  // ÔöÇÔöÇ Chart: BPC % por Grupo ÔÇö Evoluºúo Mensal (igual Larissa) ÔöÇÔöÇ
+  // ÔöÇÔöÇ Chart: BPC % por Grupo ÔÇö Evolução Mensal (igual Larissa) ÔöÇÔöÇ
   var lColors=[C_BLUE,'#FF7A00','#9B59B6',C_GREEN,'#00BCD4','#E74C3C','#FFB900','#3498DB','#2ECC71','#95A5A6'];
   var dL=mks.map(function(mk){return MESES_LABEL[MESES_KEYS.indexOf(mk)];});
   var ds=GRUPOS.map(function(g,gi){
@@ -2788,7 +2788,7 @@ function buildVGBPC(){
 
   // ÔöÇÔöÇ Acioníveis BPC ÔöÇÔöÇ
   var ba=document.getElementById('vg-bpc-actions');
-  if(ba)ba.innerHTML='<div class="action-card" style="border-left-color:#F23D4F"><div class="action-icon">­ƒÅÀ´©Å</div><strong>Priorizar sellers com BPC &lt; 65%</strong><p>Ativar revisúo de preºos nos top 20 itens por GMV sem buybox. Habilitar Preºo Competitivo Automítico.</p></div>';
+  if(ba)ba.innerHTML='<div class="action-card" style="border-left-color:#F23D4F"><div class="action-icon">­ƒÅÀ´©Å</div><strong>Priorizar sellers com BPC &lt; 65%</strong><p>Ativar revisão de preços nos top 20 itens por GMV sem buybox. Habilitar Preço Competitivo Automático.</p></div>';
 
   // ÔöÇÔöÇ Visitas por Seller ÔÇö Expensive vs Cheaper (Bruna) ÔöÇÔöÇ
   var neg=document.getElementById('vg-bpc-neg');
