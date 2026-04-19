@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 19/04/2026 00:06</span>
+    <span class="update-badge">&#10003; Atualizado 19/04/2026 00:10</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 00:06
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 00:10
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2886,7 +2886,7 @@ function buildSellersConsolidated(){
     var status,statusBg,statusColor;
     if(r.pDes>=100){status='🏅 Desafio';statusBg='rgba(100,60,200,.08)';statusColor='#6B3CA8';}
     else{status='Abaixo';statusBg='rgba(242,61,79,.07)';statusColor='#F23D4F';}
-    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F5F5F5" onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=''+rowBg+''">'
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F5F5F5" onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
       +'<td style="padding:14px 12px"><span style="font-size:13px;font-weight:800;color:#1A1A1A">'+r.g+'</span></td>'
       +'<td style="padding:14px 12px;font-size:14px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(r.gmv)+'</td>'
       +'<td style="padding:14px 12px;font-size:12px;color:#888;white-space:nowrap">'+fmt(r.md)+'</td>'
