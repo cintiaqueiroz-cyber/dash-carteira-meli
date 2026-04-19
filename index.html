@@ -1452,6 +1452,12 @@ function mlImgTag(it){
 // ── Catalog table exactly like Larissa's ──
 function renderItemsTable(items, containerId, showGroup){
   var th=function(t,al){return '<th style="padding:11px 10px;font-size:10.5px;font-weight:700;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;letter-spacing:.3px">'+t+'</th>';};
+
+  var viewTotal=items.reduce(function(s,it){return s+(it.gmv||0);},0);
+  var globalTotal=Object.keys(TOP_ITEMS||{}).reduce(function(s,g){
+    return s+(TOP_ITEMS[g]||[]).reduce(function(a,it){return a+(it.gmv||0);},0);
+  },0);
+
   var hdr='<thead><tr style="background:#1A1A1A">'
     +th('#','center')
     +'<th style="padding:11px 10px;width:44px"></th>'
@@ -1461,7 +1467,9 @@ function renderItemsTable(items, containerId, showGroup){
     +th('SELLER')
     +th('DOMÍNIO')
     +th('MLB')
-    +th('GMV 30D','right')
+    +th('GMV 90D','right')
+    +th('PART.%','right')
+    +th('SHARE%','right')
     +'</tr></thead>';
 
   var bdy='<tbody>'+items.map(function(it,i){
@@ -1476,6 +1484,8 @@ function renderItemsTable(items, containerId, showGroup){
     var nm=(it.nm||it.title||'').substring(0,45)+(((it.nm||it.title||'').length>45)?'...':'');
     var href=mlLink(it);
     var rowBg=i%2===0?'#fff':'#FAFAFA';
+    var partPct=viewTotal>0?((it.gmv||0)/viewTotal*100).toFixed(1)+'%':'—';
+    var sharePct=globalTotal>0?((it.gmv||0)/globalTotal*100).toFixed(1)+'%':'—';
     return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0;transition:background .1s" '
       +'onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
       +'<td style="padding:12px 10px;text-align:center;color:#bbb;font-size:11px;font-weight:700">'+(i+1)+'</td>'
@@ -1489,6 +1499,8 @@ function renderItemsTable(items, containerId, showGroup){
       +'<td style="padding:12px 10px;font-size:10.5px;color:#999;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis">'+(it.domain||it.cat||'—')+'</td>'
       +'<td style="padding:12px 10px"><a href="'+href+'" target="_blank" style="color:#3483FA;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap">🔗 '+mlbId.replace('MLB','MLB ')+'</a></td>'
       +'<td style="padding:12px 10px;text-align:right;font-size:13px;font-weight:800;color:#222;white-space:nowrap">'+fmt(it.gmv)+'</td>'
+      +'<td style="padding:12px 10px;text-align:right;font-size:12px;font-weight:700;color:#3483FA;white-space:nowrap">'+partPct+'</td>'
+      +'<td style="padding:12px 10px;text-align:right;font-size:12px;font-weight:700;color:#9B59B6;white-space:nowrap">'+sharePct+'</td>'
       +'</tr>';
   }).join('')+'</tbody>';
 
