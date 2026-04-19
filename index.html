@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 22:34</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 22:40</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -990,7 +990,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 22:34
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 22:40
 </div>
 <script>
 
@@ -2750,8 +2750,8 @@ function buildCombo(){
   var mks=MESES_DONE;
   var colors=[C_BLUE,'#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];
   // Totals
-  var totPSJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+((COMBO_DATA[g]||{})([k]||{})['psj']||0);},0);},0);
-  var totPCJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+((COMBO_DATA[g]||{})([k]||{})['pcj']||0);},0);},0);
+  var totPSJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0);},0);
+  var totPCJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);},0);
   var totAll=totPSJ+totPCJ;
   var pPSJ=totAll>0?totPSJ/totAll*100:0;
   // KPIs
@@ -2764,8 +2764,8 @@ function buildCombo(){
   ]);
   // Bar chart: mix por grupo % PSJ vs PCJ
   var groupPSJ=GRUPOS.map(function(g){
-    var p=mks.reduce(function(s,k){return s+((COMBO_DATA[g]||{})([k]||{})['psj']||0);},0);
-    var c=mks.reduce(function(s,k){return s+((COMBO_DATA[g]||{})([k]||{})['pcj']||0);},0);
+    var p=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0);
+    var c=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);
     return p+c>0?p/(p+c)*100:0;
   });
   destroyChart('combo-mix');
@@ -2780,8 +2780,8 @@ function buildCombo(){
       plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.raw+'%';}}}}}});
   // Line chart: PSJ trend por mês (carteira total)
   var trend=mks.map(function(k){
-    var p=GRUPOS.reduce(function(s,g){return s+((COMBO_DATA[g]||{})([k]||{})['psj']||0);},0);
-    var c=GRUPOS.reduce(function(s,g){return s+((COMBO_DATA[g]||{})([k]||{})['pcj']||0);},0);
+    var p=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0);
+    var c=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);
     return p+c>0?+(p/(p+c)*100).toFixed(1):null;
   });
   destroyChart('combo-trend');
@@ -2799,13 +2799,13 @@ function buildCombo(){
   mks.forEach(function(mk){var lbl=MESES_LABEL[MESES_KEYS.indexOf(mk)];hdr+='<th style="padding:12px 8px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">'+lbl+'<br>PSJ</th><th style="padding:12px 8px;text-align:center;font-size:10px;font-weight:700;color:#1A1A1A">% PSJ</th>';});
   hdr+='<th style="padding:12px 10px;text-align:center;font-size:10px;font-weight:700;color:#1A1A1A">YTD % PSJ</th></tr></thead>';
   var bdy='<tbody>'+GRUPOS.map(function(g,gi){
-    var ytdP=mks.reduce(function(s,k){return s+((COMBO_DATA[g]||{})([k]||{})['psj']||0);},0);
-    var ytdC=mks.reduce(function(s,k){return s+((COMBO_DATA[g]||{})([k]||{})['pcj']||0);},0);
+    var ytdP=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0);
+    var ytdC=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);
     var ytdPct=ytdP+ytdC>0?ytdP/(ytdP+ytdC)*100:0;
     var ytdColor=ytdPct>=70?'#00A650':ytdPct>=50?'#FFB900':'#F23D4F';
     var row='<tr style="background:'+(gi%2===0?'#fff':'#FAFAFA')+';border-bottom:1px solid #F0F0F0"><td style="padding:11px 14px;font-size:13px;font-weight:700">'+g+'</td>';
     mks.forEach(function(k){
-      var p=((COMBO_DATA[g]||{})([k]||{})['psj']||0),c=((COMBO_DATA[g]||{})([k]||{})['pcj']||0),pct=p+c>0?p/(p+c)*100:0;
+      var p=(((COMBO_DATA[g]||{})[k]||{}).psj||0),c=(((COMBO_DATA[g]||{})[k]||{}).pcj||0),pct=p+c>0?p/(p+c)*100:0;
       var col=pct>=70?'#00A650':pct>=50?'#FFB900':'#F23D4F';
       row+='<td style="padding:11px 8px;text-align:right;font-size:11px;color:#555">'+(p>0?fmt(p):'-')+'</td><td style="padding:11px 8px;text-align:center;font-size:11px;font-weight:700;color:'+col+'">'+(p+c>0?pct.toFixed(1)+'%':'-')+'</td>';
     });
