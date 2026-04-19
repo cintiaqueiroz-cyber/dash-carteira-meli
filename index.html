@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 18/04/2026 23:33</span>
+    <span class="update-badge">&#10003; Atualizado 18/04/2026 23:42</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 23:33
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 18/30 dias &nbsp;&middot;&nbsp; 18/04/2026 23:42
 </div>
 <script>
 
@@ -2797,17 +2797,23 @@ function buildVGBPC(){
 
 // ÔöÇÔöÇ Init ÔöÇÔöÇ
 window.addEventListener('DOMContentLoaded',function(){
-  buildVGQuarters();
-  buildVGKPIs();
-  buildVGHeatmap();
-  buildVGUnifiedCards();
-  buildVGScorecard();
-  buildVGInsights();
-  buildCorpAcionaveis();
+  var fns=[
+    ['buildVGQuarters',buildVGQuarters],
+    ['buildVGKPIs',buildVGKPIs],
+    ['buildVGHeatmap',buildVGHeatmap],
+    ['buildVGUnifiedCards',buildVGUnifiedCards],
+    ['buildVGScorecard',buildVGScorecard],
+    ['buildVGInsights',buildVGInsights],
+    ['buildCorpAcionaveis',buildCorpAcionaveis]
+  ];
+  for(var i=0;i<fns.length;i++){
+    try{fns[i][1]();}
+    catch(e){console.error('ERROR in '+fns[i][0]+':',e.message,e.stack);}
+  }
   document.getElementById('loadingOverlay').style.display='none';
   setTimeout(function(){
-    buildVGMesControl();
-    buildVGLineChart();
+    try{buildVGMesControl();}catch(e){console.error('buildVGMesControl:',e.message);}
+    try{buildVGLineChart();}catch(e){console.error('buildVGLineChart:',e.message);}
   },100);
 });
 
