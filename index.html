@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 19/04/2026 08:23</span>
+    <span class="update-badge">&#10003; Atualizado 19/04/2026 08:36</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 08:23
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 19/30 dias &nbsp;&middot;&nbsp; 19/04/2026 08:36
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2811,7 +2811,9 @@ window.addEventListener('DOMContentLoaded',function(){
     ['buildVGUnifiedCards',buildVGUnifiedCards],
     ['buildVGScorecard',buildVGScorecard],
     ['buildVGInsights',buildVGInsights],
-    ['buildCorpAcionaveis',buildCorpAcionaveis]
+    ['buildCorpAcionaveis',buildCorpAcionaveis],
+    ['buildHighsLows',buildHighsLows],
+    ['buildSellersConsolidated',buildSellersConsolidated]
   ];
   for(var i=0;i<fns.length;i++){
     try{fns[i][1]();}
@@ -2864,44 +2866,51 @@ function buildSellersConsolidated(){
   var mks=MESES_DONE;
   var cur=mks[mks.length-1],prev=mks.length>1?mks[mks.length-2]:null;
   var rows=GRUPOS.map(function(g){
-    var gmv=ytdReal(g),md=ytdMD(g),mf=ytdMF(g);
-    var pDes=md>0?gmv/md*100:0,pFin=mf>0?gmv/mf*100:0;
-    var gmvCur=(REAL_MENSAL[g]||{})[cur]||0,gmvPrev=prev?((REAL_MENSAL[g]||{})[prev]||0):0;
-    var momVal=gmvCur-gmvPrev,momPct=gmvPrev>0?momVal/gmvPrev*100:null;
+    var gmv=ytdReal(g);
+    var orders=mks.reduce(function(s,k){return s+((REAL_PED_TOT[g]||{})[k]||0);},0);
+    var ticket=orders>0?gmv/orders:0;
+    var gmvBB=mks.reduce(function(s,k){return s+((REAL_GMV_BB[g]||{})[k]||0);},0);
+    var bpc=gmv>0?gmvBB/gmv*100:0;
+    var gmvCur=(REAL_MENSAL[g]||{})[cur]||0;
+    var gmvPrev=prev?((REAL_MENSAL[g]||{})[prev]||0):0;
+    var mom=gmvPrev>0?(gmvCur-gmvPrev)/gmvPrev*100:null;
     var g25=REAL_2025[g]||{};
     var gmv25=mks.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
-    var yoyVal=gmv-gmv25,yoyPct=gmv25>0?yoyVal/gmv25*100:null;
-    return {g:g,gmv:gmv,md:md,mf:mf,pDes:pDes,pFin:pFin,momVal:momVal,momPct:momPct,yoyVal:yoyVal,yoyPct:yoyPct};
+    var yoy=gmv25>0?(gmv-gmv25)/gmv25*100:null;
+    var status,stBg,stColor;
+    if(bpc>=80&&mom!==null&&mom>5){status='Crescimento';stBg='rgba(0,166,80,.1)';stColor='#00A650';}
+    else if(bpc>=80||(mom!==null&&mom>=0)){status='Est\u00e1vel';stBg='rgba(52,131,250,.1)';stColor='#3483FA';}
+    else if(bpc>=65){status='Aten\u00e7\u00e3o';stBg='rgba(255,184,0,.12)';stColor='#B07A00';}
+    else{status='Queda';stBg='rgba(242,61,79,.1)';stColor='#F23D4F';}
+    return {g:g,gmv:gmv,orders:orders,ticket:ticket,bpc:bpc,mom:mom,yoy:yoy,status:status,stBg:stBg,stColor:stColor};
   });
-  rows.sort(function(a,b){return b.pDes-a.pDes;});
-  function fmtDelta(v){if(v===null)return '<span style="color:#ccc">—</span>';var c=v>=0?'#00A650':'#F23D4F';return '<span style="color:'+c+';font-weight:600">'+(v>=0?'+':'')+fmt(v)+'</span>';}
-  function fmtDeltaPct(v){if(v===null)return '<span style="color:#ccc">—</span>';var c=v>=0?'#00A650':'#F23D4F';return '<span style="color:'+c+';font-weight:700">'+(v>=0?'+':'')+v.toFixed(0)+'%</span>';}
-  function progressBar(pct){var w=Math.min(pct,130),fill=pct>=100?'#3483FA':'#F23D4F';return '<div style="width:110px;height:6px;background:#F0F0F0;border-radius:3px;overflow:hidden"><div style="width:'+Math.min(w/130*100,100).toFixed(0)+'%;height:100%;background:'+fill+';border-radius:3px"></div></div>';}
-  var th=function(t){return '<th style="padding:10px 12px;font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;text-align:left;border-bottom:1px solid #F0F0F0;white-space:nowrap">'+t+'</th>';};
-  var hdr='<thead><tr style="background:#fff">'+th('SELLER')+th('GMV REAL')+th('META DESAFIO')+th('% DESAFIO')+'<th style="padding:10px 12px;width:120px;border-bottom:1px solid #F0F0F0"></th>'+th('MOM R$')+th('MOM %')+th('YOY R$')+th('YOY %')+th('META FIN.')+th('% FIN.')+th('STATUS')+'</tr></thead>';
-  var bdy='<tbody>'+rows.map(function(r,i){
-    var rowBg=i%2===0?'#fff':'#FAFAFA';
-    var desColor=r.pDes>=100?'#3483FA':'#F23D4F';
-    var finColor=r.pFin>=100?'#3483FA':r.pFin>=80?'#FF7A00':'#F23D4F';
-    var status,statusBg,statusColor;
-    if(r.pDes>=100){status='🏅 Desafio';statusBg='rgba(100,60,200,.08)';statusColor='#6B3CA8';}
-    else{status='Abaixo';statusBg='rgba(242,61,79,.07)';statusColor='#F23D4F';}
-    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F5F5F5" onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
-      +'<td style="padding:14px 12px"><span style="font-size:13px;font-weight:800;color:#1A1A1A">'+r.g+'</span></td>'
-      +'<td style="padding:14px 12px;font-size:14px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(r.gmv)+'</td>'
-      +'<td style="padding:14px 12px;font-size:12px;color:#888;white-space:nowrap">'+fmt(r.md)+'</td>'
-      +'<td style="padding:14px 12px;font-size:15px;font-weight:900;color:'+desColor+'">'+r.pDes.toFixed(0)+'%</td>'
-      +'<td style="padding:14px 12px">'+progressBar(r.pDes)+'</td>'
-      +'<td style="padding:14px 12px;white-space:nowrap">'+fmtDelta(r.momVal)+'</td>'
-      +'<td style="padding:14px 12px;white-space:nowrap">'+fmtDeltaPct(r.momPct)+'</td>'
-      +'<td style="padding:14px 12px;white-space:nowrap">'+fmtDelta(r.yoyVal)+'</td>'
-      +'<td style="padding:14px 12px;white-space:nowrap">'+fmtDeltaPct(r.yoyPct)+'</td>'
-      +'<td style="padding:14px 12px;font-size:12px;color:#888;white-space:nowrap">'+fmt(r.mf)+'</td>'
-      +'<td style="padding:14px 12px;font-size:14px;font-weight:900;color:'+finColor+'">'+r.pFin.toFixed(0)+'%</td>'
-      +'<td style="padding:14px 12px"><span style="background:'+statusBg+';color:'+statusColor+';font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap">'+status+'</span></td>'
+  rows.sort(function(a,b){return b.gmv-a.gmv;});
+  function pctBadge(v){
+    if(v===null)return '<span style="color:#ccc">\u2014</span>';
+    var c=v>=0?'#00A650':'#F23D4F',bg=v>=0?'rgba(0,166,80,.1)':'rgba(242,61,79,.1)';
+    return '<span style="background:'+bg+';color:'+c+';font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px">'+(v>=0?'+':'')+v.toFixed(1)+'%</span>';
+  }
+  function bpcDot(v){
+    var c=v>=80?'#00A650':v>=65?'#FFB900':'#F23D4F';
+    return '<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:'+c+';display:inline-block"></span><strong style="color:'+c+'">'+v.toFixed(1)+'%</strong></span>';
+  }
+  function fmtTkt(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  var th=function(t,al){return '<th style="padding:10px 14px;font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid #F0F0F0;white-space:nowrap;text-align:'+(al||'left')+'">'+t+'</th>';};
+  var hdr='<thead><tr style="background:#fff">'+th('SELLER')+th('GMV','right')+th('ORDERS','right')+th('TICKET','right')+th('BPC','center')+th('GMV MoM','center')+th('GMV YoY','center')+th('STATUS','center')+'</tr></thead>';
+  var bdy='<tbody>'+rows.map(function(r,idx){
+    var bg=idx%2===0?'#fff':'#FAFAFA';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F5F5F5" onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+bg+'\'">'
+      +'<td style="padding:14px 14px;font-size:13px;font-weight:800;color:#1A1A1A">'+r.g+'</td>'
+      +'<td style="padding:14px 14px;text-align:right;font-size:14px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(r.gmv)+'</td>'
+      +'<td style="padding:14px 14px;text-align:right;font-size:13px;color:#444;white-space:nowrap">'+r.orders.toLocaleString('pt-BR')+'</td>'
+      +'<td style="padding:14px 14px;text-align:right;font-size:12px;color:#666;white-space:nowrap">'+fmtTkt(r.ticket)+'</td>'
+      +'<td style="padding:14px 14px;text-align:center">'+bpcDot(r.bpc)+'</td>'
+      +'<td style="padding:14px 14px;text-align:center">'+pctBadge(r.mom)+'</td>'
+      +'<td style="padding:14px 14px;text-align:center">'+pctBadge(r.yoy)+'</td>'
+      +'<td style="padding:14px 14px;text-align:center"><span style="background:'+r.stBg+';color:'+r.stColor+';font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px">'+r.status+'</span></td>'
       +'</tr>';
   }).join('')+'</tbody>';
-  var subtitle='<div style="font-size:11px;color:#888;margin-bottom:12px">Ordenado por % Meta Desafio &nbsp;·&nbsp; 🏅 ≥100% Desafio &nbsp;·&nbsp; ✅ ≥100% Meta Fin.</div>';
+  var subtitle='<div style="font-size:11px;color:#888;margin-bottom:10px">Ordenado por GMV YTD &nbsp;\u00b7&nbsp; BPC = % GMV em Buybox</div>';
   tbl.outerHTML='<div>'+subtitle+'<div style="overflow-x:auto;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07)"><table id="sellers-consolidated" style="width:100%;border-collapse:collapse;font-size:12px;background:#fff">'+hdr+bdy+'</table></div></div>';
 }
 
