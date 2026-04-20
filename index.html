@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 20/04/2026 11:42</span>
+    <span class="update-badge">&#10003; Atualizado 20/04/2026 12:44</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 20/30 dias &nbsp;&middot;&nbsp; 20/04/2026 11:42
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 20/30 dias &nbsp;&middot;&nbsp; 20/04/2026 12:44
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2298,33 +2298,56 @@ function buildLogistica(){
   var ffTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_FF[g]||{})[k]||0);},0);},0);
   var xdTot=GRUPOS.reduce(function(a,g){return a+ytdXD(g);},0);
   var ssTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_SS[g]||{})[k]||0);},0);},0);
+  var sdTot=Math.max(0,tGMV-ffTot-xdTot-ssTot);
   var pFF=tGMV>0?ffTot/tGMV*100:0;
   var pXD=tGMV>0?xdTot/tGMV*100:0;
   var pSS=tGMV>0?ssTot/tGMV*100:0;
-  var pXDSS=pXD+pSS;
+  var pSD=tGMV>0?sdTot/tGMV*100:0;
 
-  // KPI cards — foco em XD/SS (perfil da carteira)
   var el=document.getElementById('log-kpi-row');
   if(el)el.innerHTML=kpiHtml([
-    {label:'GMV CROSS DOCKING YTD', val:fmt(xdTot), sub:pXD.toFixed(1)+'% do total',  cls:pXD>=50?'blue':'yellow'},
-    {label:'% XD + SELF SERVICE',   val:pXDSS.toFixed(1)+'%', sub:'Modalidades da carteira', cls:pXDSS>=80?'green':pXDSS>=60?'yellow':'red'},
-    {label:'GMV SELF SERVICE YTD',  val:fmt(ssTot), sub:pSS.toFixed(1)+'% do total',  cls:'yellow'},
-    {label:'GMV FULFILLMENT YTD',   val:fmt(ffTot), sub:pFF.toFixed(1)+'% do total',  cls:pFF>=30?'green':'red'}
+    {label:'GMV SELLER DIRETO YTD',  val:fmt(sdTot), sub:pSD.toFixed(1)+'% do total', cls:'green'},
+    {label:'GMV CROSS DOCKING YTD',  val:fmt(xdTot), sub:pXD.toFixed(1)+'% do total', cls:'blue'},
+    {label:'GMV SELF SERVICE YTD',   val:fmt(ssTot), sub:pSS.toFixed(1)+'% do total', cls:'yellow'},
+    {label:'GMV FULFILLMENT YTD',    val:fmt(ffTot), sub:pFF.toFixed(1)+'% do total', cls:pFF>=30?'green':'red'}
   ]);
 
-  // Stacked bar — GMV por modalidade mensal
+  // Gráfico empilhado — Seller Direto embaixo (verde, dominante), XD e SS em cima
   destroyChart('log-bar');
   var canEl=document.getElementById('log-bar-chart');
-  if(canEl)chartInstances['log-bar']=new Chart(canEl.getContext('2d'),{type:'bar',
-    data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:[
-      {label:'Cross Docking',data:mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_XD[g]||{})[k]||0);},0);}),backgroundColor:'#3483FA',borderRadius:3},
-      {label:'Self Service', data:mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);}),backgroundColor:'#FFE600',borderRadius:3},
-      {label:'Fulfillment',  data:mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);}),backgroundColor:'#00A650',borderRadius:3}
-    ]},
-    options:{responsive:true,animation:false,
-      scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},
-      plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:20,font:{size:11}}},
-               tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}}}});
+  if(canEl){
+    var sdByMonth=mks.map(function(k){
+      var t=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
+      var f=GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);
+      var x=GRUPOS.reduce(function(s,g){return s+((REAL_XD[g]||{})[k]||0);},0);
+      var ss=GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);
+      return Math.max(0,t-f-x-ss);
+    });
+    var xdByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_XD[g]||{})[k]||0);},0);});
+    var ssByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);});
+    var ffByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);});
+
+    var datasets=[
+      {label:'Seller Direto',  data:sdByMonth, backgroundColor:'#00A650', borderRadius:0},
+      {label:'Cross Docking',  data:xdByMonth, backgroundColor:'#3483FA', borderRadius:0},
+      {label:'Self Service',   data:ssByMonth, backgroundColor:'#FFE600', borderRadius:0}
+    ];
+    if(ffTot>0)datasets.push({label:'Fulfillment',data:ffByMonth,backgroundColor:'#006E35',borderRadius:0});
+
+    chartInstances['log-bar']=new Chart(canEl.getContext('2d'),{type:'bar',
+      data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:datasets},
+      options:{responsive:true,animation:false,
+        scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},
+        plugins:{
+          legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:20,font:{size:11}}},
+          tooltip:{callbacks:{label:function(c){
+            var pct=tGMV>0?(c.raw/tGMV*100).toFixed(1):'0';
+            return c.dataset.label+': '+fmt(c.raw)+' ('+pct+'%)';
+          }}}
+        }
+      }
+    });
+  }
 
   // Tabela: % Cross Docking por Grupo — Mês a Mês
   var tbl=document.getElementById('log-table');
