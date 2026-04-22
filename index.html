@@ -179,7 +179,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 18:53</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 18:54</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -935,7 +935,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 18:53
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 18:54
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1951,7 +1951,7 @@ function buildHighsLows(){
 
   var insHTML='<div style="background:#F5F7FF;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.07);flex:1;min-width:260px">'
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
-      +'<span style="background:#DDEEFF;color:#3483FA;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">­ƒÆí INSIGHTS</span>'
+      +'<span style="background:#DDEEFF;color:#3483FA;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">💡 INSIGHTS</span>'
     +'</div>'
     +insRow('💡',above100.length>0
       ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Financeira YTD.'
@@ -2335,22 +2335,27 @@ function buildCorpAcionaveis(){
 
   var el=document.getElementById('vg-corp-actions');
   if(!el)return;
-  el.innerHTML=points.slice(0,6).map(function(p,i){
-    var actionColor=p.pri==='ALTA'?'#F23D4F':p.pri==='M\u00c9DIA'?'#B07A00':'#3483FA';
-    return '<div style="background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-left:5px solid '+p.border+';margin-bottom:14px">'
-      +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">'
-        +'<div style="width:40px;height:40px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+p.icon+'</div>'
-        +'<div>'
-          +'<span style="background:'+p.badgeBg+';color:'+p.badgeColor+';font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;margin-right:8px">'+(i+1)+'. '+p.pri+'</span>'
-          +'<strong style="font-size:13.5px;color:#1A1A1A">'+p.title+'</strong>'
+  el.innerHTML='<div style="font-size:14px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px">&#128203; Plano de A&#231;&#227;o Priorit&#225;rio</div>'
+    +points.slice(0,6).map(function(p,idx){
+    var num=idx+1;
+    var aColor=p.pri==='ALTA'?'#F23D4F':p.pri==='MÉDIA'?'#B07A00':'#00A650';
+    return '<div style="background:#fff;border-radius:12px;padding:18px 22px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:5px solid '+p.border+';margin-bottom:12px">'
+      +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">'
+        +'<span style="font-size:24px;flex-shrink:0">'+p.icon+'</span>'
+        +'<div style="display:flex;flex-direction:column;gap:3px;flex:1">'
+          +'<div style="display:flex;align-items:center;gap:8px">'
+            +'<span style="background:'+p.badgeBg+';color:'+p.badgeColor+';font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;white-space:nowrap">'+num+'. '+p.pri+'</span>'
+            +'<strong style="font-size:13.5px;color:#1A1A1A;line-height:1.3">'+p.title+'</strong>'
+          +'</div>'
         +'</div>'
       +'</div>'
-      +'<div style="padding-left:52px">'
-        +p.actions.map(function(a){return '<div style="font-size:12.5px;color:'+actionColor+';margin-bottom:6px;line-height:1.45">\u2192 '+a+'</div>';}).join('')
+      +'<div style="padding-left:36px;border-top:1px solid #F5F5F5;padding-top:10px">'
+        +p.actions.map(function(a){return '<div style="font-size:12.5px;color:'+aColor+';margin-bottom:5px;line-height:1.4">&rarr; '+a+'</div>';}).join('')
       +'</div>'
       +'</div>';
   }).join('');
 }
+
 function buildLogistica(){
   var mks=MESES_DONE;
   var tGMV=GRUPOS.reduce(function(a,g){return a+ytdReal(g);},0);
