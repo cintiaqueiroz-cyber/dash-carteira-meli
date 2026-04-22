@@ -99,6 +99,52 @@
   @media(max-width:1100px){.scorecard-grid{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:750px){.scorecard-grid{grid-template-columns:repeat(2,1fr);}}
 
+  /* ── Unified Group Cards (Performance por Grupo) ── */
+  #vg-unified-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .u-card{background:#fff;border-radius:12px;padding:16px 18px;border-left:5px solid #E0E0E0;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:box-shadow .15s;}
+  .u-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);}
+  .u-head{display:flex;align-items:center;gap:7px;margin-bottom:12px;}
+  .u-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .u-gname{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px;flex:1;}
+  .u-status{font-size:14px;font-weight:800;margin-left:auto;}
+  .u-body{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+  .u-ring-wrap{position:relative;flex-shrink:0;}
+  .u-ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .u-ring-pct{font-size:13px;font-weight:800;line-height:1;}
+  .u-ring-lbl{font-size:8px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;}
+  .u-data{flex:1;min-width:0;}
+  .u-gmv-val{font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1.1;margin-bottom:3px;}
+  .u-meta-txt{font-size:11px;color:#888;margin-bottom:2px;}
+  .u-proj-txt{font-size:11px;color:#3483FA;font-weight:600;margin-bottom:6px;}
+  .u-kpis{font-size:11px;color:#666;display:flex;gap:10px;flex-wrap:wrap;}
+  .u-kpis span{font-weight:700;color:#333;}
+  .u-bars{margin-bottom:8px;}
+  .u-brow{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+  .u-blbl{font-size:10px;color:#999;width:56px;flex-shrink:0;font-weight:600;}
+  .u-bbg{flex:1;height:6px;background:#F0F0F0;border-radius:3px;overflow:hidden;}
+  .u-bfill{height:6px;border-radius:3px;transition:width .3s;}
+  .u-bpct{font-size:10px;font-weight:700;width:38px;text-align:right;flex-shrink:0;}
+  .u-divider{border:none;border-top:1px solid #F0F0F0;margin:8px 0;}
+  .u-vars{display:flex;gap:6px;flex-wrap:wrap;}
+  .u-v{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;}
+  @media(max-width:1100px){#vg-unified-cards{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:700px){#vg-unified-cards{grid-template-columns:1fr;}}
+
+  /* ── Scorecard de Alavancas ── */
+  .scorecard-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+  .sc-card{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 5px rgba(0,0,0,.07);border-top:3px solid #E0E0E0;}
+  .sc-card.sc-green{border-top-color:#00A650;}
+  .sc-card.sc-blue{border-top-color:#3483FA;}
+  .sc-card.sc-red{border-top-color:#F23D4F;}
+  .sc-card.sc-yellow{border-top-color:#FFE600;}
+  .sc-card.sc-orange{border-top-color:#FF7A00;}
+  .sc-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+  .sc-value{font-size:20px;font-weight:800;color:#1A1A1A;letter-spacing:-.4px;line-height:1.1;}
+  .sc-sub{font-size:11px;color:#888;margin-top:4px;}
+  @media(max-width:1100px){.scorecard-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:750px){.scorecard-grid{grid-template-columns:repeat(2,1fr);}}
+
+
 
 .ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
 .ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
@@ -118,7 +164,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 11:22</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 11:40</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -877,7 +923,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 11:22
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 11:40
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
