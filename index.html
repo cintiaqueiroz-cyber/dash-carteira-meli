@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 08:36</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 09:36</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 08:36
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 09:36
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1459,20 +1459,28 @@ function mlImgTag(it){
   return '<a href="'+href+'" target="_blank" style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;background:#fafafa;border-radius:8px;border:1px solid #eee">'+img+'</a>';
 }
 // ÔöÇÔöÇ Catalog table exactly like Larissa's ÔöÇÔöÇ
-function renderItemsTable(items, containerId, showGroup){
-  var th=function(t,al){return '<th style="padding:11px 10px;font-size:10.5px;font-weight:700;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;letter-spacing:.3px">'+t+'</th>';};
-  var hdr='<thead><tr style="background:#1A1A1A">'
-    +th('#','center')
+function renderItemsTable(items, containerId, showGroup, totalGMV){
+  if(!items||!items.length){
+    var el=document.getElementById(containerId);
+    if(el)el.innerHTML='<p style="color:#aaa;padding:24px;text-align:center">Nenhum item encontrado.</p>';
+    return;
+  }
+  var tot=totalGMV||items.reduce(function(s,it){return s+it.gmv;},0);
+  var th=function(t,al,w){return '<th style="padding:11px 10px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.4px;text-align:'+(al||'left')+';white-space:nowrap'+(w?';width:'+w:'')+'">'+t+'</th>';};
+  var hdr='<thead><tr style="border-bottom:2px solid #E8E8E8;background:#fff">'
+    +(showGroup?th('GRUPO','center','90px'):'')
     +'<th style="padding:11px 10px;width:44px"></th>'
-    +th('TÍTULO')
-    +(showGroup?th('GRUPO','center'):'')
-    +th('STATUS','center')
+    +th('T\u00cdTULO')
+    +th('STATUS','center','80px')
     +th('SELLER')
-    +th('DOMÍNIO')
-    +th('MLB')
-    +th('GMV 30D','right')
+    +th('DOM\u00cdNIO')
+    +th('GMV PER\u00cdODO','right')
+    +th('SHARE GMV','center','120px')
+    +th('UNITS','right','70px')
+    +th('PRE\u00c7O ATUAL','right','110px')
+    +th('BPC','center','70px')
+    +th('VC NEGATIVA','center','90px')
     +'</tr></thead>';
-
   var bdy='<tbody>'+items.map(function(it,i){
     var st=(it.status||'active').toLowerCase();
     var isActive=st==='active';
@@ -1482,67 +1490,109 @@ function renderItemsTable(items, containerId, showGroup){
     var stTxt=isActive?'Ativo':isPaused?'Pausado':'Inativo';
     var mlbId=it.mlb_id||('MLB'+(it.item_id||it.id||''));
     var grpColor=showGroup?(GRUPO_COLOR[it.g||'']||'#3483FA'):'';
-    var nm=(it.nm||it.title||'').substring(0,45)+(((it.nm||it.title||'').length>45)?'...':'');
+    var nm=(it.nm||it.title||'').substring(0,55)+(((it.nm||it.title||'').length>55)?'...':'');
     var href=mlLink(it);
     var rowBg=i%2===0?'#fff':'#FAFAFA';
-    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0;transition:background .1s" '
+    var share=tot>0?it.gmv/tot*100:0;
+    var barW=Math.min(share*5,100);
+    var shareBar='<div style="display:flex;align-items:center;gap:6px">'
+      +'<div style="width:70px;height:5px;background:#E8EEFF;border-radius:3px;flex-shrink:0"><div style="width:'+barW.toFixed(1)+'%;height:5px;background:#3483FA;border-radius:3px"></div></div>'
+      +'<span style="font-size:11px;font-weight:700;color:#3483FA">'+share.toFixed(1)+'%</span>'
+      +'</div>';
+    var bb=it.bb||0;
+    var bpcC=bb>=80?'#00A650':bb>=65?'#FFB900':'#F23D4F';
+    var bpcHtml='<span style="display:inline-flex;align-items:center;gap:4px">'
+      +'<span style="width:7px;height:7px;border-radius:50%;background:'+bpcC+';display:inline-block"></span>'
+      +'<strong style="font-size:12px;color:'+bpcC+'">'+bb.toFixed(0)+'%</strong></span>';
+    var vcHtml=bb<65
+      ?'<span style="color:#F23D4F;font-size:11px;font-weight:700">\u26a0 Sim</span>'
+      :'<span style="color:#00A650;font-size:11px;font-weight:700">Ok</span>';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0" '
       +'onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
-      +'<td style="padding:12px 10px;text-align:center;color:#bbb;font-size:11px;font-weight:700">'+(i+1)+'</td>'
+      +(showGroup?'<td style="padding:10px 8px;text-align:center"><span style="font-size:10px;font-weight:800;padding:3px 8px;border-radius:10px;background:'+grpColor+'22;color:'+grpColor+'">'+( it.g||'')+'</span></td>':'')
       +'<td style="padding:8px 6px">'+mlImgTag(it)+'</td>'
-      +'<td style="padding:12px 10px;max-width:300px">'
-        +'<a href="'+href+'" target="_blank" style="color:#1A1A1A;text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.3">'+nm+'</a>'
+      +'<td style="padding:12px 10px;max-width:260px">'
+        +'<a href="'+href+'" target="_blank" style="color:#3483FA;text-decoration:none;font-size:12.5px;font-weight:600;line-height:1.4;display:block">'+nm+'</a>'
       +'</td>'
-      +(showGroup?'<td style="padding:12px 10px;text-align:center"><span style="font-size:10px;font-weight:800;padding:3px 10px;border-radius:10px;background:'+grpColor+'18;color:'+grpColor+';white-space:nowrap">'+(it.g||'')+'</span></td>':'')
-      +'<td style="padding:12px 10px;text-align:center"><span style="font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;background:'+stBg+';color:'+stColor+'">'+stTxt+'</span></td>'
-      +'<td style="padding:12px 10px;font-size:11.5px;color:#555;white-space:nowrap">'+(it.seller||'').split('OFIC')[0].split('official')[0].substring(0,20)+'</td>'
-      +'<td style="padding:12px 10px;font-size:10.5px;color:#999;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis">'+(it.domain||it.cat||'—')+'</td>'
-      +'<td style="padding:12px 10px"><a href="'+href+'" target="_blank" style="color:#3483FA;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap">🔗 '+mlbId.replace('MLB','MLB ')+'</a></td>'
-      +'<td style="padding:12px 10px;text-align:right;font-size:13px;font-weight:800;color:#222;white-space:nowrap">'+fmt(it.gmv)+'</td>'
+      +'<td style="padding:12px 8px;text-align:center"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:'+stBg+';color:'+stColor+'">'+stTxt+'</span></td>'
+      +'<td style="padding:12px 10px;font-size:11.5px;color:#555;white-space:nowrap">'+(it.seller||'').substring(0,22)+'</td>'
+      +'<td style="padding:12px 10px;font-size:10.5px;color:#999;white-space:nowrap;max-width:130px;overflow:hidden;text-overflow:ellipsis">'+(it.domain||'\u2014')+'</td>'
+      +'<td style="padding:12px 10px;text-align:right;font-size:13px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(it.gmv)+'</td>'
+      +'<td style="padding:12px 14px">'+shareBar+'</td>'
+      +'<td style="padding:12px 10px;text-align:right;font-size:13px;color:#444">'+Math.round(it.si||0).toLocaleString('pt-BR')+'</td>'
+      +'<td style="padding:12px 10px;text-align:right;font-size:12px;color:#444;white-space:nowrap">R$ '+Math.round(it.asp||0).toLocaleString('pt-BR')+'</td>'
+      +'<td style="padding:12px 10px;text-align:center">'+bpcHtml+'</td>'
+      +'<td style="padding:12px 10px;text-align:center">'+vcHtml+'</td>'
       +'</tr>';
   }).join('')+'</tbody>';
-
   var el=document.getElementById(containerId);
   if(!el)return;
   el.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)">'
-    +'<table style="width:100%;border-collapse:collapse;font-size:12px">'+hdr+bdy+'</table>'
-    +'</div>';
+    +'<table style="width:100%;border-collapse:collapse;font-size:12px;background:#fff">'+hdr+bdy+'</table></div>';
 }
 
 function buildSellerCat(g,px){
   var items=TOP_ITEMS[g]||[];
   var el=document.getElementById(px+'-cat-table');
   if(!el)return;
-  var allItems=items.slice(0,50);
-  var queda=allItems.filter(function(it){return it.mom<-10;});
-  var estrela=allItems.filter(function(it){return it.bb>=90&&it.gmv>50000;});
-  var statusNot=allItems.filter(function(it){return (it.status||'active').toLowerCase()!=='active';});
-
-  function badge(n,c){return '<span style="background:'+c+';color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:5px">'+n+'</span>';}
-  var tabS='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px';
-  var tabA='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#3483FA;cursor:pointer;border-bottom:3px solid #3483FA;margin-bottom:-2px';
-
-  el.innerHTML='<div style="display:flex;border-bottom:2px solid #E0E0E0;margin-bottom:14px;flex-wrap:wrap">'
-    +'<button style="'+tabA+'" id="'+px+'-stab-all" onclick="filterSellerCat(\'all\',\''+px+'\',this)">Todos'+badge(allItems.length,'#3483FA')+'</button>'
-    +'<button style="'+tabS+'" id="'+px+'-stab-queda" onclick="filterSellerCat(\'queda\',\''+px+'\',this)">­ƒö┤ Em Queda'+badge(queda.length,'#F23D4F')+'</button>'
-    +'<button style="'+tabS+'" id="'+px+'-stab-estrela" onclick="filterSellerCat(\'estrela\',\''+px+'\',this)">⭐ Estrela'+badge(estrela.length,'#FFB900')+'</button>'
-    +'<button style="'+tabS+'" id="'+px+'-stab-status" onclick="filterSellerCat(\'status\',\''+px+'\',this)">\u26a0 Status'+badge(statusNot.length,'#888')+'</button>'
+  var allItems=items.slice(0,100);
+  var totalGMV=allItems.reduce(function(s,it){return s+it.gmv;},0);
+  var queda=allItems.filter(function(it){return it.bb<70;});
+  var altaPreco=allItems.filter(function(it){return it.bb<50;});
+  var vcNeg=allItems.filter(function(it){return it.bb<65;});
+  function badge(n,c){return '<span style="background:'+c+';color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:5px">'+n+'</span>';}
+  var tabS='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#888;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap';
+  var tabA='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:700;color:#3483FA;cursor:pointer;border-bottom:2px solid #3483FA;white-space:nowrap';
+  el.innerHTML=
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">'
+    +'<span style="font-size:10px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px">Ordenar:</span>'
+    +'<button onclick="sortCat(\'gmv\',\''+px+'\')" id="'+px+'-sort-gmv" style="padding:5px 14px;border-radius:20px;border:none;background:#1A1A1A;color:#fff;font-size:11px;font-weight:700;cursor:pointer">GMV</button>'
+    +'<button onclick="sortCat(\'si\',\''+px+'\')" id="'+px+'-sort-si" style="padding:5px 14px;border-radius:20px;border:2px solid #ddd;background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer">Units</button>'
+    +'<button onclick="sortCat(\'share\',\''+px+'\')" id="'+px+'-sort-share" style="padding:5px 14px;border-radius:20px;border:2px solid #ddd;background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer">Share %</button>'
+    +'<button onclick="sortCat(\'asp\',\''+px+'\')" id="'+px+'-sort-asp" style="padding:5px 14px;border-radius:20px;border:2px solid #ddd;background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer">Pre\u00e7o</button>'
+    +'<button onclick="sortCat(\'bb\',\''+px+'\')" id="'+px+'-sort-bb" style="padding:5px 14px;border-radius:20px;border:2px solid #ddd;background:#fff;color:#555;font-size:11px;font-weight:600;cursor:pointer">BPC</button>'
+    +'</div>'
+    +'<div style="display:flex;border-bottom:2px solid #E0E0E0;margin-bottom:14px;flex-wrap:wrap">'
+    +'<button style="'+tabA+'" id="'+px+'-stab-all" onclick="filterSellerCat(\'all\',\''+px+'\',this)">\ud83c\udfc6 Top Itens'+badge(allItems.length,'#3483FA')+'</button>'
+    +'<button style="'+tabS+'" id="'+px+'-stab-queda" onclick="filterSellerCat(\'queda\',\''+px+'\',this)">\ud83d\udcc9 Em Queda'+badge(queda.length,'#F23D4F')+'</button>'
+    +'<button style="'+tabS+'" id="'+px+'-stab-alta" onclick="filterSellerCat(\'alta\',\''+px+'\',this)">\ud83d\udd25 Alta de Pre\u00e7o'+badge(altaPreco.length,'#FF7A00')+'</button>'
+    +'<button style="'+tabS+'" id="'+px+'-stab-vc" onclick="filterSellerCat(\'vc\',\''+px+'\',this)">\u26a0 VC Negativa'+badge(vcNeg.length,'#888')+'</button>'
     +'</div>'
     +'<div id="'+px+'-cat-tbl"></div>';
   window['_cat_items_'+px]=allItems;
-  renderItemsTable(allItems,px+'-cat-tbl',false);
+  window['_cat_total_'+px]=totalGMV;
+  renderItemsTable(allItems,px+'-cat-tbl',false,totalGMV);
 }
 
-function filterSellerCat(filter,px,btn){
-  var tabS='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px';
-  var tabA='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#3483FA;cursor:pointer;border-bottom:3px solid #3483FA;margin-bottom:-2px';
-  ['all','queda','estrela','status'].forEach(function(id){var b=document.getElementById(px+'-stab-'+id);if(b)b.style.cssText=tabS;});
-  btn.style.cssText=tabA;
+window.sortCat=function(key,px){
   var all=window['_cat_items_'+px]||[];
-  var filtered=filter==='queda'?all.filter(function(it){return it.mom<-10;}):
-               filter==='estrela'?all.filter(function(it){return it.bb>=90&&it.gmv>50000;}):
-               filter==='status'?all.filter(function(it){return (it.status||'active').toLowerCase()!=='active';}):all;
-  renderItemsTable(filtered,px+'-cat-tbl',false);
+  var tot=window['_cat_total_'+px]||0;
+  ['gmv','si','share','asp','bb'].forEach(function(k){
+    var b=document.getElementById(px+'-sort-'+k);
+    if(b){b.style.background=k===key?'#1A1A1A':'#fff';b.style.color=k===key?'#fff':'#555';b.style.border=k===key?'none':'2px solid #ddd';}
+  });
+  var sorted=all.slice().sort(function(a,b){
+    if(key==='si')return (b.si||0)-(a.si||0);
+    if(key==='asp')return (b.asp||0)-(a.asp||0);
+    if(key==='bb')return (b.bb||0)-(a.bb||0);
+    return b.gmv-a.gmv;
+  });
+  renderItemsTable(sorted,px+'-cat-tbl',false,tot);
+};
+
+function filterSellerCat(filter,px,btn){
+  var tabS='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:600;color:#888;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap';
+  var tabA='padding:10px 16px;border:none;background:transparent;font-size:12px;font-weight:700;color:#3483FA;cursor:pointer;border-bottom:2px solid #3483FA;white-space:nowrap';
+  ['all','queda','alta','vc'].forEach(function(id){var b=document.getElementById(px+'-stab-'+id);if(b)b.style.cssText=tabS;});
+  if(btn)btn.style.cssText=tabA;
+  var all=window['_cat_items_'+px]||[];
+  var tot=window['_cat_total_'+px]||0;
+  var filtered=filter==='queda'?all.filter(function(it){return it.bb<70;}):
+               filter==='alta'?all.filter(function(it){return it.bb<50;}):
+               filter==='vc'?all.filter(function(it){return it.bb<65;}):all;
+  renderItemsTable(filtered,px+'-cat-tbl',false,tot);
 }
+
 function buildSellerBPC(g,px){
   var mks=MESES_DONE,pt=REAL_PED_TOT[g]||{},pb=REAL_PED_BB[g]||{};
   var ytdT=mks.reduce(function(a,k){return a+(pt[k]||0);},0);
@@ -2556,7 +2606,7 @@ function buildVGCat(){
   function badge(n,c){return '<span style="background:'+c+';color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;margin-left:5px">'+n+'</span>';}
   var statusTabs='<div style="display:flex;border-bottom:2px solid #E0E0E0;margin-bottom:16px;flex-wrap:wrap">'
     +'<button style="'+tabActiveStyle+'" id="vg-stab-all" onclick="filterVGStatus(\'all\',this)">Todos'+badge(allItems.length,'#3483FA')+'</button>'
-    +'<button style="'+tabStyle+'" id="vg-stab-queda" onclick="filterVGStatus(\'queda\',this)">­ƒö┤ Em Queda'+badge(queda.length,'#F23D4F')+'</button>'
+    +'<button style="'+tabStyle+'" id="vg-stab-queda" onclick="filterVGStatus(\'queda\',this)">📉 Em Queda'+badge(queda.length,'#F23D4F')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-alta" onclick="filterVGStatus(\'alta\',this)">­ƒöÑ Alta de Pre\u00e7o'+badge(altaPreco.length,'#FF7A00')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-estrela" onclick="filterVGStatus(\'estrela\',this)">⭐ Estrela'+badge(estrela.length,'#FFB900')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-status" onclick="filterVGStatus(\'status\',this)">\u26a0 Status'+badge(statusNot.length,'#888')+'</button>'
