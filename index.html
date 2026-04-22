@@ -227,7 +227,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 09:36</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 09:43</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -986,7 +986,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 09:36
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 09:43
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1478,7 +1478,6 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     +th('SHARE GMV','center','120px')
     +th('UNITS','right','70px')
     +th('PRE\u00c7O ATUAL','right','110px')
-    +th('BPC','center','70px')
     +th('VC NEGATIVA','center','90px')
     +'</tr></thead>';
   var bdy='<tbody>'+items.map(function(it,i){
@@ -1521,7 +1520,6 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       +'<td style="padding:12px 14px">'+shareBar+'</td>'
       +'<td style="padding:12px 10px;text-align:right;font-size:13px;color:#444">'+Math.round(it.si||0).toLocaleString('pt-BR')+'</td>'
       +'<td style="padding:12px 10px;text-align:right;font-size:12px;color:#444;white-space:nowrap">R$ '+Math.round(it.asp||0).toLocaleString('pt-BR')+'</td>'
-      +'<td style="padding:12px 10px;text-align:center">'+bpcHtml+'</td>'
       +'<td style="padding:12px 10px;text-align:center">'+vcHtml+'</td>'
       +'</tr>';
   }).join('')+'</tbody>';
@@ -1575,6 +1573,7 @@ window.sortCat=function(key,px){
     if(key==='si')return (b.si||0)-(a.si||0);
     if(key==='asp')return (b.asp||0)-(a.asp||0);
     if(key==='bb')return (b.bb||0)-(a.bb||0);
+    if(key==='mom')return (a.bb||0)-(b.bb||0);  // proxy: pior BPC primeiro
     return b.gmv-a.gmv;
   });
   renderItemsTable(sorted,px+'-cat-tbl',false,tot);
@@ -2607,7 +2606,7 @@ function buildVGCat(){
   var statusTabs='<div style="display:flex;border-bottom:2px solid #E0E0E0;margin-bottom:16px;flex-wrap:wrap">'
     +'<button style="'+tabActiveStyle+'" id="vg-stab-all" onclick="filterVGStatus(\'all\',this)">Todos'+badge(allItems.length,'#3483FA')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-queda" onclick="filterVGStatus(\'queda\',this)">📉 Em Queda'+badge(queda.length,'#F23D4F')+'</button>'
-    +'<button style="'+tabStyle+'" id="vg-stab-alta" onclick="filterVGStatus(\'alta\',this)">­ƒöÑ Alta de Pre\u00e7o'+badge(altaPreco.length,'#FF7A00')+'</button>'
+    +'<button style="'+tabStyle+'" id="vg-stab-alta" onclick="filterVGStatus(\'alta\',this)">💰 Alta de Pre\u00e7o'+badge(altaPreco.length,'#FF7A00')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-estrela" onclick="filterVGStatus(\'estrela\',this)">⭐ Estrela'+badge(estrela.length,'#FFB900')+'</button>'
     +'<button style="'+tabStyle+'" id="vg-stab-status" onclick="filterVGStatus(\'status\',this)">\u26a0 Status'+badge(statusNot.length,'#888')+'</button>'
     +'</div>';
