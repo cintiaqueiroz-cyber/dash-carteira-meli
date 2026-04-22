@@ -179,7 +179,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 18:52</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 18:53</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -249,9 +249,6 @@
         <span style="font-size:14px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Proje&#231;&#227;o Acumulada vs Meta Financeira 2026</span>
       </div>
       <div class="chart-box"><canvas id="vg-line-chart" style="max-height:320px;"></canvas></div>
-    </div>
-    <div class="section"><div class="section-title">&#128161; Insights Ecossistema &mdash; Carteira Total</div>
-      <div id="vg-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="vg-ins-list"><span class="ins">Carregando...</span></div></div>
     </div>
     <div class="section">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;padding-bottom:10px;border-bottom:3px solid #FFE600">
@@ -938,7 +935,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 18:52
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 18:53
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1972,7 +1969,6 @@ function buildVisaoGeral(){
   buildVGKPIs();
   buildVGHeatmap();
   buildVGUnifiedCards();
-  buildVGInsights();
   buildHighsLows();
   setTimeout(buildVGLineChart, 200);
   buildVGScorecard();
@@ -2843,7 +2839,6 @@ window.addEventListener('DOMContentLoaded',function(){
     ['buildVGHeatmap',buildVGHeatmap],
     ['buildVGUnifiedCards',buildVGUnifiedCards],
     ['buildVGScorecard',buildVGScorecard],
-    ['buildVGInsights',buildVGInsights],
     ['buildCorpAcionaveis',buildCorpAcionaveis],
     ['buildHighsLows',buildHighsLows],
     ['buildSellersConsolidated',buildSellersConsolidated]
