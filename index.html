@@ -160,6 +160,13 @@
   .filtro-info{margin-left:auto;font-size:13px;font-weight:700;color:#3483FA;white-space:nowrap;}
 
 
+  /* ── Sub-tabs (inner navigation) ── */
+  .sub-tabs{display:flex;border-bottom:2px solid #E8E8E8;margin-bottom:20px;gap:0;flex-wrap:wrap;}
+  .sub-tab,.sub-tabs button{padding:10px 20px;border:none;background:transparent;font-size:13px;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;font-family:inherit;}
+  .sub-tab:hover,.sub-tabs button:hover{color:#3483FA;}
+  .sub-tab.active,.sub-tabs button.active{color:#3483FA;border-bottom-color:#3483FA;font-weight:700;}
+
+
 
 .ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
 .ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
@@ -179,7 +186,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 11:54</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 12:46</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -220,7 +227,7 @@
 <div id="tab-visao-geral" class="tab-content active">
   <div class="page-title">Carteira Total &mdash; MeliPro F&amp;H</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; 10 grupos &middot; 15 contas &nbsp;&middot;&nbsp; Jan&ndash;Abr 2026</div>
-  <div class="inner-tabs" id="vg-inner-tabs"><button class="inner-tab active" onclick="showSubTab('vg','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('vg','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('vg','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('vg','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('vg','vis',this)">Visitas &amp; Convers&#227;o</button><button class="inner-tab" onclick="showSubTab('vg','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('vg','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('vg','combo',this)">Combo PSJ/PCJ</button></div>
+  <div class="sub-tabs" id="vg-inner-tabs"><button class="sub-tab active" onclick="showSubTab('vg','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('vg','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('vg','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('vg','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('vg','vis',this)">Visitas &amp; Convers&#227;o</button><button class="sub-tab" onclick="showSubTab('vg','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('vg','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('vg','combo',this)">Combo PSJ/PCJ</button></div>
 
   <div id="vg-section-geral" class="sub-section active">
     <div class="kpi-row" id="vg-kpi-row" style="flex-wrap:nowrap;"></div>
@@ -390,7 +397,7 @@
 <div id="tab-ml" class="tab-content">
   <div class="page-title">MULTILOJA</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="ml-inner-tabs"><button class="inner-tab active" onclick="showSubTab('ml','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('ml','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('ml','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('ml','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('ml','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('ml','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('ml','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('ml','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('ml','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="ml-inner-tabs"><button class="sub-tab active" onclick="showSubTab('ml','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('ml','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('ml','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('ml','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('ml','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('ml','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('ml','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('ml','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('ml','comp',this)">Competitividade</button></div>
   <div id="ml-section-geral" class="sub-section active">
 <div class="kpi-row" id="ml-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="ml-quarters"></div></div>
@@ -445,7 +452,7 @@
 <div id="tab-ad" class="tab-content">
   <div class="page-title">ADONAI</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="ad-inner-tabs"><button class="inner-tab active" onclick="showSubTab('ad','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('ad','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('ad','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('ad','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('ad','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('ad','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('ad','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('ad','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('ad','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="ad-inner-tabs"><button class="sub-tab active" onclick="showSubTab('ad','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('ad','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('ad','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('ad','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('ad','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('ad','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('ad','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('ad','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('ad','comp',this)">Competitividade</button></div>
   <div id="ad-section-geral" class="sub-section active">
 <div class="kpi-row" id="ad-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="ad-quarters"></div></div>
@@ -500,7 +507,7 @@
 <div id="tab-ba" class="tab-content">
   <div class="page-title">BALAQUI</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="ba-inner-tabs"><button class="inner-tab active" onclick="showSubTab('ba','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('ba','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('ba','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('ba','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('ba','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('ba','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('ba','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('ba','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('ba','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="ba-inner-tabs"><button class="sub-tab active" onclick="showSubTab('ba','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('ba','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('ba','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('ba','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('ba','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('ba','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('ba','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('ba','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('ba','comp',this)">Competitividade</button></div>
   <div id="ba-section-geral" class="sub-section active">
 <div class="kpi-row" id="ba-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="ba-quarters"></div></div>
@@ -555,7 +562,7 @@
 <div id="tab-ci" class="tab-content">
   <div class="page-title">CAMA INBOX</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="ci-inner-tabs"><button class="inner-tab active" onclick="showSubTab('ci','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('ci','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('ci','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('ci','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('ci','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('ci','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('ci','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('ci','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('ci','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="ci-inner-tabs"><button class="sub-tab active" onclick="showSubTab('ci','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('ci','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('ci','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('ci','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('ci','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('ci','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('ci','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('ci','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('ci','comp',this)">Competitividade</button></div>
   <div id="ci-section-geral" class="sub-section active">
 <div class="kpi-row" id="ci-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="ci-quarters"></div></div>
@@ -610,7 +617,7 @@
 <div id="tab-bp" class="tab-content">
   <div class="page-title">BOM PASTOR</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="bp-inner-tabs"><button class="inner-tab active" onclick="showSubTab('bp','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('bp','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('bp','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('bp','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('bp','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('bp','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('bp','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('bp','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('bp','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="bp-inner-tabs"><button class="sub-tab active" onclick="showSubTab('bp','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('bp','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('bp','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('bp','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('bp','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('bp','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('bp','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('bp','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('bp','comp',this)">Competitividade</button></div>
   <div id="bp-section-geral" class="sub-section active">
 <div class="kpi-row" id="bp-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="bp-quarters"></div></div>
@@ -665,7 +672,7 @@
 <div id="tab-pa" class="tab-content">
   <div class="page-title">PANORAMA</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="pa-inner-tabs"><button class="inner-tab active" onclick="showSubTab('pa','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('pa','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('pa','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('pa','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('pa','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('pa','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('pa','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('pa','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('pa','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="pa-inner-tabs"><button class="sub-tab active" onclick="showSubTab('pa','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('pa','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('pa','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('pa','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('pa','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('pa','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('pa','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('pa','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('pa','comp',this)">Competitividade</button></div>
   <div id="pa-section-geral" class="sub-section active">
 <div class="kpi-row" id="pa-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="pa-quarters"></div></div>
@@ -720,7 +727,7 @@
 <div id="tab-to" class="tab-content">
   <div class="page-title">TONIELQUE</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="to-inner-tabs"><button class="inner-tab active" onclick="showSubTab('to','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('to','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('to','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('to','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('to','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('to','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('to','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('to','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('to','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="to-inner-tabs"><button class="sub-tab active" onclick="showSubTab('to','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('to','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('to','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('to','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('to','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('to','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('to','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('to','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('to','comp',this)">Competitividade</button></div>
   <div id="to-section-geral" class="sub-section active">
 <div class="kpi-row" id="to-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="to-quarters"></div></div>
@@ -775,7 +782,7 @@
 <div id="tab-we" class="tab-content">
   <div class="page-title">WEHOUSE</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="we-inner-tabs"><button class="inner-tab active" onclick="showSubTab('we','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('we','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('we','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('we','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('we','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('we','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('we','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('we','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('we','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="we-inner-tabs"><button class="sub-tab active" onclick="showSubTab('we','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('we','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('we','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('we','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('we','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('we','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('we','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('we','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('we','comp',this)">Competitividade</button></div>
   <div id="we-section-geral" class="sub-section active">
 <div class="kpi-row" id="we-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="we-quarters"></div></div>
@@ -830,7 +837,7 @@
 <div id="tab-kh" class="tab-content">
   <div class="page-title">KING HOUSE</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="kh-inner-tabs"><button class="inner-tab active" onclick="showSubTab('kh','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('kh','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('kh','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('kh','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('kh','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('kh','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('kh','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('kh','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('kh','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="kh-inner-tabs"><button class="sub-tab active" onclick="showSubTab('kh','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('kh','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('kh','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('kh','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('kh','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('kh','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('kh','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('kh','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('kh','comp',this)">Competitividade</button></div>
   <div id="kh-section-geral" class="sub-section active">
 <div class="kpi-row" id="kh-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="kh-quarters"></div></div>
@@ -885,7 +892,7 @@
 <div id="tab-ma" class="tab-content">
   <div class="page-title">MOVEIS ARAPONGAS</div>
   <div class="page-sub">Cintia Faraco Queiroz &nbsp;&middot;&nbsp; F&amp;H &nbsp;&middot;&nbsp; Furnishing &amp; Houseware</div>
-  <div class="inner-tabs" id="ma-inner-tabs"><button class="inner-tab active" onclick="showSubTab('ma','geral',this)">Geral</button><button class="inner-tab" onclick="showSubTab('ma','full',this)">Log&#237;stica</button><button class="inner-tab" onclick="showSubTab('ma','ads',this)">ADS</button><button class="inner-tab" onclick="showSubTab('ma','inv',this)">Investimentos</button><button class="inner-tab" onclick="showSubTab('ma','cat',this)">Cat&#225;logo</button><button class="inner-tab" onclick="showSubTab('ma','bpc',this)">BPC</button><button class="inner-tab" onclick="showSubTab('ma','cat2',this)">Categorias</button><button class="inner-tab" onclick="showSubTab('ma','yoy',this)">YoY 2025</button><button class="inner-tab" onclick="showSubTab('ma','comp',this)">Competitividade</button></div>
+  <div class="sub-tabs" id="ma-inner-tabs"><button class="sub-tab active" onclick="showSubTab('ma','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('ma','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('ma','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('ma','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('ma','cat',this)">Cat&#225;logo</button><button class="sub-tab" onclick="showSubTab('ma','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('ma','cat2',this)">Categorias</button><button class="sub-tab" onclick="showSubTab('ma','yoy',this)">YoY 2025</button><button class="sub-tab" onclick="showSubTab('ma','comp',this)">Competitividade</button></div>
   <div id="ma-section-geral" class="sub-section active">
 <div class="kpi-row" id="ma-kpi-row"></div>
 <div class="section"><div class="section-title">Quarters &mdash; 2026</div><div id="ma-quarters"></div></div>
@@ -939,7 +946,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 11:54
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 12:46
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
