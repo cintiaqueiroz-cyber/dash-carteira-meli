@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 14:06</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 14:08</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 14:06
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 14:08
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1853,19 +1853,22 @@ function buildCategorias(g,px){
     }
   });
 
-  // Table
-  var hdr='<thead><tr style="background:#FFE600"><th style="padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:#1A1A1A">Categoria</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">GMV</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">SIs</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Share</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Acumulado</th></tr></thead>';
-  var cum=0;
+  // Table — igual Larissa: Categoria | GMV YTD | Share | SIs | Itens | ASP méd.
+  var th=function(t,al){return '<th style="padding:12px 16px;font-size:11px;font-weight:800;color:#1A1A1A;text-align:'+(al||'left')+';white-space:nowrap">'+t+'</th>';};
+  var hdr='<thead><tr style="background:#FFE600">'+th('Categoria')+th('GMV YTD','right')+th('Share','center')+th('SIs','right')+th('Itens','right')+th('ASP méd.','right')+'</tr></thead>';
   var bdy='<tbody>'+allCats.map(function(c,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var sh=total>0?c.gmv/total*100:0;
-    cum+=sh;
+    var asp=c.si>0?Math.round(c.gmv/c.si):0;
+    var shIntensity=sh>=30?'#3483FA':sh>=10?'#3483FA':'#3483FA';
+    var shBg=sh>=30?'#C8DCFF':sh>=10?'#D8E8FF':'#E8F0FF';
     return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
-      +'<td style="padding:10px 14px;font-size:12.5px;font-weight:600;color:#1A1A1A">'+c.cat+'</td>'
-      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+fmt(c.gmv)+'</td>'
-      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmtN(c.si)+'</td>'
-      +'<td style="padding:10px 12px;text-align:center"><span style="background:#E3EDFF;color:#3483FA;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px">'+sh.toFixed(1)+'%</span></td>'
-      +'<td style="padding:10px 12px;text-align:center;font-size:11px;font-weight:700;color:'+(cum<=50?'#00A650':cum<=80?'#B07A00':'#F23D4F')+'">'+cum.toFixed(1)+'%</td>'
+      +'<td style="padding:12px 16px;font-size:13px;font-weight:700;color:#1A1A1A">'+c.cat+'</td>'
+      +'<td style="padding:12px 16px;text-align:right;font-size:13px;font-weight:700;color:#1A1A1A;white-space:nowrap">'+fmt(c.gmv)+'</td>'
+      +'<td style="padding:12px 16px;text-align:center"><span style="background:'+shBg+';color:'+shIntensity+';font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px">'+sh.toFixed(1)+'%</span></td>'
+      +'<td style="padding:12px 16px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+fmtN(c.si)+'</td>'
+      +'<td style="padding:12px 16px;text-align:right;font-size:12px;color:#555">'+(c.n||0)+'</td>'
+      +'<td style="padding:12px 16px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+(asp>0?'R$ '+asp.toLocaleString('pt-BR'):'-')+'</td>'
       +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-cat2-tbl');
