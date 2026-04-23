@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:20</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:23</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:20
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:23
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3155,12 +3155,29 @@ function buildVGReputacao(){
       +'</div>'
       // Seller nickname
       +'<div style="font-size:10px;color:#AAA;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+seller.toUpperCase()+'</div>'
-      // ML Platinum badge — igual ao modelo da Larissa
-      +'<div style="margin-bottom:12px">'
+      // ML Platinum badge + cor da reputação
+      +'<div style="margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
         +'<span style="background:#E3EDFF;color:#3483FA;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px">'
           +'<span style="width:8px;height:8px;border-radius:50%;background:#3483FA;display:inline-block"></span>'
           +'ML Platinum'
         +'</span>'
+        // Cor da reputação
+        +(rep==='YELLOW'?
+          '<span style="background:#FFF3C4;color:#9A7000;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px">'
+            +'<span style="width:7px;height:7px;border-radius:50%;background:#FFB900;display:inline-block"></span>'
+            +'Amarela'
+          +'</span>'
+          :rep==='ORANGE'?
+          '<span style="background:#FFE0C4;color:#B05000;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px">'
+            +'<span style="width:7px;height:7px;border-radius:50%;background:#FF7A00;display:inline-block"></span>'
+            +'Laranja'
+          +'</span>'
+          :
+          '<span style="background:#D4F2E0;color:#00A650;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px">'
+            +'<span style="width:7px;height:7px;border-radius:50%;background:#00A650;display:inline-block"></span>'
+            +'Verde'
+          +'</span>'
+        )
       +'</div>'
       // Metrics
       +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">'
