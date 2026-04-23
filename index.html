@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 15:02</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 15:12</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 15:02
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 15:12
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1448,6 +1448,7 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
   var tot=totalGMV||items.reduce(function(s,it){return s+(it.gmv||0);},0);
   var th=function(t,al,w){return '<th style="padding:10px 12px;font-size:10px;font-weight:700;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;background:#1A1A1A'+(w?';width:'+w:'')+'">'+t+'</th>';};
   var hdr='<thead><tr>'
+    +th('#','center','36px')
     +(showGroup?th('GRUPO','center','90px'):'')
     +th('STATUS','center','70px')
     +th('SELLER')
@@ -1485,6 +1486,7 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     var mlbId=it.mlb_id||('MLB'+(it.item_id||it.id||''));
     var mlbDisplay=mlbId.replace('MLB','MLB ');
     var rowBg=i%2===0?'#fff':'#FAFAFA';
+    var isPareto80=it._cumShare<=80.01;
 
     // Share mini bar
     var barW=Math.min(it._share*5,100);
@@ -1602,7 +1604,7 @@ function filterSellerCat(filter,px,btn){
   if(btn)btn.style.cssText=tabA;
   var all=window['_cat_items_'+px]||[];
   var tot=window['_cat_total_'+px]||0;
-  var filtered=filter==='queda'?all.filter(function(it){return it.bb<70;}):
+  var filtered=filter==='queda'?all.filter(function(it){var g=it.gmv_mes_atual||0,p=it.gmv_mes_ant||0;return p>0&&(g-p)/p*100<-10;}):
                filter==='alta'?all.filter(function(it){return it.bb<50;}):
                filter==='vc'?all.filter(function(it){return it.bb<65;}):all;
   renderItemsTable(filtered,px+'-cat-tbl',false,tot);
