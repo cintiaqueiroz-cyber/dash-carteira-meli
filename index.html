@@ -179,7 +179,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 22/04/2026 21:53</span>
+    <span class="update-badge">&#10003; Atualizado 22/04/2026 21:59</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -935,7 +935,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 21:53
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 22/30 dias &nbsp;&middot;&nbsp; 22/04/2026 21:59
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2519,59 +2519,117 @@ function buildInvestimentos(){
 
 // ÔòÉÔòÉ VISITAS & CONVERSâO ÔòÉÔòÉ
 function buildVisitasConversao(){
-  var mks=MESES_DONE,colors=[C_BLUE,'#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];
-  // Totals
+  var mks=MESES_DONE;
+  var colors=[C_BLUE,'#FF7A00','#9B59B6','#F23D4F','#00A650','#FFB900','#3498DB','#E74C3C','#2ECC71','#95A5A6'];
+
   var tVis=GRUPOS.reduce(function(s,g){return s+PERIODO.reduce(function(ss,k){return ss+((REAL_VISITAS[g]||{})[k]||0);},0);},0);
   var tPed=GRUPOS.reduce(function(s,g){return s+MESES_DONE.reduce(function(ss,k){return ss+((REAL_PED_TOT[g]||{})[k]||0);},0);},0);
   var cvr=tVis>0?tPed/tVis*100:0;
-  // KPI
+
   var el=document.getElementById('vis-kpi-row');
   if(el)el.innerHTML=kpiHtml([
     {label:'VISITAS YTD TOTAL',val:tVis>0?fmtN(tVis):'\u2013',sub:'Pageviews dispon\u00edveis',cls:'blue'},
     {label:'PEDIDOS YTD',val:fmtN(tPed),sub:'Total carteira',cls:'blue'},
-    {label:'TAXA DE CONVERS\u00c3O M\u00c9DIA',val:tVis>0?cvr.toFixed(2)+'%':'\u2013',sub:'Pedidos \u00f7 Visitas',cls:cvr>=3?'green':cvr>=1.5?'yellow':'red'},
-    {label:'PGVIEW / VISITA',val:'-',sub:'Profundidade m\u00e9dia',cls:'blue'}
+    {label:'TAXA DE CONVERS\u00c3O M\u00c9DIA',val:tVis>0?cvr.toFixed(2)+'%':'\u2013',sub:'Pedidos \u00f7 Visitas',cls:cvr>=3?'green':cvr>=1?'yellow':'red'},
+    {label:'GMV / VISITA',val:tVis>0?'R$ '+(tVis>0?Math.round(GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0)/tVis*100)/100:0).toLocaleString('pt-BR'):'--',sub:'Efici\u00eancia por visita',cls:'blue'}
   ]);
-  // Charts side by side
-  var visArr=GRUPOS.map(function(g,i){
-    return {label:g,data:mks.map(function(k){return (REAL_VISITAS[g]||{})[k]||0;}),backgroundColor:colors[i%colors.length],borderRadius:2};
+
+  var labels=mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];});
+  var shortName=function(g){return g.length>12?g.substring(0,12)+'...':g;};
+
+  // ── Stacked bar: Visitas por Grupo — Mensal ──────────────────────────
+  var visDs=GRUPOS.map(function(g,i){
+    return {
+      label:shortName(g),
+      data:mks.map(function(k){return (REAL_VISITAS[g]||{})[k]||0;}),
+      backgroundColor:colors[i%colors.length],
+      borderRadius:0
+    };
   });
   destroyChart('vis-bar');
   var c1=document.getElementById('vis-bar-chart');
-  if(c1)chartInstances['vis-bar']=new Chart(c1.getContext('2d'),{type:'bar',
-    data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:visArr},
-    options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmtN(v);}}}},
-      plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:9}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmtN(c.raw);}}}}}});
-  // CVR line chart
+  if(c1)chartInstances['vis-bar']=new Chart(c1.getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:visDs},
+    options:{responsive:true,animation:false,
+      scales:{
+        x:{stacked:true},
+        y:{stacked:true,ticks:{callback:function(v){
+          if(v>=1e6)return (v/1e6).toFixed(1)+' M';
+          if(v>=1e3)return (v/1e3).toFixed(0)+' K';
+          return v;
+        }}}
+      },
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,pointStyleWidth:12,font:{size:9},boxWidth:10}},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmtN(c.raw);}}}
+      }
+    }
+  });
+
+  // ── Line chart: Taxa de Conversão por Grupo (%) ───────────────────────
   var cvrDs=GRUPOS.map(function(g,i){
-    return {label:g,type:'line',
-      data:mks.map(function(k){var v=(REAL_VISITAS[g]||{})[k]||0,p=(REAL_PED_TOT[g]||{})[k]||0;return v>0?+(p/v*100).toFixed(2):null;}),
-      borderColor:colors[i%colors.length],backgroundColor:'transparent',tension:0.3,pointRadius:5,borderWidth:2,spanGaps:false};
+    return {
+      label:shortName(g),
+      data:mks.map(function(k){
+        var v=(REAL_VISITAS[g]||{})[k]||0;
+        var p=(REAL_PED_TOT[g]||{})[k]||0;
+        return v>0?+(p/v*100).toFixed(3):null;
+      }),
+      borderColor:colors[i%colors.length],
+      backgroundColor:'transparent',
+      tension:0.3,
+      pointRadius:5,
+      pointBackgroundColor:colors[i%colors.length],
+      borderWidth:2,
+      spanGaps:false
+    };
   });
   destroyChart('vis-cvr');
   var c2=document.getElementById('vis-cvr-chart');
-  if(c2)chartInstances['vis-cvr']=new Chart(c2.getContext('2d'),{type:'line',
-    data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:cvrDs},
-    options:{responsive:true,animation:false,scales:{y:{ticks:{callback:function(v){return v+'%';}}}},
-      plugins:{legend:{position:'bottom',labels:{boxWidth:10,font:{size:9}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!==null?c.raw+'%':'-');}}}}}});
-  // Tabela detalhamento por grupo e mes ÔÇö header amarelo
+  if(c2)chartInstances['vis-cvr']=new Chart(c2.getContext('2d'),{
+    type:'line',
+    data:{labels:labels,datasets:cvrDs},
+    options:{responsive:true,animation:false,
+      scales:{
+        y:{min:0,ticks:{callback:function(v){return v.toFixed(1)+'%';}}}
+      },
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',font:{size:9},boxWidth:10}},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.raw!==null?c.raw.toFixed(2)+'%':'--');}}}
+      }
+    }
+  });
+
+  // ── Tabela detalhamento ───────────────────────────────────────────────
   var tbl=document.getElementById('vis-table');
   if(!tbl)return;
   var hdr='<thead><tr style="background:#FFE600"><th style="padding:12px 14px;text-align:left;font-size:12px;font-weight:800;color:#1A1A1A">Grupo</th>';
-  mks.forEach(function(mk){var lbl=MESES_LABEL[MESES_KEYS.indexOf(mk)];hdr+='<th style="padding:12px 8px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">'+lbl+'<br>Visitas</th><th style="padding:12px 8px;text-align:center;font-size:10px;font-weight:700;color:#1A1A1A">CVR%</th>';});
-  hdr+='<th style="padding:12px 10px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">YTD Visitas</th><th style="padding:12px 10px;text-align:center;font-size:10px;font-weight:700;color:#1A1A1A">YTD CVR%</th></tr></thead>';
+  mks.forEach(function(mk){
+    var lbl=MESES_LABEL[MESES_KEYS.indexOf(mk)];
+    hdr+='<th style="padding:12px 8px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">'+lbl+'<br><span style="font-size:8px;font-weight:400">Visitas</span></th>'
+        +'<th style="padding:12px 8px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">CVR%</th>';
+  });
+  hdr+='<th style="padding:12px 10px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">YTD Visitas</th>'
+      +'<th style="padding:12px 10px;text-align:right;font-size:10px;font-weight:700;color:#1A1A1A">CVR% YTD</th></tr></thead>';
   var bdy='<tbody>'+GRUPOS.map(function(g,gi){
     var ytdV=PERIODO.reduce(function(s,k){return s+((REAL_VISITAS[g]||{})[k]||0);},0);
     var ytdP=MESES_DONE.reduce(function(s,k){return s+((REAL_PED_TOT[g]||{})[k]||0);},0);
     var ytdCVR=ytdV>0?ytdP/ytdV*100:0;
-    var cvrColor=ytdCVR>=3?'#00A650':ytdCVR>=1.5?'#FFB900':'#F23D4F';
-    var row='<tr style="background:'+(gi%2===0?'#fff':'#FAFAFA')+';border-bottom:1px solid #F0F0F0"><td style="padding:11px 14px;font-size:13px;font-weight:700">'+g+'</td>';
+    var cvrColor=ytdCVR>=3?'#00A650':ytdCVR>=1?'#FFB900':'#F23D4F';
+    var row='<tr style="background:'+(gi%2===0?'#fff':'#FAFAFA')+';border-bottom:1px solid #F0F0F0">'
+      +'<td style="padding:11px 14px;font-size:13px;font-weight:700;color:#1A1A1A">'+g+'</td>';
     mks.forEach(function(k){
-      var v=(REAL_VISITAS[g]||{})[k]||0,p=(REAL_PED_TOT[g]||{})[k]||0,cvr=v>0?p/v*100:0;
-      var cc=cvr>=3?'#00A650':cvr>=1.5?'#FFB900':'#F23D4F';
-      row+='<td style="padding:11px 8px;text-align:right;font-size:11px;color:#555">'+(v>0?fmtN(v):'-')+'</td><td style="padding:11px 8px;text-align:center;font-size:11px;font-weight:700;color:'+cc+'">'+(v>0?cvr.toFixed(2)+'%':'-')+'</td>';
+      var v=(REAL_VISITAS[g]||{})[k]||0;
+      var p=(REAL_PED_TOT[g]||{})[k]||0;
+      var cvr=v>0?p/v*100:0;
+      var cc=cvr>=3?'#00A650':cvr>=1?'#FFB900':'#F23D4F';
+      row+='<td style="padding:11px 8px;text-align:right;font-size:11px;color:#555">'+(v>0?fmtN(v):'-')+'</td>'
+          +'<td style="padding:11px 8px;text-align:right;font-size:11px;font-weight:700;color:'+cc+'">'+(v>0?cvr.toFixed(2)+'%':'-')+'</td>';
     });
-    row+='<td style="padding:11px 10px;text-align:right;font-weight:700">'+(ytdV>0?fmtN(ytdV):'-')+'</td><td style="padding:11px 10px;text-align:center;font-weight:800;color:'+cvrColor+'">'+(ytdV>0?ytdCVR.toFixed(2)+'%':'-')+'</td></tr>';
+    row+='<td style="padding:11px 10px;text-align:right;font-weight:700">'+(ytdV>0?fmtN(ytdV):'-')+'</td>'
+        +'<td style="padding:11px 10px;text-align:right;font-weight:800;color:'+cvrColor+'">'+(ytdV>0?ytdCVR.toFixed(2)+'%':'-')+'</td>'
+        +'</tr>';
     return row;
   }).join('')+'</tbody>';
   tbl.innerHTML=hdr+bdy;
