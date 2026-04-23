@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:31</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 14:06</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:31
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 14:06
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1012,8 +1012,6 @@ var REAL_NOVOS={};
 var REAL_GMV_ORG={};
 var REAL_PED_FG={};
 var REAL_REP={"MULTILOJA": {"canc_pct": 9.57, "rep_level": "GREEN", "seller": "MULTILOJAOFICIAL", "monthly": {"jan": {"canc_pct": 9.44}, "feb": {"canc_pct": 8.33}, "mar": {"canc_pct": 20.0}, "apr": {"canc_pct": 10.62}}}, "ADONAI": {"canc_pct": 10.54, "rep_level": "GREEN", "seller": "ADONAI ESTOFADOS", "monthly": {"jan": {"canc_pct": 12.32}, "feb": {"canc_pct": 12.18}, "mar": {"canc_pct": 10.33}, "apr": {"canc_pct": 7.22}}}, "BALAQUI": {"canc_pct": 12.06, "rep_level": "GREEN", "seller": "BALAQUI DECOR", "monthly": {"jan": {"canc_pct": 13.27}, "feb": {"canc_pct": 17.65}, "mar": {"canc_pct": 7.61}, "apr": {"canc_pct": 1.96}}}, "CAMA INBOX": {"canc_pct": 14.19, "rep_level": "YELLOW", "seller": "CAMA INBOX_LOJAOFICIAL", "monthly": {"jan": {"canc_pct": 16.45}, "feb": {"canc_pct": 16.44}, "mar": {"canc_pct": 13.55}, "apr": {"canc_pct": 9.4}}}, "BOM PASTOR": {"canc_pct": 9.5, "rep_level": "GREEN", "seller": "MOVEISBOMPASTOR", "monthly": {"jan": {"canc_pct": 10.1}, "feb": {"canc_pct": 12.95}, "mar": {"canc_pct": 10.2}, "apr": {"canc_pct": 5.6}}}, "PANORAMA": {"canc_pct": 15.15, "rep_level": "GREEN", "seller": "PANORAMA MÓVEIS", "monthly": {"jan": {"canc_pct": 19.04}, "feb": {"canc_pct": 18.34}, "mar": {"canc_pct": 15.18}, "apr": {"canc_pct": 6.93}}}, "TONIELQUE": {"canc_pct": 5.43, "rep_level": "GREEN", "seller": "TONIELQUE MOVEIS", "monthly": {"jan": {"canc_pct": 6.31}, "feb": {"canc_pct": 5.36}, "mar": {"canc_pct": 5.52}, "apr": {"canc_pct": 4.04}}}, "WEHOUSE": {"canc_pct": 11.19, "rep_level": "GREEN", "seller": "WEHOUSE", "monthly": {"jan": {"canc_pct": 13.54}, "feb": {"canc_pct": 13.05}, "mar": {"canc_pct": 9.42}, "apr": {"canc_pct": 8.09}}}, "KING HOUSE": {"canc_pct": 7.14, "rep_level": "GREEN", "seller": "KINGHOUSEINDUSTRIAECOMERC", "monthly": {"jan": {"canc_pct": 10.5}, "feb": {"canc_pct": 17.44}, "mar": {"canc_pct": 8.41}, "apr": {"canc_pct": 10.14}}}, "MOVEIS ARAPONGAS": {"canc_pct": 22.31, "rep_level": "YELLOW", "seller": "MVEISARAPONGASEIRELIEP", "monthly": {"jan": {"canc_pct": 25.22}, "feb": {"canc_pct": 30.12}, "mar": {"canc_pct": 20.51}, "apr": {"canc_pct": 8.86}}}};
-var REAL_DIARIO={};
-var CAT_DATA={};
 var PERIODO=MESES_DONE.slice();
 
 var chartInstances={};
@@ -1531,7 +1529,7 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       +'<td style="padding:10px 10px;text-align:right">'+paHtml+'</td>'
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momGMV)+'</td>'
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momSI)+'</td>'
-      +'</tr>';
+      +'<td style="padding:10px 12px;text-align:center">'+momHtml+'</td>'+'</tr>';
   }).join('')+'</tbody>';
 
   var paretoCount = sorted.filter(function(it){return it._cumShare<=80.01;}).length;
@@ -1799,25 +1797,81 @@ function delBPCNeg(px,i){
   if(g)buildSellerBPC(g,px);
 }
 function buildCategorias(g,px){
-  // Use CAT_DATA (from DOM_DOMAIN_AGG2 BQ query) — same as Larissa's dashboard
   var catRaw=CAT_DATA[g]||[];
-  var cats=catRaw.slice(0,8).map(function(c){return [c.cat,{gmv:c.gmv,si:c.si,n:c.n}];});
-  var total=cats.reduce(function(a,c){return a+c[1].gmv;},0);
+  var allCats=catRaw.slice().sort(function(a,b){return b.gmv-a.gmv;});
+  var top=allCats.slice(0,8);
+  var outros=allCats.slice(8);
+  var outrosGMV=outros.reduce(function(s,c){return s+c.gmv;},0);
+  var outrosSI=outros.reduce(function(s,c){return s+c.si;},0);
+  if(outrosGMV>0)top.push({cat:'Outros',gmv:outrosGMV,si:outrosSI,n:outros.length});
+  var cats=top.map(function(c){return [c.cat,{gmv:c.gmv,si:c.si,n:c.n}];});
+  var total=allCats.reduce(function(a,c){return a+c.gmv;},0);
+  var totalSI=allCats.reduce(function(a,c){return a+c.si;},0);
+  var top1=allCats[0]||{cat:'-',gmv:0};
+  var conc3=allCats.slice(0,3).reduce(function(s,c){return s+c.gmv;},0);
+  var conc3pct=total>0?conc3/total*100:0;
+  var skus=allCats.reduce(function(s,c){return s+(c.n||0);},0);
+
+  // KPIs — igual Larissa
   var elKpi=document.getElementById(px+'-cat2-kpi');
-  if(elKpi)elKpi.innerHTML=kpiHtml([{label:'Categorias',val:cats.length,sub:'Top por GMV',cls:'blue'},{label:'GMV Total',val:fmt(total),sub:'Últimos 90 dias',cls:'blue'}]);
-  var colors=['#3483FA','#00A650','#FF7A00','#F23D4F','#9B59B6','#FFB900','#3498DB','#E74C3C'];
+  if(elKpi)elKpi.innerHTML=kpiHtml([
+    {label:'Categorias com GMV YTD',val:allCats.length,sub:'Top por GMV',cls:'blue'},
+    {label:'Concentra\u00e7\u00e3o nas 3 maiores',val:conc3pct.toFixed(1)+'%',sub:allCats.slice(0,3).map(function(c){return c.cat.split(' ')[0];}).join(', '),cls:conc3pct>80?'red':conc3pct>60?'yellow':'green'},
+    {label:top1.cat,val:fmt(top1.gmv),sub:'GMV: '+fmt(top1.gmv),cls:'blue'},
+    {label:'SKUs com venda YTD',val:fmtN(skus),sub:'itens distintos',cls:'blue'}
+  ]);
+
+  var colors=['#3483FA','#00A650','#FF7A00','#F23D4F','#9B59B6','#FFB900','#3498DB','#E74C3C','#888'];
+
+  // Donut chart
   destroyChart(px+'-cat2');
   var c1=document.getElementById(px+'-cat2-chart');
-  if(c1)chartInstances[px+'-cat2']=new Chart(c1.getContext('2d'),{type:'doughnut',data:{labels:cats.map(function(c){return c[0];}),datasets:[{data:cats.map(function(c){return c[1].gmv;}),backgroundColor:colors}]},options:{responsive:true,animation:false,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});
-  var cumGMV=0,paretoData=cats.map(function(c){cumGMV+=c[1].gmv;return (cumGMV/Math.max(total,1)*100).toFixed(1);});
+  if(c1)chartInstances[px+'-cat2']=new Chart(c1.getContext('2d'),{
+    type:'doughnut',
+    data:{labels:cats.map(function(c){return c[0];}),datasets:[{data:cats.map(function(c){return c[1].gmv;}),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,animation:false,cutout:'60%',plugins:{legend:{position:'right',labels:{font:{size:10},usePointStyle:true,pointStyleWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw)+' ('+(c.raw/Math.max(total,1)*100).toFixed(1)+'%)';}}}}}
+  });
+
+  // Pareto chart (bar + line)
+  var cumGMV=0;
+  var paretoData=allCats.slice(0,Math.min(allCats.length,15)).map(function(c){cumGMV+=c.gmv;return parseFloat((cumGMV/Math.max(total,1)*100).toFixed(1));});
+  var paretoLabels=allCats.slice(0,15).map(function(c,i){return i<4?c.cat.split(' ').slice(0,2).join(' '):'#'+(i+1);});
   destroyChart(px+'-pareto');
   var c2=document.getElementById(px+'-pareto-chart');
-  if(c2)chartInstances[px+'-pareto']=new Chart(c2.getContext('2d'),{type:'line',data:{labels:cats.map(function(c,i){return (i+1)+'.';}),datasets:[{label:'% Acumulado',data:paretoData,borderColor:C_BLUE,fill:true,backgroundColor:'rgba(52,131,250,.1)',tension:0.3}]},options:{responsive:true,animation:false,scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}},plugins:{legend:{display:false}}}});
-  var hdr='<thead><tr><th>Categoria</th><th>GMV</th><th>SIs</th><th>Share</th></tr></thead>';
-  var bdy='<tbody>'+cats.map(function(c){return '<tr><td>'+c[0]+'</td><td>'+fmt(c[1].gmv)+'</td><td>'+fmtN(c[1].si)+'</td><td>'+((c[1].gmv/Math.max(total,1))*100).toFixed(1)+'%</td></tr>';}).join('')+'</tbody>';
+  if(c2)chartInstances[px+'-pareto']=new Chart(c2.getContext('2d'),{
+    type:'bar',
+    data:{labels:paretoLabels,datasets:[
+      {label:'GMV',data:allCats.slice(0,15).map(function(c){return c.gmv;}),backgroundColor:'rgba(52,131,250,.7)',borderRadius:3,order:2,yAxisID:'y'},
+      {label:'Acumulado %',data:paretoData,type:'line',borderColor:'#F23D4F',backgroundColor:'transparent',tension:0.3,pointRadius:4,pointBackgroundColor:'#F23D4F',order:1,yAxisID:'y1'}
+    ]},
+    options:{responsive:true,animation:false,
+      scales:{
+        y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}}},
+        y1:{type:'linear',position:'right',min:0,max:100,grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+'%';}}}
+      },
+      plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.datasetIndex===0?fmt(c.raw):c.raw+'%');}}}}
+    }
+  });
+
+  // Table
+  var hdr='<thead><tr style="background:#FFE600"><th style="padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:#1A1A1A">Categoria</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">GMV</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">SIs</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Share</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Acumulado</th></tr></thead>';
+  var cum=0;
+  var bdy='<tbody>'+allCats.map(function(c,i){
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    var sh=total>0?c.gmv/total*100:0;
+    cum+=sh;
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
+      +'<td style="padding:10px 14px;font-size:12.5px;font-weight:600;color:#1A1A1A">'+c.cat+'</td>'
+      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+fmt(c.gmv)+'</td>'
+      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmtN(c.si)+'</td>'
+      +'<td style="padding:10px 12px;text-align:center"><span style="background:#E3EDFF;color:#3483FA;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px">'+sh.toFixed(1)+'%</span></td>'
+      +'<td style="padding:10px 12px;text-align:center;font-size:11px;font-weight:700;color:'+(cum<=50?'#00A650':cum<=80?'#B07A00':'#F23D4F')+'">'+cum.toFixed(1)+'%</td>'
+      +'</tr>';
+  }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-cat2-tbl');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:12px;background:#fff">'+hdr+bdy+'</table></div>';
 }
+
 function buildYoY(g,px){
   var mks=MESES_DONE,rm=REAL_MENSAL[g]||{},r25=REAL_2025[g]||{};
   var ytd26=ytdReal(g),ytd25=mks.reduce(function(a,k){return a+(r25[k]?r25[k].gmv:0);},0);
@@ -1840,10 +1894,15 @@ function buildYoY(g,px){
       options:{responsive:true,animation:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
     });
   }
-  var hdr='<thead><tr><th>Mês</th><th>2026</th><th>2025</th><th>YoY%</th></tr></thead>';
-  var bdy='<tbody>'+mks.map(function(k){
+  var hdr='<thead><tr style="background:#FFE600"><th style="padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:#1A1A1A">Mês</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">2026</th><th style="padding:10px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">2025</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">YoY %</th><th style="padding:10px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">MoM % 2026</th></tr></thead>';
+  var bdy='<tbody>'+mks.map(function(k,i){
     var v26=rm[k]||0,v25=r25[k]?r25[k].gmv:0,yy=v25>0?((v26-v25)/v25*100):0;
-    return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(v26)+'</td><td>'+fmt(v25)+'</td><td><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td></tr>';
+    var prevK=i>0?mks[i-1]:null,vPrev=prevK?(rm[prevK]||0):0;
+    var mom=vPrev>0?((v26-vPrev)/vPrev*100):null;
+    var momHtml=mom===null?'<span style="color:#CCC">—</span>'
+      :'<span style="background:'+(mom>=0?'rgba(0,166,80,.12)':'rgba(242,61,79,.1)')+';color:'+(mom>=0?'#00A650':'#F23D4F')+';font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px">'+(mom>=0?'▲':'▼')+' '+(mom>=0?'+':'')+mom.toFixed(1)+'%</span>';
+    var rowBg=i%2===0?'#fff':'#FAFAFA';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0"><td style="padding:10px 14px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td><td style="padding:10px 12px;text-align:right;color:#555">'+fmt(v26)+'</td><td style="padding:10px 12px;text-align:right;color:#888">'+fmt(v25)+'</td><td style="padding:10px 12px;text-align:center"><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td></tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-yoy-tbl');
   if(tbl)tbl.innerHTML=hdr+bdy;
