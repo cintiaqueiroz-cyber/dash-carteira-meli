@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 15:36</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 15:51</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 15:36
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 15:51
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1447,24 +1447,24 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
   }
   var tot=totalGMV||items.reduce(function(s,it){return s+(it.gmv||0);},0);
   var th=function(t,al,w){return '<th style="padding:10px 12px;font-size:10px;font-weight:700;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;background:#1A1A1A'+(w?';width:'+w:'')+'">'+t+'</th>';};
+
+  // ORDEM LÓGICA: # | Produto | Grupo | GMV | Share | Share Acum | Units | GMV MoM | Units MoM | Preço DE | Preço Atual | Status | Domínio
   var hdr='<thead><tr>'
     +th('#','center','36px')
+    +th('PRODUTO')
     +(showGroup?th('GRUPO','center','90px'):'')
-    +th('STATUS','center','70px')
-    +th('SELLER')
-    +th('DOM\u00cdNIO')
-    +th('GMV 30D','right')
-    +th('MLB','center')
+    +th('GMV 30D','right','110px')
     +th('SHARE','center','90px')
-    +th('UNITS','right','70px')
     +th('SHARE ACUM.','center','100px')
-    +th('PRE\u00c7O DE','right','110px')
-    +th('PRE\u00c7O ATUAL','right','110px')
+    +th('UNITS','right','70px')
     +th('GMV MOM','center','90px')
     +th('UNITS MOM','center','90px')
+    +th('PRE\u00c7O DE','right','110px')
+    +th('PRE\u00c7O ATUAL','right','110px')
+    +th('STATUS','center','70px')
+    +th('DOM\u00cdNIO')
     +'</tr></thead>';
 
-  // Pre-sort by gmv desc and calculate cumulative share
   var sorted=items.slice().sort(function(a,b){return (b.gmv||0)-(a.gmv||0);});
   var cumulative=0;
   sorted.forEach(function(it){
@@ -1476,15 +1476,13 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
 
   var bdy='<tbody>'+sorted.map(function(it,i){
     var st=(it.status||'active').toLowerCase();
-    var isActive=st==='active';
-    var isPaused=st==='paused'||st==='pausado';
+    var isActive=st==='active', isPaused=st==='paused'||st==='pausado';
     var stBg=isActive?'rgba(0,166,80,.12)':isPaused?'rgba(255,185,0,.15)':'rgba(242,61,79,.12)';
     var stColor=isActive?'#00A650':isPaused?'#B07400':'#F23D4F';
     var stTxt=isActive?'Ativo':isPaused?'Pausado':'Inativo';
     var grpColor=showGroup?(GRUPO_COLOR[it.g||'']||'#3483FA'):'';
     var href=mlLink(it);
     var mlbId=it.mlb_id||('MLB'+(it.item_id||it.id||''));
-    var mlbDisplay=mlbId.replace('MLB','MLB ');
     var rowBg=i%2===0?'#fff':'#FAFAFA';
     var isPareto80=it._cumShare<=80.01;
 
@@ -1494,16 +1492,13 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       +'<div style="width:50px;height:5px;background:#E8EEFF;border-radius:3px;flex-shrink:0"><div style="width:'+barW.toFixed(1)+'%;height:5px;background:#3483FA;border-radius:3px"></div></div>'
       +'<span style="font-size:11px;font-weight:800;color:#3483FA">'+it._share.toFixed(1)+'%</span></div>';
 
-    // Share acumulado
     var cumC=it._cumShare<=50?'#00A650':it._cumShare<=80?'#B07A00':'#F23D4F';
     var cumHtml='<span style="font-size:12px;font-weight:800;color:'+cumC+'">'+it._cumShare.toFixed(1)+'%</span>';
 
-    // Preço DE e ATUAL
     var pd=it.preco_de||0, pa=it.preco_atual||it.asp||0;
     var pdHtml=pd>0?'<span style="color:#888;font-size:12px">R$ '+pd.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span>':'<span style="color:#ccc">\u2014</span>';
     var paHtml=pa>0?'<strong style="font-size:13px;color:#1A1A1A">R$ '+pa.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'</strong>':'<span style="color:#ccc">\u2014</span>';
 
-    // GMV MoM
     var gCur=it.gmv_mes_atual||0, gAnt=it.gmv_mes_ant||0;
     var momGMV=gAnt>0?((gCur-gAnt)/gAnt*100):null;
     function momBadge(v){
@@ -1516,30 +1511,54 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     var sCur=it.si_mes_atual||0, sAnt=it.si_mes_ant||0;
     var momSI=sAnt>0?((sCur-sAnt)/sAnt*100):null;
 
+    var imgHtml=mlImgTag(it);
+    var nm=(it.nm||it.title||'').substring(0,44)+((it.nm||it.title||'').length>44?'...':'');
+
     return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0" '
       +'onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
-      +(showGroup?'<td style="padding:10px 10px;text-align:center"><span style="font-size:10px;font-weight:800;padding:3px 8px;border-radius:10px;background:'+grpColor+'22;color:'+grpColor+'">'+(it.g||'')+'</span></td>':'')
-      +'<td style="padding:10px 10px;text-align:center"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:'+stBg+';color:'+stColor+'">'+stTxt+'</span></td>'
-      +'<td style="padding:10px 10px;font-size:11.5px;color:#555;white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis">'+(it.seller||'').substring(0,22)+'</td>'
-      +'<td style="padding:10px 10px;font-size:10.5px;color:#999;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis">'+(it.domain||'\u2014')+'</td>'
-      +'<td style="padding:10px 10px;text-align:right;font-size:14px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(it.gmv)+'</td>'
-      +'<td style="padding:10px 10px;text-align:center;white-space:nowrap"><a href="'+href+'" target="_blank" style="color:#3483FA;font-size:11.5px;font-weight:700;text-decoration:none">\uD83D\uDD17 '+mlbDisplay+'</a></td>'
+      // #
+      +'<td style="padding:10px 8px;text-align:center;font-size:11px;font-weight:'+(isPareto80?'800':'400')+';color:'+(isPareto80?'#3483FA':'#CCC')+'">'+(i+1)+'</td>'
+      // PRODUTO: imagem + título + MLB link
+      +'<td style="padding:8px 12px;min-width:240px">'
+        +'<div style="display:flex;align-items:center;gap:10px">'
+          +imgHtml
+          +'<div>'
+            +'<div style="font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.3;margin-bottom:2px">'+nm+'</div>'
+            +'<a href="'+href+'" target="_blank" style="color:#3483FA;font-size:10px;font-weight:600;text-decoration:none">\uD83D\uDD17 '+mlbId+'</a>'
+          +'</div>'
+        +'</div>'
+      +'</td>'
+      // GRUPO
+      +(showGroup?'<td style="padding:10px 8px;text-align:center"><span style="font-size:10px;font-weight:800;padding:3px 8px;border-radius:10px;background:'+grpColor+'22;color:'+grpColor+'">'+(it.g||'')+'</span></td>':'')
+      // GMV 30D
+      +'<td style="padding:10px 12px;text-align:right;font-size:14px;font-weight:900;color:#1A1A1A;white-space:nowrap">'+fmt(it.gmv)+'</td>'
+      // SHARE (com barra)
       +'<td style="padding:10px 12px">'+shareHtml+'</td>'
-      +'<td style="padding:10px 10px;text-align:right;font-size:13px;color:#444">'+Math.round(it.si||0).toLocaleString('pt-BR')+'</td>'
+      // SHARE ACUM.
       +'<td style="padding:10px 10px;text-align:center">'+cumHtml+'</td>'
-      +'<td style="padding:10px 10px;text-align:right">'+pdHtml+'</td>'
-      +'<td style="padding:10px 10px;text-align:right">'+paHtml+'</td>'
+      // UNITS
+      +'<td style="padding:10px 10px;text-align:right;font-size:13px;color:#444">'+Math.round(it.si||0).toLocaleString('pt-BR')+'</td>'
+      // GMV MOM
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momGMV)+'</td>'
+      // UNITS MOM
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momSI)+'</td>'
+      // PREÇO DE
+      +'<td style="padding:10px 10px;text-align:right">'+pdHtml+'</td>'
+      // PREÇO ATUAL
+      +'<td style="padding:10px 10px;text-align:right">'+paHtml+'</td>'
+      // STATUS
+      +'<td style="padding:10px 8px;text-align:center"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:'+stBg+';color:'+stColor+'">'+stTxt+'</span></td>'
+      // DOMÍNIO
+      +'<td style="padding:10px 10px;font-size:10.5px;color:#999;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis">'+(it.domain||'\u2014')+'</td>'
       +'</tr>';
   }).join('')+'</tbody>';
 
-  var paretoCount = sorted.filter(function(it){return it._cumShare<=80.01;}).length;
+  var paretoCount=sorted.filter(function(it){return it._cumShare<=80.01;}).length;
+  var ncols=showGroup?14:13;
   var sumRow='<tr style="background:#F8F8F8;border-top:2px solid #E0E0E0">'
-    +(showGroup?'<td></td>':'')
-    +'<td colspan="4" style="padding:10px 12px;font-size:11px;font-weight:700;color:#555">'
-    +sorted.length+' itens &nbsp;&middot;&nbsp; <span style="color:#00A650;font-weight:800">'+paretoCount+' formam 80% do GMV</span></td>'
-    +'<td colspan="8" style="padding:10px 12px;text-align:right;font-size:12px;font-weight:700;color:#1A1A1A">Total: '+fmt(tot)+'</td></tr>';
+    +'<td colspan="'+(showGroup?3:2)+'" style="padding:10px 12px;font-size:11px;font-weight:700;color:#555">'
+    +sorted.length+' itens &nbsp;\u00b7&nbsp; <span style="color:#00A650;font-weight:800">'+paretoCount+' formam 80% do GMV</span></td>'
+    +'<td colspan="'+(ncols-(showGroup?3:2))+'" style="padding:10px 12px;text-align:right;font-size:12px;font-weight:700;color:#1A1A1A">Total: '+fmt(tot)+'</td></tr>';
 
   var el=document.getElementById(containerId);
   if(!el)return;
