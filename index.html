@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:00</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:03</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:00
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:03
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2216,22 +2216,44 @@ function buildVGQuarters(){
   var activeQs=['Q1','Q2','Q3','Q4'].filter(function(q){return qStatus(q)!=='future';});
 
   // ÔöÇÔöÇ Aggregate quarter cards (row) ÔöÇÔöÇ
-  var qHtml='<div class="quarter-row">';
+  // Aggregate quarter cards — card design moderno
+  var qHtml='<div style="display:grid;grid-template-columns:repeat('+activeQs.length+',1fr);gap:14px;margin-bottom:20px">';
   activeQs.forEach(function(q){
     var status=qStatus(q);
     var qR=GRUPOS.reduce(function(s,g){return s+qtdReal(g,q);},0);
     var qMF=GRUPOS.reduce(function(s,g){return s+qtdMF(g,q);},0);
     var qMD=GRUPOS.reduce(function(s,g){return s+qtdMD(g,q);},0);
-    var pFin=pctNum(qR,qMF);
+    var pFin=pctNum(qR,qMF), pDes=pctNum(qR,qMD);
     var sLabel=status==='closed'?'Fechado':status==='partial'?'Em andamento':'Futuro';
-    var clr=status==='future'?'q-grey':status==='partial'?'q-blue':pFin>=100?'q-green':'q-red';
-    var fillCls=pFin>=100?'pf-green':pFin>=80?'pf-yellow':'pf-red';
-    qHtml+='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
-    qHtml+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div>';
-    qHtml+='<div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
-    if(qR>0){qHtml+='<div style="margin-bottom:5px;font-size:11px;">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div>'
-      +'<div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';}
-    qHtml+='</div>';
+    var sBg=status==='closed'?'rgba(0,166,80,.12)':status==='partial'?'rgba(52,131,250,.12)':'rgba(200,200,200,.15)';
+    var sColor=status==='closed'?'#00A650':status==='partial'?'#3483FA':'#AAA';
+    var mainColor=status==='future'?'#CCC':pFin>=100?'#00A650':pFin>=80?'#B07A00':'#F23D4F';
+    var fillPct=Math.min(pFin,100).toFixed(1);
+    var desPct=Math.min(pDes,100).toFixed(1);
+
+    qHtml+='<div style="background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-left:5px solid '+mainColor+'">'
+      // Title row
+      +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+        +'<span style="font-size:14px;font-weight:800;color:#1A1A1A;letter-spacing:-.2px">'+q+' 2026</span>'
+        +'<span style="background:'+sBg+';color:'+sColor+';font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px">'+sLabel+'</span>'
+      +'</div>'
+      // GMV value
+      +(qR>0?'<div style="font-size:22px;font-weight:900;color:'+mainColor+';letter-spacing:-.5px;margin-bottom:4px">'+fmt(qR)+'</div>':'<div style="font-size:22px;font-weight:900;color:#CCC;margin-bottom:4px">-</div>')
+      // Meta labels
+      +'<div style="font-size:11px;color:#888;margin-bottom:2px">Meta Fin: <strong style="color:#555">'+fmt(qMF)+'</strong></div>'
+      +'<div style="font-size:11px;color:#888;margin-bottom:10px">Meta Des: <strong style="color:#555">'+fmt(qMD)+'</strong></div>'
+      // Pills + bars
+      +(qR>0?
+        '<div style="display:flex;gap:6px;margin-bottom:8px">'
+          +'<span style="background:'+(pFin>=100?'rgba(0,166,80,.12)':pFin>=80?'rgba(255,185,0,.15)':'rgba(242,61,79,.12)')+';color:'+(pFin>=100?'#00A650':pFin>=80?'#B07A00':'#F23D4F')+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pFin.toFixed(1)+'% Fin</span>'
+          +'<span style="background:'+(pDes>=100?'rgba(0,166,80,.12)':pDes>=80?'rgba(255,185,0,.15)':'rgba(242,61,79,.12)')+';color:'+(pDes>=100?'#00A650':pDes>=80?'#B07A00':'#F23D4F')+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pDes.toFixed(1)+'% Des</span>'
+        +'</div>'
+        +'<div style="background:#F0F0F0;border-radius:4px;height:6px;overflow:hidden;margin-bottom:3px">'
+          +'<div style="width:'+fillPct+'%;height:6px;background:'+mainColor+';border-radius:4px;transition:width .3s"></div></div>'
+        +'<div style="font-size:10px;color:#AAA">Desafio: '+desPct+'%</div>'
+        :'<div style="font-size:11px;color:#CCC">Aguardando dados</div>'
+      )
+      +'</div>';
   });
   qHtml+='</div>';
 
@@ -2888,18 +2910,37 @@ function buildVGBPC(){
   // ÔöÇÔöÇ Tabela Detalhamento por Grupo (igual Larissa) ÔöÇÔöÇ
   var bth=document.getElementById('vg-bpc-table');
   if(bth){
-    var hdr='<thead><tr><th>Grupo</th>';
-    mks.forEach(function(mk){hdr+='<th>'+MESES_LABEL[MESES_KEYS.indexOf(mk)]+'<br>BPC %</th>';});
-    hdr+='<th>YTD BPC %</th><th>GMV BPC %</th></tr></thead>';
+    var th=function(t,al){return '<th style="padding:10px 12px;font-size:10px;font-weight:700;color:#fff;text-align:'+(al||'center')+';white-space:nowrap;background:#1A1A1A">'+t+'</th>';};
+    var hdr='<thead><tr>'+th('Grupo','left');
+    mks.forEach(function(mk){hdr+=th(MESES_LABEL[MESES_KEYS.indexOf(mk)]+'<br><span style="font-size:9px;font-weight:400">BPC %</span>');});
+    hdr+=th('YTD BPC %')+th('GMV BPC %')+'</tr></thead>';
+    
+    function bpcPill(p){
+      var bg=p>=80?'#D4F2E0':p>=65?'#FFF3C4':'#FDECEA';
+      var c=p>=80?'#00A650':p>=65?'#9A7000':'#F23D4F';
+      return '<span style="background:'+bg+';color:'+c+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block">'+p.toFixed(1)+'%</span>';
+    }
+    
     var body='<tbody>';
-    GRUPOS.forEach(function(g){
-      body+='<tr><td style="font-weight:700">'+g+'</td>';
-      mks.forEach(function(mk){var p=(REAL_PED_TOT[g]||{})[mk]||0,b=(REAL_PED_BB[g]||{})[mk]||0;body+='<td>'+(p>0?pillPct(pctNum(b,p)):'-')+'</td>';});
+    GRUPOS.forEach(function(g,gi){
+      var rowBg=gi%2===0?'#fff':'#FAFAFA';
+      body+='<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0">';
+      body+='<td style="padding:10px 14px;font-size:13px;font-weight:700;color:#1A1A1A;white-space:nowrap">'+g+'</td>';
+      mks.forEach(function(mk){
+        var p=(REAL_PED_TOT[g]||{})[mk]||0,b=(REAL_PED_BB[g]||{})[mk]||0;
+        var pct=p>0?pctNum(b,p):null;
+        body+='<td style="padding:10px 10px;text-align:center">'+(pct!==null?bpcPill(pct):'-')+'</td>';
+      });
       var tp=mks.reduce(function(s,k){return s+((REAL_PED_TOT[g]||{})[k]||0);},0);
       var tb=mks.reduce(function(s,k){return s+((REAL_PED_BB[g]||{})[k]||0);},0);
       var tg=ytdReal(g),tgb=mks.reduce(function(s,k){return s+((REAL_GMV_BB[g]||{})[k]||0);},0);
-      body+='<td>'+(tp>0?pillPct(pctNum(tb,tp)):'-')+'</td><td>'+(tg>0?pillPct(pctNum(tgb,tg)):'-')+'</td></tr>';
+      body+='<td style="padding:10px 10px;text-align:center">'+(tp>0?bpcPill(pctNum(tb,tp)):'-')+'</td>';
+      body+='<td style="padding:10px 10px;text-align:center">'+(tg>0?bpcPill(pctNum(tgb,tg)):'-')+'</td>';
+      body+='</tr>';
     });
+    bth.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)">'
+      +'<table style="width:100%;border-collapse:collapse;font-size:12px;background:#fff">'+hdr+body+'</tbody></table></div>';
+  });
     bth.innerHTML=hdr+body+'</tbody>';
   }
 
