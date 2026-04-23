@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 15:51</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 16:54</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 15:51
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 16:54
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2646,8 +2646,41 @@ function buildInvestimentos(){
   destroyChart('inv-bar');
   var canEl=document.getElementById('inv-bar-chart');
   if(canEl)chartInstances['inv-bar']=new Chart(canEl.getContext('2d'),{type:'bar',data:{labels:mks.map(function(k){return MESES_PT_CURTO[k];}),datasets:[{label:'ADS',data:mks.map(function(k){return GRUPOS.reduce(function(a,g){return a+((REAL_INV_ADS[g]||{})[k]||0);},0);}),backgroundColor:C_BLUE,borderRadius:2},{label:'Cupons',data:mks.map(function(k){return GRUPOS.reduce(function(a,g){return a+((REAL_CUPONS[g]||{})[k]||0);},0);}),backgroundColor:C_PURPLE,borderRadius:2}]},options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom'}}}});
-  var hdr='<thead><tr><th>Grupo</th><th>ADS</th><th>Cupons</th><th>Rebates</th><th>Total</th><th>% GMV</th></tr></thead>';
-  var bdy='<tbody>'+GRUPOS.map(function(g){var a=ytdInvAds(g),c=ytdCupons(g),r=PERIODO.reduce(function(s,k){return s+((REAL_REBATES[g]||{})[k]||0);},0),t=ytdInvTot(g),gv=ytdReal(g);return '<tr><td style="font-weight:700">'+g+'</td><td>'+fmt(a)+'</td><td>'+fmt(c)+'</td><td>'+fmt(r)+'</td><td>'+fmt(t)+'</td><td>'+pctNum(t,gv).toFixed(1)+'%</td></tr>';}).join('')+'</tbody>';
+  var th2=function(t,al){return '<th style="padding:12px 14px;font-size:11px;font-weight:800;color:#1A1A1A;text-align:'+(al||'right')+';background:#FFE600;white-space:nowrap">'+t+'</th>';};
+  var hdr=th2('Grupo','left')+th2('ADS')+th2('Cupons')+th2('Rebates')+th2('Total')+th2('% GMV')+'</tr></thead>';
+  hdr='<thead><tr>'+hdr;
+  var totalA=GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
+  var totalC=GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
+  var totalR=GRUPOS.reduce(function(s,g){return s+PERIODO.reduce(function(ss,k){return ss+((REAL_REBATES[g]||{})[k]||0);},0);},0);
+  var totalT=totalA+totalC+totalR;
+  var tGMVt=GRUPOS.reduce(function(s,g){return s+ytdReal(g);},0);
+  var bdy='<tbody>'+GRUPOS.map(function(g,gi){
+    var a=ytdInvAds(g),c=ytdCupons(g),r=PERIODO.reduce(function(s,k){return s+((REAL_REBATES[g]||{})[k]||0);},0);
+    var tot=a+c+r,gv=ytdReal(g),p=gv>0?tot/gv*100:0;
+    var grpColor=GRUPO_COLOR[g]||'#3483FA';
+    var rowBg=gi%2===0?'#fff':'#FAFAFA';
+    var pColor=p>=5?'#F23D4F':p>=3?'#B07A00':'#00A650';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0" onmouseover="this.style.background=\'#FFFBEA\'" onmouseout="this.style.background=\''+rowBg+'\'">'
+      +'<td style="padding:12px 14px;font-weight:700;font-size:13px;color:#1A1A1A">'
+        +'<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+grpColor+';margin-right:8px;vertical-align:middle"></span>'
+        +g
+      +'</td>'
+      +'<td style="padding:12px 14px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+(a>0?fmt(a):'<span style="color:#CCC">\u2014</span>')+'</td>'
+      +'<td style="padding:12px 14px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+(c>0?fmt(c):'<span style="color:#CCC">\u2014</span>')+'</td>'
+      +'<td style="padding:12px 14px;text-align:right;font-size:12px;color:#555;white-space:nowrap">'+(r>0?fmt(r):'<span style="color:#CCC">\u2014</span>')+'</td>'
+      +'<td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A;white-space:nowrap">'+fmt(tot)+'</td>'
+      +'<td style="padding:12px 14px;text-align:center"><span style="background:'+(p>=5?'rgba(242,61,79,.1)':p>=3?'rgba(255,185,0,.15)':'rgba(0,166,80,.1)')+';color:'+pColor+';font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px">'+p.toFixed(1)+'%</span></td>'
+      +'</tr>';
+  }).join('')
+  +'<tr style="background:#F0F0F0;border-top:2px solid #E0E0E0;font-weight:800">'
+    +'<td style="padding:12px 14px;font-size:13px;font-weight:800;color:#1A1A1A">TOTAL CARTEIRA</td>'
+    +'<td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A;white-space:nowrap">'+fmt(totalA)+'</td>'
+    +'<td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A;white-space:nowrap">'+fmt(totalC)+'</td>'
+    +'<td style="padding:12px 14px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A;white-space:nowrap">'+fmt(totalR)+'</td>'
+    +'<td style="padding:12px 14px;text-align:right;font-size:14px;font-weight:900;color:#3483FA;white-space:nowrap">'+fmt(totalT)+'</td>'
+    +'<td style="padding:12px 14px;text-align:center;font-size:12px;font-weight:800;color:#3483FA">'+(tGMVt>0?(totalT/tGMVt*100).toFixed(1)+'%':'-')+'</td>'
+  +'</tr>'
+  +'</tbody>';
   var tbl=document.getElementById('inv-table');
   if(tbl)tbl.innerHTML=hdr+bdy;
 }
