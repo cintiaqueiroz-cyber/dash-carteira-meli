@@ -179,7 +179,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 11:40</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 11:44</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -939,7 +939,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 11:40
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 11:44
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2939,6 +2939,9 @@ function buildVGBPC(){
           +'<td style="padding:12px 12px;text-align:center;font-size:12px;font-weight:700;color:'+diagColor+'">'+diag+'</td>'
           +'</tr>';
       }).join('')+'</tbody>';
+  offtbl.innerHTML='<table style="width:100%;border-collapse:collapse;font-size:12px">'+ob+'</table>';
+  }
+
 
   // ÔöÇÔöÇ Acioníveis BPC ÔöÇÔöÇ
   var ba=document.getElementById('vg-bpc-actions');
