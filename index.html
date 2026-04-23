@@ -167,6 +167,8 @@
   .sub-tab.active,.sub-tabs button.active{color:#3483FA;border-bottom-color:#3483FA;font-weight:700;}
 
 
+  .u-ring-sub{font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600;line-height:1;}
+
 
 .ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
 .ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
@@ -184,9 +186,10 @@
 <div id="header">
   <div class="logo">&#128722;</div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
+    <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 12:51</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:00</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -946,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 12:51
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:00
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2069,7 +2072,7 @@ function buildVGUnifiedCards(){
     var yoy=gmv25>0?((ytd/gmv25-1)*100):null;
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
     uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
-    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub">Meta Fin</div></div></div>';
+    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">META FIN.</div></div></div>';
     uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmt(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmt(ymd)+'</div></div></div>';
     uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
