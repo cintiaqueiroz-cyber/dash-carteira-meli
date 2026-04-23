@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:03</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:07</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:03
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:07
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2940,8 +2940,6 @@ function buildVGBPC(){
     });
     bth.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.07)">'
       +'<table style="width:100%;border-collapse:collapse;font-size:12px;background:#fff">'+hdr+body+'</tbody></table></div>';
-  });
-    bth.innerHTML=hdr+body+'</tbody>';
   }
 
   // ÔöÇÔöÇ Top Ofensores ÔöÇÔöÇ
@@ -2957,7 +2955,6 @@ function buildVGBPC(){
       +'<th style="padding:12px 10px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">% s/BB</th>'
       +'<th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">ASP</th>'
       +'<th style="padding:12px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Sinais Comerciais</th>'
-      +'<th style="padding:12px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Pr\u00e9-acordo</th>'
       +'<th style="padding:12px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Diagn\u00f3stico</th>'
       +'</tr></thead>'
       +'<tbody>'+offs.slice(0,30).map(function(it,idx){
@@ -2986,8 +2983,7 @@ function buildVGBPC(){
           +'<td style="padding:12px 10px;text-align:center"><span style="'+pctCls+';font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px">'+pctSB.toFixed(0)+'%</span></td>'
           +'<td style="padding:12px 10px;text-align:right;font-size:12px;color:#555;white-space:nowrap">R$ '+Math.round(it.asp||0).toLocaleString('pt-BR')+'</td>'
           +'<td style="padding:12px 12px;text-align:center;white-space:nowrap">'+sinais+'</td>'
-          +'<td style="padding:12px 12px;text-align:center;font-size:11px;color:#AAA">N/A</td>'
-          +'<td style="padding:12px 12px;text-align:center;font-size:12px;font-weight:700;color:'+diagColor+'">'+diag+'</td>'
+                    +'<td style="padding:12px 12px;text-align:center;font-size:12px;font-weight:700;color:'+diagColor+'">'+diag+'</td>'
           +'</tr>';
       }).join('')+'</tbody>';
   offtbl.innerHTML='<table style="width:100%;border-collapse:collapse;font-size:12px">'+ob+'</table>';
