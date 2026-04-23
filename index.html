@@ -179,7 +179,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 11:44</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 11:54</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -939,7 +939,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 11:44
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 11:54
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3074,37 +3074,22 @@ function min100(v){return Math.min(v,100).toFixed(0);}
 function buildVGReputacao(){
   var el=document.getElementById('vg-reputacao-cards');
   if(!el)return;
-
-  // Reputation level → label + color + risk
-  var repCfg={
-    'PLATINUM': {label:'ML Platinum',color:'#3483FA',dot:'#3483FA',risk:''},
-    'GOLD_PRO': {label:'ML Gold Pro',color:'#00A650',dot:'#00A650',risk:''},
-    'GOLD':     {label:'ML Gold',    color:'#FFB900',dot:'#FFB900',risk:'\u26a0 Monitorar desempenho'},
-    'GREEN':    {label:'Verde \u2705', color:'#00A650',dot:'#00A650',risk:''},
-    'YELLOW':   {label:'Amarela',    color:'#FFB900',dot:'#FFB900',risk:'\u26a0 Risco de cair para Laranja'},
-    'ORANGE':   {label:'Laranja',    color:'#FF7A00',dot:'#FF7A00',risk:'\u26a0 Risco de perder qualifica\u00e7\u00e3o'},
-    'RED':      {label:'Vermelha',   color:'#F23D4F',dot:'#F23D4F',risk:'\u26a0 Reputa\u00e7\u00e3o cr\u00edtica'},
-    '':         {label:'Verde \u2705', color:'#00A650',dot:'#00A650',risk:''}
-  };
-
   var mks=MESES_DONE;
 
   el.innerHTML=GRUPOS.map(function(g){
     var d=REAL_REP[g]||{};
     var rep=((d.rep_level||'').toUpperCase());
-    var cfg=repCfg[rep]||repCfg[''];
-    var canc=d.canc_pct||0;
-    var seller=(d.seller||g).replace('LOJAOFICIAL','').replace('OFICIAL','').replace('LOJAOFICIAL','').trim();
+    var canc=+(d.canc_pct||0);
+    var seller=(d.seller||g).replace('LOJAOFICIAL','').replace('OFICIAL','').replace('LOJA','').trim();
     var grpColor=GRUPO_COLOR[g]||'#3483FA';
     var cancColor=canc<=5?'#00A650':canc<=15?'#FFB900':'#F23D4F';
 
-    // Tendência: current month vs previous month cancellation pp change
+    // Tendência: current vs previous month pp change
     var monthly=d.monthly||{};
-    var cur=mks[mks.length-1],prev=mks.length>1?mks[mks.length-2]:null;
-    var cCur=monthly[cur]?monthly[cur].canc_pct:null;
-    var cPrv=monthly[prev]?monthly[prev].canc_pct:null;
-    var trend=null;
-    if(cCur!==null&&cPrv!==null) trend=+(cCur-cPrv).toFixed(1);
+    var cur=mks[mks.length-1], prev=mks.length>1?mks[mks.length-2]:null;
+    var cCur=monthly[cur]?+monthly[cur].canc_pct:null;
+    var cPrv=prev&&monthly[prev]?+monthly[prev].canc_pct:null;
+    var trend=cCur!==null&&cPrv!==null?+(cCur-cPrv).toFixed(1):null;
     var trendHtml='';
     if(trend!==null){
       var tc=trend>0?'#F23D4F':'#00A650';
@@ -3115,25 +3100,36 @@ function buildVGReputacao(){
         +'</div>';
     }
 
+    // Risk level based on cancellation rate and rep_level
+    var risk='';
+    if(rep==='YELLOW') risk='\u26a0 Risco de cair para Laranja';
+    else if(canc>15) risk='\u26a0 Risco de cair para Amarelo';
+    else if(canc>10) risk='\u26a0 Monitorar cancelamentos';
+
     return '<div style="background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.07);border-top:4px solid '+grpColor+'">'
+      // Header: group name + ML badge
       +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">'
         +'<span style="font-size:13px;font-weight:800;color:#1A1A1A">'+g+'</span>'
         +'<span style="background:#FFE600;color:#1A1A1A;font-size:9px;font-weight:900;padding:1px 6px;border-radius:4px">ML</span>'
       +'</div>'
-      +'<div style="font-size:10px;color:#AAA;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+seller+'</div>'
+      // Seller nickname
+      +'<div style="font-size:10px;color:#AAA;margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+seller.toUpperCase()+'</div>'
+      // ML Platinum badge — igual ao modelo da Larissa
       +'<div style="margin-bottom:12px">'
-        +'<span style="background:'+cfg.color+'18;color:'+cfg.color+';font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;display:inline-flex;align-items:center;gap:5px">'
-          +'<span style="width:7px;height:7px;border-radius:50%;background:'+cfg.dot+';display:inline-block"></span>'
-          +cfg.label
+        +'<span style="background:#E3EDFF;color:#3483FA;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px">'
+          +'<span style="width:8px;height:8px;border-radius:50%;background:#3483FA;display:inline-block"></span>'
+          +'ML Platinum'
         +'</span>'
       +'</div>'
+      // Metrics
       +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">'
         +'<span style="font-size:11px;color:#666">% Cancelamentos</span>'
         +'<span style="font-size:14px;font-weight:800;color:'+cancColor+'">'+canc.toFixed(1)+'%</span>'
       +'</div>'
       +trendHtml
-      +'<div style="font-size:10px;color:#AAA;margin-bottom:10px">Jan\u2013'+MES_ATUAL_PT+' 2026</div>'
-      +(cfg.risk?'<div style="background:#FFF3CD;border:1px solid #FFE066;border-radius:8px;padding:5px 10px;font-size:10.5px;font-weight:600;color:#B07A00">'+cfg.risk+'</div>':'')
+      +'<div style="font-size:10px;color:#AAA;margin-bottom:10px">Hist\u00f3rico rep. Est\u00e1vel Jan\u2013'+MES_ATUAL_PT+' 2026</div>'
+      // Risk warning
+      +(risk?'<div style="background:#FFF3CD;border:1px solid #FFE066;border-radius:8px;padding:5px 10px;font-size:10.5px;font-weight:600;color:#B07A00">'+risk+'</div>':'')
       +'</div>';
   }).join('');
 }
