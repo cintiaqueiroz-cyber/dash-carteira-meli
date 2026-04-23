@@ -189,7 +189,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:07</span>
+    <span class="update-badge">&#10003; Atualizado 23/04/2026 13:14</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -245,6 +245,17 @@
       <div class="kpi-row" id="vg-mes-kpi" style="margin-bottom:16px;"></div>
       <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:280px;"></canvas></div>
     </div>
+    <div class="section">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+        <span style="font-size:20px">&#128202;</span>
+        <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">An&#225;lise Consolidada de Sellers</span>
+      </div>
+      <div class="section" style="margin-bottom:16px">
+      <div class="section-title">&#127942; Reputa&#231;&#227;o por Grupo</div>
+      <div id="vg-reputacao-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:4px"></div>
+    </div>
+    <div id="sellers-consolidated-wrap"></div>
+    </div>
     <div class="section"><div class="section-title">Performance por Grupo &mdash; Atingimento &bull; Varia&#231;&#245;es &bull; Meta</div><div id="vg-unified-cards" class="unified-cards-grid"></div></div>
     <div class="section">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
@@ -273,17 +284,6 @@
         <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">Plano de A&#231;&#227;o Priorit&#225;rio</span>
       </div>
       <div id="vg-corp-actions"></div>
-    </div>
-    <div class="section">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
-        <span style="font-size:20px">&#128202;</span>
-        <span style="font-size:15px;font-weight:800;color:#222;text-transform:uppercase;letter-spacing:.5px">An&#225;lise Consolidada de Sellers</span>
-      </div>
-      <div class="section" style="margin-bottom:16px">
-      <div class="section-title">&#127942; Reputa&#231;&#227;o por Grupo</div>
-      <div id="vg-reputacao-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:4px"></div>
-    </div>
-    <div id="sellers-consolidated-wrap"></div>
     </div>
   </div>
 
@@ -949,7 +949,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:07
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 23/30 dias &nbsp;&middot;&nbsp; 23/04/2026 13:14
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
