@@ -177,6 +177,8 @@
 .ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.04);}
 .ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.04);}
 .ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.04);}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
@@ -184,12 +186,12 @@
 <body>
 <div id="loadingOverlay">Carregando... ⏳</div>
 <div id="header">
-  <div class="logo">&#128722;</div>
+  <div class="logo"><img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.5/mercadolibre/logo__large_plus@2x.png" alt="Mercado Livre" onerror="this.style.display='none';this.parentElement.textContent='ML'"/></div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 24/04/2026 11:13</span>
+    <span class="update-badge">&#10003; Atualizado 24/04/2026 11:35</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -949,7 +951,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 11:13
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 11:35
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
