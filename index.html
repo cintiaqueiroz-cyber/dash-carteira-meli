@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 24/04/2026 15:18</span>
+    <span class="update-badge">&#10003; Atualizado 24/04/2026 15:19</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -959,7 +959,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 15:18
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 15:19
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1964,7 +1964,7 @@ function buildYoY(g,px){
     var momHtml=mom===null?'<span style="color:#CCC">—</span>'
       :'<span style="background:'+(mom>=0?'rgba(0,166,80,.12)':'rgba(242,61,79,.1)')+';color:'+(mom>=0?'#00A650':'#F23D4F')+';font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px">'+(mom>=0?'▲':'▼')+' '+(mom>=0?'+':'')+mom.toFixed(1)+'%</span>';
     var rowBg=i%2===0?'#fff':'#FAFAFA';
-    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0"><td style="padding:10px 14px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td><td style="padding:10px 12px;text-align:right;color:#555">'+fmt(v26)+'</td><td style="padding:10px 12px;text-align:right;color:#888">'+fmt(v25)+'</td><td style="padding:10px 12px;text-align:center"><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td></tr>';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0"><td style="padding:10px 14px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td><td style="padding:10px 12px;text-align:right;color:#555">'+fmt(v26)+'</td><td style="padding:10px 12px;text-align:right;color:#888">'+fmt(v25)+'</td><td style="padding:10px 12px;text-align:center"><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td><td style="padding:10px 12px;text-align:center">'+momHtml+'</td></tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-yoy-tbl');
   if(tbl)tbl.innerHTML=hdr+bdy;
