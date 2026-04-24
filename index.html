@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 24/04/2026 12:23</span>
+    <span class="update-badge">&#10003; Atualizado 24/04/2026 14:05</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -959,7 +959,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 12:23
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 14:05
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1190,6 +1190,8 @@ function togglePresentation(){
   if(btn)btn.textContent=document.body.classList.contains('presentation-mode')?'🚪 Sair':'📊 Apresentar';
 }
 function rebuildAll(){
+  // save which seller tabs were already open before reset
+  var prevBuilt=Object.keys(_builtSubTab).filter(function(k){return _builtSubTab[k];});
   Object.keys(chartInstances).forEach(function(k){destroyChart(k);});
   _builtSubTab={};
   buildVisaoGeral();
@@ -1197,7 +1199,11 @@ function rebuildAll(){
   buildVGMesControl();
   GRUPOS_CFG.forEach(function(gc){
     var px=gc.prefix,g=gc.name;
-    if(_builtSubTab[px+'-geral']){buildGrupo(g,px);buildMesControl(g,px);}
+    if(prevBuilt.indexOf(px+'-geral')>=0){
+      _builtSubTab[px+'-geral']=true;
+      buildGrupo(g,px);
+      buildMesControl(g,px);
+    }
   });
 }
 
