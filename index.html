@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 24/04/2026 14:05</span>
+    <span class="update-badge">&#10003; Atualizado 24/04/2026 14:09</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -959,7 +959,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 14:05
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/04/2026 14:09
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1027,6 +1027,8 @@ var PERIODO=MESES_DONE.slice();
 
 var chartInstances={};
 var _builtSubTab={};
+var _activeTab='visao-geral';
+var _activeSubTabs={};
 
 function fmt(v){
   if(v===null||v===undefined)return '-';
@@ -1109,6 +1111,7 @@ function showTab(name,el){
   document.querySelectorAll('#sidebar a').forEach(function(a){a.classList.remove('active');});
   document.getElementById('tab-'+name).classList.add('active');
   if(el)el.classList.add('active');
+  _activeTab=name;
   if(name!=='visao-geral'){
     var g=PREFIX_TO_GRUPO[name];
     if(g&&!_builtSubTab[name+'-geral']){
@@ -1125,6 +1128,7 @@ function showSubTab(prefix,name,btnEl){
   var sec=document.getElementById(prefix+'-section-'+name);
   if(sec)sec.classList.add('active');
   if(btnEl)btnEl.classList.add('active');
+  _activeSubTabs[prefix]=name;
   var key=prefix+'-'+name;
   if(!_builtSubTab[key]){
     _builtSubTab[key]=true;
@@ -1190,21 +1194,38 @@ function togglePresentation(){
   if(btn)btn.textContent=document.body.classList.contains('presentation-mode')?'🚪 Sair':'📊 Apresentar';
 }
 function rebuildAll(){
-  // save which seller tabs were already open before reset
-  var prevBuilt=Object.keys(_builtSubTab).filter(function(k){return _builtSubTab[k];});
+  var curTab=_activeTab||'visao-geral';
+  var curSubTabs=JSON.parse(JSON.stringify(_activeSubTabs||{}));
   Object.keys(chartInstances).forEach(function(k){destroyChart(k);});
   _builtSubTab={};
+  // Always rebuild visao-geral data
   buildVisaoGeral();
   buildVGQuarters();
   buildVGMesControl();
-  GRUPOS_CFG.forEach(function(gc){
-    var px=gc.prefix,g=gc.name;
-    if(prevBuilt.indexOf(px+'-geral')>=0){
-      _builtSubTab[px+'-geral']=true;
-      buildGrupo(g,px);
-      buildMesControl(g,px);
+  setTimeout(buildVGAtingimento,150);
+  // If a seller tab is active, rebuild it fully
+  if(curTab!=='visao-geral'){
+    var g=PREFIX_TO_GRUPO[curTab];
+    if(g){
+      _builtSubTab[curTab+'-geral']=true;
+      buildGrupo(g,curTab);
+      buildMesControl(g,curTab);
+      // Rebuild open sub-tabs
+      var openSub=curSubTabs[curTab];
+      if(openSub&&openSub!=='geral'){
+        var subKey=curTab+'-'+openSub;
+        _builtSubTab[subKey]=true;
+        if(openSub==='full')buildSellerFull(g,curTab);
+        else if(openSub==='ads')buildSellerADS(g,curTab);
+        else if(openSub==='inv')buildSellerInv(g,curTab);
+        else if(openSub==='cat')buildSellerCat(g,curTab);
+        else if(openSub==='bpc')buildSellerBPC(g,curTab);
+        else if(openSub==='cat2')buildCategorias(g,curTab);
+        else if(openSub==='yoy')buildYoY(g,curTab);
+        else if(openSub==='comp')buildComp(g,curTab);
+      }
     }
-  });
+  }
 }
 
 // Retorna itens do grupo com GMV/SI recalculados pelo PERIODO atual
