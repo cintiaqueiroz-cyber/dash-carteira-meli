@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 27/04/2026 08:28</span>
+    <span class="update-badge">&#10003; Atualizado 27/04/2026 09:01</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -959,7 +959,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 27/30 dias &nbsp;&middot;&nbsp; 27/04/2026 08:28
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 27/30 dias &nbsp;&middot;&nbsp; 27/04/2026 09:01
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3323,7 +3323,7 @@ function buildCombo(){
   var groupPSJ=GRUPOS.map(function(g){var p=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0),c=mks.reduce(function(s,k){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);return p+c>0?p/(p+c)*100:0;});
   destroyChart('combo-mix');
   var c1=document.getElementById('combo-mix-chart');
-  if(c1)chartInstances['combo-mix']=new Chart(c1.getContext('2d'),{type:'bar',data:{labels:GRUPOS.map(function(g){return g.length>14?g.substring(0,14)+'...':g;}),datasets:[{label:'PSJ',data:groupPSJ.map(function(v){return +v.toFixed(1);}),backgroundColor:'#00A650cc',stack:'s',borderRadius:4},{label:'PCJ',data:groupPSJ.map(function(v){return +(100-v).toFixed(1);}),backgroundColor:'#F23D4F66',stack:'s'}]},options:{responsive:true,animation:false,indexAxis:'y',scales:{x:{stacked:true,max:100,ticks:{callback:function(v){return v+'%';}}},y:{stacked:true}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.raw+'%';}}}}}});
+  if(c1)chartInstances['combo-mix']=new Chart(c1.getContext('2d'),{type:'bar',data:{labels:GRUPOS,datasets:[{label:'PSJ',data:groupPSJ.map(function(v){return +v.toFixed(1);}),backgroundColor:'#00A650cc',stack:'s',borderRadius:4},{label:'PCJ',data:groupPSJ.map(function(v){return +(100-v).toFixed(1);}),backgroundColor:'#F23D4F66',stack:'s'}]},options:{responsive:true,animation:false,indexAxis:'y',layout:{padding:{left:0}},scales:{x:{stacked:true,max:100,ticks:{callback:function(v){return v+'%';},font:{size:10}}},y:{stacked:true,ticks:{font:{size:9},mirror:false},afterFit:function(axis){axis.width=130;}}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.raw+'%';}}}}}});
   var trend=mks.map(function(k){var p=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0),c=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);return p+c>0?+(p/(p+c)*100).toFixed(1):null;});
   destroyChart('combo-trend');
   var c2=document.getElementById('combo-trend-chart');
