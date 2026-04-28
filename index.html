@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 28/04/2026 10:12</span>
+    <span class="update-badge">&#10003; Atualizado 28/04/2026 10:24</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -979,7 +979,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 10:12
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 10:24
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3248,21 +3248,23 @@ function buildGMVHoje(){
   // Identifica o ultimo dia completo disponivel
   var datas = Object.keys(HOJE_DATA_TOTAL).sort();
   // Remove hoje (dia atual pode ser parcial)
-  var hoje = new Date(); var todayStr = hoje.toISOString().slice(0,10);
-  datas = datas.filter(function(d){return d < todayStr;});
+  var hojeDate = new Date(); var todayStr = hojeDate.toISOString().slice(0,10);
   if(!datas.length){
     var el=document.getElementById('vg-hoje-header');
     if(el)el.innerHTML='<div style="padding:24px;text-align:center;color:#888">Dados ainda nao disponiveis</div>';
     return;
   }
-  var dHoje = datas[datas.length-1];
-  var dOntem= datas.length>1?datas[datas.length-2]:'';
-  // D-7: buscar data 7 dias antes de dHoje
-  var d7 = new Date(dHoje); d7.setDate(d7.getDate()-7);
-  var d7str = d7.toISOString().slice(0,10);
-  // Pode nao existir exatamente - pega o mais proximo
-  var d7Disponivel = datas.filter(function(d){return d<=d7str;});
-  var dD7 = d7Disponivel.length?d7Disponivel[d7Disponivel.length-1]:'';
+  // Prefere hoje (parcial) se disponivel; senao usa ultimo dia completo
+  var eHojeParcial = datas.indexOf(todayStr) >= 0;
+  var dHoje  = eHojeParcial ? todayStr : datas[datas.length-1];
+  // Ontem = dia anterior ao dHoje
+  var datasAnteriores = datas.filter(function(d){return d < dHoje;});
+  var dOntem = datasAnteriores.length ? datasAnteriores[datasAnteriores.length-1] : '';
+  // D-7: 7 dias antes de dHoje
+  var d7base = new Date(dHoje); d7base.setDate(d7base.getDate()-7);
+  var d7str  = d7base.toISOString().slice(0,10);
+  var d7Disp = datas.filter(function(d){return d<=d7str;});
+  var dD7    = d7Disp.length ? d7Disp[d7Disp.length-1] : '';
 
   function getData(obj, dt){ return (obj&&dt&&obj[dt])||{gmv:0,si:0,ped:0}; }
   function varPct(cur,ref){ if(!ref||!ref.gmv||!cur||!cur.gmv)return null; return (cur.gmv-ref.gmv)/ref.gmv*100; }
@@ -3296,7 +3298,7 @@ function buildGMVHoje(){
     +(pvsD7!==null?'<div style="background:rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;">'
       +'vs D-7 '+(pvsD7>=0?'▲':'▼')+' <span style="color:'+(pvsD7>=0?'#7EF09F':'#FF8A8A')+'">'+(pvsD7>=0?'+':'')+pvsD7.toFixed(1)+'%</span></div>':'')
     +'</div>'
-    +'<div style="position:absolute;top:16px;right:20px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;">Dados de '+dHoje+'</div>'
+    +'<div style="position:absolute;top:16px;right:20px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;">'+(eHojeParcial?'&#9203; Parcial &mdash; ':'')+'Dados de '+dHoje+'</div>'
     +'</div>';
 
   // Tabela por grupo
