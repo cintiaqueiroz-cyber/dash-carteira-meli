@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 28/04/2026 11:26</span>
+    <span class="update-badge">&#10003; Atualizado 28/04/2026 12:06</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -979,7 +979,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 11:26
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 12:06
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1052,6 +1052,12 @@ var chartInstances={};
 var _builtSubTab={};
 var _activeTab='visao-geral';
 var _activeSubTabs={};
+
+// ChartDataLabels se registra globalmente — desabilitar por padrao
+// e ativar apenas nos graficos que precisam (buildVGAtingimento, buildMonthlyProgress)
+if(typeof ChartDataLabels!=='undefined'){
+  Chart.defaults.plugins.datalabels={display:false};
+}
 
 function fmt(v){
   if(v===null||v===undefined)return '-';
