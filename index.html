@@ -192,7 +192,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 28/04/2026 09:17</span>
+    <span class="update-badge">&#10003; Atualizado 28/04/2026 09:37</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -979,7 +979,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 09:17
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 09:37
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1056,7 +1056,7 @@ var _activeSubTabs={};
 function fmt(v){
   if(v===null||v===undefined)return '-';
   var av=Math.abs(v),s=v<0?'-':'';
-  if(av>=1e6)return s+'R$ '+(av/1e6).toFixed(2).replace('.',',')+' M';
+  if(av>=1e6)return s+'R$ '+(av/1e6).toFixed(0).replace('.',',')+' M';
   if(av>=1e3)return s+'R$ '+(av/1e3).toFixed(0)+' K';
   return s+'R$ '+av.toFixed(0);
 }
