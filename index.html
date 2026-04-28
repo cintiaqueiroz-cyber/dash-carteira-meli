@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 28/04/2026 16:04 -->
+<!-- Build: 28/04/2026 16:27 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -196,7 +196,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 28/04/2026 16:04</span>
+    <span class="update-badge">&#10003; Atualizado 28/04/2026 16:27</span>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
   </div>
@@ -983,7 +983,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 16:04
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 16:27
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1169,8 +1169,8 @@ function showSubTab(prefix,name,btnEl){
     if(name==='full'){if(g)buildSellerFull(g,prefix);else buildLogistica();}
     else if(name==='ads'){if(g)buildSellerADS(g,prefix);else buildADS();}
     else if(name==='inv'){if(g)buildSellerInv(g,prefix);else buildInvestimentos();}
-    else if(name==='cat'){if(g)buildSellerCat(g,prefix);else buildVGCat();}
-    else if(name==='bpc'){if(g)buildSellerBPC(g,prefix);else buildVGBPC();}
+    else if(name==='cat'){if(g)buildSellerCat(g,prefix);else{_builtSubTab[key]=false;buildVGCat();}}
+    else if(name==='bpc'){if(g)buildSellerBPC(g,prefix);else{_builtSubTab[key]=false;buildVGBPC();}}
     else if(name==='vis'){buildVisitasConversao();}
     else if(name==='cat2'){if(g)buildCategorias(g,prefix);}
     else if(name==='yoy'){if(g)buildYoY(g,prefix);}
@@ -3053,6 +3053,7 @@ function buildExpensiveCheaper(containerId){
 
 function buildVGBPC(){
   var mks=MESES_DONE;
+  console.log('[BPC] mks=',mks,'REAL_PED_TOT=',REAL_PED_TOT?Object.keys(REAL_PED_TOT):null,'sample=',REAL_PED_TOT&&REAL_PED_TOT['MULTILOJA']);
 
   // ÔöÇÔöÇ 4 KPI cards — igual Larissa ÔöÇÔöÇ
   var tPt=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+((REAL_PED_TOT[g]||{})[k]||0);},0);},0);
