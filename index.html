@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 28/04/2026 18:02 -->
+<!-- Build: 28/04/2026 18:28 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -196,7 +196,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 28/04/2026 18:02</span>
+    <span class="update-badge">&#10003; Atualizado 28/04/2026 18:28</span>
     <button onclick="this.innerHTML='&#8635; Atualizando...';this.style.opacity='.6';setTimeout(function(){location.reload(true);},300)" style="background:#1A1B4B;color:#FFE600;border:none;border-radius:6px;padding:4px 14px;font-size:11px;font-weight:800;cursor:pointer;margin-left:8px;display:flex;align-items:center;gap:5px">&#8635; Atualizar</button>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
@@ -984,7 +984,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 18:02
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Abril parcial: 28/30 dias &nbsp;&middot;&nbsp; 28/04/2026 18:28
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1167,7 +1167,7 @@ function showSubTab(prefix,name,btnEl){
   if(!_builtSubTab[key]){
     _builtSubTab[key]=true;
     var g=PREFIX_TO_GRUPO[prefix];
-    if(name==='full'){if(g)buildSellerFull(g,prefix);else buildLogistica();}
+    if(name==='full'){if(g)buildSellerFull(g,prefix);else{_builtSubTab[key]=false;setTimeout(buildLogistica,50);}}
     else if(name==='ads'){if(g)buildSellerADS(g,prefix);else buildADS();}
     else if(name==='inv'){if(g)buildSellerInv(g,prefix);else buildInvestimentos();}
     else if(name==='cat'){if(g)buildSellerCat(g,prefix);else{_builtSubTab[key]=false;buildVGCat();}}
@@ -2603,12 +2603,13 @@ function buildLogistica(){
     var ssByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);});
     var ffByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);});
 
-    var datasets=[
-      {label:'Seller Direto',  data:sdByMonth, backgroundColor:'#00A650', borderRadius:0},
-      {label:'Cross Docking',  data:xdByMonth, backgroundColor:'#3483FA', borderRadius:0},
-      {label:'Self Service',   data:ssByMonth, backgroundColor:'#FFE600', borderRadius:0}
-    ];
-    if(ffTot>0)datasets.push({label:'Fulfillment',data:ffByMonth,backgroundColor:'#006E35',borderRadius:0});
+    var datasets=[];
+    if(ffTot>0)datasets.push({label:'Fulfillment (FBM)',data:ffByMonth,backgroundColor:'#006E35',borderRadius:0,order:1});
+    if(xdTot>0)datasets.push({label:'Cross Docking (XD)',data:xdByMonth,backgroundColor:'#3483FA',borderRadius:0,order:2});
+    var hasSS=ssByMonth.some(function(v){return v>0;});
+    if(hasSS)datasets.push({label:'ME1 (Entrega Padrão)',data:ssByMonth,backgroundColor:'#00A650',borderRadius:0,order:3});
+    var hasSD=sdByMonth.some(function(v){return v>0;});
+    if(hasSD)datasets.push({label:'Seller Direto',data:sdByMonth,backgroundColor:'#FFB900',borderRadius:0,order:4});
 
     chartInstances['log-bar']=new Chart(canEl.getContext('2d'),{type:'bar',
       data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:datasets},
