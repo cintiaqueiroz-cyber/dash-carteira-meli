@@ -1055,7 +1055,7 @@ var GRUPO_COLOR={"MULTILOJA": "#3483FA", "ADONAI": "#FF7A00", "BALAQUI": "#9B59B
 var DIA_MES=4;
 var DIAS_MES_TOTAL=30;
 var FAT_PROJ=7.5;
-var MES_ATUAL_PT='Abril';
+var MES_ATUAL_PT=(function(){var _m=MESES_DONE[MESES_DONE.length-1];var _mp={jan:'Janeiro',feb:'Fevereiro',mar:'Março',apr:'Abril',may:'Maio',jun:'Junho',jul:'Julho',aug:'Agosto',sep:'Setembro',oct:'Outubro',nov:'Novembro',dec:'Dezembro'};return _mp[_m]||'Maio';})();
 var MESES_KEYS=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
 var MESES_LABEL=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 var MESES_PT_CURTO={jan:'Jan',feb:'Fev',mar:'Mar',apr:'Abr',may:'Mai',jun:'Jun',jul:'Jul',aug:'Ago',sep:'Set',oct:'Out',nov:'Nov',dec:'Dez'};
