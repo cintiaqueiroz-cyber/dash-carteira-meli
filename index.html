@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 05/05/2026 12:35 -->
+<!-- Build: 05/05/2026 13:41 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -196,7 +196,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 05/05/2026 12:35</span>
+    <span class="update-badge">&#10003; Atualizado 05/05/2026 13:41</span>
     <button onclick="this.innerHTML='&#8635; Atualizando...';this.style.opacity='.6';setTimeout(function(){location.reload(true);},300)" style="background:#1A1B4B;color:#FFE600;border:none;border-radius:6px;padding:4px 14px;font-size:11px;font-weight:800;cursor:pointer;margin-left:8px;display:flex;align-items:center;gap:5px">&#8635; Atualizar</button>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB &mdash; NMV</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
@@ -1015,7 +1015,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 5/30 dias &nbsp;&middot;&nbsp; 05/05/2026 12:35
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 5/30 dias &nbsp;&middot;&nbsp; 05/05/2026 13:41
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3489,30 +3489,14 @@ function buildPreNeg(){
   }
 }
 
-// Auto-refresh da aba Hoje a cada 60 segundos (só quando Hoje está ativa)
-(function(){
-  var _hojeRefreshTimer=null;
-  window._startHojeRefresh=function(){
-    if(_hojeRefreshTimer)return;
-    _hojeRefreshTimer=setInterval(function(){
-      if(window._activeTab==='hoje')location.reload();
-    },60000);
-  };
-  window._stopHojeRefresh=function(){
-    if(_hojeRefreshTimer){clearInterval(_hojeRefreshTimer);_hojeRefreshTimer=null;}
-  };
-  window._activeTab='geral';
-})();
-
 function buildGMVHoje(){
-  window._startHojeRefresh();
   // Identifica o ultimo dia completo disponivel
   var datas = Object.keys(HOJE_DATA_TOTAL).sort();
   // Remove hoje (dia atual pode ser parcial)
   var hojeDate = new Date(); var todayStr = hojeDate.toISOString().slice(0,10);
   if(!datas.length){
     var el=document.getElementById('vg-hoje-header');
-    if(el)el.innerHTML='<div style="padding:24px;text-align:center;color:#888">Dados ainda nao disponiveis — atualizando em breve...</div>';
+    if(el)el.innerHTML='<div style="padding:24px;text-align:center;color:#888">Dados ainda nao disponiveis</div>';
     return;
   }
   // Prefere hoje (parcial) se disponivel; senao usa ultimo dia completo
