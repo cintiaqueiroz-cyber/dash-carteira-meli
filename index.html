@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 06/05/2026 14:09 -->
+<!-- Build: 06/05/2026 14:13 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -197,7 +197,7 @@
     <span style="font-size:11px;font-weight:500;color:rgba(0,0,0,.6);margin-left:14px;padding:3px 10px;background:rgba(0,0,0,.08);border-radius:20px;white-space:nowrap">Especialista em Sof&#225;s &nbsp;&middot;&nbsp; Supervisora: Aline</span>
   <div class="subtitle">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;margin-right:8px;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 06/05/2026 14:09</span>
+    <span class="update-badge">&#10003; Atualizado 06/05/2026 14:13</span>
     <button onclick="this.innerHTML='&#8635; Atualizando...';this.style.opacity='.6';setTimeout(function(){location.reload(true);},300)" style="background:#1A1B4B;color:#FFE600;border:none;border-radius:6px;padding:4px 14px;font-size:11px;font-weight:800;cursor:pointer;margin-left:8px;display:flex;align-items:center;gap:5px">&#8635; Atualizar</button>
     <span class="badge">Fonte <strong>DM_EFICIENCIA_MLB &mdash; NMV</strong></span>
     <span class="badge">Projeto <strong>meli-bi-data</strong></span>
@@ -273,6 +273,10 @@
       <div id="vg-mes-pills" style="margin-bottom:16px;"></div>
       <div class="kpi-row" id="vg-mes-kpi" style="margin-bottom:16px;"></div>
       <div class="chart-box"><canvas id="vg-mes-canvas" style="max-height:280px;"></canvas></div>
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid #F0F0F0;">
+        <div style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;">&#128200; GMV Diarizado &mdash; Carteira Total (m&#234;s atual)</div>
+        <div class="chart-box"><canvas id="vg-diario-canvas" style="max-height:220px;"></canvas></div>
+      </div>
     </div>
     <div class="section">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:3px solid #FFE600">
@@ -1016,7 +1020,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 6/30 dias &nbsp;&middot;&nbsp; 06/05/2026 14:09
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 6/30 dias &nbsp;&middot;&nbsp; 06/05/2026 14:13
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2340,6 +2344,35 @@ function buildVGLineChart(){
       scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}
     }});
 }
+function buildVGDiario(){
+  var canEl=document.getElementById('vg-diario-canvas');
+  if(!canEl)return;
+  destroyChart('vg-diario');
+  var dias=Array.from({length:31},function(_,i){return i+1;});
+  var data=REAL_DIARIO_TOTAL||[];
+  var today=DIA_MES;
+  // Apenas dias com dado (até hoje)
+  var labels=dias.filter(function(d){return d<=today&&(data[d-1]||0)>0;}).map(function(d){return d+'/'+MES_ATUAL_PT.substring(0,3);});
+  var vals=dias.filter(function(d){return d<=today&&(data[d-1]||0)>0;}).map(function(d){return data[d-1]||0;});
+  if(!vals.length){canEl.parentElement.style.display='none';return;}
+  // Linha de ritmo diário para bater meta financeira
+  var totalMF=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[MESES_DONE[MESES_DONE.length-1]]||0);},0);
+  var diasMes=DIAS_MES_MAP[MESES_DONE[MESES_DONE.length-1]]||30;
+  var ritmo=totalMF/diasMes;
+  var ritmoLine=vals.map(function(){return Math.round(ritmo);});
+  chartInstances['vg-diario']=new Chart(canEl.getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:[
+      {label:'GMV Dia',data:vals,backgroundColor:vals.map(function(v){return v>=ritmo?'rgba(0,166,80,.7)':'rgba(52,131,250,.6)';}),borderRadius:3,order:2},
+      {label:'Ritmo meta',data:ritmoLine,type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',borderWidth:2,pointRadius:0,borderDash:[4,3],tension:0,order:1}
+    ]},
+    options:{responsive:true,animation:false,
+      plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:10}}},
+               tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}},
+      scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}}
+  });
+}
+
 function buildVGMesControl(){
   var html='<div class="mes-pills">';
   MESES_DONE.forEach(function(mk,i){
@@ -2350,6 +2383,7 @@ function buildVGMesControl(){
   var el=document.getElementById('vg-mes-pills');
   if(el)el.innerHTML=html;
   showVGMes(MESES_DONE[MESES_DONE.length-1],null);
+  setTimeout(buildVGDiario,100);
 }
 function showVGMes(mk,btnEl){
   // Exatamente igual Larissa — 6 KPIs + grífico dual-axis
@@ -2466,8 +2500,17 @@ function buildVGQuarters(){
     summHtml+='<div style="font-size:11px;font-weight:700;color:#555;margin-bottom:6px;display:flex;align-items:center;gap:8px;">'
       +q+' <span style="font-size:10px;font-weight:600;color:#AAA;">'+sLabel+'</span></div>';
     summHtml+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;">';
-    GRUPOS.forEach(function(g){
+    // Ordenar por TGMV (quarters fechados) ou GMV (em andamento)
+    var gruposSorted=GRUPOS.slice().sort(function(a,b){
+      var tA=months.reduce(function(s,k){return s+((REAL_TGMV[a]||{})[k]||0);},0);
+      var tB=months.reduce(function(s,k){return s+((REAL_TGMV[b]||{})[k]||0);},0);
+      if(tA>0||tB>0)return tB-tA;
+      return months.reduce(function(s,k){return s+((REAL_MENSAL[b]||{})[k]||0);},0)
+           - months.reduce(function(s,k){return s+((REAL_MENSAL[a]||{})[k]||0);},0);
+    });
+    gruposSorted.forEach(function(g){
       var qR=months.reduce(function(s,k){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
+      var qT=months.reduce(function(s,k){return s+((REAL_TGMV[g]||{})[k]||0);},0);
       var qMF=months.reduce(function(s,k){return s+((META_FIN[g]||{})[k]||0);},0);
       var qMD=months.reduce(function(s,k){return s+((META_DES[g]||{})[k]||0);},0);
       var pFin=qMF>0?pctNum(qR,qMF):0,pDes=qMD>0?pctNum(qR,qMD):0;
@@ -2480,6 +2523,7 @@ function buildVGQuarters(){
           +'<span style="font-size:13px;font-weight:800;color:#222;">'+fmt(qR)+'</span>'
           +'<span style="font-size:11px;font-weight:700;color:'+clr+';">'+pFin.toFixed(1)+'% Fin</span>'
         +'</div>'
+        +(qT>0?'<div style="font-size:10px;color:#3483FA;font-weight:600;margin-bottom:4px;">TGMV: '+fmt(qT)+'</div>':'')
         +'<div style="background:#F0F0F0;border-radius:3px;height:4px;overflow:hidden;">'
           +'<div style="width:'+fillW+'%;height:100%;background:'+clr+';border-radius:3px;"></div></div>'
         +'<div style="font-size:10px;color:#AAA;margin-top:3px;">Des: '+pDes.toFixed(1)+'%</div>'
