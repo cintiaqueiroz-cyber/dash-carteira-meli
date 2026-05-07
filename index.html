@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 16:49 -->
+<!-- Build: 07/05/2026 17:27 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -196,7 +196,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 16:49</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 17:27</span>
   </div>
 </div>
 <div id="sidebar">
@@ -206,22 +206,13 @@
   <ul><li><a onclick="showTab('ml',this)"><span class="dot" style="background:#3483FA"></span>MULTILOJA</a></li><li><a onclick="showTab('ad',this)"><span class="dot" style="background:#FF7A00"></span>ADONAI</a></li><li><a onclick="showTab('ba',this)"><span class="dot" style="background:#9B59B6"></span>BALAQUI</a></li><li><a onclick="showTab('ci',this)"><span class="dot" style="background:#F23D4F"></span>CAMA INBOX</a></li><li><a onclick="showTab('bp',this)"><span class="dot" style="background:#00A650"></span>BOM PASTOR</a></li><li><a onclick="showTab('pa',this)"><span class="dot" style="background:#FFB900"></span>PANORAMA</a></li><li><a onclick="showTab('to',this)"><span class="dot" style="background:#3498DB"></span>TONIELQUE</a></li><li><a onclick="showTab('we',this)"><span class="dot" style="background:#E74C3C"></span>WEHOUSE</a></li><li><a onclick="showTab('kh',this)"><span class="dot" style="background:#2ECC71"></span>KING HOUSE</a></li><li><a onclick="showTab('ma',this)"><span class="dot" style="background:#95A5A6"></span>MOVEIS ARAPONGAS</a></li></ul>
 </div>
 <div id="filtro-bar">
-  <span class="filtro-label">&#128197; Per&#237;odo</span>
-  <div class="date-range-wrap">
-    <span class="date-range-lbl">De</span>
-    <input type="date" id="dt-inicio" class="date-input" value="2026-01-01" onchange="applyDateRange()">
-    <span class="date-sep-arrow">&#8594;</span>
-    <span class="date-range-lbl">At&#233;</span>
-    <input type="date" id="dt-fim" class="date-input" value="{today.isoformat()}" onchange="applyDateRange()">
-  </div>
-  <div class="filtro-sep"></div>
-  <button class="filtro-pill active" onclick="setFiltro('ytd',this)">YTD</button>
   <button class="filtro-pill" onclick="setFiltro('mtd',this)">MTD</button>
+  <button class="filtro-pill active" onclick="setFiltro('ytd',this)">YTD</button>
+  <div class="filtro-sep"></div>
   <button class="filtro-pill" onclick="setFiltro('q1',this)">Q1</button>
   <button class="filtro-pill" onclick="setFiltro('q2',this)">Q2</button>
-  <button class="filtro-pill" onclick="setFiltro('q3',this)">Q3</button>
-  <button class="filtro-pill" onclick="setFiltro('q4',this)">Q4</button>
-  <button class="filtro-pill" onclick="setFiltro('ult30',this)">&#218;lt. m&#234;s</button>
+  <div class="filtro-sep"></div>
+  <button class="filtro-pill filtro-mes" onclick="setFiltro('mes_jan',this)">Jan</button><button class="filtro-pill filtro-mes" onclick="setFiltro('mes_feb',this)">Fev</button><button class="filtro-pill filtro-mes" onclick="setFiltro('mes_mar',this)">Mar</button><button class="filtro-pill filtro-mes" onclick="setFiltro('mes_apr',this)">Abr</button><button class="filtro-pill filtro-mes" onclick="setFiltro('mes_may',this)">Mai</button>
   <span class="filtro-info" id="filtro-info"></span>
 </div>
 <div id="main">
@@ -1008,7 +999,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 16:49
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 17:27
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1227,6 +1218,10 @@ function setFiltro(preset,btnEl){
   }
   else if(preset==='ult30')keys=[MESES_DONE_FULL[MESES_DONE_FULL.length-1]];
   else if(preset==='ult3m')keys=MESES_DONE_FULL.slice(-3);
+  else if(preset.startsWith('mes_')){
+    var mk=preset.replace('mes_','');
+    if(MESES_DONE_FULL.indexOf(mk)>=0)keys=[mk];
+  }
   if(!keys.length)keys=MESES_DONE_FULL.slice();
   PERIODO=keys;
   document.querySelectorAll('#filtro-bar .filtro-pill').forEach(function(b){b.classList.remove('active');});
@@ -3921,26 +3916,31 @@ function buildSellersConsolidated(){
   function pct(v,red){if(v===null||isNaN(v))return '<span style="color:#bbb">\u2014</span>';var c=v>=0?'#00A650':'#F23D4F';if(red)c=v>=0?'#F23D4F':'#00A650';return '<span style="color:'+c+';font-weight:700">'+(v>=0?'\u25b2+':'\u25bc')+Math.abs(v).toFixed(1)+'%</span>';}
   function atingColor(p){return p>=100?'#00A650':p>=80?'#E67E00':'#F23D4F';}
 
-  // Dados por grupo
+  // Dados por grupo \u2014 NMV = BT_UE_OUTPUT_MNG_MONTHLY_PH (mesma base Grid MeliPro)
+  var MK25_TO_26={jan:'jan',feb:'feb',mar:'mar',apr:'apr',may:'may',jun:'jun',jul:'jul',aug:'aug',sep:'sep',oct:'oct',nov:'nov',dec:'dec'};
   var rows=GRUPOS.map(function(g){
-    var nmv=PERIODO.reduce(function(s,k){return s+((REAL_NMV[g]||{})[k]||0);},0);
+    var nmvUE=REAL_NMV[g]||{};
+    var nmv=PERIODO.reduce(function(s,k){return s+(nmvUE[k]||0);},0);
     if(!nmv) nmv=PERIODO.reduce(function(s,k){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
     var si=PERIODO.reduce(function(s,k){return s+((REAL_SI[g]||{})[k]||0);},0);
     var inv=PERIODO.reduce(function(s,k){return s+((REAL_INV_TOT[g]||{})[k]||0);},0);
     var meta=mks.reduce(function(s,k){return s+((META_FIN[g]||{})[k]||0);},0);
     var ating=meta>0?nmv/meta*100:0;
     var invNmv=nmv>0?inv/nmv*100:0;
-    // Cancelamentos da reputa\u00e7\u00e3o
+    // Cancelamentos
     var rep=REPUTACAO&&REPUTACAO[g]||{};
     var cancYTD=rep.canc_pct||0;
-    // MoM e YoY
-    var nmvCur=(REAL_NMV[g]||{})[cur]||((REAL_MENSAL[g]||{})[cur]||0);
-    var nmvPrev=prev?((REAL_NMV[g]||{})[prev]||((REAL_MENSAL[g]||{})[prev]||0)):0;
+    // MoM \u2014 NMV UE m\u00eas atual vs anterior
+    var nmvCur=nmvUE[cur]||((REAL_MENSAL[g]||{})[cur]||0);
+    var nmvPrev=prev?(nmvUE[prev]||((REAL_MENSAL[g]||{})[prev]||0)):0;
     var mom=nmvPrev>0?(nmvCur-nmvPrev)/nmvPrev*100:null;
+    // YoY \u2014 NMV UE 2026 vs NMV UE 2025 mesmo periodo
+    // REAL_NMV tem chaves 'jan','feb'... para 2026 e tambem chaves '2025_jan' se disponivel
+    // Fallback: usar REAL_2025 (DM_EFICIENCIA) se NMV UE 2025 nao disponivel
+    var nmv25_ue=PERIODO.reduce(function(s,k){return s+(nmvUE['25_'+k]||0);},0);
     var g25=REAL_2025[g]||{};
-    var nmv25=mks.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
+    var nmv25=nmv25_ue>0?nmv25_ue:PERIODO.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
     var yoy=nmv25>0?(nmv-nmv25)/nmv25*100:null;
-    // Rep level
     var repLvl=rep.rep_level||'';
     return {g:g,nmv:nmv,si:si,inv:inv,invNmv:invNmv,meta:meta,ating:ating,canc:cancYTD,mom:mom,yoy:yoy,repLvl:repLvl};
   });
