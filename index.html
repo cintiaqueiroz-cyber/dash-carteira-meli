@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 18:04 -->
+<!-- Build: 07/05/2026 19:24 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -198,7 +198,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 18:04</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 19:24</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1002,7 +1002,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 18:04
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 19:24
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2229,13 +2229,33 @@ function buildVGKPIs(){
   var totalInv =GRUPOS.reduce(function(s,g){return s+ytdInvTot(g);},0);
   var totalFF  =GRUPOS.reduce(function(s,g){return s+ytdFF(g);},0);
   var totalXD  =GRUPOS.reduce(function(s,g){return s+ytdXD(g);},0);
-  var pFin=pctNum(totalYTD,totalMF),pDes=pctNum(totalYTD,totalMD),pFF=pctNum(totalFF,totalYTD);
+  // % Atingimento usa TGMV (base Looker) / Meta
+  var nmvBase=totalTGMV||totalYTD;
+  var pFin=pctNum(nmvBase,totalMF),pDes=pctNum(nmvBase,totalMD),pFF=pctNum(totalFF,totalYTD);
   var pXD=totalYTD>0?totalXD/totalYTD*100:0;
   var asp=totalSI>0?totalYTD/totalSI:0;
+  // MoM e YoY para NMV card
+  var cur=MESES_DONE[MESES_DONE.length-1],prev=MESES_DONE.length>1?MESES_DONE[MESES_DONE.length-2]:null;
+  var tgmvCur=GRUPOS.reduce(function(s,g){return s+((REAL_TGMV[g]||{})[cur]||0);},0);
+  var tgmvPrev=prev?GRUPOS.reduce(function(s,g){return s+((REAL_TGMV[g]||{})[prev]||0);},0):0;
+  var tgmvCurProj=tgmvCur*FAT_PROJ;
+  var momTGMV=tgmvPrev>0?(tgmvCurProj-tgmvPrev)/tgmvPrev*100:null;
+  var tgmv25=GRUPOS.reduce(function(s,g){return s+((REAL_NMV[g]||{})['25_'+cur]||0);},0);
+  var yoyTGMV=tgmv25>0?(tgmvCurProj-tgmv25)/tgmv25*100:null;
+  // Formato 2 casas decimais tipo Looker
+  var fmtNMV=function(v){if(v>=1e6)return 'R$ '+(v/1e6).toFixed(2).replace('.',',')+' M';return fmt(v);};
+  var momBadge=momTGMV!==null?'<br><span style="color:'+(momTGMV>=0?'#00A650':'#F23D4F');
+  momBadge=momTGMV!==null?'▲ '+(momTGMV>=0?'+':'')+momTGMV.toFixed(1)+'% MoM':'—';
+  var yoyBadge=yoyTGMV!==null?'▲ '+(yoyTGMV>=0?'+':'')+yoyTGMV.toFixed(1)+'% YoY':'—';
+  var momColor=momTGMV!==null?(momTGMV>=0?'#00A650':'#F23D4F'):'#ccc';
+  var yoyColor=yoyTGMV!==null?(yoyTGMV>=0?'#00A650':'#F23D4F'):'#ccc';
+  var nmvSub=fmtN(totalSI)+' itens'
+    +(momTGMV!==null?'<br><span style="color:'+momColor+';font-weight:700;font-size:11px">▲ '+(momTGMV>=0?'+':'')+momTGMV.toFixed(1)+'% MoM</span>':'')
+    +(yoyTGMV!==null?'<br><span style="color:'+yoyColor+';font-weight:700;font-size:11px">▲ '+(yoyTGMV>=0?'+':'')+yoyTGMV.toFixed(1)+'% YoY</span>':'');
   var el=document.getElementById('vg-kpi-row');
   if(el)el.innerHTML=kpiHtml([
-    {label:'NMV',                  val:fmt(totalTGMV),  sub:'Jan-'+MES_ATUAL_PT+' parcial ('+DIA_MES+' dias) • Base Looker',   cls:'blue'},
-    {label:'% Meta Financeira YTD',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),                                                  cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'NMV',val:fmtNMV(nmvBase),sub:nmvSub,cls:'blue'},
+    {label:'% Ating. Meta',val:pFin.toFixed(1)+'%',sub:'Meta Op: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio YTD',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),                                                  cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs YTD',              val:fmtN(totalSI),   sub:'ASP m\u00e9dio: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento Total',   val:fmt(totalInv),   sub:'ADS + Cupons + Rebates',                                                  cls:'purple'},
