@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 20:01 -->
+<!-- Build: 07/05/2026 20:04 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -175,12 +175,13 @@
   .u-ring-sub{font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600;line-height:1;}
 
 
-#filtro-bar{flex-wrap:wrap;overflow:visible;padding:12px 0 10px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;}
-.filtro-label{font-size:13px;font-weight:600;color:#555;}
-.filtro-pill{padding:5px 14px;border-radius:20px;border:1.5px solid #D0D0D0;background:#fff;font-size:12px;font-weight:500;color:#444;cursor:pointer;white-space:nowrap;transition:all .15s;}
-.filtro-pill:hover{border-color:#3483FA;color:#3483FA;}
-.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:700;}
-.filtro-sep{width:1px;height:18px;background:#D8D8D8;margin:0 2px;}
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
 .ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
 .ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
 .ins-list{display:flex;flex-wrap:wrap;gap:7px;}
@@ -202,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 20:01</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 20:04</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1005,7 +1006,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 20:01
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 20:04
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
