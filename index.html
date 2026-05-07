@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 15:43 -->
+<!-- Build: 07/05/2026 15:50 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -196,7 +196,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 15:43</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 15:50</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1008,7 +1008,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 15:43
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 15:50
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3419,7 +3419,8 @@ function buildPreNeg(){
   var promoId=pd.promo_id||'P-MLB17513050', inicio=pd.inicio||'2026-05-01';
   var fim=pd.fim||'2026-07-19';
   var budgetTotal=pd.budget_total||700000;
-  var budgetCons=pd.budget_consumido_pandora||0;
+  // Budget consumido = campo Pandora se disponivel, senao soma rebates
+  var budgetCons=pd.budget_consumido_pandora||meses.reduce(function(s,m){return s+(m.rebates||0);},0);
   var semDados=!meses.length;
 
   // Atualizar badge com periodo e budget
@@ -3438,8 +3439,6 @@ function buildPreNeg(){
   var totDXB=meses.reduce(function(s,m){return s+(m.dxb||0);},0);
   var totCUP=meses.reduce(function(s,m){return s+(m.cupons||0);},0);
   var totINV=totDXI+totDXB+totCUP;
-  // Budget Pandora = total rebates consumidos
-  if(!budgetCons||budgetCons===0) budgetCons=totDXI;
 
   var kRow=document.getElementById('preneg-kpi-row');
   if(kRow)kRow.innerHTML=kpiHtml([
