@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 08/05/2026 11:37 -->
+<!-- Build: 08/05/2026 11:50 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 08/05/2026 11:37</span>
+    <span class="update-badge">&#10003; Atualizado 08/05/2026 11:50</span>
   </div>
 </div>
 <div id="sidebar">
@@ -256,8 +256,8 @@
     </div>
     <div class="section" style="margin-top:20px;">
       <div style="font-size:13px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;border-bottom:3px solid #FFE600;padding-bottom:8px;">NMV por Categoria (F&amp;H)</div>
-      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:start;">
-        <div><canvas id="vg-cat-donut" style="max-height:280px;"></canvas></div>
+      <div style="display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start;">
+        <div style="width:300px;height:300px;flex-shrink:0;"><canvas id="vg-cat-donut" style="width:300px!important;height:300px!important;"></canvas></div>
         <div id="vg-cat-breakdown"></div>
       </div>
     </div>
@@ -995,7 +995,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 11:37
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 11:50
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2252,8 +2252,8 @@ function buildCatNMV(){
         labels:d1List.map(function(e){return e[0];}),
         datasets:[{data:d1List.map(function(e){return e[1];}),backgroundColor:D1_COLORS,borderWidth:2,borderColor:'#fff'}]
       },
-      options:{responsive:true,maintainAspectRatio:true,animation:false,cutout:'60%',
-        plugins:{legend:{position:'right',labels:{font:{size:11},padding:10}},
+      options:{responsive:false,maintainAspectRatio:false,animation:false,cutout:'60%',
+        plugins:{legend:{position:'right',labels:{font:{size:11},padding:8,boxWidth:14}},
                  tooltip:{callbacks:{label:function(c){var pct=d1Total>0?(c.raw/d1Total*100).toFixed(1):'0';return c.label+': '+fmt(c.raw)+' ('+pct+'%)';}}}}}
     });
   }
