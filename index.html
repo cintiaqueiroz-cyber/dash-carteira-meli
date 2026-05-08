@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 08/05/2026 12:17 -->
+<!-- Build: 08/05/2026 12:24 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 08/05/2026 12:17</span>
+    <span class="update-badge">&#10003; Atualizado 08/05/2026 12:24</span>
   </div>
 </div>
 <div id="sidebar">
@@ -995,7 +995,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 12:17
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 12:24
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1573,12 +1573,20 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
   var tot=totalGMV||items.reduce(function(s,it){return s+(it.gmv||0);},0);
   var th=function(t,al,w){return '<th style="padding:10px 12px;font-size:10px;font-weight:700;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;background:#1A1A1A'+(w?';width:'+w:'')+'">'+t+'</th>';};
 
+  // Label dinâmico do período
+  var MONTH_ORDER_CAT=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  var MESES_ABR_CAT={jan:'Jan',feb:'Fev',mar:'Mar',apr:'Abr',may:'Mai',jun:'Jun',jul:'Jul',aug:'Ago',sep:'Set',oct:'Out',nov:'Nov',dec:'Dez'};
+  var curMkCat=MESES_DONE[MESES_DONE.length-1];
+  var gmvColLabel=PERIODO.length===1?('GMV '+MESES_ABR_CAT[PERIODO[0]]):('GMV YTD');
+  var focalMkCat=PERIODO.length===1?PERIODO[0]:curMkCat;
+  var focalIdxCat=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'].indexOf(focalMkCat);
+  var prevMkCat=focalIdxCat>0?['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'][focalIdxCat-1]:null;
   // ORDEM LÓGICA: # | Produto | Grupo | GMV | Share | Share Acum | Units | GMV MoM | Units MoM | Preço DE | Preço Atual | Status | Domínio
   var hdr='<thead><tr>'
     +th('#','center','36px')
     +th('PRODUTO')
     +(showGroup?th('GRUPO','center','90px'):'')
-    +th('GMV 30D','right','110px')
+    +th(gmvColLabel,'right','110px')
     +th('SHARE','center','90px')
     +th('SHARE ACUM.','center','100px')
     +th('UNITS','right','70px')
@@ -1624,7 +1632,20 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     var pdHtml=pd>0?'<span style="color:#888;font-size:12px">R$ '+pd.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span>':'<span style="color:#ccc">\u2014</span>';
     var paHtml=pa>0?'<strong style="font-size:13px;color:#1A1A1A">R$ '+pa.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'</strong>':'<span style="color:#ccc">\u2014</span>';
 
-    var gCur=it.gmv_mes_atual||0, gAnt=it.gmv_mes_ant||0;
+    // MoM usando dados mensais do periodo selecionado
+    var _gm=it.gmv_m||{},_sm=it.si_m||{};
+    var gCur=0,gAnt=0,sCur2=0,sAnt2=0;
+    if(PERIODO.length===1&&!isMTDcat){
+      // Mes fechado: usa gmv_m do focal vs mes anterior
+      gCur=_gm[focalMkCat]||it.gmv||0;
+      gAnt=prevMkCat?(_gm[prevMkCat]||0):0;
+      sCur2=_sm[focalMkCat]||it.si||0;
+      sAnt2=prevMkCat?(_sm[prevMkCat]||0):0;
+    } else {
+      // MTD ou multi-mes: usa gmv_mes_atual/ant
+      gCur=it.gmv_mes_atual||0; gAnt=it.gmv_mes_ant||0;
+      sCur2=it.si_mes_atual||0; sAnt2=it.si_mes_ant||0;
+    }
     var momGMV=gAnt>0?((gCur-gAnt)/gAnt*100):null;
     function momBadge(v){
       if(v===null)return '<span style="color:#ccc">\u2014</span>';
@@ -1633,8 +1654,7 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       var arrow=v>=0?'\u25b2':'\u25bc';
       return '<span style="background:'+bg+';color:'+c+';font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap">'+arrow+' '+Math.abs(v).toFixed(1)+'%</span>';
     }
-    var sCur=it.si_mes_atual||0, sAnt=it.si_mes_ant||0;
-    var momSI=sAnt>0?((sCur-sAnt)/sAnt*100):null;
+    var momSI=sAnt2>0?((sCur2-sAnt2)/sAnt2*100):null;
 
     var imgHtml=mlImgTag(it);
     var nm=(it.nm||it.title||'').substring(0,44)+((it.nm||it.title||'').length>44?'...':'');
