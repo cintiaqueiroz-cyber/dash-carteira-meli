@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 20:56 -->
+<!-- Build: 07/05/2026 21:51 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 20:56</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 21:51</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1006,7 +1006,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 20:56
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 21:51
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2380,6 +2380,18 @@ function buildVGLineChart(){
       scales:{y:{ticks:{callback:function(v){return fmt(v);}}}}
     }});
 }
+function _todayGmvHoje(){
+  // Extrai GMV de hoje do HOJE_DATA_TOTAL (data mais recente disponível = hoje)
+  if(typeof HOJE_DATA_TOTAL==='undefined')return 0;
+  var keys=Object.keys(HOJE_DATA_TOTAL).sort();
+  if(!keys.length)return 0;
+  var latest=keys[keys.length-1];
+  // Confirma que é do mês atual
+  var curM=new Date().getMonth()+1;
+  var latestM=parseInt((latest||'').split('-')[1]||0,10);
+  if(latestM!==curM)return 0;
+  return (HOJE_DATA_TOTAL[latest]||{}).gmv||0;
+}
 function buildVGDiario(){
   var canEl=document.getElementById('vg-diario-canvas');
   if(!canEl)return;
@@ -2387,9 +2399,12 @@ function buildVGDiario(){
   var dias=Array.from({length:31},function(_,i){return i+1;});
   var data=REAL_DIARIO_TOTAL||[];
   var today=DIA_MES;
+  var todayGmv=_todayGmvHoje();
+  // Para o dia de hoje, usa HOJE_DATA_TOTAL se daily_gmv estiver zerado
+  var getDay=function(d){return (d===today&&(data[d-1]||0)===0&&todayGmv>0)?todayGmv:(data[d-1]||0);};
   // Apenas dias com dado (até hoje)
-  var labels=dias.filter(function(d){return d<=today&&(data[d-1]||0)>0;}).map(function(d){return d+'/'+MES_ATUAL_PT.substring(0,3);});
-  var vals=dias.filter(function(d){return d<=today&&(data[d-1]||0)>0;}).map(function(d){return data[d-1]||0;});
+  var labels=dias.filter(function(d){return d<=today&&getDay(d)>0;}).map(function(d){return d+'/'+MES_ATUAL_PT.substring(0,3);});
+  var vals=dias.filter(function(d){return d<=today&&getDay(d)>0;}).map(function(d){return getDay(d);});
   if(!vals.length){canEl.parentElement.style.display='none';return;}
   // Linha de ritmo diário para bater meta financeira
   var totalMF=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[MESES_DONE[MESES_DONE.length-1]]||0);},0);
@@ -2457,6 +2472,9 @@ function showVGMes(mk,btnEl){
   var ctx=document.getElementById('vg-mes-canvas').getContext('2d');
   if(isCur&&typeof REAL_DIARIO_TOTAL!=='undefined'&&REAL_DIARIO_TOTAL.some(function(v){return v>0;})){
     var dd=REAL_DIARIO_TOTAL.slice(0,DIA_MES);
+    // Preenche o dia de hoje com HOJE_DATA_TOTAL se daily_gmv estiver zerado
+    var _tg=_todayGmvHoje();
+    if(_tg>0&&(dd[DIA_MES-1]||0)===0)dd[DIA_MES-1]=_tg;
     var cum=[],s=0;
     dd.forEach(function(v){s+=v;cum.push(s);});
     var mdia=totalMF/diasTot;
