@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 07/05/2026 22:05 -->
+<!-- Build: 07/05/2026 22:15 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 07/05/2026 22:05</span>
+    <span class="update-badge">&#10003; Atualizado 07/05/2026 22:15</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1006,7 +1006,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 22:05
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 7/30 dias &nbsp;&middot;&nbsp; 07/05/2026 22:15
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2718,21 +2718,22 @@ function buildCorpAcionaveis(){
 function buildLogistica(){
   var mks=MESES_DONE;
   var tGMV=GRUPOS.reduce(function(a,g){return a+ytdReal(g);},0);
+  var tNMV=GRUPOS.reduce(function(a,g){return a+ytdNMV(g);},0)||tGMV;
   var ffTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_FF[g]||{})[k]||0);},0);},0);
   var xdTot=GRUPOS.reduce(function(a,g){return a+ytdXD(g);},0);
   var ssTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_SS[g]||{})[k]||0);},0);},0);
   var sdTot=Math.max(0,tGMV-ffTot-xdTot-ssTot);
-  var pFF=tGMV>0?ffTot/tGMV*100:0;
-  var pXD=tGMV>0?xdTot/tGMV*100:0;
-  var pSS=tGMV>0?ssTot/tGMV*100:0;
-  var pSD=tGMV>0?sdTot/tGMV*100:0;
+  var pFF=tNMV>0?ffTot/tNMV*100:0;
+  var pXD=tNMV>0?xdTot/tNMV*100:0;
+  var pSS=tNMV>0?ssTot/tNMV*100:0;
+  var pSD=tNMV>0?sdTot/tNMV*100:0;
 
   var el=document.getElementById('log-kpi-row');
   if(el)el.innerHTML=kpiHtml([
-    {label:'GMV SELLER DIRETO YTD',  val:fmt(sdTot), sub:pSD.toFixed(1)+'% do total', cls:'green'},
-    {label:'GMV CROSS DOCKING YTD',  val:fmt(xdTot), sub:pXD.toFixed(1)+'% do total', cls:'blue'},
-    {label:'GMV SELF SERVICE YTD',   val:fmt(ssTot), sub:pSS.toFixed(1)+'% do total', cls:'yellow'},
-    {label:'GMV FULFILLMENT YTD',    val:fmt(ffTot), sub:pFF.toFixed(1)+'% do total', cls:pFF>=30?'green':'red'}
+    {label:'SELLER DIRETO',  val:fmt(sdTot), sub:pSD.toFixed(1)+'% do NMV', cls:'green'},
+    {label:'CROSS DOCKING',  val:fmt(xdTot), sub:pXD.toFixed(1)+'% do NMV', cls:'blue'},
+    {label:'SELF SERVICE',   val:fmt(ssTot), sub:pSS.toFixed(1)+'% do NMV', cls:'yellow'},
+    {label:'FULFILLMENT',    val:fmt(ffTot), sub:pFF.toFixed(1)+'% do NMV', cls:pFF>=30?'green':'red'}
   ]);
 
   // Gráfico empilhado — Seller Direto embaixo (verde, dominante), XD e SS em cima
@@ -2765,8 +2766,8 @@ function buildLogistica(){
         plugins:{
           legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:20,font:{size:11}}},
           tooltip:{callbacks:{label:function(c){
-            var pct=tGMV>0?(c.raw/tGMV*100).toFixed(1):'0';
-            return c.dataset.label+': '+fmt(c.raw)+' ('+pct+'%)';
+            var pct=tNMV>0?(c.raw/tNMV*100).toFixed(1):'0';
+            return c.dataset.label+': '+fmt(c.raw)+' ('+pct+'% NMV)';
           }}}
         }
       }
