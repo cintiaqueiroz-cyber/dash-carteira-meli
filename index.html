@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 08/05/2026 03:05 -->
+<!-- Build: 08/05/2026 03:12 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:05</span>
+    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:12</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1016,7 +1016,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:05
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:12
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1115,10 +1115,11 @@ if(typeof ChartDataLabels!=='undefined'){
 function fmt(v){
   if(v===null||v===undefined)return '-';
   var av=Math.abs(v),s=v<0?'-':'';
-  if(av>=1e6)return s+'R$ '+(av/1e6).toFixed(1).replace('.',',')+' M';
-  if(av>=1e3)return s+'R$ '+(av/1e3).toFixed(0)+' K';
-  return s+'R$ '+av.toFixed(0);
+  if(av>=1e6)return s+'R$ '+(av/1e6).toFixed(2).replace('.',',')+' M';
+  if(av>=1e3)return s+'R$ '+(av/1e3).toFixed(1).replace('.',',')+' K';
+  return s+'R$ '+Math.round(av).toLocaleString('pt-BR');
 }
+function fmtMeta(v){return fmt(v);}
 function fmtN(v){
   if(!v&&v!==0)return '-';
   var av=Math.abs(v),s=v<0?'-':'';
@@ -1387,8 +1388,8 @@ function showMes(grupo,prefix,mk,btnEl){
   var elKpi=document.getElementById(prefix+'-mes-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
     {label:'Gap Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
@@ -1416,8 +1417,8 @@ function buildGrupo(g,px){
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:'GMV YTD',val:fmt(ytd),sub:PERIODO.map(function(k){return MESES_PT_CURTO[k];}).join('-'),cls:'blue'},
     {label:'TGMV YTD',val:fmt(tgmv),sub:'Preco lista (Looker)',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmt(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Invest. Total',val:fmt(inv),sub:'ADS+Cupons+Rebates',cls:'purple'},
     {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF: '+fmt(ff),cls:pFF>=60?'green':pFF>=30?'yellow':'red'}
@@ -1471,8 +1472,8 @@ function buildInsights(g,px){
   var ff=ytdFF(g),pFF=pctNum(ff,ytd);
   var inv=ytdInvTot(g);
   var ins=[
-    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmt(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
-    {t:pDes.toFixed(1)+'% da Meta Desafio ('+fmt(ymd)+')',c:pDes>=100?'g':pDes>=60?'y':'r'},
+    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmtMeta(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
+    {t:pDes.toFixed(1)+'% da Meta Desafio ('+fmtMeta(ymd)+')',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Full SC: '+pFF.toFixed(1)+'% do GMV',c:pFF>=60?'g':pFF>=30?'y':'r'}
   ];
   if(yoy!==null)ins.push({t:'YoY: '+(yoy>=0?'+':'')+yoy.toFixed(1)+'% vs 2025',c:yoy>=0?'g':'r'});
@@ -2393,7 +2394,7 @@ function buildVGKPIs(){
   var el=document.getElementById('vg-kpi-row');
   if(el)el.innerHTML=kpiHtml([
     {label:'NMV',val:fmtNMV(nmvBase),sub:nmvSub,cls:'blue'},
-    {label:'% Ating. Meta',val:pFin.toFixed(1)+'%',sub:'Meta Op: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Ating. Meta',val:pFin.toFixed(1)+'%',sub:'Meta Op: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'VC %',val:vcPct.toFixed(1)+'%',sub:fmt(vcAmt),cls:vcPct<3?'green':vcPct<6?'yellow':'red'},
     {label:'DC %',val:dcPct.toFixed(1)+'%',sub:fmt(dcAmt),cls:dcPct<3?'green':dcPct<6?'yellow':'red'},
     {label:'Itens Vendidos',val:fmtN(totalSI),sub:MES_ATUAL_PT+' '+DIA_MES+'/'+DIAS_MES_TOTAL+' dias',cls:'blue'},
@@ -2441,7 +2442,7 @@ function buildVGUnifiedCards(){
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
     uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">META FIN.</div></div></div>';
-    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmt(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmt(ymd)+'</div></div></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
     uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
     uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
@@ -2630,8 +2631,8 @@ function showVGMes(mk,btnEl){
   document.getElementById('vg-mes-kpi').innerHTML=kpiHtml([
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' dias)':' \u2014 Fechado'),
      val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmt(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmt(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
+    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs Total',        val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
     {label:'Gap Meta Fin.',    val:fmt(totalDisp-totalMF),
@@ -4300,7 +4301,7 @@ function buildSellersConsolidated(){
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#444">'+fmtN(r.si)+'</td>'
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#444">'+fmt(r.inv)+'</td>'
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+r.invNmv.toFixed(1)+'%</td>'
-      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmt(r.meta)+'</td>'
+      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmtMeta(r.meta)+'</td>'
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;font-weight:800;color:'+ac+'">'+r.ating.toFixed(1)+'%</td>'
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:'+(r.canc>5?'#F23D4F':r.canc>2?'#E67E00':'#00A650')+'">'+r.canc.toFixed(1)+'%</td>'
       +'</tr>';
@@ -4318,7 +4319,7 @@ function buildSellersConsolidated(){
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;font-weight:700;color:#1A1A1A">'+fmt(r.nmv)+'</td>'
       +'<td style="padding:10px 12px;text-align:center">'+pct(r.mom)+'</td>'
       +'<td style="padding:10px 12px;text-align:center">'+pct(r.yoy)+'</td>'
-      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmt(r.meta)+'</td>'
+      +'<td style="padding:10px 12px;text-align:right;font-size:12px;color:#555">'+fmtMeta(r.meta)+'</td>'
       +'<td style="padding:10px 12px;text-align:right;font-size:12px;font-weight:800;color:'+ac+'">'+r.ating.toFixed(1)+'%</td>'
       +'</tr>';
   }).join('')+'</tbody>';
