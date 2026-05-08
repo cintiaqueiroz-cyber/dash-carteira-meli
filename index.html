@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 08/05/2026 03:19 -->
+<!-- Build: 08/05/2026 03:22 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:19</span>
+    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:22</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1016,7 +1016,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:19
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:22
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -4272,17 +4272,40 @@ function buildSellersConsolidated(){
     // Cancelamentos
     var rep=REPUTACAO&&REPUTACAO[g]||{};
     var cancYTD=rep.canc_pct||0;
-    // MoM \u2014 NMV UE m\u00eas atual vs anterior
-    var nmvCur=nmvUE[cur]||((REAL_MENSAL[g]||{})[cur]||0);
-    var nmvPrev=prev?(nmvUE[prev]||((REAL_MENSAL[g]||{})[prev]||0)):0;
-    var mom=nmvPrev>0?(nmvCur-nmvPrev)/nmvPrev*100:null;
-    // YoY \u2014 NMV UE 2026 vs NMV UE 2025 mesmo periodo
-    // REAL_NMV tem chaves 'jan','feb'... para 2026 e tambem chaves '2025_jan' se disponivel
-    // Fallback: usar REAL_2025 (DM_EFICIENCIA) se NMV UE 2025 nao disponivel
-    var nmv25_ue=PERIODO.reduce(function(s,k){return s+(nmvUE['25_'+k]||0);},0);
+    // MoM / YoY \u2014 mesma metodologia de buildVGKPIs: taxa di\u00e1ria para MTD, total direto para m\u00eas fechado
+    var MONTH_ORDER_SC=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+    var focalMk=PERIODO.length===1?PERIODO[0]:cur;
+    var focalIdx_sc=MONTH_ORDER_SC.indexOf(focalMk);
+    var prevMk_sc=focalIdx_sc>0?MONTH_ORDER_SC[focalIdx_sc-1]:null;
+    var isCurMTD_sc=(focalMk===cur);
+    var nmvFocal=nmvUE[focalMk]||((REAL_MENSAL[g]||{})[focalMk]||0);
+    if(PERIODO.length>1) nmvFocal=nmv; // YTD: use full period sum
+    var nmvPrev_sc=prevMk_sc?(nmvUE[prevMk_sc]||((REAL_MENSAL[g]||{})[prevMk_sc]||0)):0;
+    var nmv25_ue=PERIODO.length===1?(nmvUE['25_'+focalMk]||0)
+      :PERIODO.reduce(function(s,k){return s+(nmvUE['25_'+k]||0);},0);
     var g25=REAL_2025[g]||{};
-    var nmv25=nmv25_ue>0?nmv25_ue:PERIODO.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
-    var yoy=nmv25>0?(nmv-nmv25)/nmv25*100:null;
+    var nmv25_fallback=PERIODO.length===1?(g25[focalMk]?g25[focalMk].gmv:0)
+      :PERIODO.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
+    var nmv25=nmv25_ue>0?nmv25_ue:nmv25_fallback;
+    var mom=null,yoy=null;
+    if(PERIODO.length===1){
+      if(isCurMTD_sc){
+        // MTD: taxa di\u00e1ria
+        var dCur_sc=Math.max(DIA_MES,1);
+        var dPrev_sc=prevMk_sc?(DIAS_MES_MAP[prevMk_sc]||30):30;
+        var d25_sc=DIAS_MES_MAP[focalMk]||31;
+        var rCur_sc=nmvFocal/dCur_sc,rPrev_sc=nmvPrev_sc>0?nmvPrev_sc/dPrev_sc:0,r25_sc=nmv25>0?nmv25/d25_sc:0;
+        if(rPrev_sc>0)mom=(rCur_sc-rPrev_sc)/rPrev_sc*100;
+        if(r25_sc>0)yoy=(rCur_sc-r25_sc)/r25_sc*100;
+      } else {
+        // M\u00eas fechado: compara\u00e7\u00e3o direta
+        if(nmvPrev_sc>0)mom=(nmvFocal-nmvPrev_sc)/nmvPrev_sc*100;
+        if(nmv25>0)yoy=(nmvFocal-nmv25)/nmv25*100;
+      }
+    } else {
+      // Multi-meses: s\u00f3 YoY
+      if(nmv25>0)yoy=(nmv-nmv25)/nmv25*100;
+    }
     var repLvl=rep.rep_level||'';
     return {g:g,nmv:nmv,si:si,inv:inv,invNmv:invNmv,meta:meta,ating:ating,canc:cancYTD,mom:mom,yoy:yoy,repLvl:repLvl};
   });
