@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 08/05/2026 03:01 -->
+<!-- Build: 08/05/2026 03:05 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:01</span>
+    <span class="update-badge">&#10003; Atualizado 08/05/2026 03:05</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1016,7 +1016,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:01
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 8/30 dias &nbsp;&middot;&nbsp; 08/05/2026 03:05
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2564,11 +2564,11 @@ function buildVGDiario(){
   if(!canEl)return;
   destroyChart('vg-diario');
   var dias=Array.from({length:31},function(_,i){return i+1;});
-  var data=REAL_DIARIO_TOTAL||[];
+  // Usa DAILY_NMV_30D (AGMV_LC, sem lag) para o mês atual
+  var _d30diario=_daily30dCurMonth();
+  var data=(_d30diario&&_d30diario.some(function(v){return v>0;}))?_d30diario:(REAL_DIARIO_TOTAL||[]);
   var today=DIA_MES;
-  var todayGmv=_todayGmvHoje();
-  // Para o dia de hoje, usa HOJE_DATA_TOTAL se daily_gmv estiver zerado
-  var getDay=function(d){return (d===today&&(data[d-1]||0)===0&&todayGmv>0)?todayGmv:(data[d-1]||0);};
+  var getDay=function(d){return data[d-1]||0;};
   // Apenas dias com dado (até hoje)
   var labels=dias.filter(function(d){return d<=today&&getDay(d)>0;}).map(function(d){return d+'/'+MES_ATUAL_PT.substring(0,3);});
   var vals=dias.filter(function(d){return d<=today&&getDay(d)>0;}).map(function(d){return getDay(d);});
@@ -2602,11 +2602,22 @@ function buildVGMesControl(){
   if(el)el.innerHTML=html;
   showVGMes(MESES_DONE[MESES_DONE.length-1],null);
 }
+function _daily30dCurMonth(){
+  // Retorna array[31] com NMV de DAILY_NMV_30D para o mês atual (índice 0 = dia 1)
+  if(typeof DAILY_NMV_30D==='undefined')return null;
+  var y=new Date().getFullYear(),m=(new Date().getMonth()+1).toString().padStart(2,'0');
+  var arr=[];
+  for(var d=1;d<=31;d++){arr.push(DAILY_NMV_30D[y+'-'+m+'-'+d.toString().padStart(2,'0')]||0);}
+  return arr;
+}
 function showVGMes(mk,btnEl){
-  // Exatamente igual Larissa — 6 KPIs + grífico dual-axis
   if(btnEl){document.querySelectorAll('#vg-mes-pills .mes-pill').forEach(function(b){b.classList.remove('active');});btnEl.classList.add('active');}
   var isCur=(mk===MESES_DONE[MESES_DONE.length-1]);
-  var totalReal=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
+  // Para mês atual: usa DAILY_NMV_30D (AGMV_LC, sem lag) como fonte principal
+  var _d30=isCur?_daily30dCurMonth():null;
+  var totalRealD30=_d30?_d30.slice(0,DIA_MES).reduce(function(s,v){return s+v;},0):0;
+  var totalRealMensal=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[mk]||0);},0);
+  var totalReal=isCur&&totalRealD30>0?totalRealD30:totalRealMensal;
   var totalDisp=isCur?totalReal*FAT_PROJ:totalReal;
   var totalMF=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
   var totalMD=GRUPOS.reduce(function(s,g){return s+((META_DES[g]||{})[mk]||0);},0);
@@ -2637,11 +2648,13 @@ function showVGMes(mk,btnEl){
 
   destroyChart('vg-mes');
   var ctx=document.getElementById('vg-mes-canvas').getContext('2d');
-  if(isCur&&typeof REAL_DIARIO_TOTAL!=='undefined'&&REAL_DIARIO_TOTAL.some(function(v){return v>0;})){
-    var dd=REAL_DIARIO_TOTAL.slice(0,DIA_MES);
-    // Preenche o dia de hoje com HOJE_DATA_TOTAL se daily_gmv estiver zerado
-    var _tg=_todayGmvHoje();
-    if(_tg>0&&(dd[DIA_MES-1]||0)===0)dd[DIA_MES-1]=_tg;
+  // Para o gráfico diário usa DAILY_NMV_30D (sem lag) se disponível
+  var _ddSource=isCur&&_d30&&_d30.slice(0,DIA_MES).some(function(v){return v>0;})?_d30:null;
+  if(!_ddSource&&isCur&&typeof REAL_DIARIO_TOTAL!=='undefined'&&REAL_DIARIO_TOTAL.some(function(v){return v>0;})){
+    _ddSource=REAL_DIARIO_TOTAL;
+  }
+  if(isCur&&_ddSource){
+    var dd=_ddSource.slice(0,DIA_MES);
     var cum=[],s=0;
     dd.forEach(function(v){s+=v;cum.push(s);});
     var mdia=totalMF/diasTot;
