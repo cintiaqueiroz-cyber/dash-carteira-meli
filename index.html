@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 11:52 -->
+<!-- Build: 09/05/2026 11:58 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 11:52</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 11:58</span>
   </div>
 </div>
 <div id="sidebar">
@@ -382,7 +382,6 @@
         <div class="section"><div class="section-title">Investimentos Mensais (Composi&#231;&#227;o)</div><div class="chart-box"><canvas id="preneg-bar-chart" style="max-height:280px;"></canvas></div></div>
         <div class="section"><div class="section-title">Mix de Investimentos FY</div><div class="chart-box"><canvas id="preneg-donut-chart" style="max-height:280px;"></canvas></div></div>
       </div>
-      <div class="section" style="margin-top:16px"><div class="section-title">Investimentos M&#234;s a M&#234;s</div><div class="table-wrap"><table id="preneg-mes-table"></table></div></div>
       <div class="section" style="margin-top:16px"><div class="section-title">&#127942; Consumo por MLB &mdash; Itens com Investimento</div><div class="table-wrap"><table id="preneg-mlb-table"></table></div></div>
     </div>
   </div>
@@ -995,7 +994,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 11:52
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 11:58
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3731,8 +3730,9 @@ function buildPreNeg(){
       +' <span style="color:'+budgetColor+';font-weight:900">('+pctBudget+'%)</span>';
   }
 
-  // KPIs — rebates = PRE_ACORDO DXI, cupons = cupons ML
-  var totNMV=meses.reduce(function(s,m){return s+(m.nmv||0);},0)||1;
+  // NMV real do período (BT_UE — mesma base do Geral)
+  var totNMV=GRUPOS.reduce(function(a,g){return a+(ytdNMV(g)||ytdTGMV(g)||ytdReal(g));},0)||
+             meses.reduce(function(s,m){return s+(m.nmv||0);},0)||1;
   var totDXI=meses.reduce(function(s,m){return s+(m.rebates||m.dxi||0);},0); // rebates = PRE_ACORDO
   var totDXB=meses.reduce(function(s,m){return s+(m.dxb||0);},0);
   var totCUP=meses.reduce(function(s,m){return s+(m.cupons||0);},0);
@@ -3748,33 +3748,7 @@ function buildPreNeg(){
     {label:'Budget Pandora',val:fmt(budgetCons),sub:'de '+fmt(budgetTotal)+' ('+pctBudget+'%)',cls:budgetCons/budgetTotal<0.5?'green':'yellow'}
   ]);
 
-  // Tabela mensal
-  var tbM=document.getElementById('preneg-mes-table');
-  if(tbM){
-    var th=function(t,al){return '<th style="padding:10px 12px;font-size:11px;font-weight:700;color:#FFE600;background:#1A1A1A;text-align:'+(al||'left')+'">'+t+'</th>';};
-    var hdr='<thead><tr>'+th('Mês')+th('NMV','right')+th('ADS','right')+th('Cupons','right')+th('Rebates','right')+th('Total Inv.','right')+th('% GMV','center')+'</tr></thead>';
-    var bdy='<tbody>';
-    if(semDados){
-      bdy+='<tr><td colspan="7" style="text-align:center;color:#aaa;padding:24px">&#9203; Prenegociada inicia em 01/05/2026 — dados disponíveis a partir de 02/05 (lag T-1 BQ)</td></tr>';
-    }else{
-      meses.forEach(function(m,i){
-        var tot=(m.ads||0)+(m.cupons||0)+(m.rebates||0);
-        var pct=m.nmv>0?(tot/m.nmv*100).toFixed(1)+'%':'—';
-        var bg=i%2===0?'#fff':'#FAFAFA';
-        bdy+='<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
-          +'<td style="font-weight:700">'+m.mes+'</td>'
-          +'<td style="text-align:right">'+fmt(m.nmv)+'</td>'
-          +'<td style="text-align:right;color:#3483FA">'+fmt(m.ads)+'</td>'
-          +'<td style="text-align:right;color:#B07A00">'+fmt(m.cupons)+'</td>'
-          +'<td style="text-align:right;color:#9B59B6">'+fmt(m.rebates)+'</td>'
-          +'<td style="text-align:right;font-weight:800">'+fmt(tot)+'</td>'
-          +'<td style="text-align:center">'+pct+'</td></tr>';
-      });
-    }
-    tbM.innerHTML=hdr+bdy+'</tbody>';
-  }
-
-  // Tabela MLB
+  // Tabela MLB (ordenada por Rebates DESC)
   var tbI=document.getElementById('preneg-mlb-table');
   if(tbI){
     var th2=function(t,al){return '<th style="padding:10px 12px;font-size:11px;font-weight:700;color:#FFE600;background:#1A1A1A;text-align:'+(al||'left')+'">'+t+'</th>';};
@@ -3783,6 +3757,7 @@ function buildPreNeg(){
     if(!itens.length){
       bdy2+='<tr><td colspan="10" style="text-align:center;color:#aaa;padding:24px">&#9203; Dados disponíveis a partir de 02/05/2026</td></tr>';
     }else{
+      itens=[].concat(itens).sort(function(a,b){return (b.rebates||0)-(a.rebates||0);});
       itens.forEach(function(it,i){
         var cor=GRUPO_COLOR[it.grupo]||'#3483FA';
         var link='https://produto.mercadolivre.com.br/'+it.mlb.replace('MLB','MLB-');
