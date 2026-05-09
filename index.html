@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 12:08 -->
+<!-- Build: 09/05/2026 12:09 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 12:08</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 12:09</span>
   </div>
 </div>
 <div id="sidebar">
@@ -994,7 +994,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 12:08
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 12:09
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3812,8 +3812,15 @@ function buildGMVHoje(){
     if(el)el.innerHTML='<div style="padding:24px;text-align:center;color:#888">Dados ainda nao disponiveis</div>';
     return;
   }
-  // Prefere hoje (parcial) se disponivel; senao usa ultimo dia completo
+  // Prefere hoje se disponivel; senao usa ultimo dia no HOJE_DATA ou TOP_HOJE
   var eHojeParcial = datas.indexOf(todayStr) >= 0;
+  // Fallback: se hoje nao esta em HOJE_DATA_TOTAL, verifica TOP_HOJE
+  if(!eHojeParcial&&typeof TOP_HOJE!=='undefined'&&TOP_HOJE.length){
+    var topDates=(TOP_HOJE.map(function(r){return r.data;}).filter(Boolean));
+    topDates.sort();
+    var topLatest=topDates[topDates.length-1]||'';
+    if(topLatest===todayStr){eHojeParcial=true;}
+  }
   var dHoje  = eHojeParcial ? todayStr : datas[datas.length-1];
   // Ontem = dia anterior ao dHoje
   var datasAnteriores = datas.filter(function(d){return d < dHoje;});
