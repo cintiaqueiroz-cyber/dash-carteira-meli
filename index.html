@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 12:09 -->
+<!-- Build: 09/05/2026 12:10 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 12:09</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 12:10</span>
   </div>
 </div>
 <div id="sidebar">
@@ -994,7 +994,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 12:09
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 12:10
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3740,11 +3740,8 @@ function buildPreNeg(){
 
   var kRow=document.getElementById('preneg-kpi-row');
   if(kRow)kRow.innerHTML=kpiHtml([
-    {label:'NMV Total',val:fmt(totNMV),sub:'desde '+inicio,cls:'blue'},
-    {label:'Rebate DXI (Prenegociada)',val:fmt(totDXI),sub:(totINV>0?(totDXI/totINV*100).toFixed(0)+'% do inv.':'0%'),cls:'purple'},
-    {label:'Rebate DXB',val:fmt(totDXB),sub:(totINV>0?(totDXB/totINV*100).toFixed(0)+'% do inv.':'0%'),cls:'yellow'},
-    {label:'Cupons ML',val:fmt(totCUP),sub:(totINV>0?(totCUP/totINV*100).toFixed(0)+'% do inv.':'0%'),cls:'yellow'},
-    {label:'Total Rebates',val:fmt(totINV),sub:'% NMV: '+(totNMV>0?(totINV/totNMV*100).toFixed(1):0)+'%',cls:totINV>0?'green':'red'},
+    {label:'NMV Total Mai',val:fmt(totNMV),sub:'desde '+inicio,cls:'blue'},
+    {label:'Rebate DXI (Prenegociada)',val:fmt(totDXI),sub:(totNMV>0?(totDXI/totNMV*100).toFixed(1)+'% do NMV':'0%'),cls:'purple'},
     {label:'Budget Pandora',val:fmt(budgetCons),sub:'de '+fmt(budgetTotal)+' ('+pctBudget+'%)',cls:budgetCons/budgetTotal<0.5?'green':'yellow'}
   ]);
 
