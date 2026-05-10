@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 10/05/2026 16:16 -->
+<!-- Build: 10/05/2026 16:23 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 10/05/2026 16:16</span>
+    <span class="update-badge">&#10003; Atualizado 10/05/2026 16:23</span>
   </div>
 </div>
 <div id="sidebar">
@@ -998,7 +998,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 10/30 dias &nbsp;&middot;&nbsp; 10/05/2026 16:16
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 10/30 dias &nbsp;&middot;&nbsp; 10/05/2026 16:23
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -4195,10 +4195,12 @@ function buildCombo(){
   destroyChart('combo-mix');
   var c1=document.getElementById('combo-mix-chart');
   if(c1)chartInstances['combo-mix']=new Chart(c1.getContext('2d'),{type:'bar',data:{labels:GRUPOS,datasets:[{label:'PSJ',data:groupPSJ.map(function(v){return +v.toFixed(1);}),backgroundColor:'#00A650cc',stack:'s',borderRadius:4},{label:'PCJ',data:groupPSJ.map(function(v){return +(100-v).toFixed(1);}),backgroundColor:'#F23D4F66',stack:'s'}]},options:{responsive:true,animation:false,indexAxis:'y',layout:{padding:{left:0}},scales:{x:{stacked:true,max:100,ticks:{callback:function(v){return v+'%';},font:{size:10}}},y:{stacked:true,ticks:{font:{size:9},mirror:false},afterFit:function(axis){axis.width=130;}}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.raw+'%';}}}}}});
-  var trend=mks.map(function(k){var p=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0),c=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);return p+c>0?+(p/(p+c)*100).toFixed(1):null;});
+  // Evolução sempre usa MESES_DONE para contexto histórico completo
+  var trendMks=MESES_DONE;
+  var trend=trendMks.map(function(k){var p=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0),c=GRUPOS.reduce(function(s,g){return s+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);return p+c>0?+(p/(p+c)*100).toFixed(1):null;});
   destroyChart('combo-trend');
   var c2=document.getElementById('combo-trend-chart');
-  if(c2)chartInstances['combo-trend']=new Chart(c2.getContext('2d'),{type:'line',data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:[{label:'% PSJ carteira',data:trend,borderColor:'#00A650',backgroundColor:'rgba(0,166,80,.12)',borderWidth:2.5,pointRadius:5,fill:true,tension:0.3}]},options:{responsive:true,animation:false,scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}},plugins:{legend:{display:false}}}});
+  if(c2)chartInstances['combo-trend']=new Chart(c2.getContext('2d'),{type:'line',data:{labels:trendMks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:[{label:'% PSJ carteira',data:trend,borderColor:'#00A650',backgroundColor:'rgba(0,166,80,.12)',borderWidth:2.5,pointRadius:5,fill:true,tension:0.3}]},options:{responsive:true,animation:false,scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}},plugins:{legend:{display:false}}}});
   var tbl=document.getElementById('combo-table');
   if(!tbl)return;
   var hdr='<thead><tr style="background:#FFE600"><th style="padding:12px 14px;text-align:left;font-size:12px;font-weight:800;color:#1A1A1A">Grupo</th>';
