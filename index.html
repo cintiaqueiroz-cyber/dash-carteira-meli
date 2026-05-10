@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 21:07 -->
+<!-- Build: 09/05/2026 21:17 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 21:07</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 21:17</span>
   </div>
 </div>
 <div id="sidebar">
@@ -998,7 +998,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 21:07
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 21:17
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3946,7 +3946,7 @@ function buildGMVHoje(){
   var thStyle='padding:10px 14px;font-size:10px;font-weight:800;color:#fff;text-align:';
   var hdr='<thead><tr style="background:#1A1A1A">'
     +'<th style="'+thStyle+'left">Grupo</th>'
-    +'<th style="'+thStyle+'right">GMV Hoje</th>'
+    +'<th style="'+thStyle+'right">GMV Hoje <span style="font-size:8px;opacity:.7">(T-1)</span></th>'
     +'<th style="'+thStyle+'right">SIs</th>'
     +'<th style="'+thStyle+'right">Pedidos</th>'
     +'<th style="'+thStyle+'center">vs Ontem</th>'
@@ -4024,18 +4024,17 @@ function buildTopItensHoje(dHoje, dOntem, dD7){
     var sorted=allItems.slice().sort(sortFn).slice(0,30);
     if(!sorted.length) return '<div style="padding:20px;text-align:center;color:#888">Sem dados para hoje</div>';
     var th=function(t,al){return '<th style="padding:9px 10px;font-size:10px;font-weight:800;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;background:#1A1A1A">'+t+'</th>';};
-    var hdr='<thead><tr>'+th('Produto')+th('Grupo','center')+th('MLB','center')+th('GMV Hoje','right')+th('SIs','right')+th('ASP','right')+th('vs Ontem','center')+th('vs D-7','center')+'</tr></thead>';
+    // GMV Hoje tem lag T-1 no nível de item — mostrar aviso e focar em SIs
+    var hdr='<thead><tr>'+th('Produto')+th('Grupo','center')+th('MLB','center')+th('SIs Hoje','right')+th('vs Ontem','center')+th('vs D-7','center')+'</tr></thead>';
     var bdy='<tbody>'+sorted.map(function(it,i){
       var cor=GRUPO_COLOR[it.grupo]||'#3483FA';
       var link='https://produto.mercadolivre.com.br/'+it.mlb_id.replace('MLB','MLB-');
       var bg=i%2===0?'#fff':'#FAFAFA';
       return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
-        +'<td style="padding:8px 10px;font-size:11px;font-weight:600;color:#1A1A1A;max-width:260px">'+it.titulo+'</td>'
+        +'<td style="padding:8px 10px;font-size:11px;font-weight:600;color:#1A1A1A;max-width:300px">'+it.titulo+'</td>'
         +'<td style="padding:8px 10px;text-align:center"><span style="background:'+cor+'22;color:'+cor+';font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px">'+it.grupo+'</span></td>'
         +'<td style="padding:8px 10px;text-align:center"><a href="'+link+'" target="_blank" style="color:#3483FA;font-size:10px;font-weight:700;text-decoration:none">'+it.mlb_id+' &#8599;</a></td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:900;color:#1A1A1A">'+fmt(it.gmv)+'</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:11px;color:#555">'+it.si+'</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:11px;color:#888">'+(it.asp>0?'R$ '+it.asp.toLocaleString('pt-BR',{minimumFractionDigits:2}):'—')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:14px;font-weight:900;color:#3483FA">'+it.si+'</td>'
         +'<td style="padding:8px 10px;text-align:center">'+badge(it._vsO)+'</td>'
         +'<td style="padding:8px 10px;text-align:center">'+badge(it._vsD)+'</td>'
         +'</tr>';
