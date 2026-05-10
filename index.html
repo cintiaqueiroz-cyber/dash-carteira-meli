@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 21:21 -->
+<!-- Build: 09/05/2026 21:29 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 21:21</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 21:29</span>
   </div>
 </div>
 <div id="sidebar">
@@ -998,7 +998,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 21:21
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 21:29
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3203,8 +3203,10 @@ function buildVisTopCards(items, containerId){
   // Layout Aline: cards compactos sem thumbnail — item, grupo, visitas, vendas, CVR%
   var el=document.getElementById(containerId);
   if(!el||!items||!items.length){if(el)el.innerHTML='<p style="color:#aaa;font-size:12px;padding:16px">Sem dados de visitas.</p>';return;}
-  // Filtrar por PERIODO se possível
-  var filtered=items.filter(function(it){return !it.month_key||PERIODO.indexOf(it.month_key)>=0;});
+  // Converter PERIODO (abrev) para yyyymm para comparar com month_key
+  var MK26VIS={jan:'202601',feb:'202602',mar:'202603',apr:'202604',may:'202605',jun:'202606',jul:'202607',aug:'202608',sep:'202609',oct:'202610',nov:'202611',dec:'202612'};
+  var periodoMK=PERIODO.map(function(k){return MK26VIS[k]||k;});
+  var filtered=items.filter(function(it){return !it.month_key||periodoMK.indexOf(it.month_key)>=0;});
   if(!filtered.length)filtered=items;
   var top=filtered.slice(0,12);
   var curMkLabel=MESES_DONE.length?('Visitas '+MESES_ABR_CAT[MESES_DONE[MESES_DONE.length-1]]||''):'Visitas';
@@ -3240,7 +3242,9 @@ function buildVisCvrOppTable(items, containerId){
   var el=document.getElementById(containerId);
   if(!el||!items||!items.length)return;
   // Filtrar por PERIODO
-  var filtered=items.filter(function(it){return !it.month_key||PERIODO.indexOf(it.month_key)>=0;});
+  var MK26VIS2={jan:'202601',feb:'202602',mar:'202603',apr:'202604',may:'202605',jun:'202606',jul:'202607',aug:'202608',sep:'202609',oct:'202610',nov:'202611',dec:'202612'};
+  var periodoMK2=PERIODO.map(function(k){return MK26VIS2[k]||k;});
+  var filtered=items.filter(function(it){return !it.month_key||periodoMK2.indexOf(it.month_key)>=0;});
   if(!filtered.length)filtered=items;
   var sorted=filtered.slice().sort(function(a,b){return b.visits-a.visits;}).slice(0,50);
   // Tabela completa
