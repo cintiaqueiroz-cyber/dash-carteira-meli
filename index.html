@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/05/2026 22:23 -->
+<!-- Build: 09/05/2026 22:27 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/05/2026 22:23</span>
+    <span class="update-badge">&#10003; Atualizado 09/05/2026 22:27</span>
   </div>
 </div>
 <div id="sidebar">
@@ -998,7 +998,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 22:23
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/05/2026 22:27
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1606,12 +1606,16 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     +th('UNITS','right','70px')
     +th('GMV MOM','center','90px')
     +th('UNITS MOM','center','90px')
+    +(hasVC?th('REBATE VC','right','100px'):'')
+    +(hasVC?th('VC NEGATIVA','right','100px'):'')
     +th('PRE\u00c7O DE','right','110px')
     +th('PRE\u00c7O ATUAL','right','110px')
     +th('STATUS','center','70px')
     +th('DOM\u00cdNIO')
     +'</tr></thead>';
 
+  // VC items disponivel
+  var hasVC=typeof VC_ITEMS!=='undefined'&&Object.keys(VC_ITEMS).length>0;
   // Respeitar a ordem que foi passada (sort já foi feito em renderVGItems/buildSellerCat)
   var sorted=items.slice();
   var cumulative=0;
@@ -1675,6 +1679,10 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     }
     var momSI=sAnt2>0?((sCur2-sAnt2)/sAnt2*100):null;
 
+    // VC lookup para este item e periodo
+    var _vcData=(hasVC&&it.item_id&&VC_ITEMS[it.item_id])?VC_ITEMS[it.item_id]:{};
+    var _vcReb=PERIODO.reduce(function(s,k){return s+((_vcData[k]||{}).rebate||0);},0);
+    var _vcNeg=PERIODO.reduce(function(s,k){return s+((_vcData[k]||{}).vc_negativa||0);},0);
     var imgHtml=mlImgTag(it);
     var nm=(it.nm||it.title||'').substring(0,44)+((it.nm||it.title||'').length>44?'...':'');
 
@@ -1706,6 +1714,9 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momGMV)+'</td>'
       // UNITS MOM
       +'<td style="padding:10px 10px;text-align:center">'+momBadge(momSI)+'</td>'
+      // VC
+      +(hasVC?'<td style="padding:10px 10px;text-align:right;font-size:11px;color:'+(_vcReb>0?'#9B59B6':'#CCC')+'">'+(_vcReb>0?fmt(_vcReb):'—')+'</td>':'')
+      +(hasVC?'<td style="padding:10px 10px;text-align:right;font-size:11px;font-weight:700;color:'+(_vcNeg>0?'#F23D4F':'#CCC')+'">'+(_vcNeg>0?fmt(_vcNeg):'—')+'</td>':'')
       // PREÇO DE
       +'<td style="padding:10px 10px;text-align:right">'+pdHtml+'</td>'
       // PREÇO ATUAL
@@ -4168,7 +4179,7 @@ window.addEventListener('DOMContentLoaded',function(){
 
 
 function buildCombo(){
-  var mks=MESES_DONE;
+  var mks=PERIODO.length?PERIODO:MESES_DONE;
   var totPSJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+(((COMBO_DATA[g]||{})[k]||{}).psj||0);},0);},0);
   var totPCJ=GRUPOS.reduce(function(s,g){return s+mks.reduce(function(ss,k){return ss+(((COMBO_DATA[g]||{})[k]||{}).pcj||0);},0);},0);
   var totAll=totPSJ+totPCJ,pPSJ=totAll>0?totPSJ/totAll*100:0;
