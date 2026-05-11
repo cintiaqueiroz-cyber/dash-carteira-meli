@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 11/05/2026 18:47 -->
+<!-- Build: 11/05/2026 18:48 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 11/05/2026 18:47</span>
+    <span class="update-badge">&#10003; Atualizado 11/05/2026 18:48</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1008,7 +1008,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 18:47
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 18:48
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1568,31 +1568,32 @@ function buildInsights(g,px){
 function buildSellerFull(g,px){
   var mks=MESES_DONE,ff=REAL_FF[g]||{},xd=REAL_XD[g]||{},ss=REAL_SS[g]||{},rm=REAL_MENSAL[g]||{};
   var ytdF=ytdFF(g),ytdX=ytdXD(g),ytdS=mks.reduce(function(a,k){return a+(ss[k]||0);},0),ytdG=ytdReal(g);
+  var hasFF=ytdF>0,hasSS=ytdS>0;
   var elKpi=document.getElementById(px+'-full-kpi');
-  if(elKpi)elKpi.innerHTML=kpiHtml([
-    {label:'% Full (FBM)',val:pctNum(ytdF,ytdG).toFixed(1)+'%',sub:fmt(ytdF),cls:ytdF/Math.max(ytdG,1)>=.6?'green':ytdF/Math.max(ytdG,1)>=.3?'yellow':'red'},
-    {label:'% Cross-Docking',val:pctNum(ytdX,ytdG).toFixed(1)+'%',sub:fmt(ytdX),cls:'blue'},
-    {label:'% Self-Service',val:pctNum(ytdS,ytdG).toFixed(1)+'%',sub:fmt(ytdS),cls:'blue'},
-    {label:'GMV Total',val:fmt(ytdG),sub:'YTD',cls:'blue'}
-  ]);
+  var kpis=[{label:'% Cross-Docking',val:pctNum(ytdX,ytdG).toFixed(1)+'%',sub:fmt(ytdX),cls:'blue'}];
+  if(hasFF)kpis.unshift({label:'% Full (FBM)',val:pctNum(ytdF,ytdG).toFixed(1)+'%',sub:fmt(ytdF),cls:ytdF/Math.max(ytdG,1)>=.6?'green':ytdF/Math.max(ytdG,1)>=.3?'yellow':'red'});
+  if(hasSS)kpis.push({label:'% Self-Service',val:pctNum(ytdS,ytdG).toFixed(1)+'%',sub:fmt(ytdS),cls:'blue'});
+  kpis.push({label:'GMV Total',val:fmt(ytdG),sub:'YTD',cls:'blue'});
+  if(elKpi)elKpi.innerHTML=kpiHtml(kpis);
   destroyChart(px+'-full');
   var canEl=document.getElementById(px+'-full-canvas');
   if(!canEl)return;
+  var datasets=[];
+  if(hasFF)datasets.push({label:'Full',data:mks.map(function(k){return ff[k]||0;}),backgroundColor:'#00A650',borderRadius:3});
+  datasets.push({label:'XD',data:mks.map(function(k){return xd[k]||0;}),backgroundColor:'#3483FA',borderRadius:3});
+  if(hasSS)datasets.push({label:'SS',data:mks.map(function(k){return ss[k]||0;}),backgroundColor:'#FFB900',borderRadius:3});
   chartInstances[px+'-full']=new Chart(canEl.getContext('2d'),{
     type:'bar',
-    data:{labels:mks.map(function(k){return MESES_PT_CURTO[k];}),datasets:[
-      {label:'Full',data:mks.map(function(k){return ff[k]||0;}),backgroundColor:'#00A650',borderRadius:3},
-      {label:'XD',data:mks.map(function(k){return xd[k]||0;}),backgroundColor:'#3483FA',borderRadius:3},
-      {label:'SS',data:mks.map(function(k){return ss[k]||0;}),backgroundColor:'#FFB900',borderRadius:3}
-    ]},
+    data:{labels:mks.map(function(k){return MESES_PT_CURTO[k];}),datasets:datasets},
     options:{responsive:true,animation:false,
              scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},
              plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}}}
   });
-  var hdr='<thead><tr><th>Mês</th><th>Full</th><th>XD</th><th>SS</th><th>Total</th><th>% Full</th></tr></thead>';
+  var thCols='<th>Mês</th>'+(hasFF?'<th>Full</th>':'')+'<th>XD</th>'+(hasSS?'<th>SS</th>':'')+'<th>Total</th><th>% Full</th>';
+  var hdr='<thead><tr>'+thCols+'</tr></thead>';
   var bdy='<tbody>'+mks.map(function(k){
     var f=ff[k]||0,x=xd[k]||0,s=ss[k]||0,t=rm[k]||0,p=t>0?f/t*100:0;
-    return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(f)+'</td><td>'+fmt(x)+'</td><td>'+fmt(s)+'</td><td>'+fmt(t)+'</td><td><span class="pill '+(p>=60?'pill-green':p>=30?'pill-yellow':'pill-red')+'">'+p.toFixed(1)+'%</span></td></tr>';
+    return '<tr><td>'+MESES_PT_CURTO[k]+'</td>'+(hasFF?'<td>'+fmt(f)+'</td>':'')+'<td>'+fmt(x)+'</td>'+(hasSS?'<td>'+fmt(s)+'</td>':'')+'<td>'+fmt(t)+'</td><td><span class="pill '+(p>=60?'pill-green':p>=30?'pill-yellow':'pill-red')+'">'+p.toFixed(1)+'%</span></td></tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-full-table');
   if(tbl)tbl.innerHTML=hdr+bdy;
