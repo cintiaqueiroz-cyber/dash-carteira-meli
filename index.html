@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 11/05/2026 16:42 -->
+<!-- Build: 11/05/2026 18:33 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 11/05/2026 16:42</span>
+    <span class="update-badge">&#10003; Atualizado 11/05/2026 18:33</span>
   </div>
 </div>
 <div id="sidebar">
@@ -466,7 +466,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ml-actions"></div></div></div><div id="ml-section-full" class="sub-section">
 <div class="kpi-row" id="ml-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ml-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ml-full-table"></table></div></div></div><div id="ml-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ml-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="ml-full-xd"></div></div></div><div id="ml-section-ads" class="sub-section">
 <div class="kpi-row" id="ml-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="ml-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ml-ads-table"></table></div></div></div><div id="ml-section-inv" class="sub-section">
@@ -521,7 +522,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ad-actions"></div></div></div><div id="ad-section-full" class="sub-section">
 <div class="kpi-row" id="ad-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ad-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ad-full-table"></table></div></div></div><div id="ad-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ad-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="ad-full-xd"></div></div></div><div id="ad-section-ads" class="sub-section">
 <div class="kpi-row" id="ad-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="ad-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ad-ads-table"></table></div></div></div><div id="ad-section-inv" class="sub-section">
@@ -576,7 +578,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ba-actions"></div></div></div><div id="ba-section-full" class="sub-section">
 <div class="kpi-row" id="ba-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ba-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ba-full-table"></table></div></div></div><div id="ba-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ba-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="ba-full-xd"></div></div></div><div id="ba-section-ads" class="sub-section">
 <div class="kpi-row" id="ba-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="ba-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ba-ads-table"></table></div></div></div><div id="ba-section-inv" class="sub-section">
@@ -631,7 +634,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ci-actions"></div></div></div><div id="ci-section-full" class="sub-section">
 <div class="kpi-row" id="ci-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ci-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ci-full-table"></table></div></div></div><div id="ci-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ci-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="ci-full-xd"></div></div></div><div id="ci-section-ads" class="sub-section">
 <div class="kpi-row" id="ci-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="ci-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ci-ads-table"></table></div></div></div><div id="ci-section-inv" class="sub-section">
@@ -686,7 +690,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="bp-actions"></div></div></div><div id="bp-section-full" class="sub-section">
 <div class="kpi-row" id="bp-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="bp-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="bp-full-table"></table></div></div></div><div id="bp-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="bp-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="bp-full-xd"></div></div></div><div id="bp-section-ads" class="sub-section">
 <div class="kpi-row" id="bp-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="bp-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="bp-ads-table"></table></div></div></div><div id="bp-section-inv" class="sub-section">
@@ -741,7 +746,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="pa-actions"></div></div></div><div id="pa-section-full" class="sub-section">
 <div class="kpi-row" id="pa-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="pa-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="pa-full-table"></table></div></div></div><div id="pa-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="pa-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="pa-full-xd"></div></div></div><div id="pa-section-ads" class="sub-section">
 <div class="kpi-row" id="pa-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="pa-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="pa-ads-table"></table></div></div></div><div id="pa-section-inv" class="sub-section">
@@ -796,7 +802,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="to-actions"></div></div></div><div id="to-section-full" class="sub-section">
 <div class="kpi-row" id="to-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="to-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="to-full-table"></table></div></div></div><div id="to-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="to-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="to-full-xd"></div></div></div><div id="to-section-ads" class="sub-section">
 <div class="kpi-row" id="to-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="to-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="to-ads-table"></table></div></div></div><div id="to-section-inv" class="sub-section">
@@ -851,7 +858,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="we-actions"></div></div></div><div id="we-section-full" class="sub-section">
 <div class="kpi-row" id="we-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="we-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="we-full-table"></table></div></div></div><div id="we-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="we-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="we-full-xd"></div></div></div><div id="we-section-ads" class="sub-section">
 <div class="kpi-row" id="we-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="we-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="we-ads-table"></table></div></div></div><div id="we-section-inv" class="sub-section">
@@ -906,7 +914,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="kh-actions"></div></div></div><div id="kh-section-full" class="sub-section">
 <div class="kpi-row" id="kh-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="kh-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="kh-full-table"></table></div></div></div><div id="kh-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="kh-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="kh-full-xd"></div></div></div><div id="kh-section-ads" class="sub-section">
 <div class="kpi-row" id="kh-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="kh-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="kh-ads-table"></table></div></div></div><div id="kh-section-inv" class="sub-section">
@@ -961,7 +970,8 @@
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ma-actions"></div></div></div><div id="ma-section-full" class="sub-section">
 <div class="kpi-row" id="ma-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ma-full-canvas" style="max-height:300px;"></canvas></div></div>
-<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ma-full-table"></table></div></div></div><div id="ma-section-ads" class="sub-section">
+<div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ma-full-table"></table></div></div>
+<div class="section"><div class="section-title">Top Itens Cross-Docking</div><div id="ma-full-xd"></div></div></div><div id="ma-section-ads" class="sub-section">
 <div class="kpi-row" id="ma-ads-kpi"></div>
 <div class="section"><div class="section-title">ADS &amp; Cupons por M&#234;s</div><div class="chart-box"><canvas id="ma-ads-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ma-ads-table"></table></div></div></div><div id="ma-section-inv" class="sub-section">
@@ -998,7 +1008,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 16:42
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 18:33
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1586,6 +1596,45 @@ function buildSellerFull(g,px){
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-full-table');
   if(tbl)tbl.innerHTML=hdr+bdy;
+
+  // Top Itens Cross-Docking deste seller
+  var xdEl=document.getElementById(px+'-full-xd');
+  if(xdEl&&typeof XD_ITEMS!=='undefined'){
+    var xdItems=XD_ITEMS.filter(function(it){
+      var inGrupo=(it.grupo||it.g||'')===(g||'');
+      var inPeriodo=!PERIODO||PERIODO.length===0||PERIODO.indexOf(it.month_key)>=0;
+      return inGrupo&&inPeriodo&&(it.gmv_xd||0)>0;
+    }).sort(function(a,b){return (b.gmv_xd||0)-(a.gmv_xd||0);}).slice(0,30);
+
+    if(!xdItems.length){
+      xdEl.innerHTML='<p style="color:#aaa;padding:12px;text-align:center;font-size:12px">Sem itens Cross-Docking no período selecionado</p>';
+    }else{
+      var th2=function(t,al){return '<th style="padding:9px 10px;font-size:10px;font-weight:700;color:#fff;background:#1A1A1A;text-align:'+(al||'right')+';white-space:nowrap">'+t+'</th>';};
+      var hdr2='<thead><tr>'+th2('#','center')+th2('Produto','left')+th2('MLB','left')+th2('GMV XD')+th2('SIs XD')+th2('% do Total')+th2('Mês','center')+'</tr></thead>';
+      var totXD=xdItems.reduce(function(s,it){return s+(it.gmv_xd||0);},0);
+      var bdy2='<tbody>'+xdItems.map(function(it,i){
+        var v=it.gmv_xd||0,tot=it.gmv_total||v,pct=tot>0?(v/tot*100).toFixed(1):0;
+        var si=Math.round(it.si_xd||it.si||0);
+        var nm=(it.nm||it.titulo||'').substring(0,50)+((it.nm||it.titulo||'').length>50?'...':'');
+        var mlb=it.mlb_id||'';
+        var href=mlb?'https://produto.mercadolivre.com.br/'+mlb.replace('MLB','MLB-'):'#';
+        var mes=MESES_PT_CURTO[it.month_key]||it.month_key||'';
+        var bg=i%2===0?'#fff':'#FAFAFA';
+        return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
+          +'<td style="padding:9px 10px;text-align:center;font-size:11px;color:#888">'+(i+1)+'</td>'
+          +'<td style="padding:9px 10px"><a href="'+href+'" target="_blank" style="color:#1A1A1A;text-decoration:none;font-size:12px;font-weight:600">'+nm+'</a></td>'
+          +'<td style="padding:9px 10px;font-size:10px;color:#3483FA;white-space:nowrap">'+mlb+'</td>'
+          +'<td style="padding:9px 10px;font-weight:800;color:#3483FA;text-align:right">'+fmt(v)+'</td>'
+          +'<td style="padding:9px 10px;text-align:right;font-size:12px;color:#555">'+si.toLocaleString('pt-BR')+' un</td>'
+          +'<td style="padding:9px 10px;text-align:right"><span style="background:#E8F0FF;color:#3483FA;font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px">'+pct+'%</span></td>'
+          +'<td style="padding:9px 10px;text-align:center;font-size:11px;color:#888">'+mes+'</td>'
+          +'</tr>';
+      }).join('')+'</tbody>';
+      xdEl.innerHTML='<div style="overflow-x:auto;border-radius:8px;border:1px solid #E8E8E8">'
+        +'<table style="width:100%;border-collapse:collapse">'+hdr2+bdy2+'</table></div>'
+        +'<div style="font-size:11px;color:#888;margin-top:8px">Total GMV XD no período: '+fmt(totXD)+' — Top '+xdItems.length+' itens (últimos 90 dias)</div>';
+    }
+  }
 }
 function buildSellerADS(g,px){
   var mks=MESES_DONE,ads=REAL_INV_ADS[g]||{},cup=REAL_CUPONS[g]||{},rm=REAL_MENSAL[g]||{};
