@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 11/05/2026 19:04 -->
+<!-- Build: 11/05/2026 19:17 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -221,7 +221,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 11/05/2026 19:04</span>
+    <span class="update-badge">&#10003; Atualizado 11/05/2026 19:17</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1029,7 +1029,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 19:04
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 19:17
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2489,13 +2489,16 @@ function buildHighsLows(){
 }
 
 function buildCatNMV(){
-  // Agrega categorias de acordo com PERIODO selecionado
+  // Agrega categorias de acordo com PERIODO selecionado (ou todos os meses se YTD)
   var cats=[];
   var catMap={};
   var src=typeof CAT_DATA_MONTHLY!=='undefined'?CAT_DATA_MONTHLY:null;
-  if(src&&src['CARTEIRA TOTAL']){
-    PERIODO.forEach(function(mk){
-      var mItems=(src['CARTEIRA TOTAL'][mk])||[];
+  var totalSrc=src?(src['CARTEIRA TOTAL']||null):null;
+  if(totalSrc){
+    // Se PERIODO vazio = YTD: usa todos os meses disponíveis
+    var mksUse=(PERIODO&&PERIODO.length>0)?PERIODO:Object.keys(totalSrc);
+    mksUse.forEach(function(mk){
+      var mItems=totalSrc[mk]||[];
       mItems.forEach(function(c){
         var key=c.d1+'||'+c.cat;
         if(!catMap[key])catMap[key]={d1:c.d1,cat:c.cat,gmv:0,si:0,n:0};
