@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 11/05/2026 18:50 -->
+<!-- Build: 11/05/2026 19:00 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -203,7 +203,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 11/05/2026 18:50</span>
+    <span class="update-badge">&#10003; Atualizado 11/05/2026 19:00</span>
   </div>
 </div>
 <div id="sidebar">
@@ -998,7 +998,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 18:50
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 19:00
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1579,14 +1579,35 @@ function buildSellerFull(g,px){
              scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},
              plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fmt(c.raw);}}}}}
   });
-  var thCols='<th>Mês</th>'+(hasFF?'<th>Full</th>':'')+'<th>XD</th>'+(hasSS?'<th>SS</th>':'')+'<th>Total</th><th>% Full</th>';
-  var hdr='<thead><tr>'+thCols+'</tr></thead>';
-  var bdy='<tbody>'+mks.map(function(k){
-    var f=ff[k]||0,x=xd[k]||0,s=ss[k]||0,t=rm[k]||0,p=t>0?f/t*100:0;
-    return '<tr><td>'+MESES_PT_CURTO[k]+'</td>'+(hasFF?'<td>'+fmt(f)+'</td>':'')+'<td>'+fmt(x)+'</td>'+(hasSS?'<td>'+fmt(s)+'</td>':'')+'<td>'+fmt(t)+'</td><td><span class="pill '+(p>=60?'pill-green':p>=30?'pill-yellow':'pill-red')+'">'+p.toFixed(1)+'%</span></td></tr>';
+  var thS='padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right';
+  var thSL='padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:left';
+  var thCols='<th style="'+thSL+'">Mês</th>'
+    +(hasFF?'<th style="'+thS+'">Full (FBM)</th>':'')
+    +'<th style="'+thS+'">Cross-Docking</th>'
+    +(hasSS?'<th style="'+thS+'">Self-Service</th>':'')
+    +'<th style="'+thS+'">GMV Total</th>'
+    +(hasFF?'<th style="'+thS+'">% Full</th>':'')
+    +'<th style="'+thS+'">% XD</th>';
+  var hdr='<thead><tr style="background:#FFE600">'+thCols+'</tr></thead>';
+  var bdy='<tbody>'+mks.map(function(k,i){
+    var f=ff[k]||0,x=xd[k]||0,s=ss[k]||0,t=rm[k]||0;
+    var pF=t>0?f/t*100:0,pX=t>0?x/t*100:0;
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    var td='padding:11px 16px;font-size:13px;text-align:right;color:#1A1A1A;white-space:nowrap';
+    var tdL='padding:11px 16px;font-size:13px;font-weight:700;color:#1A1A1A';
+    var xdClr=pX>=60?'#00A650':pX>=30?'#B07A00':'#F23D4F';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
+      +'<td style="'+tdL+'">'+MESES_PT_CURTO[k]+'</td>'
+      +(hasFF?'<td style="'+td+'">'+fmt(f)+'</td>':'')
+      +'<td style="'+td+';font-weight:700;color:#3483FA">'+fmt(x)+'</td>'
+      +(hasSS?'<td style="'+td+'">'+fmt(s)+'</td>':'')
+      +'<td style="'+td+';font-weight:700">'+fmt(t)+'</td>'
+      +(hasFF?'<td style="'+td+'"><span style="background:'+(pF>=60?'rgba(0,166,80,.12)':'rgba(242,61,79,.1)')+';color:'+(pF>=60?'#00A650':'#F23D4F')+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pF.toFixed(1)+'%</span></td>':'')
+      +'<td style="'+td+'"><span style="background:rgba(52,131,250,.1);color:'+xdClr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pX.toFixed(1)+'%</span></td>'
+      +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-full-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+hdr+bdy+'</table></div>';
 
   // Top Itens Cross-Docking deste seller
   var xdEl=document.getElementById(px+'-full-xd');
@@ -1647,13 +1668,16 @@ function buildSellerADS(g,px){
     ]},
     options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom'}}}
   });
-  var hdr='<thead><tr><th>Mês</th><th>ADS</th><th>Cupons</th><th>Total</th><th>% GMV</th></tr></thead>';
-  var bdy='<tbody>'+mks.map(function(k){
-    var a=ads[k]||0,c=cup[k]||0,gv=rm[k]||0,t=a+c,p=gv>0?t/gv*100:0;
-    return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(a)+'</td><td>'+fmt(c)+'</td><td>'+fmt(t)+'</td><td>'+p.toFixed(1)+'%</td></tr>';
+  var ths='<tr style="background:#FFE600"><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:left">Mês</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">ADS</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Cupons</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Total Invest.</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:center">% do GMV</th></tr>';
+  var hdr='<thead>'+ths+'</thead>';
+  var bdy='<tbody>'+mks.map(function(k,i){
+    var a=ads[k]||0,cu=cup[k]||0,gv=rm[k]||0,t=a+cu,p=gv>0?t/gv*100:0;
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    var pClr=p>=5?'#F23D4F':p>=2?'#B07A00':'#00A650',pBg=p>=5?'rgba(242,61,79,.1)':p>=2?'rgba(255,185,0,.15)':'rgba(0,166,80,.12)';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'      +'<td style="padding:11px 16px;font-size:13px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#3483FA;font-weight:600">'+fmt(a)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#9B59B6;font-weight:600">'+fmt(cu)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A">'+fmt(t)+'</td>'      +'<td style="padding:11px 16px;text-align:center"><span style="background:'+pBg+';color:'+pClr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+p.toFixed(1)+'%</span></td>'      +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-ads-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+hdr+bdy+'</table></div>';
 }
 function buildSellerInv(g,px){
   var mks=MESES_DONE,ads=REAL_INV_ADS[g]||{},cup=REAL_CUPONS[g]||{},reb=REAL_REBATES[g]||{},tot=REAL_INV_TOT[g]||{};
@@ -1676,13 +1700,16 @@ function buildSellerInv(g,px){
     ]},
     options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return fmt(v);}}}},plugins:{legend:{position:'bottom'}}}
   });
-  var hdr='<thead><tr><th>Mês</th><th>ADS</th><th>Cupons</th><th>Rebates</th><th>Total</th><th>% GMV</th></tr></thead>';
-  var bdy='<tbody>'+mks.map(function(k){
-    var a=ads[k]||0,c=cup[k]||0,r=reb[k]||0,t=tot[k]||0,gv=(REAL_MENSAL[g]||{})[k]||0,p=gv>0?t/gv*100:0;
-    return '<tr><td>'+MESES_PT_CURTO[k]+'</td><td>'+fmt(a)+'</td><td>'+fmt(c)+'</td><td>'+fmt(r)+'</td><td>'+fmt(t)+'</td><td>'+p.toFixed(1)+'%</td></tr>';
+  var ths2='<tr style="background:#FFE600"><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:left">Mês</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">ADS (PADS)</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Cupons</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Rebates</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Total Invest.</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:center">% do GMV</th></tr>';
+  var hdr='<thead>'+ths2+'</thead>';
+  var bdy='<tbody>'+mks.map(function(k,i){
+    var a=ads[k]||0,cu=cup[k]||0,r=reb[k]||0,t=tot[k]||0,gv=(REAL_MENSAL[g]||{})[k]||0,p=gv>0?t/gv*100:0;
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    var pClr=p>=5?'#F23D4F':p>=2?'#B07A00':'#00A650',pBg=p>=5?'rgba(242,61,79,.1)':p>=2?'rgba(255,185,0,.15)':'rgba(0,166,80,.12)';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'      +'<td style="padding:11px 16px;font-size:13px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#3483FA;font-weight:600">'+fmt(a)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#9B59B6;font-weight:600">'+fmt(cu)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#FF7A00;font-weight:600">'+fmt(r)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;font-weight:800;color:#1A1A1A">'+fmt(t)+'</td>'      +'<td style="padding:11px 16px;text-align:center"><span style="background:'+pBg+';color:'+pClr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+p.toFixed(1)+'%</span></td>'      +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-inv-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+hdr+bdy+'</table></div>';
 }
 function mlLink(it){
   // Formato: https://produto.mercadolivre.com.br/MLB-{ID}-{slug}_JM
@@ -1957,14 +1984,18 @@ function buildSellerBPC(g,px){
         scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%';}}}}}
     });
   }
-  var hdr='<thead><tr><th>M\u00eas</th><th>Pedidos BB</th><th>Pedidos Total</th><th>BPC %</th><th>GMV BB</th><th>GMV Total</th><th>GMV BB %</th></tr></thead>';
-  var bdy='<tbody>'+mks.map(function(mk){
+  var thsBPC='<tr style="background:#FFE600"><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:left">Mês</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Pedidos BB</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">Total Pedidos</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:center">BPC %</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">GMV c/ Buybox</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:right">GMV Total</th><th style="padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap;text-align:center">GMV BB %</th></tr>';
+  var hdr='<thead>'+thsBPC+'</thead>';
+  var bdy='<tbody>'+mks.map(function(mk,i){
     var t=pt[mk]||0,b=pb[mk]||0,gv=(REAL_MENSAL[g]||{})[mk]||0,gbb=(REAL_GMV_BB[g]||{})[mk]||0;
     var pBpc=t>0?pctNum(b,t):0,pGMV=gv>0?pctNum(gbb,gv):0;
-    return '<tr><td>'+MESES_LABEL[MESES_KEYS.indexOf(mk)]+'</td><td>'+fmtN(b)+'</td><td>'+fmtN(t)+'</td><td>'+pillPct(pBpc)+'</td><td>'+fmt(gbb)+'</td><td>'+fmt(gv)+'</td><td>'+pillPct(pGMV)+'</td></tr>';
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    var bpcClr=pBpc>=80?'#00A650':pBpc>=65?'#B07A00':'#F23D4F',bpcBg=pBpc>=80?'rgba(0,166,80,.12)':pBpc>=65?'rgba(255,185,0,.15)':'rgba(242,61,79,.1)';
+    var gmvClr=pGMV>=80?'#00A650':pGMV>=65?'#B07A00':'#F23D4F',gmvBg=pGMV>=80?'rgba(0,166,80,.12)':pGMV>=65?'rgba(255,185,0,.15)':'rgba(242,61,79,.1)';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'      +'<td style="padding:11px 16px;font-size:13px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[mk]+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#555">'+fmtN(b)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#555">'+fmtN(t)+'</td>'      +'<td style="padding:11px 16px;text-align:center"><span style="background:'+bpcBg+';color:'+bpcClr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pBpc.toFixed(1)+'%</span></td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;color:#555">'+fmt(gbb)+'</td>'      +'<td style="padding:11px 16px;text-align:right;font-size:13px;font-weight:700;color:#1A1A1A">'+fmt(gv)+'</td>'      +'<td style="padding:11px 16px;text-align:center"><span style="background:'+gmvBg+';color:'+gmvClr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+pGMV.toFixed(1)+'%</span></td>'      +'</tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-bpc-table');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+hdr+bdy+'</table></div>';
   var offs=getItemsForPeriod(g).filter(function(it){return it.bb<70;}).slice(0,10);
   var otbl=document.getElementById(px+'-bpc-offenders');
   if(otbl)otbl.innerHTML='<thead><tr style="background:#FFE600">'
@@ -2271,7 +2302,7 @@ function buildYoY(g,px){
     return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0"><td style="padding:10px 14px;font-weight:700;color:#1A1A1A">'+MESES_PT_CURTO[k]+'</td><td style="padding:10px 12px;text-align:right;color:#555">'+fmt(v26)+'</td><td style="padding:10px 12px;text-align:right;color:#888">'+fmt(v25)+'</td><td style="padding:10px 12px;text-align:center"><span class="pill '+(yy>=0?'pill-green':'pill-red')+'">'+(yy>=0?'+':'')+yy.toFixed(1)+'%</span></td><td style="padding:10px 12px;text-align:center">'+momHtml+'</td></tr>';
   }).join('')+'</tbody>';
   var tbl=document.getElementById(px+'-yoy-tbl');
-  if(tbl)tbl.innerHTML=hdr+bdy;
+  if(tbl)tbl.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+hdr+bdy+'</table></div>';
 }
 function buildComp(g,px){
   var fav=FAV_DATA[g]||{};
