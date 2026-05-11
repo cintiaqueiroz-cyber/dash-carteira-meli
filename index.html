@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 11/05/2026 19:17 -->
+<!-- Build: 11/05/2026 19:19 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -221,7 +221,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 11/05/2026 19:17</span>
+    <span class="update-badge">&#10003; Atualizado 11/05/2026 19:19</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1029,7 +1029,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 19:17
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 11/30 dias &nbsp;&middot;&nbsp; 11/05/2026 19:19
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2358,10 +2358,62 @@ function buildComp(g,px){
       options:{responsive:true,animation:false,scales:{x:{stacked:true},y:{stacked:true,max:100,ticks:{callback:function(v){return v+'%';}}}},plugins:{legend:{position:'bottom'}}}
     });
   }
+  var thC='padding:11px 16px;font-size:11px;font-weight:800;color:#1A1A1A;white-space:nowrap';
+  function compRow(cols,i){
+    var bg=i%2===0?'#fff':'#FAFAFA';
+    return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'+cols+'</tr>';
+  }
+  function tdC(v,al,bold,color){
+    return '<td style="padding:11px 16px;font-size:13px;text-align:'+(al||'left')+';font-weight:'+(bold?'700':'400')+';color:'+(color||'#444')+';white-space:nowrap">'+v+'</td>';
+  }
+  function favPill(p){
+    var clr=p>=70?'#00A650':p>=50?'#B07A00':'#F23D4F';
+    var bg=p>=70?'rgba(0,166,80,.12)':p>=50?'rgba(255,185,0,.15)':'rgba(242,61,79,.1)';
+    return '<span style="background:'+bg+';color:'+clr+';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px">'+p+'%</span>';
+  }
+  function desfavPill(p){
+    var clr=p>50?'#F23D4F':p>30?'#B07A00':'#555';
+    var bg=p>50?'rgba(242,61,79,.1)':p>30?'rgba(255,185,0,.1)':'rgba(0,0,0,.04)';
+    return '<span style="background:'+bg+';color:'+clr+';font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px">'+p+'%</span>';
+  }
+
   var rt=document.getElementById(px+'-comp-rival-table');
-  if(rt){rt.innerHTML='<thead><tr><th>Concorrente</th><th>Visitas</th><th>% Fav.</th><th>% Desfav.</th></tr></thead><tbody>'+Object.entries(rivals).slice(0,6).map(function(r){return '<tr><td>'+r[0]+'</td><td>'+fmtN(r[1].visits_match)+'</td><td><span class="pill '+(r[1].pct_favorable>=70?'pill-green':r[1].pct_favorable>=50?'pill-yellow':'pill-red')+'">'+r[1].pct_favorable+'%</span></td><td style="color:#F23D4F">'+r[1].pct_expensive+'%</td></tr>';}).join('')+'</tbody>';}
+  if(rt){
+    var rEntries=Object.entries(rivals).slice(0,6).sort(function(a,b){return b[1].visits_match-a[1].visits_match;});
+    var rHdr='<thead><tr style="background:#FFE600">'
+      +'<th style="'+thC+';text-align:left">Concorrente</th>'
+      +'<th style="'+thC+';text-align:right">Visitas Comparadas</th>'
+      +'<th style="'+thC+';text-align:center">% Favorável</th>'
+      +'<th style="'+thC+';text-align:center">% Desfavorável</th>'
+      +'</tr></thead>';
+    var rBdy='<tbody>'+rEntries.map(function(r,i){
+      return compRow(
+        tdC('<strong>'+r[0]+'</strong>','left',true,'#1A1A1A')
+        +tdC(fmtN(r[1].visits_match),'right',false,'#555')
+        +'<td style="padding:11px 16px;text-align:center">'+favPill(r[1].pct_favorable)+'</td>'
+        +'<td style="padding:11px 16px;text-align:center">'+desfavPill(r[1].pct_expensive)+'</td>',i);
+    }).join('')+'</tbody>';
+    rt.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+rHdr+rBdy+'</table></div>';
+  }
+
   var dt=document.getElementById(px+'-comp-dom-table');
-  if(dt){dt.innerHTML='<thead><tr><th>Categoria</th><th>Visitas</th><th>% Fav.</th><th>% Desfav.</th></tr></thead><tbody>'+Object.entries(domains).slice(0,8).map(function(d){return '<tr><td>'+d[0]+'</td><td>'+fmtN(d[1].visits_match)+'</td><td><span class="pill '+(d[1].pct_favorable>=70?'pill-green':d[1].pct_favorable>=50?'pill-yellow':'pill-red')+'">'+d[1].pct_favorable+'%</span></td><td style="color:#F23D4F">'+d[1].pct_expensive+'%</td></tr>';}).join('')+'</tbody>';}
+  if(dt){
+    var dEntries=Object.entries(domains).slice(0,8).sort(function(a,b){return b[1].visits_match-a[1].visits_match;});
+    var dHdr='<thead><tr style="background:#FFE600">'
+      +'<th style="'+thC+';text-align:left">Categoria</th>'
+      +'<th style="'+thC+';text-align:right">Visitas Comparadas</th>'
+      +'<th style="'+thC+';text-align:center">% Favorável</th>'
+      +'<th style="'+thC+';text-align:center">% Desfavorável</th>'
+      +'</tr></thead>';
+    var dBdy='<tbody>'+dEntries.map(function(d,i){
+      return compRow(
+        '<td style="padding:11px 16px;font-size:12px;font-weight:600;color:#1A1A1A;text-transform:uppercase;letter-spacing:.3px">'+d[0]+'</td>'
+        +tdC(fmtN(d[1].visits_match),'right',false,'#555')
+        +'<td style="padding:11px 16px;text-align:center">'+favPill(d[1].pct_favorable)+'</td>'
+        +'<td style="padding:11px 16px;text-align:center">'+desfavPill(d[1].pct_expensive)+'</td>',i);
+    }).join('')+'</tbody>';
+    dt.innerHTML='<div style="overflow-x:auto;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><table style="width:100%;border-collapse:collapse;font-size:13px;background:#fff">'+dHdr+dBdy+'</table></div>';
+  }
 }
 function exportCSV(tid,name){
   var t=document.getElementById(tid);if(!t)return;
