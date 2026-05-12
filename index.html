@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 12/05/2026 10:48 -->
+<!-- Build: 12/05/2026 11:43 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -192,6 +192,34 @@
 #header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
 #header .logo img{height:24px;width:auto;display:block;}
 .chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
 
 /* ── SIDEBAR DARK ML ── */
 #sidebar{background:#1A1A1A;border-right:none;box-shadow:3px 0 20px rgba(0,0,0,.25);width:220px;}
@@ -221,7 +249,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 12/05/2026 10:48</span>
+    <span class="update-badge">&#10003; Atualizado 12/05/2026 11:43</span>
   </div>
 </div>
 <div id="sidebar">
@@ -487,7 +515,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ml-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ml-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ml-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ml-actions"></div></div></div><div id="ml-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ml-actions"></div></div>
+<div class="section" id="ml-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="ml-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="ml-section-full" class="sub-section">
 <div class="kpi-row" id="ml-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ml-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ml-full-table"></table></div></div>
@@ -546,7 +582,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ad-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ad-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ad-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ad-actions"></div></div></div><div id="ad-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ad-actions"></div></div>
+<div class="section" id="ad-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="ad-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="ad-section-full" class="sub-section">
 <div class="kpi-row" id="ad-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ad-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ad-full-table"></table></div></div>
@@ -605,7 +649,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ba-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ba-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ba-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ba-actions"></div></div></div><div id="ba-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ba-actions"></div></div>
+<div class="section" id="ba-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="ba-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="ba-section-full" class="sub-section">
 <div class="kpi-row" id="ba-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ba-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ba-full-table"></table></div></div>
@@ -664,7 +716,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ci-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ci-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ci-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ci-actions"></div></div></div><div id="ci-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ci-actions"></div></div>
+<div class="section" id="ci-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="ci-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="ci-section-full" class="sub-section">
 <div class="kpi-row" id="ci-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ci-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ci-full-table"></table></div></div>
@@ -723,7 +783,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="bp-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="bp-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="bp-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="bp-actions"></div></div></div><div id="bp-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="bp-actions"></div></div>
+<div class="section" id="bp-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="bp-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="bp-section-full" class="sub-section">
 <div class="kpi-row" id="bp-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="bp-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="bp-full-table"></table></div></div>
@@ -782,7 +850,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="pa-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="pa-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="pa-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="pa-actions"></div></div></div><div id="pa-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="pa-actions"></div></div>
+<div class="section" id="pa-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="pa-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="pa-section-full" class="sub-section">
 <div class="kpi-row" id="pa-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="pa-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="pa-full-table"></table></div></div>
@@ -841,7 +917,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="to-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="to-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="to-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="to-actions"></div></div></div><div id="to-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="to-actions"></div></div>
+<div class="section" id="to-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="to-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="to-section-full" class="sub-section">
 <div class="kpi-row" id="to-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="to-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="to-full-table"></table></div></div>
@@ -900,7 +984,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="we-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="we-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="we-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="we-actions"></div></div></div><div id="we-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="we-actions"></div></div>
+<div class="section" id="we-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="we-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="we-section-full" class="sub-section">
 <div class="kpi-row" id="we-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="we-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="we-full-table"></table></div></div>
@@ -959,7 +1051,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="kh-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="kh-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="kh-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="kh-actions"></div></div></div><div id="kh-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="kh-actions"></div></div>
+<div class="section" id="kh-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="kh-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="kh-section-full" class="sub-section">
 <div class="kpi-row" id="kh-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="kh-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="kh-full-table"></table></div></div>
@@ -1018,7 +1118,15 @@
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ma-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ma-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ma-ins-list"><span class="ins">Carregando...</span></div></div></div>
-<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ma-actions"></div></div></div><div id="ma-section-full" class="sub-section">
+<div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ma-actions"></div></div>
+<div class="section" id="ma-tend-section">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:3px solid #FFE600">
+    <span style="font-size:18px">&#128200;</span>
+    <span style="font-size:13px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px">Tend&#234;ncias de Mercado 2026 &mdash; Oportunidades para este Seller</span>
+    <span style="margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:10px;font-weight:700">Pinterest &#183; Google Trends &#183; ML</span>
+  </div>
+  <div id="ma-tend-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px"></div>
+</div></div><div id="ma-section-full" class="sub-section">
 <div class="kpi-row" id="ma-full-kpi"></div>
 <div class="section"><div class="section-title">GMV por Modalidade &mdash; Mensal</div><div class="chart-box"><canvas id="ma-full-canvas" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">Detalhamento Mensal</div><div class="table-wrap"><table id="ma-full-table"></table></div></div>
@@ -1058,7 +1166,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 10:48
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 11:43
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1485,6 +1593,197 @@ function buildGrupo(g,px){
   buildSellerNMVDiario(g,px);
   buildActions(g,px);
   buildInsights(g,px);
+  setTimeout(function(){buildSellerTendencias(g,px);},200);
+}
+
+// ── TENDÊNCIAS DE MERCADO 2026 por seller ──────────────────────
+var TEND_MERCADO = {
+  "LIVING & DININGROOM FURNITURE": {
+    icon:"🛋️", nome:"Living & Diningroom", badge:"alta",
+    sub:"Sofás · Mesas · Estantes · TV Storage",
+    tends:[
+      "Sofás escultóricos com <strong>curvas</strong> em aceleração — FunHaus e Neo Deco",
+      "Tendência europeia: poltronas, pufes e composições modulares em <strong>linho, veludo ou couro</strong>",
+      "Paletas 2026: neutros sofisticados (bege, areia, cinza) + <strong>terracota e verde-sálvia</strong>",
+      "Sofás com <strong>armazenamento interno</strong> e braços USB lideram apartamentos compactos",
+      "Sofás de couro legítimo com lançamentos fortes em mai/26"
+    ],
+    opp:{cls:"b", txt:"💡 Oportunidade: composições modulares e sofás em linho/veludo alinhados com Neo Deco — avaliar expansão de linha"}
+  },
+  "STORAGE FURNITURE": {
+    icon:"🗄️", nome:"Storage & Organização", badge:"estavel",
+    sub:"Guarda-Roupas · Cômodas · Sapateiras · Cristaleiras",
+    tends:[
+      "Guarda-roupas com <strong>espelho integrado</strong> e acabamento premium crescem",
+      "Cristaleira volta como peça decorativa de sala — tendência crescente",
+      "<strong>Organização doméstica</strong> como bem-estar amplia interesse em cômodas modulares",
+      "Paleta: off-white, carvalho claro e <strong>cinza antracite</strong>"
+    ],
+    opp:{cls:"y", txt:"💡 Cristaleira: novo item com tração rápida — explorar linha completa de organização de sala"}
+  },
+  "MATTRESSES & SOMMIER SETS": {
+    icon:"🛏️", nome:"Cama Box & Conjuntos", badge:"crescendo",
+    sub:"Cama Box · Box Baú · Pillow Top · Molas Ensacadas",
+    tends:[
+      "<strong>Box Baú</strong> em alta: armazenamento integrado viraliza no Pinterest 2026",
+      "Wellness do sono: kits colchão + base ganham preferência por conveniência",
+      "Pillow Top e molas ensacadas em ascensão como upgrade de conforto",
+      "Consumidor migra de box simples para <strong>box premium com armazenamento</strong>"
+    ],
+    opp:{cls:"b", txt:"💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen"}
+  },
+  "MATTRESSES": {
+    icon:"💤", nome:"Colchões", badge:"crescendo",
+    sub:"Espuma D33 · Molas Ensacadas · Ortopédico",
+    tends:[
+      "Wellness do sono como <strong>investimento em saúde</strong> — demanda crescente",
+      "Colchões premium (molas ensacadas, látex) em ascensão",
+      "Envelhecimento da população amplia demanda por conforto",
+      "Black Friday = maior pico de vendas do ano para colchões"
+    ],
+    opp:{cls:"r", txt:"⚠️ Lacuna: colchão premium R$1.500–R$2.000 — mercado grande, seller sem presença nessa faixa"}
+  },
+  "KITCHEN FURNITURE": {
+    icon:"🍳", nome:"Kitchen & Lavanderia", badge:"alta",
+    sub:"Armários · Gabinetes de Pia · Lavanderia · Compactos",
+    tends:[
+      "\"Fim dos armários tradicionais\": <strong>prateleiras abertas e cozinhas expostas</strong>",
+      "Armários de <strong>lavanderia e laundry</strong> como mega-tendência de organização",
+      "Cozinhas compactas com cristaleira crescem em studios e aptos",
+      "Paleta: branco aquecido, areia, <strong>terracota e verde-musgo</strong>"
+    ],
+    opp:{cls:"b", txt:"💡 Cozinha compacta com cristaleira acelerando +159% — alinhado com tendência cozinha exposta"}
+  },
+  "BEDROOM FURNITURE": {
+    icon:"🌙", nome:"Bedroom & Infantil", badge:"alta",
+    sub:"Camas · Montessoriana · Trelicê · Cômodas",
+    tends:[
+      "<strong>Cama montessoriana infantil</strong> domina — quarto como santuário de bem-estar",
+      "Camas baixas estilo japonês/escandinavo consolidam-se no Brasil",
+      "Quartos modulados para adultos com espelho em aceleração",
+      "Minimalismo quente: poucos elementos com textura e presença"
+    ],
+    opp:{cls:"b", txt:"💡 Beliche montessoriana e quarto modulado com espelho em forte aceleração — explorar linha"}
+  }
+};
+
+function buildSellerTendencias(g, px){
+  var el = document.getElementById(px+'-tend-cards');
+  if(!el) return;
+
+  var items = TOP_ITEMS[g] || [];
+  if(!items.length){ document.getElementById(px+'-tend-section').style.display='none'; return; }
+
+  // Identificar domínios deste seller
+  var domGmv = {};
+  items.forEach(function(it){
+    var d = (it.domain||'').toUpperCase();
+    domGmv[d] = (domGmv[d]||0) + (it.gmv||0);
+  });
+
+  // Mapear domínios do item para as chaves do TEND_MERCADO
+  function mapDom(d){
+    if(d.indexOf('LIVING')>=0||d.indexOf('DININGROOM')>=0) return 'LIVING & DININGROOM FURNITURE';
+    if(d.indexOf('STORAGE')>=0) return 'STORAGE FURNITURE';
+    if(d.indexOf('SOMMIER SETS')>=0||d.indexOf('SOMMIER SET')>=0) return 'MATTRESSES & SOMMIER SETS';
+    if(d.indexOf('MATTRESS')>=0) return 'MATTRESSES';
+    if(d.indexOf('KITCHEN')>=0) return 'KITCHEN FURNITURE';
+    if(d.indexOf('BEDROOM')>=0) return 'BEDROOM FURNITURE';
+    return null;
+  }
+
+  var tendKeys = {};
+  Object.keys(domGmv).forEach(function(d){
+    var k = mapDom(d);
+    if(k) tendKeys[k] = (tendKeys[k]||0) + domGmv[d];
+  });
+
+  var sorted = Object.keys(tendKeys).sort(function(a,b){return tendKeys[b]-tendKeys[a];});
+  if(!sorted.length){ document.getElementById(px+'-tend-section').style.display='none'; return; }
+
+  var html = sorted.map(function(domKey){
+    var t = TEND_MERCADO[domKey];
+    if(!t) return '';
+
+    // Top itens do seller nesse domínio (GMV alta → em queda ou em alta)
+    var domItems = items.filter(function(it){
+      return mapDom((it.domain||'').toUpperCase()) === domKey && (it.gmv||0)>0;
+    }).slice(0,8);
+
+    var emAlta = domItems.filter(function(it){
+      var cur=it.gmv_mes_atual||0, ant=it.gmv_mes_ant||0;
+      return ant>0 && ((cur-ant)/ant*100) > 20;
+    }).sort(function(a,b){
+      var pa=(a.gmv_mes_atual-a.gmv_mes_ant)/Math.max(a.gmv_mes_ant,1);
+      var pb=(b.gmv_mes_atual-b.gmv_mes_ant)/Math.max(b.gmv_mes_ant,1);
+      return pb-pa;
+    }).slice(0,3);
+
+    var emQueda = domItems.filter(function(it){
+      var cur=it.gmv_mes_atual||0, ant=it.gmv_mes_ant||0;
+      return ant>5000 && ((cur-ant)/ant*100) < -20;
+    }).sort(function(a,b){
+      var pa=(a.gmv_mes_atual-a.gmv_mes_ant)/Math.max(a.gmv_mes_ant,1);
+      var pb=(b.gmv_mes_atual-b.gmv_mes_ant)/Math.max(b.gmv_mes_ant,1);
+      return pa-pb;
+    }).slice(0,2);
+
+    var topItems = domItems.sort(function(a,b){return (b.gmv||0)-(a.gmv||0);}).slice(0,3);
+
+    var itemsHtml = '';
+
+    if(topItems.length){
+      itemsHtml += '<div class="tend-sec">⭐ Top itens</div>';
+      topItems.forEach(function(it,i){
+        var nm=(it.nm||'').substring(0,35);
+        itemsHtml += '<div class="tend-item star">'
+          +'<span class="tend-item-name">'+nm+'</span>'
+          +'<span class="tend-item-val">'+fmt(it.gmv)+'</span>'
+          +'</div>';
+      });
+    }
+
+    if(emAlta.length){
+      itemsHtml += '<div class="tend-sec">🚀 Em alta este mês</div>';
+      emAlta.forEach(function(it){
+        var nm=(it.nm||'').substring(0,32);
+        var mom=it.gmv_mes_ant>0?Math.round((it.gmv_mes_atual-it.gmv_mes_ant)/it.gmv_mes_ant*100):0;
+        itemsHtml += '<div class="tend-item up">'
+          +'<span class="tend-item-name">'+nm+'</span>'
+          +'<span class="tend-item-mom" style="color:#00A650">▲ +'+mom+'%</span>'
+          +'</div>';
+      });
+    }
+
+    if(emQueda.length){
+      itemsHtml += '<div class="tend-sec">📉 Atenção — em queda</div>';
+      emQueda.forEach(function(it){
+        var nm=(it.nm||'').substring(0,32);
+        var mom=it.gmv_mes_ant>0?Math.round((it.gmv_mes_atual-it.gmv_mes_ant)/it.gmv_mes_ant*100):0;
+        itemsHtml += '<div class="tend-item dn">'
+          +'<span class="tend-item-name">'+nm+'</span>'
+          +'<span class="tend-item-mom" style="color:#F23D4F">▼ '+mom+'%</span>'
+          +'</div>';
+      });
+    }
+
+    var oppHtml = t.opp ? '<div class="tend-opp '+t.opp.cls+'">'+t.opp.txt+'</div>' : '';
+
+    return '<div class="tend-card">'
+      +'<div class="tend-card-hdr '+t.badge+'">'
+        +'<div class="tend-card-title">'+t.icon+' '+t.nome+' <span class="tbadge '+t.badge+'">'+(t.badge==='alta'?'🔥 Em alta':t.badge==='crescendo'?'📈 Crescendo':'■ Estável')+'</span></div>'
+        +'<div class="tend-card-sub">'+t.sub+'</div>'
+      +'</div>'
+      +'<div class="tend-card-body">'
+        +'<div class="tend-sec">Tendências</div>'
+        +'<ul class="tend-list">'+t.tends.map(function(td){return '<li>'+td+'</li>';}).join('')+'</ul>'
+        +(itemsHtml ? '<div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div>'+itemsHtml : '')
+        +oppHtml
+      +'</div>'
+    +'</div>';
+  }).join('');
+
+  el.innerHTML = html;
 }
 function buildSellerNMVDiario(g,px){
   var canEl=document.getElementById(px+'-nmv-diario-canvas');
