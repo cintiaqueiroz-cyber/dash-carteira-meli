@@ -2,80 +2,96 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Quinzenal Tonielque — Mai/2026</title>
+<title>Tonielque — Quinzenal Mai/2026</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#F2F3F5;color:#1A1A1A;font-size:13px}
-.page{max-width:1100px;margin:0 auto;padding:22px}
+body{font-family:'Inter',sans-serif;background:#F2F3F5;color:#1A1A1A;font-size:12px}
+.page{max-width:1140px;margin:0 auto;padding:20px}
 
 /* HEADER */
-.hdr{background:#1A1A1A;border-radius:12px;padding:18px 24px;display:flex;align-items:center;gap:16px;margin-bottom:16px}
-.hdr-dot{width:14px;height:14px;border-radius:50%;background:#3483FA;flex-shrink:0}
-.hdr-name{color:#fff;font-size:20px;font-weight:900}
-.hdr-meta{color:rgba(255,255,255,.45);font-size:11px;margin-top:2px}
-.hdr-badge{margin-left:auto;background:#FFE600;border-radius:8px;padding:6px 14px;font-size:10px;font-weight:900;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px;text-align:center;white-space:nowrap}
+.hdr{background:#1A1A1A;border-radius:12px;padding:16px 24px;display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.hdr-avatar{width:42px;height:42px;background:#3483FA;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0}
+.hdr-name{color:#fff;font-size:18px;font-weight:900;line-height:1.2}
+.hdr-meta{color:rgba(255,255,255,.4);font-size:10px;margin-top:2px}
+.hdr-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.hdr-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);border-radius:6px;padding:5px 12px;font-size:10px;font-weight:600;white-space:nowrap}
+.hdr-date{background:#FFE600;color:#1A1A1A;border-radius:8px;padding:7px 14px;font-size:11px;font-weight:900;white-space:nowrap}
 
-/* KPI STRIP */
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
-.kpi{background:#fff;border-radius:10px;padding:14px 16px;border-top:3px solid #FFE600}
-.kpi.r{border-color:#F23D4F}.kpi.g{border-color:#00A650}.kpi.b{border-color:#3483FA}.kpi.y{border-color:#FFB900}
-.kpi-lbl{font-size:9px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.kpi-val{font-size:20px;font-weight:900;color:#1A1A1A;line-height:1}
-.kpi-sub{font-size:10px;color:#888;margin-top:3px}
+/* KPI ROW */
+.krow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:12px}
+.kc{background:#fff;border-radius:10px;padding:12px 14px;border-top:3px solid #FFE600}
+.kc.r{border-color:#F23D4F}.kc.g{border-color:#00A650}.kc.b{border-color:#3483FA}.kc.y{border-color:#FFB900}.kc.p{border-color:#9B59B6}
+.kc-lbl{font-size:8.5px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.kc-val{font-size:19px;font-weight:900;color:#1A1A1A;line-height:1}
+.kc-sub{font-size:9.5px;color:#888;margin-top:3px}
 
-/* GRID */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+/* SECTIONS */
+.sec-title{font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid #FFE600;display:flex;align-items:center;gap:6px}
+.sec-title span{margin-left:auto;font-size:8.5px;background:#1A1A1A;color:#FFE600;padding:2px 7px;border-radius:20px;font-weight:700}
 
-/* CARD */
-.card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
-.card-title{font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #FFE600;display:flex;align-items:center;gap:8px}
-.card-title span{margin-left:auto;font-size:9px;background:#1A1A1A;color:#FFE600;padding:2px 8px;border-radius:20px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.grid13{display:grid;grid-template-columns:1fr 1.5fr;gap:12px;margin-bottom:12px}
+
+.card{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 1px 5px rgba(0,0,0,.06)}
 
 /* TABLE */
-table{width:100%;border-collapse:collapse;font-size:11.5px}
+table{width:100%;border-collapse:collapse;font-size:11px}
 thead tr{background:#FFE600}
-thead th{padding:8px 10px;font-size:10px;font-weight:800;color:#1A1A1A;text-align:left;white-space:nowrap}
-th.r,td.r{text-align:right}
+thead th{padding:7px 9px;font-size:9px;font-weight:800;color:#1A1A1A;text-align:left;white-space:nowrap;text-transform:uppercase;letter-spacing:.2px}
+th.r,td.r{text-align:right}th.c,td.c{text-align:center}
 tbody tr:nth-child(even){background:#FAFAFA}
-tbody td{padding:7px 10px;border-bottom:1px solid #F0F0F0;color:#444}
-td.name{font-weight:700;color:#1A1A1A;max-width:220px}
+tbody td{padding:6px 9px;border-bottom:1px solid #F0F0F0;color:#444;vertical-align:middle}
+td.nm{font-weight:600;color:#1A1A1A;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 td.bold{font-weight:800;color:#1A1A1A}
 
 /* PILL */
-.pill{display:inline-block;padding:2px 8px;border-radius:12px;font-size:9px;font-weight:700;white-space:nowrap}
+.pill{display:inline-block;padding:2px 7px;border-radius:12px;font-size:9px;font-weight:700;white-space:nowrap}
 .pg{background:rgba(0,166,80,.12);color:#007A3D}
 .pr{background:rgba(242,61,79,.1);color:#C0392B}
 .py{background:rgba(255,185,0,.15);color:#856404}
 .pb{background:rgba(52,131,250,.1);color:#1A5DC8}
 .pgr{background:#F0F0F0;color:#666}
 
-/* TREND */
-.trend-bar{display:flex;align-items:flex-end;gap:4px;height:60px;margin:8px 0}
-.tb{border-radius:3px 3px 0 0;min-width:28px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative}
-.tb-val{font-size:8px;font-weight:700;color:#fff;position:absolute;bottom:2px;white-space:nowrap}
-.tb-lbl{font-size:9px;color:#888;margin-top:3px;text-align:center}
-.tb-meta{border-radius:3px 3px 0 0;min-width:28px;background:rgba(255,230,0,.3);border:1px dashed #FFE600;display:flex;align-items:center;justify-content:center}
+/* MINI BAR */
+.mbar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.mbar-lbl{font-size:10px;font-weight:600;color:#444;width:120px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mbar-track{flex:1;height:7px;background:#F0F0F0;border-radius:4px;overflow:hidden}
+.mbar-fill{height:7px;border-radius:4px}
+.mbar-val{font-size:10px;font-weight:700;color:#1A1A1A;width:60px;text-align:right;flex-shrink:0}
+
+/* GMV BARRAS */
+.gbar-wrap{display:flex;align-items:flex-end;gap:5px;height:80px;padding-bottom:16px;position:relative}
+.gbar-col{display:flex;flex-direction:column;align-items:center;flex:1}
+.gbar{width:100%;border-radius:3px 3px 0 0;position:relative;min-height:4px}
+.gbar-nmv{background:#3483FA}
+.gbar-meta{background:rgba(255,230,0,.3);border:1.5px dashed #FFB900;border-radius:3px 3px 0 0}
+.gbar-val{font-size:8px;font-weight:700;color:#3483FA;margin-top:2px;white-space:nowrap}
+.gbar-lbl{font-size:8.5px;color:#888;margin-top:1px;white-space:nowrap}
+.gbar-mai{background:rgba(52,131,250,.3)}
+
+/* FAV METER */
+.fav-meter{display:flex;height:12px;border-radius:6px;overflow:hidden;margin-top:6px}
+.fav-g{background:#00A650}
+.fav-r{background:#F23D4F}
+.fav-lbl{display:flex;justify-content:space-between;font-size:9.5px;font-weight:700;margin-top:4px}
 
 /* ALERT */
-.alert{border-radius:8px;padding:9px 12px;font-size:11px;font-weight:600;border-left:3px solid;line-height:1.5;margin-top:8px}
+.alert{border-radius:7px;padding:8px 11px;font-size:10.5px;font-weight:600;border-left:3px solid;line-height:1.5;margin-top:7px}
 .ar{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
 .ay{background:#FFFDF0;border-color:#FFB900;color:#856404}
 .ag{background:#F0FBF5;border-color:#00A650;color:#007A3D}
 .ab{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
 
 /* ACIONAVEIS */
-.acao{background:#1A1A1A;border-radius:10px;padding:14px 16px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start}
-.acao-num{background:#FFE600;color:#1A1A1A;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;margin-top:1px}
-.acao-title{color:#FFE600;font-size:12px;font-weight:800;margin-bottom:3px}
-.acao-desc{color:rgba(255,255,255,.65);font-size:11px;line-height:1.5}
+.acoes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.acao{background:#1A1A1A;border-radius:8px;padding:12px 14px}
+.acao-badge{font-size:8.5px;font-weight:900;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:8px}
+.acao-t{color:#FFE600;font-size:11px;font-weight:800;margin-bottom:5px}
+.acao-d{color:rgba(255,255,255,.6);font-size:10px;line-height:1.5}
 
-/* MOM */
-.up{color:#00A650;font-weight:700}
-.dn{color:#F23D4F;font-weight:700}
-
-.footer{text-align:center;font-size:10px;color:#AAA;margin-top:12px;padding-top:8px;border-top:1px solid #E0E0E0}
+.footer{text-align:center;font-size:9.5px;color:#BBB;margin-top:12px;padding-top:8px;border-top:1px solid #E0E0E0}
 </style>
 </head>
 <body>
@@ -83,156 +99,233 @@ td.bold{font-weight:800;color:#1A1A1A}
 
 <!-- HEADER -->
 <div class="hdr">
-  <div class="hdr-dot"></div>
+  <div class="hdr-avatar">T</div>
   <div>
     <div class="hdr-name">Tonielque</div>
-    <div class="hdr-meta">Reunião Quinzenal · Mai/2026 · Gestão CA — Cintia Faraco Queiroz</div>
+    <div class="hdr-meta">Storage Furniture · Kitchen Furniture · Seller F&amp;H CA</div>
   </div>
-  <div class="hdr-badge">Quinzenal<br>12/05/2026</div>
-</div>
-
-<!-- KPIs -->
-<div class="kpis">
-  <div class="kpi b">
-    <div class="kpi-lbl">NMV YTD (Jan–Mai)</div>
-    <div class="kpi-val">R$13,1M</div>
-    <div class="kpi-sub">Jan+Fev+Mar+Abr+Mai MTD</div>
-  </div>
-  <div class="kpi y">
-    <div class="kpi-lbl">% Meta Financeira YTD</div>
-    <div class="kpi-val">83,5%</div>
-    <div class="kpi-sub">Meta YTD: R$15,6M</div>
-  </div>
-  <div class="kpi r">
-    <div class="kpi-lbl">Mai MTD (12 dias)</div>
-    <div class="kpi-val">R$995K</div>
-    <div class="kpi-sub">Proj.: ~R$2,5M · Meta: R$3,95M</div>
-  </div>
-  <div class="kpi r">
-    <div class="kpi-lbl">BPC Médio</div>
-    <div class="kpi-val">~0%</div>
-    <div class="kpi-sub">Crítico — sem buybox</div>
-  </div>
-  <div class="kpi r">
-    <div class="kpi-lbl">ADS (PADS)</div>
-    <div class="kpi-val">R$0</div>
-    <div class="kpi-sub">Sem Product Ads ativo</div>
+  <div class="hdr-right">
+    <span class="hdr-tag">📅 Quinzenal</span>
+    <span class="hdr-tag">📦 Storage #1 da carteira</span>
+    <span class="hdr-date">12/05/2026</span>
   </div>
 </div>
 
-<!-- TENDÊNCIA GMV + TOP ITENS -->
-<div class="g2">
+<!-- KPIs MTD + YTD -->
+<div class="krow">
+  <div class="kc b">
+    <div class="kc-lbl">NMV MTD (12 dias)</div>
+    <div class="kc-val">R$995K</div>
+    <div class="kc-sub">Proj. mês: ~R$2,5M</div>
+  </div>
+  <div class="kc r">
+    <div class="kc-lbl">% Meta Mai</div>
+    <div class="kc-val">25%</div>
+    <div class="kc-sub">Meta: R$3,95M · Gap: R$2,9M</div>
+  </div>
+  <div class="kc y">
+    <div class="kc-lbl">NMV YTD (Jan–Mai)</div>
+    <div class="kc-val">R$12,7M</div>
+    <div class="kc-sub">79% da meta YTD R$16,0M</div>
+  </div>
+  <div class="kc">
+    <div class="kc-lbl">ASP MTD</div>
+    <div class="kc-val">R$366</div>
+    <div class="kc-sub">SIs MTD: 2.719</div>
+  </div>
+  <div class="kc r">
+    <div class="kc-lbl">BPC Médio</div>
+    <div class="kc-val">~0%</div>
+    <div class="kc-sub">Sem buybox nos top itens</div>
+  </div>
+  <div class="kc r">
+    <div class="kc-lbl">PADS Investido</div>
+    <div class="kc-val">R$0</div>
+    <div class="kc-sub">Sem Product Ads em 2026</div>
+  </div>
+</div>
 
-  <!-- EVOLUÇÃO MENSAL -->
+<!-- GERAL + CATEGORIAS -->
+<div class="grid13">
+
+  <!-- GERAL: evolução mensal -->
   <div class="card">
-    <div class="card-title">📈 Evolução Mensal NMV <span>2025 vs 2026</span></div>
-    <table>
-      <thead><tr><th>Mês</th><th class="r">NMV</th><th class="r">SIs</th><th class="r">ASP</th><th class="r">vs Mês Ant.</th><th class="r">vs Meta</th></tr></thead>
+    <div class="sec-title">📊 Geral — Evolução NMV Mensal 2026</div>
+    <!-- Barras visuais -->
+    <div class="gbar-wrap">
+      <!-- Jan -->
+      <div class="gbar-col">
+        <div class="gbar gbar-meta" style="height:90%"></div>
+        <div class="gbar-val">R$3,56M</div>
+        <div class="gbar-lbl">Jan</div>
+      </div>
+      <div class="gbar-col">
+        <div class="gbar gbar-meta" style="height:85%"></div>
+        <div class="gbar-val">R$3,35M</div>
+        <div class="gbar-lbl">Fev</div>
+      </div>
+      <div class="gbar-col">
+        <div class="gbar gbar-nmv" style="height:71%"></div>
+        <div class="gbar-val" style="color:#F23D4F">R$2,82M</div>
+        <div class="gbar-lbl">Mar</div>
+      </div>
+      <div class="gbar-col">
+        <div class="gbar gbar-nmv" style="height:75%"></div>
+        <div class="gbar-val">R$2,96M</div>
+        <div class="gbar-lbl">Abr</div>
+      </div>
+      <div class="gbar-col">
+        <div class="gbar gbar-mai" style="height:25%"></div>
+        <div class="gbar-val" style="color:#B07A00">R$995K</div>
+        <div class="gbar-lbl" style="color:#B07A00">Mai MTD</div>
+      </div>
+    </div>
+    <table style="margin-top:6px">
+      <thead><tr><th>Mês</th><th class="r">NMV</th><th class="r">Meta</th><th class="c">Ating.</th><th class="r">SIs</th><th class="r">MoM</th></tr></thead>
       <tbody>
-        <tr><td class="bold">Jan/26</td><td class="r">R$3,56M</td><td class="r">9.689</td><td class="r">R$367</td><td class="r"><span class="pill pg">+53% vs Dez</span></td><td class="r"><span class="pill pg">115%</span></td></tr>
-        <tr><td class="bold">Fev/26</td><td class="r">R$3,35M</td><td class="r">8.607</td><td class="r">R$389</td><td class="r"><span class="pill pr">-6%</span></td><td class="r"><span class="pill pg">117%</span></td></tr>
-        <tr><td class="bold">Mar/26</td><td class="r">R$2,82M</td><td class="r">7.105</td><td class="r">R$397</td><td class="r"><span class="pill pr">-16%</span></td><td class="r"><span class="pill pr">85%</span></td></tr>
-        <tr><td class="bold">Abr/26</td><td class="r">R$2,96M</td><td class="r">7.412</td><td class="r">R$400</td><td class="r"><span class="pill pg">+5%</span></td><td class="r"><span class="pill py">105%</span></td></tr>
-        <tr style="background:rgba(255,230,0,.08)"><td class="bold" style="color:#B07A00">Mai/26 MTD</td><td class="r" style="color:#B07A00">R$995K</td><td class="r">2.719</td><td class="r">R$366</td><td class="r">—</td><td class="r"><span class="pill pr">25% da meta</span></td></tr>
+        <tr><td class="bold">Jan/26</td><td class="r">R$3,56M</td><td class="r">R$3,08M</td><td class="c"><span class="pill pg">115%</span></td><td class="r">9.689</td><td class="r">—</td></tr>
+        <tr><td class="bold">Fev/26</td><td class="r">R$3,35M</td><td class="r">R$2,86M</td><td class="c"><span class="pill pg">117%</span></td><td class="r">8.607</td><td class="r"><span class="pill pr">-6%</span></td></tr>
+        <tr><td class="bold">Mar/26</td><td class="r">R$2,82M</td><td class="r">R$3,32M</td><td class="c"><span class="pill pr">85%</span></td><td class="r">7.105</td><td class="r"><span class="pill pr">-16%</span></td></tr>
+        <tr><td class="bold">Abr/26</td><td class="r">R$2,96M</td><td class="r">R$2,81M</td><td class="c"><span class="pill pg">105%</span></td><td class="r">7.412</td><td class="r"><span class="pill pg">+5%</span></td></tr>
+        <tr style="background:rgba(255,230,0,.08)"><td class="bold" style="color:#B07A00">Mai MTD</td><td class="r" style="color:#B07A00">R$995K</td><td class="r">R$3,95M</td><td class="c"><span class="pill pr">25%</span></td><td class="r">2.719</td><td class="r">—</td></tr>
       </tbody>
     </table>
-    <div class="alert ay">⚠ Tendência de queda desde Jan/26 (R$3,56M → R$2,96M em Abr). Março abaixo da meta. Maio precisa de aceleração para chegar em R$3,95M.</div>
+    <div class="alert ay">⚠ Queda acumulada: Jan R$3,56M → Mar R$2,82M (-21%). Abr recuperou mas Mai ainda muito abaixo do ritmo necessário.</div>
   </div>
+
+  <!-- CATEGORIAS -->
+  <div class="card">
+    <div class="sec-title">🏷️ Categorias — GMV YTD <span>2 domínios ativos</span></div>
+
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+      <!-- Donut CSS -->
+      <div style="width:90px;height:90px;border-radius:50%;background:conic-gradient(#3483FA 0% 74%, #FFB900 74% 97%, #E0E0E0 97% 100%);flex-shrink:0;box-shadow:inset 0 0 0 22px #fff"></div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:#3483FA;flex-shrink:0"></span><span style="font-size:11px;font-weight:700">Storage Furniture</span><span style="margin-left:auto;font-size:11px;font-weight:800;color:#3483FA">R$10,4M (74%)</span></div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span style="width:10px;height:10px;border-radius:2px;background:#FFB900;flex-shrink:0"></span><span style="font-size:11px;font-weight:700">Kitchen Furniture</span><span style="margin-left:auto;font-size:11px;font-weight:800;color:#B07A00">R$3,4M (24%)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:#E0E0E0;flex-shrink:0"></span><span style="font-size:11px;color:#888">Office + Outros</span><span style="margin-left:auto;font-size:11px;color:#888">R$72K (0,5%)</span></div>
+      </div>
+    </div>
+
+    <div class="sec-title" style="margin-top:10px">Top subcategorias</div>
+    <div class="mbar-row"><span class="mbar-lbl">Guarda-Roupas</span><div class="mbar-track"><div class="mbar-fill" style="width:85%;background:#3483FA"></div></div><span class="mbar-val">R$7,2M</span></div>
+    <div class="mbar-row"><span class="mbar-lbl">Cômodas</span><div class="mbar-track"><div class="mbar-fill" style="width:40%;background:#3483FA"></div></div><span class="mbar-val">R$1,8M</span></div>
+    <div class="mbar-row"><span class="mbar-lbl">Sapateiras</span><div class="mbar-track"><div class="mbar-fill" style="width:28%;background:#3483FA"></div></div><span class="mbar-val">R$1,2M</span></div>
+    <div class="mbar-row"><span class="mbar-lbl">Lavanderia</span><div class="mbar-track"><div class="mbar-fill" style="width:25%;background:#FFB900"></div></div><span class="mbar-val">R$1,0M</span></div>
+    <div class="mbar-row"><span class="mbar-lbl">Gab. Pia / Cozinha</span><div class="mbar-track"><div class="mbar-fill" style="width:20%;background:#FFB900"></div></div><span class="mbar-val">R$950K</span></div>
+    <div class="mbar-row"><span class="mbar-lbl">Arm. Cozinha</span><div class="mbar-track"><div class="mbar-fill" style="width:15%;background:#FFB900"></div></div><span class="mbar-val">R$650K</span></div>
+
+    <div class="alert ab" style="margin-top:8px">💡 Kitchen cresce: Lavanderia (R$1M) e Gabinete de Pia (R$462K) alinhados com tendência "organização doméstica". Oportunidade de expansão nessa categoria.</div>
+  </div>
+</div>
+
+<!-- ITENS + COMPETITIVIDADE -->
+<div class="grid2">
 
   <!-- TOP ITENS -->
   <div class="card">
-    <div class="card-title">🛒 Top 10 Itens — GMV YTD <span>BPC crítico</span></div>
+    <div class="sec-title">🛒 Itens — Top 12 por GMV YTD <span>BPC crítico: 11/12 = 0%</span></div>
     <table>
-      <thead><tr><th>#</th><th>Produto</th><th class="r">GMV</th><th class="r">BPC</th></tr></thead>
+      <thead><tr><th>#</th><th>Produto</th><th>Cat</th><th class="r">GMV YTD</th><th class="c">BPC</th><th>Log</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td class="name">GR Casal Valencia 6P 6Gav</td><td class="r">R$1,03M</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>2</td><td class="name">Cômoda Raissa 8 Gav Pés</td><td class="r">R$740K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>3</td><td class="name">Cômoda Gisele 4Gav 2P</td><td class="r">R$622K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>4</td><td class="name">GR Casal Lisboa 8P 4Gav</td><td class="r">R$611K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>5</td><td class="name">GR Casal Valencia 6P (v2)</td><td class="r">R$576K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>6</td><td class="name">Sapateira 4P Basculante Safira</td><td class="r">R$544K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>7</td><td class="name">Armário Lavanderia Manuela 2P</td><td class="r">R$522K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>8</td><td class="name">GR Casal Capri 3P 9Gav</td><td class="r">R$486K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>9</td><td class="name">GR Solteiro Roma 2P 2Gav</td><td class="r">R$484K</td><td class="r"><span class="pill pr">0%</span></td></tr>
-        <tr><td>10</td><td class="name">Gabinete Pia 3P 3Gav Gêmeos</td><td class="r">R$462K</td><td class="r"><span class="pill pr">0%</span></td></tr>
+        <tr><td>1</td><td class="nm">GR Casal Valencia 6P 6Gav</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$1,03M</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>2</td><td class="nm">Cômoda Raissa 8 Gav Pés</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$740K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>3</td><td class="nm">Cômoda Gisele 4Gav 2P</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$622K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>4</td><td class="nm">GR Casal Lisboa 8P 4Gav</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$611K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>5</td><td class="nm">Sapateira 4P Basculante Safira</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$544K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>6</td><td class="nm">Lavanderia Manuela 2P 1,80m</td><td><span class="pill py" style="font-size:8px">Kit</span></td><td class="r bold">R$522K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>7</td><td class="nm">GR Casal Capri 3P 9Gav</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$486K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>8</td><td class="nm">GR Solteiro Roma 2P 2Gav</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$484K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>9</td><td class="nm">Gabinete Pia 3P 3Gav Gêmeos</td><td><span class="pill py" style="font-size:8px">Kit</span></td><td class="r bold">R$462K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>10</td><td class="nm">GR Solteiro Capri 2P 6Gav ✅</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$407K</td><td class="c"><span class="pill pg">100%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>11</td><td class="nm">Sapateira Safira 3P</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$376K</td><td class="c"><span class="pill pr">0%</span></td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>12</td><td class="nm">GR Solteiro Capri 2P 6Gav (v2)</td><td><span class="pill pb" style="font-size:8px">Sto</span></td><td class="r bold">R$337K</td><td class="c"><span class="pill pg">100%</span></td><td><span class="pill pgr">SS</span></td></tr>
       </tbody>
     </table>
-    <div class="alert ar">🚨 BPC = 0% nos top 10 itens — Tonielque não está ganhando buybox em nenhum dos principais produtos. Sem buybox = menos visibilidade orgânica.</div>
+    <div class="alert ar">🚨 10 dos 12 top itens com BPC = 0%. Apenas GR Solteiro Capri ganha buybox. Sem buybox = posição orgânica baixa + dependência total de tráfego pago (que não existe).</div>
+  </div>
+
+  <!-- COMPETITIVIDADE + INVESTIMENTOS -->
+  <div style="display:flex;flex-direction:column;gap:12px">
+
+    <!-- COMPETITIVIDADE -->
+    <div class="card">
+      <div class="sec-title">⚔️ Competitividade — Favorabilidade de Preço <span>vs Amazon Brazil</span></div>
+
+      <div class="grid2" style="margin-bottom:10px;gap:8px">
+        <div style="background:#F5F7FA;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#888;margin-bottom:4px">BOX_MATCH_SELLER · Mai</div>
+          <div style="font-size:22px;font-weight:900;color:#B07A00">67,5%</div>
+          <div style="font-size:9px;color:#888">favorável vs Amazon</div>
+          <div class="fav-meter"><div class="fav-g" style="width:67.5%"></div><div class="fav-r" style="width:32.5%"></div></div>
+          <div class="fav-lbl"><span style="color:#00A650">Fav 67,5%</span><span style="color:#F23D4F">Desfav 32,5%</span></div>
+        </div>
+        <div style="background:#F5F7FA;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#888;margin-bottom:4px">BOX_ALL_ABC · Todos concorr.</div>
+          <div style="font-size:22px;font-weight:900;color:#00A650">71,1%</div>
+          <div style="font-size:9px;color:#888">LOCAL · 76,7% com PIX</div>
+          <div class="fav-meter"><div class="fav-g" style="width:71.1%"></div><div class="fav-r" style="width:28.9%"></div></div>
+          <div class="fav-lbl"><span style="color:#00A650">Fav 71,1%</span><span style="color:#F23D4F">Desfav 28,9%</span></div>
+        </div>
+      </div>
+
+      <!-- Evolução mensal favorabilidade -->
+      <table>
+        <thead><tr><th>Mês</th><th class="c">% Fav. (Amazon)</th><th class="c">Tendência</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Fev/26</td><td class="c"><span class="pill pg">70,8%</span></td><td class="c">✅ acima de 70%</td></tr>
+          <tr><td class="bold">Mar/26</td><td class="c"><span class="pill pr">56,1%</span></td><td class="c">⚠ queda forte</td></tr>
+          <tr><td class="bold">Abr/26</td><td class="c"><span class="pill pr">51,7%</span></td><td class="c">🚨 abaixo de 60%</td></tr>
+          <tr style="background:rgba(255,230,0,.08)"><td class="bold" style="color:#B07A00">Mai/26</td><td class="c"><span class="pill py">67,5%</span></td><td class="c">↗ recuperando</td></tr>
+        </tbody>
+      </table>
+      <div class="alert ay">⚠ Mar e Abr com favorabilidade crítica (&lt;60%). Mai recuperou para 67,5% mas ainda abaixo da meta &gt;70%. Monitorar preços vs Amazon nos top itens.</div>
+    </div>
+
+    <!-- INVESTIMENTOS -->
+    <div class="card">
+      <div class="sec-title">💰 Investimentos 2026 <span>PADS = R$0</span></div>
+      <table>
+        <thead><tr><th>Mês</th><th class="r">PADS</th><th class="r">Cupons</th><th class="r">Total</th><th class="r">% NMV</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">Jan/26</td><td class="r" style="color:#AAA">—</td><td class="r">R$15K</td><td class="r">R$18K</td><td class="r"><span class="pill pgr">0,5%</span></td></tr>
+          <tr><td class="bold">Fev/26</td><td class="r" style="color:#AAA">—</td><td class="r">R$11K</td><td class="r">R$17K</td><td class="r"><span class="pill pgr">0,5%</span></td></tr>
+          <tr><td class="bold">Mar/26</td><td class="r" style="color:#AAA">—</td><td class="r">R$11K</td><td class="r">R$35K</td><td class="r"><span class="pill pgr">1,2%</span></td></tr>
+          <tr><td class="bold">Abr/26</td><td class="r" style="color:#AAA">—</td><td class="r">R$22K</td><td class="r">R$62K</td><td class="r"><span class="pill py">2,1%</span></td></tr>
+          <tr style="background:rgba(255,230,0,.08)"><td class="bold" style="color:#B07A00">Mai MTD</td><td class="r" style="color:#AAA">—</td><td class="r">R$12K</td><td class="r">R$28K</td><td class="r"><span class="pill py">2,8%</span></td></tr>
+        </tbody>
+      </table>
+      <div class="alert ar">🚨 Zero PADS em 2026 inteiro. Referência de mercado: 4–8% do NMV. Para R$3M/mês o ideal seria R$120K–R$240K/ano. Cupons sozinhos não geram tráfego.</div>
+    </div>
+
   </div>
 </div>
 
-<!-- INVESTIMENTOS + DIAGNÓSTICO -->
-<div class="g2">
-  <div class="card">
-    <div class="card-title">💰 Investimentos 2026</div>
-    <table>
-      <thead><tr><th>Mês</th><th class="r">ADS (PADS)</th><th class="r">Cupons</th><th class="r">Total</th><th class="r">% NMV</th></tr></thead>
-      <tbody>
-        <tr><td class="bold">Jan/26</td><td class="r" style="color:#AAA">R$0</td><td class="r">R$15K</td><td class="r">R$18K</td><td class="r"><span class="pill pgr">0,5%</span></td></tr>
-        <tr><td class="bold">Fev/26</td><td class="r" style="color:#AAA">R$0</td><td class="r">R$11K</td><td class="r">R$17K</td><td class="r"><span class="pill pgr">0,5%</span></td></tr>
-        <tr><td class="bold">Mar/26</td><td class="r" style="color:#AAA">R$0</td><td class="r">R$11K</td><td class="r">R$35K</td><td class="r"><span class="pill pgr">1,2%</span></td></tr>
-        <tr><td class="bold">Abr/26</td><td class="r" style="color:#AAA">R$0</td><td class="r">R$22K</td><td class="r">R$62K</td><td class="r"><span class="pill py">2,1%</span></td></tr>
-        <tr style="background:rgba(255,230,0,.08)"><td class="bold" style="color:#B07A00">Mai MTD</td><td class="r" style="color:#AAA">R$0</td><td class="r">R$12K</td><td class="r">R$28K</td><td class="r"><span class="pill py">2,8%</span></td></tr>
-      </tbody>
-    </table>
-    <div class="alert ar">🚨 <strong>Zero investimento em PADS (Product Ads)</strong> em todos os meses de 2026. Sellers competitivos investem 4–8% do NMV em ADS. Sem ADS = sem visibilidade nas buscas = BPC baixo.</div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">🔬 Diagnóstico — Pontos de Atenção</div>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <div class="alert ar">
-        <strong>1. BPC = 0% — Sem Buybox</strong><br>
-        Nenhum dos top 10 itens está ganhando buybox. Possível causa: preço fora do mercado ou ausência de ADS. Sem buybox, os itens aparecem menos nas buscas.
-      </div>
-      <div class="alert ar">
-        <strong>2. Sem ADS ativo</strong><br>
-        R$0 em Product Ads em 2026. Para um seller com R$3M+/mês, o mínimo recomendado seria R$120K–R$240K/ano em PADS para manter visibilidade.
-      </div>
-      <div class="alert ay">
-        <strong>3. GMV caindo desde Jan/26</strong><br>
-        Jan: R$3,56M → Mar: R$2,82M (-21%). Abr recuperou parcialmente (R$2,96M). Maio projeta R$2,5M — abaixo da meta de R$3,95M.
-      </div>
-      <div class="alert ab">
-        <strong>4. Portfólio concentrado em Storage</strong><br>
-        Top 9 dos 10 itens são guarda-roupas/cômodas/sapateiras. Diversificação em Kitchen (lavanderia) cresce — Armário Lavanderia Manuela (#7 com R$522K).
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ACIONÁVEIS DA REUNIÃO -->
-<div class="card" style="margin-bottom:14px">
-  <div class="card-title">🎯 Acionáveis para esta Reunião</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+<!-- ACIONÁVEIS -->
+<div class="card" style="margin-bottom:12px">
+  <div class="sec-title">🎯 Acionáveis da Reunião</div>
+  <div class="acoes">
     <div class="acao">
-      <div class="acao-num">1</div>
-      <div>
-        <div class="acao-title">Ativar PADS — urgente</div>
-        <div class="acao-desc">Iniciar campanha Product Ads nos top 5 itens. Sugestão: R$5K–R$10K/mês para começar. Sem ADS, não recupera buybox nem posição orgânica.</div>
-      </div>
+      <div class="acao-badge" style="background:#F23D4F;color:#fff">🔴 Urgente</div>
+      <div class="acao-t">Ativar PADS nos top 5 itens</div>
+      <div class="acao-d">R$0 em Product Ads em 2026. Sem PADS os itens não aparecem nos resultados de busca. Sugestão: R$5K–R$10K/mês para start. Focar em Valencia, Raissa e Lisboa (top GMV).</div>
     </div>
     <div class="acao">
-      <div class="acao-num">2</div>
-      <div>
-        <div class="acao-title">Revisar preços vs mercado</div>
-        <div class="acao-desc">BPC = 0% sugere preço fora do competitivo. Comparar Valencia, Raissa e Lisboa com concorrentes diretos. Pequena redução pode desbloquear buybox.</div>
-      </div>
+      <div class="acao-badge" style="background:#F23D4F;color:#fff">🔴 Urgente</div>
+      <div class="acao-t">Investigar BPC = 0%</div>
+      <div class="acao-d">10/12 top itens sem buybox. Provável causa: preço acima do mercado ou falta de ADS. Comparar preço dos top 3 itens com concorrentes diretos. Pequeno ajuste pode recuperar buybox.</div>
     </div>
     <div class="acao">
-      <div class="acao-num">3</div>
-      <div>
-        <div class="acao-title">Aceleração Mai/26</div>
-        <div class="acao-desc">Meta R$3,95M, projeção atual R$2,5M. Gap de R$1,5M. Ativar cupons nos top itens + PADS pode recuperar ritmo nas próximas 2 semanas.</div>
-      </div>
+      <div class="acao-badge" style="background:#FFB900;color:#1A1A1A">🟡 Prioritário</div>
+      <div class="acao-t">Aceleração Mai — meta R$3,95M</div>
+      <div class="acao-d">Projeção atual R$2,5M vs meta R$3,95M. Gap de R$1,4M em 18 dias. Combo: ativar cupons nos top itens + PADS + anúncio de Copa para sofás/móveis sazonais.</div>
     </div>
   </div>
 </div>
 
 <div class="footer">
-  Tonielque · Reunião Quinzenal · 12/05/2026 · Gestão CA MercadoLivre · Cintia Faraco Queiroz · Dados: BigQuery DM_EFICIENCIA_MLB
+  Tonielque · Reunião Quinzenal · 12/05/2026 · Gestão CA F&amp;H MercadoLivre · Cintia Faraco Queiroz · Fonte: BigQuery DM_EFICIENCIA_MLB
 </div>
-
 </div>
 </body>
 </html>
