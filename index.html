@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 12/05/2026 12:23 -->
+<!-- Build: 12/05/2026 14:33 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -249,7 +249,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 12/05/2026 12:23</span>
+    <span class="update-badge">&#10003; Atualizado 12/05/2026 14:33</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1166,7 +1166,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 12:23
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 14:33
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1553,7 +1553,7 @@ function showMes(grupo,prefix,mk,btnEl){
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
+    {label:'SIs',val:fmtN(si),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
     {label:'Gap Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
   ]);
@@ -1585,7 +1585,7 @@ function buildGrupo(g,px){
     {label:'TGMV (Looker)',val:fmt(tgmv),sub:'Preço lista × unidades',cls:'blue'},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs',val:fmtN(si),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
+    {label:'SIs',val:fmtN(si),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Invest. Total',val:fmt(inv),sub:'ADS+Cupons+Rebates',cls:'purple'},
     {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF: '+fmt(ff),cls:pFF>=60?'green':pFF>=30?'yellow':'red'}
   ]);
@@ -2425,7 +2425,7 @@ function buildSellerBPC(g,px){
     +'<th style="padding:10px 14px;text-align:left;font-size:11px;font-weight:800;color:#1A1A1A;min-width:220px">Produto</th>'
     +'<th style="padding:10px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">GMV s/Buybox</th>'
     +'<th style="padding:10px 10px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">% s/BB</th>'
-    +'<th style="padding:10px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">ASP</th>'
+    +'<th style="padding:10px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">NASP</th>'
     +'<th style="padding:10px 10px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Diagn\u00f3stico</th>'
     +'</tr></thead><tbody>'+offs.map(function(it,idx){
       var rowBg=idx%2===0?'#fff':'#FAFAFA';
@@ -2670,9 +2670,9 @@ function buildCategorias(g,px){
     }
   });
 
-  // Table — igual Larissa: Categoria | GMV YTD | Share | SIs | Itens | ASP méd.
+  // Table — igual Larissa: Categoria | GMV YTD | Share | SIs | Itens | NASP
   var th=function(t,al){return '<th style="padding:12px 16px;font-size:11px;font-weight:800;color:#1A1A1A;text-align:'+(al||'left')+';white-space:nowrap">'+t+'</th>';};
-  var hdr='<thead><tr style="background:#FFE600">'+th('Categoria')+th('GMV ('+perLabel+')','right')+th('Share','center')+th('SIs','right')+th('Itens','right')+th('ASP méd.','right')+'</tr></thead>';
+  var hdr='<thead><tr style="background:#FFE600">'+th('Categoria')+th('GMV ('+perLabel+')','right')+th('Share','center')+th('SIs','right')+th('Itens','right')+th('NASP','right')+'</tr></thead>';
   var bdy='<tbody>'+allCats.map(function(c,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var sh=total>0?c.gmv/total*100:0;
@@ -3341,7 +3341,7 @@ function showVGMes(mk,btnEl){
      val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
-    {label:'SIs Total',        val:fmtN(totalSI),sub:'ASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
+    {label:'SIs Total',        val:fmtN(totalSI),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
     {label:'Gap Meta Fin.',    val:fmt(totalDisp-totalMF),
      sub:totalDisp>=totalMF?'Acima da meta':'Faltam '+fmt(totalMF-totalDisp),
@@ -3518,7 +3518,7 @@ function buildVGScorecard(){
     +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Fin.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
     +sc('% META FINANCEIRA',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
     +sc('SIS YTD',            fmtN(ytdSIv),                 'Unidades vendidas',                                       'sc-blue')
-    +sc('ASP (TICKET M\u00c9DIO)', 'R$ '+Math.round(asp).toLocaleString('pt-BR'), 'GMV \u00f7 SIs',                   'sc-blue')
+    +sc('NASP (TICKET M\u00c9DIO)', 'R$ '+Math.round(asp).toLocaleString('pt-BR'), 'GMV \u00f7 SIs',                   'sc-blue')
     +sc('INVESTIMENTO TOTAL', fmt(ytdInvT),                  'Inv/GMV: '+pInv.toFixed(2)+'%',                          'sc-blue')
     // Row 2
     +sc('VISITAS YTD',        ytdVis>0?fmtN(ytdVis):'\u2013', 'Pageviews dispon\u00edveis',                           'sc-blue')
@@ -4398,7 +4398,7 @@ function buildVGBPC(){
       +'<th style="padding:12px 16px;text-align:left;font-size:11px;font-weight:800;color:#1A1A1A;min-width:320px">Produto</th>'
       +'<th style="padding:12px 12px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">GMV s/Buybox</th>'
       +'<th style="padding:12px 10px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">% s/BB</th>'
-      +'<th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">ASP</th>'
+      +'<th style="padding:12px 10px;text-align:right;font-size:11px;font-weight:800;color:#1A1A1A">NASP</th>'
       +'<th style="padding:12px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Grupo</th>'
       +'<th style="padding:12px 12px;text-align:center;font-size:11px;font-weight:800;color:#1A1A1A">Diagnóstico</th>'
       +'</tr></thead>'
