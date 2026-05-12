@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 12/05/2026 09:56 -->
+<!-- Build: 12/05/2026 10:08 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -221,7 +221,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 12/05/2026 09:56</span>
+    <span class="update-badge">&#10003; Atualizado 12/05/2026 10:08</span>
   </div>
 </div>
 <div id="sidebar">
@@ -481,6 +481,10 @@
     <div class="chart-box"><canvas id="ml-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="ml-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ml-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ml-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ml-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ml-actions"></div></div></div><div id="ml-section-full" class="sub-section">
@@ -535,6 +539,10 @@
     <div class="kpi-row" id="ad-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ad-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
+</div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="ad-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ad-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ad-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ad-ins-list"><span class="ins">Carregando...</span></div></div></div>
@@ -591,6 +599,10 @@
     <div class="chart-box"><canvas id="ba-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="ba-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ba-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ba-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ba-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ba-actions"></div></div></div><div id="ba-section-full" class="sub-section">
@@ -645,6 +657,10 @@
     <div class="kpi-row" id="ci-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="ci-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
+</div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="ci-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ci-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ci-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ci-ins-list"><span class="ins">Carregando...</span></div></div></div>
@@ -701,6 +717,10 @@
     <div class="chart-box"><canvas id="bp-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="bp-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="bp-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="bp-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="bp-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="bp-actions"></div></div></div><div id="bp-section-full" class="sub-section">
@@ -755,6 +775,10 @@
     <div class="kpi-row" id="pa-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="pa-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
+</div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="pa-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="pa-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="pa-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="pa-ins-list"><span class="ins">Carregando...</span></div></div></div>
@@ -811,6 +835,10 @@
     <div class="chart-box"><canvas id="to-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="to-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="to-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="to-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="to-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="to-actions"></div></div></div><div id="to-section-full" class="sub-section">
@@ -865,6 +893,10 @@
     <div class="kpi-row" id="we-mes-kpi" style="margin-bottom:16px;flex-wrap:nowrap;"></div>
     <div class="chart-box"><canvas id="we-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
+</div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="we-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
 </div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="we-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="we-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="we-ins-list"><span class="ins">Carregando...</span></div></div></div>
@@ -921,6 +953,10 @@
     <div class="chart-box"><canvas id="kh-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="kh-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="kh-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="kh-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="kh-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="kh-actions"></div></div></div><div id="kh-section-full" class="sub-section">
@@ -976,6 +1012,10 @@
     <div class="chart-box"><canvas id="ma-mes-canvas" style="max-height:260px;"></canvas></div>
   </div>
 </div>
+<div class="section">
+  <div class="section-title">&#128200; NMV Di&#225;rio &mdash; M&#234;s Atual</div>
+  <div class="chart-box"><canvas id="ma-nmv-diario-canvas" style="max-height:280px;"></canvas></div>
+</div>
 <div class="section"><div class="section-title">GMV Mensal 2026 &mdash; Realizado vs Metas</div><div class="chart-box"><canvas id="ma-bar-chart" style="max-height:300px;"></canvas></div></div>
 <div class="section"><div class="section-title">&#128161; Insights Ecossistema</div><div id="ma-insights" class="ins-bar"><div class="ins-title">&#128161; Insights Ecossistema</div><div class="ins-list" id="ma-ins-list"><span class="ins">Carregando...</span></div></div></div>
 <div class="section"><div class="section-title">Acion&#225;veis</div><div class="action-row" id="ma-actions"></div></div></div><div id="ma-section-full" class="sub-section">
@@ -1018,7 +1058,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 09:56
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 10:08
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -1442,8 +1482,72 @@ function buildGrupo(g,px){
     {label:'% Fulfillment',val:pFF.toFixed(1)+'%',sub:'FF: '+fmt(ff),cls:pFF>=60?'green':pFF>=30?'yellow':'red'}
   ]);
   buildBarChart(g,px);
+  buildSellerNMVDiario(g,px);
   buildActions(g,px);
   buildInsights(g,px);
+}
+function buildSellerNMVDiario(g,px){
+  var canEl=document.getElementById(px+'-nmv-diario-canvas');
+  if(!canEl)return;
+  destroyChart(px+'-nmv-diario');
+  // Dados diários do mês atual (array de 31 posições, 1-indexed)
+  var diario=(REAL_DIARIO&&REAL_DIARIO[g])?REAL_DIARIO[g]:[];
+  var today=DIA_MES_ATUAL||new Date().getDate();
+  var MESES_ABR=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  var curMK=MESES_DONE[MESES_DONE.length-1];
+  var curMesNome=MESES_PT_CURTO[curMK]||'Mês';
+  // Filtrar apenas dias com dado (até hoje)
+  var dias=[],vals=[];
+  for(var d=1;d<=Math.min(today,31);d++){
+    var v=diario[d-1]||0;
+    if(v>0){dias.push(d+'/'+curMesNome);vals.push(v);}
+  }
+  if(!vals.length){
+    canEl.parentElement.parentElement.style.display='none';
+    return;
+  }
+  // Média dos dias com venda
+  var media=vals.reduce(function(s,v){return s+v;},0)/vals.length;
+  // Meta diária = meta financeira do mês / dias do mês
+  var mfMes=(META_FIN[g]||{})[curMK]||0;
+  var diasMes=31;
+  var ritmo=mfMes>0?Math.round(mfMes/diasMes):0;
+  // % atingimento acumulado
+  var cumVal=0,totMF=mfMes;
+  var atgLine=vals.map(function(v){cumVal+=v;return totMF>0?+(cumVal/totMF*100).toFixed(1):null;});
+  var datasets=[
+    {label:'NMV Diário',data:vals,
+     backgroundColor:vals.map(function(v){return v>0&&v>=media?'rgba(52,131,250,.85)':'rgba(52,131,250,.45)';}),
+     borderRadius:4,order:2,yAxisID:'y'},
+    {label:'Média',data:vals.map(function(){return Math.round(media);}),
+     type:'line',borderColor:'#F23D4F',backgroundColor:'transparent',
+     borderWidth:2,borderDash:[6,4],pointRadius:0,tension:0,order:1,yAxisID:'y'}
+  ];
+  if(ritmo>0)datasets.push({
+    label:'Ritmo Meta',data:vals.map(function(){return ritmo;}),
+    type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',
+    borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:0,order:1,yAxisID:'y'
+  });
+  if(atgLine.some(function(v){return v!==null;}))datasets.push({
+    label:'% Ating. Meta',data:atgLine,
+    type:'line',borderColor:'#00A650',backgroundColor:'transparent',
+    borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#00A650',tension:0.25,order:0,yAxisID:'y1',spanGaps:false
+  });
+  chartInstances[px+'-nmv-diario']=new Chart(canEl.getContext('2d'),{
+    type:'bar',
+    data:{labels:dias,datasets:datasets},
+    options:{responsive:true,maintainAspectRatio:false,animation:false,
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,pointStyleWidth:14,font:{size:11}}},
+        tooltip:{callbacks:{label:function(c){return c.dataset.yAxisID==='y1'?c.dataset.label+': '+c.raw+'%':c.dataset.label+': '+fmt(c.raw);}}}
+      },
+      scales:{
+        x:{ticks:{font:{size:10},maxRotation:45}},
+        y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}},grid:{color:'rgba(0,0,0,.04)'}},
+        y1:{type:'linear',position:'right',min:0,max:130,ticks:{callback:function(v){return v+'%';}},grid:{drawOnChartArea:false}}
+      }
+    }
+  });
 }
 function buildBarChart(g,px){
   var mks=MESES_DONE;
