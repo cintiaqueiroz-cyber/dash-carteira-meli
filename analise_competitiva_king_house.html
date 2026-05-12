@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Seu Seller — Análise Competitiva Colchão & Cama Box 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F2F3F5;color:#1A1A1A;font-size:13px}
+.page{max-width:1160px;margin:0 auto;padding:22px}
+
+/* HEADER */
+.hdr{background:#1A1A1A;border-radius:14px;padding:20px 28px;display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.hdr-badge{background:#FFE600;border-radius:8px;padding:8px 14px;font-size:10px;font-weight:900;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px;line-height:1.5;flex-shrink:0;text-align:center}
+.hdr-title{color:#fff;font-size:19px;font-weight:900}
+.hdr-sub{color:rgba(255,255,255,.45);font-size:11px;margin-top:3px}
+.hdr-right{margin-left:auto;text-align:right;color:rgba(255,255,255,.3);font-size:10px;line-height:1.7}
+
+/* SUMMARY STRIP */
+.strip{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.scard{background:#fff;border-radius:10px;padding:14px 16px;border-top:3px solid #FFE600;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.scard.r{border-color:#F23D4F}.scard.g{border-color:#00A650}.scard.b{border-color:#3483FA}.scard.y{border-color:#FFB900}
+.sc-lbl{font-size:9px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.sc-val{font-size:21px;font-weight:900;color:#1A1A1A;line-height:1}
+.sc-sub{font-size:10px;color:#888;margin-top:3px}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+.g13{display:grid;grid-template-columns:1fr 1.6fr;gap:14px;margin-bottom:14px}
+.g31{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:14px}
+
+/* CARD */
+.card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.card-title{font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #FFE600;display:flex;align-items:center;gap:8px}
+.card-title span{background:#FFE600;color:#1A1A1A;border-radius:20px;padding:1px 8px;font-size:9px;font-weight:900;margin-left:auto}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:11.5px}
+thead tr{background:#FFE600}
+thead th{padding:8px 10px;font-size:9.5px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.3px;text-align:left;white-space:nowrap}
+th.r,td.r{text-align:right}
+tbody tr:nth-child(even){background:#FAFAFA}
+tbody td{padding:7px 10px;border-bottom:1px solid #F0F0F0;color:#444;vertical-align:middle}
+td.name{font-weight:700;color:#1A1A1A;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.bold{font-weight:800;color:#1A1A1A}
+.kh-row td{background:rgba(255,230,0,.1)!important;font-weight:700}
+
+/* PILL */
+.pill{display:inline-block;padding:2px 8px;border-radius:12px;font-size:9px;font-weight:700;white-space:nowrap}
+.pg{background:rgba(0,166,80,.12);color:#007A3D}
+.pr{background:rgba(242,61,79,.1);color:#C0392B}
+.py{background:rgba(255,185,0,.15);color:#856404}
+.pb{background:rgba(52,131,250,.1);color:#1A5DC8}
+.pgr{background:#F0F0F0;color:#666}
+
+/* BAR CHART */
+.brow{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.blbl{font-size:10px;font-weight:600;color:#555;width:90px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btrack{flex:1;height:8px;background:#F0F0F0;border-radius:4px;overflow:hidden}
+.bm{height:8px;border-radius:4px;float:left}
+.bv{font-size:10px;font-weight:700;width:55px;text-align:right;flex-shrink:0}
+.bd{font-size:9px;color:#888;width:45px;text-align:right;flex-shrink:0}
+
+/* PARETO */
+.pareto-table{width:100%;border-collapse:collapse;font-size:11px}
+.pareto-table th{padding:6px 10px;background:#1A1A1A;color:#FFE600;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px}
+.pareto-table td{padding:7px 10px;border-bottom:1px solid #F0F0F0;text-align:center}
+.pareto-table td:first-child{text-align:left;font-weight:700;color:#1A1A1A}
+.kh-cell{font-weight:800;color:#F23D4F}
+.mkt-cell{color:#3483FA}
+
+/* DIAGNOSIS */
+.diag{border-left:4px solid;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px}
+.diag.r{border-color:#F23D4F;background:#FEF9F9}
+.diag.y{border-color:#FFB900;background:#FFFDF0}
+.diag.g{border-color:#00A650;background:#F0FBF5}
+.diag.b{border-color:#3483FA;background:#F0F5FF}
+.diag-t{font-size:12px;font-weight:800;color:#1A1A1A;margin-bottom:4px}
+.diag-d{font-size:11px;color:#555;line-height:1.6}
+.diag-a{font-size:10px;font-weight:700;background:#1A1A1A;color:#fff;border-radius:4px;padding:3px 9px;display:inline-block;margin-top:6px}
+
+/* PRIORIDADE */
+.prio{background:#1A1A1A;border-radius:10px;padding:16px 18px}
+.prio-badge{font-size:9px;font-weight:900;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.prio-t{font-size:12.5px;font-weight:800;color:#FFE600;margin-bottom:7px}
+.prio-d{font-size:11px;color:rgba(255,255,255,.65);line-height:1.6}
+
+.alert{border-radius:8px;padding:9px 12px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid}
+.ar{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+.ay{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.ag{background:#F0FBF5;border-color:#00A650;color:#007A3D}
+.ab{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+
+.footer{text-align:center;font-size:10px;color:#AAA;margin-top:14px;padding-top:10px;border-top:1px solid #E0E0E0}
+@media print{body{background:#fff}.page{padding:10px}*{box-shadow:none!important}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-badge">Análise<br>Competitiva</div>
+  <div>
+    <div class="hdr-title">Seu Seller — Colchão &amp; Cama Box vs Mercado Consolidado</div>
+    <div class="hdr-sub">Seu Seller já é top em Sofás · Esta análise foca em MATTRESSES &amp; SOMMIER SETS · 2026 YTD (Jan–Mai) · MLB Brasil</div>
+  </div>
+  <div class="hdr-right">Fonte: BigQuery meli-bi-data<br>11/05/2026 · Confidencial</div>
+</div>
+
+<!-- STRIP KPIs -->
+<div class="strip">
+  <div class="scard r">
+    <div class="sc-lbl">GMV KH no Segmento</div>
+    <div class="sc-val">R$2,54M</div>
+    <div class="sc-sub">167 itens com venda em 2026</div>
+  </div>
+  <div class="scard r">
+    <div class="sc-lbl">Share em Colchões</div>
+    <div class="sc-val">&lt;1%</div>
+    <div class="sc-sub">Posição: fora do top 12</div>
+  </div>
+  <div class="scard y">
+    <div class="sc-lbl">Share em Cama Box</div>
+    <div class="sc-val">1,6%</div>
+    <div class="sc-sub">Posição: #10 no segmento</div>
+  </div>
+  <div class="scard r">
+    <div class="sc-lbl">Itens Invisíveis</div>
+    <div class="sc-val">75%</div>
+    <div class="sc-sub">126/167 itens com GMV &lt; R$5K</div>
+  </div>
+  <div class="scard r">
+    <div class="sc-lbl">Concentração</div>
+    <div class="sc-val">51%</div>
+    <div class="sc-sub">do GMV vem dos top 3 itens</div>
+  </div>
+</div>
+
+<!-- RANKING + PARETO -->
+<div class="g2">
+
+  <!-- COLCHOES -->
+  <div class="card">
+    <div class="card-title">🛏️ Colchões (MATTRESSES) <span>KH: 0,76% share</span></div>
+    <table>
+      <thead><tr><th>#</th><th>Seller</th><th class="r">GMV</th><th class="r">Share</th><th class="r">Itens</th><th class="r">Ticket</th><th>Log</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="name">Concorrente #1</td><td class="r bold">R$21,4M</td><td class="r">16,4%</td><td class="r">56</td><td class="r">R$2,0K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>2</td><td class="name">Concorrente #2</td><td class="r bold">R$14,1M</td><td class="r">10,8%</td><td class="r">64</td><td class="r">R$1,6K</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>3</td><td class="name">Concorrente #3</td><td class="r bold">R$13,6M</td><td class="r">10,4%</td><td class="r">286</td><td class="r">R$729</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>4</td><td class="name">Concorrente #4</td><td class="r bold">R$12,9M</td><td class="r">9,9%</td><td class="r">376</td><td class="r">R$781</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>5</td><td class="name">Concorrente #5</td><td class="r bold">R$6,5M</td><td class="r">5,0%</td><td class="r">263</td><td class="r">R$592</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>6</td><td class="name">Concorrente #6</td><td class="r bold">R$4,4M</td><td class="r">3,3%</td><td class="r">89</td><td class="r">R$308</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>7</td><td class="name">Concorrente #7</td><td class="r bold">R$4,2M</td><td class="r">3,2%</td><td class="r">33</td><td class="r">R$659</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>8</td><td class="name">Concorrente #8</td><td class="r bold">R$2,4M</td><td class="r">1,8%</td><td class="r">197</td><td class="r">R$1,0K</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>9</td><td class="name">Concorrente #9</td><td class="r bold">R$2,0M</td><td class="r">1,5%</td><td class="r">31</td><td class="r">R$972</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>10</td><td class="name">Concorrente #10</td><td class="r bold">R$1,8M</td><td class="r">1,4%</td><td class="r">213</td><td class="r">R$772</td><td><span class="pill pb">XD</span></td></tr>
+        <tr class="kh-row"><td>+12°</td><td class="name" style="color:#B07A00">⚑ Seu Seller</td><td class="r" style="color:#B07A00">R$993K</td><td class="r" style="color:#B07A00">0,8%</td><td class="r">95</td><td class="r">R$669</td><td><span class="pill pb">XD</span></td></tr>
+      </tbody>
+    </table>
+    <div class="alert ay" style="margin-top:8px">⚠ 2 estratégias vencedoras: (1) Concorrente #1/Concorrente #2 — poucos SKUs, marca forte, ticket R$1.6K+ · (2) Concorrente #3/Concorrente #4 — 300+ SKUs, preço popular R$700–R$800, XD</div>
+  </div>
+
+  <!-- CAMA BOX -->
+  <div class="card">
+    <div class="card-title">📦 Cama Box (SOMMIER SETS) <span>KH: 1,6% share · #10</span></div>
+    <table>
+      <thead><tr><th>#</th><th>Seller</th><th class="r">GMV</th><th class="r">Share</th><th class="r">Itens</th><th class="r">Ticket</th><th>Log</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="name">Concorrente #4</td><td class="r bold">R$28,3M</td><td class="r">30,0%</td><td class="r">571</td><td class="r">R$1,2K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>2</td><td class="name">Concorrente #10</td><td class="r bold">R$13,2M</td><td class="r">14,0%</td><td class="r">873</td><td class="r">R$1,2K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>3</td><td class="name">Concorrente #3</td><td class="r bold">R$5,6M</td><td class="r">6,0%</td><td class="r">226</td><td class="r">R$980</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>4</td><td class="name">Concorrente #4</td><td class="r bold">R$5,5M</td><td class="r">5,8%</td><td class="r">258</td><td class="r">R$778</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>5</td><td class="name">Concorrente #5</td><td class="r bold">R$5,0M</td><td class="r">5,3%</td><td class="r">265</td><td class="r">R$1,7K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>6</td><td class="name">Concorrente #6</td><td class="r bold">R$4,9M</td><td class="r">5,2%</td><td class="r">131</td><td class="r">R$937</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>7</td><td class="name">Concorrente #7</td><td class="r bold">R$4,6M</td><td class="r">4,9%</td><td class="r">80</td><td class="r">R$2,3K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>8</td><td class="name">Concorrente #5</td><td class="r bold">R$4,5M</td><td class="r">4,8%</td><td class="r">185</td><td class="r">R$1,1K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>9</td><td class="name">Concorrente #9</td><td class="r bold">R$3,4M</td><td class="r">3,6%</td><td class="r">183</td><td class="r">R$1,5K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr class="kh-row"><td>10</td><td class="name" style="color:#B07A00">⚑ Seu Seller</td><td class="r" style="color:#B07A00">R$1,54M</td><td class="r" style="color:#B07A00">1,6%</td><td class="r">71</td><td class="r">R$1,8K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>11</td><td class="name">Concorrente #11</td><td class="r bold">R$1,4M</td><td class="r">1,4%</td><td class="r">150</td><td class="r">R$1,6K</td><td><span class="pill pgr">SS</span></td></tr>
+      </tbody>
+    </table>
+    <div class="alert ay" style="margin-top:8px">⚠ Mercado de Cama Box é 100% SS — não há vantagem logística. A disputa é: amplitude de portfólio + preço popular (R$800–R$1.200)</div>
+  </div>
+</div>
+
+<!-- PARETO + FAIXAS -->
+<div class="g2">
+
+  <div class="card">
+    <div class="card-title">📊 Concentração de GMV — Pareto KH vs Mercado <span>Problema central</span></div>
+    <p style="font-size:11px;color:#555;margin-bottom:12px;line-height:1.5">Um seller saudável distribui bem o GMV entre os itens. KH depende demais de poucos itens — isso é vulnerabilidade, não força.</p>
+
+    <div style="margin-bottom:14px">
+      <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">COLCHÕES</div>
+      <table class="pareto-table">
+        <thead><tr><th>Top N itens</th><th>Seu Seller</th><th>Mercado</th><th>Diferença</th></tr></thead>
+        <tbody>
+          <tr><td>Top 1 item</td><td class="kh-cell">15,0%</td><td class="mkt-cell">5,0%</td><td><span class="pill pr">KH 3x mais concentrado</span></td></tr>
+          <tr><td>Top 3 itens</td><td class="kh-cell">37,8%</td><td class="mkt-cell">11,5%</td><td><span class="pill pr">KH 3,3x mais concentrado</span></td></tr>
+          <tr><td>Top 10 itens</td><td class="kh-cell">70,2%</td><td class="mkt-cell">20,4%</td><td><span class="pill pr">KH 3,4x mais concentrado</span></td></tr>
+          <tr><td>Top 50 itens</td><td class="kh-cell">95,2%</td><td class="mkt-cell">39,0%</td><td><span class="pill py">cauda não funciona</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">CAMA BOX — AINDA MAIS CRÍTICO</div>
+      <table class="pareto-table">
+        <thead><tr><th>Top N itens</th><th>Seu Seller</th><th>Mercado</th><th>Diferença</th></tr></thead>
+        <tbody>
+          <tr><td>Top 1 item</td><td class="kh-cell">45,5%</td><td class="mkt-cell">2,8%</td><td><span class="pill pr">KH 16x mais concentrado</span></td></tr>
+          <tr><td>Top 3 itens</td><td class="kh-cell">82,9%</td><td class="mkt-cell">5,9%</td><td><span class="pill pr">risco altíssimo</span></td></tr>
+          <tr><td>Top 10 itens</td><td class="kh-cell">90,0%</td><td class="mkt-cell">13,0%</td><td><span class="pill pr">71 itens, 10 sustentam tudo</span></td></tr>
+          <tr><td>Top 50 itens</td><td class="kh-cell">98,8%</td><td class="mkt-cell">33,3%</td><td><span class="pill py">cauda praticamente morta</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert ar">⚠ 1 item (Cama Box Alford King) = 45% do GMV de cama box. Se esse item perder posição, o negócio cai.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💲 Faixas de Preço — Onde KH está vs onde o mercado compra</div>
+
+    <div style="margin-bottom:16px">
+      <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">COLCHÕES — Mercado R$130M</div>
+      <div class="brow"><span class="blbl">Até R$500</span><div class="btrack"><div class="bm" style="width:23.9%;background:#FFB900"></div></div><span class="bv" style="color:#B07A00">Mkt 24%</span><span class="bd" style="color:#F23D4F">KH 2%</span></div>
+      <div class="brow"><span class="blbl">R$500–R$800</span><div class="btrack"><div class="bm" style="width:20.6%;background:#00A650"></div></div><span class="bv">Mkt 21%</span><span class="bd" style="color:#00A650">KH 67%</span></div>
+      <div class="brow"><span class="blbl">R$800–R$1.200</span><div class="btrack"><div class="bm" style="width:16.2%;background:#3483FA"></div></div><span class="bv">Mkt 16%</span><span class="bd">KH 21%</span></div>
+      <div class="brow"><span class="blbl">R$1.200–R$1.800</span><div class="btrack"><div class="bm" style="width:17.2%;background:#3483FA"></div></div><span class="bv">Mkt 17%</span><span class="bd" style="color:#F23D4F">KH 8%</span></div>
+      <div class="brow"><span class="blbl">R$1.800–R$2.500</span><div class="btrack"><div class="bm" style="width:15.2%;background:#F23D4F"></div></div><span class="bv" style="color:#F23D4F">Mkt 15%</span><span class="bd" style="color:#F23D4F">KH 2%</span></div>
+      <div class="brow"><span class="blbl">Acima R$2.500</span><div class="btrack"><div class="bm" style="width:7%;background:#9B59B6"></div></div><span class="bv">Mkt 7%</span><span class="bd">KH 1%</span></div>
+      <div class="alert ay" style="margin-top:4px;font-size:10px">KH está forte em R$500–R$800 (67% do GMV). Mercado tem R$30M abaixo de R$500 e R$20M em R$1.8K–R$2.5K — ambas as faixas quase sem presença KH</div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">CAMA BOX — Mercado R$93M</div>
+      <div class="brow"><span class="blbl">Até R$800</span><div class="btrack"><div class="bm" style="width:15%;background:#E0E0E0"></div></div><span class="bv" style="color:#AAA">Mkt 15%</span><span class="bd" style="color:#F23D4F">KH 0%</span></div>
+      <div class="brow"><span class="blbl">R$800–R$1.200</span><div class="btrack"><div class="bm" style="width:28.6%;background:#F23D4F"></div></div><span class="bv" style="color:#F23D4F">Mkt 29%</span><span class="bd" style="color:#F23D4F">KH 1%</span></div>
+      <div class="brow"><span class="blbl">R$1.200–R$1.800</span><div class="btrack"><div class="bm" style="width:32%;background:#FFB900"></div></div><span class="bv" style="color:#B07A00">Mkt 32%</span><span class="bd" style="color:#00A650">KH 51%</span></div>
+      <div class="brow"><span class="blbl">R$1.800–R$2.500</span><div class="btrack"><div class="bm" style="width:12.4%;background:#3483FA"></div></div><span class="bv">Mkt 12%</span><span class="bd" style="color:#00A650">KH 42%</span></div>
+      <div class="brow"><span class="blbl">Acima R$2.500</span><div class="btrack"><div class="bm" style="width:12%;background:#9B59B6"></div></div><span class="bv">Mkt 12%</span><span class="bd">KH 6%</span></div>
+      <div class="alert ar" style="margin-top:4px;font-size:10px">Mercado concentra 61% do GMV em cama box abaixo de R$1.800 — exatamente onde KH está ausente (1% nessa faixa)</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP ITENS KH vs TOP SELLERS -->
+<div class="g2">
+  <div class="card">
+    <div class="card-title">📋 Portfolio KH — Top itens com venda real em 2026 <span>167 itens · R$2,54M total</span></div>
+    <table>
+      <thead><tr><th>#</th><th>Categoria</th><th>Produto</th><th class="r">GMV</th><th class="r">SIs</th><th class="r">Preço</th><th>Log</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="name">Cama Box King Alford 193x203 Bege Molas</td><td class="r bold">R$700K</td><td class="r">426</td><td class="r">R$1,8K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>2</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="name">Conjunto Cama Box Alpine King Molas</td><td class="r bold">R$441K</td><td class="r">265</td><td class="r">R$1,8K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>3</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão D33 Chicago Solteiro</td><td class="r bold">R$149K</td><td class="r">284</td><td class="r">R$576</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>4</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="name">Cama Box King Lagras 193x203 Azul Molas</td><td class="r bold">R$137K</td><td class="r">70</td><td class="r">R$2,0K</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>5</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão D33 Chicago Casal 138cm</td><td class="r bold">R$130K</td><td class="r">207</td><td class="r">R$736</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>6</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão Molas Toronto Solteiro</td><td class="r bold">R$97K</td><td class="r">153</td><td class="r">R$705</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>7</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão D33 Valentine Casal</td><td class="r bold">R$88K</td><td class="r">155</td><td class="r">R$611</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>8</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão Alford Casal 138x188 Molas</td><td class="r bold">R$53K</td><td class="r">56</td><td class="r">R$1,0K</td><td><span class="pill pb">XD</span></td></tr>
+        <tr><td>9</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão D33 San Diego Casal</td><td class="r bold">R$50K</td><td class="r">73</td><td class="r">R$778</td><td><span class="pill pgr">SS</span></td></tr>
+        <tr><td>10</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="name">Colchão Molas Toronto Casal</td><td class="r bold">R$47K</td><td class="r">58</td><td class="r">R$819</td><td><span class="pill pgr">SS</span></td></tr>
+      </tbody>
+    </table>
+    <div class="alert ar">Top 10 itens = 74,6% do GMV · 126/167 itens com GMV &lt; R$5K (invisíveis por falta de ADS ou ranking baixo)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏆 Top sellers — item estrela e estratégia</div>
+    <table>
+      <thead><tr><th>Seller</th><th>Seg</th><th>GMV Total</th><th>Itens</th><th>Item Top</th><th class="r">GMV Item Top</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Concorrente #4</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="r bold">R$28,3M</td><td class="r">571</td><td class="name">Box Baú Casal fabricante parceiro Molas</td><td class="r bold" style="color:#00A650">R$2,57M</td></tr>
+        <tr><td class="name">Concorrente #1</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="r bold">R$21,4M</td><td class="r">56</td><td class="name">Colchão Concorrente #1 Original Casal</td><td class="r bold" style="color:#00A650">R$6,41M</td></tr>
+        <tr><td class="name">Concorrente #2</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="r bold">R$14,1M</td><td class="r">64</td><td class="name">Colchão produto de marca concorrente Support Casal</td><td class="r bold" style="color:#00A650">R$2,27M</td></tr>
+        <tr><td class="name">Concorrente #3</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="r bold">R$13,6M</td><td class="r">286</td><td class="name">Colchão Ortopédico D33 Casal</td><td class="r bold" style="color:#00A650">R$2,21M</td></tr>
+        <tr><td class="name">Concorrente #10</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="r bold">R$13,2M</td><td class="r">873</td><td class="name">Bicama Box Baú Solteiro Espuma</td><td class="r bold" style="color:#00A650">R$685K</td></tr>
+        <tr class="kh-row"><td class="name" style="color:#B07A00">Seu Seller</td><td><span class="pill pb" style="font-size:8px">Box</span></td><td class="r" style="color:#B07A00">R$1,54M</td><td class="r">71</td><td class="name">Cama Box King Alford</td><td class="r" style="color:#B07A00">R$700K</td></tr>
+        <tr class="kh-row"><td class="name" style="color:#B07A00">Seu Seller</td><td><span class="pill pgr" style="font-size:8px">Col</span></td><td class="r" style="color:#B07A00">R$993K</td><td class="r">95</td><td class="name">Colchão D33 Chicago Solteiro</td><td class="r" style="color:#B07A00">R$149K</td></tr>
+      </tbody>
+    </table>
+    <div class="alert ab" style="margin-top:8px">
+      <strong>Comparação direta:</strong> Concorrente #1 tem 1 item com R$6,4M · KH tem 95 itens com R$993K total.<br>
+      Concorrente #4 tem top item Box Baú R$2,57M · KH tem top item Alford King R$700K.
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSTICO -->
+<div class="card" style="margin-bottom:14px">
+  <div class="card-title">🔬 Diagnóstico preciso — Por que KH não cresce em Colchão &amp; Cama Box</div>
+  <div class="g2" style="margin-bottom:0">
+    <div>
+      <div class="diag r">
+        <div class="diag-t">1. Concentração extrema de GMV em poucos itens</div>
+        <div class="diag-d"><strong>82,9% do GMV de Cama Box vem de apenas 3 itens.</strong> Os outros 68 itens somam apenas R$140K. O Alford King sozinho = 45,5% do GMV. Se esse item cair de posição, o faturamento despenca. Sellers líderes têm GMV bem distribuído — Concorrente #4 tem 571 itens, nenhum acima de 10% do total.</div>
+        <span class="diag-a">→ Ativar itens da cauda com ADS focado</span>
+      </div>
+      <div class="diag y">
+        <div class="diag-t">2. Posicionamento de preço errado em Cama Box</div>
+        <div class="diag-d">KH está concentrado em <strong>R$1.800–R$2.500 (King Size premium)</strong>. O mercado tem <strong>61% do volume abaixo de R$1.800</strong>, especialmente em cama box casal R$800–R$1.200. Concorrente #4 (#1) tem ticket médio R$1.200 — R$600 mais barato que KH. Concorrente #10 (#2) tem ticket R$1.200 com 873 SKUs.</div>
+        <span class="diag-a">→ Ativar cama box casal e queen no ticket R$900–R$1.400</span>
+      </div>
+      <div class="diag r">
+        <div class="diag-t">3. Zero presença em colchões acima de R$1.200</div>
+        <div class="diag-d">O mercado de colchões acima de R$1.200 vale <strong>R$47M</strong> — 36% do total. KH tem apenas R$130K nessa faixa (2,8% do próprio GMV em colchões). Concorrente #1 e Concorrente #2 dominam aqui com colchões premium de marca (R$1.6K–R$2.4K). É o segmento de maior margem e menor competição de preço.</div>
+        <span class="diag-a">→ Posicionar linha molas ensacadas premium R$1.200–R$2.000</span>
+      </div>
+    </div>
+    <div>
+      <div class="diag b">
+        <div class="diag-t">4. 75% dos itens são invisíveis (sem ADS)</div>
+        <div class="diag-d"><strong>126 de 167 itens vendem menos de R$5K</strong> em 5 meses — menos de R$1K por mês cada. KH tem o portfólio (colchões em todos os tamanhos, Box Baú em vários modelos e tamanhos), mas esses itens ficam enterrados nos resultados de busca sem ADS. Sellers como Concorrente #3 e Concorrente #4 investem em PADS em todos os itens, garantindo visibilidade constante.</div>
+        <span class="diag-a">→ Ativar PADS nos top 30 itens da cauda morta</span>
+      </div>
+      <div class="diag b">
+        <div class="diag-t">5. Sem Fulfillment — desvantagem em colchões</div>
+        <div class="diag-d">Em colchões, <strong>12,2% do mercado usa FBM</strong> (R$15,8M) — principalmente produto de marca concorrente/Concorrente #8 que combinam FBM com colchões de alto valor. KH tem <strong>0% em FBM</strong>. Itens com Full aparecem primeiro nas buscas, ganham o buybox mais facilmente e têm entrega mais rápida. Em cama box, todos usam SS — sem gap logístico nessa categoria.</div>
+        <span class="diag-a">→ Mapear colchões elegíveis para ativar Full SC</span>
+      </div>
+      <div class="diag g">
+        <div class="diag-t">✅ Ponto forte: KH tem produto de qualidade e 5 meses de histórico</div>
+        <div class="diag-d">Alford King 426 unidades a R$1.762 = produto validado pelo mercado. Chicago Solteiro 284 unidades a R$576 = volume consistente. A marca Seu Seller tem credibilidade em sofás — o desafio é transferir essa autoridade para colchões e cama box, onde o comprador ainda não conhece a marca.</div>
+        <span class="diag-a">→ Usar reputação de sofás como âncora de marca</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANO DE ACAO -->
+<div class="card" style="margin-bottom:14px">
+  <div class="card-title">🎯 Plano de ação — Prioridades para o seller</div>
+  <div class="g3" style="margin-bottom:0">
+    <div class="prio">
+      <div class="prio-badge" style="background:#F23D4F;color:#fff">🔴 Urgente — 30 dias</div>
+      <div class="prio-t">Ativar ADS nos itens da cauda</div>
+      <div class="prio-d">KH tem 126 itens com GMV &lt; R$5K que são invisíveis. Selecionar os 20–30 com maior potencial (casal/queen, Box Baú em tamanhos populares) e ativar Product Ads (PADS). Sellers líderes investem 4–8% do GMV em ADS. <br><br>Prioridade imediata: Toronto Casal, San Diego Casal, Box Baú Casal (modelos existentes, sem custo de produto novo).</div>
+    </div>
+    <div class="prio">
+      <div class="prio-badge" style="background:#FFB900;color:#1A1A1A">🟡 Curto prazo — 60 dias</div>
+      <div class="prio-t">Abrir faixa casal R$900–R$1.400 em Cama Box</div>
+      <div class="prio-d">Mercado de cama box tem 61% do GMV abaixo de R$1.800 — faixa casal/queen popular. KH só tem 1% nessa faixa com itens existentes (Box Baú Casal a R$1.500–R$1.700).<br><br>KH tem os modelos (Alford Casal, Alpine Casal) mas eles não aparecem. Repricing ou bundles para posicionar esses itens no ticket R$900–R$1.400 que o mercado compra.</div>
+    </div>
+    <div class="prio">
+      <div class="prio-badge" style="background:#3483FA;color:#fff">🔵 Médio prazo — 90 dias</div>
+      <div class="prio-t">Colchão premium R$1.200–R$2.000</div>
+      <div class="prio-d">Mercado tem R$42M em colchões acima de R$1.200. KH tem apenas R$130K nessa faixa. Concorrente #1 domina com marca própria (56 SKUs, R$21M). Concorrente #2 distribui produto de marca concorrente (64 SKUs, R$14M).<br><br>KH precisa posicionar colchão molas ensacadas como linha premium com diferencial claro (densidade, espessura, tecnologia) para justificar o ticket e competir com as marcas.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Fonte: BigQuery meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB · Análise: MeliPro Dash · Cintia Faraco Queiroz — CA MercadoLivre F&amp;H · Mai/2026
+</div>
+
+</div>
+</body>
+</html>
