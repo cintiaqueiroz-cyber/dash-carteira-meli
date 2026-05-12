@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 12/05/2026 16:43 -->
+<!-- Build: 12/05/2026 16:48 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -249,7 +249,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 12/05/2026 16:43</span>
+    <span class="update-badge">&#10003; Atualizado 12/05/2026 16:48</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1166,7 +1166,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 16:43
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 12/30 dias &nbsp;&middot;&nbsp; 12/05/2026 16:48
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2236,14 +2236,14 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
       gAnt=prevMkCat?(_gm[prevMkCat]||0):0;
       sCur2=_sm[focalMkCat]||it.si||0;
       sAnt2=prevMkCat?(_sm[prevMkCat]||0):0;
-    } else if(PERIODO.length===0||isMTDcat){
-      // MTD: compara mes atual vs mesmo periodo do mes anterior (dia 1 até mesmo dia)
+    } else if(isMTDcat){
+      // MTD (mês atual selecionado): compara dia 1-N do mês atual vs dia 1-N do mês anterior
       gCur=it.gmv_mes_atual||0;
       gAnt=(it.gmv_mes_ant_periodo!=null&&it.gmv_mes_ant_periodo>0)?it.gmv_mes_ant_periodo:(it.gmv_mes_ant||0);
       sCur2=it.si_mes_atual||0;
       sAnt2=(it.si_mes_ant_periodo!=null&&it.si_mes_ant_periodo>0)?it.si_mes_ant_periodo:(it.si_mes_ant||0);
     } else {
-      // Multi-mes: usa gmv_mes_atual/ant normais
+      // YTD ou multi-mes: usa gmv_mes_atual/ant normais (mês anterior fechado)
       gCur=it.gmv_mes_atual||0; gAnt=it.gmv_mes_ant||0;
       sCur2=it.si_mes_atual||0; sAnt2=it.si_mes_ant||0;
     }
