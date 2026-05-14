@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 14/05/2026 18:00 -->
+<!-- Build: 14/05/2026 18:04 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 14/05/2026 18:00</span>
+    <span class="update-badge">&#10003; Atualizado 14/05/2026 18:04</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1163,7 +1163,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 18:00
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 18:04
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -4989,7 +4989,8 @@ function buildSellersConsolidated(){
   // Dados por grupo \u2014 NMV = BT_UE_OUTPUT_MNG_MONTHLY_PH (mesma base Grid MeliPro)
   var MK25_TO_26={jan:'jan',feb:'feb',mar:'mar',apr:'apr',may:'may',jun:'jun',jul:'jul',aug:'aug',sep:'sep',oct:'oct',nov:'nov',dec:'dec'};
   var rows=GRUPOS.map(function(g){
-    var nmvUE=REAL_NMV[g]||{};
+    // Usar REAL_NMV_REL (filtrado F&H) ou REAL_MENSAL como fallback — evita inflação por outras verticais
+    var nmvUE=(typeof REAL_NMV_REL!=='undefined'&&REAL_NMV_REL[g])?REAL_NMV_REL[g]:(REAL_MENSAL[g]||{});
     var nmv=PERIODO.reduce(function(s,k){return s+(nmvUE[k]||0);},0);
     if(!nmv) nmv=PERIODO.reduce(function(s,k){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
     var si=PERIODO.reduce(function(s,k){return s+((REAL_SI[g]||{})[k]||0);},0);
