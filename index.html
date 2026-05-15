@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 14/05/2026 23:03 -->
+<!-- Build: 14/05/2026 23:10 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:03</span>
+    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:10</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1163,7 +1163,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:03
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:10
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -4594,10 +4594,10 @@ function buildPreNeg(){
   var tbI=document.getElementById('preneg-mlb-table');
   if(tbI){
     var th2=function(t,al){return '<th style="padding:10px 12px;font-size:11px;font-weight:700;color:#FFE600;background:#1A1A1A;text-align:'+(al||'left')+'">'+t+'</th>';};
-    var hdr2='<thead><tr>'+th2('MLB')+th2('Produto')+th2('Grupo')+th2('NMV','right')+th2('SIs','right')+th2('ADS','right')+th2('Cupons','right')+th2('Rebates','right')+th2('Total','right')+th2('% GMV','center')+'</tr></thead>';
+    var hdr2='<thead><tr>'+th2('MLB')+th2('Produto')+th2('Grupo')+th2('NMV','right')+th2('SIs','right')+th2('Cupons','right')+th2('Rebates','right')+th2('Total','right')+th2('% GMV','center')+'</tr></thead>';
     var bdy2='<tbody>';
     if(!itens.length){
-      bdy2+='<tr><td colspan="10" style="text-align:center;color:#aaa;padding:24px">&#9203; Dados disponíveis a partir de 02/05/2026</td></tr>';
+      bdy2+='<tr><td colspan="9" style="text-align:center;color:#aaa;padding:24px">&#9203; Dados disponíveis a partir de 02/05/2026</td></tr>';
     }else{
       itens=[].concat(itens).sort(function(a,b){return (b.rebates||0)-(a.rebates||0);});
       itens.forEach(function(it,i){
@@ -4610,7 +4610,6 @@ function buildPreNeg(){
           +'<td><span style="background:'+cor+'22;color:'+cor+';font-size:10px;font-weight:800;padding:2px 8px;border-radius:10px">'+it.grupo+'</span></td>'
           +'<td style="text-align:right">'+fmt(it.nmv)+'</td>'
           +'<td style="text-align:right">'+it.si+'</td>'
-          +'<td style="text-align:right;color:#3483FA">'+fmt(it.ads)+'</td>'
           +'<td style="text-align:right;color:#B07A00">'+fmt(it.cupons)+'</td>'
           +'<td style="text-align:right;color:#9B59B6">'+fmt(it.rebates)+'</td>'
           +'<td style="text-align:right;font-weight:800">'+fmt(it.total)+'</td>'
@@ -4638,7 +4637,7 @@ function buildPreNeg(){
   }
   if(!semDados&&c2&&totINV>0){
     chartInstances['preneg-donut']=new Chart(c2.getContext('2d'),{type:'doughnut',
-      data:{labels:['ADS','Cupons','Rebates'],datasets:[{data:[totADS,totCUP,totREB],backgroundColor:['#3483FA','#FFE600','#9B59B6'],borderWidth:2}]},
+      data:{labels:['Cupons','Rebates'],datasets:[{data:[totCUP,totREB],backgroundColor:['#FFE600','#9B59B6'],borderWidth:2}]},
       options:{responsive:true,animation:false,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}
     });
   }
