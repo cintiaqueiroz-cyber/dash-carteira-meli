@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 14/05/2026 23:00 -->
+<!-- Build: 14/05/2026 23:03 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:00</span>
+    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:03</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1163,7 +1163,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:00
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:03
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -3762,13 +3762,17 @@ function buildADS(){
   var tClicks  = sumV(ADS_CLK, PERIODO);
   var tTGMV    = GRUPOS.reduce(function(a,g){return a+ytdTGMV(g);},0)||GRUPOS.reduce(function(a,g){return a+ytdReal(g);},0);
 
-  // MoM — período atual vs mês anterior (taxa diária para MTD)
-  var isMTD = PERIODO.length===1&&PERIODO[0]===curMk;
-  var pAdsCur = sumVmk(REAL_ADS_PADS, curMk);
-  var pAdsPrev = prevMk?sumVmk(REAL_ADS_PADS, prevMk):0;
+  // MoM — usa o período selecionado como referência, não sempre o último mês
+  var MONTH_ORDER=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  var focalMk = PERIODO.length===1 ? PERIODO[0] : curMk;
+  var focalIdx = MONTH_ORDER.indexOf(focalMk);
+  var prevFocalMk = focalIdx>0 ? MONTH_ORDER[focalIdx-1] : null;
+  var isMTD = PERIODO.length===1 && focalMk===curMk;
+  var pAdsCur  = sumVmk(REAL_ADS_PADS, focalMk);
+  var pAdsPrev = prevFocalMk ? sumVmk(REAL_ADS_PADS, prevFocalMk) : 0;
   var mom = null;
   if(isMTD && pAdsPrev>0){
-    var dCur=Math.max(DIA_MES_ATUAL,1), dPrev=DIAS_MES_MAP[prevMk]||30;
+    var dCur=Math.max(DIA_MES_ATUAL,1), dPrev=DIAS_MES_MAP[prevFocalMk]||30;
     mom = ((pAdsCur/dCur) - (pAdsPrev/dPrev)) / (pAdsPrev/dPrev) * 100;
   } else if(!isMTD && pAdsPrev>0){
     mom = (pAdsCur-pAdsPrev)/pAdsPrev*100;
@@ -3830,11 +3834,11 @@ function buildADS(){
     var tgmvG=ytdTGMV(g)||ytdReal(g);
     var pPct=tgmvG>0?pads/tgmvG*100:0;
     var acosG=gmvP>0?pads/gmvP*100:0;
-    // MoM desta group
-    var padsCur=((REAL_ADS_PADS&&REAL_ADS_PADS[g]||{})[curMk]||0);
-    var padsPrev=prevMk?((REAL_ADS_PADS&&REAL_ADS_PADS[g]||{})[prevMk]||0):0;
+    // MoM desta group — usa focalMk e prevFocalMk (respeita período selecionado)
+    var padsCur=((REAL_ADS_PADS&&REAL_ADS_PADS[g]||{})[focalMk]||0);
+    var padsPrev=prevFocalMk?((REAL_ADS_PADS&&REAL_ADS_PADS[g]||{})[prevFocalMk]||0):0;
     var momG=null;
-    if(isMTD&&padsPrev>0){var dC=Math.max(DIA_MES_ATUAL,1),dP=DIAS_MES_MAP[prevMk]||30;momG=(padsCur/dC-padsPrev/dP)/(padsPrev/dP)*100;}
+    if(isMTD&&padsPrev>0){var dC=Math.max(DIA_MES_ATUAL,1),dP=DIAS_MES_MAP[prevFocalMk]||30;momG=(padsCur/dC-padsPrev/dP)/(padsPrev/dP)*100;}
     else if(!isMTD&&padsPrev>0)momG=(padsCur-padsPrev)/padsPrev*100;
     var momStr=momG!==null?('<span style="color:'+(momG>=0?'#00A650':'#F23D4F')+';font-weight:700">'+(momG>=0?'▲+':'▼')+Math.abs(momG).toFixed(1)+'%</span>'):'—';
     return '<tr style="background:'+(gi%2===0?'#fff':'#FAFAFA')+';border-bottom:1px solid #F0F0F0">'
