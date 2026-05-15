@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 14/05/2026 23:17 -->
+<!-- Build: 14/05/2026 23:18 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:17</span>
+    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:18</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1163,7 +1163,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:17
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:18
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2657,7 +2657,14 @@ function buildCategorias(g,px){
   // Pareto chart (bar + line)
   var cumGMV=0;
   var paretoData=allCats.slice(0,Math.min(allCats.length,15)).map(function(c){cumGMV+=c.gmv;return parseFloat((cumGMV/Math.max(total,1)*100).toFixed(1));});
-  var paretoLabels=allCats.slice(0,15).map(function(c,i){return i<4?c.cat.split(' ').slice(0,2).join(' '):'#'+(i+1);});
+  // Labels: nome completo quebrado em palavras (array = quebra de linha no Chart.js)
+  var paretoLabels=allCats.slice(0,15).map(function(c){
+    var words=c.cat.split(' ');
+    // Quebrar em linhas de até 2 palavras
+    var lines=[];
+    for(var w=0;w<words.length;w+=2) lines.push(words.slice(w,w+2).join(' '));
+    return lines;
+  });
   destroyChart(px+'-pareto');
   var c2=document.getElementById(px+'-pareto-chart');
   if(c2)chartInstances[px+'-pareto']=new Chart(c2.getContext('2d'),{
@@ -2668,10 +2675,11 @@ function buildCategorias(g,px){
     ]},
     options:{responsive:true,animation:false,
       scales:{
+        x:{ticks:{font:{size:9},maxRotation:30,minRotation:0}},
         y:{type:'linear',position:'left',ticks:{callback:function(v){return fmt(v);}}},
         y1:{type:'linear',position:'right',min:0,max:100,grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+'%';}}}
       },
-      plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.datasetIndex===0?fmt(c.raw):c.raw+'%');}}}}
+      plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(c.datasetIndex===0?fmt(c.raw):c.raw+'%');},title:function(items){return Array.isArray(items[0].label)?items[0].label.join(' '):items[0].label;}}}}
     }
   });
 
