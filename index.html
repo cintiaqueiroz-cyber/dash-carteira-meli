@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 14/05/2026 23:18 -->
+<!-- Build: 14/05/2026 23:23 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:18</span>
+    <span class="update-badge">&#10003; Atualizado 14/05/2026 23:23</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1163,7 +1163,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:18
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 14/30 dias &nbsp;&middot;&nbsp; 14/05/2026 23:23
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -4753,11 +4753,11 @@ function buildGMVHoje(){
 }
 
 function buildTopItensHoje(dHoje, dOntem, dD7){
-  // Para hoje: ordenar por SI por padrão (GMV tem lag T-1, SI é em tempo real)
-  var _filtro = window._hojeSort||'si';
+  // Ordenar por NMV por padrão
+  var _filtro = window._hojeSort||'gmv';
   var filtros = [
+    {id:'gmv',     label:'&#9650; Maior NMV',            fn:function(a,b){return b.gmv-a.gmv;}},
     {id:'si',      label:'&#9650; Maior Unidades',       fn:function(a,b){return b.si-a.si;}},
-    {id:'gmv',     label:'&#9650; Maior GMV',            fn:function(a,b){return b.gmv-a.gmv;}},
     {id:'vs_up',   label:'&#9650; Top Crescimento vs Ontem', fn:function(a,b){return b._vsO-a._vsO;}},
     {id:'vs_dn',   label:'&#9660; Top Queda vs Ontem',  fn:function(a,b){return a._vsO-b._vsO;}},
     {id:'d7_up',   label:'&#9650; Top Crescimento vs D-7',  fn:function(a,b){return b._vsD-a._vsD;}},
@@ -4799,18 +4799,20 @@ function buildTopItensHoje(dHoje, dOntem, dD7){
     if(!sorted.length) return '<div style="padding:20px;text-align:center;color:#888">Sem dados para hoje</div>';
     var th=function(t,al){return '<th style="padding:9px 10px;font-size:10px;font-weight:800;color:#fff;text-align:'+(al||'left')+';white-space:nowrap;background:#1A1A1A">'+t+'</th>';};
     // GMV Hoje tem lag T-1 no nível de item — mostrar aviso e focar em SIs
-    var hdr='<thead><tr>'+th('Produto')+th('Grupo','center')+th('MLB','center')+th('SIs Hoje','right')+th('NMV D-1','right')+th('vs Ontem','center')+th('vs D-7','center')+'</tr></thead>';
+    var hdr='<thead><tr>'+th('Produto')+th('Grupo','center')+th('MLB','center')+th('NMV Hoje','right')+th('SIs Hoje','right')+th('NMV D-1','right')+th('vs Ontem','center')+th('vs D-7','center')+'</tr></thead>';
     var bdy='<tbody>'+sorted.map(function(it,i){
       var cor=GRUPO_COLOR[it.grupo]||'#3483FA';
       var link='https://produto.mercadolivre.com.br/'+it.mlb_id.replace('MLB','MLB-');
       var bg=i%2===0?'#fff':'#FAFAFA';
       var nmvD1=it.nmvD1||0;
+      var nmvHoje=it.gmv||0;
       return '<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">'
         +'<td style="padding:8px 10px;font-size:11px;font-weight:600;color:#1A1A1A;max-width:280px">'+it.titulo+'</td>'
         +'<td style="padding:8px 10px;text-align:center"><span style="background:'+cor+'22;color:'+cor+';font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px">'+it.grupo+'</span></td>'
         +'<td style="padding:8px 10px;text-align:center"><a href="'+link+'" target="_blank" style="color:#3483FA;font-size:10px;font-weight:700;text-decoration:none">'+it.mlb_id+' &#8599;</a></td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:14px;font-weight:900;color:#3483FA">'+it.si+'</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:700;color:#1A1A1A">'+(nmvD1>0?fmt(nmvD1):'<span style="color:#ccc">—</span>')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:13px;font-weight:900;color:#1A1A1A">'+(nmvHoje>0?fmt(nmvHoje):'<span style="color:#ccc">—</span>')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:600;color:#3483FA">'+it.si+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:11px;font-weight:600;color:#888">'+(nmvD1>0?fmt(nmvD1):'<span style="color:#ccc">—</span>')+'</td>'
         +'<td style="padding:8px 10px;text-align:center">'+badge(it._vsO)+'</td>'
         +'<td style="padding:8px 10px;text-align:center">'+badge(it._vsD)+'</td>'
         +'</tr>';
