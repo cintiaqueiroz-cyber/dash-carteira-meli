@@ -1,291 +1,240 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Iniciativas de Produto B2B — Mercado Livre</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F5F5;color:#1A1A1A}
-    .hero{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:36px 40px 28px}
-    .hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
-    .hero .sub{font-size:13px;opacity:.8}
-    .hero .badge{display:inline-block;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;margin-top:10px}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px 20px}
-    .legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px}
-    .leg{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600}
-    .dot{width:10px;height:10px;border-radius:50%}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:24px}
-    .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:20px;border-top:4px solid #3483FA;position:relative}
-    .card.p0{border-top-color:#F23D4F}
-    .card.p1{border-top-color:#3483FA}
-    .card.p2{border-top-color:#9B59B6}
-    .card.future{border-top-color:#95A5A6}
-    .card-tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:800;margin-bottom:10px}
-    .tag-p0{background:#FEE8EA;color:#F23D4F}
-    .tag-p1{background:#E8F0FE;color:#3483FA}
-    .tag-p2{background:#F3E8FF;color:#9B59B6}
-    .tag-future{background:#F0F0F0;color:#666}
-    .card h3{font-size:14px;font-weight:800;margin-bottom:12px;line-height:1.4}
-    .feature{padding:8px 0;border-bottom:1px solid #F5F5F5}
-    .feature:last-child{border-bottom:none}
-    .feature-name{font-size:12px;font-weight:600;color:#333;margin-bottom:4px}
-    .feature-desc{font-size:11px;color:#666;line-height:1.5;margin-bottom:6px}
-    .feature-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .eta{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px}
-    .eta-done{background:#E8F8EF;color:#00A650}
-    .eta-may{background:#FFF9E0;color:#E67E00}
-    .eta-q3{background:#E8F0FE;color:#3483FA}
-    .eta-tbd{background:#F0F0F0;color:#888}
-    .status{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600}
-    .status-ok{background:#E8F8EF;color:#00A650}
-    .status-track{background:#E8F8EF;color:#00A650}
-    .status-val{background:#FFF9E0;color:#E67E00}
-    .status-tbd{background:#F0F0F0;color:#888}
-    .section-title{font-size:13px;font-weight:800;color:#666;text-transform:uppercase;letter-spacing:.5px;margin:24px 0 12px;padding-left:8px;border-left:3px solid #3483FA}
-    .next-steps{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
-    .next-steps h3{font-size:13px;font-weight:800;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
-    .step{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #F5F5F5;font-size:12px;align-items:flex-start}
-    .step:last-child{border-bottom:none}
-    .step-icon{background:#3483FA22;color:#3483FA;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;margin-top:1px}
-    .step-text{color:#333;line-height:1.5}
-    .step-when{font-size:10px;color:#999;margin-top:2px}
-    .footer{text-align:center;padding:20px;font-size:11px;color:#999}
-    .summary-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
-    .sum-card{background:#fff;border-radius:10px;padding:14px 18px;flex:1;min-width:120px;box-shadow:0 2px 6px rgba(0,0,0,.06);text-align:center}
-    .sum-card .num{font-size:26px;font-weight:900;color:#3483FA}
-    .sum-card .lbl{font-size:10px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
-    @media(max-width:600px){.grid{grid-template-columns:1fr}.hero{padding:24px 16px}}
-    @media print{
-      @page{margin:12mm 10mm;size:A4}
-      body{background:#fff}
-      .card{page-break-inside:avoid;break-inside:avoid}
-      .next-steps{page-break-inside:avoid;break-inside:avoid}
-      .summary-bar{page-break-inside:avoid;break-inside:avoid}
-      .section-title{page-break-after:avoid;break-after:avoid}
-      .grid{page-break-inside:avoid;break-inside:avoid}
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Iniciativas Produto B2B — Mercado Livre</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#1A1A1A;
+       width:277mm;min-height:190mm;padding:6mm 8mm}
+  .hero{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;
+        border-radius:8px;padding:8px 16px;display:flex;justify-content:space-between;
+        align-items:center;margin-bottom:6px}
+  .hero h1{font-size:15px;font-weight:900}
+  .hero .meta{font-size:10px;opacity:.85;margin-top:2px}
+  .hero .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .badge{background:rgba(255,255,255,.2);border-radius:20px;padding:2px 10px;
+         font-size:10px;font-weight:700;white-space:nowrap}
+  .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:5px}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:5px}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px}
+  .card{border-radius:6px;padding:7px 9px;border-left:3px solid #3483FA;background:#F8FBFF}
+  .card.p0{border-left-color:#F23D4F;background:#FFF8F8}
+  .card.p1{border-left-color:#3483FA;background:#F8FBFF}
+  .card.p2{border-left-color:#9B59B6;background:#FAF5FF}
+  .card.fut{border-left-color:#AAA;background:#F9F9F9}
+  .card.steps{border-left-color:#00A650;background:#F5FFF9}
+  .card.timeline{border-left-color:#FFE600;background:#FFFDE8;border-left-width:3px}
+  .ptag{display:inline-block;font-size:8px;font-weight:800;padding:1px 6px;
+        border-radius:10px;margin-bottom:3px}
+  .pt0{background:#FEE8EA;color:#F23D4F}
+  .pt1{background:#E8F0FE;color:#3483FA}
+  .pt2{background:#F3E8FF;color:#9B59B6}
+  .ptf{background:#F0F0F0;color:#888}
+  .card h3{font-size:10px;font-weight:800;margin-bottom:4px;line-height:1.3}
+  .feat{margin-bottom:4px;padding-bottom:4px;border-bottom:1px solid rgba(0,0,0,.06)}
+  .feat:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+  .fname{font-size:9px;font-weight:700;color:#222;margin-bottom:1px}
+  .fdesc{font-size:8px;color:#555;line-height:1.4;margin-bottom:3px}
+  .ftags{display:flex;gap:4px;flex-wrap:wrap}
+  .eta{font-size:8px;font-weight:700;padding:1px 6px;border-radius:10px}
+  .e-done{background:#E8F8EF;color:#00A650}
+  .e-may{background:#FFF9E0;color:#E67E00}
+  .e-q2{background:#E8F0FE;color:#1A5CC9}
+  .e-q3{background:#F3E8FF;color:#9B59B6}
+  .e-tbd{background:#F0F0F0;color:#888}
+  .e-ok{background:#E8F8EF;color:#00A650}
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .tl-col{padding:5px 7px;border-right:1px solid #E8E8E8}
+  .tl-col:last-child{border-right:none}
+  .tl-h{font-size:9px;font-weight:800;margin-bottom:4px}
+  .tl-item{font-size:8px;padding:2px 5px;border-radius:4px;margin-bottom:2px}
+  .tl-may{background:#FFF9E0;color:#E67E00}
+  .tl-q2{background:#E8F0FE;color:#1A5CC9}
+  .tl-q3{background:#F3E8FF;color:#9B59B6}
+  .tl-tbd{background:#F0F0F0;color:#888}
+  .tl-ok{background:#E8F8EF;color:#00A650}
+  .step{display:flex;gap:5px;font-size:8px;padding:2px 0;border-bottom:1px solid #E8F5F0;
+        align-items:flex-start}
+  .step:last-child{border-bottom:none}
+  .si{background:#3483FA22;color:#3483FA;border-radius:50%;width:14px;height:14px;
+      display:flex;align-items:center;justify-content:center;font-size:7px;
+      font-weight:800;flex-shrink:0;margin-top:1px}
+  .sec-lbl{font-size:8px;font-weight:800;color:#888;text-transform:uppercase;
+           letter-spacing:.5px;margin-bottom:3px;padding-left:4px;
+           border-left:2px solid #3483FA}
+  .bottom{display:grid;grid-template-columns:2fr 1fr;gap:5px}
+  @media print{
+    @page{size:A4 landscape;margin:5mm}
+    body{width:100%;padding:0}
+  }
+</style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="hero">
-  <h1>&#128218; Iniciativas de Produto B2B</h1>
-  <div class="sub">Mercado Livre Brasil &nbsp;&middot;&nbsp; Roadmap de Prioridades &nbsp;&middot;&nbsp; 2026</div>
-  <div style="margin-top:8px;font-size:13px;opacity:.9"><strong>Focals:</strong> Cintia Faraco &amp; Alice &nbsp;|&nbsp; Vertical F&amp;H</div>
-  <div class="badge">Versao: Mai/2026</div>
+  <div>
+    <h1>&#128218; Iniciativas de Produto B2B — Mercado Livre Brasil</h1>
+    <div class="meta">Focals: Cintia Faraco &amp; Alice &nbsp;|&nbsp; Vertical F&amp;H &nbsp;|&nbsp; Mai/2026</div>
+  </div>
+  <div class="badges">
+    <span class="badge" style="background:#F23D4F55">P0 Critico: 1</span>
+    <span class="badge">P1 Alta: 4</span>
+    <span class="badge" style="background:#9B59B655">P2 Media: 1</span>
+    <span class="badge" style="background:#00A65055">&#10003; 3 Ativos</span>
+    <span class="badge" style="background:#E67E0055">&#128197; 3 Final Maio</span>
+    <span class="badge" style="background:#9B59B655">&#128197; 3 em Q3</span>
+  </div>
 </div>
 
-<div class="wrap">
+<!-- ROW 1: 4 cards -->
+<div class="cols" style="margin-bottom:5px">
 
-  <!-- Summary -->
-  <div class="summary-bar" style="margin-top:20px">
-    <div class="sum-card"><div class="num" style="color:#F23D4F">1</div><div class="lbl">Prioridade 0</div></div>
-    <div class="sum-card"><div class="num" style="color:#3483FA">4</div><div class="lbl">Prioridade 1</div></div>
-    <div class="sum-card"><div class="num" style="color:#9B59B6">1</div><div class="lbl">Prioridade 2</div></div>
-    <div class="sum-card"><div class="num" style="color:#00A650">3</div><div class="lbl">Ja Ativos / On Track</div></div>
-    <div class="sum-card"><div class="num" style="color:#E67E00">3</div><div class="lbl">ETA Final de Maio</div></div>
-    <div class="sum-card"><div class="num" style="color:#3483FA">3</div><div class="lbl">ETA Q3</div></div>
+  <!-- P0 PxQ -->
+  <div class="card p0">
+    <span class="ptag pt0">P0 - Critico</span>
+    <h3>&#128181; PxQ by % + Rebates</h3>
+    <div class="feat">
+      <div class="fname">Convivencia PxQ e Investimentos Comerciais</div>
+      <div class="fdesc">Sellers definem descontos em % atrelados ao preco base, convivendo com rebates nominais do Pandora. Cobrira SAD, PA e campanhas. Validar operacionalizacao para sellers e executivos.</div>
+      <div class="ftags"><span class="eta e-q2">&#128197; EOQ2</span><span class="eta e-tbd">Validacao com Nick</span></div>
+    </div>
   </div>
 
-  <div class="section-title">Iniciativas com ETA Definido</div>
-
-  <div class="grid">
-
-    <!-- P0: PxQ % + Rebates -->
-    <div class="card p0">
-      <div class="card-tag tag-p0">P0 - Critico</div>
-      <h3>&#128181; PxQ by % + Rebates</h3>
-
-      <div class="feature">
-        <div class="feature-name">Convivencia entre PxQ e Investimentos Comerciais</div>
-        <div class="feature-desc">PxQ em % permitira que sellers definam descontos atrelados ao preco base do item, convivendo com rebates nominais do Pandora. Cobrira SAD, PA e campanhas (a confirmar). Validar operacionalizacao para sellers e executivos.</div>
-        <div class="feature-footer">
-          <span class="eta eta-may">&#128197; EOQ2 (previsao)</span>
-          <span class="status status-val">&#9888; Em validacao com Nick</span>
-        </div>
-      </div>
+  <!-- P1 Enderecos -->
+  <div class="card p1">
+    <span class="ptag pt1">P1 - Alta</span>
+    <h3>&#128205; Controle de Enderecos &amp; CNPJ</h3>
+    <div class="feat">
+      <div class="fname">Endereco divergente do CNPJ</div>
+      <div class="fdesc">Buyer B2B com entrega em endereco diferente do CNPJ sera obrigado a ajustar antes de finalizar. Elimina cancelamentos forcados.</div>
+      <div class="ftags"><span class="eta e-may">&#128197; Final de maio</span><span class="eta e-ok">&#10003; Resolve</span></div>
     </div>
-
-    <!-- P1: Enderecos & CNPJ -->
-    <div class="card p1">
-      <div class="card-tag tag-p1">P1 - Alta</div>
-      <h3>&#128205; Controle de Enderecos &amp; CNPJ</h3>
-
-      <div class="feature">
-        <div class="feature-name">Endereco divergente do cartao CNPJ</div>
-        <div class="feature-desc">Buyer B2B que pedir entrega em endereco diferente do CNPJ sera obrigado a ajustar o endereco ou CNPJ antes de finalizar a compra. Elimina cancelamentos forcados pelos sellers.</div>
-        <div class="feature-footer">
-          <span class="eta eta-may">&#128197; Final de maio</span>
-          <span class="status status-ok">&#10003; Resolve</span>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-name">Validacao de CNPJs Ativos (KYC)</div>
-        <div class="feature-desc">Tax_ID team validara dados com bases governamentais (Sintegra / IEs) durante o cadastro B2B. Garante que apenas CNPJs ativos e legitimos operam na plataforma.</div>
-        <div class="feature-footer">
-          <span class="eta eta-done">&#10003; Ja ativo</span>
-          <span class="status status-val">&#9888; Em validacao (Tubrax)</span>
-        </div>
-      </div>
+    <div class="feat">
+      <div class="fname">Validacao de CNPJs Ativos (KYC)</div>
+      <div class="fdesc">Tax_ID team valida dados com Sintegra/IEs durante o cadastro B2B.</div>
+      <div class="ftags"><span class="eta e-done">&#10003; Ja ativo</span><span class="eta e-tbd">Validando Tubrax</span></div>
     </div>
+  </div>
 
-    <!-- P1: CNAE -->
-    <div class="card p1">
-      <div class="card-tag tag-p1">P1 - Alta</div>
-      <h3>&#127970; Controle por CNAE</h3>
-
-      <div class="feature">
-        <div class="feature-name">Venda para Revenda</div>
-        <div class="feature-desc">Sellers poderao cadastrar precos exclusivos para CNAEs de revenda. Grandes industrias se resguardam de vender para CNAEs incompativeis com seu canal (Ex.: SSG bloqueando eletronicos para CNAEs alimenticios).</div>
-        <div class="feature-footer">
-          <span class="eta eta-may">&#128197; Final de maio</span>
-          <span class="status status-ok">&#10003; Resolve (parcial)</span>
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="feature-name">Automatizacao de CNAEs por seller</div>
-        <div class="feature-desc">Feature que permita ao seller definir quais CNAEs deseja ou nao atender, de forma autonoma. Hoje nao esta no roadmap — solicitada priorizacao para Q3.</div>
-        <div class="feature-footer">
-          <span class="eta eta-tbd">&#128336; TBD (solicitado Q3)</span>
-          <span class="status status-tbd">Nao no roadmap atual</span>
-        </div>
-      </div>
+  <!-- P1 CNAE -->
+  <div class="card p1">
+    <span class="ptag pt1">P1 - Alta</span>
+    <h3>&#127970; Controle por CNAE</h3>
+    <div class="feat">
+      <div class="fname">Venda para Revenda</div>
+      <div class="fdesc">Sellers cadastram precos exclusivos para CNAEs de revenda. Grandes industrias bloqueiam CNAEs incompativeis (ex.: SSG x eletronicos).</div>
+      <div class="ftags"><span class="eta e-may">&#128197; Final de maio</span><span class="eta e-ok">&#10003; Resolve parcial</span></div>
     </div>
-
-    <!-- P1: 1P Auto Pricing -->
-    <div class="card p1">
-      <div class="card-tag tag-p1">P1 - Alta</div>
-      <h3>&#128200; 1P Auto Pricing</h3>
-
-      <div class="feature">
-        <div class="feature-name">Precificacao automatica para operacoes 1P</div>
-        <div class="feature-desc">Solucao de ajuste automatico de precos para sellers que operam no modelo 1P (first-party). Totalmente endereçada e em execucao.</div>
-        <div class="feature-footer">
-          <span class="eta eta-done">&#10003; On track</span>
-          <span class="status status-track">&#10003; Em andamento</span>
-        </div>
-      </div>
+    <div class="feat">
+      <div class="fname">Automatizacao CNAEs por seller</div>
+      <div class="fdesc">Seller define quais CNAEs atender de forma autonoma. Solicitada priorizacao Q3, nao esta no roadmap atual.</div>
+      <div class="ftags"><span class="eta e-tbd">TBD — solicitado Q3</span></div>
     </div>
+  </div>
 
-    <!-- P1: Você receberá R$ X -->
-    <div class="card p1">
-      <div class="card-tag tag-p1">P1 - Alta</div>
-      <h3>&#128265; "Voce recebera R$ X por esta venda"</h3>
-
-      <div class="feature">
-        <div class="feature-name">Transparencia de margem no painel do seller</div>
-        <div class="feature-desc">Painel que mostrara ao seller exatamente quanto recebera por venda, considerando tarifas, frete e descontos. Substituira o simulador de planilha (nao funcional atualmente). Exibira margem por faixa de preco e por % de desconto.</div>
-        <div class="feature-footer">
-          <span class="eta eta-q3">&#128197; Final de Q3</span>
-          <span class="status status-val">&#9888; Aguardando detalhes</span>
-        </div>
-      </div>
+  <!-- P1 1P Auto Pricing -->
+  <div class="card p1">
+    <span class="ptag pt1">P1 - Alta</span>
+    <h3>&#128200; 1P Auto Pricing</h3>
+    <div class="feat">
+      <div class="fname">Precificacao automatica operacoes 1P</div>
+      <div class="fdesc">Ajuste automatico de precos para sellers 1P (first-party). Totalmente endereçada e em execucao.</div>
+      <div class="ftags"><span class="eta e-done">&#10003; On Track</span><span class="eta e-ok">&#10003; Em andamento</span></div>
     </div>
+  </div>
 
-    <!-- P2: Portfolio B2B Only -->
-    <div class="card p2">
-      <div class="card-tag tag-p2">P2 - Media</div>
-      <h3>&#128222; Portfolio B2B Only</h3>
+</div>
 
-      <div class="feature">
-        <div class="feature-name">Exposicao exclusiva de itens B2B</div>
-        <div class="feature-desc">Utilizacao de features existentes na plataforma para direcionar visibilidade de itens exclusivos B2B — em alguns casos com CUST_IDs exclusivos. Permite que sellers criem ofertas direcionadas somente ao canal corporativo.</div>
-        <div class="feature-footer">
-          <span class="eta eta-q3">&#128197; Final de Q3</span>
-          <span class="status status-val">&#9888; Aguardando detalhes</span>
-        </div>
-      </div>
+<!-- ROW 2: 3 cards + next steps -->
+<div class="cols3" style="margin-bottom:5px">
+
+  <!-- P1 Voce recebera -->
+  <div class="card p1">
+    <span class="ptag pt1">P1 - Alta</span>
+    <h3>&#128265; "Voce recebera R$ X por esta venda"</h3>
+    <div class="feat">
+      <div class="fname">Transparencia de margem no painel do seller</div>
+      <div class="fdesc">Painel mostrara ao seller quanto recebera por venda, por faixa de preco e % de desconto. Substitui simulador de planilha (nao funcional). Priorizado para Q3.</div>
+      <div class="ftags"><span class="eta e-q3">&#128197; Final de Q3</span><span class="eta e-tbd">Aguardando detalhes</span></div>
     </div>
+  </div>
 
+  <!-- P2 Portfolio B2B -->
+  <div class="card p2">
+    <span class="ptag pt2">P2 - Media</span>
+    <h3>&#128222; Portfolio B2B Only</h3>
+    <div class="feat">
+      <div class="fname">Exposicao exclusiva de itens B2B</div>
+      <div class="fdesc">Features existentes para direcionar visibilidade de itens exclusivos B2B, com CUST_IDs exclusivos. Ofertas direcionadas somente ao canal corporativo. Priorizado para Q3.</div>
+      <div class="ftags"><span class="eta e-q3">&#128197; Final de Q3</span><span class="eta e-tbd">Aguardando detalhes</span></div>
+    </div>
   </div>
 
   <!-- Em avaliacao -->
-  <div class="section-title">Em Avaliacao / Priorizacoes Futuras</div>
-
-  <div class="grid">
-    <div class="card future">
-      <div class="card-tag tag-future">Em avaliacao</div>
-      <h3>&#127881; Promo Tools com Audiencia B2B</h3>
-      <div class="feature">
-        <div class="feature-desc">Ferramentas de promocao direcionadas exclusivamente para compradores B2B. Necessario validar escopo de "PROMO TOOLS" e alinhamento com times de produto.</div>
-        <div class="feature-footer">
-          <span class="eta eta-tbd">&#128336; TBD</span>
-        </div>
-      </div>
+  <div class="card fut">
+    <span class="ptag ptf">Em Avaliacao</span>
+    <h3>&#128269; Possiveis Priorizacoes Futuras</h3>
+    <div class="feat">
+      <div class="fname">Promo Tools com Audiencia B2B</div>
+      <div class="fdesc">Ferramentas de promocao direcionadas exclusivamente para compradores B2B. Escopo a definir.</div>
+      <div class="ftags"><span class="eta e-tbd">TBD</span></div>
     </div>
-
-    <div class="card future">
-      <div class="card-tag tag-future">Em avaliacao</div>
-      <h3>&#128176; Differential FVF (CA)</h3>
-      <div class="feature">
-        <div class="feature-desc">Tarifa de venda diferenciada para canal B2B. Pendente definicao de: como funcionara a conciliacao, cadastro no SalesForce, operacionalizacao e convivencia com PxQ (possibilidade de limitar apenas a PxQ).</div>
-        <div class="feature-footer">
-          <span class="eta eta-tbd">&#128336; TBD</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Timeline visual -->
-  <div class="section-title">Timeline de Entregas</div>
-  <div style="background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:24px;overflow-x:auto">
-    <div style="display:flex;gap:0;min-width:600px">
-      <div style="flex:1;text-align:center;padding:12px 8px;border-right:2px solid #F0F0F0">
-        <div style="font-size:11px;font-weight:800;color:#E67E00;margin-bottom:8px">MAIO 2026</div>
-        <div style="font-size:10px;background:#FFF9E0;border-radius:6px;padding:4px 6px;margin:3px 0;color:#E67E00">Endereco divergente CNPJ</div>
-        <div style="font-size:10px;background:#FFF9E0;border-radius:6px;padding:4px 6px;margin:3px 0;color:#E67E00">Venda para Revenda (CNAE)</div>
-        <div style="font-size:10px;background:#E8F8EF;border-radius:6px;padding:4px 6px;margin:3px 0;color:#00A650">Validacao CNPJ Ativo &#10003;</div>
-      </div>
-      <div style="flex:1;text-align:center;padding:12px 8px;border-right:2px solid #F0F0F0">
-        <div style="font-size:11px;font-weight:800;color:#3483FA;margin-bottom:8px">EOQ2 (Jun/2026)</div>
-        <div style="font-size:10px;background:#E8F0FE;border-radius:6px;padding:4px 6px;margin:3px 0;color:#3483FA">PxQ by % + Rebates</div>
-        <div style="font-size:10px;background:#E8F8EF;border-radius:6px;padding:4px 6px;margin:3px 0;color:#00A650">1P Auto Pricing &#10003;</div>
-      </div>
-      <div style="flex:1;text-align:center;padding:12px 8px;border-right:2px solid #F0F0F0">
-        <div style="font-size:11px;font-weight:800;color:#9B59B6;margin-bottom:8px">Q3 (Set/2026)</div>
-        <div style="font-size:10px;background:#F3E8FF;border-radius:6px;padding:4px 6px;margin:3px 0;color:#9B59B6">Transparencia de Margem</div>
-        <div style="font-size:10px;background:#F3E8FF;border-radius:6px;padding:4px 6px;margin:3px 0;color:#9B59B6">Portfolio B2B Only</div>
-        <div style="font-size:10px;background:#F0F0F0;border-radius:6px;padding:4px 6px;margin:3px 0;color:#888">Automatizacao CNAE (solicitado)</div>
-      </div>
-      <div style="flex:1;text-align:center;padding:12px 8px">
-        <div style="font-size:11px;font-weight:800;color:#888;margin-bottom:8px">A DEFINIR</div>
-        <div style="font-size:10px;background:#F0F0F0;border-radius:6px;padding:4px 6px;margin:3px 0;color:#888">Promo Tools B2B</div>
-        <div style="font-size:10px;background:#F0F0F0;border-radius:6px;padding:4px 6px;margin:3px 0;color:#888">Differential FVF (CA)</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Proximos passos -->
-  <div class="section-title">Proximos Passos</div>
-  <div class="next-steps">
-    <div class="step">
-      <div class="step-icon">1</div>
-      <div><div class="step-text"><strong>Reuniao Produto B2B — Sebah / Joao Vicente</strong><br>Alinhamento geral de roadmap e priorizacoes pendentes.</div><div class="step-when">W21</div></div>
-    </div>
-    <div class="step">
-      <div class="step-icon">2</div>
-      <div><div class="step-text"><strong>Reuniao CNAEs — Maria Victoria / Julia Prado</strong><br>Avancaro tracking manual via CX e automatizacao de CNAEs por seller.</div><div class="step-when">W21</div></div>
-    </div>
-    <div class="step">
-      <div class="step-icon">3</div>
-      <div><div class="step-text"><strong>Workshop de Produto B2B — Nicole Mancinelli</strong><br>Workshop de construcao e validacao de novas features antes do Q3.</div><div class="step-when">Antes de Q3</div></div>
-    </div>
-    <div class="step">
-      <div class="step-icon">4</div>
-      <div><div class="step-text"><strong>Mapeamento de pedidos de priorizacao Q3</strong><br>Inicio do processo de priorizacao para Q3. Participacao de todos os focais comerciais.</div><div class="step-when">Junho 2026</div></div>
-    </div>
-    <div class="step">
-      <div class="step-icon">5</div>
-      <div><div class="step-text"><strong>Focal comercial nas reunioes mensais de Produto B2B</strong><br>Garantir representacao comercial nas reunioes mensais de produto.</div><div class="step-when">Recorrente</div></div>
+    <div class="feat">
+      <div class="fname">Differential FVF (CA)</div>
+      <div class="fdesc">Tarifa diferenciada B2B. Pendente: conciliacao, SalesForce, operacionalizacao e convivencia com PxQ.</div>
+      <div class="ftags"><span class="eta e-tbd">TBD</span></div>
     </div>
   </div>
 
 </div>
 
-<div class="footer">Mercado Livre Brasil &nbsp;&middot;&nbsp; Iniciativas B2B &nbsp;&middot;&nbsp; Mai/2026 &nbsp;&middot;&nbsp; Uso interno</div>
+<!-- BOTTOM: Timeline + Next Steps -->
+<div class="bottom">
+
+  <!-- Timeline -->
+  <div class="card timeline" style="border-left:none;border-top:3px solid #FFE600;padding:6px 8px">
+    <div class="sec-lbl" style="border-left-color:#FFE600">Timeline de Entregas</div>
+    <div class="tl" style="margin-top:4px">
+      <div class="tl-col">
+        <div class="tl-h" style="color:#E67E00">MAIO 2026</div>
+        <div class="tl-item tl-may">Endereco divergente CNPJ</div>
+        <div class="tl-item tl-may">Venda p/ Revenda (CNAE)</div>
+        <div class="tl-item tl-ok">&#10003; Validacao CNPJ Ativo</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-h" style="color:#1A5CC9">EOQ2 — JUN/2026</div>
+        <div class="tl-item tl-q2">PxQ by % + Rebates</div>
+        <div class="tl-item tl-ok">&#10003; 1P Auto Pricing</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-h" style="color:#9B59B6">Q3 — SET/2026</div>
+        <div class="tl-item tl-q3">Transparencia de Margem</div>
+        <div class="tl-item tl-q3">Portfolio B2B Only</div>
+        <div class="tl-item tl-tbd">Automatizacao CNAE (req.)</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-h" style="color:#888">A DEFINIR</div>
+        <div class="tl-item tl-tbd">Promo Tools B2B</div>
+        <div class="tl-item tl-tbd">Differential FVF (CA)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <div class="card steps">
+    <div class="sec-lbl" style="border-left-color:#00A650">Proximos Passos</div>
+    <div style="margin-top:4px">
+      <div class="step"><div class="si">1</div><div><strong>Reuniao Produto B2B — Sebah / Joao Vicente</strong> &nbsp;<span style="color:#999">W21</span></div></div>
+      <div class="step"><div class="si">2</div><div><strong>Reuniao CNAEs — Maria Victoria / Julia Prado</strong> &nbsp;<span style="color:#999">W21</span></div></div>
+      <div class="step"><div class="si">3</div><div><strong>Workshop de Produto B2B — Nicole Mancinelli</strong> &nbsp;<span style="color:#999">Antes Q3</span></div></div>
+      <div class="step"><div class="si">4</div><div><strong>Mapeamento priorizacoes Q3</strong> &nbsp;<span style="color:#999">Jun/2026</span></div></div>
+      <div class="step"><div class="si">5</div><div><strong>Focal comercial reunioes mensais Produto B2B</strong> &nbsp;<span style="color:#999">Recorrente</span></div></div>
+    </div>
+  </div>
+
+</div>
 
 </body>
 </html>
