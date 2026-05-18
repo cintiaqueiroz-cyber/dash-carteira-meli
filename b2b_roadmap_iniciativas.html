@@ -56,6 +56,15 @@
     .sum-card .num{font-size:26px;font-weight:900;color:#3483FA}
     .sum-card .lbl{font-size:10px;color:#888;margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
     @media(max-width:600px){.grid{grid-template-columns:1fr}.hero{padding:24px 16px}}
+    @media print{
+      @page{margin:12mm 10mm;size:A4}
+      body{background:#fff}
+      .card{page-break-inside:avoid;break-inside:avoid}
+      .next-steps{page-break-inside:avoid;break-inside:avoid}
+      .summary-bar{page-break-inside:avoid;break-inside:avoid}
+      .section-title{page-break-after:avoid;break-after:avoid}
+      .grid{page-break-inside:avoid;break-inside:avoid}
+    }
   </style>
 </head>
 <body>
