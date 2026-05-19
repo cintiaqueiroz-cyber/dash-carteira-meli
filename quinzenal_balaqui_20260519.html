@@ -46,15 +46,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 <div class="wrap">
   
     <div class="row">
-      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 7.4M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 41.5%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.267</div><div class="sub">LY: 14.900</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 803,65</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 7.5M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 41.6%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.271</div><div class="sub">LY: 14.900</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 803,67</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">72%</span></div><div class="sub">Meta 80% YoY = R$ 10.3M</div></div>
     </div>
     <div class="sec">
       <div class="sec-ttl">Progresso da Meta YTD</div>
       <div style="margin-bottom:6px;font-size:13px">
-        <b>R$ 7.4M</b> de <b>R$ 10.3M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 41.5%</span> vs LY
+        <b>R$ 7.5M</b> de <b>R$ 10.3M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 41.6%</span> vs LY
       </div>
       <div class="bar-out" style="height:24px">
         <div class="bar-in" style="width:72.3%;background:#3483FA"></div>
@@ -63,8 +63,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 1.1M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 33.4%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 43.3%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.180</div><div class="sub">dias 1-19</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 1.1M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 33.9%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 43.7%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.184</div><div class="sub">dias 1-19</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 1.4M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 24.3%</span></div></div>
     </div></div>
   
@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[1629963.0,1548728.0,1803856.0,1365726.0,1099106.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
-      {label:'Projetado',data:[null,null,null,null,1735427,1470797,2358611,1772318,1705654,1843151,2529909,1873389],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2026',data:[1629963.0,1548728.0,1803856.0,1365726.0,1102524.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,1740824,1471472,2359694,1773131,1706437,1843997,2531070,1874248],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
       {label:'2025',data:[1240834.0,1042785.0,1082861.0,1129139.0,1227433.0,1039370.0,1666763.0,1252446.0,1205337.0,1302502.0,1787814.0,1323870.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
       {label:'Meta 80%',data:[2233501.2,1877013.0,1949149.8,2032450.2,2209379.4,1870866.0,3000173.4,2254402.8000000003,2169606.6,2344503.6,3218065.2,2382966.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
@@ -86,7 +86,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2149.0,2254.0,2167.0,1517.0,1180.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2149.0,2254.0,2167.0,1517.0,1184.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[3364.0,2652.0,3049.0,2892.0,2943.0,2506.0,3304.0,1959.0,2110.0,2505.0,2435.0,1745.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
@@ -104,11 +104,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
               <span style="font-size:10px;color:#999">MLB5864213932</span></td>
-          <td style="text-align:right;font-weight:700">R$ 138K</td>
-          <td style="text-align:right">12.6%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 57.8%</span></td>
-          <td style="text-align:right">256</td>
-          <td style="text-align:right">R$ 537,47</td>
+          <td style="text-align:right;font-weight:700">R$ 139K</td>
+          <td style="text-align:right">12.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 59.7%</span></td>
+          <td style="text-align:right">257</td>
+          <td style="text-align:right">R$ 541,57</td>
           <td style="text-align:right">37.032</td>
           <td style="text-align:right">0.7%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -128,11 +128,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÁ REFORÇADO MADEIRA TEC</a><br>
               <span style="font-size:10px;color:#999">MLB5365913948</span></td>
-          <td style="text-align:right;font-weight:700">R$ 88K</td>
-          <td style="text-align:right">8.0%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 543.3%</span></td>
-          <td style="text-align:right">118</td>
-          <td style="text-align:right">R$ 744,10</td>
+          <td style="text-align:right;font-weight:700">R$ 89K</td>
+          <td style="text-align:right">8.1%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 552.0%</span></td>
+          <td style="text-align:right">119</td>
+          <td style="text-align:right">R$ 747,85</td>
           <td style="text-align:right">45.546</td>
           <td style="text-align:right">0.3%</td>
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -201,7 +201,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">CAMA COLCHÃO CASAL MONTESSORIANA INFANTIL PROTEÇÃO</a><br>
               <span style="font-size:10px;color:#999">MLB5983046296</span></td>
           <td style="text-align:right;font-weight:700">R$ 30K</td>
-          <td style="text-align:right">2.8%</td>
+          <td style="text-align:right">2.7%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 324.2%</span></td>
           <td style="text-align:right">34</td>
           <td style="text-align:right">R$ 887,03</td>
@@ -379,14 +379,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">194</td>
               <td style="text-align:right">2.6%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4100646723" target="_blank">NAMORADEIRA OPALA SOFÁ CONFORTÁVEL  BALAQUI DECO</a><br>
-                  <span style="font-size:10px;color:#999">MLB4100646723</span></td>
-              <td style="text-align:right">R$ 16K</td>
-              <td style="text-align:right">R$ 7K</td>
-              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 52.4%</span></td>
-              <td style="text-align:right">28.455</td>
-              <td style="text-align:right">0.5%</td>
-            </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-3781303785" target="_blank">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRETO S</a><br>
                   <span style="font-size:10px;color:#999">MLB3781303785</span></td>
               <td style="text-align:right">R$ 640</td>
@@ -410,6 +402,14 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 51.2%</span></td>
               <td style="text-align:right">646</td>
               <td style="text-align:right">2.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4268163567" target="_blank">SOFÁ 3 LUGARES 2,75M BOUCLÊ COM CHAISE COMPACTAI</a><br>
+                  <span style="font-size:10px;color:#999">MLB4268163567</span></td>
+              <td style="text-align:right">R$ 18K</td>
+              <td style="text-align:right">R$ 9K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 50.8%</span></td>
+              <td style="text-align:right">7.973</td>
+              <td style="text-align:right">0.2%</td>
             </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Abr 1-19 vs Mai 1-19)</div><div style="overflow-x:auto"><table>
           <thead><tr>
@@ -431,8 +431,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÁ REFORÇADO MADEIRA T</a><br>
                   <span style="font-size:10px;color:#999">MLB5365913948</span></td>
               <td style="text-align:right">R$ 14K</td>
-              <td style="text-align:right">R$ 88K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 543.3%</span></td>
+              <td style="text-align:right">R$ 89K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 552.0%</span></td>
               <td style="text-align:right">45.546</td>
               <td style="text-align:right">0.3%</td>
             </tr><tr>
@@ -658,14 +658,14 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </tr></thead><tbody><tr>
           <td>FURNITURE</td>
           <td>LIVING &amp; DININGROOM FURNITURE</td>
-          <td style="text-align:right;font-weight:700">R$ 657K</td>
+          <td style="text-align:right;font-weight:700">R$ 659K</td>
           <td style="text-align:right">59.8%</td>
           <td style="text-align:right">R$ 767K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 14.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 14.1%</span></td>
         </tr><tr>
           <td>FURNITURE</td>
           <td>BEDROOM FURNITURE</td>
-          <td style="text-align:right;font-weight:700">R$ 441K</td>
+          <td style="text-align:right;font-weight:700">R$ 443K</td>
           <td style="text-align:right">40.2%</td>
           <td style="text-align:right">R$ 0</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
@@ -698,11 +698,12 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 1.1M</td>
-          <td style="text-align:right;color:#555">1.180</td>
+          <td style="text-align:right;color:#555">1.184</td>
           <td style="text-align:right">100.0%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:100.0%"></div></div></td>
         </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 17K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 9K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 69K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">6.3%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
-  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Meta critica</strong><br><span style="color:#555">Atingimento em 72% da meta. Gap de R$ 2.9M — revisar mix e investimento em PADs com urgencia.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 1.1M nos primeiros 19 dias — 33.4% acima do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO  &#9650; 737% vs Mar (R$ 13K).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRET &#9660; 94% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>188 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
+  
+  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Meta critica</strong><br><span style="color:#555">Atingimento em 72% da meta. Gap de R$ 2.9M — revisar mix e investimento em PADs com urgencia.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 1.1M nos primeiros 19 dias — 33.9% acima do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO  &#9650; 737% vs Mar (R$ 13K).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRET &#9660; 94% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>188 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
 </div>
 </body></html>
