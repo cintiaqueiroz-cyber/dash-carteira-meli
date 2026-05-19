@@ -46,25 +46,25 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 <div class="wrap">
   
     <div class="row">
-      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 9.3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 72.2%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">7.284</div><div class="sub">LY: 3.821</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1K</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 9.3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 72.3%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">7.287</div><div class="sub">LY: 3.821</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.275,46</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">89%</span></div><div class="sub">Meta 80% YoY = R$ 10.4M</div></div>
     </div>
     <div class="sec">
       <div class="sec-ttl">Progresso da Meta YTD</div>
       <div style="margin-bottom:6px;font-size:13px">
-        <b>R$ 9.3M</b> de <b>R$ 10.4M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 72.2%</span> vs LY
+        <b>R$ 9.3M</b> de <b>R$ 10.4M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 72.3%</span> vs LY
       </div>
       <div class="bar-out" style="height:24px">
-        <div class="bar-in" style="width:89.3%;background:#3483FA"></div>
+        <div class="bar-in" style="width:89.4%;background:#3483FA"></div>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:4px">89.3% atingido</div>
+      <div style="font-size:11px;color:#888;margin-top:4px">89.4% atingido</div>
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 703K</div><div class="sub">vs mesmo periodo Abr: <span style="color:#F23D4F;font-weight:700">&#9660; 46.5%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">682</div><div class="sub">dias 1-19</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 708K</div><div class="sub">MoM vs Abr: <span style="color:#F23D4F;font-weight:700">&#9660; 46.1%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#F23D4F;font-weight:700">&#9660; 9.7%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">685</div><div class="sub">dias 1-19</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 1.8M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 18.1%</span></div></div>
     </div></div>
   
@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2441461.0,2108890.0,2218018.0,1817570.0,703193.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
-      {label:'Projetado',data:[null,null,null,null,1110303,3061485,4443402,3761642,3806207,3114125,5358467,2966242],borderColor:'#3483FA',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2026',data:[2441461.0,2108890.0,2218018.0,1817570.0,708338.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,1118427,3063180,4445863,3763726,3808315,3115850,5361435,2967885],borderColor:'#3483FA',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
       {label:'2025',data:[1298066.0,846166.0,1383367.0,1082979.0,1166546.0,1778087.0,2580694.0,2184733.0,2210616.0,1808660.0,3112157.0,1722771.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
       {label:'Meta 80%',data:[2336518.8000000003,1523098.8,2490060.6,1949362.2,2099782.8000000003,3200556.6,4645249.2,3932519.4,3979108.8000000003,3255588.0,5601882.600000001,3100987.8000000003],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
@@ -86,7 +86,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[1698.0,1510.0,1893.0,1501.0,682.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[1698.0,1510.0,1893.0,1501.0,685.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[863.0,566.0,943.0,684.0,765.0,1286.0,1756.0,1506.0,1570.0,1231.0,2263.0,1253.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV YTD</div><div style="overflow-x:auto"><table>
@@ -104,11 +104,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-3667695029" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
               <span style="font-size:10px;color:#999">MLB3667695029</span></td>
-          <td style="text-align:right;font-weight:700">R$ 34K</td>
-          <td style="text-align:right">4.9%</td>
-          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 58.2%</span></td>
-          <td style="text-align:right">90</td>
-          <td style="text-align:right">R$ 377</td>
+          <td style="text-align:right;font-weight:700">R$ 36K</td>
+          <td style="text-align:right">5.1%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 56.1%</span></td>
+          <td style="text-align:right">91</td>
+          <td style="text-align:right">R$ 392,00</td>
           <td style="text-align:right">105.318</td>
           <td style="text-align:right">0.1%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -117,10 +117,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-4629293060" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
               <span style="font-size:10px;color:#999">MLB4629293060</span></td>
           <td style="text-align:right;font-weight:700">R$ 25K</td>
-          <td style="text-align:right">3.7%</td>
+          <td style="text-align:right">3.6%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 150.1%</span></td>
           <td style="text-align:right">46</td>
-          <td style="text-align:right">R$ 554</td>
+          <td style="text-align:right">R$ 553,93</td>
           <td style="text-align:right">20.718</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -132,7 +132,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">3.6%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 618.3%</span></td>
           <td style="text-align:right">34</td>
-          <td style="text-align:right">R$ 746</td>
+          <td style="text-align:right">R$ 746,44</td>
           <td style="text-align:right">14.561</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -141,10 +141,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3488282369" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,30M C</a><br>
               <span style="font-size:10px;color:#999">MLB3488282369</span></td>
           <td style="text-align:right;font-weight:700">R$ 23K</td>
-          <td style="text-align:right">3.3%</td>
+          <td style="text-align:right">3.2%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 20.6%</span></td>
           <td style="text-align:right">60</td>
-          <td style="text-align:right">R$ 378</td>
+          <td style="text-align:right">R$ 378,23</td>
           <td style="text-align:right">15.080</td>
           <td style="text-align:right">0.4%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -153,10 +153,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-6079741520" target="_blank">NICHO SUSPENSO CURVO 2.2 COM PORTAS LINEA BRASIL T</a><br>
               <span style="font-size:10px;color:#999">MLB6079741520</span></td>
           <td style="text-align:right;font-weight:700">R$ 18K</td>
-          <td style="text-align:right">2.6%</td>
+          <td style="text-align:right">2.5%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 146.1%</span></td>
           <td style="text-align:right">113</td>
-          <td style="text-align:right">R$ 159</td>
+          <td style="text-align:right">R$ 158,64</td>
           <td style="text-align:right">17.985</td>
           <td style="text-align:right">0.6%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -168,7 +168,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.4%</td>
           <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
           <td style="text-align:right">11</td>
-          <td style="text-align:right">R$ 2K</td>
+          <td style="text-align:right">R$ 1.544,45</td>
           <td style="text-align:right">2.469</td>
           <td style="text-align:right">0.4%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -180,7 +180,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.4%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 84.6%</span></td>
           <td style="text-align:right">160</td>
-          <td style="text-align:right">R$ 105</td>
+          <td style="text-align:right">R$ 105,48</td>
           <td style="text-align:right">111.629</td>
           <td style="text-align:right">0.1%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -192,7 +192,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.2%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 64.5%</span></td>
           <td style="text-align:right">67</td>
-          <td style="text-align:right">R$ 232</td>
+          <td style="text-align:right">R$ 232,07</td>
           <td style="text-align:right">9.803</td>
           <td style="text-align:right">0.7%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-r">closed</span></td>
@@ -204,7 +204,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.2%</td>
           <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
           <td style="text-align:right">6</td>
-          <td style="text-align:right">R$ 3K</td>
+          <td style="text-align:right">R$ 2.588,67</td>
           <td style="text-align:right">969</td>
           <td style="text-align:right">0.6%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -216,7 +216,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.2%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 49.7%</span></td>
           <td style="text-align:right">32</td>
-          <td style="text-align:right">R$ 478</td>
+          <td style="text-align:right">R$ 477,75</td>
           <td style="text-align:right">9.263</td>
           <td style="text-align:right">0.3%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -228,7 +228,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.2%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 69.5%</span></td>
           <td style="text-align:right">111</td>
-          <td style="text-align:right">R$ 138</td>
+          <td style="text-align:right">R$ 137,72</td>
           <td style="text-align:right">59.375</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -240,7 +240,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">2.1%</td>
           <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
           <td style="text-align:right">12</td>
-          <td style="text-align:right">R$ 1K</td>
+          <td style="text-align:right">R$ 1.233,92</td>
           <td style="text-align:right">424</td>
           <td style="text-align:right">2.8%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -252,7 +252,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">1.9%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 76.4%</span></td>
           <td style="text-align:right">73</td>
-          <td style="text-align:right">R$ 185</td>
+          <td style="text-align:right">R$ 185,36</td>
           <td style="text-align:right">38.044</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -264,7 +264,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">1.9%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 49.9%</span></td>
           <td style="text-align:right">31</td>
-          <td style="text-align:right">R$ 436</td>
+          <td style="text-align:right">R$ 436,42</td>
           <td style="text-align:right">15.660</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -276,7 +276,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">1.7%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 150.0%</span></td>
           <td style="text-align:right">7</td>
-          <td style="text-align:right">R$ 2K</td>
+          <td style="text-align:right">R$ 1.678,43</td>
           <td style="text-align:right">168</td>
           <td style="text-align:right">4.2%</td>
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-r">paused</span></td>
@@ -658,22 +658,22 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </tr></thead><tbody><tr>
           <td>FURNITURE</td>
           <td>LIVING &amp; DININGROOM FURNITURE</td>
-          <td style="text-align:right;font-weight:700">R$ 581K</td>
-          <td style="text-align:right">82.6%</td>
+          <td style="text-align:right;font-weight:700">R$ 586K</td>
+          <td style="text-align:right">82.8%</td>
           <td style="text-align:right">R$ 784K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.3%</span></td>
         </tr><tr>
           <td>FURNITURE</td>
           <td>STORAGE FURNITURE</td>
           <td style="text-align:right;font-weight:700">R$ 53K</td>
-          <td style="text-align:right">7.6%</td>
+          <td style="text-align:right">7.5%</td>
           <td style="text-align:right">R$ 0</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
         </tr><tr>
           <td>FURNITURE</td>
           <td>KITCHEN FURNITURE</td>
           <td style="text-align:right;font-weight:700">R$ 49K</td>
-          <td style="text-align:right">6.9%</td>
+          <td style="text-align:right">6.8%</td>
           <td style="text-align:right">R$ 0</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
         </tr><tr>
@@ -739,8 +739,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         <th style="min-width:100px">Distribuição</th>
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
-          <td style="text-align:right;font-weight:700">R$ 700K</td>
-          <td style="text-align:right;color:#555">570</td>
+          <td style="text-align:right;font-weight:700">R$ 706K</td>
+          <td style="text-align:right;color:#555">573</td>
           <td style="text-align:right">99.6%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:99.6%"></div></div></td>
         </tr><tr>
@@ -751,6 +751,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><div class="bar-out"><div class="bar-in" style="width:0.4%"></div></div></td>
         </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 16K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 4K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 20K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">2.8%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
-  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>Meta em risco</strong><br><span style="color:#555">Atingimento em 89% da meta 80% YoY. Precisa acelerar R$ 1.1M nos meses restantes.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 703K nos primeiros 19 dias — 46.5% abaixo do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">KIT 2 CAPA ALMOFADA LINHO 45X45CM ROMA ZIPER  &#9650; 1692% vs Mar (R$ 448).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,3 &#9660; 92% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>57 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
+  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>Meta em risco</strong><br><span style="color:#555">Atingimento em 89% da meta 80% YoY. Precisa acelerar R$ 1.1M nos meses restantes.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 708K nos primeiros 19 dias — 46.1% abaixo do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">KIT 2 CAPA ALMOFADA LINHO 45X45CM ROMA ZIPER  &#9650; 1692% vs Mar (R$ 448).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,3 &#9660; 92% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>57 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
 </div>
 </body></html>
