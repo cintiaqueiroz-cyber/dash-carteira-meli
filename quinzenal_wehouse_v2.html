@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio WEHOUSE - 19/05/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; WEHOUSE</h1>
+    <div class="sub">Relatorio de Performance &middot; 19/05/2026 &middot; IDs: 358180856</div>
+  </div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 89%</div>
+</div>
+<div class="wrap">
+  
+    <div class="row">
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 9.3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 72.3%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">7.287</div><div class="sub">LY: 3.821</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.275,46</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">89%</span></div><div class="sub">Meta 80% YoY = R$ 10.4M</div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-ttl">Progresso da Meta YTD</div>
+      <div style="margin-bottom:6px;font-size:13px">
+        <b>R$ 9.3M</b> de <b>R$ 10.4M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 72.3%</span> vs LY
+      </div>
+      <div class="bar-out" style="height:24px">
+        <div class="bar-in" style="width:89.4%;background:#3483FA"></div>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:4px">89.4% atingido</div>
+    </div>
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 708K</div><div class="sub">MoM vs Abr: <span style="color:#F23D4F;font-weight:700">&#9660; 46.1%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#F23D4F;font-weight:700">&#9660; 9.7%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">685</div><div class="sub">dias 1-19</div></div>
+      <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 1.8M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 18.1%</span></div></div>
+    </div></div>
+  
+    <div class="sec">
+      <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
+      <div class="chart-box"><canvas id="cGmv"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[2441461.0,2108890.0,2218018.0,1817570.0,708338.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,1118427,3063180,4445863,3763726,3808315,3115850,5361435,2967885],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2025',data:[1298066.0,846166.0,1383367.0,1082979.0,1166546.0,1778087.0,2580694.0,2184733.0,2210616.0,1808660.0,3112157.0,1722771.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+      {label:'Meta 80%',data:[2336518.8000000003,1523098.8,2490060.6,1949362.2,2099782.8000000003,3200556.6,4645249.2,3932519.4,3979108.8000000003,3255588.0,5601882.600000001,3100987.8000000003],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
+  
+    <div class="sec">
+      <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
+      <div class="chart-box"><canvas id="cSI"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[1698.0,1510.0,1893.0,1501.0,685.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[863.0,566.0,943.0,684.0,765.0,1286.0,1756.0,1506.0,1570.0,1231.0,2263.0,1253.0],backgroundColor:'#DDE8FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th>
+        <th style="text-align:right">GMV Mai MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="text-align:right">MoM vs Abr</th>
+        <th style="text-align:right">SIs MTD</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Visitas 90d</th>
+        <th style="text-align:right">CVR</th>
+        <th>Status / Log.</th>
+        <th style="text-align:right">PADs YTD</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3667695029" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB3667695029</span></td>
+          <td style="text-align:right;font-weight:700">R$ 36K</td>
+          <td style="text-align:right">5.1%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 56.1%</span></td>
+          <td style="text-align:right">91</td>
+          <td style="text-align:right">R$ 392,00</td>
+          <td style="text-align:right">105.318</td>
+          <td style="text-align:right">0.1%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 13K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629293060" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4629293060</span></td>
+          <td style="text-align:right;font-weight:700">R$ 25K</td>
+          <td style="text-align:right">3.6%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 150.1%</span></td>
+          <td style="text-align:right">46</td>
+          <td style="text-align:right">R$ 553,93</td>
+          <td style="text-align:right">20.718</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 2K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4145325252" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2M GRAF</a><br>
+              <span style="font-size:10px;color:#999">MLB4145325252</span></td>
+          <td style="text-align:right;font-weight:700">R$ 25K</td>
+          <td style="text-align:right">3.6%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 618.3%</span></td>
+          <td style="text-align:right">34</td>
+          <td style="text-align:right">R$ 746,44</td>
+          <td style="text-align:right">14.561</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 9K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3488282369" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,30M C</a><br>
+              <span style="font-size:10px;color:#999">MLB3488282369</span></td>
+          <td style="text-align:right;font-weight:700">R$ 23K</td>
+          <td style="text-align:right">3.2%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 20.6%</span></td>
+          <td style="text-align:right">60</td>
+          <td style="text-align:right">R$ 378,23</td>
+          <td style="text-align:right">15.080</td>
+          <td style="text-align:right">0.4%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 3K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6079741520" target="_blank">NICHO SUSPENSO CURVO 2.2 COM PORTAS LINEA BRASIL T</a><br>
+              <span style="font-size:10px;color:#999">MLB6079741520</span></td>
+          <td style="text-align:right;font-weight:700">R$ 18K</td>
+          <td style="text-align:right">2.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 146.1%</span></td>
+          <td style="text-align:right">113</td>
+          <td style="text-align:right">R$ 158,64</td>
+          <td style="text-align:right">17.985</td>
+          <td style="text-align:right">0.6%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 418</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4637818207" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4637818207</span></td>
+          <td style="text-align:right;font-weight:700">R$ 17K</td>
+          <td style="text-align:right">2.4%</td>
+          <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:right">11</td>
+          <td style="text-align:right">R$ 1.544,45</td>
+          <td style="text-align:right">2.469</td>
+          <td style="text-align:right">0.4%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 101</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629268544" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4629268544</span></td>
+          <td style="text-align:right;font-weight:700">R$ 17K</td>
+          <td style="text-align:right">2.4%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 84.6%</span></td>
+          <td style="text-align:right">160</td>
+          <td style="text-align:right">R$ 105,48</td>
+          <td style="text-align:right">111.629</td>
+          <td style="text-align:right">0.1%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 32K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6419626050" target="_blank">CRISTALEIRA MODERNA MDF 4 PORTAS 2 GAVETAS LINEA B</a><br>
+              <span style="font-size:10px;color:#999">MLB6419626050</span></td>
+          <td style="text-align:right;font-weight:700">R$ 16K</td>
+          <td style="text-align:right">2.2%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 64.5%</span></td>
+          <td style="text-align:right">67</td>
+          <td style="text-align:right">R$ 232,07</td>
+          <td style="text-align:right">9.803</td>
+          <td style="text-align:right">0.7%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-r">closed</span></td>
+          <td style="text-align:right">R$ 2K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4656471987" target="_blank">CRISTALEIRA MODERNA MDF 4 PORTAS 2 GAVETAS LINEA B</a><br>
+              <span style="font-size:10px;color:#999">MLB4656471987</span></td>
+          <td style="text-align:right;font-weight:700">R$ 16K</td>
+          <td style="text-align:right">2.2%</td>
+          <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:right">6</td>
+          <td style="text-align:right">R$ 2.588,67</td>
+          <td style="text-align:right">969</td>
+          <td style="text-align:right">0.6%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 462</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629293266" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4629293266</span></td>
+          <td style="text-align:right;font-weight:700">R$ 15K</td>
+          <td style="text-align:right">2.2%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 49.7%</span></td>
+          <td style="text-align:right">32</td>
+          <td style="text-align:right">R$ 477,75</td>
+          <td style="text-align:right">9.263</td>
+          <td style="text-align:right">0.3%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 185</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629268348" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4629268348</span></td>
+          <td style="text-align:right;font-weight:700">R$ 15K</td>
+          <td style="text-align:right">2.2%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 69.5%</span></td>
+          <td style="text-align:right">111</td>
+          <td style="text-align:right">R$ 137,72</td>
+          <td style="text-align:right">59.375</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 4K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6720942028" target="_blank">CRISTALEIRA LINEA BRASIL ALLURE MDF 2 PORTAS 1 GAV</a><br>
+              <span style="font-size:10px;color:#999">MLB6720942028</span></td>
+          <td style="text-align:right;font-weight:700">R$ 15K</td>
+          <td style="text-align:right">2.1%</td>
+          <td style="text-align:right"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:right">12</td>
+          <td style="text-align:right">R$ 1.233,92</td>
+          <td style="text-align:right">424</td>
+          <td style="text-align:right">2.8%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 56</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3655096547" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB3655096547</span></td>
+          <td style="text-align:right;font-weight:700">R$ 14K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 76.4%</span></td>
+          <td style="text-align:right">73</td>
+          <td style="text-align:right">R$ 185,36</td>
+          <td style="text-align:right">38.044</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 1K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629255478" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M CO</a><br>
+              <span style="font-size:10px;color:#999">MLB4629255478</span></td>
+          <td style="text-align:right;font-weight:700">R$ 14K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 49.9%</span></td>
+          <td style="text-align:right">31</td>
+          <td style="text-align:right">R$ 436,42</td>
+          <td style="text-align:right">15.660</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 1K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4325199707" target="_blank">COZINHA COMPACTA 4 PEÇAS COM CRISTALEIRA ALLURE LI</a><br>
+              <span style="font-size:10px;color:#999">MLB4325199707</span></td>
+          <td style="text-align:right;font-weight:700">R$ 12K</td>
+          <td style="text-align:right">1.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 150.0%</span></td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">R$ 1.678,43</td>
+          <td style="text-align:right">168</td>
+          <td style="text-align:right">4.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-r">paused</span></td>
+          <td style="text-align:right">R$ 25</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Abr 1-19 vs Mai 1-19)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Abr MTD 1-19</th>
+            <th style="text-align:right">Mai MTD 1-19</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629204980" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4629204980</span></td>
+              <td style="text-align:right">R$ 20K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 91.6%</span></td>
+              <td style="text-align:right">3.343</td>
+              <td style="text-align:right">0.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3669005215" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB3669005215</span></td>
+              <td style="text-align:right">R$ 17K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.9%</span></td>
+              <td style="text-align:right">17.588</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3425489467" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,50M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3425489467</span></td>
+              <td style="text-align:right">R$ 15K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 87.3%</span></td>
+              <td style="text-align:right">2.401</td>
+              <td style="text-align:right">0.8%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3488308659" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,50M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3488308659</span></td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 85.3%</span></td>
+              <td style="text-align:right">3.246</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4631506920" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 1,70M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4631506920</span></td>
+              <td style="text-align:right">R$ 9K</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 84.6%</span></td>
+              <td style="text-align:right">4.936</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629268544" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4629268544</span></td>
+              <td style="text-align:right">R$ 110K</td>
+              <td style="text-align:right">R$ 17K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 84.6%</span></td>
+              <td style="text-align:right">111.629</td>
+              <td style="text-align:right">0.1%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3488224555" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,50M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3488224555</span></td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 82.3%</span></td>
+              <td style="text-align:right">2.052</td>
+              <td style="text-align:right">0.6%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3944923984" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,50M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3944923984</span></td>
+              <td style="text-align:right">R$ 21K</td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 81.9%</span></td>
+              <td style="text-align:right">7.756</td>
+              <td style="text-align:right">0.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5965991048" target="_blank">PAINEL PARA TV ATÉ 65 POLEGADAS JADE 1.8 CAEMMUN</a><br>
+                  <span style="font-size:10px;color:#999">MLB5965991048</span></td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 80.4%</span></td>
+              <td style="text-align:right">10.068</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5798870482" target="_blank">ARMÁRIO AÉREO SIMPLES 80CM ALLURE LINEA BRASIL C</a><br>
+                  <span style="font-size:10px;color:#999">MLB5798870482</span></td>
+              <td style="text-align:right">R$ 994</td>
+              <td style="text-align:right">R$ 200</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 79.9%</span></td>
+              <td style="text-align:right">156</td>
+              <td style="text-align:right">9.6%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3488258187" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,30M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3488258187</span></td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 78.4%</span></td>
+              <td style="text-align:right">3.062</td>
+              <td style="text-align:right">0.7%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629293424" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 1,70M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4629293424</span></td>
+              <td style="text-align:right">R$ 12K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 76.7%</span></td>
+              <td style="text-align:right">3.130</td>
+              <td style="text-align:right">0.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4231964901" target="_blank">RACK E PAINEL COM LED SANTORINI TV 75 POLEGADAS </a><br>
+                  <span style="font-size:10px;color:#999">MLB4231964901</span></td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 76.6%</span></td>
+              <td style="text-align:right">152</td>
+              <td style="text-align:right">5.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3655096547" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB3655096547</span></td>
+              <td style="text-align:right">R$ 57K</td>
+              <td style="text-align:right">R$ 14K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 76.4%</span></td>
+              <td style="text-align:right">38.044</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4545428615" target="_blank">CRISTALEIRA LINEA BRASIL ALLURE MDF 2 PORTAS 1 G</a><br>
+                  <span style="font-size:10px;color:#999">MLB4545428615</span></td>
+              <td style="text-align:right">R$ 21K</td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 76.3%</span></td>
+              <td style="text-align:right">3.082</td>
+              <td style="text-align:right">1.3%</td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Abr 1-19 vs Mai 1-19)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Abr MTD 1-19</th>
+            <th style="text-align:right">Mai MTD 1-19</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4917663392" target="_blank">KIT 2 CAPA ALMOFADA LINHO 45X45CM ROMA ZIPER LUX</a><br>
+                  <span style="font-size:10px;color:#999">MLB4917663392</span></td>
+              <td style="text-align:right">R$ 25</td>
+              <td style="text-align:right">R$ 448</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1692.0%</span></td>
+              <td style="text-align:right">2.867</td>
+              <td style="text-align:right">1.7%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4145325252" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2M GR</a><br>
+                  <span style="font-size:10px;color:#999">MLB4145325252</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 618.3%</span></td>
+              <td style="text-align:right">14.561</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3488307747" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2,30M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3488307747</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 481.9%</span></td>
+              <td style="text-align:right">1.110</td>
+              <td style="text-align:right">1.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4178699146" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2M CO</a><br>
+                  <span style="font-size:10px;color:#999">MLB4178699146</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 299.9%</span></td>
+              <td style="text-align:right">494</td>
+              <td style="text-align:right">1.0%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5735542122" target="_blank">NICHO SUSPENSO CURVO 1.4 COM PORTAS  LINEA BRASI</a><br>
+                  <span style="font-size:10px;color:#999">MLB5735542122</span></td>
+              <td style="text-align:right">R$ 330</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 299.4%</span></td>
+              <td style="text-align:right">737</td>
+              <td style="text-align:right">3.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629216132" target="_blank">SOFÁ 3 LUGARES RETRÁTIL E RECLINÁVEL POP 2,05M C</a><br>
+                  <span style="font-size:10px;color:#999">MLB4629216132</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 295.4%</span></td>
+              <td style="text-align:right">351</td>
+              <td style="text-align:right">1.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3668760279" target="_blank">SOFÁ 3 LUGARES RETRÁTIL E RECLINÁVEL POP 2,05M C</a><br>
+                  <span style="font-size:10px;color:#999">MLB3668760279</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 198.7%</span></td>
+              <td style="text-align:right">3.992</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629293060" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4629293060</span></td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 150.1%</span></td>
+              <td style="text-align:right">20.718</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4325199707" target="_blank">COZINHA COMPACTA 4 PEÇAS COM CRISTALEIRA ALLURE </a><br>
+                  <span style="font-size:10px;color:#999">MLB4325199707</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 12K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 150.0%</span></td>
+              <td style="text-align:right">168</td>
+              <td style="text-align:right">4.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-6079741520" target="_blank">NICHO SUSPENSO CURVO 2.2 COM PORTAS LINEA BRASIL</a><br>
+                  <span style="font-size:10px;color:#999">MLB6079741520</span></td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:right">R$ 18K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 146.1%</span></td>
+              <td style="text-align:right">17.985</td>
+              <td style="text-align:right">0.6%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3488305583" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL SAMURAI 2M CO</a><br>
+                  <span style="font-size:10px;color:#999">MLB3488305583</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 107.3%</span></td>
+              <td style="text-align:right">1.362</td>
+              <td style="text-align:right">0.7%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5800087724" target="_blank">MÓDULO RIPADO 250CM X 40CM LINEA BRASIL COR GRIS</a><br>
+                  <span style="font-size:10px;color:#999">MLB5800087724</span></td>
+              <td style="text-align:right">R$ 261</td>
+              <td style="text-align:right">R$ 540</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 106.9%</span></td>
+              <td style="text-align:right">57</td>
+              <td style="text-align:right">7.0%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5313700472" target="_blank">PAINEL RIPADO MODULAR 2,20M LINEA BRASIL COR NAT</a><br>
+                  <span style="font-size:10px;color:#999">MLB5313700472</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 100.1%</span></td>
+              <td style="text-align:right">117</td>
+              <td style="text-align:right">4.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4629160770" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 1,70M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4629160770</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 100.1%</span></td>
+              <td style="text-align:right">202</td>
+              <td style="text-align:right">2.0%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4608825142" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a><br>
+                  <span style="font-size:10px;color:#999">MLB4608825142</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 100.0%</span></td>
+              <td style="text-align:right">6.916</td>
+              <td style="text-align:right">0.3%</td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th><th style="text-align:right">Vis. D-60-30</th>
+        <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
+        <th style="text-align:right">Pago (proxy)</th><th style="text-align:right">Orgânico</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4251970231" target="_blank">GUARDA ROUPA 6 PORTAS 4 ESPELHOS MARROM CRISTAL </a></td>
+          <td style="text-align:right">550</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6455906606" target="_blank">ROUPEIRO NÁPOLES POQUEMA BRANCO COM 6 PORTAS E 2</a></td>
+          <td style="text-align:right">6.104</td>
+          <td style="text-align:right">142</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 97.7%</span></td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">139</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3665709759" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a></td>
+          <td style="text-align:right">42.374</td>
+          <td style="text-align:right">1.954</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 95.4%</span></td>
+          <td style="text-align:right">46</td>
+          <td style="text-align:right">1.908</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5313791374" target="_blank">PAINEL RIPADO MODULAR 3 METROS LINEA BRASIL COR </a></td>
+          <td style="text-align:right">4.042</td>
+          <td style="text-align:right">211</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.8%</span></td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">208</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5965991432" target="_blank">RACK COM PAINEL TV ATÉ 65 POLEGADAS MARROM LIFE </a></td>
+          <td style="text-align:right">1.393</td>
+          <td style="text-align:right">82</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.1%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">80</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629255292" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a></td>
+          <td style="text-align:right">10.681</td>
+          <td style="text-align:right">713</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 93.3%</span></td>
+          <td style="text-align:right">16</td>
+          <td style="text-align:right">697</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5966257384" target="_blank">GUARDA ROUPA CASAL COM 6 PORTAS E 2 GAVETAS ATEN</a></td>
+          <td style="text-align:right">753</td>
+          <td style="text-align:right">56</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 92.6%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">55</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4629255288" target="_blank">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,30M </a></td>
+          <td style="text-align:right">5.768</td>
+          <td style="text-align:right">527</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 90.9%</span></td>
+          <td style="text-align:right">17</td>
+          <td style="text-align:right">510</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4007326953" target="_blank">PAINEL PARA TV ATÉ 65 POLEGADAS RIPADO ARARUNA L</a></td>
+          <td style="text-align:right">707</td>
+          <td style="text-align:right">74</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.5%</span></td>
+          <td style="text-align:right">3</td>
+          <td style="text-align:right">71</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5799730818" target="_blank">ARMÁRIO AÉREO 3 PORTAS 120CM SELENE LINEA BRASIL</a></td>
+          <td style="text-align:right">1.169</td>
+          <td style="text-align:right">140</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 88.0%</span></td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">133</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5759659602" target="_blank">ARMÁRIO AÉREO CANTO 3 PORTAS 90CM ALLURE LINEA B</a></td>
+          <td style="text-align:right">2.716</td>
+          <td style="text-align:right">465</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 82.9%</span></td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right">460</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5923104030" target="_blank">PAINEL RIPADO MODULAR 3M NICHO CURVO LED LINEA B</a></td>
+          <td style="text-align:right">282</td>
+          <td style="text-align:right">54</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 80.9%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">53</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3655006329" target="_blank">SOFÁ 2 LUGARES RETRÁTIL E RECLINÁVEL POP 1,54M C</a></td>
+          <td style="text-align:right">917</td>
+          <td style="text-align:right">177</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 80.7%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">176</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4641269826" target="_blank">SOFÁ 2 LUGARES RETRÁTIL E RECLINÁVEL POP 1,54M C</a></td>
+          <td style="text-align:right">1.648</td>
+          <td style="text-align:right">322</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 80.5%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">320</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5342744192" target="_blank">RACK E PAINEL 2 MÓDULOS LATERAIS OURO PRETO LINE</a></td>
+          <td style="text-align:right">685</td>
+          <td style="text-align:right">142</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 79.3%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">140</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Análise por Subcategoria — MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr><th>Categoria</th><th>Subcategoria</th>
+      <th style="text-align:right">GMV Mai/2026 MTD</th><th style="text-align:right">Share</th>
+      <th style="text-align:right">GMV Mai/2025 (1-19)</th><th style="text-align:center">YoY MTD</th>
+    </tr></thead><tbody><tr>
+          <td>FURNITURE</td>
+          <td>LIVING &amp; DININGROOM FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 587K</td>
+          <td style="text-align:right">82.8%</td>
+          <td style="text-align:right">R$ 784K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.2%</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>STORAGE FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 53K</td>
+          <td style="text-align:right">7.5%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>KITCHEN FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 49K</td>
+          <td style="text-align:right">6.8%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>BEDROOM FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 8K</td>
+          <td style="text-align:right">1.2%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>DECOR</td>
+          <td>MIRRORS &amp; DECORATIVE ART</td>
+          <td style="text-align:right;font-weight:700">R$ 7K</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>TEXTILES</td>
+          <td>BEDROOM TEXTILES</td>
+          <td style="text-align:right;font-weight:700">R$ 2K</td>
+          <td style="text-align:right">0.2%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>OTHER FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right">0.2%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>HOUSEHOLD ITEMS</td>
+          <td>TABLETOP</td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right">0.2%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>OFFICE FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 647</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:right">R$ 0</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens Ativos</div><div class="val">324</div><div class="sub">total no catálogo ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas 90d</div><div class="val">324</div><div class="sub">100% do ativo</div></div>
+      <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
+      <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
+    </div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
+      <b>Sell-through:</b> 100.0% dos itens ativos tiveram venda nos últimos 90 dias.
+      ✅ Boa cobertura de sortimento.
+    </div></div>
+  <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Modal</th>
+        <th style="text-align:right">GMV Mai MTD</th>
+        <th style="text-align:right">Pedidos MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="min-width:100px">Distribuição</th>
+      </tr></thead><tbody><tr>
+          <td><span class="pill pl-r">OTHER</span></td>
+          <td style="text-align:right;font-weight:700">R$ 706K</td>
+          <td style="text-align:right;color:#555">574</td>
+          <td style="text-align:right">99.6%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:99.6%"></div></div></td>
+        </tr><tr>
+          <td><span class="pill pl-g">FBM</span></td>
+          <td style="text-align:right;font-weight:700">R$ 3K</td>
+          <td style="text-align:right;color:#555">112</td>
+          <td style="text-align:right">0.4%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:0.4%"></div></div></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 16K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 4K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 20K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">2.8%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
+  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>Meta em risco</strong><br><span style="color:#555">Atingimento em 89% da meta 80% YoY. Precisa acelerar R$ 1.1M nos meses restantes.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 708K nos primeiros 19 dias — 46.1% abaixo do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">KIT 2 CAPA ALMOFADA LINHO 45X45CM ROMA ZIPER  &#9650; 1692% vs Mar (R$ 448).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">SOFÁ COM USB RETRÁTIL E RECLINÁVEL EUREKA 2,3 &#9660; 92% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>57 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
+</div>
+</body></html>
