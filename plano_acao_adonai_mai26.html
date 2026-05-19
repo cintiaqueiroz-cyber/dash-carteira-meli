@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plano de Acao — ADONAI — Mai/2026</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F5F5;color:#1A1A1A}
+  .hero{background:linear-gradient(135deg,#1A1A1A,#3A3A3A);color:#fff;padding:24px 32px}
+  .hero-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+  .hero h1{font-size:22px;font-weight:900;margin-bottom:4px}
+  .hero .sub{font-size:12px;opacity:.7}
+  .urgency{background:#FFE600;color:#1A1A1A;border-radius:8px;padding:10px 16px;font-size:12px;max-width:420px}
+  .urgency strong{font-size:13px;display:block;margin-bottom:3px}
+  .wrap{max-width:900px;margin:0 auto;padding:20px 16px}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  .kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.07);text-align:center}
+  .kpi .val{font-size:22px;font-weight:900;color:#1A1A1A}
+  .kpi .lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+  .kpi .sub{font-size:11px;margin-top:4px}
+  .section{background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 6px rgba(0,0,0,.07);margin-bottom:16px}
+  .sec-title{font-size:13px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px;color:#1A1A1A}
+  .sec-title::before{content:'';width:3px;height:16px;background:#FFE600;border-radius:2px;display:inline-block}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .action{border-radius:8px;padding:12px 14px;border-left:4px solid #3483FA}
+  .action.urgent{border-left-color:#F23D4F;background:#FFF8F8}
+  .action.high{border-left-color:#FF7A00;background:#FFF9F0}
+  .action.medium{border-left-color:#3483FA;background:#F8FBFF}
+  .action.good{border-left-color:#00A650;background:#F5FFF9}
+  .action-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .action-icon{font-size:18px}
+  .action-title{font-size:13px;font-weight:800}
+  .action-tag{font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px}
+  .tag-hoje{background:#FEE8EA;color:#F23D4F}
+  .tag-semana{background:#FFF9E0;color:#E67E00}
+  .tag-continuo{background:#E8F0FE;color:#3483FA}
+  .action-desc{font-size:11px;color:#444;line-height:1.5;margin-bottom:8px}
+  .action-impact{font-size:10px;font-weight:700;color:#00A650}
+  .items-table{width:100%;border-collapse:collapse;font-size:11px}
+  .items-table th{padding:7px 10px;background:#1A1A1A;color:#FFE600;font-size:10px;text-align:left;font-weight:800}
+  .items-table td{padding:7px 10px;border-bottom:1px solid #F0F0F0}
+  .items-table tr:hover td{background:#FFFBEA}
+  .bar-out{background:#F0F0F0;border-radius:20px;height:6px;overflow:hidden;margin-top:3px;width:80px}
+  .bar-in{height:100%;border-radius:20px;background:#FFE600}
+  .checklist{list-style:none;padding:0}
+  .checklist li{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #F5F5F5;font-size:12px;align-items:flex-start}
+  .checklist li:last-child{border-bottom:none}
+  .check-box{width:16px;height:16px;border:2px solid #3483FA;border-radius:3px;flex-shrink:0;margin-top:1px}
+  .badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:9px;font-weight:800}
+  .b-red{background:#FEE8EA;color:#F23D4F}
+  .b-orange{background:#FFF9E0;color:#E67E00}
+  .b-blue{background:#E8F0FE;color:#3483FA}
+  .b-green{background:#E8F8EF;color:#00A650}
+  .footer{text-align:center;padding:16px;font-size:10px;color:#999}
+  @media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.hero-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-row">
+    <div>
+      <h1>&#9889; Plano de Acao — ADONAI</h1>
+      <div class="sub">Mercado Livre &nbsp;|&nbsp; Vertical F&H &nbsp;|&nbsp; 19 de maio de 2026 &nbsp;|&nbsp; Focal: Cintia Faraco</div>
+    </div>
+    <div class="urgency">
+      <strong>&#128293; Mensagem do seller hoje (10h02):</strong>
+      "As vendas estao vindo, mas para alcançarmos nossa meta do mes precisamos dar aquela pressao extra e acelerar esse ritmo!"
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- KPIs -->
+  <div class="kpi-row" style="margin-top:16px">
+    <div class="kpi">
+      <div class="val">R$ 1,06M</div>
+      <div class="lbl">NMV MTD (1-19/mai)</div>
+      <div class="sub"><span style="color:#F23D4F;font-weight:700">&#9660; 2,2%</span> vs abr mesmo periodo</div>
+    </div>
+    <div class="kpi">
+      <div class="val" style="color:#E67E00">53%</div>
+      <div class="lbl">Atingimento da Meta</div>
+      <div class="sub" style="color:#888;font-size:10px">Meta mai: R$ 2,0M &nbsp;|&nbsp; Faltam R$ 935K</div>
+    </div>
+    <div class="kpi">
+      <div class="val">R$ 78K</div>
+      <div class="lbl">Ritmo diario necessario</div>
+      <div class="sub" style="color:#888;font-size:10px">Atual: R$ 56K/dia &nbsp;|&nbsp; 12 dias restantes</div>
+    </div>
+    <div class="kpi">
+      <div class="val">935</div>
+      <div class="lbl">Pedidos MTD</div>
+      <div class="sub" style="color:#888;font-size:10px">Ticket medio: R$ 1.139</div>
+    </div>
+  </div>
+
+  <!-- Diagnostico + Top Itens -->
+  <div class="grid2">
+
+    <div class="section">
+      <div class="sec-title">&#128200; Top 5 Itens em Mai/26</div>
+      <table class="items-table">
+        <thead><tr><th>#</th><th>Produto</th><th style="text-align:right">NMV</th><th style="text-align:right">Ped.</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank" style="color:#3483FA;font-size:10px">Sofa Retratil Molas 1,80M Livia Suede Preto</a></td>
+            <td style="text-align:right;font-weight:700">R$ 90K</td>
+            <td style="text-align:right">100</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="https://produto.mercadolivre.com.br/MLB-4689882944" target="_blank" style="color:#3483FA;font-size:10px">Sofa Retratil Molas 1,80M Livia Suede Marrom</a></td>
+            <td style="text-align:right;font-weight:700">R$ 69K</td>
+            <td style="text-align:right">75</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank" style="color:#3483FA;font-size:10px">Sofa Retratil Molas 1,80M Livia Suede Cappuccino</a></td>
+            <td style="text-align:right;font-weight:700">R$ 52K</td>
+            <td style="text-align:right">59</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><a href="https://produto.mercadolivre.com.br/MLB-3693739807" target="_blank" style="color:#3483FA;font-size:10px">Sofa Retratil Molas 1,80M Livia Suede Azul</a></td>
+            <td style="text-align:right;font-weight:700">R$ 35K</td>
+            <td style="text-align:right">37</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><a href="https://produto.mercadolivre.com.br/MLB-4222444776" target="_blank" style="color:#3483FA;font-size:10px">Sofa Canto Retratil Molas 3,00x2,00 Jacke Suede</a></td>
+            <td style="text-align:right;font-weight:700">R$ 31K</td>
+            <td style="text-align:right">11</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;padding:8px 10px;background:#FFFBEA;border-radius:6px;font-size:11px">
+        &#128161; <strong>Concentracao:</strong> Top 3 itens = 79% do NMV. Focar acoes neles para maximo impacto.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-title">&#128269; Diagnostico Rapido</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="padding:8px 10px;background:#E8F8EF;border-radius:7px;font-size:11px">
+          <strong style="color:#00A650">&#10003; BuyBox</strong> — Todos os itens ativos com BuyBox. Posicionamento OK.
+        </div>
+        <div style="padding:8px 10px;background:#FFF9E0;border-radius:7px;font-size:11px">
+          <strong style="color:#E67E00">&#9888; Ritmo</strong> — Precisa ir de R$56K/dia para R$78K/dia nos proximos 12 dias (+39%).
+        </div>
+        <div style="padding:8px 10px;background:#FFF9E0;border-radius:7px;font-size:11px">
+          <strong style="color:#E67E00">&#9888; MoM</strong> — MTD mai 2,2% abaixo do mesmo periodo de abr. Sem crescimento organico.
+        </div>
+        <div style="padding:8px 10px;background:#E8F0FE;border-radius:7px;font-size:11px">
+          <strong style="color:#3483FA">&#128197; Janela</strong> — 12 dias uteis restantes em maio. Acoes precisam rodar a partir de hoje.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Plano de Acao -->
+  <div class="section">
+    <div class="sec-title">&#9889; Plano de Acao para Acelerar o Mes</div>
+    <div class="grid2">
+
+      <div class="action urgent">
+        <div class="action-head">
+          <span class="action-icon">&#128181;</span>
+          <span class="action-title">Aumentar investimento em PADs</span>
+          <span class="action-tag tag-hoje">HOJE</span>
+        </div>
+        <div class="action-desc">Elevar o budget de Product Ads nos top 3 itens (Livia Preto, Marrom e Cappuccino). Aumentar lances nos horarios de pico (19h-22h) e nos fins de semana. Ativar PADs nos itens que ainda nao investem.</div>
+        <div class="action-impact">&#9650; Impacto estimado: +15 a 25% em visitas pagas nos proximos 7 dias</div>
+      </div>
+
+      <div class="action high">
+        <div class="action-head">
+          <span class="action-icon">&#127381;</span>
+          <span class="action-title">Submeter itens para Campanhas ML</span>
+          <span class="action-tag tag-hoje">HOJE</span>
+        </div>
+        <div class="action-desc">Inscrever os top itens nas campanhas ativas do Mercado Livre (Deal of the Day, campanhas tematicas de maio). Verificar elegibilidade no Seller Center e confirmar participacao com Cintia.</div>
+        <div class="action-impact">&#9650; Impacto: exposicao multiplicada, sem custo adicional por item</div>
+      </div>
+
+      <div class="action medium">
+        <div class="action-head">
+          <span class="action-icon">&#128247;</span>
+          <span class="action-title">Reforcar conteudo dos anuncios top</span>
+          <span class="action-tag tag-semana">ESSA SEMANA</span>
+        </div>
+        <div class="action-desc">Revisar fotos (minimo 6, fundo branco), titulos e fichas tecnicas dos top 5 itens. Adicionar clip/video se ainda nao tiver. Anuncios com melhor conteudo sobem no ranking organico.</div>
+        <div class="action-impact">&#9650; Impacto: +5 a 10% em CVR organico com melhoria de QI</div>
+      </div>
+
+      <div class="action medium">
+        <div class="action-head">
+          <span class="action-icon">&#127991;</span>
+          <span class="action-title">Criar variantes de cor dos top itens</span>
+          <span class="action-tag tag-semana">ESSA SEMANA</span>
+        </div>
+        <div class="action-desc">Sofa Livia ja tem Preto, Marrom, Cappuccino e Azul — verificar se ha outras cores disponiveis para ativar. Mais variantes = mais impressoes no catalogo e maior captura de demanda por preferencia de cor.</div>
+        <div class="action-impact">&#9650; Impacto: expansao de sortimento sem novo desenvolvimento</div>
+      </div>
+
+      <div class="action good">
+        <div class="action-head">
+          <span class="action-icon">&#128666;</span>
+          <span class="action-title">Garantir estoque e logistica Full</span>
+          <span class="action-tag tag-continuo">CONTINUO</span>
+        </div>
+        <div class="action-desc">Conferir nivel de estoque dos top 5 itens para os proximos 12 dias. Itens em Full tem prioridade no ranking. Garantir reposicao para nao perder vendas por ruptura no fim do mes.</div>
+        <div class="action-impact">&#9650; Impacto: evitar perda de vendas por ruptura no sprint final</div>
+      </div>
+
+      <div class="action good">
+        <div class="action-head">
+          <span class="action-icon">&#128176;</span>
+          <span class="action-title">Revisar precificacao vs concorrencia</span>
+          <span class="action-tag tag-semana">ESSA SEMANA</span>
+        </div>
+        <div class="action-desc">Verificar se os top itens estao competitivos no preco vs concorrentes com BuyBox. Uma reducao de 3-5% estrategica pode aumentar a conversao significativamente sem comprometer margem de forma relevante.</div>
+        <div class="action-impact">&#9650; Impacto: manutencao do BuyBox e aumento de conversao</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Checklist execucao -->
+  <div class="section">
+    <div class="sec-title">&#9989; Checklist de Execucao — Sprint Final Maio</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
+      <ul class="checklist">
+        <li><div class="check-box"></div><div><strong>Aumentar budget PADs</strong> nos 3 principais sofas Livia <span class="badge b-red">Hoje</span></div></li>
+        <li><div class="check-box"></div><div><strong>Inscrever top 5 em campanhas</strong> ativas do ML <span class="badge b-red">Hoje</span></div></li>
+        <li><div class="check-box"></div><div><strong>Ativar PADs</strong> nos itens que ainda nao investem <span class="badge b-red">Hoje</span></div></li>
+        <li><div class="check-box"></div><div><strong>Verificar elegibilidade para DOD</strong> (Deal of the Day) <span class="badge b-orange">Amanha</span></div></li>
+      </ul>
+      <ul class="checklist">
+        <li><div class="check-box"></div><div><strong>Conferir estoque</strong> top 5 itens — reposicao se necessario <span class="badge b-orange">Amanha</span></div></li>
+        <li><div class="check-box"></div><div><strong>Revisar fotos e conteudo</strong> dos anuncios top 3 <span class="badge b-blue">Esta semana</span></div></li>
+        <li><div class="check-box"></div><div><strong>Ativar novas cores/variantes</strong> do Sofa Livia disponíveis <span class="badge b-blue">Esta semana</span></div></li>
+        <li><div class="check-box"></div><div><strong>Check de preco</strong> vs concorrencia no BuyBox <span class="badge b-blue">Esta semana</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Meta sprint -->
+  <div style="background:linear-gradient(135deg,#1A1A1A,#3A3A3A);border-radius:10px;padding:16px 20px;color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div>
+      <div style="font-size:11px;opacity:.7;margin-bottom:4px">META DO SPRINT FINAL (20-31/mai)</div>
+      <div style="font-size:22px;font-weight:900;color:#FFE600">R$ 935.389</div>
+      <div style="font-size:11px;opacity:.7;margin-top:2px">= R$ 77.949/dia nos proximos 12 dias</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;opacity:.7;margin-bottom:4px">RITMO ATUAL vs NECESSARIO</div>
+      <div style="font-size:14px;font-weight:800"><span style="color:#F23D4F">R$ 56K/dia atual</span> &nbsp;&#8594;&nbsp; <span style="color:#FFE600">R$ 78K/dia necessario</span></div>
+      <div style="font-size:11px;opacity:.7;margin-top:2px">+39% de aceleracao necessaria</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Mercado Livre &nbsp;|&nbsp; ADONAI &nbsp;|&nbsp; Plano de Acao Mai/2026 &nbsp;|&nbsp; Focal: Cintia Faraco</div>
+
+</body>
+</html>
