@@ -33,6 +33,33 @@ tr:hover td{background:#FFFBEA}
 .bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
 .bar-in{height:100%;border-radius:20px;background:#3483FA}
 a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:13px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:10px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:11px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'●';position:absolute;left:0;color:#FFE600;font-size:8px;top:4px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:11px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:11px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
 </style>
 </head>
 <body>
@@ -704,6 +731,5 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 17K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 9K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 69K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">6.3%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
   
-  <div class="sec"><div class="sec-ttl"> Insights e Recomendacoes</div><ul style="list-style:none;padding:0;margin:0"><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Meta critica</strong><br><span style="color:#555">Atingimento em 72% da meta. Gap de R$ 2.9M — revisar mix e investimento em PADs com urgencia.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128200;</span><div><strong>MTD Mai</strong><br><span style="color:#555">R$ 1.1M nos primeiros 19 dias — 33.9% acima do mesmo periodo de Abr.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128640;</span><div><strong>Maior crescimento MoM</strong><br><span style="color:#555">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO  &#9650; 737% vs Mar (R$ 13K).</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128997;</span><div><strong>Maior queda MoM</strong><br><span style="color:#555">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRET &#9660; 94% vs Mar. Revisar preco e conteudo do anuncio.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#9888;</span><div><strong>188 itens ativos sem BuyBox</strong><br><span style="color:#555">Revisar precificacao vs concorrencia. Itens sem buybox perdem posicao no ranking de busca.</span></div></li><li style="padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:12px;align-items:flex-start"><span style="font-size:18px;min-width:24px">&#128666;</span><div><strong>Modal predominante: OTHER</strong><br><span style="color:#555">100% do GMV em OTHER. Avaliar migracao para Fulfillment — reduz cancelamentos e aumenta exposicao.</span></div></li></ul></div>
 </div>
 </body></html>
