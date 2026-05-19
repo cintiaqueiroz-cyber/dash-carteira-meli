@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="row">
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 7.5M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 41.6%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.271</div><div class="sub">LY: 14.900</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 803,67</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.272</div><div class="sub">LY: 14.900</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 803,72</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">72%</span></div><div class="sub">Meta 80% YoY = R$ 10.3M</div></div>
     </div>
     <div class="sec">
@@ -90,8 +90,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 1.1M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 33.9%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 43.7%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.184</div><div class="sub">dias 1-19</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 1.1M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 34.0%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 43.9%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.185</div><div class="sub">dias 1-19</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 1.4M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 24.3%</span></div></div>
     </div></div>
   
@@ -101,8 +101,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[1629963.0,1548728.0,1803856.0,1365726.0,1102524.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
-      {label:'Projetado',data:[null,null,null,null,1740824,1471472,2359694,1773131,1706437,1843997,2531070,1874248],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2026',data:[1629963.0,1548728.0,1803856.0,1365726.0,1103774.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,1742798,1471719,2360090,1773429,1706723,1844306,2531495,1874563],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
       {label:'2025',data:[1240834.0,1042785.0,1082861.0,1129139.0,1227433.0,1039370.0,1666763.0,1252446.0,1205337.0,1302502.0,1787814.0,1323870.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
       {label:'Meta 80%',data:[2233501.2,1877013.0,1949149.8,2032450.2,2209379.4,1870866.0,3000173.4,2254402.8000000003,2169606.6,2344503.6,3218065.2,2382966.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
@@ -113,7 +113,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2149.0,2254.0,2167.0,1517.0,1184.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2149.0,2254.0,2167.0,1517.0,1185.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[3364.0,2652.0,3049.0,2892.0,2943.0,2506.0,3304.0,1959.0,2110.0,2505.0,2435.0,1745.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
@@ -129,7 +129,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         <th>Status / Log.</th>
         <th style="text-align:right">PADs YTD</th>
       </tr></thead><tbody><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO LA</a><br>
               <span style="font-size:10px;color:#999">MLB5864213932</span></td>
           <td style="text-align:right;font-weight:700">R$ 139K</td>
           <td style="text-align:right">12.7%</td>
@@ -141,10 +141,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 20K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank">SOFÁ LIVING 3 LUGARES SUEDE RESISTENTE MADEIRA + A</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank">SOFÃ LIVING 3 LUGARES SUEDE RESISTENTE MADEIRA + </a><br>
               <span style="font-size:10px;color:#999">MLB5365991654</span></td>
           <td style="text-align:right;font-weight:700">R$ 133K</td>
-          <td style="text-align:right">12.2%</td>
+          <td style="text-align:right">12.1%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 28.2%</span></td>
           <td style="text-align:right">695</td>
           <td style="text-align:right">R$ 191,81</td>
@@ -153,7 +153,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 60K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÁ REFORÇADO MADEIRA TEC</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÃ REFORÃADO MADEIRA T</a><br>
               <span style="font-size:10px;color:#999">MLB5365913948</span></td>
           <td style="text-align:right;font-weight:700">R$ 89K</td>
           <td style="text-align:right">8.1%</td>
@@ -165,7 +165,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 13K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO LA</a><br>
               <span style="font-size:10px;color:#999">MLB5901779680</span></td>
           <td style="text-align:right;font-weight:700">R$ 70K</td>
           <td style="text-align:right">6.4%</td>
@@ -177,7 +177,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 2K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO LA</a><br>
               <span style="font-size:10px;color:#999">MLB5903044944</span></td>
           <td style="text-align:right;font-weight:700">R$ 59K</td>
           <td style="text-align:right">5.4%</td>
@@ -189,7 +189,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 24K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO LA</a><br>
               <span style="font-size:10px;color:#999">MLB4299910923</span></td>
           <td style="text-align:right;font-weight:700">R$ 44K</td>
           <td style="text-align:right">4.0%</td>
@@ -201,7 +201,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 891</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank">SOFÁ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÁVEL MO</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank">SOFÃ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÃVEL</a><br>
               <span style="font-size:10px;color:#999">MLB4304679587</span></td>
           <td style="text-align:right;font-weight:700">R$ 43K</td>
           <td style="text-align:right">3.9%</td>
@@ -213,7 +213,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 36K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4192351671" target="_blank">SOFÁ CURVO 3 LUGARES ORGÂNICO LOOM BOUCLÊ 1,80M SA</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4192351671" target="_blank">SOFÃ CURVO 3 LUGARES ORGÃNICO LOOM BOUCLÃ 1,80M</a><br>
               <span style="font-size:10px;color:#999">MLB4192351671</span></td>
           <td style="text-align:right;font-weight:700">R$ 33K</td>
           <td style="text-align:right">3.0%</td>
@@ -225,7 +225,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 8K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">CAMA COLCHÃO CASAL MONTESSORIANA INFANTIL PROTEÇÃO</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">CAMA COLCHÃO CASAL MONTESSORIANA INFANTIL PROTEÃ</a><br>
               <span style="font-size:10px;color:#999">MLB5983046296</span></td>
           <td style="text-align:right;font-weight:700">R$ 30K</td>
           <td style="text-align:right">2.7%</td>
@@ -237,7 +237,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 3K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-6292677416" target="_blank">SOFÁ LIVING 3 LUGARES LINHO REFORÇADO BASE MADEIRA</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6292677416" target="_blank">SOFÃ LIVING 3 LUGARES LINHO REFORÃADO BASE MADEI</a><br>
               <span style="font-size:10px;color:#999">MLB6292677416</span></td>
           <td style="text-align:right;font-weight:700">R$ 30K</td>
           <td style="text-align:right">2.7%</td>
@@ -249,7 +249,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 7K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank">SOFÁ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÁVEL MO</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank">SOFÃ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÃVEL</a><br>
               <span style="font-size:10px;color:#999">MLB4304337063</span></td>
           <td style="text-align:right;font-weight:700">R$ 24K</td>
           <td style="text-align:right">2.2%</td>
@@ -261,7 +261,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 2K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5982867786" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÇÃO LATERAL</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5982867786" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÃÃO LATER</a><br>
               <span style="font-size:10px;color:#999">MLB5982867786</span></td>
           <td style="text-align:right;font-weight:700">R$ 24K</td>
           <td style="text-align:right">2.2%</td>
@@ -273,7 +273,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 2K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-6292703504" target="_blank">SOFÁ LIVING 3 LUGARES LINHO GRAFITE REFORÇADO BASE</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6292703504" target="_blank">SOFÃ LIVING 3 LUGARES LINHO GRAFITE REFORÃADO BA</a><br>
               <span style="font-size:10px;color:#999">MLB6292703504</span></td>
           <td style="text-align:right;font-weight:700">R$ 22K</td>
           <td style="text-align:right">2.0%</td>
@@ -285,7 +285,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 7K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5982680014" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL SEGURA + COLCHÃO</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5982680014" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL SEGURA + COLCHÃ</a><br>
               <span style="font-size:10px;color:#999">MLB5982680014</span></td>
           <td style="text-align:right;font-weight:700">R$ 22K</td>
           <td style="text-align:right">2.0%</td>
@@ -297,7 +297,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 5K</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">SOFÁ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÁVEL MO</a><br>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">SOFÃ CAMA COLCHÃO CASAL COMPACT AIR CONFORTÃVEL</a><br>
               <span style="font-size:10px;color:#999">MLB5932961222</span></td>
           <td style="text-align:right;font-weight:700">R$ 19K</td>
           <td style="text-align:right">1.8%</td>
@@ -318,7 +318,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
             <th style="text-align:right">Visitas 90d</th>
             <th style="text-align:right">CVR</th>
           </tr></thead><tbody><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3693980707" target="_blank">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRETO S</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3693980707" target="_blank">POLTRONA CADEIRA DECORATIVA PÃS DE FERRO PRETO </a><br>
                   <span style="font-size:10px;color:#999">MLB3693980707</span></td>
               <td style="text-align:right">R$ 6K</td>
               <td style="text-align:right">R$ 325</td>
@@ -326,7 +326,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">13</td>
               <td style="text-align:right">138.5%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3297163943" target="_blank">CADEIRA POLTRONA DECORATIVA REFORÇADA SALA DE ES</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3297163943" target="_blank">CADEIRA POLTRONA DECORATIVA REFORÃADA SALA DE E</a><br>
                   <span style="font-size:10px;color:#999">MLB3297163943</span></td>
               <td style="text-align:right">R$ 2K</td>
               <td style="text-align:right">R$ 257</td>
@@ -342,7 +342,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">4.582</td>
               <td style="text-align:right">0.6%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5368644458" target="_blank">SOFÁ 2 LUGAR BASE REFORÇADA MADEIRA TECIDO SUEDE</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5368644458" target="_blank">SOFÃ 2 LUGAR BASE REFORÃADA MADEIRA TECIDO SUE</a><br>
                   <span style="font-size:10px;color:#999">MLB5368644458</span></td>
               <td style="text-align:right">R$ 7K</td>
               <td style="text-align:right">R$ 2K</td>
@@ -366,7 +366,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.279</td>
               <td style="text-align:right">1.2%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4287759531" target="_blank">SOFÁ LIVING 2 LUGARES LINHO BEGE REFORÇADO BASE </a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4287759531" target="_blank">SOFÃ LIVING 2 LUGARES LINHO BEGE REFORÃADO BAS</a><br>
                   <span style="font-size:10px;color:#999">MLB4287759531</span></td>
               <td style="text-align:right">R$ 3K</td>
               <td style="text-align:right">R$ 810</td>
@@ -374,7 +374,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">10.892</td>
               <td style="text-align:right">0.2%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5366043510" target="_blank">SOFÁ LIVING 2 LUGARES SUEDE RESISTENTE MADEIRA +</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5366043510" target="_blank">SOFÃ LIVING 2 LUGARES SUEDE RESISTENTE MADEIRA </a><br>
                   <span style="font-size:10px;color:#999">MLB5366043510</span></td>
               <td style="text-align:right">R$ 4K</td>
               <td style="text-align:right">R$ 2K</td>
@@ -382,7 +382,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">4.598</td>
               <td style="text-align:right">0.5%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4509030695" target="_blank">CAMA MONTESSORIANA BERÇO INFANTIL 100% ESPUMA VÁ</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4509030695" target="_blank">CAMA MONTESSORIANA BERÃO INFANTIL 100% ESPUMA V</a><br>
                   <span style="font-size:10px;color:#999">MLB4509030695</span></td>
               <td style="text-align:right">R$ 2K</td>
               <td style="text-align:right">R$ 1K</td>
@@ -398,7 +398,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.716</td>
               <td style="text-align:right">0.6%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3319667477" target="_blank">SOFÁ NAMORADEIRA 2 LUGARES TILLA SALA DE ESPERA </a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3319667477" target="_blank">SOFÃ NAMORADEIRA 2 LUGARES TILLA SALA DE ESPERA</a><br>
                   <span style="font-size:10px;color:#999">MLB3319667477</span></td>
               <td style="text-align:right">R$ 630</td>
               <td style="text-align:right">R$ 296</td>
@@ -406,7 +406,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">194</td>
               <td style="text-align:right">2.6%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3781303785" target="_blank">POLTRONA CADEIRA DECORATIVA PÉS DE FERRO PRETO S</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3781303785" target="_blank">POLTRONA CADEIRA DECORATIVA PÃS DE FERRO PRETO </a><br>
                   <span style="font-size:10px;color:#999">MLB3781303785</span></td>
               <td style="text-align:right">R$ 640</td>
               <td style="text-align:right">R$ 305</td>
@@ -422,7 +422,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.072</td>
               <td style="text-align:right">1.3%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3881840025" target="_blank">POLTRONA AMAMENTAÇÃO CONFORTÁVEL CADEIRA - BALAQ</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3881840025" target="_blank">POLTRONA AMAMENTAÃÃO CONFORTÃVEL CADEIRA - BA</a><br>
                   <span style="font-size:10px;color:#999">MLB3881840025</span></td>
               <td style="text-align:right">R$ 560</td>
               <td style="text-align:right">R$ 273</td>
@@ -430,7 +430,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">646</td>
               <td style="text-align:right">2.3%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4268163567" target="_blank">SOFÁ 3 LUGARES 2,75M BOUCLÊ COM CHAISE COMPACTAI</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4268163567" target="_blank">SOFÃ 3 LUGARES 2,75M BOUCLÃ COM CHAISE COMPACT</a><br>
                   <span style="font-size:10px;color:#999">MLB4268163567</span></td>
               <td style="text-align:right">R$ 18K</td>
               <td style="text-align:right">R$ 9K</td>
@@ -447,7 +447,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
             <th style="text-align:right">Visitas 90d</th>
             <th style="text-align:right">CVR</th>
           </tr></thead><tbody><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5902967642" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5902967642" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a><br>
                   <span style="font-size:10px;color:#999">MLB5902967642</span></td>
               <td style="text-align:right">R$ 2K</td>
               <td style="text-align:right">R$ 13K</td>
@@ -455,7 +455,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.612</td>
               <td style="text-align:right">1.2%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÁ REFORÇADO MADEIRA T</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOFÃ REFORÃADO MADEIRA</a><br>
                   <span style="font-size:10px;color:#999">MLB5365913948</span></td>
               <td style="text-align:right">R$ 14K</td>
               <td style="text-align:right">R$ 89K</td>
@@ -463,7 +463,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">45.546</td>
               <td style="text-align:right">0.3%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5982867786" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÇÃO LATER</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5982867786" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÃÃO LAT</a><br>
                   <span style="font-size:10px;color:#999">MLB5982867786</span></td>
               <td style="text-align:right">R$ 4K</td>
               <td style="text-align:right">R$ 24K</td>
@@ -471,7 +471,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">3.272</td>
               <td style="text-align:right">1.1%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4001588651" target="_blank">POLTRONA DECORATIVA OPALA PÉS PALITO - SALA, REC</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4001588651" target="_blank">POLTRONA DECORATIVA OPALA PÃS PALITO - SALA, RE</a><br>
                   <span style="font-size:10px;color:#999">MLB4001588651</span></td>
               <td style="text-align:right">R$ 245</td>
               <td style="text-align:right">R$ 1K</td>
@@ -479,7 +479,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">530</td>
               <td style="text-align:right">1.9%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">CAMA COLCHÃO CASAL MONTESSORIANA INFANTIL PROTEÇ</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5366030268" target="_blank">KIT 1 POLTRONA LIVING + SOFÃ REFORÃADO MADEIRA</a><br>
+                  <span style="font-size:10px;color:#999">MLB5366030268</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 18K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 352.1%</span></td>
+              <td style="text-align:right">11.809</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">CAMA COLCHÃO CASAL MONTESSORIANA INFANTIL PROTE</a><br>
                   <span style="font-size:10px;color:#999">MLB5983046296</span></td>
               <td style="text-align:right">R$ 7K</td>
               <td style="text-align:right">R$ 30K</td>
@@ -487,15 +495,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">4.124</td>
               <td style="text-align:right">0.8%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5366030268" target="_blank">KIT 1 POLTRONA LIVING + SOFÁ REFORÇADO MADEIRA T</a><br>
-                  <span style="font-size:10px;color:#999">MLB5366030268</span></td>
-              <td style="text-align:right">R$ 4K</td>
-              <td style="text-align:right">R$ 17K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 320.8%</span></td>
-              <td style="text-align:right">11.809</td>
-              <td style="text-align:right">0.2%</td>
-            </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5316301352" target="_blank">POLTRONA DECORATIVA OPALA PÉS PALITO - SALA, REC</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5316301352" target="_blank">POLTRONA DECORATIVA OPALA PÃS PALITO - SALA, RE</a><br>
                   <span style="font-size:10px;color:#999">MLB5316301352</span></td>
               <td style="text-align:right">R$ 609</td>
               <td style="text-align:right">R$ 2K</td>
@@ -503,7 +503,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">511</td>
               <td style="text-align:right">2.3%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-1909157914" target="_blank">SOFÁ NAMORADEIRA 2 LUGARES - BALAQUI DECOR</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-1909157914" target="_blank">SOFÃ NAMORADEIRA 2 LUGARES - BALAQUI DECOR</a><br>
                   <span style="font-size:10px;color:#999">MLB1909157914</span></td>
               <td style="text-align:right">R$ 750</td>
               <td style="text-align:right">R$ 3K</td>
@@ -511,7 +511,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">2.426</td>
               <td style="text-align:right">1.1%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-2709426081" target="_blank">KIT 4 POLTRONAS PARA RECEPÇÃO CONSULTORIO MÉDICO</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-2709426081" target="_blank">KIT 4 POLTRONAS PARA RECEPÃÃO CONSULTORIO MÃD</a><br>
                   <span style="font-size:10px;color:#999">MLB2709426081</span></td>
               <td style="text-align:right">R$ 2K</td>
               <td style="text-align:right">R$ 7K</td>
@@ -519,7 +519,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.247</td>
               <td style="text-align:right">1.7%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-3504905097" target="_blank">POLTRONA REFORÇADA PARA SALÃO DE BELEZA BARBEARI</a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3504905097" target="_blank">POLTRONA REFORÃADA PARA SALÃO DE BELEZA BARBEA</a><br>
                   <span style="font-size:10px;color:#999">MLB3504905097</span></td>
               <td style="text-align:right">R$ 1K</td>
               <td style="text-align:right">R$ 5K</td>
@@ -527,7 +527,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">1.716</td>
               <td style="text-align:right">2.3%</td>
             </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5251047222" target="_blank">POLTRONA DECORATIVA OPALA PARA SALA CONFORTÁVEL </a><br>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5251047222" target="_blank">POLTRONA DECORATIVA OPALA PARA SALA CONFORTÃVEL</a><br>
                   <span style="font-size:10px;color:#999">MLB5251047222</span></td>
               <td style="text-align:right">R$ 290</td>
               <td style="text-align:right">R$ 984</td>
@@ -573,35 +573,35 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
         <th style="text-align:right">Pago (proxy)</th><th style="text-align:right">Orgânico</th>
       </tr></thead><tbody><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5925203962" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5925203962" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a></td>
           <td style="text-align:right">248</td>
           <td style="text-align:right">0</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
           <td style="text-align:right">1</td>
           <td style="text-align:right">0</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-6416286840" target="_blank">CAMA MONTESSORIANA BERÇO INFANTIL 100% ESPUMA BA</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6416286840" target="_blank">CAMA MONTESSORIANA BERÃO INFANTIL 100% ESPUMA B</a></td>
           <td style="text-align:right">668</td>
           <td style="text-align:right">1</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.9%</span></td>
           <td style="text-align:right">0</td>
           <td style="text-align:right">1</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-6416312662" target="_blank">CAMA MONTESSORIANA BERÇO INFANTIL 100% ESPUMA BA</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6416312662" target="_blank">CAMA MONTESSORIANA BERÃO INFANTIL 100% ESPUMA B</a></td>
           <td style="text-align:right">707</td>
           <td style="text-align:right">2</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.7%</span></td>
           <td style="text-align:right">0</td>
           <td style="text-align:right">2</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4299936387" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4299936387" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a></td>
           <td style="text-align:right">1.047</td>
           <td style="text-align:right">4</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.6%</span></td>
           <td style="text-align:right">10</td>
           <td style="text-align:right">0</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5903161224" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5903161224" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a></td>
           <td style="text-align:right">2.510</td>
           <td style="text-align:right">10</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.6%</span></td>
@@ -615,28 +615,28 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">0</td>
           <td style="text-align:right">2</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-3185810795" target="_blank">KIT SOFÁ NAMORADEIRA + POLTRONA TILLA RECEPÇÃO S</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3185810795" target="_blank">KIT SOFÃ NAMORADEIRA + POLTRONA TILLA RECEPÃÃ</a></td>
           <td style="text-align:right">1.937</td>
           <td style="text-align:right">12</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.4%</span></td>
           <td style="text-align:right">4</td>
           <td style="text-align:right">8</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5925229384" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5925229384" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a></td>
           <td style="text-align:right">606</td>
           <td style="text-align:right">7</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 98.8%</span></td>
           <td style="text-align:right">3</td>
           <td style="text-align:right">4</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5925265734" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÇÃO LAT</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5925265734" target="_blank">CAMA COLCHÃO MONTESSORIANA INFANTIL PROTEÃÃO </a></td>
           <td style="text-align:right">429</td>
           <td style="text-align:right">5</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 98.8%</span></td>
           <td style="text-align:right">3</td>
           <td style="text-align:right">2</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5940170866" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÇÃO LATER</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5940170866" target="_blank">CAMA CASAL MONTESSORIANA INFANTIL PROTEÃÃO LAT</a></td>
           <td style="text-align:right">204</td>
           <td style="text-align:right">4</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 98.0%</span></td>
@@ -650,28 +650,28 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">1</td>
           <td style="text-align:right">5</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-3749603960" target="_blank">POLTRONA DECORATIVA NINA CADEIRA RECEPÇÃO PRETO </a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3749603960" target="_blank">POLTRONA DECORATIVA NINA CADEIRA RECEPÃÃO PRET</a></td>
           <td style="text-align:right">654</td>
           <td style="text-align:right">28</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 95.7%</span></td>
           <td style="text-align:right">1</td>
           <td style="text-align:right">27</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-5368644458" target="_blank">SOFÁ 2 LUGAR BASE REFORÇADA MADEIRA TECIDO SUEDE</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5368644458" target="_blank">SOFÃ 2 LUGAR BASE REFORÃADA MADEIRA TECIDO SUE</a></td>
           <td style="text-align:right">14.634</td>
           <td style="text-align:right">766</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.8%</span></td>
           <td style="text-align:right">18</td>
           <td style="text-align:right">748</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4508992601" target="_blank">CAMA MONTESSORIANA BERÇO INFANTIL 100% ESPUMA VÁ</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4508992601" target="_blank">CAMA MONTESSORIANA BERÃO INFANTIL 100% ESPUMA V</a></td>
           <td style="text-align:right">815</td>
           <td style="text-align:right">43</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.7%</span></td>
           <td style="text-align:right">1</td>
           <td style="text-align:right">42</td>
         </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-6234024406" target="_blank">POLTRONA MODULAR PUFF COMPACTO BOUCLÊ CONFORTÁVE</a></td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6234024406" target="_blank">POLTRONA MODULAR PUFF COMPACTO BOUCLÃ CONFORTÃ</a></td>
           <td style="text-align:right">538</td>
           <td style="text-align:right">42</td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 92.2%</span></td>
@@ -685,15 +685,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </tr></thead><tbody><tr>
           <td>FURNITURE</td>
           <td>LIVING &amp; DININGROOM FURNITURE</td>
-          <td style="text-align:right;font-weight:700">R$ 659K</td>
+          <td style="text-align:right;font-weight:700">R$ 660K</td>
           <td style="text-align:right">59.8%</td>
           <td style="text-align:right">R$ 767K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 14.1%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 13.9%</span></td>
         </tr><tr>
           <td>FURNITURE</td>
           <td>BEDROOM FURNITURE</td>
           <td style="text-align:right;font-weight:700">R$ 443K</td>
-          <td style="text-align:right">40.2%</td>
+          <td style="text-align:right">40.1%</td>
           <td style="text-align:right">R$ 0</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
         </tr><tr>
@@ -725,7 +725,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 1.1M</td>
-          <td style="text-align:right;color:#555">1.184</td>
+          <td style="text-align:right;color:#555">1.185</td>
           <td style="text-align:right">100.0%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:100.0%"></div></div></td>
         </tr></tbody></table></div></div>

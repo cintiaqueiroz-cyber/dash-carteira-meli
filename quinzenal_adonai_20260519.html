@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio ADONAI - 19/05/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:13px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:10px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:11px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'●';position:absolute;left:0;color:#FFE600;font-size:8px;top:4px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:11px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:11px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; ADONAI</h1>
+    <div class="sub">Relatorio de Performance &middot; 19/05/2026 &middot; IDs: 488368250</div>
+  </div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 86%</div>
+</div>
+<div class="wrap">
+  
+    <div class="row">
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 7.0M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 71.1%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">5.981</div><div class="sub">LY: 4.431</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.172,87</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">86%</span></div><div class="sub">Meta 80% YoY = R$ 8.2M</div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-ttl">Progresso da Meta YTD</div>
+      <div style="margin-bottom:6px;font-size:13px">
+        <b>R$ 7.0M</b> de <b>R$ 8.2M</b> &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 71.1%</span> vs LY
+      </div>
+      <div class="bar-out" style="height:24px">
+        <div class="bar-in" style="width:85.6%;background:#3483FA"></div>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:4px">85.6% atingido</div>
+    </div>
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card"><div class="lbl">GMV MTD (1-19/5)</div><div class="val">R$ 1.1M</div><div class="sub">MoM vs Abr: <span style="color:#F23D4F;font-weight:700">&#9660; 0.8%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 46.2%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">944</div><div class="sub">dias 1-19</div></div>
+      <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 1.5M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></div></div>
+    </div></div>
+  
+    <div class="sec">
+      <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
+      <div class="chart-box"><canvas id="cGmv"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[975529.0,1408277.0,2030376.0,1520950.0,1079779.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,1704913,1934718,2620150,2152071,1850074,1292711,3701410,1954987],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2025',data:[781884.0,522166.0,1013546.0,1044656.0,1188504.0,1131014.0,1531710.0,1258076.0,1081532.0,755704.0,2163802.0,1142863.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+      {label:'Meta 80%',data:[1407391.2,939898.8,1824382.8,1880380.8,2139307.2,2035825.2,2757078.0,2264536.8000000003,1946757.6,1360267.2,3894843.6,2057153.4000000001],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
+  
+    <div class="sec">
+      <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
+      <div class="chart-box"><canvas id="cSI"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[838.0,1213.0,1783.0,1203.0,944.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[820.0,598.0,1078.0,839.0,1096.0,1222.0,1560.0,1234.0,936.0,734.0,2029.0,1100.0],backgroundColor:'#DDE8FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th>
+        <th style="text-align:right">GMV Mai MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="text-align:right">MoM vs Abr</th>
+        <th style="text-align:right">SIs MTD</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Visitas 90d</th>
+        <th style="text-align:right">CVR</th>
+        <th>Status / Log.</th>
+        <th style="text-align:right">PADs YTD</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LIVI</a><br>
+              <span style="font-size:10px;color:#999">MLB4673827206</span></td>
+          <td style="text-align:right;font-weight:700">R$ 90K</td>
+          <td style="text-align:right">8.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 172.3%</span></td>
+          <td style="text-align:right">290</td>
+          <td style="text-align:right">R$ 311,77</td>
+          <td style="text-align:right">164.846</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 475</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4689882944" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL COM MOLAS 1,80M LIVIA </a><br>
+              <span style="font-size:10px;color:#999">MLB4689882944</span></td>
+          <td style="text-align:right;font-weight:700">R$ 69K</td>
+          <td style="text-align:right">6.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 12.0%</span></td>
+          <td style="text-align:right">261</td>
+          <td style="text-align:right">R$ 264,11</td>
+          <td style="text-align:right">100.809</td>
+          <td style="text-align:right">0.3%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 134</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LIVI</a><br>
+              <span style="font-size:10px;color:#999">MLB3678387879</span></td>
+          <td style="text-align:right;font-weight:700">R$ 54K</td>
+          <td style="text-align:right">5.0%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 28.9%</span></td>
+          <td style="text-align:right">326</td>
+          <td style="text-align:right">R$ 164,14</td>
+          <td style="text-align:right">195.067</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 4K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3693739807" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LIVI</a><br>
+              <span style="font-size:10px;color:#999">MLB3693739807</span></td>
+          <td style="text-align:right;font-weight:700">R$ 35K</td>
+          <td style="text-align:right">3.3%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 45.5%</span></td>
+          <td style="text-align:right">164</td>
+          <td style="text-align:right">R$ 214,20</td>
+          <td style="text-align:right">76.481</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 53</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4222444776" target="_blank">SOFÃ CANTO RETRÃTIL REC. MOLAS 3,00X2,00 ESQ JAC</a><br>
+              <span style="font-size:10px;color:#999">MLB4222444776</span></td>
+          <td style="text-align:right;font-weight:700">R$ 31K</td>
+          <td style="text-align:right">2.9%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 8.0%</span></td>
+          <td style="text-align:right">29</td>
+          <td style="text-align:right">R$ 1.076,52</td>
+          <td style="text-align:right">26.043</td>
+          <td style="text-align:right">0.1%</td>
+          <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 9K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3551678271" target="_blank">SOFÃ SEM CAIXA RETRÃTIL REC 2,00M MOLAS KIARA LI</a><br>
+              <span style="font-size:10px;color:#999">MLB3551678271</span></td>
+          <td style="text-align:right;font-weight:700">R$ 27K</td>
+          <td style="text-align:right">2.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 113.9%</span></td>
+          <td style="text-align:right">65</td>
+          <td style="text-align:right">R$ 408,31</td>
+          <td style="text-align:right">37.343</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 374</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3287287291" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,00X2,00 </a><br>
+              <span style="font-size:10px;color:#999">MLB3287287291</span></td>
+          <td style="text-align:right;font-weight:700">R$ 25K</td>
+          <td style="text-align:right">2.4%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 200.2%</span></td>
+          <td style="text-align:right">25</td>
+          <td style="text-align:right">R$ 1.014,68</td>
+          <td style="text-align:right">5.018</td>
+          <td style="text-align:right">0.5%</td>
+          <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 1K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4665814740" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LIVI</a><br>
+              <span style="font-size:10px;color:#999">MLB4665814740</span></td>
+          <td style="text-align:right;font-weight:700">R$ 24K</td>
+          <td style="text-align:right">2.2%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 54.3%</span></td>
+          <td style="text-align:right">99</td>
+          <td style="text-align:right">R$ 241,22</td>
+          <td style="text-align:right">55.631</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 290</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3524332827" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,00X2,00 </a><br>
+              <span style="font-size:10px;color:#999">MLB3524332827</span></td>
+          <td style="text-align:right;font-weight:700">R$ 23K</td>
+          <td style="text-align:right">2.1%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 20.6%</span></td>
+          <td style="text-align:right">36</td>
+          <td style="text-align:right">R$ 627,47</td>
+          <td style="text-align:right">5.087</td>
+          <td style="text-align:right">0.7%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 3K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4654803382" target="_blank">SOFÃ CAMA RETRÃTIL RECLINÃVEL 2,10M MOLAS KAREN</a><br>
+              <span style="font-size:10px;color:#999">MLB4654803382</span></td>
+          <td style="text-align:right;font-weight:700">R$ 21K</td>
+          <td style="text-align:right">2.0%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 119.0%</span></td>
+          <td style="text-align:right">42</td>
+          <td style="text-align:right">R$ 511,40</td>
+          <td style="text-align:right">9.371</td>
+          <td style="text-align:right">0.4%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 45</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3907553623" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL COM MOLAS 1,50M LIVIA </a><br>
+              <span style="font-size:10px;color:#999">MLB3907553623</span></td>
+          <td style="text-align:right;font-weight:700">R$ 20K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 41.9%</span></td>
+          <td style="text-align:right">56</td>
+          <td style="text-align:right">R$ 363,43</td>
+          <td style="text-align:right">13.853</td>
+          <td style="text-align:right">0.4%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 2K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3685965167" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M VEGA</a><br>
+              <span style="font-size:10px;color:#999">MLB3685965167</span></td>
+          <td style="text-align:right;font-weight:700">R$ 20K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 8.3%</span></td>
+          <td style="text-align:right">78</td>
+          <td style="text-align:right">R$ 252,76</td>
+          <td style="text-align:right">23.639</td>
+          <td style="text-align:right">0.3%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 477</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5401999542" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,50M COM MOLAS</a><br>
+              <span style="font-size:10px;color:#999">MLB5401999542</span></td>
+          <td style="text-align:right;font-weight:700">R$ 19K</td>
+          <td style="text-align:right">1.8%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 859.3%</span></td>
+          <td style="text-align:right">24</td>
+          <td style="text-align:right">R$ 774,25</td>
+          <td style="text-align:right">4.049</td>
+          <td style="text-align:right">0.6%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-r">paused</span></td>
+          <td style="text-align:right">R$ 513</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5042907514" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LIVI</a><br>
+              <span style="font-size:10px;color:#999">MLB5042907514</span></td>
+          <td style="text-align:right;font-weight:700">R$ 17K</td>
+          <td style="text-align:right">1.6%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 60.8%</span></td>
+          <td style="text-align:right">83</td>
+          <td style="text-align:right">R$ 203,99</td>
+          <td style="text-align:right">17.429</td>
+          <td style="text-align:right">0.5%</td>
+          <td><span class="pill pl-b">BuyBox</span> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 4</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3465566002" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,40X2,00 </a><br>
+              <span style="font-size:10px;color:#999">MLB3465566002</span></td>
+          <td style="text-align:right;font-weight:700">R$ 16K</td>
+          <td style="text-align:right">1.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 381.6%</span></td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">R$ 2.290,86</td>
+          <td style="text-align:right">74</td>
+          <td style="text-align:right">9.5%</td>
+          <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Abr 1-19 vs Mai 1-19)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Abr MTD 1-19</th>
+            <th style="text-align:right">Mai MTD 1-19</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3795323203" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,50M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB3795323203</span></td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:right">R$ 761</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.0%</span></td>
+              <td style="text-align:right">15.370</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3524288135" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,00X2,0</a><br>
+                  <span style="font-size:10px;color:#999">MLB3524288135</span></td>
+              <td style="text-align:right">R$ 29K</td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 79.9%</span></td>
+              <td style="text-align:right">18.371</td>
+              <td style="text-align:right">0.1%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4959803060" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES 1,90M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB4959803060</span></td>
+              <td style="text-align:right">R$ 15K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 79.2%</span></td>
+              <td style="text-align:right">3.970</td>
+              <td style="text-align:right">0.6%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3829289082" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES C MOLAS 1,</a><br>
+                  <span style="font-size:10px;color:#999">MLB3829289082</span></td>
+              <td style="text-align:right">R$ 57K</td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 77.8%</span></td>
+              <td style="text-align:right">61.998</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3521759923" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,00X2,0</a><br>
+                  <span style="font-size:10px;color:#999">MLB3521759923</span></td>
+              <td style="text-align:right">R$ 26K</td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 77.4%</span></td>
+              <td style="text-align:right">2.077</td>
+              <td style="text-align:right">0.8%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4653137714" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,70M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB4653137714</span></td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 76.1%</span></td>
+              <td style="text-align:right">1.244</td>
+              <td style="text-align:right">1.1%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4930852704" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,10M COM MOL</a><br>
+                  <span style="font-size:10px;color:#999">MLB4930852704</span></td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 74.3%</span></td>
+              <td style="text-align:right">4.310</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3461972424" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,10M COM MOL</a><br>
+                  <span style="font-size:10px;color:#999">MLB3461972424</span></td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 73.7%</span></td>
+              <td style="text-align:right">193</td>
+              <td style="text-align:right">4.1%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5300199522" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,50M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB5300199522</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 71.9%</span></td>
+              <td style="text-align:right">7.310</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-2910373806" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES MOLAS 1,80</a><br>
+                  <span style="font-size:10px;color:#999">MLB2910373806</span></td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 66.3%</span></td>
+              <td style="text-align:right">9.408</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3793671745" target="_blank">SOFÃ RETRÃTIL E REC 2 LUGARES 1,50M MOLAS EMIL</a><br>
+                  <span style="font-size:10px;color:#999">MLB3793671745</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 63.4%</span></td>
+              <td style="text-align:right">7.909</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3932904520" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,40X2,0</a><br>
+                  <span style="font-size:10px;color:#999">MLB3932904520</span></td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 60.7%</span></td>
+              <td style="text-align:right">8.287</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4222381570" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES MOLAS 2,00</a><br>
+                  <span style="font-size:10px;color:#999">MLB4222381570</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 60.4%</span></td>
+              <td style="text-align:right">146</td>
+              <td style="text-align:right">6.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4959815508" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES 1,90M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB4959815508</span></td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 60.0%</span></td>
+              <td style="text-align:right">9.571</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-2910380226" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES MOLAS 2,00</a><br>
+                  <span style="font-size:10px;color:#999">MLB2910380226</span></td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 58.0%</span></td>
+              <td style="text-align:right">720</td>
+              <td style="text-align:right">1.9%</td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Abr 1-19 vs Mai 1-19)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Abr MTD 1-19</th>
+            <th style="text-align:right">Mai MTD 1-19</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5401999542" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,50M COM MOL</a><br>
+                  <span style="font-size:10px;color:#999">MLB5401999542</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 19K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 859.3%</span></td>
+              <td style="text-align:right">4.049</td>
+              <td style="text-align:right">0.6%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3797809679" target="_blank">SOFÃ CAMA 2 LUGARES 1,50M LUISA SUEDE CINZA ADO</a><br>
+                  <span style="font-size:10px;color:#999">MLB3797809679</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 647.9%</span></td>
+              <td style="text-align:right">2.245</td>
+              <td style="text-align:right">0.8%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3794424405" target="_blank">SOFÃ CAMA 3 LUGARES 2,00M AURORA SUEDE ADONAI E</a><br>
+                  <span style="font-size:10px;color:#999">MLB3794424405</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 439.8%</span></td>
+              <td style="text-align:right">943</td>
+              <td style="text-align:right">1.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3465566002" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,40X2,0</a><br>
+                  <span style="font-size:10px;color:#999">MLB3465566002</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 381.6%</span></td>
+              <td style="text-align:right">74</td>
+              <td style="text-align:right">9.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3789360707" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL 2 LUGARES 1,50M MO</a><br>
+                  <span style="font-size:10px;color:#999">MLB3789360707</span></td>
+              <td style="text-align:right">R$ 810</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 302.2%</span></td>
+              <td style="text-align:right">89</td>
+              <td style="text-align:right">7.9%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3678387871" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LI</a><br>
+                  <span style="font-size:10px;color:#999">MLB3678387871</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 295.5%</span></td>
+              <td style="text-align:right">10.346</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4063507929" target="_blank">SOFÃ RET RECLINÃVEL 2 LUG 1,70M MOLAS EMILY SU</a><br>
+                  <span style="font-size:10px;color:#999">MLB4063507929</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 205.3%</span></td>
+              <td style="text-align:right">730</td>
+              <td style="text-align:right">0.8%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3287287291" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL MOLAS 3,00X2,0</a><br>
+                  <span style="font-size:10px;color:#999">MLB3287287291</span></td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 200.2%</span></td>
+              <td style="text-align:right">5.018</td>
+              <td style="text-align:right">0.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,80M LI</a><br>
+                  <span style="font-size:10px;color:#999">MLB4673827206</span></td>
+              <td style="text-align:right">R$ 33K</td>
+              <td style="text-align:right">R$ 90K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 172.3%</span></td>
+              <td style="text-align:right">164.846</td>
+              <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3987520969" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,50M MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB3987520969</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 171.8%</span></td>
+              <td style="text-align:right">3.656</td>
+              <td style="text-align:right">0.5%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4988755708" target="_blank">SOFÃ CAMA RETRÃTIL RECLINÃVEL 2,30M COM MOLAS</a><br>
+                  <span style="font-size:10px;color:#999">MLB4988755708</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 168.6%</span></td>
+              <td style="text-align:right">685</td>
+              <td style="text-align:right">1.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3542992009" target="_blank">SOFÃ SEM CAIXA RET RECLINÃVEL 1,65M MOLAS KIAR</a><br>
+                  <span style="font-size:10px;color:#999">MLB3542992009</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 138.3%</span></td>
+              <td style="text-align:right">78</td>
+              <td style="text-align:right">6.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4689851120" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL COM MOLAS 1,50M LI</a><br>
+                  <span style="font-size:10px;color:#999">MLB4689851120</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 125.1%</span></td>
+              <td style="text-align:right">11.615</td>
+              <td style="text-align:right">0.3%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4654803382" target="_blank">SOFÃ CAMA RETRÃTIL RECLINÃVEL 2,10M MOLAS KAR</a><br>
+                  <span style="font-size:10px;color:#999">MLB4654803382</span></td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:right">R$ 21K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 119.0%</span></td>
+              <td style="text-align:right">9.371</td>
+              <td style="text-align:right">0.4%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3551678271" target="_blank">SOFÃ SEM CAIXA RETRÃTIL REC 2,00M MOLAS KIARA </a><br>
+                  <span style="font-size:10px;color:#999">MLB3551678271</span></td>
+              <td style="text-align:right">R$ 12K</td>
+              <td style="text-align:right">R$ 27K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 113.9%</span></td>
+              <td style="text-align:right">37.343</td>
+              <td style="text-align:right">0.2%</td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th><th style="text-align:right">Vis. D-60-30</th>
+        <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
+        <th style="text-align:right">Pago (proxy)</th><th style="text-align:right">Orgânico</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3809479495" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,50M MOLA</a></td>
+          <td style="text-align:right">502</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3678322767" target="_blank">SOFÃ SEM CAIXA RETRÃTIL RECLINÃVEL 2,10M CARO</a></td>
+          <td style="text-align:right">1.035</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3783894687" target="_blank">SOFÃ RETRÃTIL REC 2 LUGARES 1,70M MOLAS EMILY </a></td>
+          <td style="text-align:right">535</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4669796370" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,30M COM MOL</a></td>
+          <td style="text-align:right">984</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 100.0%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4692813568" target="_blank">SOFÃ CAMA RETRÃTIL E RECLINÃVEL 2,10M COM MOL</a></td>
+          <td style="text-align:right">5.024</td>
+          <td style="text-align:right">6</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 99.9%</span></td>
+          <td style="text-align:right">14</td>
+          <td style="text-align:right">0</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4653201930" target="_blank">SOFÃ SEM CAIXA RETRÃTIL RECLINÃVEL 2,50M KARE</a></td>
+          <td style="text-align:right">1.117</td>
+          <td style="text-align:right">41</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 96.3%</span></td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">41</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3810916576" target="_blank">SOFÃ RETRÃTIL E RECLINÃVEL 3 LUG 2,10M DANI P</a></td>
+          <td style="text-align:right">793</td>
+          <td style="text-align:right">32</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 96.0%</span></td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">32</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3789312807" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 3 LUGARES 1,90M MOLA</a></td>
+          <td style="text-align:right">611</td>
+          <td style="text-align:right">37</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 93.9%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">35</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-2674692685" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL COM MOLAS 2,00M LIVI</a></td>
+          <td style="text-align:right">655</td>
+          <td style="text-align:right">45</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 93.1%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">43</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3789170609" target="_blank">SOFÃ CAMA 3 LUGARES 2,00M AURORA SUEDE BEGE ADO</a></td>
+          <td style="text-align:right">1.963</td>
+          <td style="text-align:right">160</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 91.8%</span></td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">158</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3932898470" target="_blank">SOFÃ CANTO RETRÃTIL RECLINÃVEL 3,00X2,00 JACK</a></td>
+          <td style="text-align:right">1.333</td>
+          <td style="text-align:right">129</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 90.3%</span></td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">128</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3795323203" target="_blank">SOFÃ RETRÃTIL RECLINÃVEL 2 LUGARES 1,50M MOLA</a></td>
+          <td style="text-align:right">9.379</td>
+          <td style="text-align:right">973</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.6%</span></td>
+          <td style="text-align:right">18</td>
+          <td style="text-align:right">955</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3811207662" target="_blank">SOFÃ SEM CAIXA RETRÃTIL RECLINÃVEL 2,10M KARE</a></td>
+          <td style="text-align:right">7.274</td>
+          <td style="text-align:right">797</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.0%</span></td>
+          <td style="text-align:right">8</td>
+          <td style="text-align:right">789</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3380813649" target="_blank">SOFÃ SEM CAIXA RETRÃTIL RECLINÃVEL 2,50M KARE</a></td>
+          <td style="text-align:right">238</td>
+          <td style="text-align:right">27</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 88.7%</span></td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">27</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3515962757" target="_blank">SOFÃ CAMA KING 5 LUGARES 2,70M ALICE SUEDE</a></td>
+          <td style="text-align:right">434</td>
+          <td style="text-align:right">56</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 87.1%</span></td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">56</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Análise por Subcategoria — MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr><th>Categoria</th><th>Subcategoria</th>
+      <th style="text-align:right">GMV Mai/2026 MTD</th><th style="text-align:right">Share</th>
+      <th style="text-align:right">GMV Mai/2025 (1-19)</th><th style="text-align:center">YoY MTD</th>
+    </tr></thead><tbody><tr>
+          <td>FURNITURE</td>
+          <td>LIVING &amp; DININGROOM FURNITURE</td>
+          <td style="text-align:right;font-weight:700">R$ 1.1M</td>
+          <td style="text-align:right">99.9%</td>
+          <td style="text-align:right">R$ 736K</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 46.5%</span></td>
+        </tr><tr>
+          <td>FURNITURE</td>
+          <td>FURNITURE SPARE PARTS &amp; ACC</td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:right">R$ 2K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 49.4%</span></td>
+        </tr><tr>
+          <td>TEXTILES</td>
+          <td>BEDROOM TEXTILES</td>
+          <td style="text-align:right;font-weight:700">R$ 171</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:right">R$ 100</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 71.0%</span></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens Ativos</div><div class="val">350</div><div class="sub">total no catálogo ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas 90d</div><div class="val">333</div><div class="sub">95% do ativo</div></div>
+      <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
+      <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
+    </div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
+      <b>Sell-through:</b> 95.1% dos itens ativos tiveram venda nos últimos 90 dias.
+      ✅ Boa cobertura de sortimento.
+    </div></div>
+  <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Modal</th>
+        <th style="text-align:right">GMV Mai MTD</th>
+        <th style="text-align:right">Pedidos MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="min-width:100px">Distribuição</th>
+      </tr></thead><tbody><tr>
+          <td><span class="pill pl-r">OTHER</span></td>
+          <td style="text-align:right;font-weight:700">R$ 1.1M</td>
+          <td style="text-align:right;color:#555">902</td>
+          <td style="text-align:right">99.9%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:99.9%"></div></div></td>
+        </tr><tr>
+          <td><span class="pill pl-y">XD</span></td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right;color:#555">42</td>
+          <td style="text-align:right">0.1%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:0.1%"></div></div></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 59K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 8K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 87K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">8.1%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
+  
+</div>
+</body></html>
