@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 20/05/2026 10:44 -->
+<!-- Build: 20/05/2026 10:52 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 20/05/2026 10:44</span>
+    <span class="update-badge">&#10003; Atualizado 20/05/2026 10:52</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1223,7 +1223,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 20/30 dias &nbsp;&middot;&nbsp; 20/05/2026 10:44
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 20/30 dias &nbsp;&middot;&nbsp; 20/05/2026 10:52
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -5203,8 +5203,11 @@ function buildSellersConsolidated(){
     var nmvFocal=nmvUE[focalMk]||((REAL_MENSAL[g]||{})[focalMk]||0);
     if(PERIODO.length>1) nmvFocal=nmv; // YTD: use full period sum
     var nmvPrev_sc=prevMk_sc?(nmvUE[prevMk_sc]||((REAL_MENSAL[g]||{})[prevMk_sc]||0)):0;
-    var nmv25_ue=PERIODO.length===1?(nmvUE['25_'+focalMk]||0)
-      :PERIODO.reduce(function(s,k){return s+(nmvUE['25_'+k]||0);},0);
+    // YoY: usar REAL_NMV (BT_UE_OUTPUT, mesma fonte) para ter comparacao consistente 2025 vs 2026
+    // YoY: usar REAL_NMV (BT_UE_OUTPUT, mesma fonte) para comparacao consistente 2025 vs 2026
+    var nmvUE_ly=typeof REAL_NMV!=='undefined'?(REAL_NMV[g]||{}):{};
+    var nmv25_ue=PERIODO.length===1?(nmvUE_ly['25_'+focalMk]||nmvUE['25_'+focalMk]||0)
+      :PERIODO.reduce(function(s,k){return s+(nmvUE_ly['25_'+k]||nmvUE['25_'+k]||0);},0);
     var g25=REAL_2025[g]||{};
     var nmv25_fallback=PERIODO.length===1?(g25[focalMk]?g25[focalMk].gmv:0)
       :PERIODO.reduce(function(s,k){return s+(g25[k]?g25[k].gmv:0);},0);
