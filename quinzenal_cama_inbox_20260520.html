@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="row">
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 19.5M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 182.3%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.119</div><div class="sub">LY: 4.490</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 2.134,39</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">9.123</div><div class="sub">LY: 4.490</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 2.134,09</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#00A650">141%</span></div><div class="sub">Meta 80% YoY = R$ 13.8M</div></div>
     </div>
     <div class="sec">
@@ -90,8 +90,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-20/5)</div><div class="val">R$ 3.8M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 28.5%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 164.3%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.793</div><div class="sub">dias 1-20</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-20/5)</div><div class="val">R$ 3.8M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 28.6%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 164.7%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.797</div><div class="sub">dias 1-20</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 4.4M</div><div class="sub">vs Mar: <span style="color:#00A650;font-weight:700">&#9650; 13.7%</span></div></div>
     </div></div>
   
@@ -101,8 +101,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[4300775.0,3084431.0,3865843.0,4393847.0,3818646.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
-      {label:'Projetado',data:[null,null,null,null,5727974,8214203,11810217,8850075,6659520,11256692,20590610,10708028],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+      {label:'2026',data:[4300775.0,3084431.0,3865843.0,4393847.0,3824398.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
+      {label:'Projetado',data:[null,null,null,null,5736600,8216630,11813707,8852691,6661488,11260019,20596695,10711192],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
       {label:'2025',data:[1254957.0,1057589.0,1295960.0,1842211.0,2225521.0,2910117.0,4184108.0,3135393.0,2359326.0,3988006.0,7294814.0,3793626.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
       {label:'Meta 80%',data:[2258922.6,1903660.2,2332728.0,3315979.8000000003,4005937.8000000003,5238210.600000001,7531394.4,5643707.4,4246786.8,7178410.8,13130665.200000001,6828526.8],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
@@ -113,7 +113,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2058.0,1509.0,1756.0,2003.0,1793.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2058.0,1509.0,1756.0,2003.0,1797.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[1112.0,836.0,611.0,849.0,1082.0,1393.0,2039.0,1446.0,1006.0,1776.0,3426.0,1769.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
@@ -299,11 +299,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-4196279341" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,70M MOLAS ENSACADAS M</a><br>
               <span style="font-size:10px;color:#999">MLB4196279341</span></td>
-          <td style="text-align:right;font-weight:700">R$ 46K</td>
-          <td style="text-align:right">1.3%</td>
-          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 16.7%</span></td>
-          <td style="text-align:right">119</td>
-          <td style="text-align:right">R$ 384,50</td>
+          <td style="text-align:right;font-weight:700">R$ 48K</td>
+          <td style="text-align:right">1.4%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 12.5%</span></td>
+          <td style="text-align:right">120</td>
+          <td style="text-align:right">R$ 400,37</td>
           <td style="text-align:right">64.371</td>
           <td style="text-align:right">0.2%</td>
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
@@ -333,14 +333,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 77.3%</span></td>
               <td style="text-align:right">7.013</td>
               <td style="text-align:right">0.5%</td>
-            </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4196279137" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,50M MOLAS ENSACADAS</a><br>
-                  <span style="font-size:10px;color:#999">MLB4196279137</span></td>
-              <td style="text-align:right">R$ 9K</td>
-              <td style="text-align:right">R$ 2K</td>
-              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 75.3%</span></td>
-              <td style="text-align:right">921</td>
-              <td style="text-align:right">0.8%</td>
             </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-3595827199" target="_blank">SOFÁ 3 LUGARES RETRÁTIL E RECLINÁVEL CAMA INBOX </a><br>
                   <span style="font-size:10px;color:#999">MLB3595827199</span></td>
@@ -437,6 +429,14 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 54.8%</span></td>
               <td style="text-align:right">11.092</td>
               <td style="text-align:right">0.2%</td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3701702687" target="_blank">SOFÁ 3 LUGARES RETRÁTIL E RECLINÁVEL CAMA INBOX </a><br>
+                  <span style="font-size:10px;color:#999">MLB3701702687</span></td>
+              <td style="text-align:right">R$ 24K</td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 53.2%</span></td>
+              <td style="text-align:right">12.455</td>
+              <td style="text-align:right">0.3%</td>
             </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Abr 1-20 vs Mai 1-20)</div><div style="overflow-x:auto"><table>
           <thead><tr>
@@ -688,7 +688,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right;font-weight:700">R$ 2.5M</td>
           <td style="text-align:right">66.2%</td>
           <td style="text-align:right">R$ 883K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 186.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 186.6%</span></td>
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER</td>
           <td>MATTRESSES &amp; SOMMIER SETS</td>
@@ -699,10 +699,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER</td>
           <td>MATTRESSES</td>
-          <td style="text-align:right;font-weight:700">R$ 274K</td>
+          <td style="text-align:right;font-weight:700">R$ 276K</td>
           <td style="text-align:right">7.2%</td>
           <td style="text-align:right">R$ 111K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 148.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 149.2%</span></td>
         </tr><tr>
           <td>TEXTILES</td>
           <td>LIVINGROOM TEXTILES</td>
@@ -713,7 +713,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td>TEXTILES</td>
           <td>BEDROOM TEXTILES</td>
-          <td style="text-align:right;font-weight:700">R$ 524</td>
+          <td style="text-align:right;font-weight:700">R$ 563</td>
           <td style="text-align:right">0.0%</td>
           <td style="text-align:right">R$ 0</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
@@ -739,15 +739,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 3.7M</td>
-          <td style="text-align:right;color:#555">1.717</td>
-          <td style="text-align:right">97.7%</td>
-          <td><div class="bar-out"><div class="bar-in" style="width:97.7%"></div></div></td>
+          <td style="text-align:right;color:#555">1.720</td>
+          <td style="text-align:right">97.6%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:97.6%"></div></div></td>
         </tr><tr>
           <td><span class="pill pl-y">XD</span></td>
-          <td style="text-align:right;font-weight:700">R$ 89K</td>
-          <td style="text-align:right;color:#555">75</td>
-          <td style="text-align:right">2.3%</td>
-          <td><div class="bar-out"><div class="bar-in" style="width:2.3%"></div></div></td>
+          <td style="text-align:right;font-weight:700">R$ 90K</td>
+          <td style="text-align:right;color:#555">76</td>
+          <td style="text-align:right">2.4%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:2.4%"></div></div></td>
         </tr><tr>
           <td><span class="pill pl-g">FBM</span></td>
           <td style="text-align:right;font-weight:700">R$ 18</td>
@@ -755,6 +755,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">0.0%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:0.0%"></div></div></td>
         </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">Investimento em PADs (Product Ads)</div><div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap"><div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#3483FA;font-weight:800">PADs YTD</div><div style="font-size:20px;font-weight:900;color:#3483FA">R$ 2.1M</div></div><div style="background:#E8F8EF;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#00A650;font-weight:800">GMV PADs YTD</div><div style="font-size:20px;font-weight:900;color:#00A650">R$ 17.9M</div></div><div style="background:#FFF9E0;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#E67E00;font-weight:800">ACOS YTD</div><div style="font-size:20px;font-weight:900;color:#E67E00">11.8%</div></div></div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:left;white-space:nowrap">Mes</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Invest. PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">GMV PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ACOS</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Clicks</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ROI</th></tr></thead><tbody><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jan<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 152K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.1M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">14.1%</td><td style="padding:8px 10px;text-align:right;color:#555">246,365</td><td style="padding:8px 10px;text-align:right;color:#555">7.1x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Fev<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 128K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 885K</td><td style="padding:8px 10px;text-align:right;color:#E67E00">14.5%</td><td style="padding:8px 10px;text-align:right;color:#555">188,681</td><td style="padding:8px 10px;text-align:right;color:#555">6.9x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mar<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 118K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.0M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">11.7%</td><td style="padding:8px 10px;text-align:right;color:#555">206,342</td><td style="padding:8px 10px;text-align:right;color:#555">8.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Abr<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 174K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.4M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">12.5%</td><td style="padding:8px 10px;text-align:right;color:#555">281,165</td><td style="padding:8px 10px;text-align:right;color:#555">8.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mai<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 202K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.7M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">11.6%</td><td style="padding:8px 10px;text-align:right;color:#555">291,224</td><td style="padding:8px 10px;text-align:right;color:#555">8.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jun<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 300K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.4M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">12.6%</td><td style="padding:8px 10px;text-align:right;color:#555">356,265</td><td style="padding:8px 10px;text-align:right;color:#555">8.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jul<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 314K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">10.0%</td><td style="padding:8px 10px;text-align:right;color:#555">454,725</td><td style="padding:8px 10px;text-align:right;color:#555">10.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Ago<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 206K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.3M</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.8%</td><td style="padding:8px 10px;text-align:right;color:#555">299,985</td><td style="padding:8px 10px;text-align:right;color:#555">11.4x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Set<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 234K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.8M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">13.2%</td><td style="padding:8px 10px;text-align:right;color:#555">277,831</td><td style="padding:8px 10px;text-align:right;color:#555">7.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Out<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 467K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.0M</td><td style="padding:8px 10px;text-align:right;color:#F23D4F">15.3%</td><td style="padding:8px 10px;text-align:right;color:#555">379,106</td><td style="padding:8px 10px;text-align:right;color:#555">6.5x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Nov<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 683K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 5.9M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">11.5%</td><td style="padding:8px 10px;text-align:right;color:#555">576,282</td><td style="padding:8px 10px;text-align:right;color:#555">8.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Dez<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 456K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.6M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">12.7%</td><td style="padding:8px 10px;text-align:right;color:#555">495,433</td><td style="padding:8px 10px;text-align:right;color:#555">7.9x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jan<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 504K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 4.1M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">12.2%</td><td style="padding:8px 10px;text-align:right;color:#555">630,897</td><td style="padding:8px 10px;text-align:right;color:#555">8.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Fev<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 316K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.1M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">10.1%</td><td style="padding:8px 10px;text-align:right;color:#555">487,864</td><td style="padding:8px 10px;text-align:right;color:#555">9.9x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mar<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 372K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">9.9%</td><td style="padding:8px 10px;text-align:right;color:#555">571,155</td><td style="padding:8px 10px;text-align:right;color:#555">10.1x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Abr<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 474K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.8M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">12.4%</td><td style="padding:8px 10px;text-align:right;color:#555">597,766</td><td style="padding:8px 10px;text-align:right;color:#555">8.1x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mai<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 445K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 3.1M</td><td style="padding:8px 10px;text-align:right;color:#E67E00">14.5%</td><td style="padding:8px 10px;text-align:right;color:#555">464,760</td><td style="padding:8px 10px;text-align:right;color:#555">6.9x</td></tr></tbody></table></div><div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_MKP_COMMERCE_ADS_GENERAL (REVENUES) - mesma base do dashboard</div></div>
   <div class="sec"><div class="sec-ttl"> ADS &amp; Investimentos MTD</div><p style="font-size:11px;color:#888;margin-bottom:12px">Base: dashboard (ORD_CREATED_DT • Mai/2026)</p><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:stretch"><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#3483FA">R$ 129K</div><div style="font-size:11px;color:#666;margin-top:6px">ADS</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#9B59B6">R$ 23K</div><div style="font-size:11px;color:#666;margin-top:6px">Cupons</div></div><div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 24px;min-width:140px;flex:1;text-align:center"><div style="font-size:22px;font-weight:900;color:#1A1A1A">R$ 152K</div><div style="font-size:11px;color:#666;margin-top:6px">Total Investimento MTD</div></div><div style="background:#FFE600;border-radius:10px;padding:18px 24px;min-width:120px;text-align:center;align-self:center"><div style="font-size:28px;font-weight:900;color:#1A1A1A">4.0%</div><div style="font-size:11px;font-weight:700;color:#333;margin-top:4px">do GMV MTD</div></div></div></div>
   <div class="sec"><div class="sec-ttl"> 📈 Tendências de Mercado 2026 — Oportunidades para este Seller</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">🛏️ Cama Box & Conjuntos <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Cama Box · Box Baú · Pillow Top · Molas Ensacadas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Box Baú em alta: armazenamento integrado viraliza no Pinterest 2026</li><li>Wellness do sono: kits colchão + base ganham preferência por conveniência</li><li>Pillow Top e molas ensacadas em ascensão como upgrade de conforto</li><li>Consumidor migra de box simples para box premium com armazenamento</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><span class="tend-item-name">CAMA BOX KING COLCHÃO ORTOFIRM + BOX 1</span><span class="tend-item-val">R$ 123K</span></div><div class="tend-item star"><span class="tend-item-name">CAMA BOX QUEEN COLCHÃO ORTOFIRM + BOX </span><span class="tend-item-val">R$ 112K</span></div><div class="tend-item star"><span class="tend-item-name">CAMA BOX KING 193X203 POCKET CAMA INBO</span><span class="tend-item-val">R$ 103K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">COLCHÃO QUEEN ORTOFIRM 158X198X32 DO</span><span class="tend-item-mom" style="color:#00A650">▲+770%</span></div><div class="tend-item up"><span class="tend-item-name">CAMA BOX CASAL COLCHÃO ORTOFIRM + BO</span><span class="tend-item-mom" style="color:#00A650">▲+650%</span></div><div class="tend-item up"><span class="tend-item-name">COLCHÃO KING ORTOFIRM 193X203X28 ONE</span><span class="tend-item-mom" style="color:#00A650">▲+600%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CAMA BOX KING COLCHÃO ROBUST GEL 220</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CAMA BOX QUEEN COLCHÃO EURO PILLOW +</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CAMA BOX SOLTEIRO COLCHÃO ORTOFIRM +</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp b">💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen</div></div></div></div></div>
 </div>
