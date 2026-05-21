@@ -97,15 +97,35 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="sec">
       <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
-      <div class="chart-box"><canvas id="cGmv"></canvas></div>
+      <div class="chart-box" style="height:320px"><canvas id="cGmv"></canvas></div>
     </div>
     <script>
+    Chart.register(ChartDataLabels);
+    var _ating = [41.8, 66.6, 168.0, 85.6, 89.8, null, null, null, null, null, null, null];
     new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2573811.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:4},
-      {label:'Projetado',data:[null,null,null,null,3676874,8823103,3362766,1188064,3861115,6369024,14675217,1984128],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
-      {label:'2025',data:[243924.0,540914.0,824238.0,969474.0,2025448.0,3291886.0,1254643.0,443265.0,1440576.0,2376273.0,5475301.0,740275.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
-      {label:'Meta Desafio',data:[1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:0}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
+      {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2573811.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5,
+        datalabels:{display:true,align:'top',anchor:'end',font:{size:9,weight:'bold'},color:'#3483FA',
+          formatter:function(v,ctx){
+            if(v===null||v===undefined)return null;
+            var at=_ating[ctx.dataIndex];
+            var lbl='R$'+Number(v/1000).toFixed(0)+'K';
+            if(at!==null&&at!==undefined)lbl+='
+'+at.toFixed(0)+'%';
+            return lbl;
+          }}},
+      {label:'Projetado',data:[null,null,null,null,3676874,8823103,3362766,1188064,3861115,6369024,14675217,1984128],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:4,borderWidth:2,
+        datalabels:{display:function(ctx){return ctx.dataIndex===ctx.dataset.data.findIndex(function(v){return v!==null&&v!=='null';})||ctx.dataIndex>=ctx.dataset.data.length-3;},align:'bottom',anchor:'end',font:{size:8},color:'#00A650',formatter:function(v){return v?'R$'+Number(v/1000).toFixed(0)+'K':null;}}},
+      {label:'2025',data:[243924.0,540914.0,824238.0,969474.0,2025448.0,3291886.0,1254643.0,443265.0,1440576.0,2376273.0,5475301.0,740275.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,datalabels:{display:false}},
+      {label:'Meta Desafio',data:[1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3,
+        datalabels:{display:function(ctx){return ctx.dataIndex%2===0;},align:'bottom',anchor:'start',font:{size:8},color:'#FF7A00',formatter:function(v){return v?'R$'+Number(v/1000).toFixed(0)+'K':null;}}}
+    ]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:30,bottom:20}},
+      plugins:{legend:{position:'top'},datalabels:{},
+        tooltip:{callbacks:{label:function(c){
+          var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+          if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% da meta)';}
+          return lbl;
+        }}}},
+      scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
   
     <div class="sec">
       <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
