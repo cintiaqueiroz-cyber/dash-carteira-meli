@@ -73,25 +73,25 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 <div class="wrap">
   
     <div class="row">
-      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 10.3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 168.1%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">6.017</div><div class="sub">LY: 3.029</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.703,64</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 10.3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 168.2%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">6.020</div><div class="sub">LY: 3.029</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.703,63</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">92%</span></div><div class="sub">Meta Desafio = R$ 11.1M</div></div>
     </div>
     <div class="sec">
       <div class="sec-ttl">Progresso da Meta YTD</div>
       <div style="margin-bottom:6px;font-size:13px">
-        <b>R$ 10.3M</b> de <b>R$ 11.1M</b> (Meta Desafio) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 168.1%</span> vs LY
+        <b>R$ 10.3M</b> de <b>R$ 11.1M</b> (Meta Desafio) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 168.2%</span> vs LY
       </div>
       <div class="bar-out" style="height:24px">
-        <div class="bar-in" style="width:92.3%;background:#3483FA"></div>
+        <div class="bar-in" style="width:92.4%;background:#3483FA"></div>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:4px">92.3% atingido</div>
+      <div style="font-size:11px;color:#888;margin-top:4px">92.4% atingido</div>
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-21/5)</div><div class="val">R$ 2.6M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 41.2%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 107.0%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.541</div><div class="sub">dias 1-21</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-21/5)</div><div class="val">R$ 2.6M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 41.5%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 107.4%</span> &nbsp;|&nbsp; Meta Des. Mai: <span style="color:#00A650;font-weight:700">&#9650; 28.6%</span> (R$ 2.9M)</div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.544</div><div class="sub">dias 1-21</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 2.4M</div><div class="sub">vs Mar: <span style="color:#F23D4F;font-weight:700">&#9660; 28.7%</span></div></div>
     </div></div>
   
@@ -101,9 +101,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     (function(){
-      var _ating = [41.8, 66.6, 168.0, 85.6, 89.9, null, null, null, null, null, null, null];
+      var _ating = [41.8, 66.6, 168.0, 85.6, 90.1, null, null, null, null, null, null, null];
       var _meta  = [1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0];
-      var _proj  = [null,null,null,null,3681251,8825741,3363772,1188420,3862269,6370928,14679605,1984721];
+      var _proj  = [null,null,null,null,3688421,8830062,3365419,1189002,3864160,6374047,14686793,1985693];
       function fk(v){ return 'R$'+Number(v/1000).toFixed(0)+'K'; }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -134,15 +134,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               ctx.fillText(txt, pt.x, pt.y-12);
             }
           });
-          // Dataset 3 = Meta Desafio (laranja): cada 3 meses, abaixo da linha
-          var meta3=chart.getDatasetMeta(3);
-          ctx.font='bold 10px Arial'; ctx.fillStyle='#CC6000';
-          meta3.data.forEach(function(pt,i){
-            if(i%3!==0)return;
-            var v=chart.data.datasets[3].data[i];
-            if(!v||isNaN(v))return;
-            ctx.fillText(fk(v), pt.x, pt.y+22);
-          });
+          // Meta Desafio: sem labels no gráfico
           // Dataset 1 = Projetado (verde): cada 2 meses
           var meta1=chart.getDatasetMeta(1);
           ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
@@ -158,8 +150,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       new Chart(document.getElementById('cGmv'),{
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-          {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2576875.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,3681251,8825741,3363772,1188420,3862269,6370928,14679605,1984721],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2581894.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,3688421,8830062,3365419,1189002,3864160,6374047,14686793,1985693],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[243924.0,540914.0,824238.0,969474.0,2025448.0,3291886.0,1254643.0,443265.0,1440576.0,2376273.0,5475301.0,740275.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
@@ -187,7 +179,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[360.0,764.0,1943.0,1409.0,1541.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[360.0,764.0,1943.0,1409.0,1544.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[150.0,354.0,537.0,655.0,1333.0,2241.0,818.0,282.0,909.0,1418.0,3253.0,439.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   <div class="sec"><div class="sec-ttl"> Top 15 Itens por GMV Mai MTD</div><div style="overflow-x:auto"><table>
