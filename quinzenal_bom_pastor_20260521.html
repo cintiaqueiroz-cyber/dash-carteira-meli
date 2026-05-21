@@ -97,35 +97,78 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="sec">
       <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
-      <div class="chart-box" style="height:320px"><canvas id="cGmv"></canvas></div>
+      <div class="chart-box" style="height:340px"><canvas id="cGmv"></canvas></div>
     </div>
     <script>
-    Chart.register(ChartDataLabels);
-    var _ating = [41.8, 66.6, 168.0, 85.6, 89.8, null, null, null, null, null, null, null];
-    new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2573811.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5,
-        datalabels:{display:true,align:'top',anchor:'end',font:{size:9,weight:'bold'},color:'#3483FA',
-          formatter:function(v,ctx){
-            if(v===null||v===undefined)return null;
-            var at=_ating[ctx.dataIndex];
-            var lbl='R$'+Number(v/1000).toFixed(0)+'K';
-            if(at!==null&&at!==undefined)lbl+='
-'+at.toFixed(0)+'%';
-            return lbl;
-          }}},
-      {label:'Projetado',data:[null,null,null,null,3676874,8823103,3362766,1188064,3861115,6369024,14675217,1984128],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:4,borderWidth:2,
-        datalabels:{display:function(ctx){return ctx.dataIndex===ctx.dataset.data.findIndex(function(v){return v!==null&&v!=='null';})||ctx.dataIndex>=ctx.dataset.data.length-3;},align:'bottom',anchor:'end',font:{size:8},color:'#00A650',formatter:function(v){return v?'R$'+Number(v/1000).toFixed(0)+'K':null;}}},
-      {label:'2025',data:[243924.0,540914.0,824238.0,969474.0,2025448.0,3291886.0,1254643.0,443265.0,1440576.0,2376273.0,5475301.0,740275.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,datalabels:{display:false}},
-      {label:'Meta Desafio',data:[1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3,
-        datalabels:{display:function(ctx){return ctx.dataIndex%2===0;},align:'bottom',anchor:'start',font:{size:8},color:'#FF7A00',formatter:function(v){return v?'R$'+Number(v/1000).toFixed(0)+'K':null;}}}
-    ]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:30,bottom:20}},
-      plugins:{legend:{position:'top'},datalabels:{},
-        tooltip:{callbacks:{label:function(c){
-          var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
-          if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% da meta)';}
-          return lbl;
-        }}}},
-      scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}})</script>
+    (function(){
+      var _ating = [41.8, 66.6, 168.0, 85.6, 89.8, null, null, null, null, null, null, null];
+      var _meta  = [1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0];
+      var _proj  = [null,null,null,null,3676874,8823103,3362766,1188064,3861115,6369024,14675217,1984128];
+      function fk(v){ return 'R$'+Number(v/1000).toFixed(0)+'K'; }
+      var labelsPlugin = {
+        id:'gmvLabels',
+        afterDatasetsDraw: function(chart){
+          var ctx=chart.ctx;
+          ctx.save();
+          // Dataset 0 = 2026 (azul): valor + atingimento
+          var meta0=chart.getDatasetMeta(0);
+          ctx.font='bold 9px Arial'; ctx.textAlign='center';
+          meta0.data.forEach(function(pt,i){
+            var v=chart.data.datasets[0].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(v))return;
+            var at=_ating[i];
+            ctx.fillStyle='#3483FA';
+            ctx.fillText(fk(v), pt.x, pt.y-18);
+            if(at!==null&&at!==undefined){
+              ctx.fillStyle=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+              ctx.fillText(at.toFixed(0)+'%', pt.x, pt.y-8);
+            }
+          });
+          // Dataset 3 = Meta Desafio (laranja): valor em meses alternados
+          var meta3=chart.getDatasetMeta(3);
+          ctx.font='9px Arial'; ctx.fillStyle='#FF7A00';
+          meta3.data.forEach(function(pt,i){
+            if(i%2!==0)return;
+            var v=chart.data.datasets[3].data[i];
+            if(!v||isNaN(v))return;
+            ctx.fillText(fk(v), pt.x, pt.y+16);
+          });
+          // Dataset 1 = Projetado (verde): só mai e último mês
+          var meta1=chart.getDatasetMeta(1);
+          ctx.font='9px Arial'; ctx.fillStyle='#00A650';
+          meta1.data.forEach(function(pt,i){
+            var v=chart.data.datasets[1].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-8);
+          });
+          ctx.restore();
+        }
+      };
+      new Chart(document.getElementById('cGmv'),{
+        type:'line',
+        data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+          {label:'2026',data:[628423.0,1283695.0,3363849.0,2397970.0,2573811.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,3676874,8823103,3362766,1188064,3861115,6369024,14675217,1984128],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2025',data:[243924.0,540914.0,824238.0,969474.0,2025448.0,3291886.0,1254643.0,443265.0,1440576.0,2376273.0,5475301.0,740275.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+          {label:'Meta Desafio',data:[1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+        ]},
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:35,bottom:15}},
+          plugins:{
+            legend:{position:'top'},
+            tooltip:{callbacks:{label:function(c){
+              var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+              if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+              return lbl;
+            }}}
+          },
+          scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+        },
+        plugins:[labelsPlugin]
+      });
+    })();
+    </script>
   
     <div class="sec">
       <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
@@ -708,7 +751,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right;font-weight:700">R$ 2.2M</td>
           <td style="text-align:right">84.4%</td>
           <td style="text-align:right">R$ 948K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 129.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 129.5%</span></td>
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER</td>
           <td>MATTRESSES &amp; SOMMIER SETS</td>
@@ -759,7 +802,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 2.5M</td>
-          <td style="text-align:right;color:#555">1.497</td>
+          <td style="text-align:right;color:#555">1.499</td>
           <td style="text-align:right">98.7%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:98.7%"></div></div></td>
         </tr><tr>
