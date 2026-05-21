@@ -97,7 +97,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="sec">
       <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
-      <div class="chart-box" style="height:380px"><canvas id="cGmv"></canvas></div>
+      <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
     </div>
     <script>
     (function(){
@@ -117,39 +117,40 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
             var v=chart.data.datasets[0].data[i];
             if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
             var at=_ating[i];
-            // valor GMV
-            ctx.font='bold 10px Arial'; ctx.fillStyle='#1A5DC8';
-            ctx.fillText(fk(Number(v)), pt.x, pt.y-22);
-            // badge % atingimento
+            // valor GMV — maior e mais acima
+            ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+            // badge % atingimento — maior
             if(at!==null&&at!==undefined){
               var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
               var txt=at.toFixed(0)+'%';
-              var tw=ctx.measureText(txt).width+8;
+              ctx.font='bold 10px Arial';
+              var tw=ctx.measureText(txt).width+10;
               ctx.fillStyle=bg;
               ctx.beginPath();
-              ctx.roundRect(pt.x-tw/2, pt.y-17, tw, 13, 4);
+              ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5);
               ctx.fill();
-              ctx.font='bold 8px Arial'; ctx.fillStyle='#fff';
-              ctx.fillText(txt, pt.x, pt.y-7);
+              ctx.fillStyle='#fff';
+              ctx.fillText(txt, pt.x, pt.y-12);
             }
           });
-          // Dataset 3 = Meta Desafio (laranja): só meses Q (jan,abr,jul,out + atual)
+          // Dataset 3 = Meta Desafio (laranja): cada 3 meses, abaixo da linha
           var meta3=chart.getDatasetMeta(3);
-          ctx.font='8px Arial'; ctx.fillStyle='#CC6000';
+          ctx.font='bold 10px Arial'; ctx.fillStyle='#CC6000';
           meta3.data.forEach(function(pt,i){
             if(i%3!==0)return;
             var v=chart.data.datasets[3].data[i];
             if(!v||isNaN(v))return;
-            ctx.fillText(fk(v), pt.x, pt.y+18);
+            ctx.fillText(fk(v), pt.x, pt.y+22);
           });
-          // Dataset 1 = Projetado (verde): só primeiro e picos visíveis (cada 2 meses)
+          // Dataset 1 = Projetado (verde): cada 2 meses
           var meta1=chart.getDatasetMeta(1);
-          ctx.font='8px Arial'; ctx.fillStyle='#007A3D';
+          ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
           meta1.data.forEach(function(pt,i){
             if(i%2!==0)return;
             var v=chart.data.datasets[1].data[i];
             if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
-            ctx.fillText(fk(Number(v)), pt.x, pt.y-10);
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
           });
           ctx.restore();
         }
@@ -164,7 +165,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         ]},
         options:{
           responsive:true,maintainAspectRatio:false,
-          layout:{padding:{top:35,bottom:15}},
+          layout:{padding:{top:50,bottom:20}},
           plugins:{
             legend:{position:'top'},
             tooltip:{callbacks:{label:function(c){
@@ -204,13 +205,13 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-4202911771" target="_blank">SOFÁ 2 LUGARES 2,00M RETRÁTIL E RECLINÁVEL MILANO </a><br>
               <span style="font-size:10px;color:#999">MLB4202911771</span></td>
-          <td style="text-align:right;font-weight:700">R$ 624K</td>
+          <td style="text-align:right;font-weight:700">R$ 625K</td>
           <td style="text-align:right">24.4%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 84.2%</span></td>
-          <td style="text-align:right">1.233</td>
-          <td style="text-align:right">R$ 505,77</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 84.7%</span></td>
+          <td style="text-align:right">1.234</td>
+          <td style="text-align:right">R$ 506,66</td>
           <td style="text-align:right">274.172</td>
-          <td style="text-align:right">0.4%</td>
+          <td style="text-align:right">0.5%</td>
           <td> <span class="pill pl-y">Others</span> <span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 25K</td>
         </tr><tr>
@@ -265,7 +266,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-5505034632" target="_blank">COLCHÃO KING FIORI MOLAS ENSACADAS + BASE 193X203X</a><br>
               <span style="font-size:10px;color:#999">MLB5505034632</span></td>
           <td style="text-align:right;font-weight:700">R$ 83K</td>
-          <td style="text-align:right">3.3%</td>
+          <td style="text-align:right">3.2%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 85.4%</span></td>
           <td style="text-align:right">123</td>
           <td style="text-align:right">R$ 675,56</td>
@@ -793,7 +794,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right;font-weight:700">R$ 2.2M</td>
           <td style="text-align:right">84.4%</td>
           <td style="text-align:right">R$ 948K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 129.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 130.1%</span></td>
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER</td>
           <td>MATTRESSES &amp; SOMMIER SETS</td>
@@ -844,7 +845,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 2.5M</td>
-          <td style="text-align:right;color:#555">1.499</td>
+          <td style="text-align:right;color:#555">1.502</td>
           <td style="text-align:right">98.7%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:98.7%"></div></div></td>
         </tr><tr>
