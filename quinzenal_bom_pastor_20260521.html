@@ -104,7 +104,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       var _ating = [41.8, 66.6, 168.0, 85.6, 90.1, null, null, null, null, null, null, null];
       var _meta  = [1504833.0,1926222.0,2001782.0,2800000.0,2867169.0,3298491.0,3697296.0,3581232.0,3906037.0,4150746.0,7234072.0,3369457.0];
       var _proj  = [null,null,null,null,3688421,8830062,3365419,1189002,3864160,6374047,14686793,1985693];
-      function fk(v){ return 'R$'+Number(v/1000).toFixed(0)+'K'; }
+      function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
         afterDatasetsDraw: function(chart){
