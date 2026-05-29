@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio MULTILOJA - 29/05/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:13px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:10px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:11px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'●';position:absolute;left:0;color:#FFE600;font-size:8px;top:4px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:11px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:11px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; MULTILOJA</h1>
+    <div class="sub">Relatorio de Performance &middot; 29/05/2026 &middot; IDs: 226418798,1784044230</div>
+  </div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 67%</div>
+</div>
+<div class="wrap">
+  
+    <div class="row">
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 13.0M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 55.4%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">28.318</div><div class="sub">LY: 15.188</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 460,19</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">67%</span></div><div class="sub">Meta Desafio = R$ 19.4M</div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-ttl">Progresso da Meta YTD</div>
+      <div style="margin-bottom:6px;font-size:13px">
+        <b>R$ 13.0M</b> de <b>R$ 19.4M</b> (Meta Desafio) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 55.4%</span> vs LY
+      </div>
+      <div class="bar-out" style="height:24px">
+        <div class="bar-in" style="width:67.1%;background:#3483FA"></div>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:4px">67.1% atingido</div>
+    </div>
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card"><div class="lbl">GMV MTD (1-29/5)</div><div class="val">R$ 3.2M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 27.1%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 192.9%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">6.835</div><div class="sub">dias 1-29</div></div>
+      <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 2.6M</div><div class="sub">vs Mar: <span style="color:#00A650;font-weight:700">&#9650; 2.6%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Mai</div><div class="val"><span style="color:#E67E00">74.3%</span></div><div class="sub">R$ 3.2M de R$ 4.3M &nbsp;·&nbsp; dias 1-29 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 23.1%</span></div></div>
+    </div></div>
+  
+    <div class="sec">
+      <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
+      <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var _ating = [68.4, 66.1, 67.0, 59.8, 74.3, null, null, null, null, null, null, null];
+      var _meta  = [3548618.0,3295577.0,3827637.0,4400000.0,4345284.0,4743835.0,5237990.0,5073561.0,5533715.0,5880397.0,5998445.0,4773538.0];
+      var _proj  = [null,null,null,null,3340061,1583645,2225938,2111289,2163031,3842293,3917581,3122907];
+      function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+      var labelsPlugin = {
+        id:'gmvLabels',
+        afterDatasetsDraw: function(chart){
+          var ctx=chart.ctx;
+          ctx.save();
+          ctx.textAlign='center';
+          // Dataset 0 = 2026 (azul): valor acima + badge % atingimento
+          var meta0=chart.getDatasetMeta(0);
+          meta0.data.forEach(function(pt,i){
+            var v=chart.data.datasets[0].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            var at=_ating[i];
+            // valor GMV — maior e mais acima
+            ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+            // badge % atingimento — maior
+            if(at!==null&&at!==undefined){
+              var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+              var txt=at.toFixed(0)+'%';
+              ctx.font='bold 10px Arial';
+              var tw=ctx.measureText(txt).width+10;
+              ctx.fillStyle=bg;
+              ctx.beginPath();
+              ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5);
+              ctx.fill();
+              ctx.fillStyle='#fff';
+              ctx.fillText(txt, pt.x, pt.y-12);
+            }
+          });
+          // Dataset 1 = Projetado (verde): começa em Jun (skip até mês atual)
+          var meta1=chart.getDatasetMeta(1);
+          var _mesMTD=4;
+          ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+          meta1.data.forEach(function(pt,i){
+            if(i<=_mesMTD)return;
+            if(i%2===0)return;
+            var v=chart.data.datasets[1].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
+          });
+          // Mês atual: mostrar também Projetado e Meta Desafio
+          var ptProj=chart.getDatasetMeta(1).data[_mesMTD];
+          if(ptProj){
+            var vProj=chart.data.datasets[1].data[_mesMTD];
+            if(vProj!==null&&vProj!==undefined&&vProj!=='null'&&!isNaN(Number(vProj))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+              ctx.fillText(fk(Number(vProj)), ptProj.x+28, ptProj.y-8);
+            }
+          }
+          var ptMeta=chart.getDatasetMeta(3).data[_mesMTD];
+          if(ptMeta){
+            var vMeta=_meta[_mesMTD];
+            if(vMeta!==null&&vMeta!==undefined&&vMeta!=='null'&&!isNaN(Number(vMeta))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#CC5500';
+              ctx.fillText(fk(Number(vMeta)), ptMeta.x+28, ptMeta.y-8);
+            }
+          }
+          ctx.restore();
+        }
+      };
+      new Chart(document.getElementById('cGmv'),{
+        type:'line',
+        data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+          {label:'2026',data:[2426906.0,2177874.0,2566075.0,2632015.0,3228726.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,3340061,1583645,2225938,2111289,2163031,3842293,3917581,3122907],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2025',data:[1410935.0,2654183.0,1934808.0,1286120.0,1173536.0,1019367.0,1432801.0,1359003.0,1392309.0,2473223.0,2521685.0,2010166.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+          {label:'Meta Desafio',data:[3548618.0,3295577.0,3827637.0,4400000.0,4345284.0,4743835.0,5237990.0,5073561.0,5533715.0,5880397.0,5998445.0,4773538.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+        ]},
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:50,bottom:20}},
+          plugins:{
+            legend:{position:'top'},
+            tooltip:{callbacks:{label:function(c){
+              var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+              if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+              return lbl;
+            }}}
+          },
+          scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+        },
+        plugins:[labelsPlugin]
+      });
+    })();
+    </script>
+  
+    <div class="sec">
+      <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
+      <div class="chart-box"><canvas id="cSI"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[5515.0,4872.0,5468.0,5628.0,6835.0,null,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[2384.0,4614.0,3398.0,2613.0,2179.0,2053.0,2767.0,2486.0,2477.0,4723.0,5015.0,4367.0],backgroundColor:'#DDE8FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Mai MTD</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th>
+        <th style="text-align:right">NMV Mai MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="text-align:right">MoM vs Abr</th>
+        <th style="text-align:right">SIs MTD</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Visitas 90d</th>
+        <th style="text-align:right">CVR</th>
+        <th>Status / Log.</th>
+        <th style="text-align:right">PADs YTD</th>
+      </tr></thead><tbody></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Abr 1-29 vs Mai 1-29)</div><p style="color:#888;padding:10px">Sem dados suficientes.</p></div>
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Abr 1-29 vs Mai 1-29)</div><p style="color:#888;padding:10px">Sem dados suficientes.</p></div>
+  <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th><th style="text-align:right">Vis. D-60-30</th>
+        <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
+      </tr></thead><tbody><tr><td colspan="4" style="text-align:center;color:#888">Sem quedas significativas</td></tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Análise por Subcategoria (AGG3) — Mai MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Subcategoria</th>
+      <th style="text-align:right">GMV MTD</th>
+      <th style="text-align:right">Unidades</th>
+      <th style="text-align:right">Ticket Médio</th>
+      <th style="text-align:right">Share GMV</th>
+      <th style="text-align:right">Share Unid.</th>
+      <th style="text-align:center">YoY GMV</th>
+      <th style="text-align:center">YoY Unid.</th>
+      <th style="text-align:center">YoY Ticket</th>
+    </tr></thead><tbody><tr>
+          <td>Aparadores e Cômodas</td>
+          <td style="text-align:right;font-weight:700">R$ 1.5M</td>
+          <td style="text-align:right">3.041</td>
+          <td style="text-align:right">R$ 502,23</td>
+          <td style="text-align:right">47.3%</td>
+          <td style="text-align:right">44.5%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 124.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 134.5%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 4.4%</span></td>
+        </tr><tr>
+          <td>Colchões</td>
+          <td style="text-align:right;font-weight:700">R$ 395K</td>
+          <td style="text-align:right">971</td>
+          <td style="text-align:right">R$ 406,32</td>
+          <td style="text-align:right">12.2%</td>
+          <td style="text-align:right">14.2%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 159.4%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 131.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 12.2%</span></td>
+        </tr><tr>
+          <td>Camas, Cabeceiras e Criados-mudos</td>
+          <td style="text-align:right;font-weight:700">R$ 339K</td>
+          <td style="text-align:right">355</td>
+          <td style="text-align:right">R$ 955,64</td>
+          <td style="text-align:right">10.5%</td>
+          <td style="text-align:right">5.2%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 455.6%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 429.9%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 4.9%</span></td>
+        </tr><tr>
+          <td>CABINETS</td>
+          <td style="text-align:right;font-weight:700">R$ 317K</td>
+          <td style="text-align:right">1.451</td>
+          <td style="text-align:right">R$ 218,50</td>
+          <td style="text-align:right">9.8%</td>
+          <td style="text-align:right">21.2%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1821.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 2922.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 36.5%</span></td>
+        </tr><tr>
+          <td>Mesas e Cadeiras de Escritório</td>
+          <td style="text-align:right;font-weight:700">R$ 130K</td>
+          <td style="text-align:right">410</td>
+          <td style="text-align:right">R$ 316,02</td>
+          <td style="text-align:right">4.0%</td>
+          <td style="text-align:right">6.0%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 628.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 645.5%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 2.3%</span></td>
+        </tr><tr>
+          <td>TV STORAGE</td>
+          <td style="text-align:right;font-weight:700">R$ 115K</td>
+          <td style="text-align:right">167</td>
+          <td style="text-align:right">R$ 686,87</td>
+          <td style="text-align:right">3.6%</td>
+          <td style="text-align:right">2.4%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 44.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 149.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 42.1%</span></td>
+        </tr><tr>
+          <td>Sofás, Poltronas e Acessórios</td>
+          <td style="text-align:right;font-weight:700">R$ 104K</td>
+          <td style="text-align:right">110</td>
+          <td style="text-align:right">R$ 948,90</td>
+          <td style="text-align:right">3.2%</td>
+          <td style="text-align:right">1.6%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 310.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 358.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.5%</span></td>
+        </tr><tr>
+          <td>Cadeiras, Mesas e Conjuntos de Jantar</td>
+          <td style="text-align:right;font-weight:700">R$ 104K</td>
+          <td style="text-align:right">94</td>
+          <td style="text-align:right">R$ 1.104,27</td>
+          <td style="text-align:right">3.2%</td>
+          <td style="text-align:right">1.4%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 2576.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1466.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 70.8%</span></td>
+        </tr><tr>
+          <td>Conjuntos de Sala</td>
+          <td style="text-align:right;font-weight:700">R$ 82K</td>
+          <td style="text-align:right">86</td>
+          <td style="text-align:right">R$ 958,70</td>
+          <td style="text-align:right">2.6%</td>
+          <td style="text-align:right">1.3%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 126.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 152.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.4%</span></td>
+        </tr><tr>
+          <td>CABINETS &amp; LOCKERS</td>
+          <td style="text-align:right;font-weight:700">R$ 35K</td>
+          <td style="text-align:right">41</td>
+          <td style="text-align:right">R$ 842,49</td>
+          <td style="text-align:right">1.1%</td>
+          <td style="text-align:right">0.6%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 402.9%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 355.6%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 10.4%</span></td>
+        </tr><tr>
+          <td>RACKS</td>
+          <td style="text-align:right;font-weight:700">R$ 28K</td>
+          <td style="text-align:right">46</td>
+          <td style="text-align:right">R$ 601,70</td>
+          <td style="text-align:right">0.9%</td>
+          <td style="text-align:right">0.7%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 716.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 411.1%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 59.6%</span></td>
+        </tr><tr>
+          <td>OUTDOOR GRILLS &amp; OVENS</td>
+          <td style="text-align:right;font-weight:700">R$ 18K</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right">R$ 3.584,00</td>
+          <td style="text-align:right">0.6%</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 45.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 66.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 12.7%</span></td>
+        </tr><tr>
+          <td>Colchões e Sommiers</td>
+          <td style="text-align:right;font-weight:700">R$ 17K</td>
+          <td style="text-align:right">21</td>
+          <td style="text-align:right">R$ 800,95</td>
+          <td style="text-align:right">0.5%</td>
+          <td style="text-align:right">0.3%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>MAKE UP VANITIES</td>
+          <td style="text-align:right;font-weight:700">R$ 11K</td>
+          <td style="text-align:right">14</td>
+          <td style="text-align:right">R$ 786,14</td>
+          <td style="text-align:right">0.3%</td>
+          <td style="text-align:right">0.2%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 893.3%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 366.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 112.9%</span></td>
+        </tr><tr>
+          <td>OUTDOOR CHAIRS &amp; TABLES</td>
+          <td style="text-align:right;font-weight:700">R$ 4K</td>
+          <td style="text-align:right">6</td>
+          <td style="text-align:right">R$ 589,67</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>LIBRARIES AND SHELVES</td>
+          <td style="text-align:right;font-weight:700">R$ 2K</td>
+          <td style="text-align:right">7</td>
+          <td style="text-align:right">R$ 307,00</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>SOMMIER BASES</td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right">2</td>
+          <td style="text-align:right">R$ 662,00</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 42.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 100.0%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 28.7%</span></td>
+        </tr><tr>
+          <td>Mesas de Centro e Laterais</td>
+          <td style="text-align:right;font-weight:700">R$ 1K</td>
+          <td style="text-align:right">5</td>
+          <td style="text-align:right">R$ 258,40</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>DINNERWARE</td>
+          <td style="text-align:right;font-weight:700">R$ 851</td>
+          <td style="text-align:right">4</td>
+          <td style="text-align:right">R$ 212,75</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:right">0.1%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>COOKWARE</td>
+          <td style="text-align:right;font-weight:700">R$ 216</td>
+          <td style="text-align:right">1</td>
+          <td style="text-align:right">R$ 216,00</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:right">0.0%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.2%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 91.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 29.8%</span></td>
+        </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
+      <td>Total</td>
+      <td style="text-align:right">R$ 3.2M</td>
+      <td style="text-align:right">6.838</td>
+      <td style="text-align:right">R$ 472,43</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 193.1%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 232.7%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 11.9%</span></td>
+    </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens Ativos</div><div class="val">1.342</div><div class="sub">total no catálogo ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas Mai MTD</div><div class="val">587</div><div class="sub">44% do ativo</div></div>
+      <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
+      <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
+    </div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
+      <b>Sell-through:</b> 43.7% dos itens ativos tiveram venda nos últimos 90 dias.
+      âš ï¸ Oportunidade: ativar ou revisar itens sem venda.
+    </div></div>
+  <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Modal</th>
+        <th style="text-align:right">GMV Mai MTD</th>
+        <th style="text-align:right">Pedidos MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="min-width:100px">Distribuição</th>
+      </tr></thead><tbody><tr>
+          <td><span class="pill pl-r">OTHER</span></td>
+          <td style="text-align:right;font-weight:700">R$ 3.1M</td>
+          <td style="text-align:right;color:#555">6.626</td>
+          <td style="text-align:right">97.4%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:97.4%"></div></div></td>
+        </tr><tr>
+          <td><span class="pill pl-y">XD</span></td>
+          <td style="text-align:right;font-weight:700">R$ 85K</td>
+          <td style="text-align:right;color:#555">212</td>
+          <td style="text-align:right">2.6%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:2.6%"></div></div></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">Investimento em PADs (Product Ads)</div><div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap"><div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#3483FA;font-weight:800">PADs YTD</div><div style="font-size:20px;font-weight:900;color:#3483FA">R$ 76K</div></div><div style="background:#E8F8EF;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#00A650;font-weight:800">GMV PADs YTD</div><div style="font-size:20px;font-weight:900;color:#00A650">R$ 2.0M</div></div><div style="background:#FFF9E0;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#E67E00;font-weight:800">ACOS YTD</div><div style="font-size:20px;font-weight:900;color:#E67E00">3.9%</div></div></div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:left;white-space:nowrap">Mes</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Invest. PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">GMV PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ACOS</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Clicks</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ROI</th></tr></thead><tbody><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jan<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 6K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 147K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.0%</td><td style="padding:8px 10px;text-align:right;color:#555">21,302</td><td style="padding:8px 10px;text-align:right;color:#555">25.1x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Fev<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 4K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 161K</td><td style="padding:8px 10px;text-align:right;color:#00A650">2.3%</td><td style="padding:8px 10px;text-align:right;color:#555">14,037</td><td style="padding:8px 10px;text-align:right;color:#555">42.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mar<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 5K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 116K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.4%</td><td style="padding:8px 10px;text-align:right;color:#555">17,946</td><td style="padding:8px 10px;text-align:right;color:#555">22.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Abr<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 5K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 82K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.3%</td><td style="padding:8px 10px;text-align:right;color:#555">16,451</td><td style="padding:8px 10px;text-align:right;color:#555">15.9x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mai<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 7K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 108K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.0%</td><td style="padding:8px 10px;text-align:right;color:#555">23,054</td><td style="padding:8px 10px;text-align:right;color:#555">16.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jun<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 10K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 182K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.5%</td><td style="padding:8px 10px;text-align:right;color:#555">42,919</td><td style="padding:8px 10px;text-align:right;color:#555">18.1x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jul<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 13K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 239K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">52,794</td><td style="padding:8px 10px;text-align:right;color:#555">17.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Ago<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 15K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 265K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">69,494</td><td style="padding:8px 10px;text-align:right;color:#555">17.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Set<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 13K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 239K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.3%</td><td style="padding:8px 10px;text-align:right;color:#555">63,352</td><td style="padding:8px 10px;text-align:right;color:#555">18.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Out<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 14K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 314K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.3%</td><td style="padding:8px 10px;text-align:right;color:#555">62,528</td><td style="padding:8px 10px;text-align:right;color:#555">23.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Nov<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 16K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 343K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.7%</td><td style="padding:8px 10px;text-align:right;color:#555">60,629</td><td style="padding:8px 10px;text-align:right;color:#555">21.3x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Dez<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 13K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 292K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.6%</td><td style="padding:8px 10px;text-align:right;color:#555">54,220</td><td style="padding:8px 10px;text-align:right;color:#555">21.9x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jan<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 15K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 382K</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.9%</td><td style="padding:8px 10px;text-align:right;color:#555">68,665</td><td style="padding:8px 10px;text-align:right;color:#555">25.9x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Fev<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 14K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 387K</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.7%</td><td style="padding:8px 10px;text-align:right;color:#555">90,059</td><td style="padding:8px 10px;text-align:right;color:#555">27.3x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mar<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 16K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 382K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.1%</td><td style="padding:8px 10px;text-align:right;color:#555">90,120</td><td style="padding:8px 10px;text-align:right;color:#555">24.5x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Abr<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 15K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 398K</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.8%</td><td style="padding:8px 10px;text-align:right;color:#555">79,536</td><td style="padding:8px 10px;text-align:right;color:#555">26.1x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mai<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 16K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 411K</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.8%</td><td style="padding:8px 10px;text-align:right;color:#555">75,811</td><td style="padding:8px 10px;text-align:right;color:#555">26.0x</td></tr></tbody></table></div><div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_MKP_COMMERCE_ADS_GENERAL (REVENUES) - mesma base do dashboard</div></div>
+  
+</div>
+</body></html>
