@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 29/05/2026 20:51 -->
+<!-- Build: 29/05/2026 20:54 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -248,7 +248,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 29/05/2026 20:51</span>
+    <span class="update-badge">&#10003; Atualizado 29/05/2026 20:54</span>
   </div>
 </div>
 <div id="sidebar">
@@ -1230,7 +1230,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 29/30 dias &nbsp;&middot;&nbsp; 29/05/2026 20:51
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Maio parcial: 29/30 dias &nbsp;&middot;&nbsp; 29/05/2026 20:54
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -2780,7 +2780,24 @@ function buildCategorias(g,px){
   if(c1)chartInstances[px+'-cat2']=new Chart(c1.getContext('2d'),{
     type:'doughnut',
     data:{labels:cats.map(function(c){return c[0];}),datasets:[{data:cats.map(function(c){return c[1].gmv;}),backgroundColor:colors,borderWidth:2,borderColor:'#fff'}]},
-    options:{responsive:true,animation:false,cutout:'60%',plugins:{legend:{position:'right',labels:{font:{size:10},usePointStyle:true,pointStyleWidth:12}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw)+' ('+(c.raw/Math.max(total,1)*100).toFixed(1)+'%)';}}}}}
+    options:{responsive:true,animation:false,cutout:'60%',
+      plugins:{
+        legend:{position:'right',labels:{font:{size:10},usePointStyle:true,pointStyleWidth:12}},
+        tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw)+' ('+(c.raw/Math.max(total,1)*100).toFixed(1)+'%';}}},
+        datalabels:{
+          display:function(ctx){return ctx.dataIndex<3;},
+          anchor:'end',align:'end',offset:6,
+          color:function(ctx){return colors[ctx.dataIndex]||'#333';},
+          font:{size:10,weight:'700'},
+          formatter:function(value,ctx){
+            var sh=(value/Math.max(total,1)*100).toFixed(1);
+            var nm=fmt(value);
+            return sh+'%\n'+nm;
+          },
+          textAlign:'center'
+        }
+      }
+    }
   });
 
   // Pareto chart (bar + line)
