@@ -135,18 +135,34 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               ctx.fillText(txt, pt.x, pt.y-12);
             }
           });
-          // Meta Desafio: sem labels no gráfico
-          // Dataset 1 = Projetado (verde): começa em Jun (skip Mai = índice do mês atual)
+          // Dataset 1 = Projetado (verde): começa em Jun (skip até mês atual)
           var meta1=chart.getDatasetMeta(1);
           var _mesMTD=4;
           ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
           meta1.data.forEach(function(pt,i){
-            if(i<=_mesMTD)return;  // pula até o mês atual (já coberto pela linha 2026)
-            if(i%2===0)return;     // só meses ímpares (Jun=5, Ago=7, Out=9, Dez=11)
+            if(i<=_mesMTD)return;
+            if(i%2===0)return;
             var v=chart.data.datasets[1].data[i];
             if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
             ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
           });
+          // Mês atual: mostrar também Projetado e Meta Desafio
+          var ptProj=chart.getDatasetMeta(1).data[_mesMTD];
+          if(ptProj){
+            var vProj=chart.data.datasets[1].data[_mesMTD];
+            if(vProj!==null&&vProj!==undefined&&vProj!=='null'&&!isNaN(Number(vProj))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+              ctx.fillText(fk(Number(vProj)), ptProj.x+28, ptProj.y-8);
+            }
+          }
+          var ptMeta=chart.getDatasetMeta(3).data[_mesMTD];
+          if(ptMeta){
+            var vMeta=_meta[_mesMTD];
+            if(vMeta!==null&&vMeta!==undefined&&vMeta!=='null'&&!isNaN(Number(vMeta))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#CC5500';
+              ctx.fillText(fk(Number(vMeta)), ptMeta.x+28, ptMeta.y-8);
+            }
+          }
           ctx.restore();
         }
       };
@@ -853,12 +869,12 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
     <div class="row">
       <div class="card"><div class="lbl">Itens Ativos</div><div class="val">294</div><div class="sub">total no catálogo ativo</div></div>
-      <div class="card"><div class="lbl">Ativos c/ Vendas 90d</div><div class="val">294</div><div class="sub">100% do ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas Mai MTD</div><div class="val">202</div><div class="sub">69% do ativo</div></div>
       <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
       <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
     </div>
     <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
-      <b>Sell-through:</b> 100.0% dos itens ativos tiveram venda nos últimos 90 dias.
+      <b>Sell-through:</b> 68.7% dos itens ativos tiveram venda nos últimos 90 dias.
       ✅ Boa cobertura de sortimento.
     </div></div>
   <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
