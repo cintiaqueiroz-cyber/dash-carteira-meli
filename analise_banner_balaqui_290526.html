@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Análise Banner — BALAQUI — 29/05/2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F5F5;color:#1A1A1A;font-size:13px}
+  .hero{background:linear-gradient(135deg,#1A1A1A,#2D2D2D);color:#fff;padding:24px 32px}
+  .hero-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+  .hero h1{font-size:22px;font-weight:900;margin-bottom:4px;letter-spacing:-.3px}
+  .hero .sub{font-size:12px;opacity:.65;margin-top:2px}
+  .hero-badge{background:#FFE600;color:#1A1A1A;border-radius:8px;padding:10px 16px;font-size:12px;max-width:360px}
+  .hero-badge strong{font-size:13px;font-weight:900;display:block;margin-bottom:2px}
+  .wrap{max-width:920px;margin:0 auto;padding:20px 16px 32px}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  .kpi{background:#fff;border-radius:10px;padding:14px 16px;box-shadow:0 2px 6px rgba(0,0,0,.07);text-align:center}
+  .kpi .val{font-size:22px;font-weight:900}
+  .kpi .lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+  .kpi .sub{font-size:11px;margin-top:4px;color:#555}
+  .kpi.highlight{border-top:3px solid #FFE600}
+  .kpi.green .val{color:#00A650}
+  .kpi.blue .val{color:#3483FA}
+  .kpi.orange .val{color:#FF7A00}
+
+  .section{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 2px 6px rgba(0,0,0,.07);margin-bottom:16px}
+  .sec-title{font-size:12px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:7px;color:#1A1A1A;text-transform:uppercase;letter-spacing:.5px}
+  .sec-title::before{content:'';width:3px;height:15px;background:#FFE600;border-radius:2px;display:inline-block;flex-shrink:0}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+  /* Item destaque */
+  .item-hero{background:linear-gradient(135deg,#1A1A1A,#333);color:#fff;border-radius:10px;padding:18px 20px;margin-bottom:16px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+  .item-hero-info{flex:1;min-width:220px}
+  .item-hero-info .tag{background:#FFE600;color:#1A1A1A;font-size:9px;font-weight:900;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:8px;text-transform:uppercase}
+  .item-hero-info h2{font-size:14px;font-weight:800;line-height:1.4;margin-bottom:6px}
+  .item-hero-info .mlb{font-size:11px;opacity:.6}
+  .item-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1;min-width:220px}
+  .ik{background:rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;text-align:center}
+  .ik .v{font-size:20px;font-weight:900;color:#FFE600}
+  .ik .l{font-size:9px;opacity:.7;text-transform:uppercase;margin-top:2px}
+
+  /* Timeline diária */
+  .timeline{display:flex;gap:0;border-radius:10px;overflow:hidden;margin-bottom:14px}
+  .tday{flex:1;padding:12px 8px;text-align:center;background:#F8F8F8;border-right:1px solid #eee;position:relative}
+  .tday:last-child{border-right:none}
+  .tday.banner{background:linear-gradient(180deg,#FFFDE7,#FFF9C4);border-top:3px solid #FFE600}
+  .tday .date{font-size:10px;color:#888;font-weight:700;margin-bottom:4px}
+  .tday .units{font-size:22px;font-weight:900;color:#1A1A1A}
+  .tday.banner .units{color:#1A1A1A}
+  .tday .gmv{font-size:11px;color:#555;margin-top:2px}
+  .tday .zero{font-size:22px;font-weight:900;color:#CCC}
+  .banner-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#FFE600;color:#1A1A1A;font-size:8px;font-weight:900;padding:1px 6px;border-radius:0 0 6px 6px;white-space:nowrap}
+
+  /* Tabela de itens */
+  table.tbl{width:100%;border-collapse:collapse;font-size:11px}
+  table.tbl th{padding:8px 10px;background:#1A1A1A;color:#FFE600;font-size:10px;font-weight:800;text-align:left;white-space:nowrap}
+  table.tbl th:not(:first-child){text-align:right}
+  table.tbl td{padding:8px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+  table.tbl td:not(:first-child){text-align:right;font-weight:700}
+  table.tbl tr:hover td{background:#FFFBEA}
+  table.tbl tr.destaque td{background:#FFFDE7;border-left:3px solid #FFE600}
+  .delta-up{color:#00A650;font-size:10px;font-weight:800}
+  .delta-dn{color:#F23D4F;font-size:10px;font-weight:800}
+  .delta-new{background:#FFE600;color:#1A1A1A;font-size:9px;font-weight:900;padding:1px 6px;border-radius:10px}
+
+  .insight{border-left:3px solid #3483FA;background:#F0F5FF;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:10px;font-size:12px;line-height:1.5}
+  .insight.yellow{border-left-color:#FFE600;background:#FFFDE7}
+  .insight.green{border-left-color:#00A650;background:#F0FFF5}
+  .insight strong{display:block;margin-bottom:3px;font-size:12px}
+
+  .footer{text-align:center;padding:16px;font-size:10px;color:#aaa}
+  .chart-wrap{height:200px;position:relative}
+  @media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.item-kpis{grid-template-columns:repeat(3,1fr)}.timeline{flex-direction:column}.tday{border-right:none;border-bottom:1px solid #eee}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hero">
+  <div class="hero-row">
+    <div>
+      <div class="sub">MERCADO LIVRE — F&amp;H &nbsp;·&nbsp; CINTIA FARACO QUEIROZ</div>
+      <h1>Análise de Banner — BALAQUI</h1>
+      <div class="sub">Sexta-feira, 29 de maio de 2026 &nbsp;·&nbsp; Impacto campanha de banner</div>
+    </div>
+    <div class="hero-badge">
+      <strong>🎯 Item em Destaque no Banner</strong>
+      MLB4302505513 — Sofá Cama Compact Air Grafite Bouclé<br>
+      <span style="font-size:11px;opacity:.8">Análise D-1 vs dia do banner</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ITEM DESTAQUE -->
+  <div class="item-hero">
+    <div class="item-hero-info">
+      <span class="tag">⭐ Item em Banner</span>
+      <h2>Sofá Cama Colchão Casal Compact Air Confortável Sala Grafite Balaqui Decor Bouclé</h2>
+      <div class="mlb">MLB4302505513</div>
+    </div>
+    <div class="item-kpis">
+      <div class="ik">
+        <div class="v">5</div>
+        <div class="l">Unidades 29/05</div>
+      </div>
+      <div class="ik">
+        <div class="v">R$ 7,9K</div>
+        <div class="l">GMV no dia</div>
+      </div>
+      <div class="ik">
+        <div class="v">R$ 1.570</div>
+        <div class="l">Ticket Médio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVOLUÇÃO DIÁRIA -->
+  <div class="section">
+    <div class="sec-title">Evolução Diária — MLB4302505513</div>
+    <div class="timeline">
+      <div class="tday">
+        <div class="date">Ter 27/05</div>
+        <div class="zero">0</div>
+        <div class="gmv">—</div>
+      </div>
+      <div class="tday">
+        <div class="date">Qua 28/05 <span style="font-size:9px;color:#F23D4F;font-weight:800">(D-1)</span></div>
+        <div class="zero">0</div>
+        <div class="gmv">—</div>
+      </div>
+      <div class="tday banner">
+        <span class="banner-tag">🎯 BANNER</span>
+        <div class="date" style="color:#1A1A1A;margin-top:8px">Sex 29/05</div>
+        <div class="units">5</div>
+        <div class="gmv" style="font-weight:700;color:#1A1A1A">R$ 7.850</div>
+      </div>
+    </div>
+    <div class="insight green">
+      <strong>🚀 Impacto direto do banner</strong>
+      O item estava <strong>zerado nos 2 dias anteriores</strong> e saltou para <strong>5 unidades</strong> no dia do banner — 10,8% do GMV total do Balaqui no dia.
+    </div>
+  </div>
+
+  <!-- KPIs BANNER DAY -->
+  <div class="kpi-row">
+    <div class="kpi highlight green">
+      <div class="val green">+∞</div>
+      <div class="lbl">Crescimento vs D-1</div>
+      <div class="sub">0 → 5 unidades</div>
+    </div>
+    <div class="kpi highlight blue">
+      <div class="val blue">10,8%</div>
+      <div class="lbl">Share do GMV Balaqui</div>
+      <div class="sub">No dia 29/05</div>
+    </div>
+    <div class="kpi highlight">
+      <div class="val">R$ 1.570</div>
+      <div class="lbl">Ticket Médio</div>
+      <div class="sub">Por unidade vendida</div>
+    </div>
+    <div class="kpi highlight orange">
+      <div class="val orange">5x</div>
+      <div class="lbl">Vs melhor dia da semana</div>
+      <div class="sub">Seg–Qui: máx 1 un/dia</div>
+    </div>
+  </div>
+
+  <!-- TOP ITENS DO DIA + CONTEXTO BALAQUI -->
+  <div class="grid2">
+
+    <!-- Top itens -->
+    <div class="section">
+      <div class="sec-title">Top Itens Balaqui — 29/05 vs 28/05</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>Produto</th><th>Uni 29</th><th>GMV 29</th><th>Δ vs D-1</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cama Montessoriana Rosa</td>
+            <td>7</td><td>R$ 11,1K</td>
+            <td><span class="delta-up">▲ +1 un</span></td>
+          </tr>
+          <tr class="destaque">
+            <td><strong>Sofá Cama Compact Air Grafite ⭐</strong></td>
+            <td>5</td><td>R$ 7,9K</td>
+            <td><span class="delta-new">NOVO</span></td>
+          </tr>
+          <tr>
+            <td>Kit Poltrona + Sofá Suede</td>
+            <td>5</td><td>R$ 6,0K</td>
+            <td><span class="delta-up">▲ +1 un</span></td>
+          </tr>
+          <tr>
+            <td>Sofá Cama CompactAir (outro)</td>
+            <td>3</td><td>R$ 4,7K</td>
+            <td><span class="delta-dn">▼ -1 un</span></td>
+          </tr>
+          <tr>
+            <td>Sofá Living 3 Lugares Suede</td>
+            <td>5</td><td>R$ 3,8K</td>
+            <td><span class="delta-up">▲ estável</span></td>
+          </tr>
+          <tr>
+            <td>Cama Montessoriana Cinza</td>
+            <td>2</td><td>R$ 3,0K</td>
+            <td><span class="delta-up">▲ +1 un</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contexto geral + chart -->
+    <div>
+      <div class="section" style="margin-bottom:16px">
+        <div class="sec-title">Performance Geral Balaqui</div>
+        <table class="tbl">
+          <thead><tr><th></th><th>Qui 28/05</th><th>Sex 29/05</th><th>Δ</th></tr></thead>
+          <tbody>
+            <tr><td>GMV Total</td><td>R$ 85,2K</td><td>R$ 72,6K</td><td><span class="delta-dn">▼ -15%</span></td></tr>
+            <tr><td>Unidades</td><td>84</td><td>69</td><td><span class="delta-dn">▼ -18%</span></td></tr>
+            <tr><td>SKUs vendidos</td><td>37</td><td>37</td><td><span style="color:#888">= igual</span></td></tr>
+            <tr class="destaque"><td><strong>MLB4302505513</strong></td><td>0 un / R$ 0</td><td><strong>5 un / R$ 7,9K</strong></td><td><span class="delta-new">BANNER</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Unidades — Item em Banner por dia</div>
+        <div class="chart-wrap">
+          <canvas id="chart-evolucao"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="section">
+    <div class="sec-title">Principais Insights</div>
+    <div class="insight green">
+      <strong>✅ Banner gerou demanda incremental</strong>
+      O MLB4302505513 não registrava vendas nos 2 dias anteriores. O banner ativou 5 pedidos em 1 dia, confirmando que o item precisava de visibilidade para converter.
+    </div>
+    <div class="insight yellow">
+      <strong>⚠️ GMV total do seller caiu -15% no dia do banner</strong>
+      Apesar do item em banner crescer, o total do Balaqui caiu vs quinta. O banner não compensou a queda geral — possível efeito dia da semana (sexta vs quinta).
+    </div>
+    <div class="insight">
+      <strong>💡 Oportunidade: repetir banner com variantes</strong>
+      O MLB4304679587 (variante similar) caiu de 6→1 unidade no mesmo dia. Avaliar se houve canibalização ou se o banner pode ser estendido para mais SKUs da linha Compact Air.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Mercado Livre · F&H · Cintia Faraco Queiroz · Análise gerada em 01/06/2026</div>
+
+<script>
+new Chart(document.getElementById('chart-evolucao'),{
+  type:'bar',
+  data:{
+    labels:['Seg 26','Ter 27','Qua 28\n(D-1)','Sex 29\n(Banner)'],
+    datasets:[{
+      label:'Unidades',
+      data:[1,0,0,5],
+      backgroundColor:['#CCC','#CCC','#CCC','#FFE600'],
+      borderColor:['#BBB','#BBB','#BBB','#E6CF00'],
+      borderWidth:1,
+      borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},
+      tooltip:{callbacks:{label:function(c){return c.raw+' unidades';}}}
+    },
+    scales:{
+      y:{beginAtZero:true,ticks:{stepSize:1},grid:{color:'#F0F0F0'}},
+      x:{grid:{display:false},ticks:{font:{size:10}}}
+    }
+  }
+});
+</script>
+</body>
+</html>
