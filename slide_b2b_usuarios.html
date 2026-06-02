@@ -39,21 +39,36 @@
   .cat-name{font-size:11.5px;font-weight:600;color:#EEEEEE;line-height:1.3}
   .cat-units{font-size:11px;font-weight:800;margin-top:1px}
 
-  /* Cores — só o header recebe a cor, o card permanece escuro */
-  .c1 .col-hdr{background:#FFE600} .c1 .col-hdr .name{color:#1A1A1A} .c1 .col-hdr .buyers{color:rgba(0,0,0,.6)}
-  .c1 .cat-units{color:#FFD000;font-weight:800} .c1 .cat-name{color:#EEEEEE}
+  /* Todos os cards com fundo escuro fixo */
+  .col { background: #242424 !important; }
 
-  .c2 .col-hdr{background:#E8680A} .c2 .col-hdr .name{color:#fff} .c2 .col-hdr .buyers{color:rgba(255,255,255,.75)}
-  .c2 .cat-units{color:#FF9A50;font-weight:800}
+  /* Headers coloridos */
+  .hdr-amarelo { background:#FFE600; }
+  .hdr-amarelo .name { color:#1A1A1A; }
+  .hdr-amarelo .buyers { color:rgba(0,0,0,.6); }
 
-  .c3 .col-hdr{background:#3483FA} .c3 .col-hdr .name{color:#fff} .c3 .col-hdr .buyers{color:rgba(255,255,255,.75)}
-  .c3 .cat-units{color:#7CB8FF;font-weight:800}
+  .hdr-laranja { background:#E8680A; }
+  .hdr-laranja .name, .hdr-laranja .buyers { color:#fff; }
+  .hdr-laranja .buyers { opacity:.8; }
 
-  .c4 .col-hdr{background:#00A650} .c4 .col-hdr .name{color:#fff} .c4 .col-hdr .buyers{color:rgba(255,255,255,.75)}
-  .c4 .cat-units{color:#00E070;font-weight:800}
+  .hdr-azul { background:#3483FA; }
+  .hdr-azul .name, .hdr-azul .buyers { color:#fff; }
+  .hdr-azul .buyers { opacity:.8; }
 
-  .c5 .col-hdr{background:#9B59B6} .c5 .col-hdr .name{color:#fff} .c5 .col-hdr .buyers{color:rgba(255,255,255,.75)}
-  .c5 .cat-units{color:#D08EF0;font-weight:800}
+  .hdr-verde { background:#00A650; }
+  .hdr-verde .name, .hdr-verde .buyers { color:#fff; }
+  .hdr-verde .buyers { opacity:.8; }
+
+  .hdr-roxo { background:#9B59B6; }
+  .hdr-roxo .name, .hdr-roxo .buyers { color:#fff; }
+  .hdr-roxo .buyers { opacity:.8; }
+
+  /* Unidades por cor */
+  .uni-amarelo { color:#FFD000; font-weight:800; }
+  .uni-laranja  { color:#FF9A50; font-weight:800; }
+  .uni-azul     { color:#7CB8FF; font-weight:800; }
+  .uni-verde    { color:#00E070; font-weight:800; }
+  .uni-roxo     { color:#D08EF0; font-weight:800; }
 
   /* Nossas Ações */
   .acoes-section{padding:10px 32px 0;flex-shrink:0}
@@ -97,54 +112,54 @@
   <!-- Grid -->
   <div class="grid">
 
-    <div class="col c1">
-      <div class="col-hdr c1"><div class="name">Comércio Varejista</div><div class="buyers">91K compradores</div></div>
+    <div class="col">
+      <div class="col-hdr hdr-amarelo"><div class="name">Comércio Varejista</div><div class="buyers">91K compradores</div></div>
       <div class="col-label">TOP CATEGORIAS</div>
-      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">49K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">20K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">18K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units">17K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units">14K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units uni-amarelo">49K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units uni-amarelo">20K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units uni-amarelo">18K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units uni-amarelo">17K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units uni-amarelo">14K unidades</div></div>
     </div>
 
-    <div class="col c2">
-      <div class="col-hdr c2"><div class="name">Alojamento e Alim.</div><div class="buyers">19K compradores</div></div>
+    <div class="col">
+      <div class="col-hdr hdr-laranja"><div class="name">Alojamento e Alim.</div><div class="buyers">19K compradores</div></div>
       <div class="col-label">TOP CATEGORIAS</div>
-      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">12K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">7K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">3K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">4. Têxteis de Quarto</div><div class="cat-units">2K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units uni-laranja">12K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units uni-laranja">7K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units uni-laranja">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Têxteis de Quarto</div><div class="cat-units uni-laranja">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units uni-laranja">2K unidades</div></div>
     </div>
 
-    <div class="col c3">
-      <div class="col-hdr c3"><div class="name">Outras Atividades</div><div class="buyers">15K compradores</div></div>
+    <div class="col">
+      <div class="col-hdr hdr-azul"><div class="name">Outras Atividades</div><div class="buyers">15K compradores</div></div>
       <div class="col-label">TOP CATEGORIAS</div>
-      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">7K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">3K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">3. Espelhos e Decor.</div><div class="cat-units">2K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units">2K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units uni-azul">7K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units uni-azul">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Espelhos e Decor.</div><div class="cat-units uni-azul">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units uni-azul">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units uni-azul">2K unidades</div></div>
     </div>
 
-    <div class="col c4">
-      <div class="col-hdr c4"><div class="name">Ind. Transformação</div><div class="buyers">15K compradores</div></div>
+    <div class="col">
+      <div class="col-hdr hdr-verde"><div class="name">Ind. Transformação</div><div class="buyers">15K compradores</div></div>
       <div class="col-label">TOP CATEGORIAS</div>
-      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">8K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">3K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">3. Armarinhos</div><div class="cat-units">3K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units">2K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units uni-verde">8K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units uni-verde">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Armarinhos</div><div class="cat-units uni-verde">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units uni-verde">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units uni-verde">2K unidades</div></div>
     </div>
 
-    <div class="col c5">
-      <div class="col-hdr c5"><div class="name">Ativ. Profissionais</div><div class="buyers">5K compradores</div></div>
+    <div class="col">
+      <div class="col-hdr hdr-roxo"><div class="name">Ativ. Profissionais</div><div class="buyers">5K compradores</div></div>
       <div class="col-label">TOP CATEGORIAS</div>
-      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">2K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">1K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">1K unidades</div></div>
-      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units">977 unidades</div></div>
-      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units">904 unidades</div></div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units uni-roxo">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units uni-roxo">1K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units uni-roxo">1K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units uni-roxo">977 unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units uni-roxo">904 unidades</div></div>
     </div>
 
   </div>
