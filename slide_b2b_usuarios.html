@@ -7,9 +7,10 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{width:1280px;height:720px;background:#111;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+  html,body{width:100vw;height:100vh;background:#111;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;overflow:hidden}
+  .slide-wrapper{width:100vw;height:56.25vw;max-height:100vh;max-width:177.78vh;position:relative}
 
-  .slide{width:1280px;height:720px;background:#1A1A1A;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+  .slide{width:100%;height:100%;background:#1A1A1A;position:absolute;top:0;left:0;overflow:hidden;display:flex;flex-direction:column;}
 
   /* Header */
   .header{padding:22px 32px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
@@ -83,6 +84,7 @@
 </style>
 </head>
 <body>
+<div class="slide-wrapper">
 <div class="slide">
 
   <!-- Header -->
@@ -186,6 +188,7 @@
   <!-- Fonte -->
   <div class="source">Fonte: BT_ORD_ORDERS + LK_DOM_DOMAIN_PATHS + DM_MKP_B2B_AUDICENCE_COMMERCE + LK_FR_KYC_CUST (Abr/2026) | MLB | VERTICAL=FURNISHING &amp; HOUSEWARE</div>
 
+</div>
 </div>
 </body>
 </html>
