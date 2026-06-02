@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>F&H B2B — Usuários e Ações</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1280px;height:720px;background:#111;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+
+  .slide{width:1280px;height:720px;background:#1A1A1A;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+
+  /* Header */
+  .header{padding:22px 32px 0;display:flex;justify-content:space-between;align-items:flex-start;flex-shrink:0}
+  .title{font-size:22px;font-weight:900;color:#FFFFFF;line-height:1.25;max-width:820px}
+  .title span{color:#FFE600}
+
+  /* Logo */
+  .logo-pill{background:#FFE600;border-radius:20px;padding:5px 12px 5px 8px;display:flex;align-items:center;gap:8px;flex-shrink:0;margin-top:2px}
+  .logo-icon{width:26px;height:26px;background:#1A1B4B;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .logo-icon svg{width:16px;height:16px}
+  .logo-text{font-size:10px;font-weight:900;color:#1A1B4B;line-height:1.2}
+  .logo-sep{width:1px;height:18px;background:rgba(26,27,75,.4)}
+  .logo-neg{font-size:10px;font-weight:800;color:#1A1B4B;letter-spacing:.8px}
+
+  /* Subtítulo */
+  .subtitle{font-size:9px;font-weight:800;color:#888;letter-spacing:1px;text-transform:uppercase;padding:8px 32px 6px;flex-shrink:0}
+  .subtitle span{color:#FFE600;text-decoration:underline;text-underline-offset:2px}
+
+  /* Grid de colunas */
+  .grid{display:flex;gap:8px;padding:0 32px;flex:0 0 auto}
+  .col{flex:1;border-radius:10px;background:#242424;padding:10px 10px 8px;border:1px solid rgba(255,255,255,.06)}
+  .col-hdr{border-radius:7px;padding:7px 10px;margin-bottom:8px}
+  .col-hdr .name{font-size:13px;font-weight:800;color:#1A1A1A;line-height:1.2}
+  .col-hdr .buyers{font-size:10px;color:rgba(26,26,26,.7);font-weight:600;margin-top:1px}
+  .col-label{font-size:8px;font-weight:800;color:#666;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+  .cat-item{margin-bottom:5px}
+  .cat-name{font-size:11px;font-weight:600;color:#DDDDDD;line-height:1.2}
+  .cat-units{font-size:10px;font-weight:700;margin-top:0px}
+
+  /* Cores dos headers */
+  .c1{background:#FFE600} .c1 .cat-units{color:#FFE600}
+  .c2{background:#E8680A} .c2 .cat-units{color:#E8680A} .c2 .col-hdr .name,.c2 .col-hdr .buyers{color:#fff;color:rgba(255,255,255,.85)}
+  .c3{background:#3483FA} .c3 .cat-units{color:#5B9EFF} .c3 .col-hdr .name,.c3 .col-hdr .buyers{color:#fff;color:rgba(255,255,255,.85)}
+  .c4{background:#00A650} .c4 .cat-units{color:#00C860} .c4 .col-hdr .name,.c4 .col-hdr .buyers{color:#fff;color:rgba(255,255,255,.85)}
+  .c5{background:#9B59B6} .c5 .cat-units{color:#C07EE0} .c5 .col-hdr .name,.c5 .col-hdr .buyers{color:#fff;color:rgba(255,255,255,.85)}
+
+  /* Nossas Ações */
+  .acoes-section{padding:10px 32px 0;flex-shrink:0}
+  .acoes-label{font-size:10px;font-weight:900;color:#FFE600;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
+  .acoes-grid{display:flex;gap:10px}
+  .acao-card{flex:1;background:#2A2A2A;border-radius:10px;padding:12px 14px;border:1px solid rgba(255,255,255,.07)}
+  .acao-title{font-size:13px;font-weight:800;color:#FFFFFF;margin-bottom:5px}
+  .acao-text{font-size:11px;color:#AAAAAA;line-height:1.5;font-weight:400}
+
+  /* Fonte */
+  .source{font-size:8px;color:#444;padding:6px 32px 8px;flex-shrink:0;line-height:1.4}
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="title">F&amp;H tem <span>1.13M</span> de usuários B2B, e os principais compradores<br>buscam o seguinte:</div>
+    <div class="logo-pill">
+      <div class="logo-icon">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="9" fill="#1A1B4B" stroke="#FFE600" stroke-width=".5"/>
+          <path d="M5 11 C4 9.5 4 7.5 6 7 L8 6.5 L9 9 L7.5 9.5Z" fill="white"/>
+          <path d="M15 11 C16 9.5 16 7.5 14 7 L12 6.5 L11 9 L12.5 9.5Z" fill="white"/>
+          <ellipse cx="10" cy="9.5" rx="2.5" ry="1.8" fill="white"/>
+          <path d="M7.5 9.5 L8 12 L10 12.5 L12 12 L12.5 9.5" fill="white"/>
+          <ellipse cx="7.2" cy="11" rx="1.8" ry="1.3" fill="white"/>
+          <ellipse cx="12.8" cy="11" rx="1.8" ry="1.3" fill="white"/>
+        </svg>
+      </div>
+      <div class="logo-text">mercado<br>livre</div>
+      <div class="logo-sep"></div>
+      <div class="logo-neg">NEGÓCIOS</div>
+    </div>
+  </div>
+
+  <!-- Subtítulo -->
+  <div class="subtitle">TOP 5 <span>SUB CATEGORIAS</span> POR GRUPO DE ATIVIDADE ECONÔMICA</div>
+
+  <!-- Grid -->
+  <div class="grid">
+
+    <div class="col c1">
+      <div class="col-hdr c1"><div class="name">Comércio Varejista</div><div class="buyers">91K compradores</div></div>
+      <div class="col-label">TOP CATEGORIAS</div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">49K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">20K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">18K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units">17K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units">14K unidades</div></div>
+    </div>
+
+    <div class="col c2">
+      <div class="col-hdr c2"><div class="name">Alojamento e Alim.</div><div class="buyers">19K compradores</div></div>
+      <div class="col-label">TOP CATEGORIAS</div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">12K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">7K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Têxteis de Quarto</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+    </div>
+
+    <div class="col c3">
+      <div class="col-hdr c3"><div class="name">Outras Atividades</div><div class="buyers">15K compradores</div></div>
+      <div class="col-label">TOP CATEGORIAS</div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">7K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Espelhos e Decor.</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+    </div>
+
+    <div class="col c4">
+      <div class="col-hdr c4"><div class="name">Ind. Transformação</div><div class="buyers">15K compradores</div></div>
+      <div class="col-label">TOP CATEGORIAS</div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">8K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Armarinhos</div><div class="cat-units">3K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Organização</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Limpeza e Lavanderia</div><div class="cat-units">2K unidades</div></div>
+    </div>
+
+    <div class="col c5">
+      <div class="col-hdr c5"><div class="name">Ativ. Profissionais</div><div class="buyers">5K compradores</div></div>
+      <div class="col-label">TOP CATEGORIAS</div>
+      <div class="cat-item"><div class="cat-name">1. Utens. de Cozinha</div><div class="cat-units">2K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">2. Mesa Posta</div><div class="cat-units">1K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">3. Organização</div><div class="cat-units">1K unidades</div></div>
+      <div class="cat-item"><div class="cat-name">4. Limpeza e Lavanderia</div><div class="cat-units">977 unidades</div></div>
+      <div class="cat-item"><div class="cat-name">5. Têxteis de Quarto</div><div class="cat-units">904 unidades</div></div>
+    </div>
+
+  </div>
+
+  <!-- Nossas Ações -->
+  <div class="acoes-section">
+    <div class="acoes-label">Nossas Ações</div>
+    <div class="acoes-grid">
+      <div class="acao-card">
+        <div class="acao-title">Integração com ERP</div>
+        <div class="acao-text">Conexão direta com Procurement para automatizar o fluxo de pedidos de grandes corporações</div>
+      </div>
+      <div class="acao-card">
+        <div class="acao-title">Time de Hunting</div>
+        <div class="acao-text">Especialistas em Business Development focados na prospecção de contas corporativas</div>
+      </div>
+      <div class="acao-card">
+        <div class="acao-title">Enterprise</div>
+        <div class="acao-text">Faturamento centralizado e fluxos de aprovação customizados para grandes volumes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fonte -->
+  <div class="source">Fonte: BT_ORD_ORDERS + LK_DOM_DOMAIN_PATHS + DM_MKP_B2B_AUDICENCE_COMMERCE + LK_FR_KYC_CUST (Abr/2026) | MLB | VERTICAL=FURNISHING &amp; HOUSEWARE</div>
+
+</div>
+</body>
+</html>
