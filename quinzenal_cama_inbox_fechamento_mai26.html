@@ -68,7 +68,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <h1>&#128202; CAMA INBOX</h1>
     <div class="sub">Relatorio de Performance &middot; 31/05/2026 &middot; IDs: 470109248</div>
   </div>
-  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 155%</div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 100%</div>
 </div>
 <div class="wrap">
   
@@ -76,24 +76,24 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 21.4M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 178.9%</span></div></div>
       <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">10.133</div><div class="sub">LY: 4.490</div></div>
       <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 2.112,55</div><div class="sub">YTD 2026</div></div>
-      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#00A650">155%</span></div><div class="sub">Meta = R$ 13.8M</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">100%</span></div><div class="sub">Meta Desafio = R$ 21.5M</div></div>
     </div>
     <div class="sec">
       <div class="sec-ttl">Progresso da Meta YTD</div>
       <div style="margin-bottom:6px;font-size:13px">
-        <b>R$ 21.4M</b> de <b>R$ 13.8M</b> (Meta) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 178.9%</span> vs LY
+        <b>R$ 21.4M</b> de <b>R$ 21.5M</b> (Meta Desafio) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 178.9%</span> vs LY
       </div>
       <div class="bar-out" style="height:24px">
-        <div class="bar-in" style="width:100.0%;background:#00A650"></div>
+        <div class="bar-in" style="width:99.6%;background:#3483FA"></div>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:4px">154.9% atingido</div>
+      <div style="font-size:11px;color:#888;margin-top:4px">99.6% atingido</div>
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
       <div class="card"><div class="lbl">GMV MTD (1-31/5)</div><div class="val">R$ 5.9M</div><div class="sub">MoM vs Abr: <span style="color:#00A650;font-weight:700">&#9650; 36.5%</span> &nbsp;|&nbsp; YoY vs Mai/2025: <span style="color:#00A650;font-weight:700">&#9650; 163.9%</span></div></div>
       <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">2.857</div><div class="sub">dias 1-31</div></div>
       <div class="card"><div class="lbl">GMV Abr completo</div><div class="val">R$ 4.3M</div><div class="sub">vs Mar: <span style="color:#00A650;font-weight:700">&#9650; 11.9%</span></div></div>
-      
+      <div class="card"><div class="lbl">Meta Desafio Mai</div><div class="val"><span style="color:#00A650">118.4%</span></div><div class="sub">R$ 5.9M de R$ 5.0M &nbsp;·&nbsp; dias 1-31 &nbsp;·&nbsp; pace: <span style="color:#00A650;font-weight:700">&#9650; 14.6%</span></div></div>
     </div></div>
   
     <div class="sec">
@@ -102,8 +102,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     (function(){
-      var _ating = [190.4, 162.0, 164.8, 129.8, 146.6, null, null, null, null, null, null, null];
-      var _meta  = [2258922.6,1903660.2,2332728.0,3315979.8000000003,4005937.8000000003,5238210.600000001,7531394.4,5643707.4,4246786.8,7178410.8,13130665.200000001,6828526.8];
+      var _ating = [106.2, 82.0, 88.0, 99.1, 118.4, null, null, null, null, null, null, null];
+      var _meta  = [4051491.0,3762593.0,4370051.0,4342542.0,4961053.0,5416083.0,5980264.0,5792534.0,6317896.0,6713707.0,6848483.0,5449995.0];
       var _proj  = [null,null,null,null,5684020,8115347,11668084,8743567,6579375,11121221,20342807,10579160];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
@@ -172,7 +172,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           {label:'2026',data:[4300775.0,3084431.0,3844380.0,4303398.0,5873488.0,null,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
           {label:'Projetado',data:[null,null,null,null,5684020,8115347,11668084,8743567,6579375,11121221,20342807,10579160],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[1254957.0,1057589.0,1295960.0,1842211.0,2225521.0,2910117.0,4184108.0,3135393.0,2359326.0,3988006.0,7294814.0,3793626.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
-          {label:'Meta Desafio',data:[2258922.6,1903660.2,2332728.0,3315979.8000000003,4005937.8000000003,5238210.600000001,7531394.4,5643707.4,4246786.8,7178410.8,13130665.200000001,6828526.8],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+          {label:'Meta Desafio',data:[4051491.0,3762593.0,4370051.0,4342542.0,4961053.0,5416083.0,5980264.0,5792534.0,6317896.0,6713707.0,6848483.0,5449995.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
         options:{
           responsive:true,maintainAspectRatio:false,
