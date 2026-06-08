@@ -363,25 +363,6 @@ table.dt tr:hover td{background:#FFFBEA}
   </div>
 </div>
 
-<!-- S10: ADVERTISING -->
-<div class="slide s-white">
-  <div class="w-header"><h2>Advertising</h2><div class="w-tag" style="background:#9B59B6;color:#fff">ADS</div></div>
-  <div class="w-body">
-    <div class="filters"><div class="fp">⚙ 1–31 mai. 2026</div></div>
-    <div style="display:flex;gap:8px;flex-shrink:0;margin-bottom:8px">
-      <div class="kpi-c" style="flex:0 0 80px"><div class="kpi-label" style="background:#9B59B6;color:#fff;font-size:7px">Total ADS</div><div class="kpi-v sm">1,3 mil</div><div class="badges"><span class="bm p" style="font-size:7px">MoM +1,6%</span></div></div>
-      <div class="kpi-c" style="flex:0 0 80px"><div class="kpi-label" style="background:#9B59B6;color:#fff;font-size:7px">PADS</div><div class="kpi-v sm">1,3 mil</div><div class="badges"><span class="bm p" style="font-size:7px">+1,6%</span></div></div>
-      <div class="kpi-c" style="flex:0 0 80px"><div class="kpi-label" style="background:#9B59B6;color:#fff;font-size:7px">BADS</div><div class="kpi-v sm">0,0</div><div class="badges"><span class="bm z" style="font-size:7px">null</span></div></div>
-      <div class="kpi-c" style="flex:0 0 80px"><div class="kpi-label" style="background:#9B59B6;color:#fff;font-size:7px">ROAS</div><div class="kpi-v sm">25,7</div><div class="badges"><span class="bm p" style="font-size:7px">+2,4%</span></div></div>
-      <div class="kpi-c" style="flex:0 0 80px"><div class="kpi-label" style="background:#9B59B6;color:#fff;font-size:7px">ACOS</div><div class="kpi-v sm">0,0</div><div class="badges"><span class="bm n" style="font-size:7px">-2,4%</span></div></div>
-    </div>
-    <div class="g2">
-      <div class="gc"><div class="kpi-label" style="background:#9B59B6;color:#fff">REVENUES ADS</div><div class="gc-area"><canvas id="c_ads_rev"></canvas></div></div>
-      <div class="gc"><div class="kpi-label" style="background:#9B59B6;color:#fff">ACOS</div><div class="gc-area"><canvas id="c_acos"></canvas></div></div>
-    </div>
-  </div>
-</div>
-
 <!-- S11: SHIPPING OVERVIEW -->
 <div class="slide s-white">
   <div class="w-header"><h2>Shipping Overview</h2><div class="w-tag" style="background:#00A650;color:#fff">SHIPPING</div></div>
@@ -655,16 +636,15 @@ function renderCharts(n){
     el._c=new Chart(el.getContext('2d'),{type:'bar',data:{labels:months,datasets:[{label:'%BPC LY',data:bpcLY,backgroundColor:'#CED4DA',borderRadius:2},{label:'%BPC',data:bpcData,backgroundColor:'#3483FA',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
     mkDonut('c_bpc_cat',['Small Appl.','Industry','Toys','Baby','Furniture','Household','Decor','Mattresses','Construction','Large Appl.'],[1,0.96,0.93,0.69,0.68,0.63,0.58,0.38,0.37,0.06],['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#F59F00','#AE3EC9','#1098AD','#74C0FC','#CED4DA']);
   }
-  if(n===8){mkBar('c_ads_rev',[2400,1500,1100,1100,1200,1100,1200,1200,1300,1300,1300,240],'#9B59B6','ADS Rev');mkLine('c_acos',[6.39,4.44,4.49,6.00,4.55,5.09,4.19,3.96,3.89,2.90,null,null],'#9B59B6','ACOS');}
-  if(n===9){mkBar('c_fbm_nsi',new Array(12).fill(0),'#00A650','NSI FBM');mkBar('c_fbm_nmv',new Array(12).fill(0),'#00A650','NMV FBM');}
-  if(n===10){
+  if(n===8){mkBar('c_fbm_nsi',new Array(12).fill(0),'#00A650','NSI FBM');mkBar('c_fbm_nmv',new Array(12).fill(0),'#00A650','NMV FBM');}
+  if(n===9){
     mkBar('c_prom_nmv',[290,623,0,1100,801,1300,330,323,51,67,834,63],'#F59F00','NMV Atrib.');
     mkBar('c_rebates',[3100,461,0,3800,7300,4600,1400,6000,4900,6800,7800,6200],'#F59F00','Rebates');
     mkBar('c_invest',[11500,29400,7900,13900,13800,11500,5000,9700,7400,12700,19200,18800],'#F59F00','Invest.');
     const el=document.getElementById('c_prom_type');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'bar',data:{labels:months,datasets:[{label:'Organic',data:[100,100,100,95,95,95,100,100,100,100,100,100],backgroundColor:'#3483FA',borderRadius:2},{label:'Deal of Day',data:[0,0,0,5,5,5,0,0,0,0,0,0],backgroundColor:'#74C0FC',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,scales:{x:{stacked:true,ticks:{font:{size:8},maxRotation:30}},y:{stacked:true,ticks:{font:{size:8}}}},plugins:{legend:{position:'bottom',labels:{font:{size:8}}}}}});
   }
-  if(n===12){
+  if(n===11){
     const el=document.getElementById('c_claims');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'line',data:{labels:months,datasets:[{label:'Cancelation',data:[0.47,0.33,0.36,0.44,0.6,0.74,0.67,0.75,0.43,0.59,0.45,0.64],borderColor:'#F23D4F',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'},{label:'Claims',data:[2.35,2.43,2.3,2.3,1.9,2.08,2.33,1.77,1.83,2.62,2.25,2.21],borderColor:'#00A650',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
   }
