@@ -395,28 +395,6 @@ table.dt tr:hover td{background:#FFFBEA}
   </div>
 </div>
 
-<!-- S11: SHIPPING OVERVIEW -->
-<div class="slide s-white">
-  <div class="w-header"><h2>Shipping Overview</h2><div class="w-tag" style="background:#00A650;color:#fff">SHIPPING</div></div>
-  <div class="w-body">
-    <div class="filters"><div class="fp">⚙ 1–31 mai. 2026</div></div>
-    <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase;margin-bottom:3px">Indicadores de</div>
-    <div style="font-size:14px;font-weight:900;color:#1A1A1A;margin-bottom:8px">FULLFILMENT</div>
-    <div class="ship-kpis">
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">IPI</div><div class="sk-v" style="color:#bbb">—</div></div>
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">% OOS GMV</div><div class="sk-v" style="color:#bbb">—</div></div>
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">% OOS STOCK</div><div class="sk-v">0,00%</div></div>
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">DOH</div><div class="sk-v" style="color:#bbb">—</div></div>
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">Stock Venta L30D</div><div class="sk-v" style="color:#bbb">—</div></div>
-      <div class="sk"><div class="kpi-label" style="background:#00A650;color:#fff;font-size:7px">BAD STOCK</div><div class="sk-v" style="color:#bbb">—</div></div>
-    </div>
-    <div class="g2">
-      <div class="gc"><div class="kpi-label" style="background:#00A650;color:#fff">% NSI FBM</div><div class="gc-area"><canvas id="c_fbm_nsi"></canvas></div></div>
-      <div class="gc"><div class="kpi-label" style="background:#00A650;color:#fff">% NMV FBM</div><div class="gc-area"><canvas id="c_fbm_nmv"></canvas></div></div>
-    </div>
-  </div>
-</div>
-
 <!-- S12: PROMOTIONS -->
 <div class="slide s-white">
   <div class="w-header"><h2>Promotions</h2><div class="w-tag" style="background:#F59F00;color:#fff">BENEFITS</div></div>
@@ -676,7 +654,7 @@ function renderCharts(n){
     const el=document.getElementById('c_prom_type');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'bar',data:{labels:months,datasets:[{label:'Organic',data:[100,100,100,95,95,95,100,100,100,100,100,100],backgroundColor:'#3483FA',borderRadius:2},{label:'Deal of Day',data:[0,0,0,5,5,5,0,0,0,0,0,0],backgroundColor:'#74C0FC',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,scales:{x:{stacked:true,ticks:{font:{size:8},maxRotation:30}},y:{stacked:true,ticks:{font:{size:8}}}},plugins:{legend:{position:'bottom',labels:{font:{size:8}}}}}});
   }
-  if(n===11){
+  if(n===10){
     const el=document.getElementById('c_claims');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'line',data:{labels:months,datasets:[{label:'Cancelation',data:[0.47,0.33,0.36,0.44,0.6,0.74,0.67,0.75,0.43,0.59,0.45,0.64],borderColor:'#F23D4F',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'},{label:'Claims',data:[2.35,2.43,2.3,2.3,1.9,2.08,2.33,1.77,1.83,2.62,2.25,2.21],borderColor:'#00A650',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
   }
