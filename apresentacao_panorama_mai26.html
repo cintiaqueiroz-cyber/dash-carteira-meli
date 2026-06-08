@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>MLB - PANORAMA MÓVEIS | Mai 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;background:#1A1A1A;font-family:'Inter',sans-serif;overflow:hidden}
+
+/* SLIDE ENGINE */
+.deck{width:100vw;height:100vh;position:relative}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;overflow:hidden}
+.slide.active{display:flex}
+
+/* NAV */
+.nav{position:fixed;bottom:20px;right:24px;z-index:999;display:flex;gap:10px;align-items:center}
+.nav button{background:rgba(255,230,0,.9);border:none;border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;font-weight:900;color:#1A1A1A;transition:.2s}
+.nav button:hover{background:#FFE600;transform:scale(1.1)}
+.slide-counter{color:#FFE600;font-size:11px;font-weight:700;background:rgba(0,0,0,.5);padding:4px 10px;border-radius:10px}
+
+/* ===== SLIDE 1 — CAPA (dark) ===== */
+.slide-cover{background:linear-gradient(135deg,#1C1C1C,#2A2A2A);color:#fff}
+.cover-deco{position:absolute;top:40px;left:40px;width:240px;height:240px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1)}
+.cover-deco2{position:absolute;top:-60px;right:180px;width:340px;height:340px;border-radius:60px;border:1.5px solid rgba(255,255,255,.08);transform:rotate(15deg)}
+.cover-deco3{position:absolute;bottom:40px;right:40px;width:200px;height:200px;border-radius:50%;border:1.5px solid rgba(255,255,255,.1)}
+.cover-content{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 80px}
+.cover-title{font-size:clamp(42px,5vw,72px);font-weight:300;letter-spacing:-1px;margin-bottom:32px}
+.cover-period{font-size:18px;color:#888;margin-bottom:8px}
+.cover-date{font-size:clamp(20px,2.5vw,28px);color:#FFE600;font-weight:700;letter-spacing:1px}
+.cover-arrow{position:absolute;top:40px;left:60px;width:60px;height:60px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:18px}
+.cover-badge{position:absolute;top:28px;right:28px;background:#1A1A1A;border:1px solid #333;border-radius:8px;padding:6px 14px;font-size:11px;color:#aaa}
+
+/* ===== SLIDE 2 — RESULTADOS YTD (yellow template) ===== */
+.slide-ytd{background:#F5F5F0}
+.ytd-header{background:#FFE600;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.ytd-header h1{font-size:26px;font-weight:800;color:#1A1A1A}
+.ytd-header .badge-ml{background:#1A1A1A;color:#FFE600;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.5px}
+.ytd-body{flex:1;padding:12px 24px 8px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+
+/* Seções */
+.ytd-section-label{font-size:9px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ytd-section-title{font-size:14px;font-weight:900;color:#1A1A1A;margin-bottom:6px}
+
+/* KPI cards */
+.kpi-row{display:flex;gap:8px;flex-shrink:0}
+.kpi-card{flex:1;background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:8px 10px 6px;min-width:0}
+.kpi-label{background:#FFE600;border-radius:20px;padding:2px 10px;font-size:9px;font-weight:800;color:#1A1A1A;display:inline-block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.kpi-value{font-size:22px;font-weight:800;color:#1A1A1A;line-height:1;margin-bottom:4px}
+.kpi-value.small{font-size:16px}
+.kpi-badges{display:flex;gap:3px;flex-wrap:wrap}
+.badge-yoy,.badge-mom,.badge-wow{font-size:8px;font-weight:700;padding:2px 5px;border-radius:4px;white-space:nowrap}
+.badge-yoy{background:#1A1A1A;color:#fff}
+.badge-mom.pos,.badge-wow.pos{background:#00A650;color:#fff}
+.badge-mom.neg,.badge-wow.neg{background:#F23D4F;color:#fff}
+.badge-mom.neu,.badge-wow.neu{background:#E8E8E8;color:#666}
+.kpi-sem-meta{font-size:10px;color:#bbb;font-style:italic;margin-top:4px}
+
+/* Bottom row */
+.bottom-row{display:flex;gap:8px;flex:1;min-height:0}
+.eco-block{width:220px;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.eco-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.eco-card{background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:7px 8px}
+.eco-card .kpi-label{font-size:8px;padding:1px 7px}
+.eco-card .kpi-value{font-size:17px;margin-bottom:2px}
+.chart-block{flex:1;background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:8px 10px;display:flex;flex-direction:column;min-width:0}
+.chart-title{font-size:9px;font-weight:800;color:#888;letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px}
+.chart-subtitle{font-size:12px;font-weight:900;color:#1A1A1A;margin-bottom:6px}
+.chart-area{flex:1;display:flex;gap:8px;align-items:center;min-height:0}
+.donut-wrap{flex:0 0 auto;width:120px;height:120px;position:relative}
+.donut-legend{flex:1;font-size:9px;color:#444;display:flex;flex-direction:column;gap:2px}
+.legend-item{display:flex;align-items:center;gap:4px}
+.legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ===== SLIDES RESTANTES (dark/white style) ===== */
+.slide-dark{background:#fff}
+.slide-header{padding:20px 32px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;flex-shrink:0}
+.slide-header h2{font-size:28px;font-weight:800;color:#1A1A1A}
+.slide-header .tag{background:#FFE600;color:#1A1A1A;font-size:10px;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.5px}
+.slide-content{flex:1;padding:16px 32px;overflow:hidden}
+
+/* Filters bar */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filter-pill{border:1px solid #DDD;border-radius:20px;padding:4px 12px;font-size:10px;color:#555;display:flex;align-items:center;gap:4px}
+.filter-icon{color:#888}
+
+/* KPI row dark */
+.kpi-row-dark{display:flex;gap:10px;margin-bottom:12px}
+.kpi-d{flex:1;border:1px solid #E8E8E8;border-radius:10px;padding:10px 12px}
+.kpi-d .kpi-label{background:#FFE600}
+.kpi-d .kpi-value{font-size:20px;font-weight:800;color:#1A1A1A;margin:4px 0}
+
+/* Bottom charts */
+.charts-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;height:calc(100% - 140px)}
+.chart-card{border:1px solid #E8E8E8;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column}
+.chart-card .kpi-label{font-size:9px;margin-bottom:6px}
+.chart-canvas-wrap{flex:1;position:relative}
+
+/* Thank you slide */
+.slide-thanks{background:linear-gradient(135deg,#1C1C1C,#2A2A2A);color:#fff}
+.thanks-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px}
+.thanks-content h2{font-size:52px;font-weight:300;font-style:italic;margin-bottom:20px}
+.thanks-content p{font-size:36px;font-weight:300;font-style:italic;color:#ccc}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ===== SLIDE 1: CAPA ===== -->
+<div class="slide slide-cover active">
+  <div class="cover-arrow">›</div>
+  <div class="cover-deco"></div>
+  <div class="cover-deco2"></div>
+  <div class="cover-deco3"></div>
+  <div class="cover-badge">Display: ACCOUNT GROUP</div>
+  <div class="cover-content">
+    <h1 class="cover-title">MLB — PANORAMA MÓVEIS</h1>
+    <div class="cover-period">Informe del período:</div>
+    <div class="cover-date">2026-05</div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 2: RESULTADOS YTD 2026 ===== -->
+<div class="slide slide-ytd">
+  <div class="ytd-header">
+    <h1>Resultados — YTD 2026</h1>
+    <div class="badge-ml">PANORAMA MÓVEIS</div>
+  </div>
+  <div class="ytd-body">
+
+    <!-- Indicadores de Performance -->
+    <div>
+      <div class="ytd-section-label">Indicadores de</div>
+      <div class="ytd-section-title">PERFORMANCE</div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-label">NMV</div>
+          <div class="kpi-value">11 mi</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy">YoY -0,3%</span>
+            <span class="badge-mom pos">MoM +9,2%</span>
+            <span class="badge-wow pos">WoW +2,4%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label" style="background:#E8E8E8;color:#999">vs TARGET</div>
+          <div class="kpi-value small" style="color:#bbb">—</div>
+          <div class="kpi-sem-meta">sem meta definida</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">NSI</div>
+          <div class="kpi-value">16 mil</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy">YoY -9,3%</span>
+            <span class="badge-mom pos">MoM +5,9%</span>
+            <span class="badge-wow pos">WoW +1,7%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">ORDERS</div>
+          <div class="kpi-value">18 mil</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy">YoY -10,7%</span>
+            <span class="badge-mom pos">MoM +4,6%</span>
+            <span class="badge-wow pos">WoW +1,8%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">ASP</div>
+          <div class="kpi-value small">R$ 700,3</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy" style="background:#00A650">YoY +10,0%</span>
+            <span class="badge-mom pos">MoM +3,1%</span>
+            <span class="badge-wow pos">WoW +0,8%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">VISITS</div>
+          <div class="kpi-value">12 mi</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy">YoY -16,6%</span>
+            <span class="badge-mom neu">MoM -0,0%</span>
+            <span class="badge-wow neg">WoW -0,1%</span>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">CVR</div>
+          <div class="kpi-value small">0,1%</div>
+          <div class="kpi-badges">
+            <span class="badge-yoy">YoY -22,0%</span>
+            <span class="badge-mom pos">MoM +7,1%</span>
+            <span class="badge-wow pos">WoW +6,9%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="bottom-row">
+
+      <!-- Ecosystem -->
+      <div class="eco-block">
+        <div>
+          <div class="ytd-section-label">Indicadores de</div>
+          <div class="ytd-section-title" style="font-size:12px">ECOSYSTEM &amp; OPERACIÓN</div>
+        </div>
+        <div class="eco-row">
+          <div class="eco-card">
+            <div class="kpi-label">FBM</div>
+            <div class="kpi-value" style="font-size:15px;color:#bbb">—</div>
+            <div class="kpi-badges"><span class="badge-yoy">—</span></div>
+          </div>
+          <div class="eco-card">
+            <div class="kpi-label">ADS</div>
+            <div class="kpi-value" style="font-size:15px">23,80%</div>
+            <div class="kpi-badges"><span class="badge-mom neu">MoM null</span></div>
+          </div>
+          <div class="eco-card">
+            <div class="kpi-label">BUY BOX</div>
+            <div class="kpi-value" style="font-size:15px">39,07%</div>
+            <div class="kpi-badges"><span class="badge-mom pos">YoY +0,97%</span></div>
+          </div>
+          <div class="eco-card">
+            <div class="kpi-label">BPC</div>
+            <div class="kpi-value" style="font-size:15px">68,7%</div>
+            <div class="kpi-badges"><span class="badge-wow pos">WoW 0,00%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brand Share YTD -->
+      <div class="chart-block">
+        <div class="chart-title">Share NMV</div>
+        <div class="chart-subtitle">BRAND</div>
+        <div class="chart-area">
+          <div class="donut-wrap"><canvas id="brandChart"></canvas></div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>Panorama Móveis <b style="margin-left:auto">69,31%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>Pnr Móveis <b style="margin-left:auto">5,27%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FD7E14"></div>Henn <b style="margin-left:auto">2,35%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E03131"></div>Viero <b style="margin-left:auto">1,75%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#12B886"></div>Politorno <b style="margin-left:auto">2,29%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#AE3EC9"></div>Artany Móveis <b style="margin-left:auto">1,10%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#74C0FC"></div>Outros <b style="margin-left:auto">17,93%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Share YTD -->
+      <div class="chart-block">
+        <div class="chart-title">Share NMV</div>
+        <div class="chart-subtitle">CATEGORY</div>
+        <div class="chart-area">
+          <div class="donut-wrap"><canvas id="catChart"></canvas></div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>Furniture <b style="margin-left:auto">98,70%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>Construction <b style="margin-left:auto">0,60%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FD7E14"></div>Baby <b style="margin-left:auto">0,40%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E03131"></div>Industry <b style="margin-left:auto">0,15%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#12B886"></div>Outros <b style="margin-left:auto">0,15%</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 3: RESULTADOS MAIO 2026 ===== -->
+<div class="slide slide-ytd">
+  <div class="ytd-header">
+    <h1>Resultados — Maio 2026</h1>
+    <div class="badge-ml">PANORAMA MÓVEIS</div>
+  </div>
+  <div class="ytd-body">
+    <div>
+      <div class="ytd-section-label">Indicadores de</div>
+      <div class="ytd-section-title">PERFORMANCE</div>
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-label">NMV</div><div class="kpi-value">2 mi</div><div class="kpi-badges"><span class="badge-yoy">YoY -26,7%</span><span class="badge-mom neg">MoM -5,9%</span><span class="badge-wow pos">WoW +1,6%</span></div></div>
+        <div class="kpi-card"><div class="kpi-label" style="background:#E8E8E8;color:#999">vs TARGET</div><div class="kpi-value small" style="color:#bbb">—</div><div class="kpi-sem-meta">sem meta definida</div></div>
+        <div class="kpi-card"><div class="kpi-label">NSI</div><div class="kpi-value">3 mil</div><div class="kpi-badges"><span class="badge-yoy">YoY -36,3%</span><span class="badge-mom neg">MoM -6,9%</span><span class="badge-wow neg">WoW -0,5%</span></div></div>
+        <div class="kpi-card"><div class="kpi-label">ORDERS</div><div class="kpi-value">3 mil</div><div class="kpi-badges"><span class="badge-yoy">YoY -41,2%</span><span class="badge-mom neg">MoM -9,0%</span><span class="badge-wow neg">WoW -0,2%</span></div></div>
+        <div class="kpi-card"><div class="kpi-label">ASP</div><div class="kpi-value small">R$ 744,1</div><div class="kpi-badges"><span class="badge-yoy" style="background:#00A650">YoY +15,0%</span><span class="badge-mom pos">MoM +1,1%</span><span class="badge-wow pos">WoW +2,1%</span></div></div>
+        <div class="kpi-card"><div class="kpi-label">VISITS</div><div class="kpi-value">2 mi</div><div class="kpi-badges"><span class="badge-yoy">YoY -19,9%</span><span class="badge-mom neu">MoM -0,1%</span><span class="badge-wow neg">WoW -2,7%</span></div></div>
+        <div class="kpi-card"><div class="kpi-label">CVR</div><div class="kpi-value small">0,1%</div><div class="kpi-badges"><span class="badge-yoy">YoY -20,0%</span><span class="badge-mom pos">MoM +1,1%</span><span class="badge-wow neg">WoW -3,4%</span></div></div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="eco-block">
+        <div><div class="ytd-section-label">Indicadores de</div><div class="ytd-section-title" style="font-size:12px">ECOSYSTEM &amp; OPERACIÓN</div></div>
+        <div class="eco-row">
+          <div class="eco-card"><div class="kpi-label">FBM</div><div class="kpi-value" style="font-size:15px;color:#bbb">—</div></div>
+          <div class="eco-card"><div class="kpi-label">ADS</div><div class="kpi-value" style="font-size:15px">25,78%</div><div class="kpi-badges"><span class="badge-mom neu">null</span></div></div>
+          <div class="eco-card"><div class="kpi-label">BUY BOX</div><div class="kpi-value" style="font-size:15px">35,38%</div><div class="kpi-badges"><span class="badge-mom pos">YoY +0,87%</span></div></div>
+          <div class="eco-card"><div class="kpi-label">BPC</div><div class="kpi-value" style="font-size:15px">67,5%</div><div class="kpi-badges"><span class="badge-wow neg">WoW -0,04%</span></div></div>
+        </div>
+      </div>
+      <div class="chart-block">
+        <div class="chart-title">Share NMV</div><div class="chart-subtitle">BRAND</div>
+        <div class="chart-area">
+          <div class="donut-wrap"><canvas id="brandChart_mai"></canvas></div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>Panorama Móveis <b style="margin-left:auto">71,59%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>Pnr Móveis <b style="margin-left:auto">4,16%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FD7E14"></div>Henn <b style="margin-left:auto">2,35%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E03131"></div>Politorno <b style="margin-left:auto">2,29%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#12B886"></div>Viero <b style="margin-left:auto">1,75%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#AE3EC9"></div>Demóbile <b style="margin-left:auto">1,50%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#74C0FC"></div>Outros <b style="margin-left:auto">16,36%</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-block">
+        <div class="chart-title">Share NMV</div><div class="chart-subtitle">CATEGORY</div>
+        <div class="chart-area">
+          <div class="donut-wrap"><canvas id="catChart_mai"></canvas></div>
+          <div class="donut-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>Furniture <b style="margin-left:auto">99,08%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>Construction <b style="margin-left:auto">0,46%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#FD7E14"></div>Baby <b style="margin-left:auto">0,34%</b></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#E03131"></div>Outros <b style="margin-left:auto">0,12%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 4: PERFORMANCE OVERVIEW ===== -->
+<div class="slide slide-dark">
+  <div class="slide-header">
+    <h2>Visión general resultados del mes</h2>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="tag">OVERALL</div>
+      <svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="17" fill="#FFE600" stroke="#1A1B4B" stroke-width="1.5"/><path d="M8 20 Q10 12 15 14 Q13 17 14 20 Q11 20 8 20Z" fill="white"/><path d="M28 20 Q26 12 21 14 Q23 17 22 20 Q25 20 28 20Z" fill="white"/><ellipse cx="16" cy="21" rx="3" ry="2.2" fill="white"/><ellipse cx="20" cy="21" rx="3" ry="2.2" fill="white"/><ellipse cx="18" cy="17.5" rx="4" ry="2.8" fill="white"/></svg>
+    </div>
+  </div>
+  <div class="slide-content">
+    <div class="filters">
+      <div class="filter-pill">⚙ 1 mai. 2026 – 31 mai. 2026 ▾</div>
+      <div class="filter-pill">GRUPO CUENTAS ▾</div>
+      <div class="filter-pill">CUST ID: 339898… (1) ▾</div>
+      <div class="filter-pill">BRAND ▾</div>
+      <div class="filter-pill">VERTICAL ▾</div>
+      <div class="filter-pill">Moneda: LC ▾</div>
+      <div class="filter-pill">SITE ▾</div>
+    </div>
+
+    <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">Indicadores de</div>
+    <div style="font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:8px;display:flex;align-items:center;gap:8px">PERFORMANCE <span style="font-size:18px">🎯</span></div>
+
+    <div class="kpi-row-dark" style="margin-bottom:10px">
+      <div class="kpi-d"><div class="kpi-label">NMV</div><div class="kpi-value" style="font-size:20px;font-weight:800;color:#1A1A1A;margin:4px 0">2 mi</div><div class="kpi-badges"><span class="badge-yoy" style="font-size:8px;background:#1A1A1A;color:#fff;padding:2px 5px;border-radius:4px">YoY -26,7%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">MoM -5,9%</span> <span style="font-size:8px;background:#00A650;color:#fff;padding:2px 5px;border-radius:4px">WoW +1,6%</span></div></div>
+      <div class="kpi-d"><div class="kpi-label" style="background:#E8E8E8;color:#999">vs TARGET</div><div class="kpi-value" style="font-size:20px;font-weight:800;color:#bbb;margin:4px 0">—</div><div style="font-size:9px;color:#bbb;font-style:italic">sem meta definida</div></div>
+      <div class="kpi-d"><div class="kpi-label">NSI</div><div class="kpi-value" style="font-size:20px;font-weight:800;color:#1A1A1A;margin:4px 0">3 mil</div><div class="kpi-badges"><span style="font-size:8px;background:#1A1A1A;color:#fff;padding:2px 5px;border-radius:4px">YoY -36,3%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">MoM -6,9%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">WoW -0,5%</span></div></div>
+      <div class="kpi-d"><div class="kpi-label">ORDERS</div><div class="kpi-value" style="font-size:20px;font-weight:800;color:#1A1A1A;margin:4px 0">3 mil</div><div class="kpi-badges"><span style="font-size:8px;background:#1A1A1A;color:#fff;padding:2px 5px;border-radius:4px">YoY -41,2%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">MoM -9,0%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">WoW -0,2%</span></div></div>
+      <div class="kpi-d"><div class="kpi-label">ASP</div><div class="kpi-value" style="font-size:18px;font-weight:800;color:#1A1A1A;margin:4px 0">R$ 744,1</div><div class="kpi-badges"><span style="font-size:8px;background:#00A650;color:#fff;padding:2px 5px;border-radius:4px">YoY +15,0%</span> <span style="font-size:8px;background:#00A650;color:#fff;padding:2px 5px;border-radius:4px">MoM +1,1%</span> <span style="font-size:8px;background:#00A650;color:#fff;padding:2px 5px;border-radius:4px">WoW +2,1%</span></div></div>
+      <div class="kpi-d"><div class="kpi-label">VISITS</div><div class="kpi-value" style="font-size:20px;font-weight:800;color:#1A1A1A;margin:4px 0">2 mi</div><div class="kpi-badges"><span style="font-size:8px;background:#1A1A1A;color:#fff;padding:2px 5px;border-radius:4px">YoY -19,9%</span> <span style="font-size:8px;background:#E8E8E8;color:#666;padding:2px 5px;border-radius:4px">MoM -0,1%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">WoW -2,7%</span></div></div>
+      <div class="kpi-d"><div class="kpi-label">CVR</div><div class="kpi-value" style="font-size:18px;font-weight:800;color:#1A1A1A;margin:4px 0">0,1%</div><div class="kpi-badges"><span style="font-size:8px;background:#1A1A1A;color:#fff;padding:2px 5px;border-radius:4px">YoY -20,0%</span> <span style="font-size:8px;background:#00A650;color:#fff;padding:2px 5px;border-radius:4px">MoM +1,1%</span> <span style="font-size:8px;background:#F23D4F;color:#fff;padding:2px 5px;border-radius:4px">WoW -3,4%</span></div></div>
+    </div>
+
+    <div style="display:flex;gap:12px">
+      <!-- Ecosystem -->
+      <div style="width:220px;flex-shrink:0">
+        <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px">Indicadores de</div>
+        <div style="font-size:13px;font-weight:900;color:#1A1A1A;margin-bottom:6px">ECOSYSTEM &amp; OPERACIÓN 🌐</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div class="kpi-d" style="padding:7px 8px"><div class="kpi-label" style="font-size:8px">FBM</div><div style="font-size:15px;font-weight:800;color:#bbb;margin:3px 0">—</div></div>
+          <div class="kpi-d" style="padding:7px 8px"><div class="kpi-label" style="font-size:8px">ADS</div><div style="font-size:15px;font-weight:800;color:#1A1A1A;margin:3px 0">25,78%</div><div style="display:flex;gap:2px"><span style="font-size:7px;background:#E8E8E8;color:#666;padding:1px 4px;border-radius:3px">null</span></div></div>
+          <div class="kpi-d" style="padding:7px 8px"><div class="kpi-label" style="font-size:8px">BUY BOX</div><div style="font-size:14px;font-weight:800;color:#1A1A1A;margin:3px 0">35,38%</div></div>
+          <div class="kpi-d" style="padding:7px 8px"><div class="kpi-label" style="font-size:8px">BPC</div><div style="font-size:15px;font-weight:800;color:#1A1A1A;margin:3px 0">67,5%</div><div style="display:flex;gap:2px"><span style="font-size:7px;background:#00A650;color:#fff;padding:1px 4px;border-radius:3px">YoY +0,87%</span></div></div>
+        </div>
+      </div>
+
+      <!-- Brand chart -->
+      <div style="flex:1;border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column">
+        <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase">Share NMV Brand</div>
+        <div style="flex:1;display:flex;gap:8px;align-items:center;min-height:0">
+          <div style="width:110px;height:110px;flex-shrink:0"><canvas id="brandChart2"></canvas></div>
+          <div style="font-size:9px;color:#444;display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#3B5BDB;flex-shrink:0"></div>Panorama Móveis <b style="margin-left:4px">71,59%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#40C057;flex-shrink:0"></div>Pnr Móveis <b style="margin-left:4px">4,16%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#FD7E14;flex-shrink:0"></div>Henn <b style="margin-left:4px">2,35%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#E03131;flex-shrink:0"></div>Politorno <b style="margin-left:4px">2,29%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#12B886;flex-shrink:0"></div>Viero <b style="margin-left:4px">1,75%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#AE3EC9;flex-shrink:0"></div>Demóbile <b style="margin-left:4px">1,50%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#74C0FC;flex-shrink:0"></div>Outros <b style="margin-left:4px">16,36%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category chart -->
+      <div style="flex:1;border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column">
+        <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase">Share NMV Category</div>
+        <div style="flex:1;display:flex;gap:8px;align-items:center;min-height:0">
+          <div style="width:110px;height:110px;flex-shrink:0"><canvas id="catChart2"></canvas></div>
+          <div style="font-size:9px;color:#444;display:flex;flex-direction:column;gap:2px">
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#3B5BDB;flex-shrink:0"></div>Furniture <b style="margin-left:4px">99,08%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#40C057;flex-shrink:0"></div>Construction <b style="margin-left:4px">0,46%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#FD7E14;flex-shrink:0"></div>Baby <b style="margin-left:4px">0,34%</b></div>
+            <div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:#E03131;flex-shrink:0"></div>Outros <b style="margin-left:4px">0,12%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SLIDE 4: OBRIGADO ===== -->
+<div class="slide slide-thanks">
+  <div class="cover-deco"></div>
+  <div class="cover-deco2"></div>
+  <div class="cover-deco3"></div>
+  <div class="thanks-content">
+    <h2>Muchas gracias!</h2>
+    <p>Obrigado</p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="prevSlide()">‹</button>
+  <div class="slide-counter" id="counter">1 / 5</div>
+  <button onclick="nextSlide()">›</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+function show(n){
+  slides[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
+  initCharts();
+}
+function nextSlide(){show(cur+1)}
+function prevSlide(){show(cur-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')nextSlide();if(e.key==='ArrowLeft'||e.key==='ArrowUp')prevSlide()});
+
+let chartsInited = {};
+function initCharts(){
+  if(chartsInited[cur]) return;
+  chartsInited[cur] = true;
+
+  const brandData = {
+    labels:['Panorama Móveis','Pnr Móveis','Henn','Politorno','Viero','Demóbile','Tecno Mobili','Artany Móveis','Outros'],
+    data:[71.59,4.16,2.35,2.29,1.75,1.50,1.15,1.10,14.11],
+    colors:['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#AE3EC9','#F59F00','#1098AD','#CED4DA']
+  };
+  const catData = {
+    labels:['Furniture','Construction','Baby','Industry','Household','Outros'],
+    data:[99.08,0.46,0.34,0.05,0.03,0.04],
+    colors:['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#CED4DA']
+  };
+
+  const opts = (data)=>({type:'doughnut',data:{labels:data.labels,datasets:[{data:data.data,backgroundColor:data.colors,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,animation:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+c.raw+'%'}}}}});
+
+  const brandDataYTD = {
+    labels:['Panorama Móveis','Pnr Móveis','Henn','Viero','Politorno','Artany Móveis','Outros'],
+    data:[69.31,5.27,2.35,1.75,2.29,1.10,17.93],
+    colors:['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#1098AD','#CED4DA']
+  };
+  const catDataYTD = {
+    labels:['Furniture','Construction','Baby','Industry','Outros'],
+    data:[98.70,0.60,0.40,0.15,0.15],
+    colors:['#3B5BDB','#40C057','#FD7E14','#E03131','#CED4DA']
+  };
+  const brandDataMai = {
+    labels:['Panorama Móveis','Pnr Móveis','Henn','Politorno','Viero','Demóbile','Outros'],
+    data:[71.59,4.16,2.35,2.29,1.75,1.50,16.36],
+    colors:['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#AE3EC9','#CED4DA']
+  };
+  const catDataMai = {
+    labels:['Furniture','Construction','Baby','Outros'],
+    data:[99.08,0.46,0.34,0.12],
+    colors:['#3B5BDB','#40C057','#FD7E14','#CED4DA']
+  };
+
+  if(cur===1){
+    const c1=document.getElementById('brandChart');
+    const c2=document.getElementById('catChart');
+    if(c1&&!c1._chart){c1._chart=new Chart(c1.getContext('2d'),opts(brandDataYTD));}
+    if(c2&&!c2._chart){c2._chart=new Chart(c2.getContext('2d'),opts(catDataYTD));}
+  }
+  if(cur===2){
+    const c3=document.getElementById('brandChart_mai');
+    const c4=document.getElementById('catChart_mai');
+    if(c3&&!c3._chart){c3._chart=new Chart(c3.getContext('2d'),opts(brandDataMai));}
+    if(c4&&!c4._chart){c4._chart=new Chart(c4.getContext('2d'),opts(catDataMai));}
+  }
+  if(cur===3){
+    const c5=document.getElementById('brandChart2');
+    const c6=document.getElementById('catChart2');
+    if(c5&&!c5._chart){c5._chart=new Chart(c5.getContext('2d'),opts(brandDataMai));}
+    if(c6&&!c6._chart){c6._chart=new Chart(c6.getContext('2d'),opts(catDataMai));}
+  }
+}
+initCharts();
+</script>
+</body>
+</html>
