@@ -31,7 +31,7 @@ html,body{width:100%;height:100%;background:#111;font-family:'Inter',sans-serif;
 .y-body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
 
 /* WHITE SLIDE BASE */
-.s-white{background:#fff !important}
+.s-white{background:#fff}
 .w-header{padding:16px 30px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;flex-shrink:0}
 .w-header h2{font-size:24px;font-weight:800;color:#1A1A1A}
 .w-tag{background:#FFE600;color:#1A1A1A;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.5px}
@@ -74,7 +74,7 @@ html,body{width:100%;height:100%;background:#111;font-family:'Inter',sans-serif;
 
 /* Charts 2-col */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
-.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;background:#fff}
+.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column}
 .gc .kpi-label{font-size:8px;margin-bottom:5px}
 .gc-area{flex:1;position:relative;min-height:0}
 
@@ -286,7 +286,6 @@ table.dt tr:hover td{background:#FFFBEA}
       </div>
       <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">BRAND</div><div class="ca"><div style="flex:0 0 auto;width:260px;height:260px;position:relative"><canvas id="c_mai_brand"></canvas></div><div style="flex:1;font-size:13px;color:#444;display:flex;flex-direction:column;gap:7px;overflow:hidden"><div class="li"><div style="width:12px;height:12px;border-radius:50%;background:#3B5BDB;flex-shrink:0"></div>Panorama Móveis <b style="margin-left:auto">71,59%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>Pnr Móveis <b style="margin-left:auto">4,16%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Henn <b style="margin-left:auto">2,35%</b></div><div class="li"><div class="ld" style="background:#E03131"></div>Politorno <b style="margin-left:auto">2,29%</b></div><div class="li"><div class="ld" style="background:#12B886"></div>Viero <b style="margin-left:auto">1,75%</b></div><div class="li"><div class="ld" style="background:#AE3EC9"></div>Demóbile <b style="margin-left:auto">1,50%</b></div><div class="li"><div class="ld" style="background:#CED4DA"></div>Outros <b style="margin-left:auto">16,36%</b></div></div></div></div>
       <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">CATEGORY</div><div class="ca"><div style="flex:0 0 auto;width:260px;height:260px;position:relative"><canvas id="c_mai_cat"></canvas></div><div style="flex:1;font-size:13px;color:#444;display:flex;flex-direction:column;gap:7px;overflow:hidden"><div class="li"><div style="width:12px;height:12px;border-radius:50%;background:#3B5BDB;flex-shrink:0"></div>Furniture <b style="margin-left:auto">99,08%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>Construction <b style="margin-left:auto">0,46%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Baby <b style="margin-left:auto">0,34%</b></div><div class="li"><div class="ld" style="background:#E03131"></div>Outros <b style="margin-left:auto">0,12%</b></div></div></div></div>
-    </div>
     <!-- Top 10 NMV -->
     <div style="flex-shrink:0;margin-top:6px;overflow:auto;max-height:160px">
       <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">TOP 10 ÍTENS — NMV</div>
@@ -477,74 +476,6 @@ table.dt tr:hover td{background:#FFFBEA}
   </div>
 </div>
 
-
-<!-- FAROL: ECOSSISTEMA E ALAVANCAS -->
-<div class="slide" style="background:#fff;overflow:hidden;display:flex;flex-direction:column">
-  <div style="background:#F5A623;padding:14px 28px;display:flex;align-items:center;flex-shrink:0">
-    <div style="font-size:24px;font-weight:900;color:#fff;font-style:italic">Ecossistema e Alavancas — Farol</div>
-  </div>
-  <div style="padding:8px 28px 4px;font-size:11px;color:#555;font-style:italic;flex-shrink:0">Preencha % TGMV e status (verde = acima MELI, vermelho = abaixo MELI).</div>
-  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:0 20px 8px;min-height:0">
-
-    <div style="display:flex;flex-direction:column;gap:0">
-      <div style="background:#1A1A1A;color:#fff;text-align:center;font-weight:800;font-size:13px;padding:9px;border-radius:6px 6px 0 0">MEnvios</div>
-      <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">FULL</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">COLETAS</span><span style="width:16px;height:16px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">ME1</span><span style="width:16px;height:16px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555">— % TGMV</div>
-      </div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:0">
-      <div style="background:#1A1A1A;color:#fff;text-align:center;font-weight:800;font-size:13px;padding:9px;border-radius:6px 6px 0 0">MAds</div>
-      <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-        <div style="background:#C39BD3;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:11px">%INV ADS/GMV</span><span style="width:16px;height:16px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#C39BD3;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">PADS</span><span style="width:16px;height:16px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % INV</div>
-        <div style="background:#C39BD3;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">BRAND ADS</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % INV</div>
-        <div style="background:#C39BD3;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">DISPLAY</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555">— % INV</div>
-      </div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:0">
-      <div style="background:#1A1A1A;color:#fff;text-align:center;font-weight:800;font-size:13px;padding:9px;border-radius:6px 6px 0 0">MktPlace</div>
-      <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">CLIPS</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">AFILIADOS</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#FFE600;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px">B2B</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555">— % TGMV</div>
-      </div>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:0">
-      <div style="background:#1A1A1A;color:#fff;text-align:center;font-weight:800;font-size:13px;padding:9px;border-radius:6px 6px 0 0">Promocional</div>
-      <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-        <div style="background:#00A650;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px;color:#fff">SADs</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#00A650;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px;color:#fff">CUPONS</span><span style="width:16px;height:16px;border-radius:50%;background:#1A6B3A;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555;margin-bottom:4px">— % TGMV</div>
-        <div style="background:#00A650;border-radius:4px 4px 0 0;padding:8px 12px;display:flex;justify-content:space-between;align-items:center"><span style="font-weight:800;font-size:12px;color:#fff">PRÉ-ACORDO</span><span style="width:16px;height:16px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:0 0 4px 4px;padding:8px 12px;text-align:center;font-size:12px;color:#555">— % TGMV</div>
-      </div>
-    </div>
-
-  </div>
-  <div style="padding:6px 28px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;border-top:1px solid #F0F0F0">
-    <div style="display:flex;gap:16px;align-items:center">
-      <div style="display:flex;gap:6px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:#00A650;display:inline-block"></span><span style="font-size:11px;color:#555">Acima MELI</span></div>
-      <div style="display:flex;gap:6px;align-items:center"><span style="width:12px;height:12px;border-radius:50%;background:#F23D4F;display:inline-block"></span><span style="font-size:11px;color:#555">Abaixo MELI</span></div>
-    </div>
-    <div style="font-size:10px;color:#aaa;font-style:italic">Fonte: Dados Internos Mercado Livre</div>
-  </div>
-</div>
 
 <!-- S15: PROXIMOS PASSOS -->
 <div class="slide" style="background:#0A0A0A;color:#fff;position:relative;overflow:hidden">
