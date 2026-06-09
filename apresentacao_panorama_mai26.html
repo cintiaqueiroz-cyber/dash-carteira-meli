@@ -413,8 +413,18 @@ table.dt tr:hover td{background:#FFFBEA}
         </div>
       </div>
       <div style="flex:1;display:flex;flex-direction:column;gap:8px">
-        <div class="gc" style="flex:0 0 60px;padding:8px 10px"><div class="kpi-label" style="font-size:8px">TMR BY TIMELINE</div><div style="font-size:11px;color:#bbb;margin-top:8px;text-align:center">Não há dados</div></div>
-        <div class="gc" style="flex:1"><div class="kpi-label">CLAIMS EVOLUTION</div><div class="gc-area"><canvas id="c_claims"></canvas></div></div>
+        <div class="gc" style="flex:2"><div class="kpi-label">CLAIMS EVOLUTION</div><div class="gc-area"><canvas id="c_claims"></canvas></div></div>
+        <div style="border:1px solid #E8E8E8;border-radius:8px;padding:10px 12px;flex-shrink:0">
+          <div style="font-size:11px;font-weight:800;color:#1A1A1A;margin-bottom:8px">Productos con más problemas</div>
+          <table style="width:100%;border-collapse:collapse;font-size:11px">
+            <thead><tr style="border-bottom:1px solid #E8E8E8"><th style="text-align:left;padding:4px 8px;font-weight:700;color:#555">Producto</th><th style="text-align:right;padding:4px 8px;font-weight:700;color:#E8680A">Problemas totales</th></tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #F5F5F5"><td style="padding:6px 8px;color:#3483FA">Guarda-roupa Casal Classic 6 Portas 6 Gavetas...</td><td style="padding:6px 8px;text-align:right;font-weight:700;color:#E8680A">8</td></tr>
+              <tr style="border-bottom:1px solid #F5F5F5"><td style="padding:6px 8px;color:#3483FA">Guarda-roupa Casal Honey 4 Portas 6 Gavetas...</td><td style="padding:6px 8px;text-align:right;font-weight:700;color:#E8680A">4</td></tr>
+              <tr><td style="padding:6px 8px;color:#3483FA">Cômoda Demóbile Sintra 8 Gavetas Br...</td><td style="padding:6px 8px;text-align:right;font-weight:700;color:#E8680A">3</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -598,7 +608,17 @@ function renderCharts(n){
   if(n===8){mkBar('c_fbm_nsi',new Array(12).fill(0),'#00A650','NSI FBM');mkBar('c_fbm_nmv',new Array(12).fill(0),'#00A650','NMV FBM');}
   if(n===5){
     const el=document.getElementById('c_claims');if(!el||el._c)return;
-    el._c=new Chart(el.getContext('2d'),{type:'line',data:{labels:months,datasets:[{label:'Cancelation',data:[0.47,0.33,0.36,0.44,0.6,0.74,0.67,0.75,0.43,0.59,0.45,0.64],borderColor:'#F23D4F',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'},{label:'Claims',data:[2.35,2.43,2.3,2.3,1.9,2.08,2.33,1.77,1.83,2.62,2.25,2.21],borderColor:'#00A650',tension:0.3,pointRadius:3,borderWidth:2,backgroundColor:'transparent'}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
+    const mths13=['jun/25','jul/25','ago/25','set/25','out/25','nov/25','dez/25','jan/26','fev/26','mar/26','abr/26','mai/26','jun/26'];
+    el._c=new Chart(el.getContext('2d'),{type:'line',data:{labels:mths13,datasets:[
+      {label:'Cancelation rate',data:[0.47,0.33,0.36,0.44,1.08,0.67,0.75,1.77,1.83,2.62,0.45,2.21,0.64],borderColor:'#F23D4F',tension:0.3,pointRadius:4,borderWidth:2,backgroundColor:'transparent',
+        datalabels:{display:false}},
+      {label:'Claims Rate',data:[2.57,2.43,2.5,2.5,2.33,1.4,0.6,1.77,1.83,2.62,2.25,2.43,2.43],borderColor:'#00A650',tension:0.3,pointRadius:4,borderWidth:2,backgroundColor:'transparent'},
+      {label:'Delayed Rate',data:[0,0,0,0,0,0,0,0,0,0,0,0,0],borderColor:'#3483FA',tension:0.3,pointRadius:4,borderWidth:2,backgroundColor:'transparent',borderDash:[4,3]}
+    ]},options:{responsive:true,maintainAspectRatio:false,animation:false,
+      plugins:{legend:{position:'bottom',labels:{font:{size:9},usePointStyle:true}},
+        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}},
+      scales:{x:{ticks:{font:{size:8},maxRotation:30},grid:{display:false}},
+        y:{ticks:{font:{size:8},callback:v=>v+'%'},min:0,max:3}}}});
   }
 }
 renderCharts(0);
