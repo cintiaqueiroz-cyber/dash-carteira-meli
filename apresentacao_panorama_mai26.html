@@ -223,6 +223,20 @@ table.dt tr:hover td{background:#FFFBEA}
   </div>
 </div>
 
+<!-- S5: PERFORMANCE YTD (NMV, NSI, ASP, ORDERS) -->
+<div class="slide s-white">
+  <div class="w-header"><h2>Performance YTD</h2><div style="display:flex;gap:8px"><div class="w-tag">OVERALL</div></div></div>
+  <div class="w-body">
+    <div class="filters"><div class="fp">⚙ 1–31 mai. 2026</div><div class="fp">CUST ID: 339898…(1)</div><div class="fp">BRAND</div><div class="fp">VERTICAL</div></div>
+    <div class="g2">
+      <div class="gc"><div class="kpi-label">NMV</div><div class="gc-area"><canvas id="c_nmv"></canvas></div></div>
+      <div class="gc"><div class="kpi-label">NSI</div><div class="gc-area"><canvas id="c_nsi"></canvas></div></div>
+      <div class="gc"><div class="kpi-label">ASP</div><div class="gc-area"><canvas id="c_asp"></canvas></div></div>
+      <div class="gc"><div class="kpi-label">ORDERS</div><div class="gc-area"><canvas id="c_ord"></canvas></div></div>
+    </div>
+  </div>
+</div>
+
 <!-- S3: RESULTADOS MAIO 2026 -->
 <div class="slide s-yellow">
   <div class="y-header"><h1>Resultados — Maio 2026</h1><div class="y-badge">PANORAMA MÓVEIS</div></div>
@@ -272,20 +286,6 @@ table.dt tr:hover td{background:#FFFBEA}
       </div>
       <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">BRAND</div><div class="ca"><div class="dw"><canvas id="c_mai_brand"></canvas></div><div class="dl"><div class="li"><div class="ld" style="background:#3B5BDB"></div>Panorama Móveis <b style="margin-left:auto">71,59%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>Pnr Móveis <b style="margin-left:auto">4,16%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Henn <b style="margin-left:auto">2,35%</b></div><div class="li"><div class="ld" style="background:#E03131"></div>Politorno <b style="margin-left:auto">2,29%</b></div><div class="li"><div class="ld" style="background:#12B886"></div>Viero <b style="margin-left:auto">1,75%</b></div><div class="li"><div class="ld" style="background:#AE3EC9"></div>Demóbile <b style="margin-left:auto">1,50%</b></div><div class="li"><div class="ld" style="background:#CED4DA"></div>Outros <b style="margin-left:auto">16,36%</b></div></div></div></div>
       <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">CATEGORY</div><div class="ca"><div class="dw"><canvas id="c_mai_cat"></canvas></div><div class="dl"><div class="li"><div class="ld" style="background:#3B5BDB"></div>Furniture <b style="margin-left:auto">99,08%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>Construction <b style="margin-left:auto">0,46%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Baby <b style="margin-left:auto">0,34%</b></div><div class="li"><div class="ld" style="background:#E03131"></div>Outros <b style="margin-left:auto">0,12%</b></div></div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- S5: PERFORMANCE YTD (NMV, NSI, ASP, ORDERS) -->
-<div class="slide s-white">
-  <div class="w-header"><h2>Performance YTD</h2><div style="display:flex;gap:8px"><div class="w-tag">OVERALL</div></div></div>
-  <div class="w-body">
-    <div class="filters"><div class="fp">⚙ 1–31 mai. 2026</div><div class="fp">CUST ID: 339898…(1)</div><div class="fp">BRAND</div><div class="fp">VERTICAL</div></div>
-    <div class="g2">
-      <div class="gc"><div class="kpi-label">NMV</div><div class="gc-area"><canvas id="c_nmv"></canvas></div></div>
-      <div class="gc"><div class="kpi-label">NSI</div><div class="gc-area"><canvas id="c_nsi"></canvas></div></div>
-      <div class="gc"><div class="kpi-label">ASP</div><div class="gc-area"><canvas id="c_asp"></canvas></div></div>
-      <div class="gc"><div class="kpi-label">ORDERS</div><div class="gc-area"><canvas id="c_ord"></canvas></div></div>
     </div>
   </div>
 </div>
@@ -605,8 +605,8 @@ function renderCharts(n){
   // Slide indices após remoção do slide 4:
   // 0=Capa 1=YTD 2=Maio 3=Perf NMV/NSI 4=Perf Visits 5=Cat NMV 6=Brands 7=BPC 8=ADS 9=Shipping 10=Promo 11=Invest 12=Gestión 13=Search 14=Próx.Passos 15=Obrigado
   if(n===1){mkDonut('c_ytd_brand',['Panorama','Pnr Móveis','Henn','Politorno','Viero','Artany','Outros'],[69.31,5.27,2.35,2.29,1.75,1.10,17.93],brandColors);mkDonut('c_ytd_cat',['Furniture','Construction','Baby','Industry','Outros'],[98.70,0.60,0.40,0.15,0.15],catColors);}
-  if(n===2){mkDonut('c_mai_brand',['Panorama','Pnr Móveis','Henn','Politorno','Viero','Demóbile','Outros'],[71.59,4.16,2.35,2.29,1.75,1.50,16.36],brandColors);mkDonut('c_mai_cat',['Furniture','Construction','Baby','Outros'],[99.08,0.46,0.34,0.12],catColors);}
-  if(n===3){mkBar('c_nmv',nmvData,'#3483FA','NMV');mkBar('c_nsi',nsiData,'#3483FA','NSI');mkLine('c_asp',aspData,'#FFB900','ASP');mkBar('c_ord',ordData,'#3483FA','Orders');}
+  if(n===3){mkDonut('c_mai_brand',['Panorama','Pnr Móveis','Henn','Politorno','Viero','Demóbile','Outros'],[71.59,4.16,2.35,2.29,1.75,1.50,16.36],brandColors);mkDonut('c_mai_cat',['Furniture','Construction','Baby','Outros'],[99.08,0.46,0.34,0.12],catColors);}
+  if(n===2){mkBar('c_nmv',nmvData,'#3483FA','NMV');mkBar('c_nsi',nsiData,'#3483FA','NSI');mkLine('c_asp',aspData,'#FFB900','ASP');mkBar('c_ord',ordData,'#3483FA','Orders');}
   if(n===4){mkBar('c_vis',visData,'#3483FA','Visits');mkLine('c_cvr',cvrData,'#3483FA','CVR');}
   if(n===6){
     const el=document.getElementById('c_bpc');if(!el||el._c)return;
