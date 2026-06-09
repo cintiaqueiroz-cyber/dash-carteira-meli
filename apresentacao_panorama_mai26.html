@@ -357,7 +357,6 @@ table.dt tr:hover td{background:#FFFBEA}
     <div style="display:flex;gap:10px;flex:1;min-height:0">
       <div class="gc" style="flex:2"><div class="kpi-label">BPC</div><div class="gc-area"><canvas id="c_bpc"></canvas></div></div>
       <div style="flex:1;display:flex;flex-direction:column;gap:8px">
-        <div class="gc" style="flex:1"><div style="font-size:9px;font-weight:800;color:#888">SHARE BPC — CATEGORIA</div><div class="gc-area"><canvas id="c_bpc_cat"></canvas></div></div>
       </div>
     </div>
   </div>
@@ -612,7 +611,6 @@ function renderCharts(n){
   if(n===6){
     const el=document.getElementById('c_bpc');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'bar',data:{labels:months,datasets:[{label:'%BPC LY',data:bpcLY,backgroundColor:'#CED4DA',borderRadius:2},{label:'%BPC',data:bpcData,backgroundColor:'#3483FA',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
-    mkDonut('c_bpc_cat',['Small Appl.','Industry','Toys','Baby','Furniture','Household','Decor','Mattresses','Construction','Large Appl.'],[1,0.96,0.93,0.69,0.68,0.63,0.58,0.38,0.37,0.06],['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#F59F00','#AE3EC9','#1098AD','#74C0FC','#CED4DA']);
   }
   if(n===8){mkBar('c_fbm_nsi',new Array(12).fill(0),'#00A650','NSI FBM');mkBar('c_fbm_nmv',new Array(12).fill(0),'#00A650','NMV FBM');}
   if(n===9){
