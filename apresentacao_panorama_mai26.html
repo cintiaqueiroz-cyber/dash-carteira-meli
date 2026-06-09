@@ -317,40 +317,6 @@ table.dt tr:hover td{background:#FFFBEA}
   </div>
 </div>
 
-<!-- S7: CATEGORIES BY NMV -->
-<div class="slide s-white">
-  <div class="w-header"><h2>Categories by NMV</h2><div class="w-tag">OVERALL</div></div>
-  <div class="w-body">
-    <div class="filters"><div class="fp">⚙ 1–31 mai. 2026</div><div class="fp">Dimension: AGG1</div></div>
-    <div style="display:flex;gap:12px;flex:1;min-height:0">
-      <div style="flex:1;overflow:auto">
-        <div style="font-size:10px;font-weight:800;color:#888;margin-bottom:5px">TOP CATEGORIES YTD</div>
-        <table class="dt"><thead><tr><th>Nivel AGG</th><th>NMV</th><th>% NMV</th><th>YoY</th><th>Vs LY</th></tr></thead><tbody>
-          <tr><td>FURNITURE</td><td>R$ 2.473.372</td><td>99,08%</td><td><span class="tag-n">-26,3%</span></td><td>-882.170</td></tr>
-          <tr><td>CONSTRUCTION</td><td>R$ 11.373</td><td>0,46%</td><td><span class="tag-n">-26,1%</span></td><td>-4.008</td></tr>
-          <tr><td>BABY</td><td>R$ 8.488</td><td>0,34%</td><td><span class="tag-n">-45,5%</span></td><td>-7.084</td></tr>
-          <tr><td>INDUSTRY</td><td>R$ 1.248</td><td>0,05%</td><td><span class="tag-n">-66,0%</span></td><td>-2.423</td></tr>
-          <tr><td>HOUSEHOLD ITEMS</td><td>R$ 778</td><td>0,03%</td><td><span class="tag-n">-48,7%</span></td><td>-738</td></tr>
-          <tr><td>MATTRESSES &amp; SOMMIER</td><td>R$ 307</td><td>0,01%</td><td><span class="tag-n">-98,1%</span></td><td>-15.460</td></tr>
-          <tr><td>TOYS AND GAMES</td><td>R$ 722</td><td>0,03%</td><td>—</td><td>+722</td></tr>
-        </tbody></table>
-      </div>
-      <div style="flex:1;overflow:auto">
-        <div style="font-size:10px;font-weight:800;color:#888;margin-bottom:5px">TOP CATEGORIES MTD</div>
-        <table class="dt"><thead><tr><th>Nivel AGG</th><th>NMV</th><th>% NMV</th><th>MoM</th><th>Vs LM</th></tr></thead><tbody>
-          <tr><td>FURNITURE</td><td>R$ 2.473.372</td><td>99,08%</td><td><span class="tag-n">-5,6%</span></td><td>-146.660</td></tr>
-          <tr><td>CONSTRUCTION</td><td>R$ 11.373</td><td>0,46%</td><td><span class="tag-n">-21,6%</span></td><td>-3.125</td></tr>
-          <tr><td>BABY</td><td>R$ 8.488</td><td>0,34%</td><td><span class="tag-n">-35,2%</span></td><td>-4.612</td></tr>
-          <tr><td>HOUSEHOLD ITEMS</td><td>R$ 778</td><td>0,03%</td><td><span class="tag-p">+12,9%</span></td><td>+89</td></tr>
-          <tr><td>INDUSTRY</td><td>R$ 1.248</td><td>0,05%</td><td><span class="tag-n">-47,7%</span></td><td>-1.139</td></tr>
-          <tr><td>MATTRESSES &amp; SOMMIER</td><td>R$ 307</td><td>0,01%</td><td><span class="tag-n">-55,4%</span></td><td>-381</td></tr>
-          <tr><td>TOYS AND GAMES</td><td>R$ 722</td><td>0,03%</td><td><span class="tag-n">-32,9%</span></td><td>-354</td></tr>
-        </tbody></table>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- S8: BRANDS BY NMV -->
 <div class="slide s-white">
   <div class="w-header"><h2>Brands by NMV</h2><div class="w-tag">OVERALL</div></div>
@@ -643,7 +609,7 @@ function renderCharts(n){
   if(n===2){mkDonut('c_mai_brand',['Panorama','Pnr Móveis','Henn','Politorno','Viero','Demóbile','Outros'],[71.59,4.16,2.35,2.29,1.75,1.50,16.36],brandColors);mkDonut('c_mai_cat',['Furniture','Construction','Baby','Outros'],[99.08,0.46,0.34,0.12],catColors);}
   if(n===3){mkBar('c_nmv',nmvData,'#3483FA','NMV');mkBar('c_nsi',nsiData,'#3483FA','NSI');mkLine('c_asp',aspData,'#FFB900','ASP');mkBar('c_ord',ordData,'#3483FA','Orders');}
   if(n===4){mkBar('c_vis',visData,'#3483FA','Visits');mkLine('c_cvr',cvrData,'#3483FA','CVR');}
-  if(n===7){
+  if(n===6){
     const el=document.getElementById('c_bpc');if(!el||el._c)return;
     el._c=new Chart(el.getContext('2d'),{type:'bar',data:{labels:months,datasets:[{label:'%BPC LY',data:bpcLY,backgroundColor:'#CED4DA',borderRadius:2},{label:'%BPC',data:bpcData,backgroundColor:'#3483FA',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{font:{size:8}}}},scales:{x:{ticks:{font:{size:8},maxRotation:30}},y:{ticks:{font:{size:8},callback:v=>v+'%'}}}}});
     mkDonut('c_bpc_cat',['Small Appl.','Industry','Toys','Baby','Furniture','Household','Decor','Mattresses','Construction','Large Appl.'],[1,0.96,0.93,0.69,0.68,0.63,0.58,0.38,0.37,0.06],['#3B5BDB','#40C057','#FD7E14','#E03131','#12B886','#F59F00','#AE3EC9','#1098AD','#74C0FC','#CED4DA']);
