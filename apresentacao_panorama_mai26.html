@@ -73,10 +73,11 @@ html,body{width:100%;height:100%;background:#000;font-family:'Inter',sans-serif;
 .sec-ttl{font-size:13px;font-weight:900;color:#1A1A1A;margin-bottom:5px}
 
 /* Charts 2-col */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
-.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column}
-.gc .kpi-label{font-size:8px;margin-bottom:5px}
-.gc-area{flex:1;position:relative;min-height:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;flex:1;min-height:0}
+.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.gc .kpi-label{font-size:8px;margin-bottom:5px;flex-shrink:0}
+.gc-area{flex:1;position:relative;min-height:0;overflow:hidden}
+.gc-area canvas{position:absolute!important;top:0;left:0;width:100%!important;height:100%!important}
 
 /* Table */
 table.dt{width:100%;border-collapse:collapse;font-size:10px}

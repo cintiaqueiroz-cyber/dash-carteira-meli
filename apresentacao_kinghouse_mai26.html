@@ -53,10 +53,12 @@ html,body{width:100%;height:100%;background:#000;font-family:'Inter',sans-serif;
 .ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .sec-lbl{font-size:8px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
 .sec-ttl{font-size:13px;font-weight:900;color:#1A1A1A;margin-bottom:5px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;min-height:0}
-.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column}
+.g2{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;flex:1;min-height:0}
+.gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .gc .kpi-label{font-size:8px;margin-bottom:5px}
-.gc-area{flex:1;position:relative;min-height:0}
+.gc .kpi-label{flex-shrink:0}
+.gc-area{flex:1;position:relative;min-height:0;overflow:hidden}
+.gc-area canvas{position:absolute!important;top:0;left:0;width:100%!important;height:100%!important}
 .tag-p{background:#E8F8EF;color:#00A650;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px}
 .tag-n{background:#FEE8EA;color:#F23D4F;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px}
 /* farol pill */
