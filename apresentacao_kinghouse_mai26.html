@@ -551,7 +551,7 @@ document.addEventListener('keydown', e => {
 });
 
 const LBLS = ['jun.25','jul.25','ago.25','set.25','out.25','nov.25','dez.25','jan.26','fev.26','mar.26','abr.26','mai.26','jun.26'];
-const barColors = LBLS.map(() => '#5B8FF9');
+const barColors = LBLS.map((_,i) => i >= 7 ? '#FFE600' : '#5B8FF9');
 const barColorsLY = '#CCCCCC';
 const OE = '#FF8C00';
 
