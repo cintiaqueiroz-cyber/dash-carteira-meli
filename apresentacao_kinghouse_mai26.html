@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=1440">
 <title>MLB - KING HOUSE | Mai 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
@@ -16,20 +17,16 @@ html,body{width:100%;height:100%;background:#111;font-family:'Inter',sans-serif;
 .nav button{background:#FFE600;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;font-weight:900;color:#1A1A1A}
 .nav button:hover{transform:scale(1.1)}
 .slide-counter{color:#FFE600;font-size:11px;font-weight:700;background:rgba(0,0,0,.6);padding:4px 10px;border-radius:10px}
-.s-dark{background:linear-gradient(135deg,#1C1C1C,#252525);color:#fff}
-.deco-c{position:absolute;border-radius:50%;border:1.5px solid rgba(255,255,255,.09);pointer-events:none}
 .s-yellow{background:#F5F5F0}
 .y-header{background:#FFE600;padding:14px 30px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .y-header h1{font-size:24px;font-weight:800;color:#1A1A1A}
 .y-badge{background:#1A1A1A;color:#FFE600;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.3px}
 .y-body{flex:1;padding:10px 22px 8px;display:flex;flex-direction:column;gap:7px;overflow:hidden}
 .s-white{background:#fff}
-.w-header{padding:16px 30px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;flex-shrink:0}
-.w-header h2{font-size:24px;font-weight:800;color:#1A1A1A}
+.w-header{padding:12px 28px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F0F0;flex-shrink:0}
+.w-header h2{font-size:22px;font-weight:800;color:#1A1A1A}
 .w-tag{background:#1A1A1A;color:#FFE600;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;letter-spacing:.3px}
-.w-body{flex:1;padding:12px 30px;overflow:hidden;display:flex;flex-direction:column}
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;flex-shrink:0}
-.fp{border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555}
+.w-body{flex:1;padding:10px 28px;overflow:hidden;display:flex;flex-direction:column}
 .kpi-row{display:flex;gap:7px;flex-shrink:0}
 .kpi-c{flex:1;background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:7px 9px 6px;min-width:0}
 .kpi-label{background:#FFE600;border-radius:20px;padding:2px 9px;font-size:8px;font-weight:800;color:#1A1A1A;display:inline-block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px}
@@ -60,11 +57,19 @@ html,body{width:100%;height:100%;background:#111;font-family:'Inter',sans-serif;
 .gc{border:1px solid #E8E8E8;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column}
 .gc .kpi-label{font-size:8px;margin-bottom:5px}
 .gc-area{flex:1;position:relative;min-height:0}
-table.dt{width:100%;border-collapse:collapse;font-size:10px}
-table.dt th{background:#FFE600;padding:6px 8px;font-size:9px;font-weight:800;color:#1A1A1A;text-align:left}
-table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
 .tag-p{background:#E8F8EF;color:#00A650;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px}
 .tag-n{background:#FEE8EA;color:#F23D4F;font-size:8px;font-weight:700;padding:1px 5px;border-radius:3px}
+/* farol pill */
+.fp-row{margin-bottom:4px;flex-shrink:0}
+.fp-pill{border-radius:20px;padding:4px 10px;display:flex;justify-content:space-between;align-items:center}
+.fp-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.fp-val{background:#F5F5F5;border-radius:0 0 6px 6px;padding:5px 10px}
+.fp-action{background:#FFFDF0;border-radius:6px;padding:8px 10px;border:1px dashed #FFE600;font-size:8.5px;color:#444;line-height:1.6;flex:1}
+/* category tables */
+.cat-tbl{width:100%;border-collapse:collapse;font-size:10.5px}
+.cat-tbl th{background:#FFE600;padding:7px 10px;font-size:9px;font-weight:800;color:#1A1A1A;text-align:left}
+.cat-tbl td{padding:6px 10px;border-bottom:1px solid #F0F0F0;color:#333}
+.cat-tbl tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
@@ -87,13 +92,13 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
     <img src="ml_logo_full.png" height="64" alt="Mercado Livre" style="display:block"/>
   </div>
   <div style="position:absolute;right:40px;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1.4fr;gap:12px;width:500px;height:400px;z-index:5">
-    <div style="grid-column:1;grid-row:1;border-radius:12px;overflow:hidden;border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);background:linear-gradient(135deg,#1A0D00,#3B1E00);display:flex;align-items:center;justify-content:center">
-      <div style="color:#FFE600;font-size:13px;font-weight:800;letter-spacing:1px;text-align:center">KING HOUSE<br><span style="font-size:10px;color:#fff;font-weight:400">Sofás & Estofados</span></div>
+    <div style="grid-column:1;grid-row:1;border-radius:12px;background:linear-gradient(135deg,#1A0D00,#3B1E00);border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);display:flex;align-items:center;justify-content:center">
+      <div style="color:#FFE600;font-size:13px;font-weight:800;letter-spacing:1px;text-align:center">KING HOUSE<br><span style="font-size:10px;color:#fff;font-weight:400">Sofás &amp; Estofados</span></div>
     </div>
-    <div style="grid-column:2;grid-row:1;border-radius:12px;overflow:hidden;border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);background:linear-gradient(135deg,#0D1A00,#1E3B00);display:flex;align-items:center;justify-content:center">
+    <div style="grid-column:2;grid-row:1;border-radius:12px;background:linear-gradient(135deg,#0D1A00,#1E3B00);border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);display:flex;align-items:center;justify-content:center">
       <div style="color:#FFE600;font-size:13px;font-weight:800;letter-spacing:1px;text-align:center">+79,9%<br><span style="font-size:10px;color:#fff;font-weight:400">NMV YoY Mai</span></div>
     </div>
-    <div style="grid-column:1/3;grid-row:2;border-radius:12px;overflow:hidden;border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);background:linear-gradient(135deg,#0F0F0F,#1C1C1C);display:flex;align-items:center;justify-content:center;gap:32px">
+    <div style="grid-column:1/3;grid-row:2;border-radius:12px;background:linear-gradient(135deg,#0F0F0F,#1C1C1C);border:2px solid rgba(255,214,0,.4);box-shadow:0 0 20px rgba(255,214,0,.15);display:flex;align-items:center;justify-content:center;gap:32px">
       <div style="text-align:center"><div style="color:#FFE600;font-size:28px;font-weight:900">R$ 5,5M</div><div style="color:#aaa;font-size:11px">NMV Maio 2026</div></div>
       <div style="width:1px;height:60px;background:rgba(255,230,0,.3)"></div>
       <div style="text-align:center"><div style="color:#FFE600;font-size:28px;font-weight:900">110,7%</div><div style="color:#aaa;font-size:11px">vs Meta Maio</div></div>
@@ -124,7 +129,6 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
         <div class="kpi-c"><div class="kpi-label">CVR</div><div class="kpi-v sm">0,19%</div><div class="badges"><span class="by p">YoY +17%</span></div></div>
       </div>
     </div>
-    <!-- Tabela Meta vs Realizado -->
     <div style="flex-shrink:0;margin-bottom:7px">
       <table style="width:100%;border-collapse:collapse;font-size:11px;border-radius:8px;overflow:hidden">
         <thead>
@@ -171,29 +175,24 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
     </div>
     <div class="bot">
       <div class="eco-col">
-        <div><div class="sec-lbl">Indicadores de</div><div class="sec-ttl" style="font-size:11px">ECOSYSTEM &amp; OPERACIÓN</div></div>
+        <div><div class="sec-lbl">PADs</div><div class="sec-ttl" style="font-size:11px">YTD JAN–MAI 2026</div></div>
         <div class="eco-grid">
           <div class="eco-c" style="grid-column:span 2;padding:8px 10px">
-            <div class="kpi-label" style="margin-bottom:5px">PADs — YTD Jan–Mai 2026</div>
-            <!-- Destaque: % NMV de ADs -->
             <div style="background:#1A1A1A;border-radius:6px;padding:5px 8px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between">
-              <div>
-                <div style="font-size:16px;font-weight:900;color:#FFE600">24,2% do NMV</div>
-                <div style="font-size:8px;color:#aaa">R$ 5,3M de ADs / R$ 21,8M total</div>
-              </div>
-              <div style="font-size:9px;color:#FFE600;font-weight:700">Ingresos<br>PADs</div>
+              <div><div style="font-size:16px;font-weight:900;color:#FFE600">24,2% do NMV</div><div style="font-size:8px;color:#aaa">R$ 5,3M de ADs / R$ 21,8M total</div></div>
+              <div style="font-size:9px;color:#FFE600;font-weight:700;text-align:right">Ingresos<br>PADs</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px">
               <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">R$ 219K</div><div style="font-size:7px;color:#888">Inversión PADs</div></div>
               <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">1,3%</div><div style="font-size:7px;color:#888">PADs/TGMV</div></div>
               <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">4,1%</div><div style="font-size:7px;color:#888">ACOS Real</div></div>
-              <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">544</div><div style="font-size:7px;color:#888">Items PADs ativos</div></div>
-              <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">8</div><div style="font-size:7px;color:#888">Campanhas ativas</div></div>
+              <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">544</div><div style="font-size:7px;color:#888">Items ativos</div></div>
+              <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">8</div><div style="font-size:7px;color:#888">Campanhas</div></div>
               <div style="text-align:center"><div style="font-size:11px;font-weight:800;color:#1A1A1A">393K</div><div style="font-size:7px;color:#888">Clicks</div></div>
             </div>
           </div>
           <div class="eco-c"><div class="kpi-label">BUY BOX</div><div class="kpi-v" style="font-size:14px">98,61%</div></div>
-          <div class="eco-c"><div class="kpi-label">BPC</div><div class="kpi-v" style="font-size:14px">71,8%</div><div class="badges"><span class="bm p" style="font-size:7px">+3,78%</span></div></div>
+          <div class="eco-c"><div class="kpi-label">BPC</div><div class="kpi-v" style="font-size:14px">71,8%</div></div>
         </div>
       </div>
       <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">BRAND</div><div class="ca"><div class="dw"><canvas id="c_ytd_brand"></canvas></div><div class="dl"><div class="li"><div class="ld" style="background:#3B5BDB"></div>King House <b style="margin-left:auto">97,01%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>King House Br <b style="margin-left:auto">2,49%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Hellen <b style="margin-left:auto">0,50%</b></div></div></div></div>
@@ -202,11 +201,11 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
   </div>
 </div>
 
-<!-- S3: PERFORMANCE YTD — GRÁFICOS -->
+<!-- S3: PERFORMANCE YTD — NMV / NSI / ASP / ORDERS -->
 <div class="slide s-white">
   <div class="w-header"><h2>Performance YTD</h2><div class="w-tag">King House</div></div>
   <div class="w-body">
-    <div class="filters"><div class="fp">⚙ Jun 2025 – Mai 2026</div><div class="fp">CUST ID: 102645…(2)</div><div class="fp">BRAND</div><div class="fp">VERTICAL: FURNITURE</div></div>
+    <div style="display:flex;gap:6px;flex-shrink:0;margin-bottom:6px"><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">⚙ Jun 2025 – Jun 2026</div><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">CUST ID: 102645…(2)</div><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">BRAND</div><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">VERTICAL: FURNITURE</div></div>
     <div class="g2">
       <div class="gc"><div class="kpi-label">NMV</div><div class="gc-area"><canvas id="c_nmv"></canvas></div></div>
       <div class="gc"><div class="kpi-label">NSI</div><div class="gc-area"><canvas id="c_nsi"></canvas></div></div>
@@ -216,172 +215,252 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
   </div>
 </div>
 
-<!-- S4: RESULTADOS MAIO 2026 -->
-<div class="slide s-yellow">
-  <div class="y-header"><h1>Resultados — Maio 2026</h1><div class="y-badge">King House</div></div>
-  <div class="y-body">
-    <div>
-      <div class="sec-lbl">Indicadores de</div><div class="sec-ttl">PERFORMANCE</div>
-      <div class="kpi-row">
-        <div class="kpi-c"><div class="kpi-label">NMV</div><div class="kpi-v">5,5M</div><div class="badges"><span class="by p">YoY +79,9%</span><span class="bm p">MoM +24,2%</span></div></div>
-        <div class="kpi-c"><div class="kpi-label" style="background:#FFE600;color:#1A1A1A">vs TARGET</div><div class="kpi-v sm" style="color:#00A650;font-size:20px">110,7%</div><div style="font-size:9px;color:#888;margin-top:2px">Meta: R$ 5,0M</div></div>
-        <div class="kpi-c"><div class="kpi-label">NSI</div><div class="kpi-v">3,3 mil</div><div class="badges"><span class="by p">YoY +50,1%</span><span class="bm p">MoM +18,4%</span></div></div>
-        <div class="kpi-c"><div class="kpi-label">ORDERS</div><div class="kpi-v">3,6 mil</div><div class="badges"><span class="by p">YoY +49,0%</span><span class="bm p">MoM +19,3%</span></div></div>
-        <div class="kpi-c"><div class="kpi-label">ASP</div><div class="kpi-v sm">R$ 1.629</div><div class="badges"><span class="by p">YoY +19,9%</span><span class="bm p">MoM +0,4%</span></div></div>
-        <div class="kpi-c"><div class="kpi-label">VISITS</div><div class="kpi-v">1,7M</div><div class="badges"><span class="by p">YoY +0,5%</span></div></div>
-        <div class="kpi-c"><div class="kpi-label">CVR</div><div class="kpi-v sm">0,19%</div><div class="badges"><span class="by p">YoY +0,7%</span></div></div>
-      </div>
+<!-- S4: PERFORMANCE YTD — VISITS / CVR / TOP 10 -->
+<div class="slide s-white">
+  <div class="w-header"><h2>Performance YTD — Visits &amp; Top Ítens</h2><div class="w-tag">King House</div></div>
+  <div class="w-body" style="padding:8px 28px">
+    <div class="g2" style="flex:0 0 42%;margin-bottom:8px">
+      <div class="gc"><div class="kpi-label">VISITS</div><div class="gc-area"><canvas id="c_vis"></canvas></div></div>
+      <div class="gc"><div class="kpi-label">CVR</div><div class="gc-area"><canvas id="c_cvr"></canvas></div></div>
     </div>
-    <div class="bot">
-      <div class="eco-col">
-        <div><div class="sec-lbl">Indicadores de</div><div class="sec-ttl" style="font-size:11px">ECOSYSTEM &amp; OPERACIÓN</div></div>
-        <div class="eco-grid">
-          <div class="eco-c"><div class="kpi-label">FBM</div><div class="kpi-v" style="font-size:14px">0,00%</div></div>
-          <div class="eco-c"><div class="kpi-label">ADS</div><div class="kpi-v" style="font-size:14px">19,31%</div><div class="badges"><span class="bm p" style="font-size:7px">+0,61%</span></div></div>
-          <div class="eco-c"><div class="kpi-label">BUY BOX</div><div class="kpi-v" style="font-size:14px">98,61%</div></div>
-          <div class="eco-c"><div class="kpi-label">BPC</div><div class="kpi-v" style="font-size:14px">71,8%</div><div class="badges"><span class="bm n" style="font-size:7px">-0,07%</span></div></div>
-        </div>
-      </div>
-      <div class="chart-c"><div class="ct">Share NMV</div><div class="cs">BRAND</div><div class="ca"><div class="dw"><canvas id="c_mai_brand"></canvas></div><div class="dl"><div class="li"><div class="ld" style="background:#3B5BDB"></div>King House <b style="margin-left:auto">97,01%</b></div><div class="li"><div class="ld" style="background:#40C057"></div>King House Br <b style="margin-left:auto">2,49%</b></div><div class="li"><div class="ld" style="background:#FD7E14"></div>Hellen <b style="margin-left:auto">0,50%</b></div></div></div></div>
-      <div class="chart-c">
-        <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">TOP 7 ÍTENS — NMV MAI</div>
-        <div style="overflow:auto;flex:1">
-          <table style="width:100%;border-collapse:collapse;font-size:10px">
-            <thead><tr style="background:#FFE600"><th style="padding:4px 6px;font-size:9px;font-weight:800;color:#1A1A1A">ID</th><th style="padding:4px 6px;font-size:9px;font-weight:800;color:#1A1A1A">Item</th><th style="padding:4px 6px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">NMV</th><th style="padding:4px 6px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">%NMV</th><th style="padding:4px 6px;text-align:center;font-size:9px;font-weight:800;color:#1A1A1A">YoY</th><th style="padding:4px 6px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">Pedidos</th><th style="padding:4px 6px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">ASP</th></tr></thead>
-            <tbody>
-              <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">4040078892</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Retrátil 2,50m Nivus Cinza Molas Ensacadas</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">463.712,74</td><td style="padding:3px 6px;text-align:right;font-size:9px">8,49%</td><td style="padding:3px 6px;text-align:center"><span class="tag-p">+30,16%</span></td><td style="padding:3px 6px;text-align:right;font-size:9px">205</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 2.262</td></tr>
-              <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">5834923568</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Veneza 2,40m Retrátil Grafite USB Porta Copo</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">383.633,08</td><td style="padding:3px 6px;text-align:right;font-size:9px">7,02%</td><td style="padding:3px 6px;text-align:center;color:#bbb;font-size:9px">—</td><td style="padding:3px 6px;text-align:right;font-size:9px">243</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 1.579</td></tr>
-              <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">3411748267</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Verona 1,50m Velut Cinza C/ Molas</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">286.286,27</td><td style="padding:3px 6px;text-align:right;font-size:9px">5,24%</td><td style="padding:3px 6px;text-align:center;color:#bbb;font-size:9px">—</td><td style="padding:3px 6px;text-align:right;font-size:9px">244</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 1.173</td></tr>
-              <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">3901464226</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Verona 2,00m Velut Cinza C/ Molas</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">246.686,20</td><td style="padding:3px 6px;text-align:right;font-size:9px">4,51%</td><td style="padding:3px 6px;text-align:center"><span class="tag-n">-0,72%</span></td><td style="padding:3px 6px;text-align:right;font-size:9px">201</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 1.227</td></tr>
-              <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">3582221205</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Atenas 2,30m Suede Velut Cinza</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">235.043,57</td><td style="padding:3px 6px;text-align:right;font-size:9px">4,30%</td><td style="padding:3px 6px;text-align:center"><span class="tag-p">+15,96%</span></td><td style="padding:3px 6px;text-align:right;font-size:9px">148</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 1.588</td></tr>
-              <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:3px 6px;color:#555;font-size:9px">3443676317</td><td style="padding:3px 6px;color:#333;font-size:9px">Sofá Nivus 2,30m Cinza Molas Ensacadas</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">205.487,93</td><td style="padding:3px 6px;text-align:right;font-size:9px">3,76%</td><td style="padding:3px 6px;text-align:center"><span class="tag-p">+12,42%</span></td><td style="padding:3px 6px;text-align:right;font-size:9px">98</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 2.097</td></tr>
-              <tr style="background:#fff"><td style="padding:3px 6px;color:#555;font-size:9px">4202474367</td><td style="padding:3px 6px;color:#333;font-size:9px">Cama Box King Size Alford 193x203 Bege Molas Ensacadas</td><td style="padding:3px 6px;text-align:right;font-weight:700;font-size:9px">199.491,05</td><td style="padding:3px 6px;text-align:right;font-size:9px">3,65%</td><td style="padding:3px 6px;text-align:center;color:#bbb;font-size:9px">—</td><td style="padding:3px 6px;text-align:right;font-size:9px">115</td><td style="padding:3px 6px;text-align:right;font-size:9px">R$ 1.735</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div style="flex:1;overflow:auto;min-height:0">
+      <div style="font-size:9px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">TOP 10 ÍTEMS — NMV YTD</div>
+      <table style="width:100%;border-collapse:collapse;font-size:10px">
+        <thead><tr style="background:#FFE600"><th style="padding:5px 8px;font-size:9px;font-weight:800;color:#1A1A1A">Item ID</th><th style="padding:5px 8px;font-size:9px;font-weight:800;color:#1A1A1A">Item Name</th><th style="padding:5px 8px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">NMV</th><th style="padding:5px 8px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">% NMV</th><th style="padding:5px 8px;text-align:center;font-size:9px;font-weight:800;color:#1A1A1A">YoY</th><th style="padding:5px 8px;text-align:center;font-size:9px;font-weight:800;color:#1A1A1A">MoM</th><th style="padding:5px 8px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">Orders</th><th style="padding:5px 8px;text-align:right;font-size:9px;font-weight:800;color:#1A1A1A">ASP</th></tr></thead>
+        <tbody>
+          <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">3901464226</td><td style="padding:4px 8px;color:#333">Sofá Retrátil Reclinável King House Verona 2,00m Velut Cinza C/ Molas</td><td style="padding:4px 8px;text-align:right;font-weight:700">1.933.089,34</td><td style="padding:4px 8px;text-align:right">8,93%</td><td style="padding:4px 8px;text-align:center"><span class="tag-n">-0,48%</span></td><td style="padding:4px 8px;text-align:center"><span class="tag-n">-0,18%</span></td><td style="padding:4px 8px;text-align:right">1.534</td><td style="padding:4px 8px;text-align:right">$1.260,16</td></tr>
+          <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">4040078892</td><td style="padding:4px 8px;color:#333">Sofá Retrátil Reclinável 2,50m Nivus Cinza Molas Ensacadas - King House</td><td style="padding:4px 8px;text-align:right;font-weight:700">1.776.732,86</td><td style="padding:4px 8px;text-align:right">8,21%</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+23,31%</span></td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+0,15%</span></td><td style="padding:4px 8px;text-align:right">782</td><td style="padding:4px 8px;text-align:right">$2.272,04</td></tr>
+          <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">3415157283</td><td style="padding:4px 8px;color:#333">Sofá Retrátil Reclinável Zurique 2,50m Suede Velut Cinza Molas No Assento</td><td style="padding:4px 8px;text-align:right;font-weight:700">1.559.176,68</td><td style="padding:4px 8px;text-align:right">7,20%</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+54,80%</span></td><td style="padding:4px 8px;text-align:center"><span class="tag-n">-0,05%</span></td><td style="padding:4px 8px;text-align:right">814</td><td style="padding:4px 8px;text-align:right">$1.915,45</td></tr>
+          <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">3443676317</td><td style="padding:4px 8px;color:#333">Sofá Retrátil Reclinável 2,30m Nivus Cinza Molas Ensacadas - King House</td><td style="padding:4px 8px;text-align:right;font-weight:700">869.685,73</td><td style="padding:4px 8px;text-align:right">4,02%</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+23,28%</span></td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+0,15%</span></td><td style="padding:4px 8px;text-align:right">403</td><td style="padding:4px 8px;text-align:right">$2.158,03</td></tr>
+          <tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">5834923568</td><td style="padding:4px 8px;color:#333">Sofá Veneza 2,40m Retrátil Reclinável Grafite USB Porta Copo Grafite</td><td style="padding:4px 8px;text-align:right;font-weight:700">825.776,83</td><td style="padding:4px 8px;text-align:right">3,81%</td><td style="padding:4px 8px;text-align:center;color:#bbb">—</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+0,84%</span></td><td style="padding:4px 8px;text-align:right">505</td><td style="padding:4px 8px;text-align:right">$1.635,20</td></tr>
+          <tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:4px 8px;color:#555">3411748267</td><td style="padding:4px 8px;color:#333">Sofá Retrátil/reclinável King House Verona 1,50m Velut Cinza C/ Molas</td><td style="padding:4px 8px;text-align:right;font-weight:700">814.685,98</td><td style="padding:4px 8px;text-align:right">3,76%</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+31,26%</span></td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+0,39%</span></td><td style="padding:4px 8px;text-align:right">671</td><td style="padding:4px 8px;text-align:right">$1.214,14</td></tr>
+          <tr style="background:#fff"><td style="padding:4px 8px;color:#555">4202474367</td><td style="padding:4px 8px;color:#333">Cama Box King Size Alford 193x203x66 Bege C/ Molas Ensacadas</td><td style="padding:4px 8px;text-align:right;font-weight:700">811.454,74</td><td style="padding:4px 8px;text-align:right">3,75%</td><td style="padding:4px 8px;text-align:center;color:#bbb">—</td><td style="padding:4px 8px;text-align:center"><span class="tag-p">+0,12%</span></td><td style="padding:4px 8px;text-align:right">461</td><td style="padding:4px 8px;text-align:right">$1.760,21</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<!-- S5: ECOSSISTEMA E ALAVANCAS -->
+<!-- S5: ECOSSISTEMA E ALAVANCAS — FAROL -->
 <div class="slide s-white">
-  <div class="w-header" style="border-left:5px solid #FFE600;padding-left:16px">
+  <div class="w-header" style="border-bottom:2px solid #FFE600">
     <div>
-      <div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px">CONFIDENTIAL</div>
-      <h2 style="font-size:22px">Ecossistema e Alavancas — Maio 2026</h2>
-      <div style="font-size:10px;color:#555;margin-top:2px;max-width:900px;line-height:1.4">BPC acima de 70% e Buy Box de 98,6% são pontos fortes. Oportunidade em Full SC e expansão de ADs para sustentar crescimento em junho.</div>
+      <h2 style="font-size:20px">Ecossistema e Alavancas</h2>
+      <p style="font-size:10px;color:#555;margin-top:3px;max-width:960px;line-height:1.4">Oportunidade de atuação em alavancas promocionais para proporcionar melhores condições de desconto aos clientes, conectando com ADS para captação de lead qualificado e estratégias nível marca total.</p>
     </div>
     <div class="w-tag">King House</div>
   </div>
-  <div class="w-body" style="padding:8px 20px 4px">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;flex:1;min-height:0">
+  <div style="flex:1;padding:8px 22px 4px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;min-height:0">
 
-      <!-- ENVIOS -->
-      <div style="display:flex;flex-direction:column;gap:0">
-        <div style="text-align:center;font-size:11px;font-weight:700;color:#555;margin-bottom:6px">Envios / Logística</div>
-        <div style="background:#E8F8EF;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#00A650">FBM</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:8px 12px;text-align:center;font-size:12px;font-weight:700;color:#333;margin-bottom:4px">100% cross-docking</div>
-        <div style="background:#E8F8EF;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#00A650">XD</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333;margin-bottom:4px">2,89% NMV</div>
-        <div style="background:#FEE8EA;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#F23D4F">FULL SC</span><span style="width:13px;height:13px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333">Não ativado — oportunidade</div>
+    <!-- COL 1: MEnvios -->
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="background:#F0F0F0;border-radius:6px;padding:5px 10px;text-align:center;flex-shrink:0">
+        <div style="font-size:10px;font-weight:700;color:#555">MEnvios</div>
+        <div style="font-size:12px;font-weight:800;color:#00A650">97% TGMV ME1</div>
       </div>
-
-      <!-- PADS / ADS -->
-      <div style="display:flex;flex-direction:column;gap:0">
-        <div style="text-align:center;font-size:11px;font-weight:700;color:#555;margin-bottom:6px">ADs</div>
-        <div style="background:#9B59B6;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:10px;color:#fff">INV ADS/NMV</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333;margin-bottom:4px">19,31% TGMV</div>
-        <div style="background:#9B59B6;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#fff">ROAS</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333;margin-bottom:4px">19,3</div>
-        <div style="background:#9B59B6;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#fff">ACOS</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333;margin-bottom:4px">0,1 &nbsp;·&nbsp; 5,2% NMV</div>
-        <div style="background:#9B59B6;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#fff">CAMPANHAS</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#333">27 ativas</div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#4CAF50"><span style="font-size:9px;font-weight:800;color:#fff">📦 COLETAS</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(255,255,255,.7)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">3% TGMV</div></div>
       </div>
-
-      <!-- BENEFÍCIOS / PROMOÇÕES -->
-      <div style="display:flex;flex-direction:column;gap:0">
-        <div style="text-align:center;font-size:11px;font-weight:700;color:#555;margin-bottom:6px">Benefícios & Promoções</div>
-        <div style="background:#FFE600;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#1A1A1A">PRÉ-ACORDO</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:#333">Invest: R$ 35,3K</div><div style="font-size:10px;color:#555">3,2% Rebate/NMV</div></div>
-        <div style="background:#FFE600;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#1A1A1A">COUPONS</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:#333">NMV: R$ 2M <span style="color:#00A650;font-size:10px">+265% YoY</span></div><div style="font-size:10px;color:#555">Invest Seller: R$ 13,6K</div></div>
-        <div style="background:#FFE600;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#1A1A1A">OFERTA DO DIA</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:11px;color:#555">Invest: R$ 77,6K</div>
+      <div class="fp-action">
+        - Aumentar penetração ME2, após habilitação de ME1 em GRU<br>
+        - Entrada no Flex - após ampliação da zona e Full
       </div>
+    </div>
 
-      <!-- PRICING -->
-      <div style="display:flex;flex-direction:column;gap:0">
-        <div style="text-align:center;font-size:11px;font-weight:700;color:#555;margin-bottom:6px">Pricing &amp; Competitividade</div>
-        <div style="background:#1A1A1A;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#FFE600">BPC</span><span style="width:13px;height:13px;border-radius:50%;background:#F23D4F;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;margin-bottom:4px"><div style="font-size:15px;font-weight:800;color:#F23D4F">71,8%</div><div style="font-size:9px;color:#888">Target: &gt;80%</div></div>
-        <div style="background:#1A1A1A;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#FFE600">BPC por Categoria</span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;margin-bottom:4px">
-          <div style="display:flex;justify-content:space-between;font-size:11px;color:#333"><span>Furniture</span><b>72,75%</b></div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;color:#333;margin-top:3px"><span>Mattresses</span><b>64,06%</b></div>
-        </div>
-        <div style="background:#1A1A1A;border-radius:20px;padding:5px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-weight:800;font-size:11px;color:#FFE600">BUY BOX</span><span style="width:13px;height:13px;border-radius:50%;background:#00A650;flex-shrink:0"></span></div>
-        <div style="background:#F5F5F5;border-radius:4px;padding:6px 12px;text-align:center;font-size:13px;font-weight:800;color:#00A650">98,61%</div>
+    <!-- COL 2: MAds -->
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="background:#F0F0F0;border-radius:6px;padding:5px 10px;text-align:center;flex-shrink:0">
+        <div style="font-size:10px;font-weight:700;color:#555">MAds</div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#7C3AED"><span style="font-size:9px;font-weight:800;color:#fff">📊 %INV ADS / GMV</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(255,255,255,.7)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">1,6% TGMV</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#7C3AED"><span style="font-size:9px;font-weight:800;color:#fff">📦 Product ADS</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(255,255,255,.7)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">R$ 50K &nbsp;·&nbsp; 6,3% ACOS</div></div>
+      </div>
+      <div class="fp-action">- Olhar 360 como marca na plataforma</div>
+    </div>
+
+    <!-- COL 3: MktPlace -->
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="background:#F0F0F0;border-radius:6px;padding:5px 10px;text-align:center;flex-shrink:0">
+        <div style="font-size:10px;font-weight:700;color:#555">MktPlace</div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📊 CLIPS</span><span class="fp-dot" style="background:#00A650;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">R$ 1,1M | 19% TGMV</div><div style="font-size:9px;color:#00A650;font-weight:700">+20% p.p</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📦 AFILIADOS</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:9px;color:#333;line-height:1.5">742k vindo de afiliados, custo de 3k apenas.<br>ROI: 226 — 436 Vendas</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#1A1A1A"><span style="font-size:9px;font-weight:800;color:#FFE600">📊 QUALITY INDEX</span><span class="fp-dot" style="background:#00A650;border:1.5px solid rgba(255,255,255,.5)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">77%</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📊 B2B</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">4,4% TGMV</div></div>
+      </div>
+      <div class="fp-action">- Aumentar share de clipes<br>- Crescer B2B de forma intencional</div>
+    </div>
+
+    <!-- COL 4: Promocional -->
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div style="background:#F0F0F0;border-radius:6px;padding:5px 10px;text-align:center;flex-shrink:0">
+        <div style="font-size:10px;font-weight:700;color:#555">Promocional</div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📊 CUPONS</span><span class="fp-dot" style="background:#00A650;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">41% TGMV</div><div style="font-size:9px;color:#00A650;font-weight:700">+20% p.p</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📊 SADS</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">40% TGMV</div><div style="font-size:9px;color:#F23D4F;font-weight:700">+35% p.p</div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📊 PRÉ ACORDO</span><span class="fp-dot" style="background:#00A650;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:9px;color:#333;line-height:1.5">44% TGMV <span style="color:#00A650;font-weight:700">+13% p.p</span><br>12% DOD <span style="color:#F23D4F;font-weight:700">-3,7% p.p</span><br>0,1% RELÂMPAGO <span style="color:#F23D4F;font-weight:700">-1% p.p</span></div></div>
+      </div>
+      <div class="fp-row">
+        <div class="fp-pill" style="background:#FFE600"><span style="font-size:9px;font-weight:800;color:#1A1A1A">📦 100% SELLER</span><span class="fp-dot" style="background:#F23D4F;border:1.5px solid rgba(0,0,0,.2)"></span></div>
+        <div class="fp-val"><div style="font-size:11px;font-weight:700;color:#333">1,4% TGMV <span style="color:#F23D4F">-19% p.p</span></div></div>
+      </div>
+      <div class="fp-action">- Aumentar Cob Promocional<br>- Definir e rodar estratégia de mix vs ferramenta promo.</div>
+    </div>
+  </div>
+  <div style="padding:4px 22px 6px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center">
+    <div style="font-size:8px;color:#888;font-style:italic">Dados Internos Mercado Livre.</div>
+    <div style="display:flex;gap:14px;align-items:center;font-size:8.5px;color:#555;font-weight:600">
+      <span>LEGENDA:</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#00A650;display:inline-block"></span>Acima MELI</span>
+      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:#F23D4F;display:inline-block"></span>Abaixo MELI</span>
+    </div>
+  </div>
+</div>
+
+<!-- S6: CATEGORIES BY NMV (AGG2) -->
+<div class="slide s-white">
+  <div class="w-header"><h2>Categories by NMV</h2><div style="display:flex;gap:8px;align-items:center"><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">Dimension: AGG2</div><div class="w-tag">King House</div></div></div>
+  <div class="w-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0">
+      <!-- YTD -->
+      <div style="display:flex;flex-direction:column">
+        <div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">TOP</div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A;margin-bottom:10px">CATEGORIES YTD</div>
+        <table class="cat-tbl">
+          <thead><tr><th>Nivel AGG</th><th style="text-align:right">NMV</th><th style="text-align:right">% NMV</th><th style="text-align:center">YoY</th><th style="text-align:right">Vs LY</th></tr></thead>
+          <tbody>
+            <tr><td style="color:#333;font-size:10px">LIVING &amp; DININGROOM FURNI...</td><td style="text-align:right;font-weight:700">18.678.806,19</td><td style="text-align:right">86,59%</td><td style="text-align:center"><span class="tag-p">+23,7%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+3.584.089,24</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">MATTRESSES &amp; SOMMIER SETS</td><td style="text-align:right;font-weight:700">1.776.242,42</td><td style="text-align:right">8,23%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+1.776.242,42</td></tr>
+            <tr><td style="color:#333;font-size:10px">MATTRESSES</td><td style="text-align:right;font-weight:700">1.113.024,76</td><td style="text-align:right">5,16%</td><td style="text-align:center"><span class="tag-n">-10,7%</span></td><td style="text-align:right;color:#F23D4F;font-weight:700">-133.614,36</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">SOMMIER BASES</td><td style="text-align:right;font-weight:700">1.915,24</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+1.915,24</td></tr>
+            <tr><td style="color:#333;font-size:10px">BEDROOM FURNITURE</td><td style="text-align:right;font-weight:700">1.404,78</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+1.404,78</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">TABLETOP</td><td style="text-align:right;font-weight:700">0</td><td style="text-align:right">0%</td><td style="text-align:center"><span class="tag-n">-100,0%</span></td><td style="text-align:right;color:#F23D4F;font-weight:700">-1.378,50</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- MTD -->
+      <div style="display:flex;flex-direction:column;border-left:1px solid #F0F0F0;padding-left:20px">
+        <div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">TOP</div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A;margin-bottom:10px">CATEGORIES MTD</div>
+        <table class="cat-tbl">
+          <thead><tr><th>Nivel AGG</th><th style="text-align:right">NMV</th><th style="text-align:right">% NMV</th><th style="text-align:center">MoM</th><th style="text-align:right">Vs. LM</th></tr></thead>
+          <tbody>
+            <tr><td style="color:#333;font-size:10px">LIVING &amp; DININGROOM FURNI...</td><td style="text-align:right;font-weight:700">18.678.806,19</td><td style="text-align:right">86,59%</td><td style="text-align:center"><span class="tag-p">+8,5%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+1.466.198,78</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">MATTRESSES &amp; SOMMIER SETS</td><td style="text-align:right;font-weight:700">1.776.242,42</td><td style="text-align:right">8,23%</td><td style="text-align:center"><span class="tag-p">+8,5%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+138.899,59</td></tr>
+            <tr><td style="color:#333;font-size:10px">MATTRESSES</td><td style="text-align:right;font-weight:700">1.113.024,76</td><td style="text-align:right">5,16%</td><td style="text-align:center"><span class="tag-p">+3,7%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+39.615,48</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">SOMMIER BASES</td><td style="text-align:right;font-weight:700">1.915,24</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">0,0%</td><td style="text-align:right;color:#888">0</td></tr>
+            <tr><td style="color:#333;font-size:10px">BEDROOM FURNITURE</td><td style="text-align:right;font-weight:700">1.404,78</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">0,0%</td><td style="text-align:right;color:#888">0</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">TABLETOP</td><td style="text-align:right;font-weight:700">0</td><td style="text-align:right">0%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#888">0</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S6: GESTIÓN ACTIVA & EXPERIENCE -->
+<!-- S7: CATEGORIES BY NSI (AGG3) -->
+<div class="slide s-white">
+  <div class="w-header"><h2>Categories by NSI</h2><div style="display:flex;gap:8px;align-items:center"><div style="border:1px solid #DDD;border-radius:20px;padding:3px 10px;font-size:9px;color:#555">Dimension: AGG3</div><div class="w-tag">King House</div></div></div>
+  <div class="w-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0">
+      <!-- YTD NSI -->
+      <div style="display:flex;flex-direction:column">
+        <div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">TOP</div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A;margin-bottom:10px">CATEGORIES YTD</div>
+        <table class="cat-tbl">
+          <thead><tr><th>Nivel AGG</th><th style="text-align:right">NSI</th><th style="text-align:right">% NSI</th><th style="text-align:center">YoY</th><th style="text-align:right">Vs. LY</th></tr></thead>
+          <tbody>
+            <tr><td style="color:#333;font-size:10px">SOFAS, ACCENT...</td><td style="text-align:right;font-weight:700">11 mil</td><td style="text-align:right">81,22%</td><td style="text-align:center"><span class="tag-p">+9,6%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+955,93</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">MATTRESSES</td><td style="text-align:right;font-weight:700">1,5 mil</td><td style="text-align:right">11,14%</td><td style="text-align:center"><span class="tag-p">+5,3%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+75,33</td></tr>
+            <tr><td style="color:#333;font-size:10px">MATTRESSES &amp; S...</td><td style="text-align:right;font-weight:700">976,2</td><td style="text-align:right">7,24%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+976,21</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">LIVINGROOM SETS</td><td style="text-align:right;font-weight:700">49,5</td><td style="text-align:right">0,37%</td><td style="text-align:center"><span class="tag-p">+889,1%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+44,46</td></tr>
+            <tr><td style="color:#333;font-size:10px">BEDS, HEADBOA...</td><td style="text-align:right;font-weight:700">3</td><td style="text-align:right">0,02%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+3</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">SOMMIER BASES</td><td style="text-align:right;font-weight:700">2</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#00A650;font-weight:700">+2</td></tr>
+            <tr><td style="color:#333;font-size:10px">SERVEWARE</td><td style="text-align:right;font-weight:700">0</td><td style="text-align:right">0%</td><td style="text-align:center"><span class="tag-n">-100,0%</span></td><td style="text-align:right;color:#F23D4F;font-weight:700">-92</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- MTD NSI -->
+      <div style="display:flex;flex-direction:column;border-left:1px solid #F0F0F0;padding-left:20px">
+        <div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px">TOP</div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A;margin-bottom:10px">CATEGORIES MTD</div>
+        <table class="cat-tbl">
+          <thead><tr><th>Nivel AGG</th><th style="text-align:right">NSI</th><th style="text-align:right">% NSI</th><th style="text-align:center">MoM</th><th style="text-align:right">Vs. LM</th></tr></thead>
+          <tbody>
+            <tr><td style="color:#333;font-size:10px">SOFAS, ACCENT...</td><td style="text-align:right;font-weight:700">11 mil</td><td style="text-align:right">81,22%</td><td style="text-align:center"><span class="tag-p">+6,3%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+650,93</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">MATTRESSES</td><td style="text-align:right;font-weight:700">1,5 mil</td><td style="text-align:right">11,14%</td><td style="text-align:center"><span class="tag-p">+4,5%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+65,33</td></tr>
+            <tr><td style="color:#333;font-size:10px">MATTRESSES &amp; S...</td><td style="text-align:right;font-weight:700">976,2</td><td style="text-align:right">7,24%</td><td style="text-align:center"><span class="tag-p">+8,3%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+75,21</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">LIVINGROOM SETS</td><td style="text-align:right;font-weight:700">49,5</td><td style="text-align:right">0,37%</td><td style="text-align:center"><span class="tag-p">+33,7%</span></td><td style="text-align:right;color:#00A650;font-weight:700">+12,46</td></tr>
+            <tr><td style="color:#333;font-size:10px">BEDS, HEADBOA...</td><td style="text-align:right;font-weight:700">3</td><td style="text-align:right">0,02%</td><td style="text-align:center;color:#bbb">0,0%</td><td style="text-align:right;color:#888">0</td></tr>
+            <tr style="background:#FAFAFA"><td style="color:#333;font-size:10px">SOMMIER BASES</td><td style="text-align:right;font-weight:700">2</td><td style="text-align:right">0,01%</td><td style="text-align:center;color:#bbb">0,0%</td><td style="text-align:right;color:#888">0</td></tr>
+            <tr><td style="color:#333;font-size:10px">SERVEWARE</td><td style="text-align:right;font-weight:700">0</td><td style="text-align:right">0%</td><td style="text-align:center;color:#bbb">—</td><td style="text-align:right;color:#888">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8: GESTIÓN ACTIVA & EXPERIENCE -->
 <div class="slide s-yellow">
   <div class="y-header"><h1>Gestión Activa &amp; Experience</h1><div class="y-badge">King House</div></div>
   <div class="y-body">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0">
-      <!-- Experiência -->
       <div>
         <div class="sec-lbl">Indicadores de</div><div class="sec-ttl">EXPERIENCE — MAI 2026</div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
-          <div class="kpi-c"><div class="kpi-label">% CLAIMS</div><div class="kpi-v sm" style="color:#F23D4F">1,49%</div><div style="font-size:8px;color:#888">Maio 2026</div></div>
-          <div class="kpi-c"><div class="kpi-label">CANCEL. RATE</div><div class="kpi-v sm" style="color:#00A650">0,00%</div><div style="font-size:8px;color:#888">Maio 2026</div></div>
-          <div class="kpi-c"><div class="kpi-label">DELAYED RATE</div><div class="kpi-v sm" style="color:#00A650">0,08%</div><div style="font-size:8px;color:#888">Maio 2026</div></div>
+          <div class="kpi-c"><div class="kpi-label">% CLAIMS</div><div class="kpi-v sm" style="color:#F23D4F">1,49%</div></div>
+          <div class="kpi-c"><div class="kpi-label">CANCEL. RATE</div><div class="kpi-v sm" style="color:#00A650">0,00%</div></div>
+          <div class="kpi-c"><div class="kpi-label">DELAYED RATE</div><div class="kpi-v sm" style="color:#00A650">0,08%</div></div>
           <div class="kpi-c" style="grid-column:span 2"><div class="kpi-label">PDD</div><div class="kpi-v sm">4,6%</div><div style="font-size:8px;color:#888">% de entrega no prazo</div></div>
           <div class="kpi-c"><div class="kpi-label">DISPUTES</div><div class="kpi-v sm">—</div></div>
         </div>
-        <!-- Claims evolution mini -->
         <div style="background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:10px 14px">
-          <div class="sec-lbl">Evolução % Claims (últimos 12 meses)</div>
-          <table style="width:100%;border-collapse:collapse;font-size:9px;margin-top:4px">
-            <thead><tr><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jun.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jul.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Ago.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Set.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Out.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Nov.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Dez.25</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jan.26</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Fev.26</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Mar.26</th><th style="padding:3px 5px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Abr.26</th><th style="padding:3px 5px;text-align:center;background:#FFE600;font-size:8px;font-weight:800;color:#1A1A1A">Mai.26</th></tr></thead>
-            <tbody><tr>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,65%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,63%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,79%</td>
-              <td style="padding:3px 5px;text-align:center;color:#F23D4F">1,18%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,61%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,84%</td>
-              <td style="padding:3px 5px;text-align:center;color:#F23D4F">1,29%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,92%</td>
-              <td style="padding:3px 5px;text-align:center;color:#888">0,48%</td>
-              <td style="padding:3px 5px;text-align:center;color:#F23D4F">1,08%</td>
-              <td style="padding:3px 5px;text-align:center;color:#F23D4F">1,62%</td>
-              <td style="padding:3px 5px;text-align:center;font-weight:800;color:#F23D4F">1,49%</td>
-            </tr></tbody>
+          <div class="sec-lbl" style="margin-bottom:8px">Evolução % Claims (últimos 12 meses)</div>
+          <table style="width:100%;border-collapse:collapse;font-size:9px">
+            <thead><tr><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jun</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jul</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Ago</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Set</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Out</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Nov</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Dez</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Jan</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Fev</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Mar</th><th style="padding:3px 4px;text-align:center;background:#F5F5F5;font-size:8px;color:#888">Abr</th><th style="padding:3px 4px;text-align:center;background:#FFE600;font-size:8px;font-weight:800;color:#1A1A1A">Mai</th></tr></thead>
+            <tbody><tr><td style="padding:3px 4px;text-align:center;color:#888">0,65%</td><td style="padding:3px 4px;text-align:center;color:#888">0,63%</td><td style="padding:3px 4px;text-align:center;color:#888">0,79%</td><td style="padding:3px 4px;text-align:center;color:#F23D4F">1,18%</td><td style="padding:3px 4px;text-align:center;color:#888">0,61%</td><td style="padding:3px 4px;text-align:center;color:#888">0,84%</td><td style="padding:3px 4px;text-align:center;color:#F23D4F">1,29%</td><td style="padding:3px 4px;text-align:center;color:#888">0,92%</td><td style="padding:3px 4px;text-align:center;color:#888">0,48%</td><td style="padding:3px 4px;text-align:center;color:#F23D4F">1,08%</td><td style="padding:3px 4px;text-align:center;color:#F23D4F">1,62%</td><td style="padding:3px 4px;text-align:center;font-weight:800;color:#F23D4F">1,49%</td></tr></tbody>
           </table>
         </div>
       </div>
-      <!-- Gestión Activa -->
       <div>
         <div class="sec-lbl">Indicadores de</div><div class="sec-ttl">GESTIÓN ACTIVA</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-          <div class="kpi-c"><div class="kpi-label">TMR</div><div class="kpi-v sm">0</div><div style="font-size:8px;color:#888">Tempo médio de resposta</div></div>
-          <div class="kpi-c"><div class="kpi-label">PREGUNTAS</div><div class="kpi-v sm">—</div></div>
-          <div class="kpi-c"><div class="kpi-label">RESPUESTAS</div><div class="kpi-v sm">—</div></div>
+          <div class="kpi-c"><div class="kpi-label">TMR</div><div class="kpi-v sm">0</div></div>
           <div class="kpi-c"><div class="kpi-label">% RESPUESTAS</div><div class="kpi-v sm">0</div></div>
         </div>
         <div style="background:#fff;border-radius:8px;border:1px solid #E8E8E8;padding:12px 14px">
-          <div class="sec-lbl" style="margin-bottom:8px">Pontos de atenção — Maio 2026</div>
+          <div class="sec-lbl" style="margin-bottom:8px">Pontos de atenção</div>
           <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#F23D4F;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">CLAIMS</span><span style="font-size:11px;color:#333">% Claims em 1,49% — próximo ao limite. Monitorar evolução em junho.</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#F23D4F;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">BPC</span><span style="font-size:11px;color:#333">BPC em 71,8% abaixo do target >80%. Gap maior em Mattresses (64,06%) — revisar precificação.</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#FFE600;color:#1A1A1A;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">FULL SC</span><span style="font-size:11px;color:#333">FBM = 0%. Ativação de Full SC para SKUs curva A pode aumentar conversão e Buy Box.</span></div>
-            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#00A650;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">COUPONS</span><span style="font-size:11px;color:#333">Coupons +265% YoY com NMV R$ 2M — estratégia bem sucedida, manter e ampliar.</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#F23D4F;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">CLAIMS</span><span style="font-size:11px;color:#333">1,49% em maio — monitorar evolução em junho. Abr foi 1,62%.</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#F23D4F;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">BPC</span><span style="font-size:11px;color:#333">71,8% abaixo do target &gt;80%. Mattresses em 64,06% — revisar precificação.</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#FFE600;color:#1A1A1A;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">FULL SC</span><span style="font-size:11px;color:#333">FBM = 0%. Ativação de Full SC para SKUs curva A pode aumentar conversão.</span></div>
+            <div style="display:flex;gap:8px;align-items:flex-start"><span style="background:#00A650;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;flex-shrink:0">COUPONS</span><span style="font-size:11px;color:#333">+265% YoY com NMV R$ 2M — estratégia bem sucedida, ampliar cobertura.</span></div>
           </div>
         </div>
       </div>
@@ -389,7 +468,7 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
   </div>
 </div>
 
-<!-- S7: PRÓXIMOS PASSOS -->
+<!-- S8: PRÓXIMOS PASSOS -->
 <div class="slide s-dark" style="overflow:hidden">
   <div style="background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08);padding:18px 36px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center">
     <div>
@@ -400,40 +479,32 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
   </div>
   <div style="flex:1;padding:18px 36px;display:flex;flex-direction:column;min-height:0">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0">
-      <!-- EXPERIÊNCIA -->
       <div style="background:rgba(255,255,255,.06);border:1px solid rgba(116,192,252,.3);border-radius:16px;padding:24px 28px;border-left:5px solid #74C0FC;display:flex;flex-direction:column">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-          <span style="font-size:22px">📱</span>
-          <span style="font-size:18px;font-weight:900;color:#74C0FC;text-transform:uppercase;letter-spacing:1px">Experiência</span>
-        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px"><span style="font-size:22px">📱</span><span style="font-size:18px;font-weight:900;color:#74C0FC;text-transform:uppercase;letter-spacing:1px">Experiência</span></div>
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;flex:1">
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Clips: criar e manter cobertura &gt;90% do sortimento ativo</span></li>
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Lista de transmissão: ativar e manter base de seguidores engajada</span></li>
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Minha Página: atualização mensal com calendário sazonal e datas duplas</span></li>
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Cupons: ampliar uso além de novos seguidores, fortalecer recorrência</span></li>
-          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Claims em 1,49% — identificar SKUs com maior volume e tratar raiz do problema</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Claims em 1,49% — identificar SKUs com maior volume e tratar raiz</span></li>
         </ul>
       </div>
-      <!-- ESTRATÉGIA -->
       <div style="background:rgba(255,255,255,.06);border:1px solid rgba(232,104,10,.3);border-radius:16px;padding:24px 28px;border-left:5px solid #E8680A;display:flex;flex-direction:column">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
-          <span style="font-size:22px">🎯</span>
-          <span style="font-size:18px;font-weight:900;color:#E8680A;text-transform:uppercase;letter-spacing:1px">Estratégia</span>
-        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px"><span style="font-size:22px">🎯</span><span style="font-size:18px;font-weight:900;color:#E8680A;text-transform:uppercase;letter-spacing:1px">Estratégia</span></div>
         <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;flex:1">
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Full SC: ativar SKUs curva A para aumentar competitividade e conversão</span></li>
-          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">BPC: elevar de 71,8% para &gt;80% com revisão de precificação — foco em Mattresses (64%)</span></li>
-          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">ADs: expandir portfolio de campanhas e aumentar ratio NMV para sustentar crescimento</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">BPC: elevar de 71,8% para &gt;80% com revisão de precificação — foco Mattresses (64%)</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">ADs: expandir campanhas e aumentar ratio NMV para sustentar crescimento</span></li>
           <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Campanhas: intensificar pré-acordo e Oferta do Dia nas datas duplas de junho</span></li>
-          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Meta junho: R$ 5M — ritmo atual exige aceleração após queda de 71,6% em fevereiro</span></li>
-          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Diversificação de mix: Mattresses em 11% — explorar crescimento nessa categoria (+183% YoY)</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Meta junho: R$ 6,6M — ritmo atual (R$ 1,49M em 8 dias) exige aceleração</span></li>
+          <li style="display:flex;gap:8px"><span style="color:#FFE600;font-weight:900;flex-shrink:0">—</span><span style="font-size:13px;color:#DDDDDD;line-height:1.5">Diversificação: Mattresses +183% YoY — explorar crescimento dessa categoria</span></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S8: OBRIGADO -->
+<!-- S9: OBRIGADO -->
 <div class="slide" style="background:#0A0A0A;position:relative;overflow:hidden;justify-content:center;align-items:center">
   <svg style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:.04" xmlns="http://www.w3.org/2000/svg">
     <defs><pattern id="grid2" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#FFE600" stroke-width=".5"/></pattern></defs>
@@ -456,11 +527,13 @@ table.dt td{padding:5px 8px;border-bottom:1px solid #F0F0F0;color:#333}
 <!-- NAV -->
 <div class="nav">
   <button onclick="go(-1)">&#8249;</button>
-  <span class="slide-counter" id="sc">1 / 8</span>
+  <span class="slide-counter" id="sc">1 / 10</span>
   <button onclick="go(1)">&#8250;</button>
 </div>
 
 <script>
+Chart.register(ChartDataLabels);
+
 const slides = document.querySelectorAll('.slide');
 let cur = 0;
 const charts = {};
@@ -482,26 +555,29 @@ const LBLS = ['jun.25','jul.25','ago.25','set.25','out.25','nov.25','dez.25','ja
 const barColors = LBLS.map((_,i) => i >= 7 ? '#FFE600' : '#CCCCCC');
 const OE = '#FF8C00';
 
-function mkBar(id, data, dataLY, yoy, fmtY) {
+function mkBar(id, data, dataLY, yoy, fmtBar) {
   if(charts[id]) charts[id].destroy();
-  const ctx = document.getElementById(id);
-  if(!ctx) return;
+  const ctx = document.getElementById(id); if(!ctx) return;
   charts[id] = new Chart(ctx, {
     type:'bar',
     data:{
       labels:LBLS,
       datasets:[
-        {label:'LY',data:dataLY,backgroundColor:'#E0E0E0',borderRadius:2,order:2,barPercentage:.85,categoryPercentage:.7},
-        {label:'2026',data:data,backgroundColor:barColors,borderRadius:3,order:2,barPercentage:.85,categoryPercentage:.7},
-        {label:'YoY%',data:yoy,type:'line',borderColor:OE,backgroundColor:'transparent',borderWidth:1.5,pointRadius:2.5,pointBackgroundColor:OE,yAxisID:'y2',order:1,datalabels:{display:true,color:OE,font:{size:7,weight:'700'},formatter:v=>v+'%',anchor:'end',align:'top'}}
+        { label:'LY', data:dataLY, backgroundColor:'#E0E0E0', borderRadius:2, order:2, barPercentage:.85, categoryPercentage:.7,
+          datalabels:{display:false} },
+        { label:'2026', data:data, backgroundColor:barColors, borderRadius:3, order:2, barPercentage:.85, categoryPercentage:.7,
+          datalabels:{display:true,anchor:'end',align:'top',font:{size:6.5,weight:'700'},color:'#444',formatter:fmtBar,offset:0} },
+        { label:'YoY%', data:yoy, type:'line', borderColor:OE, backgroundColor:'transparent', borderWidth:1.5,
+          pointRadius:2.5, pointBackgroundColor:OE, yAxisID:'y2', order:1,
+          datalabels:{display:true,color:OE,font:{size:6.5,weight:'700'},formatter:v=>v+'%',anchor:'center',align:'top',offset:4} }
       ]
     },
     options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{mode:'index'},datalabels:{display:false}},
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{mode:'index'}, datalabels:{clamp:true}},
       scales:{
         x:{grid:{display:false},ticks:{font:{size:7.5},color:'#888',maxRotation:0}},
-        y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:7.5},color:'#888',callback:v=>fmtY(v)}},
+        y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:7.5},color:'#888',callback:v=>fmtBar(v)}},
         y2:{position:'right',grid:{display:false},ticks:{font:{size:7.5},color:OE,callback:v=>v+'%'}}
       }
     }
@@ -510,56 +586,55 @@ function mkBar(id, data, dataLY, yoy, fmtY) {
 
 function mkDonut(id, labels, data, colors) {
   if(charts[id]) charts[id].destroy();
-  const ctx = document.getElementById(id);
-  if(!ctx) return;
+  const ctx = document.getElementById(id); if(!ctx) return;
   charts[id] = new Chart(ctx, {
     type:'doughnut',
     data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0,hoverOffset:4}]},
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:c=>c.label+': '+c.parsed.toFixed(2)+'%'}}
-      },
-      cutout:'65%'
-    }
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+c.parsed.toFixed(2)+'%'}},datalabels:{display:false}},
+      cutout:'65%'}
   });
 }
 
-const BC = ['#3B5BDB','#40C057','#FD7E14'];
-const CC = ['#3B5BDB','#40C057'];
+const BC=['#3B5BDB','#40C057','#FD7E14'];
+const CC=['#3B5BDB','#40C057'];
 
 function renderCharts(n) {
-  // S2 (index 1): YTD donuts
   if(n===1) {
     mkDonut('c_ytd_brand',['King House','King House Br','Hellen'],[97.01,2.49,0.50],BC);
     mkDonut('c_ytd_cat',['Furniture','Mattresses & Sommier'],[88.75,11.25],CC);
   }
-  // S3 (index 2): Performance charts
   if(n===2) {
-    const nmv   = [2.2,4.3,3.9,4.0,3.4,8.4,3.8,3.8,3.2,4.6,4.5,5.5,1.2];
-    const nmvLY = [3.16,4.78,3.44,3.39,4.35,6.34,2.61,4.03,2.77,3.25,3.23,3.06,1.17];
-    const nmvY  = [-30.4,-10.0,13.2,18.2,-21.9,32.5,45.8,-5.7,15.4,41.6,39.3,79.9,2.8];
-    mkBar('c_nmv',nmv,nmvLY,nmvY,v=>v.toFixed(1)+'M');
+    const nmv  =[2.2,4.3,3.9,4.0,3.4,8.4,3.8,3.8,3.2,4.6,4.5,5.5,1.2];
+    const nmvLY=[3.16,4.78,3.44,3.39,4.35,6.34,2.61,4.03,2.77,3.25,3.23,3.06,1.17];
+    const nmvY =[-30.4,-10.0,13.2,18.2,-21.9,32.5,45.8,-5.7,15.4,41.6,39.3,79.9,2.8];
+    mkBar('c_nmv',nmv,nmvLY,nmvY,v=>v.toFixed(1)+' mi');
 
-    const nsi   = [1522,3138,2604,2510,2106,5432,2529,2383,2034,2978,2788,3302,741];
-    const nsiLY = [2330,3379,2430,2399,3006,4600,1717,2802,1926,2277,2315,2200,873];
-    const nsiY  = [-34.7,-7.1,7.2,4.6,-29.9,18.1,47.3,-15.0,5.6,30.8,20.4,50.1,-15.2];
-    mkBar('c_nsi',nsi,nsiLY,nsiY,v=>v>=1000?(v/1000).toFixed(1)+'k':v);
+    const nsi  =[1522,3138,2604,2510,2106,5432,2529,2383,2034,2978,2788,3302,741];
+    const nsiLY=[2330,3379,2430,2399,3006,4600,1717,2802,1926,2277,2315,2200,873];
+    const nsiY =[-34.7,-7.1,7.2,4.6,-29.9,18.1,47.3,-15.0,5.6,30.8,20.4,50.1,-15.2];
+    mkBar('c_nsi',nsi,nsiLY,nsiY,v=>v>=1000?(v/1000).toFixed(2)+'k':v);
 
-    const asp   = [1441,1380,1513,1580,1630,1550,1490,1594,1587,1558,1623,1629,1610];
-    const aspLY = [1352,1424,1433,1399,1461,1381,1507,1437,1454,1439,1403,1359,1329];
-    const aspY  = [6.6,-3.1,5.6,12.9,11.6,12.3,-1.1,10.9,9.2,8.3,15.6,19.9,21.2];
-    mkBar('c_asp',asp,aspLY,aspY,v=>'R$'+v);
+    const asp  =[1441,1380,1513,1580,1630,1550,1490,1594,1587,1558,1623,1629,1610];
+    const aspLY=[1352,1424,1433,1399,1461,1381,1507,1437,1454,1439,1403,1359,1329];
+    const aspY =[6.6,-3.1,5.6,12.9,11.6,12.3,-1.1,10.9,9.2,8.3,15.6,19.9,21.2];
+    mkBar('c_asp',asp,aspLY,aspY,v=>'$'+v.toFixed(2).replace('.',','));
 
-    const ord   = [1649,3395,2773,2667,2254,5746,2718,2553,2225,3196,2984,3561,951];
-    const ordLY = [2472,3578,2618,2551,3258,5139,2077,3053,2115,2470,2513,2390,933];
-    const ordY  = [-33.3,-5.1,5.9,4.6,-30.8,11.8,30.9,-16.3,5.2,29.4,18.7,49.0,1.9];
-    mkBar('c_ord',ord,ordLY,ordY,v=>v>=1000?(v/1000).toFixed(1)+'k':v);
+    const ord  =[1649,3395,2773,2667,2254,5746,2718,2553,2225,3196,2984,3561,951];
+    const ordLY=[2472,3578,2618,2551,3258,5139,2077,3053,2115,2470,2513,2390,933];
+    const ordY =[-33.3,-5.1,5.9,4.6,-30.8,11.8,30.9,-16.3,5.2,29.4,18.7,49.0,1.9];
+    mkBar('c_ord',ord,ordLY,ordY,v=>v>=1000?(v/1000).toFixed(2)+'k':v);
   }
-  // S4 (index 3): Maio donuts
   if(n===3) {
-    mkDonut('c_mai_brand',['King House','King House Br','Hellen'],[97.01,2.49,0.50],BC);
+    const vis  =[0.884,2.0,1.3,1.4,0.953,2.0,1.2,1.3,1.1,1.5,1.4,1.7,0.391];
+    const visLY=[0.881,1.979,1.289,1.385,0.955,1.997,1.200,1.301,1.099,1.494,1.396,1.691,0.390];
+    const visY =[0.32,1.07,0.87,1.05,-0.21,0.17,0.00,-0.07,0.07,0.37,0.28,0.53,0.17];
+    mkBar('c_vis',vis,visLY,visY,v=>v.toFixed(3)+' mi');
+
+    const cvr  =[0.17,0.16,0.19,0.18,0.22,0.27,0.21,0.18,0.18,0.20,0.19,0.19,0.21];
+    const cvrLY=[0.344,0.357,0.333,0.354,0.249,0.268,0.142,0.196,0.180,0.207,0.201,0.189,0.255];
+    const cvrY =[-50.6,-55.2,-43.0,-49.2,-11.8,0.8,48.0,-8.2,0.1,-3.4,-5.6,0.7,-17.8];
+    mkBar('c_cvr',cvr,cvrLY,cvrY,v=>v.toFixed(2)+'%');
   }
 }
 
