@@ -531,6 +531,7 @@ html,body{width:100%;height:100%;background:#000;font-family:'Inter',sans-serif;
 
 <script>
 Chart.register(ChartDataLabels);
+Chart.defaults.devicePixelRatio = Math.max(3, (window.devicePixelRatio || 1) * 2);
 
 const slides = document.querySelectorAll('.slide');
 let cur = 0;

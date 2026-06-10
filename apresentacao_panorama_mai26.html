@@ -640,6 +640,7 @@ table.dt tr:hover td{background:#FFFBEA}
 </div>
 
 <script>
+Chart.defaults.devicePixelRatio = Math.max(3, (window.devicePixelRatio || 1) * 2);
 const slides=document.querySelectorAll('.slide');
 let cur=0;
 const total=slides.length;
