@@ -2,14 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1440">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MLB - PANORAMA MÓVEIS | Mai 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%;background:#111;font-family:'Inter',sans-serif;overflow:hidden}
-.deck{width:100vw;height:100vh;position:relative}
+html,body{width:100%;height:100%;background:#000;font-family:'Inter',sans-serif;overflow:hidden}
+.deck{width:1440px;height:810px;position:fixed;top:0;left:0;transform-origin:top left;overflow:hidden}
 .slide{position:absolute;top:0;left:0;width:100%;height:100%;display:none;flex-direction:column;overflow:hidden}
 .slide.active{display:flex}
 
@@ -694,6 +694,18 @@ function renderCharts(n){
   }
 }
 renderCharts(0);
+
+function scalePresentation() {
+  const deck = document.querySelector('.deck');
+  const scaleX = window.innerWidth  / 1440;
+  const scaleY = window.innerHeight / 810;
+  const scale  = Math.min(scaleX, scaleY);
+  const offX   = (window.innerWidth  - 1440 * scale) / 2;
+  const offY   = (window.innerHeight - 810  * scale) / 2;
+  deck.style.transform = `translate(${offX}px,${offY}px) scale(${scale})`;
+}
+window.addEventListener('resize', scalePresentation);
+scalePresentation();
 </script>
 </body>
 </html>
