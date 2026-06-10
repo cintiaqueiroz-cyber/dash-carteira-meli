@@ -550,7 +550,8 @@ document.addEventListener('keydown', e => {
 });
 
 const LBLS = ['jun.25','jul.25','ago.25','set.25','out.25','nov.25','dez.25','jan.26','fev.26','mar.26','abr.26','mai.26','jun.26'];
-const barColors = LBLS.map((_,i) => i >= 7 ? '#FFE600' : '#CCCCCC');
+const barColors = LBLS.map(() => '#5B8FF9');
+const barColorsLY = '#CCCCCC';
 const OE = '#FF8C00';
 
 function mkBar(id, data, dataLY, yoy, fmtBar) {
@@ -561,13 +562,13 @@ function mkBar(id, data, dataLY, yoy, fmtBar) {
     data:{
       labels:LBLS,
       datasets:[
-        { label:'LY', data:dataLY, backgroundColor:'#E0E0E0', borderRadius:2, order:2, barPercentage:.85, categoryPercentage:.7,
+        { label:'LY', data:dataLY, backgroundColor:barColorsLY, borderRadius:2, order:2, barPercentage:.85, categoryPercentage:.7,
           datalabels:{display:false} },
         { label:'2026', data:data, backgroundColor:barColors, borderRadius:3, order:2, barPercentage:.85, categoryPercentage:.7,
-          datalabels:{display:true,anchor:'end',align:'top',font:{size:6.5,weight:'700'},color:'#444',formatter:fmtBar,offset:0} },
-        { label:'YoY%', data:yoy, type:'line', borderColor:OE, backgroundColor:'transparent', borderWidth:1.5,
-          pointRadius:2.5, pointBackgroundColor:OE, yAxisID:'y2', order:1,
-          datalabels:{display:true,color:OE,font:{size:6.5,weight:'700'},formatter:v=>v+'%',anchor:'center',align:'top',offset:4} }
+          datalabels:{display:true,anchor:'end',align:'top',font:{size:7,weight:'700'},color:'#222',formatter:fmtBar,offset:1} },
+        { label:'YoY%', data:yoy, type:'line', borderColor:OE, backgroundColor:'transparent', borderWidth:2,
+          pointRadius:3, pointBackgroundColor:OE, yAxisID:'y2', order:1,
+          datalabels:{display:true,color:OE,font:{size:7,weight:'700'},formatter:v=>v+'%',anchor:'center',align:'top',offset:4} }
       ]
     },
     options:{
