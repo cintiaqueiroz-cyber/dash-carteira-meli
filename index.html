@@ -3422,7 +3422,8 @@ function buildNMVDiario35d(){
   var _parseDateLocal=function(d){var p=d.split('-');return new Date(+p[0],+p[1]-1,+p[2]);};
   var _isWeekend=function(d){var dw=_parseDateLocal(d).getDay();return dw===0||dw===6;};
   var _dowLabel=function(d){var dw=_parseDateLocal(d).getDay();return dw===6?' Sáb':dw===0?' Dom':'';};
-  var labels=allDates.map(function(d){var p=d.split('-');return p[2]+'/'+MESES_ABR[parseInt(p[1],10)-1]+_dowLabel(d);});
+  var weekendNames=allDates.map(_dowName);
+  var labels=allDates.map(function(d){var p=d.split('-');return p[2]+'/'+MESES_ABR[parseInt(p[1],10)-1];});
   var vals=allDates.map(getVal);
   var nonZero=vals.filter(function(v){return v>0;});
   var media=nonZero.length>0?nonZero.reduce(function(s,v){return s+v;},0)/nonZero.length:0;
@@ -3443,9 +3444,23 @@ function buildNMVDiario35d(){
   if(atgLine.some(function(v){return v!==null;})){
     datasets.push({label:'% Ating. Meta',data:atgLine,type:'line',borderColor:'#00A650',backgroundColor:'transparent',borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#00A650',tension:0.25,order:0,yAxisID:'y1',spanGaps:false});
   }
-  chartInstances['vg-nmv-35d']=new Chart(canEl.getContext('2d'),{
+  var _weekendTagPlugin={id:'weekendTag',afterDatasetsDraw:function(chart){
+    var wn=chart._weekendNames;if(!wn)return;
+    var ctx=chart.ctx,meta=chart.getDatasetMeta(0);
+    wn.forEach(function(name,i){
+      if(!name)return;
+      var bar=meta.data[i];if(!bar)return;
+      ctx.save();
+      ctx.font='bold 9px Inter,sans-serif';
+      ctx.textAlign='center';ctx.fillStyle='rgba(200,100,0,.95)';
+      ctx.fillText(name,bar.x,bar.y-5);
+      ctx.restore();
+    });
+  }};
+  var _nmvChart=new Chart(canEl.getContext('2d'),{
     type:'bar',
     data:{labels:labels,datasets:datasets},
+    plugins:[_weekendTagPlugin],
     options:{responsive:true,maintainAspectRatio:false,animation:false,
       plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyleWidth:14,font:{size:11}}},
                tooltip:{callbacks:{label:function(c){return c.dataset.yAxisID==='y1'?c.dataset.label+': '+c.raw+'%':c.dataset.label+': '+fmt(c.raw);}}}},
@@ -3455,6 +3470,8 @@ function buildNMVDiario35d(){
         y1:{type:'linear',position:'right',min:0,max:130,ticks:{callback:function(v){return v+'%';}},grid:{drawOnChartArea:false}}
       }}
   });
+  _nmvChart._weekendNames=weekendNames;
+  chartInstances['vg-nmv-35d']=_nmvChart;
 }
 function buildVGDiario(){
   var canEl=document.getElementById('vg-diario-canvas');
