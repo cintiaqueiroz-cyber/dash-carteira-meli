@@ -3419,8 +3419,9 @@ function buildNMVDiario35d(){
   var allDates=Object.keys(DAILY_NMV_30D).sort();
   var MESES_ABR=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   var getVal=function(d){return DAILY_NMV_30D[d]||0;};
-  var _isWeekend=function(d){var dt=new Date(d);var dw=dt.getDay();return dw===0||dw===6;};
-  var _dowLabel=function(d){var dw=new Date(d).getDay();return dw===6?' Sab':dw===0?' Dom':'';};
+  var _parseDateLocal=function(d){var p=d.split('-');return new Date(+p[0],+p[1]-1,+p[2]);};
+  var _isWeekend=function(d){var dw=_parseDateLocal(d).getDay();return dw===0||dw===6;};
+  var _dowLabel=function(d){var dw=_parseDateLocal(d).getDay();return dw===6?' Sab':dw===0?' Dom':'';};
   var labels=allDates.map(function(d){var p=d.split('-');return p[2]+'/'+MESES_ABR[parseInt(p[1],10)-1]+_dowLabel(d);});
   var vals=allDates.map(getVal);
   var nonZero=vals.filter(function(v){return v>0;});
