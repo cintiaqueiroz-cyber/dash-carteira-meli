@@ -1648,14 +1648,16 @@ function showMes(grupo,prefix,mk,btnEl){
   // YoY: mesmo mês em 2025
   var MESES_KEYS_ARR=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
   var rv25=((REAL_2025[grupo]||{})[mk]||{}).gmv||0;
-  var yoy=rv25>0?((rv-rv25)/rv25*100):null;
+  var rv25Comp=rv25;
+  if(isCur&&rv25>0){var dias25=DIAS_MES_MAP[mk]||30;rv25Comp=rv25*(DIA_MES/dias25);}
+  var yoy=rv25Comp>0?((rv-rv25Comp)/rv25Comp*100):null;
   var yoyStr=yoy!==null?(yoy>=0?'+':'')+yoy.toFixed(1)+'% YoY':'—';
   var yoyCls=yoy===null?'blue':yoy>=0?'green':'red';
   var elKpi=document.getElementById(prefix+'-mes-kpi');
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'MoM',val:momStr,sub:momSub,cls:momCls},
-    {label:'YoY vs 2025',val:yoyStr,sub:rv25>0?'2025: '+fmt(rv25):'Sem dado 2025',cls:yoyCls},
+    {label:'YoY vs 2025',val:yoyStr,sub:yoySub,cls:yoyCls},
     {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
