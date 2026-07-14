@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relatório Quinzenal — ADONAI · Julho 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',sans-serif;background:#F5F5F5;color:#1A1A1A}
+  .header{background:linear-gradient(135deg,#1A1A1A 0%,#333 100%);color:#fff;padding:32px 40px 24px;display:flex;align-items:center;justify-content:space-between}
+  .header h1{font-size:28px;font-weight:800;letter-spacing:-0.5px}
+  .header h1 span{color:#FFE600}
+  .header .sub{font-size:13px;opacity:.7;margin-top:6px}
+  .badge-period{background:#FFE600;color:#1A1A1A;font-weight:700;font-size:12px;padding:6px 14px;border-radius:20px}
+  .container{max-width:1280px;margin:0 auto;padding:24px 20px}
+  .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#777;margin:32px 0 12px}
+  /* KPI Cards */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:8px}
+  .kpi{background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .kpi .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#888}
+  .kpi .value{font-size:30px;font-weight:800;color:#1A1A1A;margin:6px 0 2px;line-height:1}
+  .kpi .delta{font-size:12px;font-weight:600}
+  .up{color:#28A745}.dn{color:#DC3545}.nt{color:#888}
+  /* Meta bar */
+  .meta-strip{background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:24px}
+  .meta-strip h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#888;margin-bottom:14px}
+  .ms-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+  .ms-seg{}
+  .ms-bar{height:8px;background:#E8E8E8;border-radius:4px;overflow:hidden;margin-bottom:4px}
+  .ms-fill{height:100%;border-radius:4px;transition:width .5s}
+  .ms-lbl{font-size:10px;font-weight:600;color:#555}
+  /* Charts */
+  .charts-row{display:grid;grid-template-columns:3fr 1fr;gap:16px;margin-bottom:24px}
+  .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .card h3{font-size:13px;font-weight:700;margin-bottom:16px;color:#333}
+  /* 7.7 Banner */
+  .banner-77{background:linear-gradient(135deg,#FFE600 0%,#FFCC00 100%);border-radius:12px;padding:22px 28px;margin-bottom:24px;display:flex;align-items:center;gap:28px}
+  .b77-icon{font-size:48px;line-height:1}
+  .b77-title{font-size:22px;font-weight:800;color:#1A1A1A}
+  .b77-sub{font-size:13px;color:#333;margin-top:2px}
+  .b77-kpis{display:flex;gap:24px;margin-top:12px}
+  .b77-kpi{text-align:center}
+  .b77-kpi .v{font-size:22px;font-weight:800;color:#1A1A1A}
+  .b77-kpi .l{font-size:10px;font-weight:600;text-transform:uppercase;color:#555}
+  /* Insights */
+  .insights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  .insight-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+  .ic-icon{font-size:24px;margin-bottom:8px}
+  .ic-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:6px}
+  .ic-value{font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:4px}
+  .ic-desc{font-size:11px;color:#666;line-height:1.4}
+  .ic.ok{border-top:3px solid #28A745}
+  .ic.warn{border-top:3px solid #FFC107}
+  .ic.opp{border-top:3px solid #007BFF}
+  .ic.nok{border-top:3px solid #DC3545}
+  /* Daily chart */
+  .daily-card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:24px}
+  /* Mix */
+  .mix-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .mix-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #F0F0F0}
+  .mix-bar-wrap{flex:1;height:8px;background:#EEE;border-radius:4px;overflow:hidden}
+  .mix-bar{height:100%;background:#3483FA;border-radius:4px}
+  .mix-pct{font-size:12px;font-weight:700;color:#3483FA;min-width:36px;text-align:right}
+  .mix-label{font-size:12px;color:#444;min-width:120px}
+  /* Top 10 */
+  .table-card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:32px;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{background:#1A1A1A;color:#FFE600;padding:10px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;white-space:nowrap}
+  td{padding:10px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+  tr:hover td{background:#FAFAFA}
+  .rk{font-weight:700;color:#999;text-align:center}
+  .mlb-link{color:#3483FA;font-weight:700;text-decoration:none;font-size:11px}
+  .mlb-link:hover{text-decoration:underline}
+  .titulo-cell{max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-wrap{height:6px;background:#EEE;border-radius:3px;overflow:hidden;margin-bottom:3px}
+  .bar-fill{height:100%;background:#3483FA;border-radius:3px}
+  .tag-ss{background:#E8E8E8;color:#555;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
+  .tag-full{background:#28A745;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
+  .footer{text-align:center;padding:24px;font-size:11px;color:#AAA}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div class="sub">Relatório Quinzenal · KAM F&H · Cintia Queiroz</div>
+    <h1>ADONAI <span>ESTOFADOS</span></h1>
+    <div class="sub">Sofás Retráteis e Reclinável · Seller ID 488368250</div>
+  </div>
+  <span class="badge-period">Julho 2026 MTD · 1–13/Jul</span>
+</div>
+
+<div class="container">
+
+  <div class="section-title">Performance YTD 2026</div>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">NMV YTD 2026</div>
+      <div class="value">R$9,4M</div>
+      <div class="delta up">▲ 29.5% vs 2025</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Ating. Meta YTD</div>
+      <div class="value">102.9%</div>
+      <div class="delta up">R$9,4M de R$9,1M meta</div>
+    </div>
+    <div class="kpi">
+      <div class="label">SIs YTD 2026</div>
+      <div class="value">8.253</div>
+      <div class="delta up">▲ vs 6.647 em 2025</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Jul MTD (1–13/Jul)</div>
+      <div class="value">R$543K</div>
+      <div class="delta nt">451 SIs · proj ~R$1,3M</div>
+    </div>
+  </div>
+
+  <div class="section-title">Atingimento Mensal vs Meta</div>
+  <div class="meta-strip">
+    <div class="ms-grid">
+      <div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:98%;background:#FFC107"></div></div>
+      <span class="ms-lbl">Jan 98%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
+      <span class="ms-lbl">Fev 100%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
+      <span class="ms-lbl">Mar 100%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
+      <span class="ms-lbl">Abr 100%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
+      <span class="ms-lbl">Mai 100%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:89%;background:#FFC107"></div></div>
+      <span class="ms-lbl">Jun 89%</span></div>
+<div class="ms-seg">
+      <div class="ms-bar"><div class="ms-fill" style="width:36%;background:#DC3545"></div></div>
+      <span class="ms-lbl">Jul 36%</span></div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="card">
+      <h3>NMV Mensal 2026 vs 2025 vs Meta <span style="font-size:11px;font-weight:400;color:#999">(R$)</span></h3>
+      <canvas id="chartGMV" height="80"></canvas>
+    </div>
+    <div class="card">
+      <h3>SIs Mensais 2026 vs 2025</h3>
+      <canvas id="chartSI" height="80"></canvas>
+    </div>
+  </div>
+
+  <div class="banner-77">
+    <div class="b77-icon">⚡</div>
+    <div>
+      <div class="b77-title">7.7 — Dia de Ofertas Mercado Livre</div>
+      <div class="b77-sub">7 de Julho de 2026 · Resultado ADONAI ESTOFADOS</div>
+      <div class="b77-kpis">
+        <div class="b77-kpi"><div class="v">R$95,9K</div><div class="l">NMV 7.7</div></div>
+        <div class="b77-kpi"><div class="v">76</div><div class="l">SIs 7.7</div></div>
+        <div class="b77-kpi"><div class="v">+158%</div><div class="l">vs média diária pré</div></div>
+        <div class="b77-kpi"><div class="v">+16%</div><div class="l">momentum pós-7.7</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Destaques e Oportunidades</div>
+  <div class="insights-grid">
+    <div class="insight-card ic ok">
+      <div class="ic-icon">🚀</div>
+      <div class="ic-title">YTD Acima da Meta</div>
+      <div class="ic-value">+29,6% YoY</div>
+      <div class="ic-desc">NMV YTD R$9,4M · acima dos R$9,1M alvo · trajetória sólida para 2026.</div>
+    </div>
+    <div class="insight-card ic ok">
+      <div class="ic-icon">⚡</div>
+      <div class="ic-title">7.7 — Pico</div>
+      <div class="ic-value">R$95,9K</div>
+      <div class="ic-desc">Melhor dia do mês · +158% vs média diária · momentum sustentado +16% pós-evento.</div>
+    </div>
+    <div class="insight-card ic warn">
+      <div class="ic-icon">🎯</div>
+      <div class="ic-title">BPC em Queda</div>
+      <div class="ic-value">74,8% em Jul</div>
+      <div class="ic-desc">BPC caiu de 85,8% (Abr) para 74,8% (Jul MTD). Revisão de precificação nos top MLBs.</div>
+    </div>
+    <div class="insight-card ic opp">
+      <div class="ic-icon">📦</div>
+      <div class="ic-title">Oportunidade Fulfillment</div>
+      <div class="ic-value">100% SS hoje</div>
+      <div class="ic-desc">Ativação de FULL/FLEX nos sofás de maior giro pode elevar CVR e buybox.</div>
+    </div>
+  </div>
+
+  <div class="daily-card">
+    <h3>NMV Diário — Julho 2026 MTD</h3>
+    <canvas id="chartDaily" height="60"></canvas>
+  </div>
+
+  <div class="section-title">Mix de Produto — Q2 2026 (Sofás)</div>
+  <div class="mix-row">
+    <div class="card">
+      <div class="mix-item"><span class="mix-label">Sofá Retrátil 1,80m</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:62%"></div></div><span class="mix-pct">62%</span></div>
+      <div class="mix-item"><span class="mix-label">Sofá de Canto</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:33%"></div></div><span class="mix-pct">33%</span></div>
+      <div class="mix-item"><span class="mix-label">Sofá Retrátil 1,50m</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:5%"></div></div><span class="mix-pct">5%</span></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:12px;margin-bottom:12px">ASP & BPC — 2026</h3>
+      <canvas id="chartASP" height="120"></canvas>
+    </div>
+  </div>
+
+  <div class="section-title">Top 10 Itens — Q2 2026</div>
+  <div class="table-card">
+    <table>
+      <thead><tr><th>#</th><th>MLB</th><th>Título</th><th>Categ.</th><th>Log.</th><th>Preço</th><th>NMV Q2</th><th>SIs</th><th>BPC%</th></tr></thead>
+      <tbody>
+        <tr>
+      <td class="rk">1</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank" class="mlb-link">MLB4673827206</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE PRETO</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,100</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div>R$229.525</td>
+      <td>249</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">2</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4689882944" target="_blank" class="mlb-link">MLB4689882944</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE MARROM</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,000</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:98%"></div></div>R$224.895</td>
+      <td>241</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">3</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank" class="mlb-link">MLB3678387879</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE CAPPUCCINO</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,400</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div>R$165.535</td>
+      <td>182</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">4</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3693739807" target="_blank" class="mlb-link">MLB3693739807</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE AZUL</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,400</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:63%"></div></div>R$144.210</td>
+      <td>158</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">5</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3829289082" target="_blank" class="mlb-link">MLB3829289082</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL 3 LUGARES 1,80M VEGAS SUEDE MARROM</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,060</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:55%"></div></div>R$126.166</td>
+      <td>131</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">6</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3524332827" target="_blank" class="mlb-link">MLB3524332827</a></td>
+      <td class="titulo-cell">SOFÁ DE CANTO RETRÁTIL E RECLINÁVEL 3,00X2,00 VIRGINIA SUEDE CINZA</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$2,950</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:53%"></div></div>R$120.892</td>
+      <td>43</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">7</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4222444776" target="_blank" class="mlb-link">MLB4222444776</a></td>
+      <td class="titulo-cell">SOFÁ CANTO RETRÁTIL REC. MOLAS 3,00X2,00 ESQ JACKE SUEDE</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$3,140</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div>R$90.855</td>
+      <td>32</td>
+      <td style="color:#DC3545;font-weight:700">0%</td>
+    </tr>
+<tr>
+      <td class="rk">8</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3685965167" target="_blank" class="mlb-link">MLB3685965167</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL 3 LUGARES 1,80M VEGAS SUEDE PRETO</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$1,000</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:39%"></div></div>R$89.173</td>
+      <td>94</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">9</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3907553623" target="_blank" class="mlb-link">MLB3907553623</a></td>
+      <td class="titulo-cell">SOFÁ RETRÁTIL RECLINÁVEL COM MOLAS 1,50M LIVIA SUEDE MARROM</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$990</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div>R$87.776</td>
+      <td>104</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+<tr>
+      <td class="rk">10</td>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3521759923" target="_blank" class="mlb-link">MLB3521759923</a></td>
+      <td class="titulo-cell">SOFÁ CANTO RETRÁTIL RECLINÁVEL MOLAS 3,00X2,00 VIRGINIA SUEDE MARROM</td>
+      <td>Sofás</td>
+      <td><span class="tag-ss">SS</span></td>
+      <td>R$2,950</td>
+      <td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div>R$82.312</td>
+      <td>29</td>
+      <td style="color:#28A745;font-weight:700">100%</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">Relatório gerado em 14/Jul/2026 · KAM F&H · Cintia Queiroz · cintia.queiroz@mercadolivre.com</div>
+
+<script>
+const labels   = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
+const nmv26    = [976320, 1413260, 2031178, 1491421, 1578832, 1332429, 543324];
+const nmv25    = [783584, 524150, 1014650, 1045954, 1193409, 1134616, 1535820];
+const metaArr  = [1000000, 1000000, 1200000, 1400000, 1500000, 1500000, 1500000];
+const si26     = [849, 1289, 1829, 1184, 1464, 1187, 451];
+const si25     = [858, 629, 1101, 857, 1181, 1294, 1650];
+const meses    = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
+
+// Chart GMV
+const pct26 = nmv26.map((v,i) => Math.round(v/metaArr[i]*100));
+new Chart(document.getElementById('chartGMV'), {
+  type:'bar',
+  data:{
+    labels,
+    datasets:[
+      {label:'2026',data:nmv26,backgroundColor:nmv26.map((_,i)=>i===6?'rgba(52,131,250,0.6)':'rgba(52,131,250,0.85)'),borderRadius:5},
+      {label:'2025',data:nmv25,backgroundColor:'rgba(180,180,180,0.5)',borderRadius:5},
+      {label:'Meta',data:metaArr,type:'line',borderColor:'#FFE600',borderWidth:2,pointRadius:4,pointBackgroundColor:'#FFE600',fill:false,tension:0.3},
+    ]
+  },
+  options:{
+    responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:c=>`${c.dataset.label}: R$${(c.raw/1000).toFixed(0)}K`}}},
+    scales:{y:{ticks:{callback:v=>`R$${(v/1000).toFixed(0)}K`}}}
+  }
+});
+
+// Badges % de atingimento sobre as barras
+const gmvCtx = document.getElementById('chartGMV');
+
+// Chart SIs
+new Chart(document.getElementById('chartSI'), {
+  type:'bar',
+  data:{
+    labels,
+    datasets:[
+      {label:'SI 2026',data:si26,backgroundColor:'rgba(52,131,250,0.85)',borderRadius:5},
+      {label:'SI 2025',data:si25,backgroundColor:'rgba(180,180,180,0.5)',borderRadius:5},
+    ]
+  },
+  options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{beginAtZero:true}}}
+});
+
+// Chart Diário
+const dLabels = DAILY_['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
+const dVals   = [28980, 20548, 27532, 31788, 23189, 56752, 95899, 62254, 39794, 47392, 21868, 47502, 39824];
+const dColors = dVals.map((_,i)=>i===6?'#FFE600':'rgba(52,131,250,0.85)');
+new Chart(document.getElementById('chartDaily'), {
+  type:'bar',
+  data:{labels:dLabels,datasets:[{label:'NMV (R$)',data:dVals,backgroundColor:dColors,borderRadius:6}]},
+  options:{
+    responsive:true,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`R$${c.raw.toLocaleString('pt-BR')}`}}},
+    scales:{y:{ticks:{callback:v=>`R$${(v/1000).toFixed(0)}K`}}}
+  }
+});
+
+// Chart ASP + BPC
+const aspData = [1218, 1170, 1168, 1294, 1176, 1235, 1293];
+const bpcData = [79.8, 77.7, 80.8, 85.8, 82.8, 77.7, 74.8];
+new Chart(document.getElementById('chartASP'), {
+  type:'bar',
+  data:{
+    labels:meses,
+    datasets:[
+      {label:'ASP (R$)',data:aspData,backgroundColor:'rgba(52,131,250,0.7)',borderRadius:4,yAxisID:'y'},
+      {label:'BPC%',data:bpcData,type:'line',borderColor:'#FF9500',borderWidth:2,pointRadius:3,pointBackgroundColor:'#FF9500',yAxisID:'y2',fill:false,tension:0.3},
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'top',labels:{font:{size:10}}}},
+    scales:{
+      y:{ticks:{callback:v=>`R$${v}`},beginAtZero:false,min:900},
+      y2:{position:'right',ticks:{callback:v=>`${v}%`},min:60,max:100,grid:{drawOnChartArea:false}}
+    }
+  }
+});
+</script>
+</body>
+</html>
