@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WEHOUSE — Fechamento Q2 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.hdr h1{font-size:24px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.badge{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;white-space:nowrap}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:20px;flex:1;min-width:150px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:24px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.chart-box{position:relative;height:280px}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ic{border-radius:10px;padding:16px;border-left:4px solid}
+.ic.ok{background:#F0FBF5;border-color:#00A650}
+.ic.nok{background:#FEF9F9;border-color:#F23D4F}
+.ic.opp{background:#F0F5FF;border-color:#3483FA}
+.ic.warn{background:#FFFDF0;border-color:#FFB900}
+.ic h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
+.ic p{font-size:12px;line-height:1.65;color:#333}
+.ic p strong{color:#1A1A1A}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:18px;text-align:center}
+.qc .ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.qc .qv{font-size:22px;font-weight:900;color:#1A1A1A}
+.qc .qs{font-size:12px;margin-top:4px;color:#666}
+.qc.active{border-top:3px solid #3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.warn-box{background:#FFFDF0;border:1px solid #FFD366;border-radius:8px;padding:10px 14px;font-size:11px;color:#856404;margin-top:12px}
+@media(max-width:640px){.ig,.qg{grid-template-columns:1fr}}
+</style></head><body>
+<div class="hdr">
+  <div><h1>&#128202; WEHOUSE — Fechamento Q2 2026</h1>
+  <div class="sub">Relatório de Fechamento de Trimestre · Abr–Jun 2026 &middot; IDs: 358180856</div></div>
+  <div class="badge">YoY Q2: ▲ 2.2% &middot; QoQ: ▼ 39.1%</div>
+</div>
+<div class="wrap">
+
+<div class="qg">
+  <div class="qc">
+    <div class="ql">Q2 2025</div>
+    <div class="qv">R$4,03M</div>
+    <div class="qs">2,735 SIs &middot; ASP R$1,473</div>
+  </div>
+  <div class="qc">
+    <div class="ql">Q1 2026</div>
+    <div class="qv">R$6,75M</div>
+    <div class="qs">5,089 SIs &middot; ASP R$1,327</div>
+  </div>
+  <div class="qc active">
+    <div class="ql">Q2 2026 ✦ Fechamento</div>
+    <div class="qv" style="color:#3483FA">R$4,11M</div>
+    <div class="qs">4,267 SIs &middot; ASP R$964</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="card"><div class="lbl">YoY GMV vs Q2'25</div>
+    <div class="val" style="color:#00A650">▲ 2.2%</div>
+    <div class="sub">R$4,03M → R$4,11M</div></div>
+  <div class="card"><div class="lbl">QoQ GMV vs Q1'26</div>
+    <div class="val" style="color:#F23D4F">▼ 39.1%</div>
+    <div class="sub">R$6,75M → R$4,11M</div></div>
+  <div class="card"><div class="lbl">SIs Q2 2026</div>
+    <div class="val">4,267</div>
+    <div class="sub">YoY ▲ 56.0% &middot; QoQ ▼ 16.2%</div></div>
+  <div class="card"><div class="lbl">ASP Q2 2026</div>
+    <div class="val">R$ 964</div>
+    <div class="sub">Q1'26: R$1,327 &middot; Q2'25: R$1,473</div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-ttl">Evolução Mensal — Jan a Jun 2026 (azul claro = Q1 | azul escuro = Q2)</div>
+  <div class="chart-box"><canvas id="cWH"></canvas></div>
+</div>
+
+<div class="sec">
+  <div class="sec-ttl">Detalhe Mensal Q1 + Q2 2026</div>
+  <table><thead><tr><th>Mês</th><th>GMV</th><th>SIs</th><th>ASP</th></tr></thead>
+  <tbody><tr style='background:#F5FAFF'><td>Jan/26</td><td>R$2,44M</td><td>1,698</td><td>R$1,438</td></tr><tr style='background:#F5FAFF'><td>Fev/26</td><td>R$2,11M</td><td>1,509</td><td>R$1,397</td></tr><tr style='background:#F5FAFF'><td>Mar/26</td><td>R$2,20M</td><td>1,882</td><td>R$1,170</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Abr/26</td><td>R$1,75M</td><td>1,451</td><td>R$1,204</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Mai/26</td><td>R$1,12M</td><td>1,185</td><td>R$941</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Jun/26</td><td>R$1,25M</td><td>1,631</td><td>R$768</td></tr></tbody></table>
+</div>
+
+
+
+<div class="sec">
+  <div class="sec-ttl">Análise Q2 2026 — Pontos Fortes, Riscos e Oportunidades</div>
+  <div class="ig"><div class='ic ok'><h4>✅ Pontos Positivos</h4><p><strong>+2,2% YoY GMV</strong> — crescimento real vs Q2'25, mesmo num trimestre historicamente mais fraco.<br><br><strong>+56% SIs YoY</strong> — volume de pedidos quase dobrou vs Q2'25. Maior alcance e sortimento visível.<br><br><strong>Jun recuperou</strong> — após queda em Mai (R$1,1M), junho voltou a R$1,25M com mais SIs (1.631), sinalizando retomada.</p></div><div class='ic nok'><h4>⚠️ Pontos de Atenção</h4><p><strong>-39,1% QoQ</strong> — queda expressiva vs Q1'26 (R$6,75M). Parte é sazonalidade, mas a magnitude preocupa.<br><br><strong>ASP em queda</strong> — Q1'26: R$1.327 → Q2'26: R$964. Em junho chegou a R$768/SI. Mix migrando para itens mais baratos.<br><br><strong>Maio crítico</strong> — R$1,1M foi o pior mês dos últimos 12M. Queda simultânea de volume e ticket.</p></div><div class='ic opp'><h4>🚀 Oportunidades Q3 2026</h4><p><strong>7.7 Data Dupla</strong> — R$84.925 em 1 dia, +88% vs dias normais. Alta receptividade a campanhas de data.<br><br><strong>Recuperar ASP</strong> — ampliar mix de itens premium (R$1.500+) que sustentavam ticket em Q1. Avaliar SKUs perdidos de sortimento.<br><br><strong>Momentum Jul</strong> — MTD julho já supera junho. Com 7.7 + Black Jul, Q3 pode superar Q1 se tração mantida.</p></div><div class='ic warn'><h4>📌 Desenvolvimentos a Monitorar</h4><p><strong>Mix de produto</strong> — checar se queda de ASP é estratégia de volume ou perda de competitividade nos tickets altos.<br><br><strong>Buybox e repricing</strong> — com ASP caindo, verificar pressão de preço por concorrência. Revisão de repricing recomendada.<br><br><strong>Meta YoY 2026</strong> — atingimento atual ~51%. H2 precisa de aceleração forte para fechar positivo.</p></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-ttl">Top 10 Itens — Q2 2026 (Abr–Jun)</div>
+  <table>
+<thead><tr><th>#</th><th>Item</th><th>MLB</th><th>GMV Q2</th><th>SIs</th><th>ASP</th><th>Share</th></tr></thead>
+<tbody><tr><td style='color:#888;font-size:11px'>1</td><td>Sofá Retrátil 4L Eureka Velosuede USB Grafite</td><td><a href='https://www.mercadolivre.com.br/p/MLB4629268544' target='_blank'>MLB4629268544</a></td><td>R$197k</td><td>117</td><td>R$1,686</td><td style='color:#888'>4.8%</td></tr><tr><td style='color:#888;font-size:11px'>2</td><td>Sofá Retrátil 4L Eureka Velosuede USB Capuccino</td><td><a href='https://www.mercadolivre.com.br/p/MLB3667695029' target='_blank'>MLB3667695029</a></td><td>R$197k</td><td>116</td><td>R$1,696</td><td style='color:#888'>4.8%</td></tr><tr><td style='color:#888;font-size:11px'>3</td><td>Cristaleira LED 4P 2Gav Allure Linea Brasil</td><td><a href='https://www.mercadolivre.com.br/p/MLB4656471987' target='_blank'>MLB4656471987</a></td><td>R$128k</td><td>48</td><td>R$2,663</td><td style='color:#888'>3.1%</td></tr><tr><td style='color:#888;font-size:11px'>4</td><td>Sofá Retrátil 4L Eureka Velosuede USB Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4629268348' target='_blank'>MLB4629268348</a></td><td>R$111k</td><td>64</td><td>R$1,734</td><td style='color:#888'>2.7%</td></tr><tr><td style='color:#888;font-size:11px'>5</td><td>Sofá Retrátil 4L Eureka Velosuede USB Preto</td><td><a href='https://www.mercadolivre.com.br/p/MLB4629293266' target='_blank'>MLB4629293266</a></td><td>R$96k</td><td>57</td><td>R$1,691</td><td style='color:#888'>2.3%</td></tr><tr><td style='color:#888;font-size:11px'>6</td><td>Sofá USB Retrátil Reclinável Samurai 2,30M Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB3488282369' target='_blank'>MLB3488282369</a></td><td>R$90k</td><td>51</td><td>R$1,769</td><td style='color:#888'>2.2%</td></tr><tr><td style='color:#888;font-size:11px'>7</td><td>Sofá Retrátil 4L Eureka Velosuede USB Chocolate</td><td><a href='https://www.mercadolivre.com.br/p/MLB3655096547' target='_blank'>MLB3655096547</a></td><td>R$89k</td><td>53</td><td>R$1,687</td><td style='color:#888'>2.2%</td></tr><tr><td style='color:#888;font-size:11px'>8</td><td>Cristaleira Moderna MDF 4P 2Gav Linea Brasil</td><td><a href='https://www.mercadolivre.com.br/p/MLB6419626050' target='_blank'>MLB6419626050</a></td><td>R$83k</td><td>32</td><td>R$2,583</td><td style='color:#888'>2.0%</td></tr><tr><td style='color:#888;font-size:11px'>9</td><td>Sofá Retrátil 4L Eureka Velosuede USB Areia</td><td><a href='https://www.mercadolivre.com.br/p/MLB4629255478' target='_blank'>MLB4629255478</a></td><td>R$81k</td><td>48</td><td>R$1,688</td><td style='color:#888'>2.0%</td></tr><tr><td style='color:#888;font-size:11px'>10</td><td>Sofá Retrátil 4L Eureka Velosuede USB Marrom</td><td><a href='https://www.mercadolivre.com.br/p/MLB4608864694' target='_blank'>MLB4608864694</a></td><td>R$79k</td><td>47</td><td>R$1,685</td><td style='color:#888'>1.9%</td></tr></tbody></table>
+</div>
+
+</div>
+<script>
+(function(){
+var ctx=document.getElementById('cWH').getContext('2d');
+new Chart(ctx,{type:'bar',data:{
+  labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
+  datasets:[
+    {label:'GMV (R$ mil)',data:[2441.5, 2107.6, 2202.8, 1747.6, 1115.0, 1252.2],backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],borderRadius:6,yAxisID:'y'},
+    {label:'SIs',data:[1698, 1509, 1882, 1451, 1185, 1631],type:'line',borderColor:'#FF9500',
+     backgroundColor:'rgba(255,149,0,.12)',borderWidth:2,pointRadius:5,
+     pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1'}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{position:'bottom'}},
+  scales:{
+    y:{position:'left',title:{display:true,text:'GMV (R$ mil)'},
+       ticks:{callback:function(v){return 'R$'+v+'k'}}},
+    y1:{position:'right',title:{display:true,text:'SIs'},grid:{drawOnChartArea:false}}
+  }
+}});
+})();
+</script>
+</body></html>
