@@ -277,76 +277,168 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </script>
   <!-- Análise de Queda Jul MTD -->
   <div class="sec">
-    <div class="sec-ttl">&#128269; Diagnóstico de Queda — Jul MTD vs Jun</div>
+    <div class="sec-ttl">&#128269; Por que o GMV caiu em julho?</div>
 
-    <!-- Tendência -->
-    <div style="margin-bottom:16px">
-      <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Tendência Mai → Jun → Jul (run rate/dia)</div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <div style="flex:1;min-width:130px;background:#F8F8F8;border-radius:8px;padding:12px 14px;text-align:center">
-          <div style="font-size:10px;color:#888;text-transform:uppercase">GMV/dia</div>
-          <div style="font-size:13px;font-weight:700;margin-top:4px">R$50.930 <span style="color:#999;font-size:11px">Mai</span></div>
-          <div style="font-size:13px;font-weight:700">R$44.414 <span style="color:#E67E00;font-size:11px">-12,8% Jun</span></div>
-          <div style="font-size:13px;font-weight:700">R$40.514 <span style="color:#F23D4F;font-size:11px">-8,8% Jul</span></div>
+    <!-- Resposta direta em destaque -->
+    <div style="background:#1A1A2E;border-radius:12px;padding:20px 24px;margin-bottom:20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;margin-bottom:8px;color:#FFE600">&#128161; O problema principal: menos pessoas estão vendo seus produtos</div>
+      <div style="font-size:14px;color:#ddd;line-height:1.6">
+        Em maio você recebia <strong style="color:#fff">25.000 visitas por dia</strong>. Hoje são <strong style="color:#F23D4F">13.600</strong> — uma queda de quase metade. Com menos gente vendo, vende menos. O preço médio dos seus sofás está <strong style="color:#00A650">subindo</strong> (ótimo sinal), mas não compensa o volume perdido.
+      </div>
+    </div>
+
+    <!-- 3 KPIs simples com seta de tendência -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #F23D4F;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Visitas por dia</div>
+        <div style="font-size:11px;color:#aaa">Mai&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jun&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">25.000</span> &rarr; <span style="color:#E67E00">21.000</span> &rarr; <span style="color:#F23D4F;font-weight:900;font-size:18px">13.600</span></div>
+        <div style="font-size:11px;color:#F23D4F;margin-top:4px">&#9660; metade do tráfego de maio</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #E67E00;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Vendas (R$) por dia</div>
+        <div style="font-size:11px;color:#aaa">Mai&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jun&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$50.930</span> &rarr; <span style="color:#E67E00">R$44.414</span> &rarr; <span style="color:#E67E00;font-weight:900;font-size:18px">R$40.514</span></div>
+        <div style="font-size:11px;color:#E67E00;margin-top:4px">&#9660; queda consistente mês a mês</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #00A650;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Preço médio dos sofás</div>
+        <div style="font-size:11px;color:#aaa">Mai&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jun&nbsp;&nbsp;&rarr;&nbsp;&nbsp;Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$1.078</span> &rarr; <span style="color:#aaa">R$1.123</span> &rarr; <span style="color:#00A650;font-weight:900;font-size:18px">R$1.182</span></div>
+        <div style="font-size:11px;color:#00A650;margin-top:4px">&#9650; clientes comprando produtos melhores</div>
+      </div>
+    </div>
+
+    <!-- Produtos que pararam de vender -->
+    <div style="background:#FEE8EA;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#C0001A;margin-bottom:4px">&#128308; 4 produtos pararam de vender em julho — juntos valiam R$64.000/quinzena</div>
+      <div style="font-size:13px;color:#555;margin-bottom:14px">Em junho esses produtos vendiam normalmente. Em julho, zeraram completamente. Isso sozinho explica grande parte da queda.</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Canto Jacke Suede Cinza 3,40m</div>
+            <div style="font-size:11px;color:#888">Tinha 7.200 visitas em junho — agora quase ninguém vê</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$18.599</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$0</div>
+          </div>
         </div>
-        <div style="flex:1;min-width:130px;background:#FEE8EA;border-radius:8px;padding:12px 14px;text-align:center">
-          <div style="font-size:10px;color:#888;text-transform:uppercase">Visitas/dia</div>
-          <div style="font-size:13px;font-weight:700;margin-top:4px">25.653 <span style="color:#999;font-size:11px">Mai</span></div>
-          <div style="font-size:13px;font-weight:700">20.962 <span style="color:#E67E00;font-size:11px">-18,3% Jun</span></div>
-          <div style="font-size:16px;font-weight:900;color:#C0001A">13.603 <span style="font-size:11px">-35,1% Jul &#9650;</span></div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Cama Karen Veludo Bege 2,30m</div>
+            <div style="font-size:11px;color:#888">Caiu de 4.000 visitas para apenas 327 — produto quase invisível</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$19.286</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$0</div>
+          </div>
         </div>
-        <div style="flex:1;min-width:130px;background:#E6F7EE;border-radius:8px;padding:12px 14px;text-align:center">
-          <div style="font-size:10px;color:#888;text-transform:uppercase">Ticket médio</div>
-          <div style="font-size:13px;font-weight:700;margin-top:4px">R$ 1.078 <span style="color:#999;font-size:11px">Mai</span></div>
-          <div style="font-size:13px;font-weight:700">R$ 1.123 <span style="color:#00A650;font-size:11px">+4,2% Jun</span></div>
-          <div style="font-size:13px;font-weight:700">R$ 1.182 <span style="color:#00A650;font-size:11px">+5,2% Jul</span></div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Canto Virginia 3,40x2,00</div>
+            <div style="font-size:11px;color:#888">Visitas caíram mais da metade</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$11.600</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$0</div>
+          </div>
         </div>
-        <div style="flex:1;min-width:180px;background:#FFF3CD;border:2px solid #FFD700;border-radius:8px;padding:12px 14px">
-          <div style="font-size:11px;font-weight:800;color:#7A5800;margin-bottom:4px">&#9888; Driver principal</div>
-          <div style="font-size:13px;color:#333">O problema é <strong>queda de tráfego</strong>, não CVR. Visitas caíram -35%/dia em julho. CVR agregado subiu artificialmente porque itens de baixo CVR desapareceram do ar.</div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Canto Jacke Adonai 3,40m</div>
+            <div style="font-size:11px;color:#888">Praticamente sem visitas em julho</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$14.612</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$0</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:#7A0000;font-weight:700">&#128204; O que pode ter causado: produto pausado, sem estoque, ou outra loja ganhou o destaque no MeLi (buybox). Precisamos checar cada um.</div>
+    </div>
+
+    <!-- Produtos que ainda vendem mas pioraram -->
+    <div style="background:#FFF9E0;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#B85A00;margin-bottom:4px">&#9888; Produtos que ainda vendem, mas bem menos que antes</div>
+      <div style="font-size:13px;color:#555;margin-bottom:14px">Esses produtos continuam ativos mas perderam muitas visitas — e quem visita está comprando menos (conversão caiu).</div>
+      <div style="overflow-x:auto"><table style="width:100%">
+        <thead><tr style="background:rgba(0,0,0,.06)">
+          <th style="text-align:left;padding:8px 10px;font-size:12px">Produto</th>
+          <th style="text-align:center;padding:8px 10px;font-size:12px">Vendeu em Jun</th>
+          <th style="text-align:center;padding:8px 10px;font-size:12px">Vendeu em Jul</th>
+          <th style="text-align:center;padding:8px 10px;font-size:12px">Visitas caíram</th>
+          <th style="text-align:center;padding:8px 10px;font-size:12px">Conversão caiu</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Sofá Livia Suede Marrom 1,80m</td>
+            <td style="text-align:center;padding:10px;font-size:13px;color:#555">R$27.791</td>
+            <td style="text-align:center;padding:10px;font-size:14px;font-weight:700;color:#E67E00">R$7.069</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-46%</span></td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">de 0,59% para 0,27%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee;background:#FAFAFA">
+            <td style="padding:10px;font-size:13px">Sofá Livia Suede Azul 1,80m</td>
+            <td style="text-align:center;padding:10px;font-size:13px;color:#555">R$19.722</td>
+            <td style="text-align:center;padding:10px;font-size:14px;font-weight:700;color:#E67E00">R$5.050</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-57%</span></td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">de 0,38% para 0,21%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Sofá Karen Veludo Bege 2,10m</td>
+            <td style="text-align:center;padding:10px;font-size:13px;color:#555">R$12.771</td>
+            <td style="text-align:center;padding:10px;font-size:14px;font-weight:700;color:#E67E00">R$2.000</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-58%</span></td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">de 0,39% para 0,10%</span></td>
+          </tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- O que está crescendo -->
+    <div style="background:#E6F7EE;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#007A3D;margin-bottom:4px">&#9989; O que está indo bem — aproveitar agora</div>
+      <div style="font-size:13px;color:#555;margin-bottom:12px">Esses produtos estão crescendo forte em julho. Vale aumentar investimento neles para compensar.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Sofá Canto Virginia Cinza</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+75%</div>
+          <div style="font-size:11px;color:#555">Jun: R$16.878 &rarr; Jul: R$29.599</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Sofá Vegas Suede Marrom</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+70%</div>
+          <div style="font-size:11px;color:#555">Jun: R$15.665 &rarr; Jul: R$26.707</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Sofá Canto Virginia Cappuccino</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+25%</div>
+          <div style="font-size:11px;color:#555">Jun: R$14.152 &rarr; Jul: R$17.759</div>
         </div>
       </div>
     </div>
 
-    <!-- Top ofensores -->
-    <div style="font-size:13px;font-weight:700;color:#555;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Top Ofensores — Jun 1-14 vs Jul 1-14</div>
-    <div style="overflow-x:auto"><table>
-      <thead><tr>
-        <th>Produto</th>
-        <th style="text-align:right">GMV Jun</th>
-        <th style="text-align:right">GMV Jul</th>
-        <th style="text-align:center">Var%</th>
-        <th style="text-align:right">Vis Jun</th>
-        <th style="text-align:right">Vis Jul</th>
-        <th style="text-align:right">CVR Jun</th>
-        <th style="text-align:right">CVR Jul</th>
-        <th style="text-align:center">Status</th>
-      </tr></thead>
-      <tbody>
-        <tr><td>Sofá Livia Suede Marrom 1,80m<br><span style="font-size:10px;color:#999">MLB4689882944</span></td><td style="text-align:right">R$27.791</td><td style="text-align:right">R$7.069</td><td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660;74,6%</span></td><td style="text-align:right">4.906</td><td style="text-align:right">2.632</td><td style="text-align:right">0,59%</td><td style="text-align:right">0,27%</td><td style="text-align:center"><span class="pill pl-y">&#9888; CVR -54%</span></td></tr>
-        <tr style="background:#FFF0F0"><td>Sofá Cama Karen Veludo Bege 2,30m<br><span style="font-size:10px;color:#999">MLB4980840314</span></td><td style="text-align:right">R$19.286</td><td style="text-align:right;color:#C0001A;font-weight:700">R$0</td><td style="text-align:center"><span style="color:#C0001A;font-weight:700">-100%</span></td><td style="text-align:right">4.035</td><td style="text-align:right;color:#C0001A">327</td><td style="text-align:right">0,35%</td><td style="text-align:right">—</td><td style="text-align:center"><span class="pill pl-r">&#128308; Zerado</span></td></tr>
-        <tr style="background:#FFF0F0"><td>Sofá Canto Jacke Suede Cinza 3,40m<br><span style="font-size:10px;color:#999">MLB4980817982</span></td><td style="text-align:right">R$18.599</td><td style="text-align:right;color:#C0001A;font-weight:700">R$0</td><td style="text-align:center"><span style="color:#C0001A;font-weight:700">-100%</span></td><td style="text-align:right">7.198</td><td style="text-align:right;color:#C0001A">112</td><td style="text-align:right">0,19%</td><td style="text-align:right">—</td><td style="text-align:center"><span class="pill pl-r">&#128308; Zerado</span></td></tr>
-        <tr><td>Sofá Livia Suede Azul 1,80m<br><span style="font-size:10px;color:#999">MLB3693739807</span></td><td style="text-align:right">R$19.722</td><td style="text-align:right">R$5.050</td><td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660;74,4%</span></td><td style="text-align:right">5.535</td><td style="text-align:right">2.376</td><td style="text-align:right">0,38%</td><td style="text-align:right">0,21%</td><td style="text-align:center"><span class="pill pl-y">&#9888; CVR -45%</span></td></tr>
-        <tr style="background:#FFF0F0"><td>Sofá Canto Jacke Adonai 3,40m<br><span style="font-size:10px;color:#999">MLB3421996371</span></td><td style="text-align:right">R$14.612</td><td style="text-align:right;color:#C0001A;font-weight:700">R$0</td><td style="text-align:center"><span style="color:#C0001A;font-weight:700">-100%</span></td><td style="text-align:right">335</td><td style="text-align:right;color:#C0001A">1</td><td style="text-align:right">1,49%</td><td style="text-align:right">—</td><td style="text-align:center"><span class="pill pl-r">&#128308; Zerado</span></td></tr>
-        <tr><td>Sofá Vegas Suede Preto 3L 1,80m<br><span style="font-size:10px;color:#999">MLB3685965167</span></td><td style="text-align:right">R$19.165</td><td style="text-align:right">R$7.629</td><td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660;60,2%</span></td><td style="text-align:right">5.529</td><td style="text-align:right">4.399</td><td style="text-align:right">0,36%</td><td style="text-align:right">0,18%</td><td style="text-align:center"><span class="pill pl-y">&#9888; CVR -50%</span></td></tr>
-        <tr style="background:#FFF0F0"><td>Sofá Canto Virginia 3,40x2,00<br><span style="font-size:10px;color:#999">MLB3286540147</span></td><td style="text-align:right">R$11.600</td><td style="text-align:right;color:#C0001A;font-weight:700">R$0</td><td style="text-align:center"><span style="color:#C0001A;font-weight:700">-100%</span></td><td style="text-align:right">1.076</td><td style="text-align:right;color:#C0001A">528</td><td style="text-align:right">0,37%</td><td style="text-align:right">—</td><td style="text-align:center"><span class="pill pl-r">&#128308; Zerado</span></td></tr>
-        <tr><td>Sofá Karen Veludo Bege 2,10m<br><span style="font-size:10px;color:#999">MLB4930852704</span></td><td style="text-align:right">R$12.771</td><td style="text-align:right">R$2.000</td><td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660;84,3%</span></td><td style="text-align:right">2.309</td><td style="text-align:right">974</td><td style="text-align:right">0,39%</td><td style="text-align:right">0,10%</td><td style="text-align:center"><span class="pill pl-r">&#128308; CVR -74%</span></td></tr>
-      </tbody>
-    </table></div>
-
-    <!-- Alertas e recomendações -->
-    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
-      <div style="flex:1;min-width:220px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">&#128308; 4 itens zerados — R$64K perdido</div>
-        <div style="font-size:12px;color:#333">Karen Bege 2,30m · Jacke Cinza · Jacke Adonai · Virginia 3,40m somavam R$64K em Jun 1-14 e <strong>zeraram em julho</strong>. Verificar se é ruptura de estoque, pausa ou moderação — recuperação imediata libera esse GMV.</div>
-      </div>
-      <div style="flex:1;min-width:220px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">&#9888; Linha Karen com CVR crítico</div>
-        <div style="font-size:12px;color:#333">CVR caiu de 0,39% para 0,10% (-74%) na Karen 2,10m. Possível perda de buybox, preço fora da competição ou reclamos pós-compra afetando conversão. Checar concorrentes de catálogo.</div>
-      </div>
-      <div style="flex:1;min-width:220px;background:#E6F7EE;border-left:4px solid #00A650;border-radius:8px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:800;color:#007A3D;text-transform:uppercase;margin-bottom:6px">&#9650; Oportunidade — crescendo</div>
-        <div style="font-size:12px;color:#333"><strong>Virginia Cinza Canto +75%</strong> e <strong>Vegas Marrom +70%</strong> estão com momentum positivo. Aumentar ADS/visibilidade nesses itens para compensar enquanto a conta se recupera.</div>
+    <!-- Ações claras -->
+    <div style="background:#1A1A2E;border-radius:10px;padding:16px 20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;color:#FFE600;margin-bottom:12px">&#9997;&#65039; O que fazer agora — prioridade alta</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#F23D4F;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Verificar os 4 produtos zerados</strong> — Checar no painel do MeLi se estão pausados, sem estoque ou com alguma restrição. Reativar pode recuperar R$64.000/quinzena.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Linha Livia (Marrom e Azul)</strong> — O preço pode estar acima do concorrente. Comparar com outros vendedores do mesmo produto no MeLi e ajustar se necessário.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Sofá Karen 2,10m</strong> — Conversão caiu de 0,39% para 0,10% (muito abaixo do esperado). Verificar se há reclamações recentes nesse produto ou se o anúncio perdeu posição no catálogo.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#00A650;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Investir nos que estão crescendo</strong> — Virginia Cinza e Vegas Marrom estão bombando. Aumentar anúncios (PADS) nesses produtos agora, enquanto estão no pico.</div>
+        </div>
       </div>
     </div>
   </div>
