@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAMA INBOX — Quinzenal Jul 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.hdr h1{font-size:24px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.badge{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:20px;flex:1;min-width:150px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:24px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.chart-box{position:relative;height:280px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:18px;text-align:center}
+.qc .ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.qc .qv{font-size:22px;font-weight:900;color:#1A1A1A}
+.qc .qs{font-size:12px;margin-top:4px;color:#666}
+.qc.active{border-top:3px solid #3483FA}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ic{border-radius:10px;padding:16px;border-left:4px solid}
+.ic.ok{background:#F0FBF5;border-color:#00A650}
+.ic.nok{background:#FEF9F9;border-color:#F23D4F}
+.ic.opp{background:#F0F5FF;border-color:#3483FA}
+.ic.warn{background:#FFFDF0;border-color:#FFB900}
+.ic h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
+.ic p{font-size:12px;line-height:1.65;color:#333}
+.ic p strong{color:#1A1A1A}
+.banner77{background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.b77-sub{display:flex;gap:12px;flex-wrap:wrap}
+.b77-card{background:rgba(255,255,255,.85);border-radius:10px;padding:12px 18px;min-width:130px;text-align:center}
+.b77-card .bl{font-size:10px;font-weight:800;text-transform:uppercase;color:#555;margin-bottom:4px}
+.b77-card .bv{font-size:20px;font-weight:900;color:#1A1A1A}
+.b77-card .bs{font-size:11px;color:#555;margin-top:2px}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.warn-box{background:#FEF9F9;border:1px solid #F8C4C8;border-radius:8px;padding:10px 14px;font-size:11px;color:#C0392B;margin-top:12px}
+.ok-box{background:#F0FBF5;border:1px solid #B8E8C8;border-radius:8px;padding:10px 14px;font-size:11px;color:#007A3D;margin-top:12px}
+@media(max-width:640px){.ig,.qg{grid-template-columns:1fr}}
+</style></head><body>
+<div class="hdr">
+  <div><h1>&#128202; CAMA INBOX — Acompanhamento Julho 2026</h1>
+  <div class="sub">Relatório Quinzenal · 1–13/Jul/2026 · ID: 470109248</div></div>
+  <div class="badge">Jul MTD: R$3,56M | 1,767 SIs</div>
+</div>
+<div class="wrap">
+
+<!-- KPIs MTD -->
+<div class="row">
+  <div class="card"><div class="lbl">GMV Jul MTD (13d)</div>
+    <div class="val">R$3,56M</div>
+    <div class="sub">vs Jun: <span style="color:#00A650;font-weight:700">▲ pace R$8,48M projetado</span></div></div>
+  <div class="card"><div class="lbl">SIs Jul MTD</div>
+    <div class="val">1,767</div>
+    <div class="sub">ASP: R$2,012</div></div>
+  <div class="card"><div class="lbl">Média/dia (s/ 7.7)</div>
+    <div class="val">R$250k</div>
+    <div class="sub">Dias normais jul</div></div>
+  <div class="card"><div class="lbl">Meta Des Jul</div>
+    <div class="val" style="color:#F23D4F">59.5%</div>
+    <div class="sub">de R$5.98M</div></div>
+  <div class="card"><div class="lbl">Projeção Julho</div>
+    <div class="val" style="color:#3483FA">R$8,48M</div>
+    <div class="sub">linear s/ 7.7</div></div>
+</div>
+
+<!-- 7.7 Banner -->
+<div class="banner77">
+  <div>
+    <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:#1A1A1A;opacity:.7">7.7 — Data Dupla MeLi · 07/Jul/2026</div>
+    <div style="font-size:20px;font-weight:900;margin-top:4px">🔥 Maior GMV do mês</div>
+  </div>
+  <div class="b77-sub">
+    <div class="b77-card"><div class="bl">GMV 7.7</div><div class="bv">R$561k</div><div class="bs">272 SIs</div></div>
+    <div class="b77-card"><div class="bl">vs dias normais</div><div class="bv">+125%</div><div class="bs">média R$249,618/dia</div></div>
+    <div class="b77-card"><div class="bl">Peso no mês</div><div class="bv">15.8%</div><div class="bs">do GMV total MTD</div></div>
+    <div class="b77-card"><div class="bl">Momentum pós</div>
+      <div class="bv" style="color:#007A3D">+10.4%</div>
+      <div class="bs">vs pré-7.7</div></div>
+  </div>
+</div>
+
+<!-- Insights MTD -->
+<div class="sec">
+  <div class="sec-ttl">Insights — Julho MTD</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div style="background:#F0FBF5;border-radius:10px;padding:14px;border-left:4px solid #00A650">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:#007A3D;margin-bottom:6px">Momentum pós-7.7</div>
+      <div style="font-size:22px;font-weight:900;color:#00A650">+10.4%</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">Ritmo pós (R$261,969/d) acima do pré (R$237,268/d)</div>
+    </div>
+    <div style="background:#F0F5FF;border-radius:10px;padding:14px;border-left:4px solid #3483FA">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:#1A5DC8;margin-bottom:6px">Peso do 7.7</div>
+      <div style="font-size:22px;font-weight:900;color:#3483FA">15.8%</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">do GMV total de julho</div>
+    </div>
+    <div style="background:#FFFDF0;border-radius:10px;padding:14px;border-left:4px solid #FFB900">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:#856404;margin-bottom:6px">Véspera 7.7</div>
+      <div style="font-size:22px;font-weight:900">R$273k</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">Jun/06 — aquecimento pré-data</div>
+    </div>
+    <div style="background:#F0FBF5;border-radius:10px;padding:14px;border-left:4px solid #00A650">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:#007A3D;margin-bottom:6px">Jun → Jul pace</div>
+      <div style="font-size:22px;font-weight:900;color:#00A650">▲ -100%</div>
+      <div style="font-size:11px;color:#444;margin-top:4px">Projeção Jul vs Jun real</div>
+    </div>
+  </div>
+</div>
+
+<!-- Gráfico diário -->
+<div class="sec">
+  <div class="sec-ttl">GMV Diário — Julho 2026</div>
+  <div class="chart-box"><canvas id="cDaily"></canvas></div>
+</div>
+
+<!-- Mix categorias Jul MTD -->
+<div class="sec">
+  <div class="sec-ttl">Mix de Categorias — Julho MTD</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center">
+    <div style="position:relative;height:220px"><canvas id="cMix"></canvas></div>
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:14px;height:14px;border-radius:3px;background:#3483FA;flex-shrink:0"></div>
+        <div><div style="font-weight:700;font-size:13px">🛏️ Camas Box + Colchões</div>
+          <div style="font-size:12px;color:#888">Box King/Queen · Pocket · Ortopédico</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:14px;height:14px;border-radius:3px;background:#FF9500;flex-shrink:0"></div>
+        <div><div style="font-weight:700;font-size:13px">🛋️ Sofás</div>
+          <div style="font-size:12px;color:#888">Max Spring · Soft Petit · Thunder · Soft Bonnie</div></div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:#F8F8F8;border-radius:8px;font-size:12px;color:#555">
+        Sofás representam ~42% do GMV Q2. Diversificação estratégica além do core de camas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Top 10 itens -->
+<div class="sec">
+  <div class="sec-ttl">Top 10 Itens — Q2 2026 (referência)</div>
+  <table><thead><tr><th>#</th><th>Item</th><th>MLB</th><th>GMV Q2</th><th>SIs</th><th>ASP</th></tr></thead>
+  <tbody><tr><td style='color:#888'>1</td><td>🛏️ Cama Box King Colchão Ortofirm 193×203 D45 Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4595657806' target='_blank'>MLB4595657806</a></td><td>R$605k</td><td>248</td><td>R$2,439</td></tr><tr><td style='color:#888'>2</td><td>🛏️ Cama Box Queen Colchão Ortofirm 158×198 D45 Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB3817052342' target='_blank'>MLB3817052342</a></td><td>R$445k</td><td>217</td><td>R$2,049</td></tr><tr><td style='color:#888'>3</td><td>🛋️ Sofá Sem Caixa Retrátil 1,80M Soft Petit Bouclé</td><td><a href='https://www.mercadolivre.com.br/p/MLB5095145640' target='_blank'>MLB5095145640</a></td><td>R$425k</td><td>157</td><td>R$2,710</td></tr><tr><td style='color:#888'>4</td><td>🛋️ Sofá Retrátil 2,50M Molas Ensacadas Max Spring Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4196266677' target='_blank'>MLB4196266677</a></td><td>R$416k</td><td>185</td><td>R$2,249</td></tr><tr><td style='color:#888'>5</td><td>🛏️ Cama Box King 193×203 Pocket Relax Pillow Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB2700063317' target='_blank'>MLB2700063317</a></td><td>R$368k</td><td>128</td><td>R$2,879</td></tr><tr><td style='color:#888'>6</td><td>🛋️ Sofá Retrátil 2,50M Molas Ensacadas Max Spring Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB4196163559' target='_blank'>MLB4196163559</a></td><td>R$355k</td><td>158</td><td>R$2,249</td></tr><tr><td style='color:#888'>7</td><td>🛋️ Sofá Sem Caixa Retrátil 2,00M Soft Bonnie Bouclé Bege</td><td><a href='https://www.mercadolivre.com.br/p/MLB3920478073' target='_blank'>MLB3920478073</a></td><td>R$335k</td><td>116</td><td>R$2,891</td></tr><tr><td style='color:#888'>8</td><td>🛋️ Sofá Retrátil 2,40M Molas e Espuma D33 Thunder Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4224500903' target='_blank'>MLB4224500903</a></td><td>R$330k</td><td>195</td><td>R$1,691</td></tr><tr><td style='color:#888'>9</td><td>🛏️ Cama Box Queen Colchão 158×198 Molas Pocket Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB2700116539' target='_blank'>MLB2700116539</a></td><td>R$290k</td><td>120</td><td>R$2,418</td></tr><tr><td style='color:#888'>10</td><td>🛋️ Sofá Retrátil 2,30M Molas Ensacadas Max Spring Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4241524583' target='_blank'>MLB4241524583</a></td><td>R$250k</td><td>115</td><td>R$2,171</td></tr></tbody></table>
+  <div style="font-size:11px;color:#888;margin-top:8px">* Dados referentes ao Q2 2026 (Abr–Jun). Top itens Jul MTD em atualização.</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+// Daily chart
+var ctx1=document.getElementById('cDaily').getContext('2d');
+new Chart(ctx1,{type:'bar',data:{
+  labels:["01/Jul", "02/Jul", "03/Jul", "04/Jul", "05/Jul", "06/Jul", "07/Jul\n\u2b50 7.7", "08/Jul", "09/Jul", "10/Jul", "11/Jul", "12/Jul", "13/Jul"],
+  datasets:[{
+    label:'GMV (R$)',
+    data:[281881, 221094, 226922, 195865, 224955, 272888, 560538, 249176, 319861, 230328, 226421, 282668, 263359],
+    backgroundColor:["#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#FF9500", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA"],
+    borderRadius:6
+  }]
+},options:{responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return 'R$'+c.parsed.y.toLocaleString('pt-BR')}}}},
+  scales:{y:{ticks:{callback:function(v){return 'R$'+v/1000+'k'}}}}
+}});
+
+// Mix donut
+var ctx2=document.getElementById('cMix').getContext('2d');
+new Chart(ctx2,{type:'doughnut',data:{
+  labels:['Camas/Colchões','Sofás'],
+  datasets:[{data:[47,42],backgroundColor:['#3483FA','#FF9500'],borderWidth:3}]
+},options:{responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.label+': ~'+c.parsed+'% do GMV'}}}}
+}});
+})();
+</script>
+</body></html>
