@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CAMA INBOX — Fechamento Q2 2026</title>
+<title>CAMA INBOX &mdash; Fechamento Q2 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
 .hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .hdr h1{font-size:24px;font-weight:900}
 .hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
-.badge{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.badge{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;white-space:nowrap}
 .wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
 .row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:20px;flex:1;min-width:150px}
@@ -24,12 +24,6 @@ td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
 tr:hover td{background:#FFFBEA}
 .pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
 .chart-box{position:relative;height:280px}
-.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
-.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:18px;text-align:center}
-.qc .ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.qc .qv{font-size:22px;font-weight:900;color:#1A1A1A}
-.qc .qs{font-size:12px;margin-top:4px;color:#666}
-.qc.active{border-top:3px solid #3483FA}
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .ic{border-radius:10px;padding:16px;border-left:4px solid}
 .ic.ok{background:#F0FBF5;border-color:#00A650}
@@ -39,68 +33,97 @@ tr:hover td{background:#FFFBEA}
 .ic h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
 .ic p{font-size:12px;line-height:1.65;color:#333}
 .ic p strong{color:#1A1A1A}
-.banner77{background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 24px;margin-bottom:16px;display:flex;gap:20px;flex-wrap:wrap;align-items:center}
-.b77-sub{display:flex;gap:12px;flex-wrap:wrap}
-.b77-card{background:rgba(255,255,255,.85);border-radius:10px;padding:12px 18px;min-width:130px;text-align:center}
-.b77-card .bl{font-size:10px;font-weight:800;text-transform:uppercase;color:#555;margin-bottom:4px}
-.b77-card .bv{font-size:20px;font-weight:900;color:#1A1A1A}
-.b77-card .bs{font-size:11px;color:#555;margin-top:2px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:18px;text-align:center}
+.qc .ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.qc .qv{font-size:22px;font-weight:900;color:#1A1A1A}
+.qc .qs{font-size:12px;margin-top:4px;color:#666}
+.qc.active{border-top:3px solid #3483FA}
 a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
-.warn-box{background:#FEF9F9;border:1px solid #F8C4C8;border-radius:8px;padding:10px 14px;font-size:11px;color:#C0392B;margin-top:12px}
 .ok-box{background:#F0FBF5;border:1px solid #B8E8C8;border-radius:8px;padding:10px 14px;font-size:11px;color:#007A3D;margin-top:12px}
 @media(max-width:640px){.ig,.qg{grid-template-columns:1fr}}
 </style></head><body>
+
 <div class="hdr">
-  <div><h1>&#128202; CAMA INBOX — Fechamento Q2 2026</h1>
-  <div class="sub">Relatório de Encerramento de Trimestre · Abr–Jun 2026 · ID: 470109248</div></div>
-  <div class="badge">YoY Q2: ▲ 126.0% &middot; QoQ: ▲ 40.5%</div>
+  <div><h1>&#128202; CAMA INBOX &mdash; Fechamento Q2 2026</h1>
+  <div class="sub">Relat&oacute;rio de Fechamento de Trimestre &middot; Abr&ndash;Jun 2026 &middot; ID: 470109248</div></div>
+  <div class="badge">YoY Q2: &#9650; 126.0% &middot; QoQ: &#9650; 40.5%</div>
 </div>
 <div class="wrap">
 
-<!-- Q vs Q -->
 <div class="qg">
-  <div class="qc"><div class="ql">Q2 2025</div>
+  <div class="qc">
+    <div class="ql">Q2 2025</div>
     <div class="qv">R$6,98M</div>
-    <div class="qs">3,324 SIs · ASP R$2,099</div></div>
-  <div class="qc"><div class="ql">Q1 2026</div>
+    <div class="qs">3,324 SIs &middot; ASP R$2,099</div>
+  </div>
+  <div class="qc">
+    <div class="ql">Q1 2026</div>
     <div class="qv">R$11,23M</div>
-    <div class="qs">5,315 SIs · ASP R$2,113</div></div>
-  <div class="qc active"><div class="ql">Q2 2026 ✦ Fechamento</div>
+    <div class="qs">5,315 SIs &middot; ASP R$2,113</div>
+  </div>
+  <div class="qc active">
+    <div class="ql">Q2 2026 &#10022; Fechamento</div>
     <div class="qv" style="color:#3483FA">R$15,77M</div>
-    <div class="qs">7,766 SIs · ASP R$2,031</div></div>
+    <div class="qs">7,766 SIs &middot; ASP R$2,031</div>
+  </div>
 </div>
 
 <div class="row">
   <div class="card"><div class="lbl">YoY GMV vs Q2'25</div>
-    <div class="val" style="color:#00A650">▲ 126.0%</div>
-    <div class="sub">R$6,98M → R$15,77M</div></div>
+    <div class="val" style="color:#00A650">&#9650; 126.0%</div>
+    <div class="sub">R$6,98M &rarr; R$15,77M</div></div>
   <div class="card"><div class="lbl">QoQ GMV vs Q1'26</div>
-    <div class="val" style="color:#00A650">▲ 40.5%</div>
-    <div class="sub">R$11,23M → R$15,77M</div></div>
+    <div class="val" style="color:#00A650">&#9650; 40.5%</div>
+    <div class="sub">R$11,23M &rarr; R$15,77M</div></div>
   <div class="card"><div class="lbl">SIs Q2 2026</div>
     <div class="val">7,766</div>
-    <div class="sub">YoY ▲ 133.6% · QoQ ▲ 46.1%</div></div>
+    <div class="sub">YoY &#9650; 133.6% &middot; QoQ &#9650; 46.1%</div></div>
   <div class="card"><div class="lbl">ASP Q2 2026</div>
     <div class="val">R$ 2,031</div>
-    <div class="sub">Q1'26: R$2,113 · Q2'25: R$2,099</div></div>
+    <div class="sub">Q1'26: R$2,113 &middot; Q2'25: R$2,099</div></div>
 </div>
 
-<!-- Evolução mensal -->
 <div class="sec">
-  <div class="sec-ttl">Evolução Mensal — Jan a Jun 2026 (azul claro = Q1 | azul escuro = Q2)</div>
-  <div class="chart-box"><canvas id="cMes"></canvas></div>
+  <div class="sec-ttl">Evolu&ccedil;&atilde;o Mensal &mdash; Jan a Jun 2026 (azul claro = Q1 | azul escuro = Q2)</div>
+  <div class="chart-box"><canvas id="cCI"></canvas></div>
 </div>
+<script>
+(function(){
+  new Chart(document.getElementById('cCI'),{type:'bar',data:{
+    labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
+    datasets:[
+      {label:'GMV (R$)',data:[4300775, 3084431, 3844392, 4240783, 5579744, 5951756],
+       backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],borderRadius:6,yAxisID:'y'},
+      {label:'SIs',data:[2058, 1509, 1748, 1934, 2716, 3116],type:'line',
+       borderColor:'#FF9500',backgroundColor:'rgba(255,149,0,.12)',
+       borderWidth:2,pointRadius:5,pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1'}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom'},
+      tooltip:{callbacks:{label:function(c){
+        if(c.datasetIndex===0)return 'GMV: R$'+Number(c.parsed.y).toLocaleString('pt-BR');
+        return 'SIs: '+Number(c.parsed.y).toLocaleString('pt-BR');
+      }}}},
+    scales:{
+      y:{position:'left',title:{display:true,text:'GMV (R$)'},
+          ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'k'}}},
+      y1:{position:'right',title:{display:true,text:'SIs'},
+           grid:{drawOnChartArea:false}}
+    }
+  }});
+})();
+</script>
 
 <div class="sec">
   <div class="sec-ttl">Detalhe Mensal Q1 + Q2 2026</div>
-  <table><thead><tr><th>Mês</th><th>GMV</th><th>SIs</th><th>ASP</th></tr></thead>
-  <tbody><tr><td>Jan/26</td><td>R$4,30M</td><td>2,058</td><td>R$2,090</td></tr><tr><td>Fev/26</td><td>R$3,08M</td><td>1,509</td><td>R$2,044</td></tr><tr><td>Mar/26</td><td>R$3,84M</td><td>1,748</td><td>R$2,199</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Abr/26</td><td>R$4,24M</td><td>1,934</td><td>R$2,193</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Mai/26</td><td>R$5,58M</td><td>2,716</td><td>R$2,054</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Jun/26</td><td>R$5,95M</td><td>3,116</td><td>R$1,910</td></tr></tbody></table>
-  <div class="ok-box">&#127775; <strong>Junho bateu recorde absoluto: R$5,95M</strong> — maior mês da história do seller. Aceleração consistente ao longo do Q2 (+41% abr→jun).</div>
+  <table><thead><tr><th>M&ecirc;s</th><th>GMV</th><th>SIs</th><th>ASP</th></tr></thead>
+  <tbody><tr style='background:#F5FAFF'><td>Jan/26</td><td>R$4.3M</td><td>2,058</td><td>R$2,090</td></tr><tr style='background:#F5FAFF'><td>Fev/26</td><td>R$3.1M</td><td>1,509</td><td>R$2,044</td></tr><tr style='background:#F5FAFF'><td>Mar/26</td><td>R$3.8M</td><td>1,748</td><td>R$2,199</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Abr/26</td><td>R$4.2M</td><td>1,934</td><td>R$2,193</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Mai/26</td><td>R$5.6M</td><td>2,716</td><td>R$2,054</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Jun/26</td><td>R$6.0M</td><td>3,116</td><td>R$1,910</td></tr></tbody></table>
+  <div class="ok-box">&#127775; <strong>Junho bateu recorde absoluto: R$5,95M</strong> &mdash; maior m&ecirc;s da hist&oacute;ria do seller. Acelera&ccedil;&atilde;o consistente ao longo do Q2 (+40% abr&rarr;jun).</div>
 </div>
 
-<!-- Metas -->
 <div class="sec">
-  <div class="sec-ttl">Metas Trimestrais 2026 — Meta Desafio</div>
+  <div class="sec-ttl">Metas Trimestrais 2026 &mdash; Meta Desafio</div>
   <table>
     <thead><tr><th>Trimestre</th><th>GMV Real</th><th>Meta Desafio</th><th>Atingimento</th><th>Gap</th><th>Status</th></tr></thead>
     <tbody>
@@ -114,7 +137,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       <tr style="background:#F0FBF5">
         <td><strong>Q2 2026</strong></td><td><strong>R$15,77M</strong></td>
         <td>R$14,72M</td>
-        <td><span style="color:#00A650;font-weight:700;background:#E8F8EF;padding:2px 8px;border-radius:20px">107.2% ✓</span></td>
+        <td><span style="color:#00A650;font-weight:700;background:#E8F8EF;padding:2px 8px;border-radius:20px">107.2% &#10003;</span></td>
         <td style="color:#00A650;font-weight:700">+R$1,05M</td>
         <td><span style="color:#00A650;font-weight:700">&#10003; BATEU META!</span></td>
       </tr>
@@ -128,71 +151,142 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr>
     </tbody>
   </table>
-  <div class="ok-box">&#127775; <strong>Q2 bateu a Meta Desafio em 107.2%</strong> — +R$1,05M acima. Crescimento acelerado mês a mês dentro do trimestre (Abr R$4,2M → Jun R$6,0M).</div>
+  <div class="ok-box">&#127775; <strong>Q2 bateu a Meta Desafio em 107.2%</strong> &mdash; +R$1,05M acima do target. &Uacute;nico seller da carteira F&amp;H a superar a meta no trimestre.</div>
 </div>
 
-<!-- Insights -->
 <div class="sec">
-  <div class="sec-ttl">Análise Q2 2026 — Pontos Fortes, Riscos e Oportunidades</div>
+  <div class="sec-ttl">An&aacute;lise Q2 2026 &mdash; Pontos Fortes, Riscos e Oportunidades</div>
   <div class="ig">
-    <div class="ic ok"><h4>✅ Pontos Positivos</h4><p>
-      <strong>+126.0% YoY GMV</strong> — crescimento excepcional vs Q2'25. Seller em ramp acelerado.<br><br>
-      <strong>+40.5% QoQ</strong> — ao contrário da maioria da carteira, CAMA INBOX cresceu vs Q1. Momentum positivo e sustentado.<br><br>
-      <strong>Junho recorde: R$5,95M</strong> — melhor mês histórico. Aceleração dentro do Q2 sem perder fôlego.<br><br>
-      <strong>Q2 bateu Meta Desafio</strong> — único seller da carteira F&H a superar o target no trimestre.
+    <div class="ic ok"><h4>&#9989; Pontos Positivos</h4><p>
+      <strong>+126.0% YoY GMV</strong> &mdash; crescimento excepcional vs Q2'25. Seller em ramp acelerado, maior YoY da carteira F&amp;H.<br><br>
+      <strong>+40.5% QoQ</strong> &mdash; ao contr&aacute;rio da maioria da carteira, cresceu de Q1 para Q2. Momentum sustentado e acelerado.<br><br>
+      <strong>Junho recorde: R$5,95M</strong> &mdash; melhor m&ecirc;s hist&oacute;rico. Acelera&ccedil;&atilde;o dentro do Q2 sem perder f&ocirc;lego.<br><br>
+      <strong>Q2 bateu Meta Desafio</strong> &mdash; 107.2% atingido, +R$1,05M acima.
     </p></div>
-    <div class="ic nok"><h4>⚠️ Pontos de Atenção</h4><p>
-      <strong>Q1 ficou em 92.2% da meta</strong> — abaixo da meta desafio, porém Q2 compensou com folga.<br><br>
-      <strong>ASP estável mas não cresce</strong> — R$2,099 (Q2'25) → R$2,031 (Q2'26). Crescimento é volume-driven. Oportunidade de ampliar itens premium acima de R$3.000.<br><br>
-      <strong>Concentração em poucas linhas</strong> — Cama Box + Sofá Max Spring representam >50% do GMV. Risco de dependência de SKUs.
+    <div class="ic nok"><h4>&#9888; Pontos de Aten&ccedil;&atilde;o</h4><p>
+      <strong>Q1 em 92.2% da meta</strong> &mdash; abaixo do target desafio, por&eacute;m Q2 compensou com folga.<br><br>
+      <strong>ASP est&aacute;vel mas n&atilde;o cresce</strong> &mdash; R$2,099 (Q2'25) &rarr; R$2,031 (Q2'26). Crescimento &eacute; volume-driven. Oportunidade de ampliar premium acima de R$3.000.<br><br>
+      <strong>Concentra&ccedil;&atilde;o em poucas linhas</strong> &mdash; Cama Box + Sof&aacute; Max Spring &gt;50% do GMV. Risco de depend&ecirc;ncia de SKUs.
     </p></div>
-    <div class="ic opp"><h4>🚀 Oportunidades Q3 2026</h4><p>
-      <strong>7.7 Data Dupla</strong> — R$R$561k em 1 dia (+125% vs dias normais). Momentum pós-data positivo (+10.4%).<br><br>
-      <strong>Projeção Jul: R$8,48M</strong> — se mantiver ritmo, julho pode ser o maior mês da história do seller.<br><br>
-      <strong>Ampliar linha de sofás</strong> — sofás já representam ~42% do GMV Q2. Há espaço para novos modelos e cores Bouclé, Linho, Veludo.
+    <div class="ic opp"><h4>&#128640; Oportunidades Q3 2026</h4><p>
+      <strong>7.7 Data Dupla</strong> &mdash; R$560k em 1 dia (+124% vs dias normais). Momentum p&oacute;s-data positivo (+10%).<br><br>
+      <strong>Proje&ccedil;&atilde;o Jul: ~R$8,5M</strong> &mdash; se mantiver ritmo, julho pode ser o maior m&ecirc;s da hist&oacute;ria.<br><br>
+      <strong>Ampliar linha de sof&aacute;s</strong> &mdash; sof&aacute;s j&aacute; representam ~42% do GMV Q2. H&aacute; espa&ccedil;o para novos modelos e cores Boucl&eacute;, Linho, Veludo.
     </p></div>
-    <div class="ic warn"><h4>📌 Desenvolvimentos a Monitorar</h4><p>
-      <strong>Meta Q3: R$18,09M</strong> — com Jul projetado em R$8,48M, Ago e Set precisam manter ritmo elevado (~R$5M cada).<br><br>
-      <strong>Logística e fulfillment</strong> — com volume crescendo +46.1% QoQ, checar capacidade de expedição e prazos de entrega.<br><br>
-      <strong>Buybox e competitividade</strong> — monitorar se concorrentes estão avançando nos mesmos SKUs (Cama Box King, Sofá Max Spring).
+    <div class="ic warn"><h4>&#128204; Desenvolvimentos a Monitorar</h4><p>
+      <strong>Meta Q3: R$18,09M</strong> &mdash; com Jul projetado em ~R$8,5M, Ago e Set precisam manter ritmo elevado (~R$5M cada).<br><br>
+      <strong>Log&iacute;stica e fulfillment</strong> &mdash; com volume crescendo +46.1% QoQ em SIs, checar capacidade de expedi&ccedil;&atilde;o e prazos.<br><br>
+      <strong>Buybox e competitividade</strong> &mdash; monitorar se concorrentes avan&ccedil;am nos mesmos SKUs (Cama Box King, Sof&aacute; Max Spring).
     </p></div>
   </div>
 </div>
 
-<!-- Top 10 itens Q2 -->
 <div class="sec">
-  <div class="sec-ttl">Top 10 Itens — Q2 2026 (Abr–Jun)</div>
-  <table><thead><tr><th>#</th><th>Item</th><th>MLB</th><th>GMV</th><th>SIs</th><th>ASP</th><th>Share</th></tr></thead><tbody><tr><td style='color:#888;font-size:11px'>1</td><td>🛏️ Cama Box King Colchão Ortofirm 193×203 D45 Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4595657806' target='_blank'>MLB4595657806</a></td><td>R$605k</td><td>248</td><td>R$2,439</td><td style='color:#888'>3.8%</td></tr><tr><td style='color:#888;font-size:11px'>2</td><td>🛏️ Cama Box Queen Colchão Ortofirm 158×198 D45 Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB3817052342' target='_blank'>MLB3817052342</a></td><td>R$445k</td><td>217</td><td>R$2,049</td><td style='color:#888'>2.8%</td></tr><tr><td style='color:#888;font-size:11px'>3</td><td>🛋️ Sofá Sem Caixa Retrátil 1,80M Soft Petit Bouclé</td><td><a href='https://www.mercadolivre.com.br/p/MLB5095145640' target='_blank'>MLB5095145640</a></td><td>R$425k</td><td>157</td><td>R$2,710</td><td style='color:#888'>2.7%</td></tr><tr><td style='color:#888;font-size:11px'>4</td><td>🛋️ Sofá Retrátil 2,50M Molas Ensacadas Max Spring Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4196266677' target='_blank'>MLB4196266677</a></td><td>R$416k</td><td>185</td><td>R$2,249</td><td style='color:#888'>2.6%</td></tr><tr><td style='color:#888;font-size:11px'>5</td><td>🛏️ Cama Box King 193×203 Pocket Relax Pillow Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB2700063317' target='_blank'>MLB2700063317</a></td><td>R$368k</td><td>128</td><td>R$2,879</td><td style='color:#888'>2.3%</td></tr><tr><td style='color:#888;font-size:11px'>6</td><td>🛋️ Sofá Retrátil 2,50M Molas Ensacadas Max Spring Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB4196163559' target='_blank'>MLB4196163559</a></td><td>R$355k</td><td>158</td><td>R$2,249</td><td style='color:#888'>2.3%</td></tr><tr><td style='color:#888;font-size:11px'>7</td><td>🛋️ Sofá Sem Caixa Retrátil 2,00M Soft Bonnie Bouclé Bege</td><td><a href='https://www.mercadolivre.com.br/p/MLB3920478073' target='_blank'>MLB3920478073</a></td><td>R$335k</td><td>116</td><td>R$2,891</td><td style='color:#888'>2.1%</td></tr><tr><td style='color:#888;font-size:11px'>8</td><td>🛋️ Sofá Retrátil 2,40M Molas e Espuma D33 Thunder Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4224500903' target='_blank'>MLB4224500903</a></td><td>R$330k</td><td>195</td><td>R$1,691</td><td style='color:#888'>2.1%</td></tr><tr><td style='color:#888;font-size:11px'>9</td><td>🛏️ Cama Box Queen Colchão 158×198 Molas Pocket Café</td><td><a href='https://www.mercadolivre.com.br/p/MLB2700116539' target='_blank'>MLB2700116539</a></td><td>R$290k</td><td>120</td><td>R$2,418</td><td style='color:#888'>1.8%</td></tr><tr><td style='color:#888;font-size:11px'>10</td><td>🛋️ Sofá Retrátil 2,30M Molas Ensacadas Max Spring Cinza</td><td><a href='https://www.mercadolivre.com.br/p/MLB4241524583' target='_blank'>MLB4241524583</a></td><td>R$250k</td><td>115</td><td>R$2,171</td><td style='color:#888'>1.6%</td></tr></tbody></table>
+  <div class="sec-ttl">Top 10 Itens &mdash; Q2 2026 (Abr&ndash;Jun)</div>
+  <table><thead><tr><th>#</th><th>Item</th><th>MLB</th><th>GMV Q2</th><th>SIs</th><th>ASP</th><th>Share</th></tr></thead>
+  <tbody>
+      <tr>
+        <td style="color:#888;font-size:11px">1</td>
+        <td>&#127760; CAMA BOX KING COLCH&Atilde;O ORTOFIRM + BOX 193&times;203&times;67 ONE FACE ESPUMA D45 CINZA<br><span style="font-size:10px;color:#999">MLB4595657806</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB4595657806" target="_blank">MLB4595657806</a></td>
+        <td style="font-weight:700">R$605k</td>
+        <td>248</td>
+        <td>R$2,439</td>
+        <td style="color:#888">3.8%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">2</td>
+        <td>&#127760; CAMA BOX QUEEN COLCH&Atilde;O ORTOFIRM + BOX 158&times;198&times;67 ONE FACE ESPUMA D45 CINZA<br><span style="font-size:10px;color:#999">MLB3817052342</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB3817052342" target="_blank">MLB3817052342</a></td>
+        <td style="font-weight:700">R$445k</td>
+        <td>217</td>
+        <td>R$2,049</td>
+        <td style="color:#888">2.8%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">3</td>
+        <td>&#127761; SOF&Aacute; SEM CAIXA RETR&Aacute;TIL 1,80M SOFT PETIT BOUCL&Eacute; CAMA INBOX<br><span style="font-size:10px;color:#999">MLB5095145640</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB5095145640" target="_blank">MLB5095145640</a></td>
+        <td style="font-weight:700">R$425k</td>
+        <td>157</td>
+        <td>R$2,710</td>
+        <td style="color:#888">2.7%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">4</td>
+        <td>&#127761; SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL 2,50M MOLAS ENSACADAS MAX SPRING CINZA<br><span style="font-size:10px;color:#999">MLB4196266677</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB4196266677" target="_blank">MLB4196266677</a></td>
+        <td style="font-weight:700">R$416k</td>
+        <td>185</td>
+        <td>R$2,249</td>
+        <td style="color:#888">2.6%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">5</td>
+        <td>&#127760; CAMA BOX KING 193&times;203 POCKET RELAX PILLOW CAF&Eacute; COR CAF&Eacute;/BRANCO<br><span style="font-size:10px;color:#999">MLB2700063317</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB2700063317" target="_blank">MLB2700063317</a></td>
+        <td style="font-weight:700">R$368k</td>
+        <td>128</td>
+        <td>R$2,879</td>
+        <td style="color:#888">2.3%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">6</td>
+        <td>&#127761; SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL 2,50M MOLAS ENSACADAS MAX SPRING CAF&Eacute;<br><span style="font-size:10px;color:#999">MLB4196163559</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB4196163559" target="_blank">MLB4196163559</a></td>
+        <td style="font-weight:700">R$355k</td>
+        <td>158</td>
+        <td>R$2,249</td>
+        <td style="color:#888">2.3%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">7</td>
+        <td>&#127761; SOF&Aacute; SEM CAIXA RETR&Aacute;TIL 2,00M SOFT BONNIE BOUCL&Eacute; CAMA INBOX BEGE<br><span style="font-size:10px;color:#999">MLB3920478073</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB3920478073" target="_blank">MLB3920478073</a></td>
+        <td style="font-weight:700">R$335k</td>
+        <td>116</td>
+        <td>R$2,891</td>
+        <td style="color:#888">2.1%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">8</td>
+        <td>&#127761; SOF&Aacute; RETR&Aacute;TIL 2,40M MOLAS E ESPUMA D33 THUNDER CINZA LISO<br><span style="font-size:10px;color:#999">MLB4224500903</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB4224500903" target="_blank">MLB4224500903</a></td>
+        <td style="font-weight:700">R$330k</td>
+        <td>195</td>
+        <td>R$1,691</td>
+        <td style="color:#888">2.1%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">9</td>
+        <td>&#127760; CAMA BOX QUEEN COLCH&Atilde;O + BOX 158&times;198 MOLAS ENSACADAS RELAX PILLOW CAF&Eacute;<br><span style="font-size:10px;color:#999">MLB2700116539</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB2700116539" target="_blank">MLB2700116539</a></td>
+        <td style="font-weight:700">R$290k</td>
+        <td>120</td>
+        <td>R$2,418</td>
+        <td style="color:#888">1.8%</td>
+      </tr>
+      <tr>
+        <td style="color:#888;font-size:11px">10</td>
+        <td>&#127761; SOF&Aacute; RETR&Aacute;TIL 2,30M MOLAS ENSACADAS MAX SPRING CINZA LISO<br><span style="font-size:10px;color:#999">MLB4241524583</span></td>
+        <td><a href="https://www.mercadolivre.com.br/p/MLB4241524583" target="_blank">MLB4241524583</a></td>
+        <td style="font-weight:700">R$250k</td>
+        <td>115</td>
+        <td>R$2,171</td>
+        <td style="color:#888">1.6%</td>
+      </tr>
+  </tbody></table>
   <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
     <div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;color:#1A5DC8">
-      <strong>🛏️ Camas/Colchões</strong> — top 5 itens representam ~35% do GMV Q2
+      <strong>&#127760; Camas/Colch&otilde;es</strong> &mdash; top 5 itens representam ~35% do GMV Q2
     </div>
     <div style="background:#FFF3E0;border-radius:8px;padding:10px 14px;color:#E67E00">
-      <strong>🛋️ Sofás</strong> — 6 sofás no top 10, ~42% do GMV Q2. Linha Max Spring lidera.
+      <strong>&#127761; Sof&aacute;s</strong> &mdash; 6 sof&aacute;s no top 10, ~42% do GMV Q2. Linha Max Spring lidera.
     </div>
   </div>
 </div>
 
 </div>
-
 <script>
-(function(){
-var ctx=document.getElementById('cMes').getContext('2d');
-new Chart(ctx,{type:'bar',data:{
-  labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
-  datasets:[
-    {label:'GMV (R$ mil)',data:[4300.8, 3084.4, 3844.4, 4240.8, 5579.7, 5951.8],backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],borderRadius:6,yAxisID:'y'},
-    {label:'SIs',data:[2058, 1509, 1748, 1934, 2716, 3116],type:'line',borderColor:'#FF9500',
-     backgroundColor:'rgba(255,149,0,.12)',borderWidth:2,pointRadius:5,
-     pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1'}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{position:'bottom'}},
-  scales:{
-    y:{position:'left',title:{display:true,text:'GMV (R$ mil)'},ticks:{callback:function(v){return 'R$'+v+'k'}}},
-    y1:{position:'right',title:{display:true,text:'SIs'},grid:{drawOnChartArea:false}}
-  }
-}});
-})();
 </script>
 </body></html>
