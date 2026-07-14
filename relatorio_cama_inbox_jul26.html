@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="row">
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 30.7M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 142.4%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">14.926</div><div class="sub">LY: 7.922</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 2.057,29</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">14.929</div><div class="sub">LY: 7.922</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 2.057,12</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#FF7A00">93%</span></div><div class="sub">Meta Desafio = R$ 32.9M</div></div>
     </div>
     <div class="sec">
@@ -90,10 +90,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-14/7)</div><div class="val">R$ 3.7M</div><div class="sub">MoM vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 24.5%</span> &nbsp;|&nbsp; YoY vs Jul/2025: <span style="color:#00A650;font-weight:700">&#9650; 78.0%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.845</div><div class="sub">dias 1-14</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-14/7)</div><div class="val">R$ 3.7M</div><div class="sub">MoM vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 24.7%</span> &nbsp;|&nbsp; YoY vs Jul/2025: <span style="color:#00A650;font-weight:700">&#9650; 78.2%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.848</div><div class="sub">dias 1-14</div></div>
       <div class="card"><div class="lbl">GMV Jun completo</div><div class="val">R$ 6.0M</div><div class="sub">vs Mai: <span style="color:#00A650;font-weight:700">&#9650; 6.7%</span></div></div>
-      <div class="card"><div class="lbl">Meta Desafio Jul</div><div class="val"><span style="color:#F23D4F">62.0%</span></div><div class="sub">R$ 3.7M de R$ 6.0M &nbsp;·&nbsp; dias 1-14 &nbsp;·&nbsp; pace: <span style="color:#00A650;font-weight:700">&#9650; 32.8%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Jul</div><div class="val"><span style="color:#F23D4F">62.0%</span></div><div class="sub">R$ 3.7M de R$ 6.0M &nbsp;·&nbsp; dias 1-14 &nbsp;·&nbsp; pace: <span style="color:#00A650;font-weight:700">&#9650; 32.9%</span></div></div>
     </div></div>
   
     <div class="sec">
@@ -104,7 +104,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     (function(){
       var _ating = [106.2, 82.0, 88.0, 97.7, 112.5, 109.9, 62.0, null, null, null, null, null];
       var _meta  = [4051491.0,3762593.0,4370051.0,4342542.0,4961053.0,5416083.0,5980264.0,5792534.0,6317896.0,6713707.0,6848483.0,5449995.0];
-      var _proj  = [null,null,null,null,null,null,7939815,7600021,5718877,9666708,17682229,9195542];
+      var _proj  = [null,null,null,null,null,null,7947718,7600934,5719564,9667869,17684353,9196646];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -169,8 +169,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       new Chart(document.getElementById('cGmv'),{
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-          {label:'2026',data:[4300775.0,3084431.0,3844392.0,4240783.0,5579744.0,5951756.0,3705246.0,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,null,null,7939815,7600021,5718877,9666708,17682229,9195542],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2026',data:[4300775.0,3084431.0,3844392.0,4240783.0,5579744.0,5951756.0,3708934.0,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,7947718,7600934,5719564,9667869,17684353,9196646],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[1254957.0,1057589.0,1295960.0,1842211.0,2225521.0,2910117.0,4184108.0,3135393.0,2359326.0,3988006.0,7294814.0,3793626.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[4051491.0,3762593.0,4370051.0,4342542.0,4961053.0,5416083.0,5980264.0,5792534.0,6317896.0,6713707.0,6848483.0,5449995.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
@@ -198,9 +198,19 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2058.0,1509.0,1748.0,1934.0,2716.0,3116.0,1845.0,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2058.0,1509.0,1748.0,1934.0,2716.0,3116.0,1848.0,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[1112.0,836.0,611.0,849.0,1082.0,1393.0,2039.0,1446.0,1006.0,1776.0,3426.0,1769.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  
+    <div style="background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 24px;margin:18px 0;color:#1a1a1a">
+      <div style="font-size:18px;font-weight:800;margin-bottom:10px">&#9889; Data Dupla 7.7 &#8212; resultado do dia</div>
+      <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center">
+        <div><span style="font-size:30px;font-weight:900">R$ 561K</span> <span style="font-size:13px;opacity:.75">GMV</span></div>
+        <div><span style="font-size:30px;font-weight:900">272</span> <span style="font-size:13px;opacity:.75">SIs</span></div>
+        <div style="font-size:15px;font-weight:700">+131% vs dias normais do m&#234;s</div>
+      </div>
+      <div style="font-size:13px;margin-top:10px;opacity:.9">vs Data Dupla 6.6: <b>+68%</b>&nbsp;·&nbsp;6.6 foi R$ 333K · 162 SIs</div>
+    </div>
   <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Jul MTD</div><div style="overflow-x:auto"><table>
       <thead><tr>
         <th>Produto</th>
@@ -262,6 +272,18 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">-</td>
         </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4196163559" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,50M MOLAS ENSACADAS M</a><br>
+              <span style="font-size:10px;color:#999">MLB4196163559</span></td>
+          <td style="text-align:right;font-weight:700">R$ 93K</td>
+          <td style="text-align:right">2.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 115.8%</span></td>
+          <td style="text-align:right">39</td>
+          <td style="text-align:right">R$ 2.379,00</td>
+          <td style="text-align:right">42.677</td>
+          <td style="text-align:right">0.1%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-2700063317" target="_blank">CAMA BOX KING 193X203 POCKET CAMA INBOX RELAX PILL</a><br>
               <span style="font-size:10px;color:#999">MLB2700063317</span></td>
           <td style="text-align:right;font-weight:700">R$ 91K</td>
@@ -273,18 +295,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right">0.0%</td>
           <td><span class="pill pl-g">Ativo</span></td>
           <td style="text-align:right">R$ 53K</td>
-        </tr><tr>
-          <td><a href="https://produto.mercadolivre.com.br/MLB-4196163559" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,50M MOLAS ENSACADAS M</a><br>
-              <span style="font-size:10px;color:#999">MLB4196163559</span></td>
-          <td style="text-align:right;font-weight:700">R$ 90K</td>
-          <td style="text-align:right">2.6%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 110.2%</span></td>
-          <td style="text-align:right">38</td>
-          <td style="text-align:right">R$ 2.378,47</td>
-          <td style="text-align:right">42.677</td>
-          <td style="text-align:right">0.1%</td>
-          <td><span class="pill pl-g">Ativo</span></td>
-          <td style="text-align:right">-</td>
         </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-6689172586" target="_blank">SOFÁ CAMA NAMI. 1,88M XPAND TECH TECIDO VELOURÊ CA</a><br>
               <span style="font-size:10px;color:#999">MLB6689172586</span></td>
@@ -498,6 +508,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">0.1%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
             </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4196163559" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,50M MOLAS ENSACADAS</a><br>
+                  <span style="font-size:10px;color:#999">MLB4196163559</span></td>
+              <td style="text-align:right">R$ 43K</td>
+              <td style="text-align:right">R$ 93K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 115.8%</span></td>
+              <td style="text-align:right">42.677</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-4224513495" target="_blank">SOFÁ RETRÁTIL 2,10M MOLAS E ESPUMA D33 THUNDER. </a><br>
                   <span style="font-size:10px;color:#999">MLB4224513495</span></td>
               <td style="text-align:right">R$ 19K</td>
@@ -513,15 +532,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">R$ 52K</td>
               <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1296.1%</span></td>
               <td style="text-align:right">14.582</td>
-              <td style="text-align:right">0.3%</td>
-              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
-            </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4196163559" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL 2,50M MOLAS ENSACADAS</a><br>
-                  <span style="font-size:10px;color:#999">MLB4196163559</span></td>
-              <td style="text-align:right">R$ 43K</td>
-              <td style="text-align:right">R$ 90K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 110.2%</span></td>
-              <td style="text-align:right">42.677</td>
               <td style="text-align:right">0.3%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
             </tr><tr>
@@ -718,12 +728,12 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </tr></thead><tbody><tr>
           <td>Sofás, Poltronas e Acessórios</td>
           <td style="text-align:right;font-weight:700">R$ 2.4M</td>
-          <td style="text-align:right">1.045</td>
-          <td style="text-align:right">R$ 2.267,45</td>
-          <td style="text-align:right">63.9%</td>
+          <td style="text-align:right">1.046</td>
+          <td style="text-align:right">R$ 2.267,58</td>
+          <td style="text-align:right">64.0%</td>
           <td style="text-align:right">56.6%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 85.0%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 81.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 85.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 81.9%</span></td>
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1.8%</span></td>
         </tr><tr>
           <td>Colchões e Sommiers</td>
@@ -737,19 +747,19 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 15.9%</span></td>
         </tr><tr>
           <td>Colchões</td>
-          <td style="text-align:right;font-weight:700">R$ 425K</td>
-          <td style="text-align:right">337</td>
-          <td style="text-align:right">R$ 1.259,93</td>
+          <td style="text-align:right;font-weight:700">R$ 426K</td>
+          <td style="text-align:right">338</td>
+          <td style="text-align:right">R$ 1.259,81</td>
           <td style="text-align:right">11.5%</td>
           <td style="text-align:right">18.3%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 210.9%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 183.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 211.8%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 184.0%</span></td>
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 9.8%</span></td>
         </tr><tr>
           <td>CUSHIONS &amp; TROW BLANKETS</td>
           <td style="text-align:right;font-weight:700">R$ 2K</td>
-          <td style="text-align:right">36</td>
-          <td style="text-align:right">R$ 67,19</td>
+          <td style="text-align:right">37</td>
+          <td style="text-align:right">R$ 67,24</td>
           <td style="text-align:right">0.1%</td>
           <td style="text-align:right">2.0%</td>
           <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
@@ -768,13 +778,13 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
       <td>Total</td>
       <td style="text-align:right">R$ 3.7M</td>
-      <td style="text-align:right">1.845</td>
-      <td style="text-align:right">R$ 2.008,26</td>
+      <td style="text-align:right">1.848</td>
+      <td style="text-align:right">R$ 2.007,00</td>
       <td style="text-align:right">100%</td>
       <td style="text-align:right">100%</td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 78.0%</span></td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 79.8%</span></td>
-      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 1.0%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 78.2%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 80.1%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 1.1%</span></td>
     </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
     <div class="row">
@@ -797,7 +807,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 3.5M</td>
-          <td style="text-align:right;color:#555">1.609</td>
+          <td style="text-align:right;color:#555">1.612</td>
           <td style="text-align:right">93.5%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:93.5%"></div></div></td>
         </tr><tr>

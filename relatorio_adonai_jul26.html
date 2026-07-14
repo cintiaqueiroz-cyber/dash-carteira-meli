@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="row">
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 9.4M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 45.6%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">8.280</div><div class="sub">LY: 7.570</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.133,67</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">8.281</div><div class="sub">LY: 7.570</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.133,64</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">78%</span></div><div class="sub">Meta Desafio = R$ 12.0M</div></div>
     </div>
     <div class="sec">
@@ -90,10 +90,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-14/7)</div><div class="val">R$ 563K</div><div class="sub">MoM vs Jun: <span style="color:#F23D4F;font-weight:700">&#9660; 22.1%</span> &nbsp;|&nbsp; YoY vs Jul/2025: <span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">478</div><div class="sub">dias 1-14</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-14/7)</div><div class="val">R$ 564K</div><div class="sub">MoM vs Jun: <span style="color:#F23D4F;font-weight:700">&#9660; 21.9%</span> &nbsp;|&nbsp; YoY vs Jul/2025: <span style="color:#F23D4F;font-weight:700">&#9660; 25.0%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">479</div><div class="sub">dias 1-14</div></div>
       <div class="card"><div class="lbl">GMV Jun completo</div><div class="val">R$ 1.3M</div><div class="sub">vs Mai: <span style="color:#F23D4F;font-weight:700">&#9660; 15.6%</span></div></div>
-      <div class="card"><div class="lbl">Meta Desafio Jul</div><div class="val"><span style="color:#F23D4F">27.5%</span></div><div class="sub">R$ 563K de R$ 2.1M &nbsp;·&nbsp; dias 1-14 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 41.1%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Jul</div><div class="val"><span style="color:#F23D4F">27.5%</span></div><div class="sub">R$ 564K de R$ 2.1M &nbsp;·&nbsp; dias 1-14 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 41.0%</span></div></div>
     </div></div>
   
     <div class="sec">
@@ -104,7 +104,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     (function(){
       var _ating = [70.3, 109.5, 135.4, 67.8, 92.8, 71.7, 27.5, null, null, null, null, null];
       var _meta  = [1389228.0,1290167.0,1500000.0,2200000.0,1701111.0,1857137.0,2050592.0,1986220.0,2166363.0,2302084.0,2348298.0,1868766.0];
-      var _proj  = [null,null,null,null,null,null,1207097,1835422,1577687,1102023,3152657,1664627];
+      var _proj  = [null,null,null,null,null,null,1209069,1835602,1577842,1102131,3152966,1664790];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -169,8 +169,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       new Chart(document.getElementById('cGmv'),{
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-          {label:'2026',data:[976320.0,1413260.0,2031178.0,1491421.0,1578832.0,1332429.0,563315.0,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,null,null,1207097,1835422,1577687,1102023,3152657,1664627],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2026',data:[976320.0,1413260.0,2031178.0,1491421.0,1578832.0,1332429.0,564235.0,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,1209069,1835602,1577842,1102131,3152966,1664790],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[783584.0,524150.0,1014650.0,1045954.0,1193409.0,1134616.0,1535820.0,1260859.0,1083806.0,757044.0,2165745.0,1143530.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[1389228.0,1290167.0,1500000.0,2200000.0,1701111.0,1857137.0,2050592.0,1986220.0,2166363.0,2302084.0,2348298.0,1868766.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
@@ -198,9 +198,19 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[849.0,1289.0,1829.0,1184.0,1464.0,1187.0,478.0,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[849.0,1289.0,1829.0,1184.0,1464.0,1187.0,479.0,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[858.0,629.0,1101.0,857.0,1181.0,1294.0,1650.0,1291.0,985.0,755.0,2069.0,1112.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  
+    <div style="background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 24px;margin:18px 0;color:#1a1a1a">
+      <div style="font-size:18px;font-weight:800;margin-bottom:10px">&#9889; Data Dupla 7.7 &#8212; resultado do dia</div>
+      <div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center">
+        <div><span style="font-size:30px;font-weight:900">R$ 96K</span> <span style="font-size:13px;opacity:.75">GMV</span></div>
+        <div><span style="font-size:30px;font-weight:900">76</span> <span style="font-size:13px;opacity:.75">SIs</span></div>
+        <div style="font-size:15px;font-weight:700">+166% vs dias normais do m&#234;s</div>
+      </div>
+      <div style="font-size:13px;margin-top:10px;opacity:.9">vs Data Dupla 6.6: <b>+11%</b>&nbsp;·&nbsp;6.6 foi R$ 87K · 75 SIs</div>
+    </div>
   <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Jul MTD</div><div style="overflow-x:auto"><table>
       <thead><tr>
         <th>Produto</th>
@@ -241,7 +251,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA S</a><br>
               <span style="font-size:10px;color:#999">MLB3678387879</span></td>
           <td style="text-align:right;font-weight:700">R$ 19K</td>
-          <td style="text-align:right">3.5%</td>
+          <td style="text-align:right">3.4%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 119.1%</span></td>
           <td style="text-align:right">20</td>
           <td style="text-align:right">R$ 963,95</td>
@@ -253,7 +263,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA S</a><br>
               <span style="font-size:10px;color:#999">MLB4673827206</span></td>
           <td style="text-align:right;font-weight:700">R$ 18K</td>
-          <td style="text-align:right">3.3%</td>
+          <td style="text-align:right">3.2%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 17.0%</span></td>
           <td style="text-align:right">18</td>
           <td style="text-align:right">R$ 1.007,00</td>
@@ -717,14 +727,14 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       <th style="text-align:center">YoY Ticket</th>
     </tr></thead><tbody><tr>
           <td>Sofás, Poltronas e Acessórios</td>
-          <td style="text-align:right;font-weight:700">R$ 561K</td>
-          <td style="text-align:right">411</td>
-          <td style="text-align:right">R$ 1.365,01</td>
+          <td style="text-align:right;font-weight:700">R$ 562K</td>
+          <td style="text-align:right">412</td>
+          <td style="text-align:right">R$ 1.363,93</td>
           <td style="text-align:right">99.6%</td>
           <td style="text-align:right">86.0%</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 41.4%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 27.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.0%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 41.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 27.6%</span></td>
         </tr><tr>
           <td>ART &amp; CRAFT SUPPLIES</td>
           <td style="text-align:right;font-weight:700">R$ 1K</td>
@@ -767,13 +777,13 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 44.9%</span></td>
         </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
       <td>Total</td>
-      <td style="text-align:right">R$ 563K</td>
-      <td style="text-align:right">478</td>
-      <td style="text-align:right">R$ 1.178,48</td>
+      <td style="text-align:right">R$ 564K</td>
+      <td style="text-align:right">479</td>
+      <td style="text-align:right">R$ 1.177,94</td>
       <td style="text-align:right">100%</td>
       <td style="text-align:right">100%</td>
-      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></td>
-      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 38.5%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 24.9%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 38.4%</span></td>
       <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 21.8%</span></td>
     </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
@@ -796,8 +806,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         <th style="min-width:100px">Distribuição</th>
       </tr></thead><tbody><tr>
           <td><span class="pill pl-r">OTHER</span></td>
-          <td style="text-align:right;font-weight:700">R$ 561K</td>
-          <td style="text-align:right;color:#555">411</td>
+          <td style="text-align:right;font-weight:700">R$ 562K</td>
+          <td style="text-align:right;color:#555">412</td>
           <td style="text-align:right">99.6%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:99.6%"></div></div></td>
         </tr><tr>
