@@ -1,355 +1,418 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Relatório Quinzenal — ADONAI · Julho 2026</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Segoe UI',sans-serif;background:#F5F5F5;color:#1A1A1A}
-  .header{background:linear-gradient(135deg,#1A1A1A 0%,#333 100%);color:#fff;padding:32px 40px 24px;display:flex;align-items:center;justify-content:space-between}
-  .header h1{font-size:28px;font-weight:800;letter-spacing:-0.5px}
-  .header h1 span{color:#FFE600}
-  .header .sub{font-size:13px;opacity:.7;margin-top:6px}
-  .badge-period{background:#FFE600;color:#1A1A1A;font-weight:700;font-size:12px;padding:6px 14px;border-radius:20px}
-  .container{max-width:1280px;margin:0 auto;padding:24px 20px}
-  .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#777;margin:32px 0 12px}
-  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:8px}
-  .kpi{background:#fff;border-radius:12px;padding:20px 22px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .kpi .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#888}
-  .kpi .value{font-size:30px;font-weight:800;color:#1A1A1A;margin:6px 0 2px;line-height:1}
-  .kpi .delta{font-size:12px;font-weight:600}
-  .up{color:#28A745}.dn{color:#DC3545}.nt{color:#888}.warn{color:#FFC107}
-  .meta-strip{background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:24px}
-  .ms-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
-  .ms-bar{height:8px;background:#E8E8E8;border-radius:4px;overflow:hidden;margin-bottom:4px}
-  .ms-fill{height:100%;border-radius:4px}
-  .ms-lbl{font-size:10px;font-weight:700}
-  .charts-row{display:grid;grid-template-columns:3fr 1fr;gap:16px;margin-bottom:24px}
-  .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .card h3{font-size:13px;font-weight:700;margin-bottom:16px;color:#333}
-  .banner-77{background:linear-gradient(135deg,#FFE600 0%,#FFCC00 100%);border-radius:12px;padding:22px 28px;margin-bottom:24px;display:flex;align-items:center;gap:28px}
-  .b77-icon{font-size:48px;line-height:1}
-  .b77-title{font-size:22px;font-weight:800;color:#1A1A1A}
-  .b77-sub{font-size:13px;color:#333;margin-top:2px}
-  .b77-kpis{display:flex;gap:24px;margin-top:12px}
-  .b77-kpi .v{font-size:22px;font-weight:800;color:#1A1A1A}
-  .b77-kpi .l{font-size:10px;font-weight:600;text-transform:uppercase;color:#555}
-  .insights-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-  .insight-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-  .ic-icon{font-size:24px;margin-bottom:8px}
-  .ic-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:6px}
-  .ic-value{font-size:18px;font-weight:800;color:#1A1A1A;margin-bottom:4px}
-  .ic-desc{font-size:11px;color:#666;line-height:1.4}
-  .ic.ok{border-top:3px solid #28A745}.ic.warn{border-top:3px solid #FFC107}
-  .ic.opp{border-top:3px solid #007BFF}.ic.nok{border-top:3px solid #DC3545}
-  .daily-card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:24px}
-  .mix-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
-  .mix-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #F0F0F0}
-  .mix-bar-wrap{flex:1;height:8px;background:#EEE;border-radius:4px;overflow:hidden}
-  .mix-bar{height:100%;background:#3483FA;border-radius:4px}
-  .mix-pct{font-size:12px;font-weight:700;color:#3483FA;min-width:36px;text-align:right}
-  .mix-label{font-size:12px;color:#444;min-width:130px}
-  .table-card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:32px;overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:12px}
-  th{background:#1A1A1A;color:#FFE600;padding:10px 12px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;white-space:nowrap}
-  td{padding:10px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
-  tr:hover td{background:#FAFAFA}
-  .rk{font-weight:700;color:#999;text-align:center}
-  .mlb-link{color:#3483FA;font-weight:700;text-decoration:none;font-size:11px}
-  .titulo-cell{max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .bar-wrap{height:6px;background:#EEE;border-radius:3px;overflow:hidden;margin-bottom:3px}
-  .bar-fill{height:100%;background:#3483FA;border-radius:3px}
-  .tag-ss{background:#E8E8E8;color:#555;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
-  .footer{text-align:center;padding:24px;font-size:11px;color:#AAA}
-  .alert-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:12px;color:#856404}
-  .alert-box strong{font-size:13px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio ADONAI - 14/07/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-<div class="header">
+<div class="hdr">
   <div>
-    <div class="sub">Relatório Quinzenal · KAM F&H · Cintia Queiroz</div>
-    <h1>ADONAI <span>ESTOFADOS</span></h1>
-    <div class="sub">Sofás Retráteis e Reclinável · Seller ID 488368250</div>
+    <h1>&#128202; ADONAI ESTOFADOS</h1>
+    <div class="sub">Relatorio de Performance &middot; 14/07/2026 &middot; ID: 488368250</div>
   </div>
-  <span class="badge-period">Julho 2026 MTD · 1–13/Jul</span>
+  <div class="meta-pill">Q2 Meta Desafio: 76.5 &#9888; Abaixo</div>
 </div>
+<div class="wrap">
 
-<div class="container">
-
-  <div class="alert-box">
-    ⚠️ <strong>Atenção: YTD abaixo da Meta Desafio.</strong> NMV acumulado R$9,4M vs meta R$12,0M (78,3%). Q2 encerrou em 76,5% da meta — abril e junho foram os meses mais críticos. Julho precisa de forte aceleração para recuperar o gap.
-  </div>
-
-  <div class="section-title">Performance YTD 2026 (Jan–Jul MTD)</div>
-  <div class="kpi-grid">
-    <div class="kpi">
-      <div class="label">NMV YTD 2026</div>
-      <div class="value">R$9,4M</div>
-      <div class="delta up">▲ 29.8 vs YTD 2025</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Ating. Meta Desafio YTD</div>
-      <div class="value" style="color:#DC3545">78.3</div>
-      <div class="delta dn">R$9,4M de R$12,0M meta</div>
-    </div>
-    <div class="kpi">
-      <div class="label">SIs YTD 2026</div>
-      <div class="value">8.283</div>
-      <div class="delta up">▲ vs 6.647 em 2025</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Jul MTD (1–13/Jul)</div>
-      <div class="value">R$563K</div>
-      <div class="delta dn">27.5 da meta Jul (R$2,05M)</div>
-    </div>
-  </div>
-
-  <div class="section-title">Atingimento Mensal vs Meta Desafio</div>
-  <div class="meta-strip">
-    <div class="ms-grid"><div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:70.3%;background:#DC3545"></div></div>
-      <span class="ms-lbl" style="color:#DC3545">Jan 70.3%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
-      <span class="ms-lbl" style="color:#28A745">Fev 109.5%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:100%;background:#28A745"></div></div>
-      <span class="ms-lbl" style="color:#28A745">Mar 135.4%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:67.8%;background:#DC3545"></div></div>
-      <span class="ms-lbl" style="color:#DC3545">Abr 67.8%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:92.8%;background:#FFC107"></div></div>
-      <span class="ms-lbl" style="color:#FFC107">Mai 92.8%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:71.7%;background:#DC3545"></div></div>
-      <span class="ms-lbl" style="color:#DC3545">Jun 71.7%</span></div>
-<div class="ms-seg">
-      <div class="ms-bar"><div class="ms-fill" style="width:27.5%;background:#DC3545"></div></div>
-      <span class="ms-lbl" style="color:#DC3545">Jul 27.5%</span></div></div>
-  </div>
-
-  <div class="charts-row">
+  <div class="row">
     <div class="card">
-      <h3>NMV Mensal 2026 vs 2025 vs Meta Desafio <span style="font-size:11px;font-weight:400;color:#999">(R$)</span></h3>
-      <canvas id="chartGMV" height="80"></canvas>
+      <div class="lbl">GMV YTD</div>
+      <div class="val">R$ 9.4M</div>
+      <div class="sub">vs Meta Des YTD: <span style="color:#F23D4F;font-weight:700">78.3%</span></div>
     </div>
     <div class="card">
-      <h3>SIs Mensais 2026 vs 2025</h3>
-      <canvas id="chartSI" height="80"></canvas>
+      <div class="lbl">Pedidos YTD</div>
+      <div class="val">8,272</div>
+      <div class="sub">Jan&ndash;Jul MTD 2026</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Ticket M&eacute;dio</div>
+      <div class="val">R$ 1,135</div>
+      <div class="sub">YTD 2026</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Atingimento Jul MTD</div>
+      <div class="val"><span style="color:#F23D4F">26.5%</span></div>
+      <div class="sub">Meta Desafio Jul = R$ 2.1M</div>
     </div>
   </div>
 
-  <div class="banner-77">
-    <div class="b77-icon">⚡</div>
-    <div>
-      <div class="b77-title">7.7 — Dia de Ofertas Mercado Livre</div>
-      <div class="b77-sub">7 de Julho de 2026 · Resultado ADONAI ESTOFADOS</div>
-      <div class="b77-kpis">
-        <div class="b77-kpi"><div class="v">R$95,9K</div><div class="l">NMV 7.7</div></div>
-        <div class="b77-kpi"><div class="v">76</div><div class="l">SIs 7.7</div></div>
-        <div class="b77-kpi"><div class="v">+158%</div><div class="l">vs média diária pré</div></div>
-        <div class="b77-kpi"><div class="v">+16%</div><div class="l">momentum pós-7.7</div></div>
+  <div class="sec">
+    <div class="sec-ttl">Progresso da Meta YTD</div>
+    <div style="margin-bottom:6px;font-size:13px">
+      <b>R$ 9.4M</b> de <b>R$ 12.0M</b> (Meta Desafio Jan&ndash;Jul) &nbsp;&middot;&nbsp;
+      <span style="color:#F23D4F;font-weight:700">78.3% atingido</span>
+    </div>
+    <div class="bar-out" style="height:24px">
+      <div class="bar-in" style="width:78.3%;background:#F23D4F"></div>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:4px">78.3% atingido (inclui Jul MTD 13 dias)</div>
+  </div>
+
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card">
+        <div class="lbl">GMV MTD (1&ndash;13/7)</div>
+        <div class="val">R$ 543K</div>
+        <div class="sub">MoM pace vs Jun: <span style="color:#F23D4F;font-weight:700">&#9660; 5.9%</span></div>
+      </div>
+      <div class="card">
+        <div class="lbl">Pedidos MTD</div>
+        <div class="val">451</div>
+        <div class="sub">dias 1&ndash;13</div>
+      </div>
+      <div class="card">
+        <div class="lbl">GMV Jun completo</div>
+        <div class="val">R$ 1.3M</div>
+        <div class="sub">vs Mai: <span style="color:#F23D4F;font-weight:700">&#9660; 15.6%</span></div>
+      </div>
+      <div class="card">
+        <div class="lbl">Meta Desafio Jul</div>
+        <div class="val"><span style="color:#F23D4F">26.5%</span></div>
+        <div class="sub">R$ 543K de R$ 2.1M &nbsp;&middot;&nbsp; proj: <span style="color:#E67E00;font-weight:700">63% do target</span></div>
       </div>
     </div>
   </div>
 
-  <div class="section-title">Destaques e Alertas</div>
-  <div class="insights-grid">
-    <div class="insight-card ic nok">
-      <div class="ic-icon">🚨</div>
-      <div class="ic-title">YTD Abaixo da Meta</div>
-      <div class="ic-value">78,3% atingido</div>
-      <div class="ic-desc">Gap de R$2,6M vs meta YTD. Q2 encerrou em 76,5% — Abr (67,8%) e Jun (71,7%) foram os meses críticos.</div>
+  <div class="sec">
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o GMV 2026 vs 2025 vs Meta Desafio</div>
+    <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var _ating = [70.3, 109.5, 135.4, 67.8, 92.8, 71.7, 27.5, null, null, null, null, null];
+    function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+    var labelsPlugin = {
+      id:'gmvLabels',
+      afterDatasetsDraw: function(chart){
+        var ctx=chart.ctx; ctx.save(); ctx.textAlign='center';
+        var meta0=chart.getDatasetMeta(0);
+        meta0.data.forEach(function(pt,i){
+          var v=chart.data.datasets[0].data[i];
+          if(v===null||v===undefined||isNaN(Number(v)))return;
+          var at=_ating[i];
+          ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+          ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+          if(at!==null&&at!==undefined){
+            var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+            var txt=at.toFixed(0)+'%';
+            ctx.font='bold 10px Arial';
+            var tw=ctx.measureText(txt).width+10;
+            ctx.fillStyle=bg;
+            ctx.beginPath(); ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5); ctx.fill();
+            ctx.fillStyle='#fff'; ctx.fillText(txt, pt.x, pt.y-12);
+          }
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(document.getElementById('cGmv'),{
+      type:'line',
+      data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+        {label:'2026',data:[976322, 1413269, 2031181, 1491422, 1578843, 1332435, 563315, null, null, null, null, null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+        {label:'2025',data:[783584, 524150, 1014650, 1045954, 1193409, 1134616, 1535820, 1260859, 1083806, 757044, 2165745, 1143530],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,spanGaps:true},
+        {label:'Meta Desafio',data:[1389228, 1290167, 1500000, 2200000, 1701111, 1857137, 2050592, 1986220, 2166363, 2302084, 2348298, 1868766],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+      ]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:50,bottom:20}},
+        plugins:{
+          legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+            if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+            return lbl;
+          }}}
+        },
+        scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+      },
+      plugins:[labelsPlugin]
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">Volume de Itens Vendidos (SIs) 2026 vs 2025</div>
+    <div class="chart-box"><canvas id="cSI"></canvas></div>
+  </div>
+  <script>
+  new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+    {label:'2026',data:[849, 1289, 1829, 1184, 1464, 1187, 470, null, null, null, null, null],backgroundColor:'#3483FA',borderRadius:4},
+    {label:'2025',data:[858, 629, 1101, 857, 1181, 1294, 1650, 1291, 985, 755, 2069, 1112],backgroundColor:'#DDE8FF',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},
+    scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR')}}}}}})
+  </script>
+
+  <div style="background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 28px;margin-bottom:16px;box-shadow:0 3px 12px rgba(255,149,0,.3)">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:14px">
+      <div style="font-size:48px;line-height:1">&#11088;</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A">7.7 &mdash; Data Dupla MeLi</div>
+        <div style="font-size:14px;color:#333;margin-top:4px">07 de julho de 2026 &middot; Maior GMV do m&ecirc;s</div>
+      </div>
     </div>
-    <div class="insight-card ic ok">
-      <div class="ic-icon">📈</div>
-      <div class="ic-title">Crescimento YoY Real</div>
-      <div class="ic-value">+29.8 YoY</div>
-      <div class="ic-desc">NMV cresceu vs 2025 mesmo abaixo da meta — base 2025 era fraca. Estrutura de vendas evoluiu.</div>
-    </div>
-    <div class="insight-card ic warn">
-      <div class="ic-icon">🎯</div>
-      <div class="ic-title">BPC em Queda</div>
-      <div class="ic-value">74,8% em Jul</div>
-      <div class="ic-desc">BPC caiu de 85,8% (Abr) para 74,8% (Jul). Revisão urgente de precificação nos top 10 MLBs.</div>
-    </div>
-    <div class="insight-card ic opp">
-      <div class="ic-icon">🚀</div>
-      <div class="ic-title">Jul Precisa de R$1,5M</div>
-      <div class="ic-value">Meta: R$2,05M</div>
-      <div class="ic-desc">R$563K em 13 dias. Projeção ~R$1,3M. Necessário acelerar R$750K+ na 2ª quinzena para cumprir meta.</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">GMV 7.7</div>
+        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$&nbsp;95.899</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">76 SIs</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs dias normais Jul</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+157%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia dias normais: R$ 37,285</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">Peso no m&ecirc;s</div>
+        <div style="font-size:24px;font-weight:900;color:#1A1A1A">17.7%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">do GMV total MTD</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">Momentum p&oacute;s-7.7</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+37.0%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">vs ritmo pr&eacute;-7.7</div>
+      </div>
     </div>
   </div>
 
-  <div class="daily-card">
-    <h3>NMV Diário — Julho 2026 MTD <span style="font-size:11px;font-weight:400;color:#999">(07/Jul = 7.7 ⚡ destacado)</span></h3>
-    <canvas id="chartDaily" height="60"></canvas>
+  <div class="sec">
+    <div class="sec-ttl">Insights &mdash; Julho MTD</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px;background:#FEF9F9;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#F23D4F;text-transform:uppercase;margin-bottom:6px">Gap vs Meta YTD</div>
+        <div style="font-size:22px;font-weight:900;color:#F23D4F">78.3%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">R$ 9.4M realizado de R$ 12.0M meta &mdash; gap de R$&nbsp;2,601,448. Abr (67,8%) e Jun (71,7%) foram os meses mais cr&iacute;ticos.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">Peso do 7.7 no m&ecirc;s</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">17.7%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">O dia 7.7 (R$&nbsp;95.899) representa <strong>17.7%</strong> do GMV total de julho (R$ 543K em 13 dias).</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">V&eacute;spera j&aacute; sinalizava</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$&nbsp;56.752</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Dia 06/jul (v&eacute;spera) foi o 2&ordm; melhor dia antes do pico &mdash; aquecimento claro pr&eacute;-data dupla.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#FFFDF0;border-left:4px solid #FFB900;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#856404;text-transform:uppercase;margin-bottom:6px">Proje&ccedil;&atilde;o Julho</div>
+        <div style="font-size:22px;font-weight:900;color:#856404">R$ 1.3M</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Pace atual projetado para o m&ecirc;s cheio &mdash; 63% da meta Jul (R$ 2.1M). Ritmo p&oacute;s-7.7 precisa acelerar.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="section-title">Mix de Produto — Q2 2026</div>
-  <div class="mix-row">
-    <div class="card">
-      <div class="mix-item"><span class="mix-label">Sofá Retrátil 1,80m</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:62%"></div></div><span class="mix-pct">62%</span></div>
-      <div class="mix-item"><span class="mix-label">Sofá de Canto</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:33%"></div></div><span class="mix-pct">33%</span></div>
-      <div class="mix-item"><span class="mix-label">Sofá Retrátil 1,50m</span><div class="mix-bar-wrap"><div class="mix-bar" style="width:5%"></div></div><span class="mix-pct">5%</span></div>
+  <div class="sec">
+    <div class="sec-ttl">GMV Di&aacute;rio &mdash; Julho 2026</div>
+    <div class="chart-box" style="height:280px"><canvas id="cDailyJul"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var labels=["01/Jul", "02/Jul", "03/Jul", "04/Jul", "05/Jul", "06/Jul", "07/Jul\u2b50 7.7", "08/Jul", "09/Jul", "10/Jul", "11/Jul", "12/Jul", "13/Jul"];
+    var vals=[28980, 20548, 27532, 31788, 23189, 56752, 95899, 62254, 39794, 47392, 21868, 47502, 39824];
+    var colors=["#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#FF9500", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA"];
+    new Chart(document.getElementById('cDailyJul'),{
+      type:'bar',
+      data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
+        scales:{x:{ticks:{font:{size:10}}},y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toLocaleString('pt-BR')+'k';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">Mix de Produto &mdash; Q2 2026 (Abr&ndash;Jun)</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div style="background:#fff;border-radius:10px;border:2px solid #3483FA;padding:16px">
+        <div style="font-size:10px;font-weight:800;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">&#127761; Sof&aacute; Retr&aacute;til 1,80m</div>
+        <div style="font-size:11px;color:#888;margin-bottom:2px">Livia Suede &middot; Vegas Suede &middot; m&uacute;ltiplas cores</div>
+        <div style="font-size:20px;font-weight:900;margin:6px 0">~R$2,7M</div>
+        <div style="display:flex;gap:8px;font-size:11px;flex-wrap:wrap">
+          <span style="background:#E8F0FE;color:#1A5DC8;padding:2px 7px;border-radius:20px;font-weight:700">~2.100 SIs</span>
+          <span style="background:#FFF9E0;color:#856404;padding:2px 7px;border-radius:20px;font-weight:700">~62% share</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;border:2px solid #00A650;padding:16px">
+        <div style="font-size:10px;font-weight:800;color:#00A650;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">&#127760; Sof&aacute; de Canto</div>
+        <div style="font-size:11px;color:#888;margin-bottom:2px">Virginia &middot; Jacke &middot; 3,00&times;2,00m</div>
+        <div style="font-size:20px;font-weight:900;margin:6px 0">~R$1,5M</div>
+        <div style="display:flex;gap:8px;font-size:11px;flex-wrap:wrap">
+          <span style="background:#E8F8EF;color:#007A3D;padding:2px 7px;border-radius:20px;font-weight:700">~550 SIs</span>
+          <span style="background:#FFF9E0;color:#856404;padding:2px 7px;border-radius:20px;font-weight:700">~33% share</span>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:10px;border:2px solid #888;padding:16px">
+        <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">&#127761; Sof&aacute; Retr&aacute;til 1,50m</div>
+        <div style="font-size:11px;color:#888;margin-bottom:2px">Livia 1,50m &middot; modelos compactos</div>
+        <div style="font-size:20px;font-weight:900;margin:6px 0">~R$200K</div>
+        <div style="display:flex;gap:8px;font-size:11px;flex-wrap:wrap">
+          <span style="background:#F0F0F0;color:#555;padding:2px 7px;border-radius:20px;font-weight:700">~190 SIs</span>
+          <span style="background:#F0F0F0;color:#555;padding:2px 7px;border-radius:20px;font-weight:700">~5% share</span>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h3 style="font-size:12px;margin-bottom:12px">ASP & BPC mensal — 2026</h3>
-      <canvas id="chartASP" height="120"></canvas>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px">
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:#3483FA;margin-bottom:8px">&#127761; Sof&aacute; Retr&aacute;til &mdash; carro-chefe</div>
+        <p style="font-size:12px;color:#333;line-height:1.6"><strong>62% do GMV Q2</strong> vem da linha Livia 1,80m e Vegas Suede &mdash; bestsellers com buybox &gt;95% e alto giro. <strong>Oportunidade:</strong> ampliar cores (bordeaux, verde musgo) e ativar ADS nos top 5 MLBs.</p>
+      </div>
+      <div style="background:#F0FBF5;border-left:4px solid #00A650;border-radius:8px;padding:14px">
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:#00A650;margin-bottom:8px">&#127760; Sof&aacute; de Canto &mdash; alto ticket</div>
+        <p style="font-size:12px;color:#333;line-height:1.6"><strong>33% do GMV</strong> com ASP m&eacute;dio R$&nbsp;2.950 &mdash; Virginia e Jacke lideram. Buybox do Jacke em 0% (alerta). <strong>A&ccedil;&atilde;o:</strong> revisar pre&ccedil;o e fotos dos modelos Canto para recuperar buybox.</p>
+      </div>
     </div>
   </div>
 
-  <div class="section-title">Top 10 Itens — Q2 2026</div>
-  <div class="table-card">
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens por GMV &mdash; Q2 2026 (Abr&ndash;Jun)</div>
+    <div style="overflow-x:auto">
     <table>
-      <thead><tr><th>#</th><th>MLB</th><th>Título</th><th>Categ.</th><th>Log.</th><th>Preço</th><th>NMV Q2</th><th>SIs</th><th>BPC%</th></tr></thead>
-      <tbody><tr>
-      <td class="rk">1</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank" class="mlb-link">MLB4673827206</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE PRETO</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,100</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div>R$229,525</td>
-      <td>249</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">2</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-4689882944" target="_blank" class="mlb-link">MLB4689882944</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE MARROM</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,000</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:98%"></div></div>R$224,895</td>
-      <td>241</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">3</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank" class="mlb-link">MLB3678387879</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE CAPPUCCINO</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,400</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:72%"></div></div>R$165,535</td>
-      <td>182</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">4</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3693739807" target="_blank" class="mlb-link">MLB3693739807</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL COM MOLAS 1,80M LIVIA SUEDE AZUL</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,400</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:63%"></div></div>R$144,210</td>
-      <td>158</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">5</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3829289082" target="_blank" class="mlb-link">MLB3829289082</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL 3 LUGARES 1,80M VEGAS SUEDE MARROM</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,060</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:55%"></div></div>R$126,166</td>
-      <td>131</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">6</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3524332827" target="_blank" class="mlb-link">MLB3524332827</a></td>
-      <td class="titulo-cell">SOFÁ DE CANTO RETRÁTIL E RECLINÁVEL 3,00X2,00 VIRGINIA CINZA</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$2,950</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:53%"></div></div>R$120,892</td>
-      <td>43</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">7</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-4222444776" target="_blank" class="mlb-link">MLB4222444776</a></td>
-      <td class="titulo-cell">SOFÁ CANTO RETRÁTIL REC. MOLAS 3,00X2,00 ESQ JACKE SUEDE</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$3,140</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div>R$90,855</td>
-      <td>32</td>
-      <td style="color:#DC3545;font-weight:700">0%</td>
-    </tr>
-<tr>
-      <td class="rk">8</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3685965167" target="_blank" class="mlb-link">MLB3685965167</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL E RECLINÁVEL 3 LUGARES 1,80M VEGAS SUEDE PRETO</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$1,000</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:39%"></div></div>R$89,173</td>
-      <td>94</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">9</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3907553623" target="_blank" class="mlb-link">MLB3907553623</a></td>
-      <td class="titulo-cell">SOFÁ RETRÁTIL RECLINÁVEL COM MOLAS 1,50M LIVIA SUEDE MARROM</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$990</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:38%"></div></div>R$87,776</td>
-      <td>104</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr>
-<tr>
-      <td class="rk">10</td>
-      <td><a href="https://produto.mercadolivre.com.br/MLB-3521759923" target="_blank" class="mlb-link">MLB3521759923</a></td>
-      <td class="titulo-cell">SOFÁ CANTO RETRÁTIL RECLINÁVEL MOLAS 3,00X2,00 VIRGINIA MARROM</td>
-      <td>Sofás</td>
-      <td><span class="tag-ss">SS</span></td>
-      <td>R$2,950</td>
-      <td><div class="bar-wrap"><div class="bar-fill" style="width:36%"></div></div>R$82,312</td>
-      <td>29</td>
-      <td style="color:#28A745;font-weight:700">100%</td>
-    </tr></tbody>
+      <thead><tr>
+        <th>#</th><th>Produto</th><th>Status</th>
+        <th style="text-align:right">GMV Q2</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">ASP</th>
+        <th style="text-align:right">Share</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#888;font-size:11px">1</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4673827206" target="_blank">SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL COM MOLAS 1,80M LIVIA SUEDE PRETO</a><br>
+              <span style="font-size:10px;color:#999">MLB4673827206</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 230K</td>
+          <td style="text-align:right">249</td>
+          <td style="text-align:right">R$ 922</td>
+          <td style="text-align:right">5.2%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">2</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4689882944" target="_blank">SOF&Aacute; RETR&Aacute;TIL RECLIN&Aacute;VEL COM MOLAS 1,80M LIVIA SUEDE MARROM</a><br>
+              <span style="font-size:10px;color:#999">MLB4689882944</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 225K</td>
+          <td style="text-align:right">241</td>
+          <td style="text-align:right">R$ 933</td>
+          <td style="text-align:right">5.1%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">3</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3678387879" target="_blank">SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL COM MOLAS 1,80M LIVIA SUEDE CAPPUCCINO</a><br>
+              <span style="font-size:10px;color:#999">MLB3678387879</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 166K</td>
+          <td style="text-align:right">182</td>
+          <td style="text-align:right">R$ 910</td>
+          <td style="text-align:right">3.8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">4</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3693739807" target="_blank">SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL COM MOLAS 1,80M LIVIA SUEDE AZUL</a><br>
+              <span style="font-size:10px;color:#999">MLB3693739807</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 144K</td>
+          <td style="text-align:right">158</td>
+          <td style="text-align:right">R$ 913</td>
+          <td style="text-align:right">3.3%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">5</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3829289082" target="_blank">SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL 3 LUGARES 1,80M VEGAS SUEDE MARROM</a><br>
+              <span style="font-size:10px;color:#999">MLB3829289082</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 126K</td>
+          <td style="text-align:right">131</td>
+          <td style="text-align:right">R$ 963</td>
+          <td style="text-align:right">2.9%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">6</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3524332827" target="_blank">SOF&Aacute; DE CANTO RETR&Aacute;TIL E RECLIN&Aacute;VEL 3,00X2,00 VIRGINIA CINZA</a><br>
+              <span style="font-size:10px;color:#999">MLB3524332827</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 121K</td>
+          <td style="text-align:right">43</td>
+          <td style="text-align:right">R$ 2,811</td>
+          <td style="text-align:right">2.7%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">7</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4222444776" target="_blank">SOF&Aacute; CANTO RETR&Aacute;TIL REC. MOLAS 3,00X2,00 ESQ JACKE SUEDE</a><br>
+              <span style="font-size:10px;color:#999">MLB4222444776</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 91K</td>
+          <td style="text-align:right">32</td>
+          <td style="text-align:right">R$ 2,839</td>
+          <td style="text-align:right">2.1%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">8</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3685965167" target="_blank">SOF&Aacute; RETR&Aacute;TIL E RECLIN&Aacute;VEL 3 LUGARES 1,80M VEGAS SUEDE PRETO</a><br>
+              <span style="font-size:10px;color:#999">MLB3685965167</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 89K</td>
+          <td style="text-align:right">94</td>
+          <td style="text-align:right">R$ 949</td>
+          <td style="text-align:right">2.0%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">9</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3907553623" target="_blank">SOF&Aacute; RETR&Aacute;TIL RECLIN&Aacute;VEL COM MOLAS 1,50M LIVIA SUEDE MARROM</a><br>
+              <span style="font-size:10px;color:#999">MLB3907553623</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 88K</td>
+          <td style="text-align:right">104</td>
+          <td style="text-align:right">R$ 844</td>
+          <td style="text-align:right">2.0%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">10</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3521759923" target="_blank">SOF&Aacute; CANTO RETR&Aacute;TIL RECLIN&Aacute;VEL MOLAS 3,00X2,00 VIRGINIA MARROM</a><br>
+              <span style="font-size:10px;color:#999">MLB3521759923</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 82K</td>
+          <td style="text-align:right">29</td>
+          <td style="text-align:right">R$ 2,838</td>
+          <td style="text-align:right">1.9%</td>
+        </tr>
+      </tbody>
     </table>
+    </div>
   </div>
+
 </div>
-<div class="footer">Relatório gerado em 14/Jul/2026 · KAM F&H · Cintia Queiroz · cintia.queiroz@mercadolivre.com</div>
-
-<script>
-const labels  = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
-const nmv26   = [976322, 1413269, 2031181, 1491422, 1578843, 1332435, 563315];
-const nmv25   = [783584, 524150, 1014650, 1045954, 1193409, 1134616, 1535820];
-const metaDes = [1389228, 1290167, 1500000, 2200000, 1701111, 1857137, 2050592];
-const si26    = [849, 1289, 1829, 1184, 1464, 1187, 470];
-const si25    = [858, 629, 1101, 857, 1181, 1294, 1650];
-
-new Chart(document.getElementById('chartGMV'),{type:'bar',data:{labels,datasets:[
-  {label:'2026',data:nmv26,backgroundColor:'rgba(52,131,250,0.85)',borderRadius:5},
-  {label:'2025',data:nmv25,backgroundColor:'rgba(180,180,180,0.5)',borderRadius:5},
-  {label:'Meta Desafio',data:metaDes,type:'line',borderColor:'#DC3545',borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#DC3545',fill:false,tension:0.3},
-]},options:{responsive:true,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:c=>`${c.dataset.label}: R$${(c.raw/1000).toFixed(0)}K`}}},scales:{y:{ticks:{callback:v=>`R$${(v/1000).toFixed(0)}K`}}}}});
-
-new Chart(document.getElementById('chartSI'),{type:'bar',data:{labels,datasets:[
-  {label:'SI 2026',data:si26,backgroundColor:'rgba(52,131,250,0.85)',borderRadius:5},
-  {label:'SI 2025',data:si25,backgroundColor:'rgba(180,180,180,0.5)',borderRadius:5},
-]},options:{responsive:true,plugins:{legend:{position:'top'}},scales:{y:{beginAtZero:true}}}});
-
-const dLabels = DAILY_['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'];
-const dVals   = [28980, 20548, 27532, 31788, 23189, 56752, 95899, 62254, 39794, 47392, 21868, 47502, 39824];
-const dColors = dVals.map((_,i)=>i===6?'#FFE600':'rgba(52,131,250,0.85)');
-new Chart(document.getElementById('chartDaily'),{type:'bar',data:{labels:dLabels,datasets:[{label:'NMV (R$)',data:dVals,backgroundColor:dColors,borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`R$${c.raw.toLocaleString('pt-BR')}`}}},scales:{y:{ticks:{callback:v=>`R$${(v/1000).toFixed(0)}K`}}}}});
-
-new Chart(document.getElementById('chartASP'),{type:'bar',data:{labels,datasets:[
-  {label:'ASP (R$)',data:[1218, 1170, 1168, 1294, 1176, 1235, 1293],backgroundColor:'rgba(52,131,250,0.7)',borderRadius:4,yAxisID:'y'},
-  {label:'BPC%',data:[79.8, 77.7, 80.8, 85.8, 82.8, 77.7, 74.8],type:'line',borderColor:'#FF9500',borderWidth:2,pointRadius:3,pointBackgroundColor:'#FF9500',yAxisID:'y2',fill:false,tension:0.3},
-]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>`R$${v}`},beginAtZero:false,min:900},y2:{position:'right',ticks:{callback:v=>`${v}%`},min:60,max:100,grid:{drawOnChartArea:false}}}}});
-</script>
 </body>
 </html>
