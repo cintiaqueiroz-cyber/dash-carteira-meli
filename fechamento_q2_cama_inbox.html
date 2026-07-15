@@ -2,7 +2,8 @@
 <html lang="pt-BR"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CAMA INBOX &mdash; Fechamento Q2 2026</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script><style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
 .hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
@@ -90,21 +91,48 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 </div>
 <script>
 (function(){
+  Chart.register(ChartDataLabels);
+  var gmv=[4300775, 3084431, 3844392, 4240783, 5579744, 5951756];
+  var momPct=gmv.map(function(v,i){
+    if(i===0)return null;
+    return (v/gmv[i-1]-1)*100;
+  });
   new Chart(document.getElementById('cCI'),{type:'bar',data:{
     labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
     datasets:[
-      {label:'GMV (R$)',data:[4300775, 3084431, 3844392, 4240783, 5579744, 5951756],
-       backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],borderRadius:6,yAxisID:'y'},
+      {label:'GMV (R$)',data:gmv,
+       backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],
+       borderRadius:6,yAxisID:'y',
+       datalabels:{
+         anchor:'end',align:'end',offset:2,
+         font:{size:11,weight:'800'},
+         formatter:function(v,ctx){
+           var i=ctx.dataIndex;
+           if(i===0)return '';
+           var p=momPct[i];
+           return (p>=0?'+':'')+p.toFixed(1)+'%';
+         },
+         color:function(ctx){
+           var p=momPct[ctx.dataIndex];
+           if(p===null)return 'transparent';
+           return p>=0?'#00A650':'#F23D4F';
+         }
+       }
+      },
       {label:'SIs',data:[2058, 1509, 1748, 1934, 2716, 3116],type:'line',
        borderColor:'#FF9500',backgroundColor:'rgba(255,149,0,.12)',
-       borderWidth:2,pointRadius:5,pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1'}
+       borderWidth:2,pointRadius:5,pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1',
+       datalabels:{display:false}}
     ]
   },options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom'},
+    layout:{padding:{top:28}},
+    plugins:{
+      legend:{position:'bottom'},
       tooltip:{callbacks:{label:function(c){
         if(c.datasetIndex===0)return 'GMV: R$'+Number(c.parsed.y).toLocaleString('pt-BR');
         return 'SIs: '+Number(c.parsed.y).toLocaleString('pt-BR');
-      }}}},
+      }}}
+    },
     scales:{
       y:{position:'left',title:{display:true,text:'GMV (R$)'},
           ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'k'}}},
