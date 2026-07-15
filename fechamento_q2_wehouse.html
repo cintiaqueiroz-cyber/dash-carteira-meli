@@ -2,7 +2,8 @@
 <html lang="pt-BR"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WEHOUSE — Fechamento Q2 2026</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script><style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script><style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
 .hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
@@ -147,23 +148,32 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 </div>
 <script>
 (function(){
-var ctx=document.getElementById('cWH').getContext('2d');
-new Chart(ctx,{type:'bar',data:{
-  labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
-  datasets:[
-    {label:'GMV (R$ mil)',data:[2441.5, 2107.6, 2202.8, 1747.6, 1115.0, 1252.2],backgroundColor:["#B8CCF5", "#B8CCF5", "#B8CCF5", "#3483FA", "#3483FA", "#3483FA"],borderRadius:6,yAxisID:'y'},
-    {label:'SIs',data:[1698, 1509, 1882, 1451, 1185, 1631],type:'line',borderColor:'#FF9500',
-     backgroundColor:'rgba(255,149,0,.12)',borderWidth:2,pointRadius:5,
-     pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1'}
-  ]
-},options:{responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{position:'bottom'}},
-  scales:{
-    y:{position:'left',title:{display:true,text:'GMV (R$ mil)'},
-       ticks:{callback:function(v){return 'R$'+v+'k'}}},
-    y1:{position:'right',title:{display:true,text:'SIs'},grid:{drawOnChartArea:false}}
-  }
-}});
+  Chart.register(ChartDataLabels);
+  var gmv=[2441.5, 2107.6, 2202.8, 1747.6, 1115.0, 1252.2];
+  var momPct=gmv.map(function(v,i){return i===0?null:(v/gmv[i-1]-1)*100;});
+  var ctx=document.getElementById('cWH').getContext('2d');
+  new Chart(ctx,{type:'bar',data:{
+    labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
+    datasets:[
+      {label:'GMV (R$ mil)',data:gmv,
+       backgroundColor:["#B8CCF5","#B8CCF5","#B8CCF5","#3483FA","#3483FA","#3483FA"],
+       borderRadius:6,yAxisID:'y',
+       datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'800'},
+         formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
+         color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#00A650':'#F23D4F';}}},
+      {label:'SIs',data:[1698,1509,1882,1451,1185,1631],type:'line',borderColor:'#FF9500',
+       backgroundColor:'rgba(255,149,0,.12)',borderWidth:2,pointRadius:5,
+       pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1',datalabels:{display:false}}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,
+    layout:{padding:{top:28}},
+    plugins:{legend:{position:'bottom'}},
+    scales:{
+      y:{position:'left',title:{display:true,text:'GMV (R$ mil)'},
+         ticks:{callback:function(v){return 'R$'+v+'k'}}},
+      y1:{position:'right',title:{display:true,text:'SIs'},grid:{drawOnChartArea:false}}
+    }
+  }});
 })();
 </script>
 </body></html>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Fechamento Q2 2026 — ADONAI ESTOFADOS</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
@@ -77,8 +78,10 @@ a{color:#3483FA;text-decoration:none}
   </div>
   <script>
   (function(){
+    Chart.register(ChartDataLabels);
     var labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
     var nmv26  = [976322, 1413269, 2031181, 1491422, 1578843, 1332435];
+    var momPct = nmv26.map(function(v,i){return i===0?null:(v/nmv26[i-1]-1)*100;});
     var meta   = [1389228, 1290167, 1500000, 2200000, 1701111, 1857137];
     var si26   = [849, 1289, 1829, 1184, 1464, 1187];
     var si25   = [858, 629, 1101, 857, 1181, 1294];
@@ -86,12 +89,16 @@ a{color:#3483FA;text-decoration:none}
     new Chart(document.getElementById('cQ'),{
       type:'bar',
       data:{labels:labels,datasets:[
-        {label:'NMV 2026 (R$)',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2},
-        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,yAxisID:'yNmv',order:1},
-        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:4,yAxisID:'ySi',order:0},
-        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0}
+        {label:'NMV 2026 (R$)',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'800'},
+           formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
+           color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#00A650':'#F23D4F';}}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,yAxisID:'yNmv',order:1,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:4,yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}}
       ]},
       options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:28}},
         plugins:{legend:{position:'top'},
           tooltip:{callbacks:{label:function(c){
             if(c.datasetIndex<=1)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
