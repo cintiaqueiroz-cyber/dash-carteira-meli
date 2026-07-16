@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio KING HOUSE - Jul/2026 MTD</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#1A1A2E,#16213E);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.15);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:26px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.kpi-badge{background:#1A1A2E;color:#FFE600;border-radius:8px;padding:4px 10px;font-size:11px;font-weight:800;margin-left:8px}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#127968; KING HOUSE</h1>
+    <div class="sub">Relatorio de Performance MTD &middot; 16/07/2026 &middot; IDs: 1026459505 | 1982062711</div>
+  </div>
+  <div style="text-align:right">
+    <div class="meta-pill">Q2 102.4% da Meta &nbsp;&#9989;</div>
+    <div style="font-size:11px;opacity:.7;margin-top:6px">Meta Jul: R$ 5.9M &nbsp;|&nbsp; Desafio: R$ 7.1M</div>
+  </div>
+</div>
+<div class="wrap">
+
+  <!-- KPIs principais -->
+  <div class="row">
+    <div class="card">
+      <div class="lbl">GMV MTD (1&ndash;15/Jul)</div>
+      <div class="val">R$ 4.2M</div>
+      <div class="sub">MoM pace: <span style="color:#00A650;font-weight:700">&#9650; 22.9%</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pedidos MTD</div>
+      <div class="val">2,912</div>
+      <div class="sub">Dias 1&ndash;15 julho</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Ticket M&eacute;dio Jul</div>
+      <div class="val">R$ 1,425</div>
+      <div class="sub">YoY pace: <span style="color:#00A650;font-weight:700">&#9650; 98.3%</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Atingimento Jul MTD</div>
+      <div class="val"><span style="color:#E67E00">70.8%</span></div>
+      <div class="sub">Meta: R$ 5.9M &nbsp;|&nbsp; Des: R$ 7.1M</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Proje&ccedil;&atilde;o Jul</div>
+      <div class="val">R$ 8.6M</div>
+      <div class="sub">Pace 15 dias extrapolado p/ 31d</div>
+    </div>
+  </div>
+
+  <!-- YTD Progress -->
+  <div class="sec">
+    <div class="sec-ttl">Progresso da Meta YTD (Jan&ndash;Jul)</div>
+    <div style="margin-bottom:6px;font-size:13px">
+      <b>R$ 32.5M</b> de <b>R$ 34.1M</b> (Meta Jan&ndash;Jul)
+      &nbsp;&middot;&nbsp;
+      <span style="color:#E67E00;font-weight:700">95.2% atingido</span>
+      &nbsp;&middot;&nbsp;
+      <span style="color:#888">Meta Desafio: 84.0%</span>
+    </div>
+    <div class="bar-out" style="height:24px">
+      <div class="bar-in" style="width:95.2%;background:#E67E00"></div>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:6px">Inclui Jul MTD 15 dias &nbsp;|&nbsp; Ticket m&eacute;dio YTD: R$ 1,483 &nbsp;|&nbsp; Pedidos YTD: 21,912</div>
+  </div>
+
+  <!-- Evolucao mensal -->
+  <div class="sec">
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o Mensal 2026 vs 2025 vs Meta</div>
+    <div class="chart-box"><canvas id="cMes"></canvas></div>
+  </div>
+
+  <!-- Daily -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Di&aacute;rio Julho 2026 (MTD)</div>
+    <div class="chart-box"><canvas id="cDay"></canvas></div>
+  </div>
+
+  <!-- Top10 -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Julho MTD</div>
+    <table>
+      <thead><tr>
+        <th>#</th><th>Item</th><th>Status</th>
+        <th style="text-align:right">GMV Jul</th>
+        <th style="text-align:right">Pedidos</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Share</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#888;font-size:11px">1</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5834923568" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL GRAFITE USB PORTA COPO GRAFITE</a><br>
+              <span style="font-size:10px;color:#999">MLB5834923568</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 269K</td>
+          <td style="text-align:right">191</td>
+          <td style="text-align:right">R$ 1,409</td>
+          <td style="text-align:right">6.5%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">2</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3901481212" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 3,00M SUEDE VELUT PRETO MOLAS NO ASSENTO - KING HOUSE</a><br>
+              <span style="font-size:10px;color:#999">MLB3901481212</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 198K</td>
+          <td style="text-align:right">107</td>
+          <td style="text-align:right">R$ 1,850</td>
+          <td style="text-align:right">4.8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">3</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3411748267" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 1,50M VELUT CINZA C/ MOLAS</a><br>
+              <span style="font-size:10px;color:#999">MLB3411748267</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 193K</td>
+          <td style="text-align:right">186</td>
+          <td style="text-align:right">R$ 1,036</td>
+          <td style="text-align:right">4.6%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">4</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3582221205" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELUT CINZA</a><br>
+              <span style="font-size:10px;color:#999">MLB3582221205</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 189K</td>
+          <td style="text-align:right">135</td>
+          <td style="text-align:right">R$ 1,402</td>
+          <td style="text-align:right">4.6%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">5</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5834728958" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL CINZA USB  PORTA COPOS CINZA</a><br>
+              <span style="font-size:10px;color:#999">MLB5834728958</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 171K</td>
+          <td style="text-align:right">122</td>
+          <td style="text-align:right">R$ 1,404</td>
+          <td style="text-align:right">4.1%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">6</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-2144730655" target="_blank">CONJUNTO CANTO AMSTERDAM CINZA C/ MOLAS RETRÁTIL/RECLINÁVEL CINZA</a><br>
+              <span style="font-size:10px;color:#999">MLB2144730655</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 155K</td>
+          <td style="text-align:right">61</td>
+          <td style="text-align:right">R$ 2,543</td>
+          <td style="text-align:right">3.7%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">7</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4040078892" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS CINZA MOLAS ENSACADAS - KING HOUSE</a><br>
+              <span style="font-size:10px;color:#999">MLB4040078892</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 148K</td>
+          <td style="text-align:right">73</td>
+          <td style="text-align:right">R$ 2,030</td>
+          <td style="text-align:right">3.6%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">8</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4040027578" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELUT MARROM</a><br>
+              <span style="font-size:10px;color:#999">MLB4040027578</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 134K</td>
+          <td style="text-align:right">93</td>
+          <td style="text-align:right">R$ 1,442</td>
+          <td style="text-align:right">3.2%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">9</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3901464226" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL KING HOUSE VERONA 2,00M VELUT CINZA C/ MOLAS</a><br>
+              <span style="font-size:10px;color:#999">MLB3901464226</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 113K</td>
+          <td style="text-align:right">99</td>
+          <td style="text-align:right">R$ 1,145</td>
+          <td style="text-align:right">2.7%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">10</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4202474367" target="_blank">CAMA BOX KING SIZE ALFORD 193X203X66 BEGE C/ MOLAS ENSACADAS</a><br>
+              <span style="font-size:10px;color:#999">MLB4202474367</span></td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right;font-weight:700">R$ 108K</td>
+          <td style="text-align:right">65</td>
+          <td style="text-align:right">R$ 1,663</td>
+          <td style="text-align:right">2.6%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Analise -->
+  <div class="sec" style="border-left:4px solid #F23D4F">
+    <div class="sec-ttl" style="color:#F23D4F">&#9888; An&aacute;lise MTD &mdash; Itens com Queda (venderam bem em Jun, zerados em Jul)</div>
+    <table>
+      <thead><tr>
+        <th>MLB</th><th>Produto</th>
+        <th style="text-align:right">GMV Jun</th>
+        <th style="text-align:right">GMV Jul MTD</th>
+        <th style="text-align:right">Var</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#FFF5F5">
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3901479184" target="_blank" style="color:#3483FA;font-weight:700">MLB3901479184</a></td>
+          <td>SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,70M VELUT BEGE CON MOLAS KING HOUSE</td>
+          <td style="text-align:right;color:#00A650;font-weight:700">R$ 16K</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">R$ 0</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">&#9660; 100%</td>
+          <td><span class="pill pl-r">Queda</span></td>
+        </tr>
+        <tr style="background:#FFF5F5">
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3398759757" target="_blank" style="color:#3483FA;font-weight:700">MLB3398759757</a></td>
+          <td>SOFÁ RETRÁTIL RECLINÁVEL 3,00M ASCARI VELUT AZUL C/ MOLAS COR AZUL-MARINHO</td>
+          <td style="text-align:right;color:#00A650;font-weight:700">R$ 12K</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">R$ 0</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">&#9660; 100%</td>
+          <td><span class="pill pl-r">Queda</span></td>
+        </tr>
+        <tr style="background:#FFF5F5">
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4040066152" target="_blank" style="color:#3483FA;font-weight:700">MLB4040066152</a></td>
+          <td>SOFÁ RETRÁTIL RECLINÁVEL 3,00M NIVUS AZUL MOLAS ENSACADAS - KING HOUSE</td>
+          <td style="text-align:right;color:#00A650;font-weight:700">R$ 11K</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">R$ 0</td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">&#9660; 100%</td>
+          <td><span class="pill pl-r">Queda</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Q2 Fechamento -->
+  <div class="sec">
+    <div class="sec-ttl">Fechamento Q2 2026</div>
+    <div class="row" style="margin-bottom:0">
+      <div class="card">
+        <div class="lbl">GMV Q2</div>
+        <div class="val">R$ 16.7M</div>
+        <div class="sub">Abr + Mai + Jun</div>
+      </div>
+      <div class="card">
+        <div class="lbl">vs Meta Q2</div>
+        <div class="val" style="color:#00A650">102.4%</div>
+        <div class="sub">Meta: R$ 16.3M</div>
+      </div>
+      <div class="card">
+        <div class="lbl">vs Meta Desafio Q2</div>
+        <div class="val" style="color:#00A650">100.3%</div>
+        <div class="sub">Meta Des: R$ 16.6M</div>
+      </div>
+      <div class="card">
+        <div class="lbl">GMV Jun (melhor mes Q2)</div>
+        <div class="val">R$ 6.8M</div>
+        <div class="sub">+24.2% vs Mai</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    Gerado por Claude Code &middot; Cintia Queiroz KAM F&amp;H &middot; 16/07/2026
+  </div>
+
+</div>
+
+<script>
+var MESES = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+var G26   = [3798898.0, 3220968.0, 4624004.0, 4506950.0, 5436357.0, 6753384.0, 4150368.0, null, null, null, null, null];
+var G25   = [4003796.0, 2807302.0, 3243991.0, 3269866.0, 2992090.0, 3346495.0, 4324689.0, 3936848.0, 3966596.0, 3429660.0, 8422100.0, 3757763.0];
+var META  = [3972250, 3689001, 4284578, 5000000, 6000000, 5310151, 5863298, 5679239, 6194326, 6582395, 6714536, 5343400];
+var META_DES = [4970454, 4616027, 5361269, 5000000, 5000000, 6644563, 7100000, null, null, null, null, null];
+
+// Grafico mensal
+new Chart(document.getElementById('cMes'), {
+  type:'bar',
+  data:{
+    labels: MESES,
+    datasets:[
+      {label:'GMV 2026', data:G26, backgroundColor:'rgba(52,131,250,0.85)', order:2},
+      {label:'GMV 2025', data:G25, backgroundColor:'rgba(180,180,180,0.5)', order:3},
+      {label:'Meta', data:META, type:'line', borderColor:'#FFE600', borderWidth:2, pointRadius:3, fill:false, order:1},
+      {label:'Meta Desafio', data:META_DES, type:'line', borderColor:'#FF9500', borderWidth:2, borderDash:[4,4], pointRadius:3, fill:false, order:0},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'top'}},
+    scales:{y:{ticks:{callback:function(v){return v>=1e6?'R$'+v/1e6+'M':v>=1e3?'R$'+v/1e3+'K':'R$'+v}}}}
+  }
+});
+
+// Grafico daily
+var dColors = ["#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#FF9500","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA"];
+new Chart(document.getElementById('cDay'), {
+  type:'bar',
+  data:{
+    labels: ["01/Jul", "02/Jul", "03/Jul", "04/Jul", "05/Jul", "06/Jul", "07/Jul", "08/Jul", "09/Jul", "10/Jul", "11/Jul", "12/Jul", "13/Jul", "14/Jul", "15/Jul"],
+    datasets:[
+      {label:'GMV Dia', data:[276121.0, 260744.0, 235940.0, 201070.0, 225169.0, 272156.0, 680038.0, 313824.0, 229150.0, 240401.0, 196073.0, 199804.0, 262539.0, 304487.0, 252852.0], backgroundColor:dColors, order:2},
+      {label:'Pedidos', data:[201, 183, 164, 143, 150, 194, 469, 215, 172, 179, 126, 133, 182, 220, 181], type:'line', borderColor:'#FF9500', borderWidth:2, pointRadius:4, fill:false, yAxisID:'y1', order:1}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'top'}},
+    scales:{
+      y:{ticks:{callback:function(v){return v>=1e6?'R$'+v/1e6+'M':v>=1e3?'R$'+v/1e3+'K':'R$'+v}}},
+      y1:{position:'right', grid:{drawOnChartArea:false}, title:{display:true, text:'Pedidos'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
