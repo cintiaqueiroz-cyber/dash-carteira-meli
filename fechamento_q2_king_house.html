@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fechamento Q2 2026 — KING HOUSE</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#1A1A2E,#16213E);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #FFE600}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:28px;font-weight:900;margin-bottom:4px}
+.qc .qm{font-size:12px;color:#888}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic .ic-val{font-size:22px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13px}
+.chart-box{position:relative;height:300px}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#127968; Fechamento Q2 2026 &mdash; KING HOUSE</h1>
+    <div class="sub">KAM: Cintia Faraco Queiroz &middot; IDs: 1026459505 | 1982062711 &middot; Furnishing &amp; Houseware</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:13px;opacity:.8">Q2 Atingimento Meta Desafio</div>
+    <div style="font-size:36px;font-weight:900;color:#FFE600">100.3%</div>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#E67E00">R$ 11.64M</div>
+      <div class="qm">Meta Des: R$ 14.95M &middot; Ating: <strong style="color:#E67E00">77.9% ⚠️</strong></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">&#x1F525; Q2 2026 (Abr&ndash;Jun)</div>
+      <div class="qv" style="color:#00A650">R$ 16.70M</div>
+      <div class="qm">Meta Des: R$ 16.64M &middot; Ating: <strong style="color:#00A650">100.3% ✅</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) MTD</div>
+      <div class="qv" style="color:#E67E00">R$ 4.15M</div>
+      <div class="qm">Meta Q3: R$ 17.74M &middot; Pace: <strong style="color:#E67E00">23.4%</strong></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">GMV por M&ecirc;s H1 2026 vs Meta Desafio + SIs</div>
+    <div class="chart-box"><canvas id="cQ"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
+    var gmv26  = [3798898.0, 3220968.0, 4624004.0, 4506950.0, 5436357.0, 6753384.0];
+    var gmv6=[3798898.0, 3220968.0, 4624004.0, 4506950.0, 5436357.0, 6753384.0]; var momPct=gmv6.map(function(v,i){return i===0?null:(v/gmv6[i-1]-1)*100;});
+    var meta   = [4970454, 4616027, 5361269, 5000000, 5000000, 6644563];
+    var si26   = [2578, 2238, 3217, 3013, 3594, 4323];
+    var si25   = [3088, 2155, 2502, 2558, 2431, 2620];
+    var colors = ['#B8CCF5','#B8CCF5','#B8CCF5','#3483FA','#3483FA','#3483FA'];
+    new Chart(document.getElementById('cQ'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026 (R$)',data:gmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'800'},
+           formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
+           color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#00A650':'#F23D4F';}}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,yAxisID:'yNmv',order:1,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:4,yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:30}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=1)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}}},
+        scales:{
+          yNmv:{position:'left',ticks:{callback:function(v){return 'R$'+Number(v/1000000).toFixed(1)+'M';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR')+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">Atingimento por M&ecirc;s &mdash; H1 2026 (vs Meta Desafio)</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th><th>M&ecirc;s</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th style="text-align:right">SIs</th>
+      </tr></thead>
+      <tbody>
+<tr style="background:#F5FAFF">
+      <td style="font-weight:700;color:#1A5DC8">Q1</td>
+      <td style="font-weight:700">Jan</td>
+      <td style="text-align:right;font-weight:700">R$ 3.80M</td>
+      <td style="text-align:right">R$ 4.97M</td>
+      <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">76.4% ❌</span></td>
+      <td style="text-align:right"><span style="color:#F23D4F">-R$ 1,171,556</span></td>
+      <td style="text-align:right">2,578</td>
+    </tr>
+<tr style="background:#F5FAFF">
+      <td style="font-weight:700;color:#1A5DC8">Q1</td>
+      <td style="font-weight:700">Fev</td>
+      <td style="text-align:right;font-weight:700">R$ 3.22M</td>
+      <td style="text-align:right">R$ 4.62M</td>
+      <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">69.8% ❌</span></td>
+      <td style="text-align:right"><span style="color:#F23D4F">-R$ 1,395,059</span></td>
+      <td style="text-align:right">2,238</td>
+    </tr>
+<tr style="background:#F5FAFF">
+      <td style="font-weight:700;color:#1A5DC8">Q1</td>
+      <td style="font-weight:700">Mar</td>
+      <td style="text-align:right;font-weight:700">R$ 4.62M</td>
+      <td style="text-align:right">R$ 5.36M</td>
+      <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">86.2% ❌</span></td>
+      <td style="text-align:right"><span style="color:#F23D4F">-R$ 737,265</span></td>
+      <td style="text-align:right">3,217</td>
+    </tr>
+<tr style="background:#FFFBEA">
+      <td style="font-weight:700;color:#856404">Q2</td>
+      <td style="font-weight:700">Abr</td>
+      <td style="text-align:right;font-weight:700">R$ 4.51M</td>
+      <td style="text-align:right">R$ 5.00M</td>
+      <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">90.1% ⚠️</span></td>
+      <td style="text-align:right"><span style="color:#F23D4F">-R$ 493,050</span></td>
+      <td style="text-align:right">3,013</td>
+    </tr>
+<tr style="background:#FFFBEA">
+      <td style="font-weight:700;color:#856404">Q2</td>
+      <td style="font-weight:700">Mai</td>
+      <td style="text-align:right;font-weight:700">R$ 5.44M</td>
+      <td style="text-align:right">R$ 5.00M</td>
+      <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">108.7% ✅</span></td>
+      <td style="text-align:right"><span style="color:#00A650">R$ 436,357 (acima)</span></td>
+      <td style="text-align:right">3,594</td>
+    </tr>
+<tr style="background:#FFFBEA">
+      <td style="font-weight:700;color:#856404">Q2</td>
+      <td style="font-weight:700">Jun</td>
+      <td style="text-align:right;font-weight:700">R$ 6.75M</td>
+      <td style="text-align:right">R$ 6.64M</td>
+      <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">101.6% ✅</span></td>
+      <td style="text-align:right"><span style="color:#00A650">R$ 108,821 (acima)</span></td>
+      <td style="text-align:right">4,323</td>
+    </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Resumo por Quarter &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Financeira</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Ating Meta</th>
+        <th style="text-align:right">Ating Des</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800;color:#1A5DC8">Q1</td>
+          <td style="text-align:right;font-weight:700">R$ 11.64M</td>
+          <td style="text-align:right">R$ 11.95M</td>
+          <td style="text-align:right">R$ 14.95M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">97.5% ⚠️</span></td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">77.9% ❌</span></td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Acima Meta Fin ⚠️</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#856404">Q2</td>
+          <td style="text-align:right;font-weight:700">R$ 16.70M</td>
+          <td style="text-align:right">R$ 16.31M</td>
+          <td style="text-align:right">R$ 16.64M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">102.4% ✅</span></td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">100.3% ✅</span></td>
+          <td><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Meta Batida ✅</span></td>
+        </tr>
+        <tr style="background:#F5F5F5">
+          <td style="font-weight:800">H1 Total</td>
+          <td style="text-align:right;font-weight:700">R$ 28.34M</td>
+          <td style="text-align:right">R$ 28.26M</td>
+          <td style="text-align:right">R$ 31.59M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">100.3% ✅</span></td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">89.7% ❌</span></td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Gap a recuperar ⚠️</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="ok-box" style="margin-top:16px">
+      &#127775; <strong>H1 2026:</strong> R$ 28.34M realizados (100.3% da Meta Financeira | 89.7% da Meta Desafio) &mdash;
+      Junho foi o melhor m&ecirc;s do H1 com R$ 6.75M e crescimento de +24.2% MoM.
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise &amp; Pr&oacute;ximos Passos</div>
+    <div class="ig">
+      <div class="ic warn">
+        <div class="ic-ttl">⚠️ Q1 — Abaixo da Meta Desafio</div>
+        <div class="ic-val">97.5%</div>
+        <p>Q1 fechou com R$ 11.64M (97.5% da meta financeira | 77.9% da meta desafio).
+        Mar&ccedil;o foi destaque com R$ 4.62M — melhor m&ecirc;s do quarter.
+        Jan e Fev em ritmo moderado, mas a aceleração de Mar salvou o quarter.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#128293; <strong>Lever:</strong> identificar o mix de produtos que performou em Mar&ccedil;o e replicar no H2.
+        </div>
+      </div>
+      <div class="ic ok">
+        <div class="ic-ttl">&#9989; Q2 — Melhor Quarter do Ano</div>
+        <div class="ic-val">102.4%</div>
+        <p>Q2 foi o melhor quarter do ano com R$ 16.70M &mdash; 102.4% da meta financeira e 100.3% da meta desafio.
+        Junho sozinho entregou R$ 6.75M (40.4% do Q2 inteiro), com crescimento de +24.2% vs Maio.
+        SIs Q2 cresceram +43.6% YoY (10,930 vs 7,609).</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#127775; <strong>ASP Q2:</strong> R$ 1,528 &mdash; ticket acima da m&eacute;dia da carteira. Manter mix premium.
+        </div>
+      </div>
+      <div class="ic opp">
+        <div class="ic-ttl">&#128161; Oportunidade &mdash; Continuidade do Momentum</div>
+        <div class="ic-val">Jun +24.2% MoM</div>
+        <p>A acelera&ccedil;&atilde;o de Junho (+24.2% MoM) precisa ser sustentada em Q3.
+        Ativar <strong>Product Ads</strong> e <strong>campanhas de deals</strong> nos top itens de Junho para manter o ritmo.
+        O 7.7 (R$ 680K em um dia) provou a capacidade operacional do seller.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#127919; <strong>A&ccedil;&atilde;o:</strong> garantir que os top 5 items de Jun/Jul estejam com optin em todas as campanhas dispon&iacute;veis.
+        </div>
+      </div>
+      <div class="ic warn">
+        <div class="ic-ttl">&#9888;&#65039; Q3 &mdash; Meta Ambiciosa</div>
+        <div class="ic-val">23.4% pace</div>
+        <p>Q3 come&ccedil;ou com R$ 4.15M (Jul MTD 15 dias).
+        Meta total Q3 = R$ 17.74M.
+        Precisa de ritmo m&eacute;dio de R$ 195K/dia para bater a meta &mdash;
+        o pace atual de Jul est&aacute; em R$ 277K/dia.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Q2 2026 (Abr&ndash;Jun) por GMV</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV Q2</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">ASP</th>
+        <th style="text-align:right">Share Q2</th>
+      </tr></thead>
+      <tbody>
+<tr>
+  <td style="color:#888;font-size:11px">1</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4040078892" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS CINZA MOLAS ENSACADAS - KING HOUSE</a><br>
+      <span style="font-size:10px;color:#999">MLB4040078892</span></td>
+  <td style="text-align:right;font-weight:700">R$ 1.20M</td>
+  <td style="text-align:right">542</td>
+  <td style="text-align:right">R$ 2,207</td>
+  <td style="text-align:right">7.2%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">2</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5834923568" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL GRAFITE USB PORTA COPO GRAFITE</a><br>
+      <span style="font-size:10px;color:#999">MLB5834923568</span></td>
+  <td style="text-align:right;font-weight:700">R$ 939K</td>
+  <td style="text-align:right">619</td>
+  <td style="text-align:right">R$ 1,516</td>
+  <td style="text-align:right">5.6%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">3</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3411748267" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 1,50M VELUT CINZA C/ MOLAS</a><br>
+      <span style="font-size:10px;color:#999">MLB3411748267</span></td>
+  <td style="text-align:right;font-weight:700">R$ 790K</td>
+  <td style="text-align:right">703</td>
+  <td style="text-align:right">R$ 1,123</td>
+  <td style="text-align:right">4.7%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">4</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3901464226" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL KING HOUSE VERONA 2,00M VELUT CINZA C/ MOLAS</a><br>
+      <span style="font-size:10px;color:#999">MLB3901464226</span></td>
+  <td style="text-align:right;font-weight:700">R$ 783K</td>
+  <td style="text-align:right">657</td>
+  <td style="text-align:right">R$ 1,191</td>
+  <td style="text-align:right">4.7%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">5</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3582221205" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELUT CINZA</a><br>
+      <span style="font-size:10px;color:#999">MLB3582221205</span></td>
+  <td style="text-align:right;font-weight:700">R$ 663K</td>
+  <td style="text-align:right">433</td>
+  <td style="text-align:right">R$ 1,531</td>
+  <td style="text-align:right">4.0%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">6</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3443676317" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,30M NIVUS CINZA MOLAS ENSACADAS - KING HOUSE</a><br>
+      <span style="font-size:10px;color:#999">MLB3443676317</span></td>
+  <td style="text-align:right;font-weight:700">R$ 660K</td>
+  <td style="text-align:right">324</td>
+  <td style="text-align:right">R$ 2,036</td>
+  <td style="text-align:right">4.0%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">7</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4202474367" target="_blank">CAMA BOX KING SIZE ALFORD 193X203X66 BEGE C/ MOLAS ENSACADAS</a><br>
+      <span style="font-size:10px;color:#999">MLB4202474367</span></td>
+  <td style="text-align:right;font-weight:700">R$ 629K</td>
+  <td style="text-align:right">379</td>
+  <td style="text-align:right">R$ 1,660</td>
+  <td style="text-align:right">3.8%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">8</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-3415157283" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,50M SUEDE VELUT CINZA MOLAS NO ASSENTO - KING HOUSE</a><br>
+      <span style="font-size:10px;color:#999">MLB3415157283</span></td>
+  <td style="text-align:right;font-weight:700">R$ 601K</td>
+  <td style="text-align:right">323</td>
+  <td style="text-align:right">R$ 1,862</td>
+  <td style="text-align:right">3.6%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">9</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4739741762" target="_blank">SOFÁ CAMA SÉRVIA 2,00M BEGE LINHO RÚSTICO - KING HOUSE</a><br>
+      <span style="font-size:10px;color:#999">MLB4739741762</span></td>
+  <td style="text-align:right;font-weight:700">R$ 494K</td>
+  <td style="text-align:right">419</td>
+  <td style="text-align:right">R$ 1,178</td>
+  <td style="text-align:right">3.0%</td>
+</tr>
+<tr>
+  <td style="color:#888;font-size:11px">10</td>
+  <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-2144730655" target="_blank">CONJUNTO CANTO AMSTERDAM CINZA C/ MOLAS RETRÁTIL/RECLINÁVEL CINZA</a><br>
+      <span style="font-size:10px;color:#999">MLB2144730655</span></td>
+  <td style="text-align:right;font-weight:700">R$ 492K</td>
+  <td style="text-align:right">184</td>
+  <td style="text-align:right">R$ 2,675</td>
+  <td style="text-align:right">2.9%</td>
+</tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    Gerado por Claude Code &middot; Cintia Queiroz KAM F&amp;H &middot; 16/07/2026
+  </div>
+
+</div>
+</body>
+</html>
