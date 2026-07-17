@@ -254,6 +254,63 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   })();
   </script>
 
+  <!-- PADs Investment -->
+  <div class="sec">
+    <div class="sec-ttl">&#127919; Product Ads (PADs) — H1 2026 + Jul MTD</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
+      <div class="card" style="text-align:center;border-top:3px solid #FFE600">
+        <div class="lbl">PADs Invest. YTD</div>
+        <div class="val" style="font-size:22px">R$ 524,8K</div>
+        <div class="sub">Jan–Jul MTD</div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid #00A650">
+        <div class="lbl">GMV via PADs YTD</div>
+        <div class="val" style="font-size:22px">R$ 7,95M</div>
+        <div class="sub">GMV atribuído PADs</div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid #3483FA">
+        <div class="lbl">ROAS Médio YTD</div>
+        <div class="val" style="font-size:22px">15.2x</div>
+        <div class="sub">GMV PADs / Invest.</div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid #FF9500">
+        <div class="lbl">ROAS Jul MTD</div>
+        <div class="val" style="font-size:22px;color:#00A650">20.9x</div>
+        <div class="sub">Melhor mês do ano</div>
+      </div>
+    </div>
+    <div class="chart-box" style="height:260px"><canvas id="cPads"></canvas></div>
+    <script>
+    (function(){
+      Chart.register(ChartDataLabels);
+      var labels  = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul MTD"];
+      var invest  = [61954,56635,80362,61138,80569,114503,69593];
+      var gmvP    = [754095,803585,1011569,891745,1244646,1792311,1454724];
+      var roas    = invest.map(function(v,i){return gmvP[i]/v;});
+      var bgInv   = invest.map(function(_,i){return i===6?'#FF9500':'#FFE600';});
+      new Chart(document.getElementById('cPads'),{
+        type:'bar',
+        data:{labels:labels,datasets:[
+          {label:'PADs Invest. (R$)',data:invest,backgroundColor:bgInv,borderRadius:5,yAxisID:'yI',order:2,
+           datalabels:{anchor:'end',align:'end',offset:1,font:{size:10,weight:'700'},color:'#555',
+             formatter:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}},
+          {label:'ROAS',data:roas,type:'line',borderColor:'#3483FA',backgroundColor:'transparent',
+           tension:.3,pointRadius:5,pointBackgroundColor:'#3483FA',yAxisID:'yR',order:1,
+           datalabels:{anchor:'end',align:'top',offset:2,font:{size:10,weight:'800'},color:'#1A5DC8',
+             formatter:function(v){return v.toFixed(1)+'x';}}}
+        ]},
+        options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:28}},
+          plugins:{legend:{position:'top'}},
+          scales:{
+            yI:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}},
+            yR:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return v.toFixed(0)+'x';}},min:0}
+          }
+        }
+      });
+    })();
+    </script>
+  </div>
+
   <!-- Análise de performance Jul -->
   <div class="sec">
     <div class="sec-ttl">&#128200; Análise de Performance Jul MTD</div>
