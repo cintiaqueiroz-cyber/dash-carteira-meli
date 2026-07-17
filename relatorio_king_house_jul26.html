@@ -137,6 +137,41 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     {label:'2025',data:[3088, 2155, 2502, 2558, 2431, 2620, 3448, 2810, 2716, 2290, 5830, 2752],backgroundColor:'#DDE8FF',borderRadius:4}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});</script>
 
+  <!-- Comparação Datas Duplas -->
+  <div class="sec">
+    <div class="sec-ttl">Comparativo Datas Duplas 2026</div>
+    <div class="chart-box" style="height:300px"><canvas id="cDD"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var labels = ["1.1","2.2","3.3","4.4","5.5","6.6","7.7"];
+    var gmvDD  = [44900, 198578, 284646, 239659, 357148, 305546, 694360];
+    var sisDD  = [26, 126, 191, 157, 218, 190, 436];
+    var bgs    = gmvDD.map(function(_,i){return i===6?'#FF9500':'#3483FA';});
+    new Chart(document.getElementById('cDD'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV (R$)',data:gmvDD,backgroundColor:bgs,borderRadius:6,yAxisID:'yG',
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'700'},
+           formatter:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'K':v.toFixed(0));},
+           color:function(ctx){return ctx.dataIndex===6?'#E67E00':'#1A5DC8';}}},
+        {label:'SIs',data:sisDD,type:'line',borderColor:'#00A650',backgroundColor:'transparent',
+         tension:.3,pointRadius:5,pointBackgroundColor:'#00A650',yAxisID:'yS',
+         datalabels:{anchor:'end',align:'top',offset:2,font:{size:10,weight:'700'},color:'#007A3D',
+           formatter:function(v){return v+' SIs';}}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:36}},
+        plugins:{legend:{position:'top'},datalabels:{}},
+        scales:{
+          yG:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}},
+          yS:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+' SIs';}}}
+        }
+      }
+    });
+    Chart.register(ChartDataLabels);
+  })();
+  </script>
+
   <!-- Bloco 7.7 -->
   <div style="background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 28px;margin-bottom:16px;box-shadow:0 3px 12px rgba(255,149,0,.3)">
     <div style="display:flex;align-items:center;gap:20px;margin-bottom:14px">
