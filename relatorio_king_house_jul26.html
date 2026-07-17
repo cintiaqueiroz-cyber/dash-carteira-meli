@@ -99,7 +99,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
             ctx.font='bold 10px Arial';
             var tw=ctx.measureText(txt).width+10;
             ctx.fillStyle=bg;
-            ctx.beginPath(); ctx.roundRect(pt.x-tw/2,pt.y-24,tw,16,5); ctx.fill();
+            ctx.beginPath(); var rx=pt.x-tw/2,ry=pt.y-24,rw=tw,rh=16,rr=5; ctx.moveTo(rx+rr,ry); ctx.lineTo(rx+rw-rr,ry); ctx.quadraticCurveTo(rx+rw,ry,rx+rw,ry+rr); ctx.lineTo(rx+rw,ry+rh-rr); ctx.quadraticCurveTo(rx+rw,ry+rh,rx+rw-rr,ry+rh); ctx.lineTo(rx+rr,ry+rh); ctx.quadraticCurveTo(rx,ry+rh,rx,ry+rh-rr); ctx.lineTo(rx,ry+rr); ctx.quadraticCurveTo(rx,ry,rx+rr,ry); ctx.closePath(); ctx.fill();
             ctx.fillStyle='#fff'; ctx.fillText(txt,pt.x,pt.y-12);
           }
         });
