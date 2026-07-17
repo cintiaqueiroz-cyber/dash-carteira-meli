@@ -42,16 +42,16 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <h1>&#128202; MULTILOJA</h1>
     <div class="sub">Relatorio de Performance &middot; Jul 2026 &middot; IDs: 226418798 | 1784044230</div>
   </div>
-  <div class="meta-pill">Meta Jul: R$5.24M &middot; Pace: 130.9% &#9650;</div>
+  <div class="meta-pill">Meta Jul: R$5.24M &middot; Pace: 132.0% &#9650;</div>
 </div>
 <div class="wrap">
 
   <div class="row">
-    <div class="card"><div class="lbl">GMV Jul MTD (1&ndash;15/Jul)</div><div class="val">R$ 3.32M</div><div class="sub">15 dias &middot; R$ 3,318,026</div></div>
-    <div class="card"><div class="lbl">Itens Vendidos MTD</div><div class="val">4,516</div><div class="sub">dias 1&ndash;15 de julho</div></div>
-    <div class="card"><div class="lbl">M&eacute;dia Di&aacute;ria Jul</div><div class="val">R$ 221K</div><div class="sub">R$ 221,202/dia &middot; <span style="color:#00A650;font-weight:700">&#9650; +22.9% vs Jun/dia</span></div></div>
-    <div class="card"><div class="lbl">Projeção Jul Completo</div><div class="val" style="color:#3483FA">R$ 6.86M</div><div class="sub">221,202 &times; 31 dias</div></div>
-    <div class="card"><div class="lbl">Ticket M&eacute;dio Jul</div><div class="val">R$ 735</div><div class="sub">3,318,026 &divide; 4,516 SIs</div></div>
+    <div class="card"><div class="lbl">GMV Jul MTD (1&ndash;16/Jul)</div><div class="val">R$ 3.57M</div><div class="sub">16 dias &middot; R$ 3,569,326</div></div>
+    <div class="card"><div class="lbl">Itens Vendidos MTD</div><div class="val">4,829</div><div class="sub">dias 1&ndash;16 de julho</div></div>
+    <div class="card"><div class="lbl">M&eacute;dia Di&aacute;ria Jul</div><div class="val">R$ 223K</div><div class="sub">R$ 223,083/dia &middot; <span style="color:#00A650;font-weight:700">&#9650; +22.9% vs Jun/dia</span></div></div>
+    <div class="card"><div class="lbl">Projeção Jul Completo</div><div class="val" style="color:#3483FA">R$ 6.92M</div><div class="sub">223,083 &times; 31 dias</div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio Jul</div><div class="val">R$ 739</div><div class="sub">3,569,326 &divide; 4,829 SIs</div></div>
   </div>
 
   <div class="row">
@@ -68,7 +68,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   <script>
   (function(){
     var yoyPct = [null, null, null, null, null, null, null, null, null, null, null, null];
-    var gmv26 = [3934637, 3083657, 3959425, 3340870, 5198400, 5402045, 3318026, null, null, null, null, null];
+    var gmv26 = [3934637, 3083657, 3959425, 3340870, 5198400, 5402045, 3569326, null, null, null, null, null];
     var gmv25 = [1954519, 3073343, 2478391, 1908300, 1898613, 1890665, 2545250, 2235578, 2084711, 3277782, 3753716, 3130616];
     gmv26.forEach(function(v,i){ if(v!==null && gmv25[i]>0) yoyPct[i]=((v/gmv25[i])-1)*100; });
     function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
@@ -124,7 +124,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-    {label:'2026',data:[5703, 4908, 5642, 5474, 7411, 7872, 4516, null, null, null, null, null],backgroundColor:'#3483FA',borderRadius:4},
+    {label:'2026',data:[5703, 4908, 5642, 5474, 7411, 7872, 4829, null, null, null, null, null],backgroundColor:'#3483FA',borderRadius:4},
     {label:'2025',data:[2619, 4475, 3447, 2726, 2604, 2520, 3560, 2962, 2817, 4667, 5253, 4453],backgroundColor:'#DDE8FF',borderRadius:4}
   ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});
   </script>
@@ -182,7 +182,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs dias normais Jul</div>
         <div style="font-size:24px;font-weight:900;color:#007A3D">+86%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia geral: R$ 221,202/dia</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia geral: R$ 223,083/dia</div>
       </div>
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs 6.6</div>
@@ -204,12 +204,12 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       <div style="flex:1;min-width:200px;background:#E6F7EE;border-left:4px solid #00A650;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#007A3D;text-transform:uppercase;margin-bottom:6px">Ritmo MoM</div>
         <div style="font-size:22px;font-weight:900;color:#007A3D">&#9650; +22.9%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">M&eacute;dia di&aacute;ria Jul (R$ 221,202) vs m&eacute;dia di&aacute;ria Jun (R$ 180,068). Crescimento consistente!</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">M&eacute;dia di&aacute;ria Jul (R$ 223,083) vs m&eacute;dia di&aacute;ria Jun (R$ 180,068). Crescimento consistente!</div>
       </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">Projeção Jul Completo</div>
-        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 6.86M</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">Ao ritmo atual de R$ 221K/dia &times; 31 dias = R$ 6.86M.</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 6.92M</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Ao ritmo atual de R$ 223K/dia &times; 31 dias = R$ 6.92M.</div>
       </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">V&eacute;spera 7.7</div>
@@ -231,8 +231,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   (function(){
-    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul",["07/Jul","⭐ 7.7"],"08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul"];
-    var vals=[215916,183895,166034,150812,102107,225013,410502,186021,213922,214951,194111,226702,272063,302206,253770];
+    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul",["07/Jul","⭐ 7.7"],"08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul","16/Jul"];
+    var vals=[215916,183895,166034,150812,102107,225013,410502,186021,213922,214951,194111,226702,272063,302206,253770,251300];
     var colors=vals.map(function(_,i){return i===6?'#FF9500':'#3483FA';});
     new Chart(document.getElementById('cDailyMes'),{
       type:'bar',
@@ -297,18 +297,18 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div style="background:#1A1A2E;border-radius:12px;padding:20px 24px;margin-bottom:20px;color:#fff">
       <div style="font-size:15px;font-weight:900;margin-bottom:8px;color:#FFE600">&#128161; MULTILOJA em forte acelera&ccedil;&atilde;o em julho</div>
       <div style="font-size:14px;color:#ddd;line-height:1.6">
-        O ritmo di&aacute;rio de julho (R$ 221,202/dia) est&aacute; <strong style="color:#00A650">+22.9%</strong> acima da m&eacute;dia di&aacute;ria de junho (R$ 180,068/dia). A data dupla 7.7 entregou R$ 410,502 &mdash; <strong style="color:#FFE600">12.4%</strong> do GMV do m&ecirc;s. O mix de guarda-roupas Doripel + eletrodom&eacute;sticos (geladeiras Electrolux/Midea) mostra diversifica&ccedil;&atilde;o saud&aacute;vel. Proje&ccedil;&atilde;o julho: <strong style="color:#00A650">R$ 6.86M</strong>.
+        O ritmo di&aacute;rio de julho (R$ 223,083/dia) est&aacute; <strong style="color:#00A650">+22.9%</strong> acima da m&eacute;dia di&aacute;ria de junho (R$ 180,068/dia). A data dupla 7.7 entregou R$ 410,502 &mdash; <strong style="color:#FFE600">12.4%</strong> do GMV do m&ecirc;s. O mix de guarda-roupas Doripel + eletrodom&eacute;sticos (geladeiras Electrolux/Midea) mostra diversifica&ccedil;&atilde;o saud&aacute;vel. Proje&ccedil;&atilde;o julho: <strong style="color:#00A650">R$ 6.92M</strong>.
       </div>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
       <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #00A650;padding:16px;text-align:center">
         <div style="font-size:12px;color:#888;margin-bottom:6px">GMV di&aacute;rio m&eacute;dio Jul</div>
-        <div style="font-size:18px;font-weight:900;color:#00A650">R$ 221,202</div>
+        <div style="font-size:18px;font-weight:900;color:#00A650">R$ 223,083</div>
         <div style="font-size:11px;color:#00A650;margin-top:4px">&#9650; +22.9% vs Jun/dia</div>
       </div>
       <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #3483FA;padding:16px;text-align:center">
         <div style="font-size:12px;color:#888;margin-bottom:6px">Proje&ccedil;&atilde;o Jul completo</div>
-        <div style="font-size:18px;font-weight:900;color:#3483FA">R$ 6.86M</div>
+        <div style="font-size:18px;font-weight:900;color:#3483FA">R$ 6.92M</div>
         <div style="font-size:11px;color:#3483FA;margin-top:4px">ao ritmo atual &times; 31 dias</div>
       </div>
       <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #FF7A00;padding:16px;text-align:center">
@@ -339,7 +339,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start">
           <div style="background:#F23D4F;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</div>
-          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Superar meta Jul</strong> &mdash; Meta Desafio Jul: R$ 5.24M. Ritmo atual projeta R$ 6.86M (130.9% da meta). Manter PADs nos top SKUs e preparar o 8.8 para garantir o sobre-atingimento.</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Superar meta Jul</strong> &mdash; Meta Desafio Jul: R$ 5.24M. Ritmo atual projeta R$ 6.92M (132.0% da meta). Manter PADs nos top SKUs e preparar o 8.8 para garantir o sobre-atingimento.</div>
         </div>
       </div>
     </div>
@@ -347,7 +347,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 
   <!-- Top 10 -->
   <div class="sec">
-    <div class="sec-ttl">Top 10 Itens por NMV &mdash; Jul MTD (1&ndash;15/Jul)</div>
+    <div class="sec-ttl">Top 10 Itens por NMV &mdash; Jul MTD (1&ndash;16/Jul)</div>
     <div style="overflow-x:auto"><table>
       <thead><tr>
         <th>#</th>
