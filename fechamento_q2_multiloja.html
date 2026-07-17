@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fechamento Q2 2026 — MULTILOJA</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #3483FA}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:28px;font-weight:900;margin-bottom:4px}
+.qc .qm{font-size:12px;color:#888}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic .ic-val{font-size:22px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13px}
+.chart-box{position:relative;height:280px}
+a{color:#3483FA;text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; Fechamento Q2 2026 &mdash; MULTILOJA</h1>
+    <div class="sub">KAM: Cintia Faraco Queiroz &middot; IDs: 226418798 | 1784044230 &middot; Furnishing &amp; Houseware</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:13px;opacity:.8">Q2 YoY vs 2025</div>
+    <div style="font-size:32px;font-weight:900;color:#FFE600">+144.7%</div>
+  </div>
+</div>
+<div class="wrap">
+
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#3483FA">R$ 10.98M</div>
+      <div class="qm">Meta: <strong>A definir</strong></div>
+      <div class="qm" style="margin-top:5px">vs Q1 2025 (R$ 7.51M): <strong style="color:#00A650">+46.2% YoY &#9650;</strong></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">&#x1F525; Q2 2026 (Abr&ndash;Jun)</div>
+      <div class="qv" style="color:#00A650">R$ 13.94M</div>
+      <div class="qm">Meta: <strong>A definir</strong></div>
+      <div class="qm" style="margin-top:5px">vs Q2 2025 (R$ 5.70M): <strong style="color:#00A650">+144.7% YoY &#128640;</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) MTD</div>
+      <div class="qv" style="color:#E67E00">R$ 3.32M</div>
+      <div class="qm">Jul 1&ndash;15 &middot; R$ 221K/dia</div>
+      <div class="qm" style="margin-top:5px">Proje&ccedil;&atilde;o Jul: <strong style="color:#3483FA">R$ 6.86M</strong></div>
+    </div>
+  </div>
+
+  <!-- Cards H1 -->
+  <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+    <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">H1 2026 Total</div>
+      <div style="font-size:28px;font-weight:900">R$ 24.92M</div>
+      <div style="font-size:12px;color:#888;margin-top:4px">vs H1 2025 R$ 13.20M &middot; <span style="color:#00A650;font-weight:700">&#9650; +88.7% YoY</span></div>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">SIs H1 2026</div>
+      <div style="font-size:28px;font-weight:900">37,010</div>
+      <div style="font-size:12px;color:#888;margin-top:4px">vs H1 2025 21,391 &middot; <span style="color:#00A650;font-weight:700">&#9650; +73.0% YoY</span></div>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Ticket M&eacute;dio H1</div>
+      <div style="font-size:28px;font-weight:900">R$ 673</div>
+      <div style="font-size:12px;color:#888;margin-top:4px">24,919,034 &divide; 37,010 SIs</div>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Crescimento Q2 vs Q1</div>
+      <div style="font-size:28px;font-weight:900;color:#00A650">+27.0%</div>
+      <div style="font-size:12px;color:#888;margin-top:4px">R$ 13.94M vs R$ 10.98M &middot; sazonalidade inversa</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">GMV por M&ecirc;s H1 2026 vs 2025 + SIs</div>
+    <div class="chart-box" style="height:360px"><canvas id="cQ"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan","Fev","Mar","Abr","Mai","Jun"];
+    var nmv26  = [3934637, 3083657, 3959425, 3340870, 5198400, 5402045];
+    var nmv25  = [1954519, 3073343, 2478391, 1908300, 1898613, 1890665];
+    var yoyPct = nmv26.map(function(v,i){return nmv25[i]>0?(v/nmv25[i]-1)*100:null;});
+    var momPct = nmv26.map(function(v,i){return i===0?null:(v/nmv26[i-1]-1)*100;});
+    var si26   = [5703, 4908, 5642, 5474, 7411, 7872];
+    var si25   = [2619, 4475, 3447, 2726, 2604, 2520];
+    var colQ1  = '#B8CCF5';
+    var colQ2  = '#3483FA';
+    var colors26 = [colQ1,colQ1,colQ1,colQ2,colQ2,colQ2];
+    new Chart(document.getElementById('cQ'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026 (R$)',data:nmv26,backgroundColor:colors26,borderRadius:5,yAxisID:'yNmv',order:3,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'800'},
+           formatter:function(v,ctx){
+             var i=ctx.dataIndex;
+             var y=yoyPct[i];
+             var m=momPct[i];
+             var lines=[];
+             if(y!==null) lines.push((y>=0?'+':'')+y.toFixed(0)+'% YoY');
+             if(m!==null) lines.push((m>=0?'+':'')+m.toFixed(0)+'% MoM');
+             return lines.length?lines:null;
+           },
+           color:function(ctx){
+             var i=ctx.dataIndex;
+             var y=yoyPct[i];
+             return y!==null&&y>=0?'#007A3D':'#F23D4F';
+           },
+           font:{size:10,weight:'700'}}},
+        {label:'GMV 2025 (R$)',data:nmv25,backgroundColor:'#E0E0E0',borderRadius:5,yAxisID:'yNmv',order:4,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:5,pointBackgroundColor:'#FF9500',yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:48}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=1)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}}},
+        scales:{
+          yNmv:{position:'left',ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR')+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">Desempenho por M&ecirc;s &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th><th>M&ecirc;s</th>
+        <th style="text-align:right">GMV 2026</th>
+        <th style="text-align:right">GMV 2025</th>
+        <th style="text-align:right">YoY</th>
+        <th style="text-align:right">MoM</th>
+        <th style="text-align:right">SIs 2026</th>
+        <th style="text-align:right">SIs 2025</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Jan</td>
+          <td style="text-align:right;font-weight:700">R$ 3.93M</td>
+          <td style="text-align:right;color:#888">R$ 1.95M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+101.3% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#888">—</span></td>
+          <td style="text-align:right">5,703</td>
+          <td style="text-align:right;color:#888">2,619</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Fev</td>
+          <td style="text-align:right;font-weight:700">R$ 3.08M</td>
+          <td style="text-align:right;color:#888">R$ 3.07M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+0.3% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; -21.6%</span></td>
+          <td style="text-align:right">4,908</td>
+          <td style="text-align:right;color:#888">4,475</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Mar</td>
+          <td style="text-align:right;font-weight:700">R$ 3.96M</td>
+          <td style="text-align:right;color:#888">R$ 2.48M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+59.8% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; +28.4%</span></td>
+          <td style="text-align:right">5,642</td>
+          <td style="text-align:right;color:#888">3,447</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Abr</td>
+          <td style="text-align:right;font-weight:700">R$ 3.34M</td>
+          <td style="text-align:right;color:#888">R$ 1.91M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+75.1% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; -15.6%</span></td>
+          <td style="text-align:right">5,474</td>
+          <td style="text-align:right;color:#888">2,726</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Mai</td>
+          <td style="text-align:right;font-weight:700">R$ 5.20M</td>
+          <td style="text-align:right;color:#888">R$ 1.90M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+173.8% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; +55.6%</span></td>
+          <td style="text-align:right">7,411</td>
+          <td style="text-align:right;color:#888">2,604</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Jun</td>
+          <td style="text-align:right;font-weight:700">R$ 5.40M</td>
+          <td style="text-align:right;color:#888">R$ 1.89M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+185.7% &#9650;</span></td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; +3.9%</span></td>
+          <td style="text-align:right">7,872</td>
+          <td style="text-align:right;color:#888">2,520</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Resumo por Quarter &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th>
+        <th style="text-align:right">GMV 2026</th>
+        <th style="text-align:right">GMV 2025</th>
+        <th style="text-align:right">YoY</th>
+        <th style="text-align:right">SIs 2026</th>
+        <th style="text-align:right">SIs YoY</th>
+        <th>Meta</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800;color:#1A5DC8">Q1</td>
+          <td style="text-align:right;font-weight:700">R$ 10.98M</td>
+          <td style="text-align:right;color:#888">R$ 7.51M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+46.2% &#9650;</span></td>
+          <td style="text-align:right">16,253</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+53.9%</span></td>
+          <td><span style="background:#FFF9E0;color:#856404;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">A definir</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#856404">Q2</td>
+          <td style="text-align:right;font-weight:700">R$ 13.94M</td>
+          <td style="text-align:right;color:#888">R$ 5.70M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+144.7% &#128640;</span></td>
+          <td style="text-align:right">20,757</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+164.4%</span></td>
+          <td><span style="background:#FFF9E0;color:#856404;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">A definir</span></td>
+        </tr>
+        <tr style="background:#F5F5F5">
+          <td style="font-weight:800">H1 Total</td>
+          <td style="text-align:right;font-weight:700">R$ 24.92M</td>
+          <td style="text-align:right;color:#888">R$ 13.20M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">+88.7% &#9650;</span></td>
+          <td style="text-align:right">37,010</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+73.0%</span></td>
+          <td><span style="background:#FFF9E0;color:#856404;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">A definir</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="ok-box" style="margin-top:16px">&#128293; <strong>Destaque:</strong> Q2 2026 foi quase 2.5x maior que Q2 2025, superando Q1 2026 em R$ 2.96M &mdash; crescimento explosivo impulsionado por guarda-roupas e eletrodom&eacute;sticos.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise &amp; Pr&oacute;ximos Passos</div>
+    <div class="ig">
+      <div class="ic ok">
+        <div class="ic-ttl">&#9989; Q1 &mdash; Crescimento Consistente</div>
+        <div class="ic-val">+46.2% YoY</div>
+        <p>Q1 entregou R$ 10.98M (+46.2% vs R$ 7.51M em Q1 2025). Jan liderou com +101.3% YoY (R$ 3.93M). Fev teve crescimento modesto (+0.3% YoY), recuperado em Mar (+59.8% YoY). SIs cresceram +53.9%: 16,253 vs 10,541.</p>
+      </div>
+      <div class="ic ok">
+        <div class="ic-ttl">&#128640; Q2 &mdash; Crescimento Explosivo</div>
+        <div class="ic-val">+144.7% YoY</div>
+        <p>Q2 bateu todos os recordes: R$ 13.94M (+144.7% vs R$ 5.70M em Q2 2025). Junho excepcional com R$ 5.40M e +185.7% YoY. SIs cresceram +164.4%: 20,757 vs 7,850. O mix ampliado (guarda-roupas + geladeiras) impulsionou fortemente.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#128293; <strong>Lever para Q3:</strong> manter mix diversificado e acelerar investimento PADs nos top SKUs de guarda-roupa e eletrodom&eacute;sticos.
+        </div>
+      </div>
+      <div class="ic opp">
+        <div class="ic-ttl">&#128161; Oportunidade &mdash; Datas Duplas</div>
+        <div class="ic-val">7.7: R$ 410K (+78.5% vs 6.6)</div>
+        <p>A data dupla 7.7 entregou R$ 410,502 &mdash; +78.5% vs 6.6 (R$ 230,029). A trajet&oacute;ria das datas duplas mostra crescimento consistente: 1.1 R$65K &rarr; 7.7 R$410K. 8.8 pode superar o record com prepara&ccedil;&atilde;o adequada.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#127919; <strong>A&ccedil;&atilde;o:</strong> garantir estoque e PADs ativos nos top 5 MLBs para 8.8 &mdash; especialmente guarda-roupas Sidney e geladeiras.
+        </div>
+      </div>
+      <div class="ic warn">
+        <div class="ic-ttl">&#9888;&#65039; Q3 &mdash; Meta a Definir</div>
+        <div class="ic-val">R$ 3.32M MTD</div>
+        <p>Jul MTD (1&ndash;15) em R$ 3.32M com m&eacute;dia de R$ 221,202/dia (+22.9% vs Jun/dia). Proje&ccedil;&atilde;o jul completo: R$ 6.86M. Metas H2 ainda a definir &mdash; momento ideal para alinhar com o seller dado o forte momentum de Q2.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Jul MTD 2026 (1&ndash;15/Jul) por GMV</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV Jul MTD</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Share Jul</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="color:#888;font-size:11px">1</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB3588798789" target="_blank">GUARDA ROUPA SOLTEIRO 6P SIDNEY DORIPEL BRANCO</a><br><span style="font-size:10px;color:#999">MLB3588798789</span></td><td style="text-align:right;font-weight:700">R$ 152K</td><td style="text-align:right">362</td><td style="text-align:right">R$ 420</td><td style="text-align:right">4.6%</td></tr>
+        <tr><td style="color:#888;font-size:11px">2</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB4641711177" target="_blank">GELADEIRA ELECTROLUX IM7S 480L PLATINA 127V</a><br><span style="font-size:10px;color:#999">MLB4641711177</span></td><td style="text-align:right;font-weight:700">R$ 141K</td><td style="text-align:right">27</td><td style="text-align:right">R$ 5,210</td><td style="text-align:right">4.2%</td></tr>
+        <tr><td style="color:#888;font-size:11px">3</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB3588823733" target="_blank">GUARDA ROUPA SOLTEIRO 6P SIDNEY OFF WHITE/NOG</a><br><span style="font-size:10px;color:#999">MLB3588823733</span></td><td style="text-align:right;font-weight:700">R$ 135K</td><td style="text-align:right">319</td><td style="text-align:right">R$ 423</td><td style="text-align:right">4.1%</td></tr>
+        <tr><td style="color:#888;font-size:11px">4</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB3588773973" target="_blank">GUARDA ROUPA SOLTEIRO 6P SIDNEY PRETO</a><br><span style="font-size:10px;color:#999">MLB3588773973</span></td><td style="text-align:right;font-weight:700">R$ 104K</td><td style="text-align:right">245</td><td style="text-align:right">R$ 423</td><td style="text-align:right">3.1%</td></tr>
+        <tr><td style="color:#888;font-size:11px">5</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB4093979645" target="_blank">GELADEIRA ELECTROLUX 480L 3P BLACK IM7B</a><br><span style="font-size:10px;color:#999">MLB4093979645</span></td><td style="text-align:right;font-weight:700">R$ 74K</td><td style="text-align:right">14</td><td style="text-align:right">R$ 5,307</td><td style="text-align:right">2.2%</td></tr>
+        <tr><td style="color:#888;font-size:11px">6</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB4703534780" target="_blank">ARMÁRIO MULTIUSO 2P NEW ARAMÓVEIS</a><br><span style="font-size:10px;color:#999">MLB4703534780</span></td><td style="text-align:right;font-weight:700">R$ 61K</td><td style="text-align:right">259</td><td style="text-align:right">R$ 237</td><td style="text-align:right">1.8%</td></tr>
+        <tr><td style="color:#888;font-size:11px">7</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB5140768926" target="_blank">GELADEIRA MIDEA 474L INOX BIVOLT</a><br><span style="font-size:10px;color:#999">MLB5140768926</span></td><td style="text-align:right;font-weight:700">R$ 46K</td><td style="text-align:right">9</td><td style="text-align:right">R$ 5,105</td><td style="text-align:right">1.4%</td></tr>
+        <tr><td style="color:#888;font-size:11px">8</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB5237652790" target="_blank">SECADORA WANKE 12KG</a><br><span style="font-size:10px;color:#999">MLB5237652790</span></td><td style="text-align:right;font-weight:700">R$ 44K</td><td style="text-align:right">22</td><td style="text-align:right">R$ 2,000</td><td style="text-align:right">1.3%</td></tr>
+        <tr><td style="color:#888;font-size:11px">9</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB4728044378" target="_blank">GUARDA ROUPA SOLTEIRO 6P CAPRI CASTANHO</a><br><span style="font-size:10px;color:#999">MLB4728044378</span></td><td style="text-align:right;font-weight:700">R$ 42K</td><td style="text-align:right">101</td><td style="text-align:right">R$ 419</td><td style="text-align:right">1.3%</td></tr>
+        <tr><td style="color:#888;font-size:11px">10</td><td>&#127761; <a href="https://www.mercadolivre.com.br/p/MLB4201652069" target="_blank">GUARDA-ROUPA NOTÁVEL 4P FREIXO</a><br><span style="font-size:10px;color:#999">MLB4201652069</span></td><td style="text-align:right;font-weight:700">R$ 40K</td><td style="text-align:right">61</td><td style="text-align:right">R$ 649</td><td style="text-align:right">1.2%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_EFICIENCIA_MLB com NMV_FLG=TRUE &middot; IDs: 226418798 | 1784044230</div>
+  </div>
+
+</div>
+</body>
+</html>
