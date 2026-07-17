@@ -6,6 +6,7 @@
   <title>Relatorio MULTILOJA - Jul 2026</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script>Chart.register(ChartDataLabels);</script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
@@ -136,7 +137,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   (function(){
-    Chart.register(ChartDataLabels);
     var labels = ["1.1","2.2","3.3","4.4","5.5","6.6","7.7"];
     var gmvDD  = [65089, 167395, 162223, 115229, 179912, 230029, 410502];
     var sisDD  = [98, 268, 277, 188, 319, 399, 540];
