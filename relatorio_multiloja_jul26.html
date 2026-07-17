@@ -109,7 +109,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         {label:'Meta Desafio',data:[3548618,3295577,3827637,4400000,4345284,4743835,5237990,null,null,null,null,null],borderColor:'#F23D4F',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:4,pointBackgroundColor:'#F23D4F',spanGaps:false}
       ]},
       options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:50,bottom:20}},
-        plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){
+        plugins:{legend:{position:'top'},datalabels:{display:false},tooltip:{callbacks:{label:function(c){
           return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
         }}}},
         scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
@@ -127,7 +127,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
     {label:'2026',data:[5703, 4908, 5642, 5474, 7411, 7872, 4829, null, null, null, null, null],backgroundColor:'#3483FA',borderRadius:4},
     {label:'2025',data:[2619, 4475, 3447, 2726, 2604, 2520, 3560, 2962, 2817, 4667, 5253, 4453],backgroundColor:'#DDE8FF',borderRadius:4}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},datalabels:{display:false}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});
   </script>
 
   <!-- Comparação Datas Duplas -->
@@ -231,7 +231,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   (function(){
-    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul",["07/Jul","⭐ 7.7"],"08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul","16/Jul"];
+    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul","07/Jul ★","08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul","16/Jul"];
     var vals=[215916,183895,166034,150812,102107,225013,410502,186021,213922,214951,194111,226702,272063,302206,253770,251300];
     var colors=vals.map(function(_,i){return i===6?'#FF9500':'#3483FA';});
     new Chart(document.getElementById('cDailyMes'),{
@@ -239,7 +239,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
       options:{
         responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
+        plugins:{legend:{display:false},datalabels:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
         scales:{x:{ticks:{font:{size:10}}},y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toLocaleString('pt-BR')+'K';}}}}
       }
     });
