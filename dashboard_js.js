@@ -146,6 +146,8 @@ function setFiltro(preset,btnEl){
   }
   else if(preset==='ult30')keys=[MESES_DONE_FULL[MESES_DONE_FULL.length-1]];
   else if(preset==='ult3m')keys=MESES_DONE_FULL.slice(-3);
+  else if(preset==='h1'){keys=['jan','feb','mar','apr','may','jun'].filter(function(k){return MESES_DONE_FULL.indexOf(k)>=0;});}
+  else if(preset==='h2'){keys=['jul','aug','sep','oct','nov','dec'].filter(function(k){return MESES_DONE_FULL.indexOf(k)>=0;});}
   else if(preset.startsWith('mes_')){
     var mk=preset.replace('mes_','');
     if(MESES_DONE_FULL.indexOf(mk)>=0)keys=[mk];
@@ -1905,12 +1907,18 @@ function buildVGKPIs(){
     var nmvPrev=prevMk?nmvForMoM(prevMk):0;
     var nmv25=nmv25ForMoM(focalMk);
     if(isCurMTD){
-      // MTD: normaliza por taxa diária para comparar com mês cheio anterior
+      // MTD: comparar Jul 1-DIA_MES vs Jun 1-DIA_MES (mesmo número de dias)
       var dCur=Math.max(DIA_MES,1);
-      var dPrev=prevMk?(DIAS_MES_MAP[prevMk]||30):30;
       var d25=DIAS_MES_MAP[focalMk]||31;
-      var rCur=nmvFocal/dCur,rPrev=nmvPrev>0?nmvPrev/dPrev:0,r25=nmv25>0?nmv25/d25:0;
-      if(rPrev>0)momTGMV=(rCur-rPrev)/rPrev*100;
+      // Soma DAILY_GMV_PREV dias 1..DIA_MES para todos os grupos
+      var nmvPrevMTD=GRUPOS.reduce(function(s,g){
+        var dp=DAILY_GMV_PREV[g]||{};
+        return s+Object.keys(dp).reduce(function(ss,d){return +d<=dCur?ss+(dp[d]||0):ss;},0);
+      },0);
+      var nmvPrevBase=nmvPrevMTD>0?nmvPrevMTD:(nmvPrev>0?nmvPrev/((DIAS_MES_MAP[prevMk]||30))*dCur:0);
+      if(nmvPrevBase>0)momTGMV=(nmvFocal-nmvPrevBase)/nmvPrevBase*100;
+      var dPrev=prevMk?(DIAS_MES_MAP[prevMk]||30):30;
+      var r25=nmv25>0?nmv25/d25:0,rCur=nmvFocal/dCur;
       if(r25>0)yoyTGMV=(rCur-r25)/r25*100;
     } else {
       // Mês completo: comparação direta de totais
@@ -4058,13 +4066,14 @@ function buildSellersConsolidated(){
     var mom=null,yoy=null;
     if(PERIODO.length===1){
       if(isCurMTD_sc){
-        // MTD: taxa di\u00e1ria
+        // MTD: Jul 1-DIA_MES vs Jun 1-DIA_MES (mesmo n\u00famero de dias)
         var dCur_sc=Math.max(DIA_MES,1);
-        var dPrev_sc=prevMk_sc?(DIAS_MES_MAP[prevMk_sc]||30):30;
         var d25_sc=DIAS_MES_MAP[focalMk]||31;
-        var rCur_sc=nmvFocal/dCur_sc,rPrev_sc=nmvPrev_sc>0?nmvPrev_sc/dPrev_sc:0,r25_sc=nmv25>0?nmv25/d25_sc:0;
-        var rCur_yoy=nmvFocal_yoy/dCur_sc;
-        if(rPrev_sc>0)mom=(rCur_sc-rPrev_sc)/rPrev_sc*100;
+        var dp_sc=DAILY_GMV_PREV[g]||{};
+        var nmvPrevMTD_sc=Object.keys(dp_sc).reduce(function(s,d){return +d<=dCur_sc?s+(dp_sc[d]||0):s;},0);
+        var nmvPrevBase_sc=nmvPrevMTD_sc>0?nmvPrevMTD_sc:(nmvPrev_sc>0?nmvPrev_sc/(DIAS_MES_MAP[prevMk_sc]||30)*dCur_sc:0);
+        if(nmvPrevBase_sc>0)mom=(nmvFocal-nmvPrevBase_sc)/nmvPrevBase_sc*100;
+        var r25_sc=nmv25>0?nmv25/d25_sc:0,rCur_yoy=nmvFocal_yoy/dCur_sc;
         if(r25_sc>0)yoy=(rCur_yoy-r25_sc)/r25_sc*100;
       } else {
         // M\u00eas fechado: compara\u00e7\u00e3o direta
@@ -4074,6 +4083,19 @@ function buildSellersConsolidated(){
     } else {
       // Multi-meses: YoY via BT_UE_OUTPUT
       if(nmv25>0)yoy=(nmvFocal_yoy-nmv25)/nmv25*100;
+      // MoM sempre: mês atual MTD vs mesmo período mês anterior (taxa diária)
+      var _curMk=MESES_DONE[MESES_DONE.length-1];
+      var _curIdx=MONTH_ORDER_SC.indexOf(_curMk);
+      var _prevMk=_curIdx>0?MONTH_ORDER_SC[_curIdx-1]:null;
+      if(_prevMk){
+        var _nmvCur=nmvUE[_curMk]||((REAL_MENSAL[g]||{})[_curMk]||0);
+        var _dCur=Math.max(DIA_MES,1);
+        var _dp=DAILY_GMV_PREV[g]||{};
+        var _nmvPrevMTD=Object.keys(_dp).reduce(function(s,d){return +d<=_dCur?s+(_dp[d]||0):s;},0);
+        var _nmvPrevFull=nmvUE[_prevMk]||((REAL_MENSAL[g]||{})[_prevMk]||0);
+        var _nmvPrev=_nmvPrevMTD>0?_nmvPrevMTD:(_nmvPrevFull>0?_nmvPrevFull/(DIAS_MES_MAP[_prevMk]||30)*_dCur:0);
+        if(_nmvPrev>0)mom=(_nmvCur-_nmvPrev)/_nmvPrev*100;
+      }
     }
     var repLvl=rep.rep_level||'';
     return {g:g,nmv:nmv,si:si,inv:inv,invNmv:invNmv,meta:meta,ating:ating,canc:cancYTD,mom:mom,yoy:yoy,repLvl:repLvl};
