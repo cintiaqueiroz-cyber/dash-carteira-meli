@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BALAQUI — H1 Fechamento + Estratégia H2 & Black Friday 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:32px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:28px;font-weight:900;letter-spacing:-.5px}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:5px}
+.hdr-right{text-align:right}
+.hdr-right .tag{font-size:11px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-weight:700;margin-bottom:8px;display:inline-block}
+.hdr-right .ating-lbl{font-size:12px;opacity:.8}
+.hdr-right .ating-val{font-size:36px;font-weight:900;color:#FFE600}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+/* Quarter grid */
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #3483FA;box-shadow:0 4px 16px rgba(52,131,250,.15)}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:30px;font-weight:900;margin-bottom:6px}
+.qc .qm{font-size:12px;color:#888;line-height:1.5}
+/* Sections */
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+.sec-ttl.yellow::before{background:#FFE600}
+.sec-ttl.orange::before{background:#FF7A00}
+.sec-ttl.red::before{background:#F23D4F}
+/* Chart */
+.chart-box{position:relative;height:340px}
+.chart-box-sm{position:relative;height:260px}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+/* Insight grid */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic.bf{background:#1A1A2E;border-left:4px solid #FFE600;color:#fff}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic.bf .ic-ttl{color:#FFE600}
+.ic .ic-val{font-size:24px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:12px}
+.warn-box{background:#FEF9F9;border:1px solid #F5C6CB;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:12px}
+/* BF section */
+.bf-hdr{background:linear-gradient(135deg,#1A1A1A,#2D2D2D);border-radius:12px;padding:24px 28px;margin-bottom:16px;color:#fff}
+.bf-hdr h2{font-size:22px;font-weight:900;color:#FFE600;margin-bottom:4px}
+.bf-hdr .sub{font-size:13px;opacity:.7}
+/* KPI row */
+.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kcard{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);padding:18px;border-top:3px solid #E0E0E0}
+.kcard.blue{border-top-color:#3483FA}
+.kcard.green{border-top-color:#00A650}
+.kcard.orange{border-top-color:#FF7A00}
+.kcard.red{border-top-color:#F23D4F}
+.kcard.yellow{border-top-color:#FFE600}
+.kcard .kl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;font-weight:700}
+.kcard .kv{font-size:24px;font-weight:900;color:#1A1A1A}
+.kcard .ks{font-size:11px;color:#888;margin-top:4px}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700} .warn-c{color:#E67E00;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.pl-d{background:#1A1A2E;color:#FFE600}
+a{color:#3483FA;text-decoration:none}
+/* action list */
+.act{display:flex;flex-direction:column;gap:10px}
+.act-item{display:flex;gap:12px;align-items:flex-start}
+.act-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;color:#fff}
+.act-txt{font-size:13px;color:#ddd;line-height:1.5}
+/* divider */
+.page-break{border:none;border-top:3px solid #FFE600;margin:28px 0 20px}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<div class="hdr">
+  <div>
+    <h1>BALAQUI &mdash; Reuni&atilde;o Estrat&eacute;gica H2 2026</h1>
+    <div class="sub">Fechamento H1 &middot; Estrat&eacute;gia H2 &middot; Black Friday 2026 &middot; Jul/2026</div>
+    <div class="sub" style="margin-top:3px;opacity:.5">KAM: Cintia Faraco Queiroz &middot; IDs: 530094229 | 698931952 | 1056910428</div>
+  </div>
+  <div class="hdr-right">
+    <div class="tag">&#x1F525; Reuni&atilde;o Presencial</div>
+    <div class="ating-lbl">H1 2026 — Atingimento Meta Desafio</div>
+    <div class="ating-val">95.8%</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════════ QUARTER GRID ═══════════════════════════════ -->
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#00A650">R$ 4.96M</div>
+      <div class="qm">Meta Des: R$ 4.49M &middot; Ating: <strong style="color:#00A650">110.7% &#9989;</strong></div>
+      <div class="qm" style="margin-top:5px">vs Q1 2025 (R$ 3.37M): <strong style="color:#00A650">+47.3% YoY &#9650;</strong></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">&#x1F525; Q2 2026 (Abr&ndash;Jun) &mdash; Fechamento</div>
+      <div class="qv" style="color:#E67E00">R$ 4.67M</div>
+      <div class="qm">Meta Des: R$ 5.57M &middot; Ating: <strong style="color:#E67E00">83.9% &#9888;&#65039;</strong></div>
+      <div class="qm" style="margin-top:5px">vs Q2 2025 (R$ 3.40M): <strong style="color:#00A650">+37.4% YoY</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) MTD</div>
+      <div class="qv" style="color:#3483FA">R$ 947K</div>
+      <div class="qm">Meta Jul: R$ 2.06M &middot; Pace: <strong style="color:#E67E00">75.1%</strong> projetado</div>
+      <div class="qm" style="margin-top:5px">R$ 49.831/dia &middot; Proj. Jul: <strong style="color:#3483FA">R$ 1.54M</strong></div>
+    </div>
+  </div>
+
+<!-- ═══════════ KPIs GERAIS H1 ═══════════ -->
+  <div class="krow">
+    <div class="kcard blue"><div class="kl">GMV H1 2026</div><div class="kv">R$ 9.63M</div><div class="ks">Jan&ndash;Jun &middot; <span class="pos">+42.3% YoY</span></div></div>
+    <div class="kcard green"><div class="kl">Ating. Meta Des. H1</div><div class="kv" style="color:#E67E00">95.8%</div><div class="ks">R$ 9.63M &divide; R$ 10.05M meta</div></div>
+    <div class="kcard orange"><div class="kl">Ticket M&eacute;dio H1 2026</div><div class="kv">R$ 995</div><div class="ks"><span class="pos">+72% vs H1 2025</span> (R$578)</div></div>
+    <div class="kcard blue"><div class="kl">SIs H1 2026</div><div class="kv">9.711</div><div class="ks">vs H1 2025: 10.421 SIs (<span class="warn-c">-6.8%</span>)</div></div>
+  </div>
+
+<!-- ═══════════ CHART H1: GMV MENSAL ═══════════ -->
+  <div class="sec">
+    <div class="sec-ttl">GMV por M&ecirc;s H1 2026 vs 2025 + Meta Desafio + SIs</div>
+    <div class="chart-box"><canvas id="cH1"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan","Fev","Mar","Abr","Mai","Jun"];
+    var gmv26  = [1630157,1546945,1786708,1317064,1762546,1590174];
+    var gmv25  = [1241600,1042785,1085443,1131479,1227903,1039370];
+    var meta   = [1392555,1293256,1800000,2000000,1705184,1861584];
+    var si26   = [1704,1762,1851,1314,1678,1402];
+    var si25   = [2238,1699,1867,1881,2052,1683];
+    var momPct = gmv26.map(function(v,i){return i===0?null:(v/gmv26[i-1]-1)*100;});
+    var yoyPct = gmv26.map(function(v,i){return gmv25[i]>0?(v/gmv25[i]-1)*100:null;});
+    var cols26 = gmv26.map(function(_,i){return i<3?'#B8CCF5':'#3483FA';});
+    new Chart(document.getElementById('cH1'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026 (R$)',data:gmv26,backgroundColor:cols26,borderRadius:5,yAxisID:'yG',order:3,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'800'},
+           formatter:function(v,ctx){var i=ctx.dataIndex;var lines=[];var m=momPct[i];var y=yoyPct[i];
+             if(m!==null)lines.push((m>=0?'+':'')+m.toFixed(1)+'% MoM');
+             if(y!==null)lines.push((y>=0?'+':'')+y.toFixed(1)+'% YoY');
+             return lines.length?lines:null;},
+           color:function(ctx){var i=ctx.dataIndex;var m=momPct[i];if(m!==null)return m>=0?'#00A650':'#F23D4F';return '#F23D4F';}}},
+        {label:'GMV 2025 (R$)',data:gmv25,backgroundColor:'#E0E0E0',borderRadius:5,yAxisID:'yG',order:4,datalabels:{display:false}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#3483FA',backgroundColor:'transparent',tension:.3,pointRadius:4,pointBackgroundColor:'#3483FA',yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:50}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=2)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}},datalabels:{}},
+        scales:{
+          yG:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+<!-- ═══════════ TABELA ATINGIMENTO H1 ═══════════ -->
+  <div class="sec">
+    <div class="sec-ttl">Atingimento por M&ecirc;s &mdash; H1 2026 vs Meta Desafio</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th><th>M&ecirc;s</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">YoY GMV</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Jan</td>
+          <td style="text-align:right;font-weight:700">R$ 1.630.157</td><td style="text-align:right">R$ 1.392.555</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">117.1% &#9989;</span></td>
+          <td style="text-align:right;color:#00A650">+R$ 237.602</td><td style="text-align:right">1.704</td><td style="text-align:right">R$ 957</td>
+          <td style="text-align:right"><span class="pos">+31.3%</span></td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Fev</td>
+          <td style="text-align:right;font-weight:700">R$ 1.546.945</td><td style="text-align:right">R$ 1.293.256</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">119.6% &#9989;</span></td>
+          <td style="text-align:right;color:#00A650">+R$ 253.689</td><td style="text-align:right">1.762</td><td style="text-align:right">R$ 878</td>
+          <td style="text-align:right"><span class="pos">+48.4%</span></td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Mar</td>
+          <td style="text-align:right;font-weight:700">R$ 1.786.708</td><td style="text-align:right">R$ 1.800.000</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">99.3% &#9888;&#65039;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 13.292</td><td style="text-align:right">1.851</td><td style="text-align:right">R$ 965</td>
+          <td style="text-align:right"><span class="pos">+64.6%</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Abr</td>
+          <td style="text-align:right;font-weight:700">R$ 1.317.064</td><td style="text-align:right">R$ 2.000.000</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">65.9% &#10060;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 682.936</td><td style="text-align:right">1.314</td><td style="text-align:right">R$ 1.002</td>
+          <td style="text-align:right"><span class="pos">+16.4%</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Mai</td>
+          <td style="text-align:right;font-weight:700">R$ 1.762.546</td><td style="text-align:right">R$ 1.705.184</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">103.4% &#9989;</span></td>
+          <td style="text-align:right;color:#00A650">+R$ 57.362</td><td style="text-align:right">1.678</td><td style="text-align:right">R$ 1.050</td>
+          <td style="text-align:right"><span class="pos">+43.5%</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Jun</td>
+          <td style="text-align:right;font-weight:700">R$ 1.590.174</td><td style="text-align:right">R$ 1.861.584</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">85.4% &#9888;&#65039;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 271.410</td><td style="text-align:right">1.402</td><td style="text-align:right">R$ 1.134</td>
+          <td style="text-align:right"><span class="pos">+53.0%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!-- ═══════════ RESUMO META H1 ═══════════ -->
+  <div class="sec">
+    <div class="sec-ttl">Resumo Meta Desafio &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800;color:#1A5DC8">Q1</td>
+          <td style="text-align:right;font-weight:700">R$ 4.963.810</td><td style="text-align:right">R$ 4.485.811</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">110.7% &#9989;</span></td>
+          <td style="text-align:right;color:#00A650">+R$ 477.999 (excedente)</td>
+          <td><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Meta batida &#9989;</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#856404">Q2</td>
+          <td style="text-align:right;font-weight:700">R$ 4.669.784</td><td style="text-align:right">R$ 5.566.768</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">83.9% &#9888;&#65039;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 896.984</td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Abaixo — Abr criti co &#9888;</span></td>
+        </tr>
+        <tr style="background:#F5F5F5">
+          <td style="font-weight:800">H1 Total</td>
+          <td style="text-align:right;font-weight:700">R$ 9.633.594</td><td style="text-align:right">R$ 10.052.579</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">95.8% &#9888;&#65039;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 418.985</td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Muito pr&oacute;ximo — gap pequeno &#9888;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="ok-box" style="margin-top:16px">&#127919; <strong>H1 quase bateu a meta desafio</strong> (95.8%). O gap de apenas R$419K foi gerado principalmente em Abril (65.9%). Q1 compensou com folga (+R$478K excedente). Com Abril normalizado, H1 teria batido 100%+.</div>
+  </div>
+
+<!-- ═══════════ ANÁLISE H1 ═══════════ -->
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise H1 2026</div>
+    <div class="ig">
+      <div class="ic ok">
+        <div class="ic-ttl">&#9989; Q1 &mdash; Melhor Quarter do Ano</div>
+        <div class="ic-val">110.7%</div>
+        <p>Q1 bateu a meta desafio com folga. Jan (+17.1%), Fev (+19.6%) ambos acima da meta. Mar quasi-bateu (99.3%). YoY foi excecpional: +47% vs Q1 2025. Evidencia demanda s&oacute;lida no in&iacute;cio do ano.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#128293; <strong>Sinal positivo:</strong> crescimento YoY consistente em todos os 3 meses.
+        </div>
+      </div>
+      <div class="ic warn">
+        <div class="ic-ttl">&#9888;&#65039; Abril &mdash; Gap Cr&iacute;tico a Diagnosticar</div>
+        <div class="ic-val">65.9% Abr</div>
+        <p>Abril foi o &uacute;nico m&ecirc;s verdadeiramente abaixo da meta (65.9%). GMV caiu 26.3% MoM de Mar&ccedil;o. Mesmo com YoY positivo (+16.4%), a meta de R$2M para Abril era muito alta. Investigar: campanhas de P&aacute;scoa, estoque, buybox. Mai e Jun se recuperaram.</p>
+      </div>
+      <div class="ic opp">
+        <div class="ic-ttl">&#128200; Ticket M&eacute;dio +72% &mdash; Mix Premium</div>
+        <div class="ic-val">R$ 995 H1 2026</div>
+        <p>O ticket m&eacute;dio saltou de R$578 (H1 2025) para R$995 (H1 2026) — aumento de +72%. O Sof&aacute; Cama Compact Air Bouclê (R$1.57K) e Camas Montessoriana (R$1.5K+) puxaram este upgrade. M&eacute;nos SIs, mais valor por venda — posicionamento premium se consolidando.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#127919; <strong>Estrat&eacute;gia:</strong> sustentar mix premium em H2 &mdash; BF &eacute; oportunidade de volume sem sacrificar ticket.
+        </div>
+      </div>
+      <div class="ic nok">
+        <div class="ic-ttl">&#10071; SIs em Queda &mdash; Volume vs Valor</div>
+        <div class="ic-val">9.711 SIs H1</div>
+        <p>SIs caiu 6.8% vs H1 2025 (10.421 SIs), mas GMV cresceu 42%. Isso &eacute; saud&aacute;vel (ticket mais alto), mas pode indicar items de menor ticket pausados ou perda de volume em categorias de entrada. Para H2, equilibrar: manter premium mas garantir alcance em produtos de volume tamb&eacute;m.</p>
+      </div>
+    </div>
+  </div>
+
+<!-- ═══════════ TOP 10 H1 ═══════════ -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Produtos &mdash; H1 2026 (Jan&ndash;Jun)</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV H1</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Share H1</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="color:#888;font-size:11px">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank">SOF&Aacute; LIVING 3 LUGARES SUEDE RESISTENTE MADEIRA + ALMOFADAS</a><br><span style="font-size:10px;color:#999">MLB5365991654</span></td>
+          <td style="text-align:right;font-weight:700">R$ 917.457</td><td style="text-align:right">1.184</td><td style="text-align:right">R$ 775</td>
+          <td style="text-align:right"><span class="pill pl-b">9.5%</span></td></tr>
+        <tr><td style="color:#888;font-size:11px">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; ROSA</a><br><span style="font-size:10px;color:#999">MLB5864213932</span></td>
+          <td style="text-align:right;font-weight:700">R$ 759.198</td><td style="text-align:right">492</td><td style="text-align:right">R$ 1.543</td>
+          <td style="text-align:right"><span class="pill pl-b">7.9%</span></td></tr>
+        <tr><td style="color:#888;font-size:11px">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank">SOF&Aacute; CAMA COMPACT AIR CONFORT&Aacute;VEL SALA GRAFITE BOUCLÊ</a><br><span style="font-size:10px;color:#999">MLB4304679587</span></td>
+          <td style="text-align:right;font-weight:700">R$ 681.128</td><td style="text-align:right">434</td><td style="text-align:right">R$ 1.569</td>
+          <td style="text-align:right"><span class="pill pl-b">7.1%</span></td></tr>
+        <tr><td style="color:#888;font-size:11px">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; CINZA/GRAFITE</a><br><span style="font-size:10px;color:#999">MLB5901779680</span></td>
+          <td style="text-align:right;font-weight:700">R$ 437.064</td><td style="text-align:right">289</td><td style="text-align:right">R$ 1.512</td>
+          <td style="text-align:right"><span class="pill pl-y">4.5%</span></td></tr>
+        <tr><td style="color:#888;font-size:11px">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; BEGE</a><br><span style="font-size:10px;color:#999">MLB5903044944</span></td>
+          <td style="text-align:right;font-weight:700">R$ 406.365</td><td style="text-align:right">259</td><td style="text-align:right">R$ 1.569</td>
+          <td style="text-align:right"><span class="pill pl-y">4.2%</span></td></tr>
+        <tr><td style="color:#888;font-size:11px">6</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank">SOF&Aacute; CAMA COMPACT AIR SALA CINZA CLARO BOUCLÊ</a><br><span style="font-size:10px;color:#999">MLB4304337063</span></td>
+          <td style="text-align:right;font-weight:700">R$ 314.401</td><td style="text-align:right">202</td><td style="text-align:right">R$ 1.556</td>
+          <td style="text-align:right">3.3%</td></tr>
+        <tr><td style="color:#888;font-size:11px">7</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; CINZA CLARO</a><br><span style="font-size:10px;color:#999">MLB4299910923</span></td>
+          <td style="text-align:right;font-weight:700">R$ 307.464</td><td style="text-align:right">196</td><td style="text-align:right">R$ 1.569</td>
+          <td style="text-align:right">3.2%</td></tr>
+        <tr><td style="color:#888;font-size:11px">8</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">SOF&Aacute; CAMA COMPACT AIR SALA BEGE BOUCLÊ</a><br><span style="font-size:10px;color:#999">MLB5932961222</span></td>
+          <td style="text-align:right;font-weight:700">R$ 301.000</td><td style="text-align:right">181</td><td style="text-align:right">R$ 1.663</td>
+          <td style="text-align:right">3.1%</td></tr>
+        <tr><td style="color:#888;font-size:11px">9</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">KIT 1 POLTRONA LIVING + SOF&Aacute; REFOR&Ccedil;ADO MADEIRA SUEDE</a><br><span style="font-size:10px;color:#999">MLB5365913948</span></td>
+          <td style="text-align:right;font-weight:700">R$ 222.477</td><td style="text-align:right">184</td><td style="text-align:right">R$ 1.209</td>
+          <td style="text-align:right">2.3%</td></tr>
+        <tr><td style="color:#888;font-size:11px">10</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4302505513" target="_blank">SOF&Aacute; CAMA COMPACT AIR GRAFITE (VAR.)</a><br><span style="font-size:10px;color:#999">MLB4302505513</span></td>
+          <td style="text-align:right;font-weight:700">R$ 186.360</td><td style="text-align:right">107</td><td style="text-align:right">R$ 1.742</td>
+          <td style="text-align:right">1.9%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:#F8FAFF;border-radius:8px;font-size:12px;color:#555">
+      &#128161; <strong>2 linhas de produto dominam o H1:</strong> Sof&aacute;s Living/Cama (Sofá Living Suede + Compact Air = R$2.40M &middot; 25%) e Camas Montessoriana Infantil (Rosa+Cinza+Bege = R$1.60M &middot; 16.6%). Juntos = <strong>41.6% do H1</strong>.
+    </div>
+  </div>
+
+<!-- ══════════════════════ H2: PASSADO vs FUTURO ══════════════════════ -->
+  <hr class="page-break">
+  <div class="bf-hdr" style="background:linear-gradient(135deg,#1A3A1A,#2D4A2D)">
+    <h2 style="color:#00A650">&#127807; H2 2026 &mdash; Potencial vs Hist&oacute;rico</h2>
+    <div class="sub">H2 2025: R$ 8.54M &middot; Meta Desafio H2 2026: R$ 12.75M (+49.3%) &middot; Projeção realista: R$ 11.5&ndash;12.2M</div>
+  </div>
+
+<!-- Chart H2 comparison -->
+  <div class="sec">
+    <div class="sec-ttl orange">H2 2025 Realizado vs H2 2026 Meta Desafio + Projeção</div>
+    <div class="chart-box"><canvas id="cH2"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jul","Ago","Set","Out","Nov","Dez"];
+    var h2_25  = [1670566,1252669,1205362,1303580,1788085,1323870];
+    var meta26 = [2055501,1990975,2171549,2307595,2353919,1873240];
+    var proj26 = [1544761,null,null,null,null,null]; // Jul projeção, resto a definir
+    new Chart(document.getElementById('cH2'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'H2 2025 Realizado',data:h2_25,backgroundColor:'#B8CCF5',borderRadius:5,yAxisID:'yG',order:3,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+           formatter:function(v){return 'R$'+(v/1000).toFixed(0)+'K';},color:'#555'}},
+        {label:'Meta Des. 2026',data:meta26,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,
+         datalabels:{anchor:'end',align:'top',offset:4,font:{size:10,weight:'700'},
+           formatter:function(v){return 'Meta: R$'+(v/1000).toFixed(0)+'K';},color:'#FF7A00'}},
+        {label:'Jul 2026 (proj.)',data:proj26,backgroundColor:'#3483FA',borderRadius:5,yAxisID:'yG',order:2,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+           formatter:function(v){return v?'R$'+(v/1000).toFixed(0)+'K':null;},color:'#1A5DC8'}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:40}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');}}},datalabels:{}},
+        scales:{yG:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}}}
+      }
+    });
+  })();
+  </script>
+
+<!-- Tabela H2 comparação -->
+  <div class="sec">
+    <div class="sec-ttl orange">H2 M&ecirc;s a M&ecirc;s &mdash; 2025 Realizado vs 2026 Meta Desafio</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>M&ecirc;s</th>
+        <th style="text-align:right">H2 2025 Realizado</th>
+        <th style="text-align:right">SIs 2025</th>
+        <th style="text-align:right">Ticket 2025</th>
+        <th style="text-align:right">Meta Des. 2026</th>
+        <th style="text-align:right">Crescimento necess&aacute;rio</th>
+        <th>Destaque</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700">Jul</td>
+          <td style="text-align:right">R$ 1.670.566</td><td style="text-align:right">2.375</td><td style="text-align:right">R$ 703</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 2.055.501</td>
+          <td style="text-align:right"><span class="warn-c">+23.0%</span></td>
+          <td><span class="pill pl-b">Proj. R$1.54M (75%)</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Ago</td>
+          <td style="text-align:right">R$ 1.252.669</td><td style="text-align:right">1.403</td><td style="text-align:right">R$ 893</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 1.990.975</td>
+          <td style="text-align:right"><span class="warn-c">+58.9%</span></td>
+          <td><span class="pill" style="background:#FFE600;color:#1A1A1A">&#127880; 8.8</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Set</td>
+          <td style="text-align:right">R$ 1.205.362</td><td style="text-align:right">1.592</td><td style="text-align:right">R$ 757</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 2.171.549</td>
+          <td style="text-align:right"><span class="warn-c">+80.2%</span></td>
+          <td><span class="pill pl-b">Pr&eacute;-BF prep.</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Out</td>
+          <td style="text-align:right">R$ 1.303.580</td><td style="text-align:right">1.809</td><td style="text-align:right">R$ 721</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 2.307.595</td>
+          <td style="text-align:right"><span class="warn-c">+77.0%</span></td>
+          <td><span class="pill pl-b">Aquecimento BF</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Nov</td>
+          <td style="text-align:right;font-weight:700">R$ 1.788.085</td><td style="text-align:right">1.951</td><td style="text-align:right">R$ 916</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 2.353.919</td>
+          <td style="text-align:right"><span class="warn-c">+31.7%</span></td>
+          <td><span class="pill pl-d">&#127881; BLACK FRIDAY</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Dez</td>
+          <td style="text-align:right">R$ 1.323.870</td><td style="text-align:right">1.313</td><td style="text-align:right">R$ 1.008</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 1.873.240</td>
+          <td style="text-align:right"><span class="warn-c">+41.5%</span></td>
+          <td><span class="pill pl-g">Natal &amp; Ano Novo</span></td>
+        </tr>
+        <tr style="background:#FFFBEA;font-weight:800">
+          <td>Total H2</td>
+          <td style="text-align:right">R$ 8.544.132</td><td style="text-align:right">10.443</td><td style="text-align:right">R$ 818</td>
+          <td style="text-align:right;color:#FF9500">R$ 12.752.779</td>
+          <td style="text-align:right"><span class="warn-c">+49.3%</span></td>
+          <td>Meta ambiciosa</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="warn-box" style="margin-top:16px">&#9888; <strong>Meta H2 2026 exige +49.3% vs H2 2025.</strong> Desafio real — mas com ticket crescendo (+72% em H1), foco em datas comemorativas (8.8, BF) e amp lia&#231;&atilde;o de cat&aacute;logo, &eacute; poss&iacute;vel atingir R$ 11-12M realista vs meta R$ 12.75M.</div>
+  </div>
+
+<!-- ══════════════════════ BLACK FRIDAY ══════════════════════ -->
+  <hr class="page-break">
+  <div class="bf-hdr">
+    <h2>&#127881; Black Friday 2026 &mdash; Planejamento</h2>
+    <div class="sub">BF 2025: R$ 668.202 &middot; 622 SIs &middot; Ticket R$ 1.074 (24-30/Nov/2025) &middot; Target 2026: R$ 1M+</div>
+  </div>
+
+<!-- BF KPIs -->
+  <div class="krow">
+    <div class="kcard yellow"><div class="kl">BF 2025 GMV (7 dias)</div><div class="kv">R$ 668K</div><div class="ks">24-30/Nov/2025 &middot; 622 SIs</div></div>
+    <div class="kcard yellow"><div class="kl">Ticket BF 2025</div><div class="kv">R$ 1.074</div><div class="ks">vs ticket Nov usual: R$ 916 (+17%)</div></div>
+    <div class="kcard blue"><div class="kl">Target BF 2026</div><div class="kv" style="color:#3483FA">R$ 1M+</div><div class="ks">+50% vs BF 2025 &mdash; poss&iacute;vel com mix atual</div></div>
+    <div class="kcard green"><div class="kl">% do Mês Nov 2025</div><div class="kv">37.4%</div><div class="ks">R$668K de R$1.79M nov total</div></div>
+  </div>
+
+<!-- Top items BF 2025 -->
+  <div class="sec">
+    <div class="sec-ttl" style="color:#1A1A1A"><span style="background:#FFE600;padding:2px 8px;border-radius:4px;margin-right:8px">BF</span>Top Produtos H2 2025 + Performance Black Friday</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV H2 2025</th>
+        <th style="text-align:right">SIs H2</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">SIs na BF</th>
+        <th style="text-align:right">% BF/H2</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="font-size:11px;color:#888">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5445044850" target="_blank">SOF&Aacute; CAMA COMPACT AIR CASAL CONFORT&Aacute;VEL</a><br><span style="font-size:10px;color:#999">MLB5445044850</span></td>
+          <td style="text-align:right;font-weight:700">R$ 977.150</td><td style="text-align:right">532</td><td style="text-align:right">R$ 1.837</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">5 SIs</span></td>
+          <td style="text-align:right">0.9%</td></tr>
+        <tr><td style="font-size:11px;color:#888">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5366004716" target="_blank">SOF&Aacute; LIVING 3 LUGARES LINHO RESISTENTE MADEIRA</a><br><span style="font-size:10px;color:#999">MLB5366004716</span></td>
+          <td style="text-align:right;font-weight:700">R$ 400.322</td><td style="text-align:right">385</td><td style="text-align:right">R$ 1.040</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">33 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-g">8.6%</span></td></tr>
+        <tr><td style="font-size:11px;color:#888">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank">SOF&Aacute; CAMA COMPACT AIR GRAFITE BOUCLÊ</a><br><span style="font-size:10px;color:#999">MLB4304679587</span></td>
+          <td style="text-align:right;font-weight:700">R$ 175.920</td><td style="text-align:right">113</td><td style="text-align:right">R$ 1.557</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">39 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-g">34.5%</span></td></tr>
+        <tr><td style="font-size:11px;color:#888">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">SOF&Aacute; CAMA COMPACT AIR BEGE BOUCLÊ</a><br><span style="font-size:10px;color:#999">MLB5932961222</span></td>
+          <td style="text-align:right;font-weight:700">R$ 109.579</td><td style="text-align:right">74</td><td style="text-align:right">R$ 1.481</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">29 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-g">39.2%</span></td></tr>
+        <tr><td style="font-size:11px;color:#888">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5366004716" target="_blank">SOF&Aacute; LIVING BENY LINHO C/ PÉS MADEIRA CRU</a><br><span style="font-size:10px;color:#999">MLB4053778279</span></td>
+          <td style="text-align:right;font-weight:700">R$ 161.915</td><td style="text-align:right">168</td><td style="text-align:right">R$ 964</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">26 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-g">15.5%</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:#1A1A2E;border-radius:8px;font-size:12px;color:#ddd">
+      &#128293; <strong style="color:#FFE600">Insight BF:</strong> Sof&aacute; Cama Compact Air Bouclê (Grafite+Bege) foram os itens com maior propor&ccedil;&atilde;o de vendas na BF (34-39% dos SIs H2 aconteceram na semana BF). S&atilde;o os <strong style="color:#FFE600">itens-foco para BF 2026</strong>.
+    </div>
+  </div>
+
+<!-- Estratégia BF -->
+  <div class="sec">
+    <div class="sec-ttl" style="color:#1A1A1A">&#128293; Estrat&eacute;gia Black Friday 2026 &mdash; Plano de A&ccedil;&atilde;o</div>
+    <div class="ig">
+      <div class="ic bf">
+        <div class="ic-ttl">&#9679; Ag/Set &mdash; Prepara&ccedil;&atilde;o Estrutural</div>
+        <div class="ic-val" style="color:#FFE600">Ago &mdash; Set</div>
+        <p style="color:#ccc">1. Garantir estoque nos SKUs campe&atilde;os BF 2025 (Sof&aacute; Compact Air Grafite+Bege).<br>2. Ativar/revisar ADS em todos os top 10.<br>3. Obter optins em campanhas de Pre&ccedil;o Cr&iacute;vel e Relâmpago para Nov.<br>4. Garantir 100% me1 (logística pr&oacute;pria) nos itens-chave BF.</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">&#9679; Outubro &mdash; Aquecimento</div>
+        <div class="ic-val" style="color:#FFE600">Out</div>
+        <p style="color:#ccc">1. Pricing estrat&eacute;gico: posicionar pre&ccedil;os base em Out para ter desconto real em Nov.<br>2. Ampliação de catálogo: adicionar novas cores/varia&ccedil;&otilde;es do Sof&aacute; Compact Air.<br>3. Revisar t&iacute;tulos e atributos para SEO de BF.<br>4. Acumular reviews nos itens-foco (min. 4.5 estrelas).</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">&#9679; Novembro &mdash; Execu&ccedil;&atilde;o BF</div>
+        <div class="ic-val" style="color:#FFE600">24&ndash;30/Nov</div>
+        <p style="color:#ccc">1. Desconto real min. 20% nos top SKUs (comprovado vs 30 dias antes).<br>2. Optin Oferta Relâmpago nos Compact Air Bouclê (já provaram BF forte).<br>3. Produto montessoriana infantil para presente de Natal &mdash; timing perfeito.<br>4. Target: <strong style="color:#FFE600">R$ 1M+ em 7 dias</strong> (vs R$668K em 2025).</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">&#9679; Dezembro &mdash; Pós-BF &amp; Natal</div>
+        <div class="ic-val" style="color:#FFE600">Dez</div>
+        <p style="color:#ccc">1. Camas Montessoriana: pico em Dez (presente infantil). Garantir estoque e ADS.<br>2. N&atilde;o baixar pre&ccedil;os p&oacute;s-BF — manter posicionamento premium.<br>3. Ticket m&eacute;dio de Dez 2025 foi R$1.008 — sustentar ou superar.<br>4. Target Dez 2026: R$ 1.87M (meta) vs Dez 2025: R$ 1.32M (+41%).</p>
+      </div>
+    </div>
+  </div>
+
+<!-- ═══════════ AÇÕES PRIORITÁRIAS ═══════════ -->
+  <div class="sec" style="background:#1A1A2E">
+    <div class="sec-ttl" style="color:#FFE600"><span style="background:#FFE600;width:4px;height:18px;border-radius:2px;display:inline-block;margin-right:8px"></span>Pr&oacute;ximos Passos &mdash; Acordos da Reuni&atilde;o</div>
+    <div class="act">
+      <div class="act-item">
+        <div class="act-num" style="background:#3483FA">1</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Diagn&oacute;stico Abril</strong> &mdash; Entender por que Abril foi o pior m&ecirc;s (65.9% meta). Revisar: campanhas, estoque, buybox, pausas. Garantir que N&atilde;o se repita em 2026.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#00A650">2</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Mix Premium vs Volume</strong> &mdash; Ticket subiu 72% mas SIs caiu 6.8%. Definir: qual o equil&iacute;brio ideal? Incluir 2-3 SKUs de entrada (R$400-600) para volume sem c anibalizar premium.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#FFE600; color:#1A1A1A">3</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Optins BF 2026</strong> &mdash; Garantir optin nos top 10 itens em Oferta Relâmpago, Pre&ccedil;o Cr&iacute;vel e Campanhas para novembro. Prazo: concluir at&eacute; Setembro.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#F23D4F">4</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">ADS em H2</strong> &mdash; Sof&aacute; Compact Air Bouclê teve 34-39% das vendas na BF 2025. Ativar Product Ads desde Agosto para construir hist&oacute;rico de cliques e visibilidade antes da BF.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#FF9500">5</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Meta H2 Real&iacute;stica</strong> &mdash; Meta oficial &eacute; R$ 12.75M (+49% vs H2 2025). Defin ir juntos meta opera cional: R$ 11-12M &eacute; alcan&ccedil;&aacute;vel com execu&ccedil;&atilde;o forte na BF (R$1M+) e ticket sustentado acima de R$ 900.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    BALAQUI &middot; Dados: BigQuery meli-bi-data &middot; DM_EFICIENCIA_MLB &middot; NMV_FLG=TRUE &middot; Meta Desafio: META_DES BALAQUI &middot; Gerado em 20/Jul/2026 &middot; KAM Cintia Faraco Queiroz
+  </div>
+
+</div>
+</body>
+</html>
