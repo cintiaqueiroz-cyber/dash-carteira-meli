@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fechamento Q2 2026 - MOVEIS ARAPONGAS</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script>Chart.register(ChartDataLabels);</script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#1A1A1A,#3A3A3A);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.7;margin-top:4px}
+.hdr .badge{background:#FFE600;color:#1A1A1A;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:800}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.card.hi{border-top:4px solid #3483FA}
+.card.warn{border-top:4px solid #F23D4F}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.chart-box-lg{position:relative;height:320px}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#127942; M&Oacute;VEIS ARAPONGAS &mdash; Fechamento Q2 2026</h1>
+    <div class="sub">Abr &middot; Mai &middot; Jun 2026 &middot; IDs: 455472340 | 1630750475</div>
+  </div>
+  <div class="badge">Q2 GMV: R$ 1.24M &middot; 1.610 SIs</div>
+</div>
+<div class="wrap">
+
+  <!-- KPIs Q2 -->
+  <div class="row">
+    <div class="card hi"><div class="lbl">GMV Q2 2026 (Abr&ndash;Jun)</div><div class="val">R$ 1.24M</div><div class="sub">R$ 1,236,310 total</div></div>
+    <div class="card hi"><div class="lbl">Itens Vendidos Q2</div><div class="val">1.610</div><div class="sub">SIs Abr+Mai+Jun</div></div>
+    <div class="card warn"><div class="lbl">GMV Q2 2025 (ref.)</div><div class="val">R$ 3.30M</div><div class="sub"><span class="neg">&#9660; -62.6% YoY</span></div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio Q2</div><div class="val">R$ 768</div><div class="sub">1,236,310 &divide; 1,610 SIs</div></div>
+    <div class="card hi"><div class="lbl">Tend&ecirc;ncia Q2</div><div class="val" style="color:#00A650;font-size:22px">&#9650; Crescendo</div><div class="sub">Abr&rarr;Mai&rarr;Jun: +57% no tri</div></div>
+  </div>
+
+  <!-- Q2 por mês -->
+  <div class="row">
+    <div class="card"><div class="lbl">Abril 2026</div><div class="val">R$ 330K</div><div class="sub">464 SIs &middot; R$ 712/ticket &middot; <span class="neg">-69.8% YoY</span></div></div>
+    <div class="card"><div class="lbl">Maio 2026</div><div class="val">R$ 386K</div><div class="sub">498 SIs &middot; R$ 775/ticket &middot; <span class="pill pl-g">+16.9% MoM</span></div></div>
+    <div class="card"><div class="lbl">Junho 2026</div><div class="val">R$ 520K</div><div class="sub">648 SIs &middot; R$ 803/ticket &middot; <span class="pill pl-g">+34.8% MoM</span></div></div>
+  </div>
+
+  <!-- Chart Q2 mensal -->
+  <div class="sec">
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o Q2 2026 &mdash; GMV e SIs por M&ecirc;s</div>
+    <div class="chart-box-lg"><canvas id="cQ2"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    function fk(v){if(v>=1e6)return 'R$'+(v/1e6).toFixed(2)+'M';if(v>=1e3)return 'R$'+(v/1e3).toFixed(0)+'K';return 'R$'+v;}
+    new Chart(document.getElementById('cQ2'),{
+      type:'bar',
+      data:{
+        labels:['Abril','Maio','Junho'],
+        datasets:[
+          {label:'GMV 2026 (R$)',data:[330173,385904,520234],backgroundColor:['#DDE8FF','#AACBFF','#3483FA'],borderRadius:8,yAxisID:'yG',
+           datalabels:{anchor:'end',align:'end',offset:4,font:{size:13,weight:'700'},color:'#1A1A1A',formatter:function(v){return fk(v);}}},
+          {label:'GMV 2025 (R$)',data:[1093218,1288064,922069],backgroundColor:'transparent',borderColor:'#F23D4F',borderWidth:2,type:'line',tension:.3,yAxisID:'yG',pointRadius:5,pointBackgroundColor:'#F23D4F',
+           datalabels:{display:false}}
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:40}},
+        plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fk(c.raw);}}}},
+        scales:{
+          yG:{position:'left',ticks:{callback:function(v){return fk(v);}},grid:{color:'#F0F0F0'}},
+          x:{grid:{display:false}}
+        }
+      }
+    });
+  })();
+  </script>
+
+  <!-- Comparativo Q2 2025 vs 2026 -->
+  <div class="sec">
+    <div class="sec-ttl">Q2 2026 vs Q2 2025 &mdash; Por M&ecirc;s</div>
+    <table>
+      <thead><tr><th>M&ecirc;s</th><th style="text-align:right">GMV 2025</th><th style="text-align:right">GMV 2026</th><th style="text-align:right">Var. YoY</th><th style="text-align:right">SIs 2025</th><th style="text-align:right">SIs 2026</th><th style="text-align:right">Var. SIs</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Abril</strong></td><td style="text-align:right">R$ 1.093.218</td><td style="text-align:right">R$ 330.173</td><td style="text-align:right"><span class="neg">-69.8%</span></td><td style="text-align:right">1.411</td><td style="text-align:right">464</td><td style="text-align:right"><span class="neg">-67.1%</span></td></tr>
+        <tr><td><strong>Maio</strong></td><td style="text-align:right">R$ 1.288.064</td><td style="text-align:right">R$ 385.904</td><td style="text-align:right"><span class="neg">-70.0%</span></td><td style="text-align:right">1.616</td><td style="text-align:right">498</td><td style="text-align:right"><span class="neg">-69.2%</span></td></tr>
+        <tr><td><strong>Junho</strong></td><td style="text-align:right">R$ 922.069</td><td style="text-align:right">R$ 520.234</td><td style="text-align:right"><span class="neg">-43.6%</span></td><td style="text-align:right">1.179</td><td style="text-align:right">648</td><td style="text-align:right"><span class="neg">-45.0%</span></td></tr>
+        <tr style="background:#FFFBEA;font-weight:700"><td>Total Q2</td><td style="text-align:right">R$ 3.303.351</td><td style="text-align:right">R$ 1.236.310</td><td style="text-align:right"><span class="neg">-62.6%</span></td><td style="text-align:right">4.206</td><td style="text-align:right">1.610</td><td style="text-align:right"><span class="neg">-61.7%</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#00A650;margin-top:12px;font-weight:700">&#9650; Sinal positivo: queda YoY foi reduzindo ao longo do Q2. Jun (-43.6%) melhor que Abr/Mai (-70%). Tend&ecirc;ncia de recupera&ccedil;&atilde;o.</p>
+  </div>
+
+  <!-- Top 10 Q2 -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Q2 2026 (Abr&ndash;Jun) por GMV</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>#</th><th>Produto</th><th style="text-align:right">GMV Q2</th><th style="text-align:right">SIs</th><th style="text-align:right">Ticket</th><th style="text-align:right">Share Q2</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>KIT 4 CADEIRAS SEXTAVADA BARI FREIJ&Oacute;/BOUCLÊ OFF WHITE &mdash; M.A</td><td style="text-align:right">R$ 116.770</td><td style="text-align:right">172</td><td style="text-align:right">R$ 679</td><td style="text-align:right"><span class="pill pl-b">9.4%</span></td></tr>
+        <tr><td>2</td><td>GUARDA ROUPA LIA 6 PORTAS CAPUCCINO M&Oacute;VEIS ARAPONGAS</td><td style="text-align:right">R$ 111.592</td><td style="text-align:right">182</td><td style="text-align:right">R$ 613</td><td style="text-align:right"><span class="pill pl-b">9.0%</span></td></tr>
+        <tr><td>3</td><td>CONJUNTO MESA DE JANTAR SANTIAGO C/ 6 CADEIRAS FREIJ&Oacute;/OFF PREMIUM/CORINO CARAMELO</td><td style="text-align:right">R$ 78.238</td><td style="text-align:right">51</td><td style="text-align:right">R$ 1.534</td><td style="text-align:right"><span class="pill pl-b">6.3%</span></td></tr>
+        <tr><td>4</td><td>MESA 4 CADEIRAS REDONDA C/VIDRO SANTORINI FREIJ&Oacute;/OFF/CORINO BEGE</td><td style="text-align:right">R$ 51.818</td><td style="text-align:right">41</td><td style="text-align:right">R$ 1.264</td><td style="text-align:right"><span class="pill pl-y">4.2%</span></td></tr>
+        <tr><td>5</td><td>MESA LINARES 4 CADEIRAS SEXTAVADA FREIJ&Oacute;/OFF/BOUCLÊ OFF &mdash; MA</td><td style="text-align:right">R$ 41.058</td><td style="text-align:right">34</td><td style="text-align:right">R$ 1.208</td><td style="text-align:right"><span class="pill pl-y">3.3%</span></td></tr>
+        <tr><td>6</td><td>CONJUNTO MESA REDONDA 4 CADEIRAS MDF FREIJ&Oacute;/OFF PREMIUM</td><td style="text-align:right">R$ 39.629</td><td style="text-align:right">41</td><td style="text-align:right">R$ 967</td><td style="text-align:right"><span class="pill pl-y">3.2%</span></td></tr>
+        <tr><td>7</td><td>GUARDA ROUPA MODULADO SOLTEIRO ANDREA BOREAL/BRANCO &mdash; M.A</td><td style="text-align:right">R$ 35.815</td><td style="text-align:right">21</td><td style="text-align:right">R$ 1.706</td><td style="text-align:right">2.9%</td></tr>
+        <tr><td>8</td><td>CLOSET ESTILO INDUSTRIAL SIENA 6 GAV PRETO FOSCO &mdash; M.A</td><td style="text-align:right">R$ 32.611</td><td style="text-align:right">27</td><td style="text-align:right">R$ 1.208</td><td style="text-align:right">2.6%</td></tr>
+        <tr><td>9</td><td>GUARDA-ROUPA CASAL 8 PORTAS M&Oacute;VEIS ARAPONGAS PRETO FOSCO</td><td style="text-align:right">R$ 32.329</td><td style="text-align:right">36</td><td style="text-align:right">R$ 898</td><td style="text-align:right">2.6%</td></tr>
+        <tr><td>10</td><td>MESA REDONDA CAMOGLI 4 CAD SEXTAVADAS FREIJ&Oacute;/OFF/CORINO BEGE</td><td style="text-align:right">R$ 31.898</td><td style="text-align:right">28</td><td style="text-align:right">R$ 1.139</td><td style="text-align:right">2.6%</td></tr>
+        <tr style="background:#FFFBEA;font-weight:700"><td colspan="2">Top 10 subtotal</td><td style="text-align:right">R$ 571.758</td><td style="text-align:right">633</td><td style="text-align:right">&mdash;</td><td style="text-align:right">46.2%</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Q3 outlook -->
+  <div class="sec">
+    <div class="sec-ttl">Perspectiva Q3 &mdash; Jul 2026 MTD</div>
+    <div class="row" style="margin-bottom:0">
+      <div class="card hi">
+        <div class="lbl">GMV Jul MTD (1&ndash;19/Jul)</div>
+        <div class="val">R$ 406K</div>
+        <div class="sub">19 dias &middot; R$ 21.384/dia</div>
+        <div style="margin-top:8px;font-size:12px;color:#00A650;font-weight:700">&#9650; +23.3% vs m&eacute;dia di&aacute;ria Jun</div>
+      </div>
+      <div class="card hi">
+        <div class="lbl">Proje&ccedil;&atilde;o Jul Completo</div>
+        <div class="val" style="color:#3483FA">R$ 663K</div>
+        <div class="sub">21.384 &times; 31 dias</div>
+        <div style="margin-top:8px;font-size:12px;color:#3483FA">vs Jun R$520K &middot; <strong>+27.5% MoM</strong></div>
+      </div>
+      <div class="card">
+        <div class="lbl">Meta Q3</div>
+        <div class="val" style="color:#888">A Definir</div>
+        <div class="sub">Alinhar com seller com base na tend&ecirc;ncia de recupera&ccedil;&atilde;o</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Análise Q2 -->
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise Q2 e Recomenda&ccedil;&otilde;es Q3</div>
+    <div style="display:grid;gap:12px">
+      <div style="background:#F8FFF8;border-left:4px solid #00A650;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#00A650;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Tend&ecirc;ncia interna de Q2 &eacute; positiva.</strong> Abr R$330K &rarr; Mai R$386K &rarr; Jun R$520K: crescimento de +57% no tri. A perda YoY foi diminuindo: Abr/Mai -70%, Jun -44%. O seller est&aacute; se recuperando.</div>
+        </div>
+      </div>
+      <div style="background:#FFF8F8;border-left:4px solid #F23D4F;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#F23D4F;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Queda YoY estrutural precisa de diagn&oacute;stico.</strong> Queda de ~60% em volume vs 2025 n&atilde;o &eacute; sazonal. Investigar: SKUs pausados/removidos, perda de buybox, compress&atilde;o de pre&ccedil;o pela concorr&ecirc;ncia, ou redu&ccedil;&atilde;o de investimento em ADS.</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFF;border-left:4px solid #3483FA;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#3483FA;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Top 2 produtos = 18.4% do Q2.</strong> KIT Cadeiras Bari e GR Lia s&atilde;o os carros-chefe. Garantir buybox, estoque em FBM e ADS ativados nesses 2 itens &eacute; cr&iacute;tico para sustentar a recupera&ccedil;&atilde;o no Q3.</div>
+        </div>
+      </div>
+      <div style="background:#FFFDF0;border-left:4px solid #E67E00;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Oportunidade no Q3: alavancar Alta Temporada.</strong> Jul-Ago historicamente fortes em m&oacute;veis (2025: Jul R$1.19M, Ago R$940K). Com a recupera&ccedil;&atilde;o em curso e 100% me1, posicionamento correto pode acelerar a redu&ccedil;&atilde;o do gap YoY significativamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    Dados: BigQuery meli-bi-data &middot; DM_EFICIENCIA_MLB &middot; NMV_FLG=TRUE &middot; Gerado em 20/Jul/2026
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio MOVEIS ARAPONGAS - Jul 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <script>Chart.register(ChartDataLabels);</script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.chart-box-lg{position:relative;height:340px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; M&Oacute;VEIS ARAPONGAS</h1>
+    <div class="sub">Relat&oacute;rio de Performance &middot; Jul 2026 &middot; IDs: 455472340 | 1630750475</div>
+  </div>
+  <div class="meta-pill">Jul MTD (1&ndash;19/Jul) &middot; Pace +23.3% vs Jun/dia &#9650;</div>
+</div>
+<div class="wrap">
+
+  <div class="row">
+    <div class="card"><div class="lbl">GMV Jul MTD (1&ndash;19/Jul)</div><div class="val">R$ 406K</div><div class="sub">19 dias &middot; R$ 406,291</div></div>
+    <div class="card"><div class="lbl">Itens Vendidos MTD</div><div class="val">520</div><div class="sub">dias 1&ndash;19 de julho</div></div>
+    <div class="card"><div class="lbl">M&eacute;dia Di&aacute;ria Jul</div><div class="val">R$ 21.4K</div><div class="sub">R$ 21,384/dia &middot; <span style="color:#00A650;font-weight:700">&#9650; +23.3% vs Jun/dia</span></div></div>
+    <div class="card"><div class="lbl">Proje&ccedil;&atilde;o Jul Completo</div><div class="val" style="color:#3483FA">R$ 663K</div><div class="sub">21,384 &times; 31 dias</div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio Jul</div><div class="val">R$ 781</div><div class="sub">406,291 &divide; 520 SIs</div></div>
+  </div>
+
+  <div class="row">
+    <div class="card"><div class="lbl">GMV Jun Completo</div><div class="val">R$ 520K</div><div class="sub">+34.8% vs Mai &middot; R$ 520,234</div></div>
+    <div class="card"><div class="lbl">GMV H1 2026</div><div class="val">R$ 2.79M</div><div class="sub">vs H1 2025 R$ 6.55M &middot; <span style="color:#F23D4F;font-weight:700">&#9660; -57.4% YoY</span></div></div>
+    <div class="card"><div class="lbl">SIs Jun Completo</div><div class="val">648</div><div class="sub">vs Jun 2025: 1,179 &middot; <span style="color:#F23D4F;font-weight:700">-45.0% YoY</span></div></div>
+    <div class="card"><div class="lbl">Modal Log&iacute;stico</div><div class="val" style="color:#00A650">100% me1</div><div class="sub">Fulfillment completo</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o GMV Mensal 2026 vs 2025</div>
+    <div class="chart-box-lg"><canvas id="cGmv"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var gmv26 = [527832,532969,491548,330173,385904,520234,406291,null,null,null,null,null];
+    var gmv25 = [1249454,926520,1067186,1093218,1288064,922069,1190569,940261,602929,681585,707332,353841];
+    var proj  = [null,null,null,null,null,null,662904,530387,340052,384414,399035,199566];
+    var yoyPct = gmv26.map(function(v,i){ return (v!==null && gmv25[i]>0) ? ((v/gmv25[i])-1)*100 : null; });
+    function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+    var labelsPlugin = {
+      id:'customLabels',
+      afterDatasetsDraw: function(chart){
+        var ctx=chart.ctx; ctx.save(); ctx.textAlign='center';
+        var meta0=chart.getDatasetMeta(0);
+        meta0.data.forEach(function(pt,i){
+          var v=chart.data.datasets[0].data[i];
+          if(v===null||v===undefined||isNaN(Number(v)))return;
+          var yoy=yoyPct[i];
+          ctx.font='bold 11px Arial'; ctx.fillStyle='#1A5DC8';
+          ctx.fillText(fk(v), pt.x, pt.y - 22);
+          if(yoy!==null){
+            var col = yoy>=0 ? '#00A650' : '#F23D4F';
+            var sym = yoy>=0 ? '▲' : '▼';
+            ctx.font='bold 10px Arial'; ctx.fillStyle=col;
+            ctx.fillText(sym+' '+Math.abs(yoy).toFixed(1)+'%', pt.x, pt.y - 9);
+          }
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(document.getElementById('cGmv'),{
+      type:'line',
+      data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+        {label:'2026',data:gmv26,borderColor:'#3483FA',backgroundColor:'transparent',fill:false,tension:.3,spanGaps:true,pointRadius:5},
+        {label:'2025',data:gmv25,borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+        {label:'Projetado',data:proj,borderColor:'#00A650',backgroundColor:'transparent',borderDash:[8,4],tension:.3,pointRadius:4,pointBackgroundColor:'#00A650',spanGaps:false}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:50,bottom:20}},
+        plugins:{legend:{position:'top'},datalabels:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+fk(c.raw);}}}},
+        scales:{y:{ticks:{callback:function(v){return fk(v);}},grid:{color:'#F0F0F0'}},x:{grid:{color:'#F0F0F0'}}}
+      },
+      plugins:[labelsPlugin]
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">Itens Vendidos (SIs) Mensal 2026 vs 2025</div>
+    <div class="chart-box"><canvas id="cSI"></canvas></div>
+  </div>
+  <script>
+  new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+    {label:'2026',data:[678,755,695,464,498,648,520,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+    {label:'2025',data:[1653,1192,1427,1411,1616,1179,1513,1139,692,815,783,398],backgroundColor:'#DDE8FF',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},datalabels:{display:false}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">GMV Di&aacute;rio &mdash; Jul 2026 (1&ndash;19/Jul)</div>
+    <div class="chart-box-lg"><canvas id="cDailyMes"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul","07/Jul","08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul","16/Jul","17/Jul","18/Jul","19/Jul"];
+    var vals=[14522,15697,15369,20124,12786,25962,47359,25270,17853,13859,12280,17607,28724,20843,27806,26532,26957,24463,12275];
+    var colors=vals.map(function(_,i){return i===6?'#FF9500':'#3483FA';});
+    new Chart(document.getElementById('cDailyMes'),{
+      type:'bar',
+      data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},datalabels:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+(v>=1000?(v/1000).toFixed(0)+'K':v);}},grid:{color:'#F0F0F0'}},x:{grid:{display:false},ticks:{font:{size:10}}}}
+      }
+    });
+  })();
+  </script>
+
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise por Subcategoria (AGG3) &mdash; Jul MTD (1&ndash;19/Jul)</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Subcategoria</th><th style="text-align:right">GMV MTD</th><th style="text-align:right">Pedidos</th><th style="text-align:right">Ticket M&eacute;dio</th><th style="text-align:right">Share GMV</th><th style="text-align:right">Share Ped.</th></tr></thead>
+      <tbody>
+        <tr><td>DINING CHAIRS, TABLES &amp; SETS</td><td style="text-align:right">R$ 244.669</td><td style="text-align:right">278</td><td style="text-align:right">R$ 880</td><td style="text-align:right"><span class="pill pl-b">60.2%</span></td><td style="text-align:right">53.5%</td></tr>
+        <tr><td>SIDEBOARD &amp; DRAWERS</td><td style="text-align:right">R$ 139.461</td><td style="text-align:right">186</td><td style="text-align:right">R$ 750</td><td style="text-align:right"><span class="pill pl-b">34.3%</span></td><td style="text-align:right">35.8%</td></tr>
+        <tr><td>BEDS, HEADBOARDS &amp; NIGHT STANDS</td><td style="text-align:right">R$ 9.119</td><td style="text-align:right">19</td><td style="text-align:right">R$ 480</td><td style="text-align:right"><span class="pill pl-y">2.2%</span></td><td style="text-align:right">3.7%</td></tr>
+        <tr><td>DESKS &amp; OFFICE CHAIRS</td><td style="text-align:right">R$ 5.211</td><td style="text-align:right">8</td><td style="text-align:right">R$ 651</td><td style="text-align:right"><span class="pill pl-y">1.3%</span></td><td style="text-align:right">1.5%</td></tr>
+        <tr><td>TV STORAGE</td><td style="text-align:right">R$ 2.638</td><td style="text-align:right">11</td><td style="text-align:right">R$ 240</td><td style="text-align:right">0.6%</td><td style="text-align:right">2.1%</td></tr>
+        <tr><td>MAKE UP VANITIES</td><td style="text-align:right">R$ 2.621</td><td style="text-align:right">10</td><td style="text-align:right">R$ 262</td><td style="text-align:right">0.6%</td><td style="text-align:right">1.9%</td></tr>
+        <tr><td>Outras</td><td style="text-align:right">R$ 2.572</td><td style="text-align:right">8</td><td style="text-align:right">&mdash;</td><td style="text-align:right">0.6%</td><td style="text-align:right">1.5%</td></tr>
+        <tr style="background:#FFFBEA;font-weight:700"><td>Total</td><td style="text-align:right">R$ 406.291</td><td style="text-align:right">520</td><td style="text-align:right">R$ 781</td><td style="text-align:right">100%</td><td style="text-align:right">100%</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">Modal Log&iacute;stico &mdash; Jul MTD</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr><th>Modal</th><th>GMV Jul MTD</th><th>Pedidos MTD</th><th>Share</th><th>Distribui&ccedil;&atilde;o</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill pl-b">me1</span></td><td>R$ 406.291</td><td>520</td><td>100%</td><td><div class="bar-out"><div class="bar-in" style="width:100%"></div></div></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:11px;color:#888;margin-top:10px">&#10003; Seller 100% Fulfillment (me1) &mdash; sem opera&ccedil;&atilde;o me2 no per&iacute;odo.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise e Pr&oacute;ximos Passos</div>
+    <div style="display:grid;gap:12px">
+      <div style="background:#F8FAFF;border-left:4px solid #3483FA;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#3483FA;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Recupera&ccedil;&atilde;o em curso em 2026.</strong> Ap&oacute;s queda em Abr (R$330K) e Mai (R$386K), Jun fechou em R$520K e Jul j&aacute; tem m&eacute;dia di&aacute;ria +23% vs Jun. A tend&ecirc;ncia dentro do ano &eacute; de alta.</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFF;border-left:4px solid #F23D4F;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#F23D4F;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</div>
+          <div style="font-size:13px;line-height:1.5"><strong>YoY ainda muito negativo (-57% H1).</strong> Indica&ccedil;&atilde;o de perda de cat&aacute;logo, redu&ccedil;&atilde;o de SKUs ou press&atilde;o de pre&ccedil;o vs 2025. Recomend&aacute;vel revisar atividade&nbsp;de anuncio e buybox.</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFF;border-left:4px solid #00A650;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#00A650;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Mix concentrado em Dining + Sideboards (94.5%).</strong> Ambas subcategorias com ticket acima de R$750. Oportunidade de ampliar cat&aacute;logo em Beds e Office Chairs para diversificar.</div>
+        </div>
+      </div>
+      <div style="background:#F8FAFF;border-left:4px solid #FFE600;padding:14px 16px;border-radius:8px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</div>
+          <div style="font-size:13px;line-height:1.5"><strong>Jul 7 pico de R$47.4K (60 SIs).</strong> Segundo maior dia foi 13/Jul (R$28.7K). Identificar o que gerou o pico (promo&ccedil;&atilde;o, ADS, campanha) e replicar a estrat&eacute;gia para o restante do m&ecirc;s.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    Dados: BigQuery meli-bi-data &middot; DM_EFICIENCIA_MLB &middot; NMV_FLG=TRUE &middot; Gerado em 20/Jul/2026
+  </div>
+
+</div>
+</body>
+</html>
