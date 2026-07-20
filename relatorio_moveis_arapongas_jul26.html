@@ -61,6 +61,13 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div class="card"><div class="lbl">Proje&ccedil;&atilde;o Jul</div><div class="val" style="color:#00A650">R$ 663K</div><div class="sub">R$ 21.384 &times; 31 dias</div></div>
   </div>
 
+  <div class="row">
+    <div class="card"><div class="lbl">SKUs Ativos Jul</div><div class="val">133</div><div class="sub">com venda 1-19/Jul</div></div>
+    <div class="card"><div class="lbl">Logistica me1</div><div class="val" style="color:#00A650">100%</div><div class="sub">todos os pedidos Jul</div></div>
+    <div class="card"><div class="lbl">Produtos zerados Jul</div><div class="val" style="color:#F23D4F">9</div><div class="sub">tinham vendas em Jun &rarr; R$0 em Jul</div></div>
+    <div class="card"><div class="lbl">GMV M&eacute;dio / SKU</div><div class="val">R$ 3.054</div><div class="sub">406K &divide; 133 SKUs Jul MTD</div></div>
+  </div>
+
   <div class="sec">
     <div class="sec-ttl">Evolução GMV 2026 vs 2025 vs Projetado</div>
     <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
@@ -499,6 +506,43 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr>
       </tbody>
     </table>
+    </div>
+  </div>
+
+  <!-- Produtos que pararam de vender -->
+  <div class="sec">
+    <div class="sec-ttl" style="color:#F23D4F">&#128683; Produtos que pararam de vender em julho (Jun &rarr; R$0 Jul)</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+      <div style="border:2px solid #F23D4F;border-radius:10px;padding:14px 16px;background:#FFF5F5">
+        <div style="font-size:11px;font-weight:700;color:#F23D4F;margin-bottom:4px">&#9660; ZEROU EM JULHO</div>
+        <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px"><a href="https://produto.mercadolivre.com.br/MLB-4087922439" target="_blank" style="color:#222;text-decoration:none">POLTRONA POMEZIA INDUSTRIAL PRETO/SUEDE CINZA</a></div>
+        <div style="font-size:12px;color:#666">Jun MTD: <strong style="color:#F23D4F">R$ 5.713</strong> (1 SI) &rarr; Jul: R$ 0</div>
+      </div>
+      <div style="border:2px solid #F23D4F;border-radius:10px;padding:14px 16px;background:#FFF5F5">
+        <div style="font-size:11px;font-weight:700;color:#F23D4F;margin-bottom:4px">&#9660; ZEROU EM JULHO</div>
+        <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px"><a href="https://produto.mercadolivre.com.br/MLB-5380980102" target="_blank" style="color:#222;text-decoration:none">KIT 2 CADEIRAS FILAD&Eacute;LFIA CINAMOMO/SUEDE BEGE</a></div>
+        <div style="font-size:12px;color:#666">Jun MTD: <strong style="color:#F23D4F">R$ 4.416</strong> (14 SIs) &rarr; Jul: R$ 0</div>
+      </div>
+      <div style="border:2px solid #F23D4F;border-radius:10px;padding:14px 16px;background:#FFF5F5">
+        <div style="font-size:11px;font-weight:700;color:#F23D4F;margin-bottom:4px">&#9660; ZEROU EM JULHO</div>
+        <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px"><a href="https://produto.mercadolivre.com.br/MLB-4365264921" target="_blank" style="color:#222;text-decoration:none">CONJUNTO MESA LINS 4 CAD SEXTAVADA FREI&Oacute;/OFF</a></div>
+        <div style="font-size:12px;color:#666">Jun MTD: <strong style="color:#F23D4F">R$ 2.658</strong> (2 SIs) &rarr; Jul: R$ 0</div>
+      </div>
+      <div style="border:2px solid #F23D4F;border-radius:10px;padding:14px 16px;background:#FFF5F5">
+        <div style="font-size:11px;font-weight:700;color:#F23D4F;margin-bottom:4px">&#9660; ZEROU EM JULHO</div>
+        <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px"><a href="https://produto.mercadolivre.com.br/MLB-4288564955" target="_blank" style="color:#222;text-decoration:none">MESA REDONDA COSEN&Eacute;A 4 CAD ESTOFADAS FREI&Oacute;/OFF/BEG</a></div>
+        <div style="font-size:12px;color:#666">Jun MTD: <strong style="color:#F23D4F">R$ 2.276</strong> (2 SIs) &rarr; Jul: R$ 0</div>
+      </div>
+      <div style="border:2px solid #F23D4F;border-radius:10px;padding:14px 16px;background:#FFF5F5">
+        <div style="font-size:11px;font-weight:700;color:#F23D4F;margin-bottom:4px">&#9660; ZEROU EM JULHO</div>
+        <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:6px"><a href="https://produto.mercadolivre.com.br/MLB-5831806102" target="_blank" style="color:#222;text-decoration:none">GUARDA ROUPA CASAL MODULADO RUBIA BOREAL/BRANCO</a></div>
+        <div style="font-size:12px;color:#666">Jun MTD: <strong style="color:#F23D4F">R$ 2.179</strong> (1 SI) &rarr; Jul: R$ 0</div>
+      </div>
+      <div style="border:2px solid #FF9500;border-radius:10px;padding:14px 16px;background:#FFFBF5">
+        <div style="font-size:11px;font-weight:700;color:#FF9500;margin-bottom:4px">&#9660; OUTROS 4 ZERADOS</div>
+        <div style="font-size:13px;color:#444;line-height:1.5">KIT 4C UTAH CINA/BOUCLÊ (R$1.947) · MESA ÁVILA 6C CINA/OFF (R$1.839) · SALA NAZCA 6C (R$1.629) · MESA ÁVILA IMBUIA (R$1.559)</div>
+        <div style="font-size:12px;color:#888;margin-top:4px">Todos vendiam apenas 1-2 SIs/mês — verificar se pausados ou buybox perdido</div>
+      </div>
     </div>
   </div>
 
