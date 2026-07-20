@@ -47,20 +47,22 @@ tr:hover td{background:#FFFBEA}
 </div>
 <div class="wrap">
 
-  <!-- KPIs Q2 -->
+  <!-- KPIs Q2 ROW 1: Resumo vs Meta -->
   <div class="row">
-    <div class="card hi"><div class="lbl">GMV Q2 2026 (Abr&ndash;Jun)</div><div class="val">R$ 1.24M</div><div class="sub">R$ 1,236,310 total</div></div>
-    <div class="card hi"><div class="lbl">Itens Vendidos Q2</div><div class="val">1.610</div><div class="sub">SIs Abr+Mai+Jun</div></div>
-    <div class="card warn"><div class="lbl">GMV Q2 2025 (ref.)</div><div class="val">R$ 3.30M</div><div class="sub"><span class="neg">&#9660; -62.6% YoY</span></div></div>
-    <div class="card"><div class="lbl">Ticket M&eacute;dio Q2</div><div class="val">R$ 768</div><div class="sub">1,236,310 &divide; 1,610 SIs</div></div>
+    <div class="card hi"><div class="lbl">GMV Q2 2026 (Abr&ndash;Jun)</div><div class="val">R$ 1.24M</div><div class="sub">R$ 1.236.310 total</div></div>
+    <div class="card hi"><div class="lbl">SIs Q2 2026</div><div class="val">1.610</div><div class="sub">Abr+Mai+Jun</div></div>
+    <div class="card warn"><div class="lbl">Meta Desafio Q2</div><div class="val" style="color:#FF9500">R$ 3.35M</div><div class="sub">Abr R$988K + Mai R$1.13M + Jun R$1.23M</div></div>
+    <div class="card warn"><div class="lbl">Atingimento Meta Des. Q2</div><div class="val" style="color:#F23D4F">36.9%</div><div class="sub">R$ 1.24M &divide; R$ 3.35M meta</div></div>
     <div class="card hi"><div class="lbl">Tend&ecirc;ncia Q2</div><div class="val" style="color:#00A650;font-size:22px">&#9650; Crescendo</div><div class="sub">Abr&rarr;Mai&rarr;Jun: +57% no tri</div></div>
   </div>
 
-  <!-- Q2 por mês -->
+  <!-- KPIs Q2 ROW 2: por mês com meta -->
   <div class="row">
-    <div class="card"><div class="lbl">Abril 2026</div><div class="val">R$ 330K</div><div class="sub">464 SIs &middot; R$ 712/ticket &middot; <span class="neg">-69.8% YoY</span></div></div>
-    <div class="card"><div class="lbl">Maio 2026</div><div class="val">R$ 386K</div><div class="sub">498 SIs &middot; R$ 775/ticket &middot; <span class="pill pl-g">+16.9% MoM</span></div></div>
-    <div class="card"><div class="lbl">Junho 2026</div><div class="val">R$ 520K</div><div class="sub">648 SIs &middot; R$ 803/ticket &middot; <span class="pill pl-g">+34.8% MoM</span></div></div>
+    <div class="card"><div class="lbl">Abril 2026</div><div class="val">R$ 330K</div><div class="sub">464 SIs &middot; R$ 712/ticket &middot; <span class="neg">-69.8% YoY</span><br><span style="color:#888">Meta Des: R$988K &middot; ating: 33.4%</span></div></div>
+    <div class="card"><div class="lbl">Maio 2026</div><div class="val">R$ 386K</div><div class="sub">498 SIs &middot; R$ 775/ticket &middot; <span class="pill pl-g">+16.9% MoM</span><br><span style="color:#888">Meta Des: R$1.13M &middot; ating: 34.2%</span></div></div>
+    <div class="card"><div class="lbl">Junho 2026</div><div class="val">R$ 520K</div><div class="sub">648 SIs &middot; R$ 803/ticket &middot; <span class="pill pl-g">+34.8% MoM</span><br><span style="color:#888">Meta Des: R$1.23M &middot; ating: 42.2%</span></div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio Q2</div><div class="val">R$ 768</div><div class="sub">1.236.310 &divide; 1.610 SIs</div></div>
+    <div class="card warn"><div class="lbl">GMV Q2 2025 (ref.)</div><div class="val">R$ 3.30M</div><div class="sub"><span class="neg">&#9660; -62.6% YoY</span></div></div>
   </div>
 
   <!-- Chart Q2 mensal -->
@@ -79,6 +81,8 @@ tr:hover td{background:#FFFBEA}
           {label:'GMV 2026 (R$)',data:[330173,385904,520234],backgroundColor:['#DDE8FF','#AACBFF','#3483FA'],borderRadius:8,yAxisID:'yG',
            datalabels:{anchor:'end',align:'end',offset:4,font:{size:13,weight:'700'},color:'#1A1A1A',formatter:function(v){return fk(v);}}},
           {label:'GMV 2025 (R$)',data:[1093218,1288064,922069],backgroundColor:'transparent',borderColor:'#F23D4F',borderWidth:2,type:'line',tension:.3,yAxisID:'yG',pointRadius:5,pointBackgroundColor:'#F23D4F',
+           datalabels:{display:false}},
+          {label:'Meta Des. (R$)',data:[988341,1129112,1232674],backgroundColor:'transparent',borderColor:'#FFE600',borderWidth:2.5,type:'line',borderDash:[7,3],tension:.3,yAxisID:'yG',pointRadius:5,pointBackgroundColor:'#FFE600',
            datalabels:{display:false}}
         ]
       },
@@ -149,10 +153,15 @@ tr:hover td{background:#FFFBEA}
         <div class="sub">21.384 &times; 31 dias</div>
         <div style="margin-top:8px;font-size:12px;color:#3483FA">vs Jun R$520K &middot; <strong>+27.5% MoM</strong></div>
       </div>
+      <div class="card warn">
+        <div class="lbl">Meta Desafio Jul</div>
+        <div class="val" style="color:#FF9500">R$ 1.361K</div>
+        <div class="sub">Pace: R$663K &mdash; <span style="color:#F23D4F;font-weight:700">48.7%</span> da meta</div>
+      </div>
       <div class="card">
-        <div class="lbl">Meta Q3</div>
-        <div class="val" style="color:#888">A Definir</div>
-        <div class="sub">Alinhar com seller com base na tend&ecirc;ncia de recupera&ccedil;&atilde;o</div>
+        <div class="lbl">Meta Des. Q3 (Jul&ndash;Set)</div>
+        <div class="val" style="color:#FF9500">R$ 4.12M</div>
+        <div class="sub">Jul R$1.36M + Ago R$1.32M + Set R$1.44M</div>
       </div>
     </div>
   </div>

@@ -47,25 +47,28 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 </div>
 <div class="wrap">
 
+  <!-- ROW 1: KPIs Anuais -->
   <div class="row">
-    <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 3,19M</div><div class="sub">vs LY: <span style="color:#F23D4F;font-weight:700">&#9660; 56.1%</span></div></div>
-    <div class="card"><div class="lbl">Itens Vendidos YTD</div><div class="val">4.258</div><div class="sub">Jan-Jul 19</div></div>
-    <div class="card"><div class="lbl">Ticket M&eacute;dio</div><div class="val">R$ 750</div><div class="sub">YTD 2026</div></div>
-    <div class="card"><div class="lbl">H1 2026</div><div class="val">R$ 2,79M</div><div class="sub">Jan-Jun completo</div></div>
+    <div class="card"><div class="lbl">GMV YTD 2026</div><div class="val">R$ 3,19M</div><div class="sub">vs LY: <span style="color:#F23D4F;font-weight:700">&#9660; 56.1%</span></div></div>
+    <div class="card"><div class="lbl">SIs YTD 2026</div><div class="val">4.258</div><div class="sub">Jan&ndash;Jul 19</div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio YTD</div><div class="val">R$ 750</div><div class="sub">Jan&ndash;Jul 2026</div></div>
+    <div class="card" style="border-color:#F23D4F"><div class="lbl">Atingimento Meta Des. YTD</div><div class="val" style="color:#F23D4F">42.7%</div><div class="sub">R$ 3,19M &divide; Meta acum. R$ 7,48M</div></div>
   </div>
 
+  <!-- ROW 2: KPIs MTD + Meta -->
   <div class="row">
-    <div class="card"><div class="lbl">GMV MTD (1-19/Jul)</div><div class="val">R$ 406.291</div><div class="sub">MoM di&aacute;rio vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 23.3%</span> &nbsp;|&nbsp; R$ 21.384/dia</div></div>
-    <div class="card"><div class="lbl">Itens Vendidos MTD</div><div class="val">520</div><div class="sub">dias 1-19/Jul</div></div>
-    <div class="card"><div class="lbl">GMV Jun completo</div><div class="val">R$ 520.234</div><div class="sub">Jun avg: R$ 17.341/dia</div></div>
-    <div class="card"><div class="lbl">Proje&ccedil;&atilde;o Jul</div><div class="val" style="color:#00A650">R$ 663K</div><div class="sub">R$ 21.384 &times; 31 dias</div></div>
+    <div class="card"><div class="lbl">GMV MTD (1&ndash;19/Jul)</div><div class="val">R$ 406.291</div><div class="sub">MoM di&aacute;rio vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 23.3%</span> &nbsp;|&nbsp; R$ 21.384/dia</div></div>
+    <div class="card"><div class="lbl">SIs MTD Jul</div><div class="val">520</div><div class="sub">dias 1&ndash;19/Jul</div></div>
+    <div class="card"><div class="lbl">Meta Desafio Jul</div><div class="val" style="color:#FF9500">R$ 1.361K</div><div class="sub">Pace: R$ 663K &mdash; falta R$ 698K</div></div>
+    <div class="card" style="border-color:#F23D4F"><div class="lbl">Pace vs Meta Des. Jul</div><div class="val" style="color:#F23D4F">48.7%</div><div class="sub">R$ 663K pace &divide; R$ 1.361K meta</div></div>
   </div>
 
+  <!-- ROW 3: KPIs Operacionais -->
   <div class="row">
-    <div class="card"><div class="lbl">SKUs Ativos Jul</div><div class="val">133</div><div class="sub">com venda 1-19/Jul</div></div>
+    <div class="card"><div class="lbl">SKUs Ativos Jul</div><div class="val">133</div><div class="sub">com venda 1&ndash;19/Jul</div></div>
     <div class="card"><div class="lbl">Logistica me1</div><div class="val" style="color:#00A650">100%</div><div class="sub">todos os pedidos Jul</div></div>
-    <div class="card"><div class="lbl">Produtos zerados Jul</div><div class="val" style="color:#F23D4F">9</div><div class="sub">tinham vendas em Jun &rarr; R$0 em Jul</div></div>
-    <div class="card"><div class="lbl">GMV M&eacute;dio / SKU</div><div class="val">R$ 3.054</div><div class="sub">406K &divide; 133 SKUs Jul MTD</div></div>
+    <div class="card" style="border-color:#F23D4F"><div class="lbl">Produtos zerados Jul</div><div class="val" style="color:#F23D4F">9</div><div class="sub">tinham vendas em Jun &rarr; R$0 em Jul</div></div>
+    <div class="card"><div class="lbl">GMV Jun completo</div><div class="val">R$ 520K</div><div class="sub">avg: R$ 17.341/dia &middot; +Q2: +57% vs Abr</div></div>
   </div>
 
   <div class="sec">
@@ -94,7 +97,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
         {label:'2026',data:[527832,532969,491548,330173,385904,520234,406291,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5,datalabels:{display:false}},
         {label:'Projetado',data:[null,null,null,null,null,null,662904,530387,340052,384414,399035,199566],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[8,4],tension:.3,pointRadius:3,borderWidth:2,datalabels:{display:false}},
-        {label:'2025',data:[1249454,926520,1067186,1093218,1288064,922069,1190569,940261,602929,681585,707332,353841],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,datalabels:{display:false}}
+        {label:'2025',data:[1249454,926520,1067186,1093218,1288064,922069,1190569,940261,602929,681585,707332,353841],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,datalabels:{display:false}},
+        {label:'Meta Des.',data:[922100,856348,994602,988341,1129112,1232674,1361079,1318353,1437923,1528007,1558682,1240393],borderColor:'#FFE600',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3,borderWidth:2,datalabels:{display:false}}
       ]},
       options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:40,bottom:20}},
         plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}},datalabels:{display:false}},
