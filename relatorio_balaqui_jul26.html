@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio BALAQUI - 20/07/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; BALAQUI</h1>
+    <div class="sub">Relatório de Performance &middot; 20/07/2026 &middot; IDs: 530094229, 698931952, 1056910428</div>
+  </div>
+  <div class="meta-pill">Meta Desafio Jul: R$ 2,1M &middot; Pace: 73,8%</div>
+</div>
+<div class="wrap">
+
+  <!-- Row 1: KPIs YTD -->
+  <div class="row">
+    <div class="card">
+      <div class="lbl">GMV YTD (Jan–Jul 20)</div>
+      <div class="val">R$ 10,6M</div>
+      <div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 32,9%</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pedidos YTD</div>
+      <div class="val">10.687</div>
+      <div class="sub">LY mesma data: 13.193</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Ticket Médio YTD</div>
+      <div class="val">R$ 993</div>
+      <div class="sub">LY R$ 605 &rarr; <span style="color:#00A650;font-weight:700">+64%</span> premiumização</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Atingimento Meta YTD</div>
+      <div class="val"><span style="color:#E67E00">87,6%</span></div>
+      <div class="sub">Meta Jan–Jul = R$ 12,1M</div>
+    </div>
+  </div>
+
+  <!-- Barra progresso YTD -->
+  <div class="sec">
+    <div class="sec-ttl">Progresso da Meta YTD</div>
+    <div style="margin-bottom:6px;font-size:13px">
+      <b>R$ 10,6M</b> de <b>R$ 12,1M</b> (Meta Desafio Jan–Jul) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 32,9%</span> vs LY
+    </div>
+    <div class="bar-out" style="height:24px">
+      <div class="bar-in" style="width:87.6%;background:#3483FA"></div>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:4px">87,6% atingido</div>
+  </div>
+
+  <!-- Row 2: KPIs Jul MTD -->
+  <div class="row">
+    <div class="card">
+      <div class="lbl">GMV MTD (1–20/Jul)</div>
+      <div class="val">R$ 978K</div>
+      <div class="sub">MoM vs Jun 1–20: <span style="color:#F23D4F;font-weight:700">&#9660; 22,3%</span> &nbsp;|&nbsp; YoY vs Jul/25: <span style="color:#F23D4F;font-weight:700">&#9660; 19,4%</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pedidos MTD</div>
+      <div class="val">976</div>
+      <div class="sub">48,8 SIs/dia &nbsp;|&nbsp; Jun: 46,7 SIs/dia &#9650; +4,5%</div>
+    </div>
+    <div class="card">
+      <div class="lbl">GMV Jun completo</div>
+      <div class="val">R$ 1,59M</div>
+      <div class="sub">vs Mai: <span style="color:#F23D4F;font-weight:700">&#9660; 9,8%</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Meta Desafio Jul</div>
+      <div class="val"><span style="color:#F23D4F">47,6%</span></div>
+      <div class="sub">R$ 978K de R$ 2,1M &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">R$ 1,52M (73,8%)</span></div>
+    </div>
+  </div>
+
+  <!-- Gráfico GMV anual -->
+  <div class="sec">
+    <div class="sec-ttl">Evolução GMV — 2026 vs 2025 vs Meta Desafio</div>
+    <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var _ating = [117.1, 119.6, 99.3, 65.9, 103.4, 85.4, 47.6, null, null, null, null, null];
+    var _meta  = [1392555,1293256,1800000,2000000,1705184,1861584,2055501,1990975,2171549,2307595,2353919,1873240];
+    var _proj  = [null,null,null,null,null,null,1516201,1990975,2171549,2307595,2353919,1873240];
+    function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+    var labelsPlugin = {
+      id:'gmvLabels',
+      afterDatasetsDraw: function(chart){
+        var ctx=chart.ctx; ctx.save(); ctx.textAlign='center';
+        var meta0=chart.getDatasetMeta(0);
+        meta0.data.forEach(function(pt,i){
+          var v=chart.data.datasets[0].data[i];
+          if(v===null||v===undefined||isNaN(Number(v)))return;
+          var at=_ating[i];
+          ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+          ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+          if(at!==null&&at!==undefined){
+            var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+            var txt=at.toFixed(0)+'%';
+            ctx.font='bold 10px Arial';
+            var tw=ctx.measureText(txt).width+10;
+            ctx.fillStyle=bg;
+            ctx.beginPath(); ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5); ctx.fill();
+            ctx.fillStyle='#fff'; ctx.fillText(txt, pt.x, pt.y-12);
+          }
+        });
+        var meta1=chart.getDatasetMeta(1); var _mesMTD=6;
+        ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+        meta1.data.forEach(function(pt,i){
+          if(i<=_mesMTD)return; if(i%2===0)return;
+          var v=chart.data.datasets[1].data[i];
+          if(v===null||v===undefined||isNaN(Number(v)))return;
+          ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(document.getElementById('cGmv'),{
+      type:'line',
+      data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+        {label:'2026',data:[1630157,1546945,1786708,1317064,1762546,1590174,978194,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+        {label:'Projetado',data:[null,null,null,null,null,null,1516201,1990975,2171549,2307595,2353919,1873240],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+        {label:'2025',data:[1241600,1042785,1085443,1131479,1227903,1039370,1670566,1252669,1205362,1303580,1788085,1323870],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+        {label:'Meta Desafio',data:[1392555,1293256,1800000,2000000,1705184,1861584,2055501,1990975,2171549,2307595,2353919,1873240],borderColor:'#FFE600',borderWidth:2,backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+      ]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:50,bottom:20}},
+        plugins:{
+          legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+            if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+            return lbl;
+          }}}
+        },
+        scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+      },
+      plugins:[labelsPlugin]
+    });
+  })();
+  </script>
+
+  <!-- Gráfico SIs -->
+  <div class="sec">
+    <div class="sec-ttl">Volume de Pedidos (SIs) — 2026 vs 2025</div>
+    <div class="chart-box"><canvas id="cSI"></canvas></div>
+  </div>
+  <script>
+  new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+    {label:'2026',data:[1704,1762,1851,1314,1678,1402,976,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+    {label:'2025',data:[2238,1699,1867,1881,2052,1683,2375,1403,1592,1809,1951,1313],backgroundColor:'#DDE8FF',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},
+    scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})
+  </script>
+
+  <!-- 7.7 Data Dupla -->
+  <div style="background:linear-gradient(135deg,#FFE600,#FF9500);border-radius:12px;padding:20px 28px;margin-bottom:16px;box-shadow:0 3px 12px rgba(255,149,0,.3)">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:14px">
+      <div style="font-size:48px;line-height:1">&#11088;</div>
+      <div>
+        <div style="font-size:20px;font-weight:900;color:#1A1A1A">7.7 &mdash; Data Dupla MeLi</div>
+        <div style="font-size:14px;color:#333;margin-top:4px">07 de julho de 2026 &middot; Maior GMV do mês</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">GMV 7.7</div>
+        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$ 98.259</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">88 SIs</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs dias normais Jul</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+112%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">média outros dias: R$ 46.312/dia</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">Véspera 06/Jul</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">R$ 60K</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">2º maior dia do mês &middot; aquecimento claro</div>
+      </div>
+      <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
+        <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">Peso 7.7 no MTD</div>
+        <div style="font-size:24px;font-weight:900;color:#1A5DC8">10,1%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">R$ 98K de R$ 978K total</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insights Jul MTD -->
+  <div class="sec">
+    <div class="sec-ttl">Insights — Jul MTD</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">Queda MoM: -22,3%</div>
+        <div style="font-size:22px;font-weight:900;color:#C0001A">R$ 978K</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Jul 1–20 vs Jun 1–20: queda de R$280K. Porém SIs/dia <strong>subiram</strong> +4,5% — o problema é o <strong>ticket</strong>, não o volume.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">Ticket caindo</div>
+        <div style="font-size:22px;font-weight:900;color:#B85A00">-11,6%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Ticket Jun: <strong>R$ 1.134</strong> → Jul: <strong>R$ 1.002</strong>. Mix shift: Bouclê/Linho perdendo, Suede (menor ticket) ganhando.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">YoY negativo</div>
+        <div style="font-size:22px;font-weight:900;color:#C0001A">-19,4%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Jul 25 (1–20): R$ 1,21M / 1.773 SIs. Hoje: R$ 978K / 976 SIs. Jul 2025 foi o maior mês do ano — base alta.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#E6F7EE;border-left:4px solid #00A650;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#007A3D;text-transform:uppercase;margin-bottom:6px">Produtos em alta</div>
+        <div style="font-size:22px;font-weight:900;color:#007A3D">+295%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Sofá Living 2L Suede explodiu em julho. Kit Opala +146%, Sofá Living 3L Linho Bege +100%. Linha Suede compensando parcialmente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfico diário Jul -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Diário — Jul 2026</div>
+    <div class="chart-box" style="height:280px"><canvas id="cDailyMes"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var labels=["01/Jul","02/Jul","03/Jul","04/Jul","05/Jul","06/Jul",["07/Jul","⭐ 7.7"],"08/Jul","09/Jul","10/Jul","11/Jul","12/Jul","13/Jul","14/Jul","15/Jul","16/Jul","17/Jul","18/Jul","19/Jul","20/Jul"];
+    var vals=[37573,60842,52292,38458,35792,60025,98259,74100,42901,43924,31898,43232,37066,48041,40535,44775,44397,62181,48962,32940];
+    var colors=vals.map(function(v,i){return i===6?'#FF9500':'#3483FA';});
+    new Chart(document.getElementById('cDailyMes'),{
+      type:'bar',
+      data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
+        scales:{x:{ticks:{font:{size:10}}},y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toLocaleString('pt-BR')+'k';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <!-- Análise de queda -->
+  <div class="sec">
+    <div class="sec-ttl">&#128269; Por que o GMV caiu em julho?</div>
+
+    <!-- Resposta direta -->
+    <div style="background:#1A1A2E;border-radius:12px;padding:20px 24px;margin-bottom:20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;margin-bottom:8px;color:#FFE600">&#128161; O problema: queda no ticket médio + produtos parando de vender</div>
+      <div style="font-size:14px;color:#ddd;line-height:1.6">
+        Algo inesperado: você está vendendo <strong style="color:#00A650">mais unidades por dia</strong> (+4,5% de SIs/dia) mas faturando <strong style="color:#F23D4F">menos</strong>. Isso porque o ticket caiu de <strong style="color:#fff">R$ 1.134</strong> em junho para <strong style="color:#F23D4F">R$ 1.002</strong> — os produtos de maior valor (Bouclê/Linho ~R$ 1.480) estão perdendo espaço para os Suede (~R$ 724). Soma-se a isso <strong style="color:#FFE600">6 produtos zerados</strong> que valiam R$ 74.720/mês.
+      </div>
+    </div>
+
+    <!-- 3 KPIs tendência -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #F23D4F;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">SIs por dia</div>
+        <div style="font-size:11px;color:#aaa">Mai &nbsp;&rarr;&nbsp; Jun &nbsp;&rarr;&nbsp; Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">55,8</span> &rarr; <span style="color:#aaa">46,7</span> &rarr; <span style="color:#00A650;font-weight:900;font-size:18px">48,8</span></div>
+        <div style="font-size:11px;color:#00A650;margin-top:4px">&#9650; volume em recuperação</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #F23D4F;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Ticket médio</div>
+        <div style="font-size:11px;color:#aaa">Mai &nbsp;&rarr;&nbsp; Jun &nbsp;&rarr;&nbsp; Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$ 1.050</span> &rarr; <span style="color:#aaa">R$ 1.134</span> &rarr; <span style="color:#F23D4F;font-weight:900;font-size:18px">R$ 1.002</span></div>
+        <div style="font-size:11px;color:#F23D4F;margin-top:4px">&#9660; mix shift para produtos mais baratos</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #E67E00;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">GMV por dia</div>
+        <div style="font-size:11px;color:#aaa">Mai &nbsp;&rarr;&nbsp; Jun &nbsp;&rarr;&nbsp; Jul</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$ 56,9K</span> &rarr; <span style="color:#aaa">R$ 53,0K</span> &rarr; <span style="color:#E67E00;font-weight:900;font-size:18px">R$ 48,9K</span></div>
+        <div style="font-size:11px;color:#E67E00;margin-top:4px">&#9660; queda consistente 3º mês seguido</div>
+      </div>
+    </div>
+
+    <!-- Produtos zerados -->
+    <div style="background:#FEE8EA;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#C0001A;margin-bottom:4px">&#128308; 6 produtos pararam de vender em julho — valiam R$ 74.720/mês</div>
+      <div style="font-size:13px;color:#555;margin-bottom:14px">Em junho esses produtos vendiam normalmente. Em julho, zeraram. Precisam ser verificados urgente.</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá 3 Lugares Bouclê com Chaise CompactAir</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-4268163567" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700">&#128279; MLB4268163567</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$ 29.779</strong> (12 SIs)</div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$ 0</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Cama Montessoriana Cinza Claro Casal + Colchão</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-5954714602" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700">&#128279; MLB5954714602</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$ 15.099</strong> (8 SIs)</div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$ 0</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Living Beny 1,80m 3L Linho Cru</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-4053778279" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700">&#128279; MLB4053778279</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$ 11.499</strong> (15 SIs)</div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$ 0</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Cama Casal Montessoriana Grafite + Colchão</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-5965864350" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700">&#128279; MLB5965864350</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$ 7.600</strong> (4 SIs)</div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$ 0</div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá 3L Modular Bouclê Verde + Kit Opala 2P+2Puffs+Sofá</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-6843779688" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700">&#128279; MLB6843779688 / MLB5836615200</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jun: <strong>R$ 10.743</strong> (7 SIs combinados)</div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Jul: R$ 0</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:#7A0000;font-weight:700">&#128204; Verificar: produto pausado, sem estoque, ou perdeu buybox para concorrente. Reativar pode recuperar R$ 75K/mês.</div>
+    </div>
+
+    <!-- Produtos em queda -->
+    <div style="background:#FFF9E0;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#B85A00;margin-bottom:4px">&#9888; Produtos que estão caindo forte (Jun 1–20 vs Jul 1–20)</div>
+      <div style="font-size:13px;color:#555;margin-bottom:14px">Linha Linho e Compact Air Bouclê em queda acentuada. Mix shift estrutural ou perda de posição?</div>
+      <div style="overflow-x:auto"><table style="width:100%">
+        <thead><tr style="background:rgba(0,0,0,.06)">
+          <th style="text-align:left;padding:8px 10px;font-size:12px">Produto</th>
+          <th style="text-align:right;padding:8px 10px;font-size:12px">Jun 1–20</th>
+          <th style="text-align:right;padding:8px 10px;font-size:12px">Jul 1–20</th>
+          <th style="text-align:center;padding:8px 10px;font-size:12px">Variação</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Sofá Living 3L Linho Bege</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 17.670</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 1.997</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-88,7%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee;background:#FAFAFA">
+            <td style="padding:10px;font-size:13px">Sofá Living 3L Linho Grafite</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 18.876</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 2.632</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-86,1%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Sofá Cama Puff 3em1 Bouclê Liso</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 14.196</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 2.034</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-85,7%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee;background:#FAFAFA">
+            <td style="padding:10px;font-size:13px">Cama Montessoriana Cinza Claro + Colchão</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 27.811</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 6.390</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-77,0%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Kit 2 Poltronas + Sofá 3L Linho</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 20.319</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 4.733</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-76,7%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee;background:#FAFAFA">
+            <td style="padding:10px;font-size:13px">Sofá CompactAir Bege Bouclê</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 52.502</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 19.153</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-63,5%</span></td>
+          </tr>
+          <tr style="border-top:1px solid #eee">
+            <td style="padding:10px;font-size:13px">Sofá CompactAir Cinza Claro Bouclê</td>
+            <td style="text-align:right;padding:10px;color:#555">R$ 83.857</td>
+            <td style="text-align:right;padding:10px;font-weight:700;color:#E67E00">R$ 40.005</td>
+            <td style="text-align:center;padding:10px"><span style="background:#FEE8EA;color:#C0001A;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:700">-52,3%</span></td>
+          </tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- Produtos em alta -->
+    <div style="background:#E6F7EE;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#007A3D;margin-bottom:4px">&#9989; O que está crescendo forte — aproveitar agora</div>
+      <div style="font-size:13px;color:#555;margin-bottom:12px">Linha Suede e Kits assumindo liderança. Aumentar ADS nesses produtos para maximizar julho.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:150px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:12px;font-weight:700">Sofá Living 2L Suede</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+296%</div>
+          <div style="font-size:11px;color:#555">Jun: R$ 5.983 &rarr; Jul: R$ 23.686</div>
+        </div>
+        <div style="flex:1;min-width:150px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:12px;font-weight:700">Kit Opala 2P + Sofá 2L + Puff Suede</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+146%</div>
+          <div style="font-size:11px;color:#555">Jun: R$ 11.418 &rarr; Jul: R$ 28.092</div>
+        </div>
+        <div style="flex:1;min-width:150px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:12px;font-weight:700">Sofá Living 3L Linho Bege (versão nova)</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+101%</div>
+          <div style="font-size:11px;color:#555">Jun: R$ 9.679 &rarr; Jul: R$ 19.408</div>
+        </div>
+        <div style="flex:1;min-width:150px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:12px;font-weight:700">Namoradeira Tilla Suede</div>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+42%</div>
+          <div style="font-size:11px;color:#555">Jun: R$ 11.459 &rarr; Jul: R$ 16.280</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ações prioritárias -->
+    <div style="background:#1A1A2E;border-radius:10px;padding:16px 20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;color:#FFE600;margin-bottom:12px">&#9997;&#65039; O que fazer agora — prioridade alta</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#F23D4F;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">1</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Reativar os 6 produtos zerados</strong> — Verificar painel: pausados, sem estoque ou buybox perdida. Em especial o Sofá Bouclê 3L + Chaise (R$ 29.779/mês). Recuperação potencial: R$ 75K/mês.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">2</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Linha Linho em queda livre (-86%)</strong> — Sofás Living Linho Bege e Grafite perderam quase todo o volume. Verificar se há problema de buybox, preço ou posição no catálogo MeLi.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#E67E00;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">3</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Compact Air Bouclê desacelerando</strong> — Principal linha da Balaqui (-52% Cinza, -64% Bege). É sazonalidade de julho ou perda de posição? Comparar preço com concorrentes no catálogo.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#00A650;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">4</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Aumentar ADS nos que estão explodindo</strong> — Sofá Living 2L Suede (+296%) e Kit Opala (+146%) estão no pico. Reforçar PADS agora para maximizar o momento antes de agosto.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <div style="background:#3483FA;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">5</div>
+          <div style="font-size:13px;color:#ddd;line-height:1.5"><strong style="color:#fff">Pace Jul: R$ 1,52M vs meta R$ 2,1M</strong> — Para fechar julho em 100% da meta, precisa R$ 1.077K nos 11 dias restantes (~R$ 97K/dia). Manter ritmo atual cobre 73,8% da meta.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 15 Jul MTD -->
+  <div class="sec"><div class="sec-ttl">Top 15 Itens por GMV — Jul MTD (1–20/Jul)</div>
+  <div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">GMV Jul MTD</th>
+      <th style="text-align:right">Share</th>
+      <th style="text-align:right">MoM (Jun→Jul)</th>
+      <th style="text-align:right">SIs</th>
+      <th style="text-align:right">Ticket</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank">Cama Montessoriana Rosa + Colchão</a><br><span style="font-size:10px;color:#999">MLB5864213932</span></td><td style="text-align:right;font-weight:700">R$ 113K</td><td style="text-align:right">11,6%</td><td style="text-align:right"><span class="neg">&#9660; 34,0%</span></td><td style="text-align:right">73</td><td style="text-align:right">R$ 1.554</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank">Sofá Cama CompactAir Grafite Bouclê</a><br><span style="font-size:10px;color:#999">MLB4304679587</span></td><td style="text-align:right;font-weight:700">R$ 94K</td><td style="text-align:right">9,6%</td><td style="text-align:right"><span class="neg">&#9660; (vs Jun 168K)</span></td><td style="text-align:right">64</td><td style="text-align:right">R$ 1.476</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank">Cama Montessoriana Cinza/Grafite + Colchão</a><br><span style="font-size:10px;color:#999">MLB5901779680</span></td><td style="text-align:right;font-weight:700">R$ 79K</td><td style="text-align:right">8,1%</td><td style="text-align:right"><span class="neg">&#9660; 17,0%</span></td><td style="text-align:right">49</td><td style="text-align:right">R$ 1.617</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank">Sofá Living 3L Suede + Almofadas</a><br><span style="font-size:10px;color:#999">MLB5365991654</span></td><td style="text-align:right;font-weight:700">R$ 48K</td><td style="text-align:right">4,9%</td><td style="text-align:right"><span class="neg">&#9660; 57,4%</span></td><td style="text-align:right">67</td><td style="text-align:right">R$ 724</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank">Cama Montessoriana Bege + Colchão</a><br><span style="font-size:10px;color:#999">MLB5903044944</span></td><td style="text-align:right;font-weight:700">R$ 44K</td><td style="text-align:right">4,5%</td><td style="text-align:right"><span class="neg">&#9660; 32,2%</span></td><td style="text-align:right">28</td><td style="text-align:right">R$ 1.565</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank">Cama Montessoriana Cinza Claro + Colchão</a><br><span style="font-size:10px;color:#999">MLB4299910923</span></td><td style="text-align:right;font-weight:700">R$ 41K</td><td style="text-align:right">4,2%</td><td style="text-align:right"><span class="neg">&#9660; 26,2%</span></td><td style="text-align:right">26</td><td style="text-align:right">R$ 1.594</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank">Sofá Cama CompactAir Cinza Claro Bouclê</a><br><span style="font-size:10px;color:#999">MLB4304337063</span></td><td style="text-align:right;font-weight:700">R$ 40K</td><td style="text-align:right">4,1%</td><td style="text-align:right"><span class="neg">&#9660; 52,3%</span></td><td style="text-align:right">27</td><td style="text-align:right">R$ 1.482</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5284951630" target="_blank">Kit Opala 2 Poltronas + Sofá 2L + Puff Suede</a><br><span style="font-size:10px;color:#999">MLB5284951630</span></td><td style="text-align:right;font-weight:700">R$ 28K</td><td style="text-align:right">2,9%</td><td style="text-align:right"><span class="pos">&#9650; +146%</span></td><td style="text-align:right">32</td><td style="text-align:right">R$ 878</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank">Kit 1 Poltrona Living + Sofá Suede</a><br><span style="font-size:10px;color:#999">MLB5365913948</span></td><td style="text-align:right;font-weight:700">R$ 25K</td><td style="text-align:right">2,5%</td><td style="text-align:right"><span class="neg">&#9660; 40,5%</span></td><td style="text-align:right">20</td><td style="text-align:right">R$ 1.241</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5366043510" target="_blank">Sofá Living 2L Suede + Almofadas</a><br><span style="font-size:10px;color:#999">MLB5366043510</span></td><td style="text-align:right;font-weight:700">R$ 24K</td><td style="text-align:right">2,4%</td><td style="text-align:right"><span class="pos">&#9650; +296%</span></td><td style="text-align:right">39</td><td style="text-align:right">R$ 607</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4287759183" target="_blank">Sofá Living 3L Linho Grafite + Almofadas</a><br><span style="font-size:10px;color:#999">MLB4287759183</span></td><td style="text-align:right;font-weight:700">R$ 23K</td><td style="text-align:right">2,4%</td><td style="text-align:right"><span class="pos">&#9650; +356%</span></td><td style="text-align:right">34</td><td style="text-align:right">R$ 689</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4100646723" target="_blank">Namoradeira Opala Suede Balaqui</a><br><span style="font-size:10px;color:#999">MLB4100646723</span></td><td style="text-align:right;font-weight:700">R$ 21K</td><td style="text-align:right">2,1%</td><td style="text-align:right"><span class="pos">&#9650; +593%</span></td><td style="text-align:right">73</td><td style="text-align:right">R$ 287</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5902646544" target="_blank">Sofá Living 3L Linho Bege (novo)</a><br><span style="font-size:10px;color:#999">MLB5902646544</span></td><td style="text-align:right;font-weight:700">R$ 19K</td><td style="text-align:right">2,0%</td><td style="text-align:right"><span class="pos">&#9650; +101%</span></td><td style="text-align:right">29</td><td style="text-align:right">R$ 669</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">Sofá Cama CompactAir Bege Bouclê</a><br><span style="font-size:10px;color:#999">MLB5932961222</span></td><td style="text-align:right;font-weight:700">R$ 19K</td><td style="text-align:right">2,0%</td><td style="text-align:right"><span class="neg">&#9660; 63,5%</span></td><td style="text-align:right">13</td><td style="text-align:right">R$ 1.473</td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5982680014" target="_blank">Cama Casal Montessoriana Grafite + Colchão</a><br><span style="font-size:10px;color:#999">MLB5982680014</span></td><td style="text-align:right;font-weight:700">R$ 17K</td><td style="text-align:right">1,8%</td><td style="text-align:right"><span class="neg">&#9660; 18,0%</span></td><td style="text-align:right">8</td><td style="text-align:right">R$ 2.156</td></tr>
+    </tbody>
+  </table></div></div>
+
+  <!-- Itens em queda tabela -->
+  <div class="sec"><div class="sec-ttl">&#9660; Maiores Quedas MoM (Jun 1–20 vs Jul 1–20)</div>
+  <div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">Jun 1–20</th>
+      <th style="text-align:right">Jul 1–20</th>
+      <th style="text-align:center">Var.</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6292677416" target="_blank">Sofá Living 3L Linho Bege (antigo)</a><br><span style="font-size:10px;color:#999">MLB6292677416</span></td><td style="text-align:right">R$ 17.670</td><td style="text-align:right">R$ 1.997</td><td style="text-align:center"><span class="neg pill pl-r">-88,7%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5365952760" target="_blank">Kit 1 Poltrona + Sofá 3L Suede</a><br><span style="font-size:10px;color:#999">MLB5365952760</span></td><td style="text-align:right">R$ 8.772</td><td style="text-align:right">R$ 1.050</td><td style="text-align:center"><span class="neg pill pl-r">-88,0%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6292703504" target="_blank">Sofá Living 3L Linho Grafite (antigo)</a><br><span style="font-size:10px;color:#999">MLB6292703504</span></td><td style="text-align:right">R$ 18.876</td><td style="text-align:right">R$ 2.632</td><td style="text-align:center"><span class="neg pill pl-r">-86,1%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6682680618" target="_blank">Sofá Cama Puff 3em1 Bouclê Liso</a><br><span style="font-size:10px;color:#999">MLB6682680618</span></td><td style="text-align:right">R$ 14.196</td><td style="text-align:right">R$ 2.034</td><td style="text-align:center"><span class="neg pill pl-r">-85,7%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank">Cama Montessoriana Cinza Claro Casal</a><br><span style="font-size:10px;color:#999">MLB5983046296</span></td><td style="text-align:right">R$ 27.811</td><td style="text-align:right">R$ 6.390</td><td style="text-align:center"><span class="neg pill pl-r">-77,0%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5365850460" target="_blank">Kit 2 Poltronas + Sofá 3L Linho</a><br><span style="font-size:10px;color:#999">MLB5365850460</span></td><td style="text-align:right">R$ 20.319</td><td style="text-align:right">R$ 4.733</td><td style="text-align:center"><span class="neg pill pl-r">-76,7%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-3185810812" target="_blank">Kit Sofá Namoradeira Tilla + 2 Poltronas</a><br><span style="font-size:10px;color:#999">MLB3185810812</span></td><td style="text-align:right">R$ 17.423</td><td style="text-align:right">R$ 5.006</td><td style="text-align:center"><span class="neg pill pl-r">-71,3%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank">Sofá CompactAir Bege Bouclê</a><br><span style="font-size:10px;color:#999">MLB5932961222</span></td><td style="text-align:right">R$ 52.502</td><td style="text-align:right">R$ 19.153</td><td style="text-align:center"><span class="neg pill pl-r">-63,5%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5982867786" target="_blank">Cama Casal Montessoriana Rosa + Colchão</a><br><span style="font-size:10px;color:#999">MLB5982867786</span></td><td style="text-align:right">R$ 27.639</td><td style="text-align:right">R$ 12.919</td><td style="text-align:center"><span class="neg pill pl-r">-53,3%</span></td></tr>
+      <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank">Sofá CompactAir Cinza Claro Bouclê</a><br><span style="font-size:10px;color:#999">MLB4304337063</span></td><td style="text-align:right">R$ 83.857</td><td style="text-align:right">R$ 40.005</td><td style="text-align:center"><span class="neg pill pl-r">-52,3%</span></td></tr>
+    </tbody>
+  </table></div></div>
+
+</div>
+</body>
+</html>
