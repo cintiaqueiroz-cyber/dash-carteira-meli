@@ -90,6 +90,7 @@ a{color:#2E5BA8;text-decoration:none} a:hover{text-decoration:underline}
     Chart.register(ChartDataLabels);
     var labels = ["Jan","Fev","Mar","Abr","Mai","Jun"];
     var nmv26  = [3549121,3350286,2814187,2966512,2874511,3433906];
+    var nmv25  = [3086291,2361463,2774325,2475936,3301695,3485419];
     var momPct = nmv26.map(function(v,i){return i===0?null:(v/nmv26[i-1]-1)*100;});
     var meta   = [3457067,3210555,3728888,3705415,4233180,4621449];
     var si26   = [8599,7758,6404,6691,6701,7108];
@@ -104,6 +105,7 @@ a{color:#2E5BA8;text-decoration:none} a:hover{text-decoration:underline}
            borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
            formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
            color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#007A3D':'#C62828';}}},
+        {label:'GMV 2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.13)',borderRadius:5,yAxisID:'yNmv',order:3,datalabels:{display:false}},
         {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FFB900',borderWidth:2.5,backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#FFB900',yAxisID:'yNmv',order:1,datalabels:{display:false}},
         {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF6B00',backgroundColor:'transparent',tension:.35,pointRadius:4,borderWidth:2,yAxisID:'ySi',order:0,datalabels:{display:false}},
         {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.35,pointRadius:3,borderWidth:1.5,yAxisID:'ySi',order:0,datalabels:{display:false}}
