@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BOM PASTOR — Quinzenal Jul 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#007A3D,#00A650);color:#fff;padding:24px 36px}
+.hdr h1{font-size:22px;font-weight:900}
+.hdr .sub{font-size:12px;opacity:.8;margin-top:3px}
+.wrap{max-width:1280px;margin:0 auto;padding:20px}
+.row{display:grid;gap:12px;margin-bottom:12px}
+.r4{grid-template-columns:repeat(4,1fr)}
+.r2{grid-template-columns:repeat(2,1fr)}
+.kpi{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.kpi .kl{font-size:10px;font-weight:800;text-transform:uppercase;color:#888;margin-bottom:6px;letter-spacing:.4px}
+.kpi .kv{font-size:24px;font-weight:900;margin-bottom:2px}
+.kpi .ks{font-size:11px;color:#888}
+.sec{background:#fff;border-radius:10px;padding:20px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.sec-ttl{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:16px;background:#00A650;border-radius:2px}
+.chart-h{position:relative;height:280px}
+.chart-h2{position:relative;height:200px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:8px 10px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:800}
+.tag.up{background:#E8F8EF;color:#007A3D}
+.tag.dn{background:#FEE8EA;color:#C62828}
+.tag.neu{background:#F5F5F5;color:#555}
+.ic4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ic{border-radius:8px;padding:14px;font-size:12px;line-height:1.5}
+.ic.ok{background:#F0FBF5;border-left:3px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:3px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:3px solid #2E5BA8}
+.ic.warn{background:#FFFDF0;border-left:3px solid #FFB900}
+.ic .it{font-size:10px;font-weight:800;text-transform:uppercase;color:#888;margin-bottom:5px}
+.ic.ok .it{color:#007A3D} .ic.nok .it{color:#C62828}
+.ic.opp .it{color:#1A5DC8} .ic.warn .it{color:#856404}
+.ic .iv{font-size:20px;font-weight:900;margin-bottom:4px}
+.dark-box{background:#0D2B1A;color:#fff;border-radius:10px;padding:18px;margin-bottom:12px}
+.dark-box .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+.dark-box .mk{font-size:10px;opacity:.6;text-transform:uppercase;margin-bottom:4px}
+.dark-box .mv{font-size:22px;font-weight:900}
+.dark-box .ms{font-size:11px;opacity:.7}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <h1>&#128202; BOM PASTOR — Quinzenal Jul 2026 (1–20/Jul)</h1>
+  <div class="sub">KAM: Cintia Faraco Queiroz &middot; ID: 1009033565 &middot; F&amp;H &middot; Ref&ecirc;ncia: 21/Jul/2026</div>
+</div>
+<div class="wrap">
+
+  <!-- KPIs Linha 1 -->
+  <div class="row r4">
+    <div class="kpi">
+      <div class="kl">GMV YTD 2026 (Jan–Jul 20)</div>
+      <div class="kv" style="color:#007A3D">R$ 16,38M</div>
+      <div class="ks">YTD 2025: R$ 8,97M &middot; <span style="color:#007A3D;font-weight:700">+82.6% YoY</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">SIs YTD 2026</div>
+      <div class="kv">9.850</div>
+      <div class="ks">Ticket alto mantido: <span style="color:#007A3D;font-weight:700">R$ 1.663 m&eacute;dia</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Ticket M&eacute;dio Jul MTD</div>
+      <div class="kv" style="color:#007A3D">R$ 1.649</div>
+      <div class="ks">Jun: R$ 1.636 &middot; <span style="color:#007A3D;font-weight:700">+0.8% MoM</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Atingimento H1 Meta Desafio</div>
+      <div class="kv" style="color:#E67E00">84.6%</div>
+      <div class="ks">H1: R$14,08M / Meta R$16,63M · Gap -R$2,55M</div>
+    </div>
+  </div>
+
+  <!-- KPIs Linha 2 -->
+  <div class="row r4">
+    <div class="kpi">
+      <div class="kl">GMV Jul MTD (1–20)</div>
+      <div class="kv" style="color:#007A3D">R$ 2,31M</div>
+      <div class="ks">Jul 2025 (1–20): R$ 1,08M &middot; <span style="color:#007A3D;font-weight:700">+114.0% YoY</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">SIs Jul MTD</div>
+      <div class="kv">1.400</div>
+      <div class="ks">Jun 1–20: 1.464 SIs &middot; <span style="color:#E67E00;font-weight:700">-4.4% MoM</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">GMV Jun Completo</div>
+      <div class="kv">R$ 3,02M</div>
+      <div class="ks">Jun 1–20: R$ 2,40M &middot; MoM: <span style="color:#E67E00;font-weight:700">-3.6%</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Meta Jul &amp; Pace</div>
+      <div class="kv" style="color:#007A3D">96.8%</div>
+      <div class="ks">Meta: R$ 3,70M &middot; Proj: R$ 3,58M</div>
+    </div>
+  </div>
+
+  <!-- Gráfico GMV mensal -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Mensal 2026 vs 2025 vs Meta Desafio + Atingimento</div>
+    <div class="chart-h" style="height:300px"><canvas id="cMensal"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul*"];
+    var nmv26  = [628423,1282724,3343109,2297448,3500412,3023292,3578624];
+    var nmv25  = [243924,540914,824238,969474,2025448,3291886,1254643];
+    var meta   = [2504833,2326222,2701782,2684775,3067169,3348491,3697296];
+    var ating  = [25.1,55.1,123.7,85.6,114.1,90.3,96.8];
+    var colors = ["#5CB87A","#5CB87A","#5CB87A","#00A650","#00A650","#00A650","rgba(0,166,80,0.5)"];
+    new Chart(document.getElementById('cMensal'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yG',order:2,
+         datalabels:{anchor:'end',align:'top',offset:3,font:{size:11,weight:'900'},
+           backgroundColor:function(ctx){var a=ating[ctx.dataIndex];return a>=100?'#E8F8EF':'#FEE8EA';},
+           borderRadius:3,padding:{top:2,bottom:2,left:4,right:4},
+           formatter:function(v,ctx){return ating[ctx.dataIndex].toFixed(1)+'%';},
+           color:function(ctx){return ating[ctx.dataIndex]>=100?'#007A3D':'#C62828';}}},
+        {label:'GMV 2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.10)',borderRadius:5,yAxisID:'yG',order:3,datalabels:{display:false}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FFB900',borderWidth:2.5,borderDash:[5,3],backgroundColor:'transparent',pointRadius:4,pointBackgroundColor:'#FFB900',yAxisID:'yG',order:1,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,clip:false,
+        layout:{padding:{top:40}},
+        plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},
+          tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');}}}},
+        scales:{yG:{ticks:{callback:function(v){return 'R$'+Number(v/1000000).toFixed(1)+'M';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <!-- Data Dupla 7.7 -->
+  <div style="background:linear-gradient(135deg,#0D2B1A,#007A3D);color:#fff;border-radius:10px;padding:18px 24px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:11px;opacity:.7;text-transform:uppercase;font-weight:800">&#128293; Data Dupla 7.7 (07/Jul)</div>
+      <div style="font-size:28px;font-weight:900;color:#FFE600;margin:4px 0">R$ 465.681</div>
+      <div style="font-size:12px;opacity:.8">280 SIs &middot; Ticket R$ 1.663 &middot; +380% vs dia m&eacute;dio</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;opacity:.7">Impacto no MTD</div>
+      <div style="font-size:18px;font-weight:900;color:#FFE600">20.2%</div>
+      <div style="font-size:11px;opacity:.7">do GMV Jul</div>
+    </div>
+  </div>
+
+  <!-- Gráfico diário Jul -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Di&aacute;rio — Julho 2026 (1–20)</div>
+    <div class="chart-h2"><canvas id="cDaily"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var dias = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
+    var gmv  = [53472,63206,68224,82253,98053,144627,465681,122552,84856,110067,109910,101000,122599,192330,101127,92126,66469,55765,64808,109664];
+    var cols = gmv.map(function(v,i){return i===6?'#FFB900':'#00A650';});
+    new Chart(document.getElementById('cDaily'),{
+      type:'bar',
+      data:{labels:dias,datasets:[{
+        label:'GMV (R$)',data:gmv,backgroundColor:cols,borderRadius:3,
+        datalabels:{display:false}
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+        datalabels:{display:false},
+        tooltip:{callbacks:{label:function(c){return 'R$'+Number(c.raw).toLocaleString('pt-BR');}}}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <!-- Análise MoM -->
+  <div class="dark-box">
+    <div style="font-size:13px;font-weight:800">&#128200; An&aacute;lise MoM — Jul 1–20 vs Jun 1–20</div>
+    <div style="font-size:12px;opacity:.7;margin-top:4px">Leve queda no per&iacute;odo comparado, mas seller caminha bem para meta Jul. YoY +114% confirma atra&ccedil;&atilde;o de demanda saud&aacute;vel.</div>
+    <div class="row3">
+      <div><div class="mk">GMV (mesmo per&iacute;odo)</div><div class="mv" style="color:#FF8888">-3.6%</div><div class="ms">R$2,31M vs R$2,40M</div></div>
+      <div><div class="mk">SIs/dia</div><div class="mv" style="color:#FF8888">-4.4%</div><div class="ms">70/dia vs 73/dia</div></div>
+      <div><div class="mk">Ticket M&eacute;dio</div><div class="mv" style="color:#4ADE80">+0.8%</div><div class="ms">R$1.649 vs R$1.636</div></div>
+    </div>
+  </div>
+
+  <!-- Destaque: concentração Milano -->
+  <div style="background:#FFFDF0;border:1.5px solid #FFB900;border-radius:10px;padding:16px;margin-bottom:12px">
+    <div style="font-size:12px;font-weight:800;color:#856404;margin-bottom:6px">&#9888; Risco de Concentra&ccedil;&atilde;o: Sof&aacute; Milano domina 21.8% do GMV Jul</div>
+    <div style="font-size:12px;color:#555">
+      <a href="https://produto.mercadolivre.com.br/MLB-4202911771" target="_blank" style="color:#856404;font-weight:700">MLB4202911771</a> — Sof&aacute; 2 Lugares 2,00M Retr&aacute;til e Reclin&aacute;vel Milano: <strong>R$ 502.874</strong> de R$ 2,31M total.
+      Qualquer problema de estoque, buybox ou logística impacta diretamente o atingimento da meta.
+    </div>
+  </div>
+
+  <!-- Itens parados -->
+  <div class="sec">
+    <div class="sec-ttl">Itens com GMV em Jun e Zerados em Jul</div>
+    <table>
+      <thead><tr><th>Produto</th><th style="text-align:right">GMV Jun</th><th style="text-align:right">SIs Jun</th><th>Status Jul</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6234530342" target="_blank">Sala de Jantar Lottus 160x80 Cinza / Bege 6 Cad.</a><br><a href="https://produto.mercadolivre.com.br/MLB-6234530342" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6234530342</a></td>
+          <td style="text-align:right">R$ 14.738</td><td style="text-align:right">8</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6291876520" target="_blank">Sala de Jantar Lottus OFF 220x110 8 Cad. Liso</a><br><a href="https://produto.mercadolivre.com.br/MLB-6291876520" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6291876520</a></td>
+          <td style="text-align:right">R$ 9.944</td><td style="text-align:right">5</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6225395852" target="_blank">Sala de Jantar Lottus 220x110 Am&ecirc;ndoa 8 Cad.</a><br><a href="https://produto.mercadolivre.com.br/MLB-6225395852" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6225395852</a></td>
+          <td style="text-align:right">R$ 8.247</td><td style="text-align:right">4</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4709024689" target="_blank">Guarda Roupa Martin Preto 3 Portas</a><br><a href="https://produto.mercadolivre.com.br/MLB-4709024689" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4709024689</a></td>
+          <td style="text-align:right">R$ 7.450</td><td style="text-align:right">5</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4339939250" target="_blank">Guarda Roupa Exclusive Grafite 3 Portas</a><br><a href="https://produto.mercadolivre.com.br/MLB-4339939250" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4339939250</a></td>
+          <td style="text-align:right">R$ 5.998</td><td style="text-align:right">3</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4058522447" target="_blank">Colch&atilde;o Vision Casal Molas Ensacadas</a><br><a href="https://produto.mercadolivre.com.br/MLB-4058522447" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4058522447</a></td>
+          <td style="text-align:right">R$ 5.774</td><td style="text-align:right">7</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4024711308" target="_blank">Colch&atilde;o Belize Casal Molas Ensacadas</a><br><a href="https://produto.mercadolivre.com.br/MLB-4024711308" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4024711308</a></td>
+          <td style="text-align:right">R$ 5.410</td><td style="text-align:right">6</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-3641032773" target="_blank">Sof&aacute; West Cinza 2 Lugares</a><br><a href="https://produto.mercadolivre.com.br/MLB-3641032773" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB3641032773</a></td>
+          <td style="text-align:right">R$ 4.916</td><td style="text-align:right">3</td><td><span class="tag dn">Zerado</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Itens em queda -->
+  <div class="sec">
+    <div class="sec-ttl">Maiores Quedas MoM — Jul 1–20 vs Jun 1–20</div>
+    <table>
+      <thead><tr><th>Produto</th><th style="text-align:right">GMV Jun 1–20</th><th style="text-align:right">GMV Jul 1–20</th><th style="text-align:right">Var.</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4480692363" target="_blank">Sala de Jantar Lottus Am&ecirc;ndoa/Bege 160x80 6 Cad. Matelassê</a><br><a href="https://produto.mercadolivre.com.br/MLB-4480692363" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4480692363</a></td>
+          <td style="text-align:right">R$ 16.484</td><td style="text-align:right">R$ 2.413</td><td style="text-align:right"><span class="tag dn">-85.4%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5398494018" target="_blank">Sof&aacute; de Canto Leona Luxo Retr&aacute;til Reclin&aacute;vel</a><br><a href="https://produto.mercadolivre.com.br/MLB-5398494018" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5398494018</a></td>
+          <td style="text-align:right">R$ 20.312</td><td style="text-align:right">R$ 3.396</td><td style="text-align:right"><span class="tag dn">-83.3%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5410793578" target="_blank">Colch&atilde;o Dallas King Molas Ensacadas Bom Pastor</a><br><a href="https://produto.mercadolivre.com.br/MLB-5410793578" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5410793578</a></td>
+          <td style="text-align:right">R$ 11.528</td><td style="text-align:right">R$ 2.010</td><td style="text-align:right"><span class="tag dn">-82.6%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6223099512" target="_blank">Sala de Jantar Mel Grafite 196x90 6 Cad. MDF/Vidro</a><br><a href="https://produto.mercadolivre.com.br/MLB-6223099512" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6223099512</a></td>
+          <td style="text-align:right">R$ 18.730</td><td style="text-align:right">R$ 3.292</td><td style="text-align:right"><span class="tag dn">-82.4%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4054993315" target="_blank">Sof&aacute; de Canto Leona Linho Retr&aacute;til Reclin&aacute;vel</a><br><a href="https://produto.mercadolivre.com.br/MLB-4054993315" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4054993315</a></td>
+          <td style="text-align:right">R$ 15.284</td><td style="text-align:right">R$ 2.795</td><td style="text-align:right"><span class="tag dn">-81.7%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4582630487" target="_blank">Sala de Jantar Mavie 90x90 4 Cad. Off-White</a><br><a href="https://produto.mercadolivre.com.br/MLB-4582630487" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4582630487</a></td>
+          <td style="text-align:right">R$ 9.178</td><td style="text-align:right">R$ 1.795</td><td style="text-align:right"><span class="tag dn">-80.4%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6574462036" target="_blank">Guarda Roupa Titan 4 Portas 4 Gavetas com Espelho</a><br><a href="https://produto.mercadolivre.com.br/MLB-6574462036" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6574462036</a></td>
+          <td style="text-align:right">R$ 8.464</td><td style="text-align:right">R$ 2.156</td><td style="text-align:right"><span class="tag dn">-74.6%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5398340574" target="_blank">Sof&aacute; de Canto Leona Plus Retr&aacute;til Reclin&aacute;vel</a><br><a href="https://produto.mercadolivre.com.br/MLB-5398340574" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5398340574</a></td>
+          <td style="text-align:right">R$ 12.152</td><td style="text-align:right">R$ 3.099</td><td style="text-align:right"><span class="tag dn">-74.5%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Itens em alta -->
+  <div class="sec">
+    <div class="sec-ttl">&#128640; Destaques em Alta — Jul 1–20 vs Jun 1–20</div>
+    <div class="ic4">
+      <div class="ic ok">
+        <div class="it">&#9651; +432.1%</div>
+        <div class="iv">R$ 33.526</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-4577263913" target="_blank"><strong>Sala de Jantar Mavie Vidro 130x90 Off 4 Cad. Bom Pastor</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-4577263913" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4577263913</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 6.299 &rarr; Jul: R$ 33.526 — consumidor buscando mesa compacta!</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +426%</div>
+        <div class="iv">R$ 9.847</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-6562275696" target="_blank"><strong>Sala de Jantar Mavie 130x90 Chumbo 4 Cad.</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-6562275696" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6562275696</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 1.872 &rarr; Jul: R$ 9.847 — tendência Mavie confirmada</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +220.8%</div>
+        <div class="iv">R$ 11.041</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-6223125484" target="_blank"><strong>Sala de Jantar Mel Marrom 196x90 MDF/Vidro 6 Cad.</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-6223125484" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6223125484</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 3.443 &rarr; Jul: R$ 11.041</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +147.6%</div>
+        <div class="iv">R$ 8.125</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-4585384863" target="_blank"><strong>Sof&aacute; de Canto Mavie Chumbo 180x180cm Retr&aacute;til</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-4585384863" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4585384863</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 3.280 &rarr; Jul: R$ 8.125</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 15 Jul MTD -->
+  <div class="sec">
+    <div class="sec-ttl">Top 15 Itens &mdash; Jul 2026 MTD (1–20) por GMV</div>
+    <table>
+      <thead><tr><th>#</th><th>Produto</th><th style="text-align:right">GMV Jul</th><th style="text-align:right">SIs</th><th style="text-align:right">Ticket</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#888;font-size:11px">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4202911771" target="_blank"><strong>Sof&aacute; 2 Lugares 2,00M Retr&aacute;til e Reclin&aacute;vel Milano &#9888;</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4202911771" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4202911771</a></td>
+          <td style="text-align:right;font-weight:700">R$ 502.874</td><td style="text-align:right">298</td><td style="text-align:right">R$ 1.687</td></tr>
+        <tr><td style="color:#888;font-size:11px">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4160449811" target="_blank"><strong>Sof&aacute; 5 Lugares 2,90M Retr&aacute;til e Reclin&aacute;vel Turim</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4160449811" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4160449811</a></td>
+          <td style="text-align:right;font-weight:700">R$ 131.063</td><td style="text-align:right">46</td><td style="text-align:right">R$ 2.849</td></tr>
+        <tr><td style="color:#888;font-size:11px">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5458099386" target="_blank"><strong>Sof&aacute; 4 Lugares 2,50M Retr&aacute;til e Reclin&aacute;vel Turim</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-5458099386" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5458099386</a></td>
+          <td style="text-align:right;font-weight:700">R$ 125.986</td><td style="text-align:right">50</td><td style="text-align:right">R$ 2.520</td></tr>
+        <tr><td style="color:#888;font-size:11px">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5490756344" target="_blank"><strong>Colch&atilde;o Casal Molas Ensacadas Fiori 138x188x30 Branco</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-5490756344" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5490756344</a></td>
+          <td style="text-align:right;font-weight:700">R$ 79.832</td><td style="text-align:right">78</td><td style="text-align:right">R$ 1.023</td></tr>
+        <tr><td style="color:#888;font-size:11px">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4129272583" target="_blank"><strong>Colch&atilde;o Queen Fiori Molas Ensacadas + Base 158x198x67 Bege</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4129272583" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4129272583</a></td>
+          <td style="text-align:right;font-weight:700">R$ 62.857</td><td style="text-align:right">38</td><td style="text-align:right">R$ 1.654</td></tr>
+        <tr><td style="color:#888;font-size:11px">6</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5398540320" target="_blank"><strong>Sof&aacute; de Canto Leona Gold Retr&aacute;til Reclin&aacute;vel</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-5398540320" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5398540320</a></td>
+          <td style="text-align:right;font-weight:700">R$ 58.647</td><td style="text-align:right">33</td><td style="text-align:right">R$ 1.777</td></tr>
+        <tr><td style="color:#888;font-size:11px">7</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5505034632" target="_blank"><strong>Colch&atilde;o King Fiori Molas Ensacadas + Base 193x203x55 Bege</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-5505034632" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB5505034632</a></td>
+          <td style="text-align:right;font-weight:700">R$ 52.941</td><td style="text-align:right">27</td><td style="text-align:right">R$ 1.961</td></tr>
+        <tr><td style="color:#888;font-size:11px">8</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6222877388" target="_blank"><strong>Sof&aacute; Cama Retr&aacute;til Linho Bom Pastor Innova Linho Cinza</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-6222877388" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6222877388</a></td>
+          <td style="text-align:right;font-weight:700">R$ 46.779</td><td style="text-align:right">27</td><td style="text-align:right">R$ 1.733</td></tr>
+        <tr><td style="color:#888;font-size:11px">9</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6223047758" target="_blank"><strong>Sala de Jantar 196x90 Mel MDF/Vidro 6 Cad. Off-White Natural Bege &#128640;</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-6223047758" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6223047758</a></td>
+          <td style="text-align:right;font-weight:700">R$ 41.379</td><td style="text-align:right">22</td><td style="text-align:right">R$ 1.881</td></tr>
+        <tr><td style="color:#888;font-size:11px">10</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3441617475" target="_blank"><strong>Sof&aacute; Cama Retr&aacute;til Linho Bom Pastor Innova Linho Bege</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-3441617475" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB3441617475</a></td>
+          <td style="text-align:right;font-weight:700">R$ 37.170</td><td style="text-align:right">21</td><td style="text-align:right">R$ 1.770</td></tr>
+        <tr><td style="color:#888;font-size:11px">11</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4577263913" target="_blank"><strong>Sala de Jantar 130x90 Mavie Vidro Off 4 Cad. Natural Linho Off &#128293;</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4577263913" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4577263913</a></td>
+          <td style="text-align:right;font-weight:700">R$ 33.526</td><td style="text-align:right">34</td><td style="text-align:right">R$ 986</td></tr>
+        <tr><td style="color:#888;font-size:11px">12</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6223242366" target="_blank"><strong>Sala de Jantar 160x80 Lottus MDF/Vidro 6 Cad. Natural Bege Matelassê</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-6223242366" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6223242366</a></td>
+          <td style="text-align:right;font-weight:700">R$ 28.941</td><td style="text-align:right">16</td><td style="text-align:right">R$ 1.809</td></tr>
+        <tr><td style="color:#888;font-size:11px">13</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4564727629" target="_blank"><strong>Sala de Jantar 220x110 Stone 8 Cad. Ayla Nogal/Off BP Linho Marrom</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4564727629" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4564727629</a></td>
+          <td style="text-align:right;font-weight:700">R$ 28.441</td><td style="text-align:right">14</td><td style="text-align:right">R$ 2.031</td></tr>
+        <tr><td style="color:#888;font-size:11px">14</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6225604048" target="_blank"><strong>Sala de Jantar 220x110 Lottus Vidro Grafite 8 Cad. Liso</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-6225604048" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB6225604048</a></td>
+          <td style="text-align:right;font-weight:700">R$ 26.341</td><td style="text-align:right">11</td><td style="text-align:right">R$ 2.395</td></tr>
+        <tr><td style="color:#888;font-size:11px">15</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4279415087" target="_blank"><strong>Sof&aacute; 5 Lugares 2,57x2,57M Canto Essenza Luxo Bom Pastor</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4279415087" target="_blank" style="font-size:10px;color:#007A3D">&#128279; MLB4279415087</a></td>
+          <td style="text-align:right;font-weight:700">R$ 24.832</td><td style="text-align:right">12</td><td style="text-align:right">R$ 2.069</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

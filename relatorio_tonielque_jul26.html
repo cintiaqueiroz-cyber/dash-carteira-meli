@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TONIELQUE — Quinzenal Jul 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#1A3A6C,#2E5BA8);color:#fff;padding:24px 36px}
+.hdr h1{font-size:22px;font-weight:900}
+.hdr .sub{font-size:12px;opacity:.8;margin-top:3px}
+.wrap{max-width:1280px;margin:0 auto;padding:20px}
+.row{display:grid;gap:12px;margin-bottom:12px}
+.r4{grid-template-columns:repeat(4,1fr)}
+.r2{grid-template-columns:repeat(2,1fr)}
+.kpi{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.kpi .kl{font-size:10px;font-weight:800;text-transform:uppercase;color:#888;margin-bottom:6px;letter-spacing:.4px}
+.kpi .kv{font-size:24px;font-weight:900;margin-bottom:2px}
+.kpi .ks{font-size:11px;color:#888}
+.sec{background:#fff;border-radius:10px;padding:20px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.sec-ttl{font-size:14px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:16px;background:#2E5BA8;border-radius:2px}
+.chart-h{position:relative;height:280px}
+.chart-h2{position:relative;height:200px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:8px 10px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+a{color:#2E5BA8;text-decoration:none} a:hover{text-decoration:underline}
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:800}
+.tag.up{background:#E8F8EF;color:#007A3D}
+.tag.dn{background:#FEE8EA;color:#C62828}
+.tag.neu{background:#F5F5F5;color:#555}
+.ic4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ic{border-radius:8px;padding:14px;font-size:12px;line-height:1.5}
+.ic.ok{background:#F0FBF5;border-left:3px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:3px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:3px solid #2E5BA8}
+.ic.warn{background:#FFFDF0;border-left:3px solid #FFB900}
+.ic .it{font-size:10px;font-weight:800;text-transform:uppercase;color:#888;margin-bottom:5px}
+.ic.ok .it{color:#007A3D} .ic.nok .it{color:#C62828}
+.ic.opp .it{color:#1A5DC8} .ic.warn .it{color:#856404}
+.ic .iv{font-size:20px;font-weight:900;margin-bottom:4px}
+.dark-box{background:#1A2A4A;color:#fff;border-radius:10px;padding:18px;margin-bottom:12px}
+.dark-box .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+.dark-box .mk{font-size:10px;opacity:.6;text-transform:uppercase;margin-bottom:4px}
+.dark-box .mv{font-size:22px;font-weight:900}
+.dark-box .ms{font-size:11px;opacity:.7}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <h1>&#128202; TONIELQUE — Quinzenal Jul 2026 (1–20/Jul)</h1>
+  <div class="sub">KAM: Cintia Faraco Queiroz &middot; ID: 407185840 &middot; F&amp;H &middot; Ref&ecirc;ncia: 21/Jul/2026</div>
+</div>
+<div class="wrap">
+
+  <!-- KPIs Linha 1 -->
+  <div class="row r4">
+    <div class="kpi">
+      <div class="kl">GMV YTD 2026 (Jan–Jul 20)</div>
+      <div class="kv" style="color:#2E5BA8">R$ 21,59M</div>
+      <div class="ks">YTD 2025: R$ 19,74M &middot; <span style="color:#00A650;font-weight:700">+9.4% YoY</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">SIs YTD 2026</div>
+      <div class="kv">48.360</div>
+      <div class="ks">H1 ating. meta: <span style="color:#F23D4F;font-weight:700">82.7%</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Ticket M&eacute;dio Jul MTD</div>
+      <div class="kv" style="color:#00A650">R$ 509</div>
+      <div class="ks">Jun: R$ 483 &middot; <span style="color:#00A650;font-weight:700">+5.4% MoM ↑</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Atingimento H1 Meta Desafio</div>
+      <div class="kv" style="color:#F23D4F">82.7%</div>
+      <div class="ks">Gap H1: -R$ 3,97M</div>
+    </div>
+  </div>
+
+  <!-- KPIs Linha 2 -->
+  <div class="row r4">
+    <div class="kpi">
+      <div class="kl">GMV Jul MTD (1–20)</div>
+      <div class="kv" style="color:#2E5BA8">R$ 2,60M</div>
+      <div class="ks">Jul 2025 (1–20): R$ 2,26M &middot; <span style="color:#00A650;font-weight:700">+15.1% YoY</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">SIs Jul MTD</div>
+      <div class="kv">5.099</div>
+      <div class="ks">Jun 1–20: 4.793 SIs &middot; <span style="color:#00A650;font-weight:700">+6.4% MoM</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">GMV Jun Completo</div>
+      <div class="kv">R$ 3,43M</div>
+      <div class="ks">Jun 1–20: R$ 2,27M &middot; MoM: <span style="color:#00A650;font-weight:700">+14.6%</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kl">Meta Jul &amp; Pace</div>
+      <div class="kv" style="color:#E67E00">78.9%</div>
+      <div class="ks">Meta: R$ 5,10M &middot; Proj: R$ 4,03M</div>
+    </div>
+  </div>
+
+  <!-- Gráfico GMV mensal -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Mensal 2026 vs 2025 vs Meta Desafio + Atingimento</div>
+    <div class="chart-h" style="height:300px"><canvas id="cMensal"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul*"];
+    var nmv26  = [3549121,3350286,2814187,2966512,2874511,3433906,4026604];
+    var nmv25  = [3086291,2361463,2774325,2475936,3301695,3485419,3363841];
+    var meta   = [3457067,3210555,3728888,3705415,4233180,4621449,5102855];
+    var ating  = [102.7,104.3,75.5,80.1,67.9,74.3,78.9];
+    var colors = ["#8AACD4","#8AACD4","#8AACD4","#2E5BA8","#2E5BA8","#2E5BA8","rgba(46,91,168,0.5)"];
+    new Chart(document.getElementById('cMensal'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yG',order:2,
+         datalabels:{anchor:'end',align:'top',offset:3,font:{size:11,weight:'900'},
+           backgroundColor:function(ctx){var a=ating[ctx.dataIndex];return a>=100?'#E8F8EF':'#FEE8EA';},
+           borderRadius:3,padding:{top:2,bottom:2,left:4,right:4},
+           formatter:function(v,ctx){return ating[ctx.dataIndex].toFixed(1)+'%';},
+           color:function(ctx){return ating[ctx.dataIndex]>=100?'#007A3D':'#C62828';}}},
+        {label:'GMV 2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.10)',borderRadius:5,yAxisID:'yG',order:3,datalabels:{display:false}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FFB900',borderWidth:2.5,borderDash:[5,3],backgroundColor:'transparent',pointRadius:4,pointBackgroundColor:'#FFB900',yAxisID:'yG',order:1,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,clip:false,
+        layout:{padding:{top:40}},
+        plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}},
+          tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');}}}},
+        scales:{yG:{ticks:{callback:function(v){return 'R$'+Number(v/1000000).toFixed(1)+'M';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <!-- Data Dupla 7.7 -->
+  <div style="background:linear-gradient(135deg,#1A2A4A,#2E5BA8);color:#fff;border-radius:10px;padding:18px 24px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:11px;opacity:.7;text-transform:uppercase;font-weight:800">&#128293; Data Dupla 7.7 (07/Jul)</div>
+      <div style="font-size:28px;font-weight:900;color:#FFE600;margin:4px 0">R$ 313.744</div>
+      <div style="font-size:12px;opacity:.8">626 SIs &middot; Ticket R$ 501 &middot; +160% vs dia m&eacute;dio</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:11px;opacity:.7">Impacto no MTD</div>
+      <div style="font-size:18px;font-weight:900;color:#FFE600">12.1%</div>
+      <div style="font-size:11px;opacity:.7">do GMV Jul</div>
+    </div>
+  </div>
+
+  <!-- Gráfico diário Jul -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Di&aacute;rio — Julho 2026 (1–20)</div>
+    <div class="chart-h2"><canvas id="cDaily"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var dias = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
+    var gmv  = [108164,113899,100708,106789,107052,156724,313744,144159,146665,106617,126075,113347,125311,142528,152550,115396,121220,90263,93351,113246];
+    var cols = gmv.map(function(v,i){return i===6?'#FFB900':'#2E5BA8';});
+    new Chart(document.getElementById('cDaily'),{
+      type:'bar',
+      data:{labels:dias,datasets:[{
+        label:'GMV (R$)',data:gmv,backgroundColor:cols,borderRadius:3,
+        datalabels:{display:false}
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+        datalabels:{display:false},
+        tooltip:{callbacks:{label:function(c){return 'R$'+Number(c.raw).toLocaleString('pt-BR');}}}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+      }
+    });
+  })();
+  </script>
+
+  <!-- Análise MoM -->
+  <div class="dark-box">
+    <div style="font-size:13px;font-weight:800">&#128200; An&aacute;lise MoM — Jul 1–20 vs Jun 1–20</div>
+    <div style="font-size:12px;opacity:.7;margin-top:4px">Seller com tend&ecirc;ncia positiva: GMV +14.6% e ticket +7.6% vs mesmo per&iacute;odo de junho</div>
+    <div class="row3">
+      <div><div class="mk">GMV (mesmo per&iacute;odo)</div><div class="mv" style="color:#4ADE80">+14.6%</div><div class="ms">R$2,60M vs R$2,27M</div></div>
+      <div><div class="mk">SIs/dia</div><div class="mv" style="color:#4ADE80">+6.4%</div><div class="ms">255/dia vs 240/dia</div></div>
+      <div><div class="mk">Ticket M&eacute;dio</div><div class="mv" style="color:#4ADE80">+7.6%</div><div class="ms">R$509 vs R$473</div></div>
+    </div>
+  </div>
+
+  <!-- Itens parados -->
+  <div class="sec">
+    <div class="sec-ttl">Itens com GMV em Jun e Zerados em Jul</div>
+    <table>
+      <thead><tr><th>Produto</th><th style="text-align:right">GMV Jun</th><th style="text-align:right">SIs Jun</th><th>Status Jul</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-3532623769" target="_blank">Mesa de Parede Dobrável Suspensa com Suporte 90x38</a><br><a href="https://produto.mercadolivre.com.br/MLB-3532623769" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB3532623769</a></td>
+          <td style="text-align:right">R$ 10.877</td><td style="text-align:right">143</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-3723382307" target="_blank">Guarda Roupa Casal Lisboa 6 Portas 2 Gavetas</a><br><a href="https://produto.mercadolivre.com.br/MLB-3723382307" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB3723382307</a></td>
+          <td style="text-align:right">R$ 4.700</td><td style="text-align:right">5</td><td><span class="tag dn">Zerado</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6205217846" target="_blank">C&ocirc;moda 8 Gavetas Quarto Organizadora com P&eacute;s Branco</a><br><a href="https://produto.mercadolivre.com.br/MLB-6205217846" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB6205217846</a></td>
+          <td style="text-align:right">R$ 3.726</td><td style="text-align:right">10</td><td><span class="tag dn">Zerado</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Itens em queda -->
+  <div class="sec">
+    <div class="sec-ttl">Maiores Quedas MoM — Jul 1–20 vs Jun 1–20</div>
+    <table>
+      <thead><tr><th>Produto</th><th style="text-align:right">GMV Jun 1–20</th><th style="text-align:right">GMV Jul 1–20</th><th style="text-align:right">Var.</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4355520491" target="_blank">Balc&atilde;o Fruteira Renata 2 Portas 1 Gaveta Branco</a><br><a href="https://produto.mercadolivre.com.br/MLB-4355520491" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB4355520491</a></td>
+          <td style="text-align:right">R$ 10.569</td><td style="text-align:right">R$ 374</td><td style="text-align:right"><span class="tag dn">-96.5%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-1611704926" target="_blank">Gabinete de Pia G&ecirc;meos 1,20M</a><br><a href="https://produto.mercadolivre.com.br/MLB-1611704926" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611704926</a></td>
+          <td style="text-align:right">R$ 5.029</td><td style="text-align:right">R$ 720</td><td style="text-align:right"><span class="tag dn">-85.7%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-5545962340" target="_blank">C&ocirc;moda 4 Gavetas 2 Portas Mariah com Chave</a><br><a href="https://produto.mercadolivre.com.br/MLB-5545962340" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB5545962340</a></td>
+          <td style="text-align:right">R$ 8.314</td><td style="text-align:right">R$ 2.114</td><td style="text-align:right"><span class="tag dn">-74.6%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-3286281105" target="_blank">Guarda Roupa Solt. Capri 2 Portas Correr 6 Gavetas</a><br><a href="https://produto.mercadolivre.com.br/MLB-3286281105" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB3286281105</a></td>
+          <td style="text-align:right">R$ 31.768</td><td style="text-align:right">R$ 8.703</td><td style="text-align:right"><span class="tag dn">-72.6%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-6682563000" target="_blank">Guarda Roupa Solt. Capri 2P 6 Gavetas c/ Espelho Teka/Onix</a><br><a href="https://produto.mercadolivre.com.br/MLB-6682563000" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB6682563000</a></td>
+          <td style="text-align:right">R$ 9.604</td><td style="text-align:right">R$ 2.854</td><td style="text-align:right"><span class="tag dn">-70.3%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-4449973373" target="_blank">C&ocirc;moda 4 Gavetas 1 Porta Organizadora c/ P&eacute;s Onix</a><br><a href="https://produto.mercadolivre.com.br/MLB-4449973373" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB4449973373</a></td>
+          <td style="text-align:right">R$ 6.764</td><td style="text-align:right">R$ 2.359</td><td style="text-align:right"><span class="tag dn">-65.1%</span></td></tr>
+        <tr><td><a href="https://produto.mercadolivre.com.br/MLB-1611705013" target="_blank">Gabinete de Pia G&ecirc;meos 2,00M</a><br><a href="https://produto.mercadolivre.com.br/MLB-1611705013" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611705013</a></td>
+          <td style="text-align:right">R$ 18.830</td><td style="text-align:right">R$ 8.227</td><td style="text-align:right"><span class="tag dn">-56.3%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Itens em alta -->
+  <div class="sec">
+    <div class="sec-ttl">&#128640; Destaques em Alta — Jul 1–20 vs Jun 1–20</div>
+    <div class="ic4">
+      <div class="ic ok">
+        <div class="it">&#9651; +1.367%</div>
+        <div class="iv">R$ 82.541</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-1611602507" target="_blank"><strong>Guarda Roupa Casal Sevilha 3P Correr 6 Gav c/ Espelho</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-1611602507" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611602507</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 5.623 &rarr; Jul: R$ 82.541 — novo destaque em SEO?</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +366.6%</div>
+        <div class="iv">R$ 46.877</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-1611724406" target="_blank"><strong>Guarda Roupa Casal Valencia 6 Portas 6 Gavetas</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-1611724406" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611724406</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 10.046 &rarr; Jul: R$ 46.877</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +259.6%</div>
+        <div class="iv">R$ 13.425</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-2647315316" target="_blank"><strong>C&ocirc;moda com 5 Gavetas e 2 Portas Isabele</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-2647315316" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB2647315316</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 3.733 &rarr; Jul: R$ 13.425</p>
+      </div>
+      <div class="ic ok">
+        <div class="it">&#9651; +166.2%</div>
+        <div class="iv">R$ 85.608</div>
+        <a href="https://produto.mercadolivre.com.br/MLB-5897281546" target="_blank"><strong>GR Tonielque M&oacute;veis Capri 2P/Espelho Onix</strong></a><br>
+        <a href="https://produto.mercadolivre.com.br/MLB-5897281546" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB5897281546</a>
+        <p style="margin-top:4px;color:#555">Jun: R$ 32.155 &rarr; Jul: R$ 85.608 — #7 no Top</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 15 Jul MTD -->
+  <div class="sec">
+    <div class="sec-ttl">Top 15 Itens &mdash; Jul 2026 MTD (1–20) por GMV</div>
+    <table>
+      <thead><tr><th>#</th><th>Produto</th><th style="text-align:right">GMV Jul</th><th style="text-align:right">SIs</th><th style="text-align:right">Ticket</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#888;font-size:11px">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611084421" target="_blank"><strong>Guarda Roupa Casal Valencia 6P 6 Gavetas c/ Espelho</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611084421" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611084421</a></td>
+          <td style="text-align:right;font-weight:700">R$ 297.624</td><td style="text-align:right">193</td><td style="text-align:right">R$ 1.542</td></tr>
+        <tr><td style="color:#888;font-size:11px">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4472976509" target="_blank"><strong>Guarda Roupa Solt. Capri 2P 6 Gav c/ Espelho Branco</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4472976509" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB4472976509</a></td>
+          <td style="text-align:right;font-weight:700">R$ 130.282</td><td style="text-align:right">189</td><td style="text-align:right">R$ 689</td></tr>
+        <tr><td style="color:#888;font-size:11px">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611698446" target="_blank"><strong>Arm&aacute;rio Sapateira 4 Portas Basculante Safira</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611698446" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611698446</a></td>
+          <td style="text-align:right;font-weight:700">R$ 113.792</td><td style="text-align:right">412</td><td style="text-align:right">R$ 276</td></tr>
+        <tr><td style="color:#888;font-size:11px">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1916669300" target="_blank"><strong>Guarda Roupa Solt. Roma 2P Correr 2 Gav c/ Espelho</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1916669300" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1916669300</a></td>
+          <td style="text-align:right;font-weight:700">R$ 104.703</td><td style="text-align:right">147</td><td style="text-align:right">R$ 712</td></tr>
+        <tr><td style="color:#888;font-size:11px">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1767230733" target="_blank"><strong>C&ocirc;moda 8 Gavetas Raissa para Quarto com P&eacute;s</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1767230733" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1767230733</a></td>
+          <td style="text-align:right;font-weight:700">R$ 96.478</td><td style="text-align:right">271</td><td style="text-align:right">R$ 356</td></tr>
+        <tr><td style="color:#888;font-size:11px">6</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3723421271" target="_blank"><strong>Guarda Roupa Casal Lisboa 8 Portas 4 Gavetas</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-3723421271" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB3723421271</a></td>
+          <td style="text-align:right;font-weight:700">R$ 86.354</td><td style="text-align:right">87</td><td style="text-align:right">R$ 993</td></tr>
+        <tr><td style="color:#888;font-size:11px">7</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5897281546" target="_blank"><strong>GR Tonielque M&oacute;veis Capri 2P/Espelho Onix &#128640;</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-5897281546" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB5897281546</a></td>
+          <td style="text-align:right;font-weight:700">R$ 85.608</td><td style="text-align:right">114</td><td style="text-align:right">R$ 751</td></tr>
+        <tr><td style="color:#888;font-size:11px">8</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611602507" target="_blank"><strong>GR Casal Sevilha 3P Correr 6 Gav c/ Espelho &#128293;</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611602507" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611602507</a></td>
+          <td style="text-align:right;font-weight:700">R$ 82.541</td><td style="text-align:right">45</td><td style="text-align:right">R$ 1.834</td></tr>
+        <tr><td style="color:#888;font-size:11px">9</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3287784769" target="_blank"><strong>GR Casal Capri 3P Correr 9 Gav c/ Espelho</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-3287784769" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB3287784769</a></td>
+          <td style="text-align:right;font-weight:700">R$ 81.196</td><td style="text-align:right">79</td><td style="text-align:right">R$ 1.028</td></tr>
+        <tr><td style="color:#888;font-size:11px">10</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-2647289242" target="_blank"><strong>C&ocirc;moda 4 Gavetas 2 Portas Gisele com P&eacute;s</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-2647289242" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB2647289242</a></td>
+          <td style="text-align:right;font-weight:700">R$ 76.122</td><td style="text-align:right">245</td><td style="text-align:right">R$ 311</td></tr>
+        <tr><td style="color:#888;font-size:11px">11</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1727329821" target="_blank"><strong>GR Casal Valencia 6P 6 Gavetas c/ Espelho (Alt.)</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1727329821" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1727329821</a></td>
+          <td style="text-align:right;font-weight:700">R$ 71.875</td><td style="text-align:right">50</td><td style="text-align:right">R$ 1.437</td></tr>
+        <tr><td style="color:#888;font-size:11px">12</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611709545" target="_blank"><strong>Gabinete de Pia 3P 3 Gavetas G&ecirc;meos 1,50M</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611709545" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611709545</a></td>
+          <td style="text-align:right;font-weight:700">R$ 71.614</td><td style="text-align:right">224</td><td style="text-align:right">R$ 320</td></tr>
+        <tr><td style="color:#888;font-size:11px">13</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611688276" target="_blank"><strong>C&ocirc;moda 8 Gavetas Monza com Chave</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611688276" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611688276</a></td>
+          <td style="text-align:right;font-weight:700">R$ 59.285</td><td style="text-align:right">133</td><td style="text-align:right">R$ 446</td></tr>
+        <tr><td style="color:#888;font-size:11px">14</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-1611700375" target="_blank"><strong>Balc&atilde;o Fruteira Isis 2 Portas 1 Gaveta</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-1611700375" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB1611700375</a></td>
+          <td style="text-align:right;font-weight:700">R$ 56.475</td><td style="text-align:right">211</td><td style="text-align:right">R$ 268</td></tr>
+        <tr><td style="color:#888;font-size:11px">15</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4452293161" target="_blank"><strong>GR Tonielque M&oacute;veis Capri 2P/Espelho Onix</strong></a><br><a href="https://produto.mercadolivre.com.br/MLB-4452293161" target="_blank" style="font-size:10px;color:#2E5BA8">&#128279; MLB4452293161</a></td>
+          <td style="text-align:right;font-weight:700">R$ 55.821</td><td style="text-align:right">85</td><td style="text-align:right">R$ 657</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
