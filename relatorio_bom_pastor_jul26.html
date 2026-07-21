@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Relatorio BOM PASTOR - 21/07/2026</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
@@ -76,60 +75,57 @@ a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   </div>
 
-  <!-- GMV Monthly Bar Chart -->
+  <!-- GMV Monthly Line Chart -->
   <div class="sec">
-    <div class="sec-ttl">Evolu&ccedil;&atilde;o GMV Mensal &mdash; 2026 vs 2025 vs Meta</div>
-    <div class="chart-box" style="height:400px"><canvas id="cGmv"></canvas></div>
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o GMV &mdash; 2026 vs 2025 vs Meta</div>
+    <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
   </div>
   <script>
   (function(){
-    Chart.register(ChartDataLabels);
-    var nmv26 = [628423,1282724,3343109,2297448,3500412,3023292,3578624];
-    var nmv25 = [243924,540914,824238,969474,2025448,3291886,1254643];
-    var meta  = [2504833,2326222,2701782,2684775,3067169,3348491,3697296];
-    var momPct = nmv26.map(function(v,i){ return i===0?null:(v/nmv26[i-1]-1)*100; });
-    var yoyPct = nmv26.map(function(v,i){ return (v/nmv25[i]-1)*100; });
-    var barColors = ["#5CB87A","#5CB87A","#5CB87A","#00A650","#00A650","#00A650","rgba(0,166,80,0.5)"];
+    var _ating=[25.1,55.1,123.7,85.6,114.1,90.3,96.8,null,null,null,null,null];
+    function fk(v){var n=Number(v);if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K';return 'R$'+n.toFixed(0);}
+    var labelsPlugin={id:'gmvLabels',afterDatasetsDraw:function(chart){
+      var ctx=chart.ctx;ctx.save();ctx.textAlign='center';
+      var meta0=chart.getDatasetMeta(0);
+      meta0.data.forEach(function(pt,i){
+        var v=chart.data.datasets[0].data[i];
+        if(v===null||v===undefined||isNaN(Number(v)))return;
+        var at=_ating[i];
+        ctx.font='bold 12px Arial';ctx.fillStyle='#006630';
+        ctx.fillText(fk(Number(v)),pt.x,pt.y-32);
+        if(at!==null&&at!==undefined){
+          var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+          var txt=at.toFixed(0)+'%';
+          ctx.font='bold 10px Arial';
+          var tw=ctx.measureText(txt).width+10;
+          ctx.fillStyle=bg;ctx.beginPath();
+          ctx.roundRect(pt.x-tw/2,pt.y-24,tw,16,5);ctx.fill();
+          ctx.fillStyle='#fff';ctx.fillText(txt,pt.x,pt.y-12);
+        }
+      });
+      ctx.restore();
+    }};
     new Chart(document.getElementById('cGmv'),{
-      type:'bar',
-      data:{
-        labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul*"],
-        datasets:[
-          {label:'2026',data:nmv26,backgroundColor:barColors,borderRadius:4,datalabels:{display:false}},
-          {label:'2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.10)',borderRadius:4,datalabels:{display:false}},
-          {label:'Meta Desafio',type:'line',data:meta,borderColor:'#FFB900',borderDash:[6,3],backgroundColor:'transparent',pointRadius:3,borderWidth:2,tension:.3,datalabels:{display:false}},
-          {label:'_mom',type:'line',data:nmv26,borderWidth:0,pointRadius:0,backgroundColor:'transparent',borderColor:'transparent',
-            datalabels:{
-              display:function(ctx){ return momPct[ctx.dataIndex]!==null; },
-              formatter:function(v,ctx){ var m=momPct[ctx.dataIndex]; if(m===null) return ''; return (m>=0?'+':'')+m.toFixed(1)+'% MoM'; },
-              color:function(ctx){ return momPct[ctx.dataIndex]>=0?'#007A3D':'#F23D4F'; },
-              backgroundColor:function(ctx){ return momPct[ctx.dataIndex]>=0?'#E8F8EF':'#FEE8EA'; },
-              borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
-              font:{size:9,weight:'bold'},anchor:'end',align:'end',offset:26,clip:false
-            }
-          },
-          {label:'_yoy',type:'line',data:nmv26,borderWidth:0,pointRadius:0,backgroundColor:'transparent',borderColor:'transparent',
-            datalabels:{
-              display:true,
-              formatter:function(v,ctx){ var y=yoyPct[ctx.dataIndex]; return (y>=0?'+':'')+y.toFixed(1)+'% YoY'; },
-              color:function(ctx){ return yoyPct[ctx.dataIndex]>=0?'#007A3D':'#F23D4F'; },
-              backgroundColor:function(ctx){ return yoyPct[ctx.dataIndex]>=0?'#E8F8EF':'#FEE8EA'; },
-              borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
-              font:{size:9,weight:'bold'},anchor:'end',align:'end',offset:4,clip:false
-            }
-          }
-        ]
-      },
+      type:'line',
+      data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+        {label:'2026',data:[628423,1282724,3343109,2297448,3500412,3023292,3578624,null,null,null,null,null],borderColor:'#007A3D',backgroundColor:'rgba(0,122,61,.12)',fill:true,tension:.3,spanGaps:true,pointRadius:5,borderWidth:2},
+        {label:'2025',data:[243924,540914,824238,969474,2025448,3291886,1254643,null,null,null,null,null],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,borderWidth:1.5},
+        {label:'Meta Desafio',data:[2504833,2326222,2701782,2684775,3067169,3348491,3697296,null,null,null,null,null],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3,borderWidth:1.5}
+      ]},
       options:{
-        responsive:true,maintainAspectRatio:false,clip:false,
-        layout:{padding:{top:60}},
+        responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:50,bottom:20}},
         plugins:{
-          legend:{position:'top',labels:{filter:function(item){return !item.text.startsWith('_');}}},
-          tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}},
-          datalabels:{display:false}
+          legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+            if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null)lbl+=' ('+at.toFixed(1)+'% meta)';}
+            return lbl;
+          }}}
         },
-        scales:{y:{ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}}}
-      }
+        scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+      },
+      plugins:[labelsPlugin]
     });
   })();
   </script>
@@ -150,7 +146,7 @@ a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
       ]
     },
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top'},datalabels:{display:false}},
+      plugins:{legend:{position:'top'}},
       scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}
   });
   </script>
@@ -225,7 +221,7 @@ a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
       data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
       options:{
         responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false},datalabels:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){return 'R$ '+Number(ctx.raw).toLocaleString('pt-BR');}}}},
         scales:{x:{ticks:{font:{size:10}}},y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toLocaleString('pt-BR')+'k';}}}}
       }
     });
