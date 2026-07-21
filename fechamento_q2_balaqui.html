@@ -1,21 +1,24 @@
-﻿<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BALAQUI — Fechamento Q2 2026</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script><style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fechamento Q2 2026 — BALAQUI</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
-.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.hdr h1{font-size:24px;font-weight:900}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
 .hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
-.badge{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;white-space:nowrap}
 .wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
-.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
-.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:20px;flex:1;min-width:150px}
-.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-.card .val{font-size:24px;font-weight:900;color:#1A1A1A}
-.card .sub{font-size:12px;color:#888;margin-top:4px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #3483FA}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:28px;font-weight:900;margin-bottom:4px}
+.qc .qm{font-size:12px;color:#888}
 .sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
 .sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
 .sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
@@ -23,162 +26,388 @@ table{width:100%;border-collapse:collapse;font-size:12px}
 th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
 td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
 tr:hover td{background:#FFFBEA}
-.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
-.chart-box{position:relative;height:280px}
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ic{border-radius:10px;padding:16px;border-left:4px solid}
-.ic.ok{background:#F0FBF5;border-color:#00A650}
-.ic.nok{background:#FEF9F9;border-color:#F23D4F}
-.ic.opp{background:#F0F5FF;border-color:#3483FA}
-.ic.warn{background:#FFFDF0;border-color:#FFB900}
-.ic h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:#555}
-.ic p{font-size:12px;line-height:1.65;color:#333}
-.ic p strong{color:#1A1A1A}
-.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
-.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:18px;text-align:center}
-.qc .ql{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.qc .qv{font-size:22px;font-weight:900;color:#1A1A1A}
-.qc .qs{font-size:12px;margin-top:4px;color:#666}
-.qc.active{border-top:3px solid #3483FA}
-a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
-.warn-box{background:#FFFDF0;border:1px solid #FFD366;border-radius:8px;padding:10px 14px;font-size:11px;color:#856404;margin-top:12px}
-@media(max-width:640px){.ig,.qg{grid-template-columns:1fr}}
-</style></head><body>
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic .ic-val{font-size:22px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:14px 18px;margin-top:12px;font-size:12px}
+.chart-box{position:relative;height:320px}
+a{color:#3483FA;text-decoration:none}
+a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
 <div class="hdr">
-  <div><h1>&#128202; BALAQUI — Fechamento Q2 2026</h1>
-  <div class="sub">Relatório de Fechamento de Trimestre · Abr–Jun 2026 &middot; IDs: 530094229 + 698931952 + 1056910428</div></div>
-  <div class="badge">YoY Q2: ▲ 37.7% &middot; QoQ: ▼ 5.7%</div>
+  <div>
+    <h1>&#128202; Fechamento Q2 2026 &mdash; BALAQUI</h1>
+    <div class="sub">KAM: Cintia Faraco Queiroz &middot; IDs: 530094229 / 698931952 / 1056910428 &middot; Furnishing &amp; Houseware &middot; Ref&ecirc;ncia: 21/Jul/2026</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:13px;opacity:.8">Q2 Atingimento Meta Desafio</div>
+    <div style="font-size:36px;font-weight:900;color:#FFE600">83.9%</div>
+    <div style="font-size:12px;opacity:.8">⚠️ abaixo da meta</div>
+  </div>
 </div>
 <div class="wrap">
 
-<div class="qg">
-  <div class="qc">
-    <div class="ql">Q2 2025</div>
-    <div class="qv">R$3,40M</div>
-    <div class="qs">8,359 SIs &middot; ASP R$407</div>
+  <!-- Quarter grid -->
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#00A650">R$ 4,96M</div>
+      <div class="qm">Meta Desafio: R$ 4,49M</div>
+      <div style="margin-top:8px"><span style="background:#E8F8EF;color:#00A650;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:900">110.7% ✅</span></div>
+      <div class="qm" style="margin-top:8px">vs Q1 2025: <strong style="color:#00A650">+47.4% YoY</strong></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">&#x1F525; Q2 2026 (Abr&ndash;Jun) — FOCO</div>
+      <div class="qv" style="color:#E67E00">R$ 4,67M</div>
+      <div class="qm">Meta Desafio: R$ 5,57M &middot; Gap: -R$ 897K</div>
+      <div style="margin-top:8px"><span style="background:#FFF9E0;color:#E67E00;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:900">83.9% ⚠️</span></div>
+      <div class="qm" style="margin-top:8px">vs Q2 2025: <strong style="color:#00A650">+37.4% YoY</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) MTD Jul 1&ndash;20</div>
+      <div class="qv" style="color:#E67E00">R$ 978K</div>
+      <div class="qm">Meta Q3: R$ 6,22M &middot; Jul meta: R$ 2,06M</div>
+      <div style="margin-top:8px"><span style="background:#FFF9E0;color:#E67E00;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:900">Pace 73.8%</span></div>
+      <div class="qm" style="margin-top:8px">Jul projetado: R$ 1,52M</div>
+    </div>
   </div>
-  <div class="qc">
-    <div class="ql">Q1 2026</div>
-    <div class="qv">R$4,96M</div>
-    <div class="qs">6,556 SIs &middot; ASP R$757</div>
+
+  <!-- Gráfico H1 -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Mensal H1 2026 vs Meta Desafio &amp; SIs (2026 vs 2025)</div>
+    <div class="chart-box"><canvas id="cQ"></canvas></div>
   </div>
-  <div class="qc active">
-    <div class="ql">Q2 2026 ✦ Fechamento</div>
-    <div class="qv" style="color:#3483FA">R$4,68M</div>
-    <div class="qs">4,866 SIs &middot; ASP R$962</div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan","Fev","Mar","Abr","Mai","Jun"];
+    var nmv26  = [1630157,1546945,1786708,1317064,1762546,1590174];
+    var momPct = nmv26.map(function(v,i){return i===0?null:(v/nmv26[i-1]-1)*100;});
+    var meta   = [1392555,1293256,1800000,2000000,1705184,1861584];
+    var si26   = [1704,1762,1851,1314,1678,1402];
+    var si25   = [2238,1699,1867,1881,2052,1683];
+    var colors = nmv26.map(function(v,i){ return i<3?'#B8CCF5':'#3483FA'; });
+    new Chart(document.getElementById('cQ'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'GMV 2026 (R$)',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'800'},
+           formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
+           color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#00A650':'#F23D4F';}}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FFB900',borderWidth:2.5,backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#FFB900',yAxisID:'yNmv',order:1,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF6B00',backgroundColor:'transparent',tension:.35,pointRadius:4,borderWidth:2,yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.35,pointRadius:3,borderWidth:1.5,yAxisID:'ySi',order:0,datalabels:{display:false}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:30}},
+        plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:12,font:{size:12}}},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=1)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}}},
+        scales:{
+          yNmv:{position:'left',ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR')+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+  <!-- Tabela atingimento por mês -->
+  <div class="sec">
+    <div class="sec-ttl">Atingimento por M&ecirc;s &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Qtr</th><th>M&ecirc;s</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th style="text-align:right">SIs 2026</th>
+        <th style="text-align:right">SIs 2025</th>
+        <th style="text-align:right">YoY GMV</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Jan</td>
+          <td style="text-align:right;font-weight:700">R$ 1,63M</td>
+          <td style="text-align:right">R$ 1,39M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">117.1% ✅</span></td>
+          <td style="text-align:right;color:#00A650;font-weight:700">+R$ 237.602</td>
+          <td style="text-align:right">1.704</td><td style="text-align:right;color:#888">2.238</td>
+          <td style="text-align:right;color:#00A650">+31.3%</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Fev</td>
+          <td style="text-align:right;font-weight:700">R$ 1,55M</td>
+          <td style="text-align:right">R$ 1,29M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">119.6% ✅</span></td>
+          <td style="text-align:right;color:#00A650;font-weight:700">+R$ 253.689</td>
+          <td style="text-align:right">1.762</td><td style="text-align:right;color:#888">1.699</td>
+          <td style="text-align:right;color:#00A650">+48.4%</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td><td style="font-weight:700">Mar</td>
+          <td style="text-align:right;font-weight:700">R$ 1,79M</td>
+          <td style="text-align:right">R$ 1,80M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">99.3% ⚠️</span></td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">-R$ 13.292</td>
+          <td style="text-align:right">1.851</td><td style="text-align:right;color:#888">1.867</td>
+          <td style="text-align:right;color:#00A650">+64.6%</td>
+        </tr>
+        <tr style="background:#FFFBF0">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Abr</td>
+          <td style="text-align:right;font-weight:700">R$ 1,32M</td>
+          <td style="text-align:right">R$ 2,00M</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">65.9% ❌</span></td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">-R$ 682.936</td>
+          <td style="text-align:right">1.314</td><td style="text-align:right;color:#888">1.881</td>
+          <td style="text-align:right;color:#00A650">+16.4%</td>
+        </tr>
+        <tr style="background:#FFFBF0">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Mai</td>
+          <td style="text-align:right;font-weight:700">R$ 1,76M</td>
+          <td style="text-align:right">R$ 1,71M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">103.4% ✅</span></td>
+          <td style="text-align:right;color:#00A650;font-weight:700">+R$ 57.362</td>
+          <td style="text-align:right">1.678</td><td style="text-align:right;color:#888">2.052</td>
+          <td style="text-align:right;color:#00A650">+43.5%</td>
+        </tr>
+        <tr style="background:#FFFBF0">
+          <td style="font-weight:700;color:#856404">Q2</td><td style="font-weight:700">Jun</td>
+          <td style="text-align:right;font-weight:700">R$ 1,59M</td>
+          <td style="text-align:right">R$ 1,86M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">85.4% ⚠️</span></td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">-R$ 271.410</td>
+          <td style="text-align:right">1.402</td><td style="text-align:right;color:#888">1.683</td>
+          <td style="text-align:right;color:#00A650">+53.1%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="card"><div class="lbl">YoY GMV vs Q2'25</div>
-    <div class="val" style="color:#00A650">▲ 37.7%</div>
-    <div class="sub">R$3,40M → R$4,68M</div></div>
-  <div class="card"><div class="lbl">QoQ GMV vs Q1'26</div>
-    <div class="val" style="color:#F23D4F">▼ 5.7%</div>
-    <div class="sub">R$4,96M → R$4,68M</div></div>
-  <div class="card"><div class="lbl">SIs Q2 2026</div>
-    <div class="val">4,866</div>
-    <div class="sub">YoY ▼ 41.8% &middot; QoQ ▼ 25.8%</div></div>
-  <div class="card"><div class="lbl">ASP Q2 2026</div>
-    <div class="val">R$ 962</div>
-    <div class="sub">Q1'26: R$757 &middot; Q2'25: R$407</div></div>
-</div>
-
-<div class="sec">
-  <div class="sec-ttl">Evolução Mensal — Jan a Jun 2026 (azul claro = Q1 | azul escuro = Q2)</div>
-  <div class="chart-box"><canvas id="cBAL"></canvas></div>
-</div>
-
-<div class="sec">
-  <div class="sec-ttl">Detalhe Mensal Q1 + Q2 2026</div>
-  <table><thead><tr><th>Mês</th><th>GMV</th><th>SIs</th><th>ASP</th></tr></thead>
-  <tbody><tr style='background:#F5FAFF'><td>Jan/26</td><td>R$1,63M</td><td>2,150</td><td>R$758</td></tr><tr style='background:#F5FAFF'><td>Fev/26</td><td>R$1,55M</td><td>2,252</td><td>R$687</td></tr><tr style='background:#F5FAFF'><td>Mar/26</td><td>R$1,79M</td><td>2,154</td><td>R$829</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Abr/26</td><td>R$1,32M</td><td>1,471</td><td>R$895</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Mai/26</td><td>R$1,77M</td><td>1,853</td><td>R$953</td></tr><tr style='background:#FFFBEA;font-weight:600'><td>Jun/26</td><td>R$1,60M</td><td>1,542</td><td>R$1,036</td></tr></tbody></table>
-</div>
-
-<div class="sec">
-  <div class="sec-ttl">Distribuição por Conta — Q2 2026</div>
-  <table><thead><tr><th>Conta</th><th>GMV Q2</th><th>SIs</th><th>Share</th></tr></thead>
-  <tbody><tr><td>530094229 — conta principal</td><td>R$4,44M</td><td>4238</td><td>94.9%</td></tr><tr><td>698931952</td><td>R$162k</td><td>411</td><td>3.5%</td></tr><tr><td>1056910428</td><td>R$78k</td><td>217</td><td>1.7%</td></tr></tbody></table>
-  <div class="warn-box">⚠️ Contas 698931952 e 1056910428 com volume muito baixo em Jun/26 (R$38k combinados). Avaliar consolidação na conta principal.</div>
-</div>
-
-<div class="sec">
-  <div class="sec-ttl">Metas Trimestrais 2026 — Meta Desafio</div>
-  <table>
-    <thead><tr><th>Trimestre</th><th>GMV Real</th><th>Meta Desafio</th><th>Atingimento</th><th>Gap</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr style="background:#F0FBF5">
-        <td><strong>Q1 2026</strong></td>
-        <td><strong>R$4,96M</strong></td>
-        <td>R$4,49M</td>
-        <td><span style="color:#00A650;font-weight:700;background:#E8F8EF;padding:2px 8px;border-radius:20px">110,7% ✓</span></td>
-        <td style="color:#00A650;font-weight:700">+R$478k</td>
-        <td><span style="color:#00A650;font-weight:700">&#10003; Fechado — BATEU META</span></td>
-      </tr>
-      <tr style="background:#FFF9F0">
-        <td><strong>Q2 2026</strong></td>
-        <td><strong>R$4,68M</strong></td>
-        <td>R$5,57M</td>
-        <td><span style="color:#E67E00;font-weight:700;background:#FFF3CD;padding:2px 8px;border-radius:20px">84,1%</span></td>
-        <td style="color:#E67E00;font-weight:700">-R$886k</td>
-        <td><span style="color:#E67E00;font-weight:700">&#10003; Fechado</span></td>
-      </tr>
-      <tr>
-        <td><strong>Q3 2026</strong></td>
-        <td><strong>R$682k</strong> <span style="font-size:10px;color:#888">(MTD jul/13)</span></td>
-        <td>R$6,22M</td>
-        <td><span style="color:#F23D4F;font-weight:700;background:#FEE8EA;padding:2px 8px;border-radius:20px">11,0%</span></td>
-        <td style="color:#F23D4F;font-weight:700">-R$5,54M</td>
-        <td><span style="color:#3483FA;font-weight:700">&#9654; Em andamento</span></td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="background:#F0FBF5;border:1px solid #B8E8C8;border-radius:8px;padding:10px 14px;font-size:11px;color:#007A3D;margin-top:12px">
-    &#127775; <strong>Q1 bateu a Meta Desafio em 110,7%</strong> (+R$478k acima). Q2 fechou em 84,1% — queda vs Q1 mas ainda dentro de um patamar positivo de crescimento YoY. Q3 exige R$6,22M (jul+ago+set).
+  <!-- Resumo Meta H1 -->
+  <div class="sec">
+    <div class="sec-ttl">Resumo Meta Desafio &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800;color:#1A5DC8">Q1 (Jan&ndash;Mar)</td>
+          <td style="text-align:right;font-weight:700">R$ 4.963.810</td>
+          <td style="text-align:right">R$ 4.485.811</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">110.7% ✅</span></td>
+          <td style="text-align:right;color:#00A650;font-weight:700">+R$ 477.999</td>
+          <td><span style="color:#00A650;font-weight:700">Meta batida ✅</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#856404">Q2 (Abr&ndash;Jun)</td>
+          <td style="text-align:right;font-weight:700">R$ 4.669.784</td>
+          <td style="text-align:right">R$ 5.566.768</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">83.9% ⚠️</span></td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">-R$ 896.984</td>
+          <td><span style="color:#E67E00;font-weight:700">Abaixo da meta ⚠️</span></td>
+        </tr>
+        <tr style="background:#F5F5F5">
+          <td style="font-weight:800">H1 Total (Jan&ndash;Jun)</td>
+          <td style="text-align:right;font-weight:700">R$ 9.633.594</td>
+          <td style="text-align:right">R$ 10.052.579</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">95.8% ⚠️</span></td>
+          <td style="text-align:right;color:#F23D4F;font-weight:700">-R$ 418.985</td>
+          <td><span style="color:#E67E00;font-weight:700">Gap a recuperar em Q3</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="background:#FFF9E0;border:1px solid #FFE066;border-radius:10px;padding:14px 18px;margin-top:14px;font-size:13px">
+      &#9888; <strong>Contexto H1:</strong> O superávit de Q1 (+R$ 478K) amorteceu parcialmente o déficit de Q2 (-R$ 897K). H1 encerrou 95.8% da meta — gap de R$ 419K. Positivo: +42.3% YoY em H1 mostra expansão real da carteira.
+    </div>
   </div>
-</div>
 
-<div class="sec">
-  <div class="sec-ttl">Análise Q2 2026 — Pontos Fortes, Riscos e Oportunidades</div>
-  <div class="ig"><div class='ic ok'><h4>✅ Pontos Positivos</h4><p><strong>+37,7% YoY GMV</strong> — crescimento sólido e real vs Q2'25. Melhor da carteira F&H no comparativo anual.<br><br><strong>ASP em alta consistente</strong> — R$407 (Q2'25) → R$962 (Q2'26). Conta principal migrando para itens de maior valor.<br><br><strong>Resiliência QoQ</strong> — queda de apenas -5,7% vs Q1'26. Bem acima da média do segmento no período.</p></div><div class='ic nok'><h4>⚠️ Pontos de Atenção</h4><p><strong>-41,8% SIs YoY</strong> — volume de pedidos caiu pela metade. Concentração em SKUs de alto valor sem reposição de volume.<br><br><strong>Contas secundárias em colapso</strong> — 1056910428 faturou só R$8,6k em Jun/26 (vs R$383k em Abr/25). 698931952 também em queda livre.<br><br><strong>Jun caiu vs Mai</strong> — mai (R$1,77M) foi o pico; junho recuou para R$1,60M sem sinal de aceleração.</p></div><div class='ic opp'><h4>🚀 Oportunidades Q3 2026</h4><p><strong>7.7 Data Dupla</strong> — R$110.698 em 1 dia (+132% vs dias normais), o melhor da carteira em absoluto. Alta receptividade a campanhas.<br><br><strong>Escalar conta principal</strong> — 530094229 representou 94,9% do Q2. Focar ADS e deals para ampliar share e sortimento.<br><br><strong>Decisão sobre contas menores</strong> — avaliar se vale manter 698931952 e 1056910428 ativas ou consolidar na principal.</p></div><div class='ic warn'><h4>📌 Desenvolvimentos a Monitorar</h4><p><strong>Volume vs Margem</strong> — ASP alto mascara queda de volume. Se contas secundárias fecharem, SI total cai ainda mais em Q3.<br><br><strong>Concentração de mix</strong> — Cama Montessoriana e Sofá Living representam ~23% do GMV Q2. Risco de concentração em poucos SKUs.<br><br><strong>Pós 7.7</strong> — momentum caiu -3,7% (vs pré-7.7). Importante acelerar ações pós-evento para sustentar julho.</p></div></div>
-</div>
+  <!-- 4 Insight cards -->
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise &amp; Pr&oacute;ximos Passos</div>
+    <div class="ig">
+      <div class="ic ok">
+        <div class="ic-ttl">&#9989; Q1 Excelente — Jan e Fev acima de 117%</div>
+        <div class="ic-val">110.7%</div>
+        <p>Q1 fechou fortemente acima da meta puxado por Jan (+17,1%) e Fev (+19,6%) — ambos os meses bateram a meta com folga. Março chegou a 99,3% — quase meta. Base Q1 2025 era fraca (R$ 3,37M), o que potencializou o YoY (+47,4%).</p>
+        <div class="ok-box">
+          <strong>&#128161; Alavanca para Q3:</strong> Replicar o mix Jan–Fev — volume de Camas Montessoriana e Sofá Suede em paralelo, sem deixar Bouclê cair. Jan foi o melhor mês de atingimento do H1.
+        </div>
+      </div>
+      <div class="ic nok">
+        <div class="ic-ttl">&#10060; Q2 Arrastado por Abril — Meta Muito Agressiva</div>
+        <div class="ic-val">83.9%</div>
+        <p>Abril foi o pior mês (65,9%) com meta de R$ 2,0M — a maior do semestre, sem suporte de sazonalidade. Gap de R$ 683K isolado. Maio reagiu (103,4%) mas Junho voltou ao vermelho (85,4%), mostrando dificuldade de sustentar ritmo sem eventos âncora. Ticket caiu em Jul por mix shift para Suede.</p>
+      </div>
+      <div class="ic opp">
+        <div class="ic-ttl">&#128161; Premiumização do Ticket — +64% YoY</div>
+        <div class="ic-val">R$ 605 → R$ 993</div>
+        <p>O ticket médio H1 2026 chegou a R$ 993 vs R$ 605 em 2025 — crescimento de 64%. Isso sustentou o GMV mesmo com SIs H1 caindo (-22% YoY: 10.711 → 8.394). O driver principal são as <strong>Camas Montessoriana</strong> (ticket médio R$ 1.600+) que assumiram liderança do portfólio.</p>
+        <div class="ok-box">
+          <strong>&#127919; Ação:</strong> Expandir linha Montessoriana com novas cores (Azul, Verde, Rosa Escuro). Ativar ADS Sponsored nos Top 6 para manter posição em busca orgânica.
+        </div>
+      </div>
+      <div class="ic warn">
+        <div class="ic-ttl">&#9888;&#65039; Q3 Pace Crítico — Julho Abaixo do Ritmo</div>
+        <div class="ic-val">Pace 73.8% Jul</div>
+        <p>Q3 meta total = R$ 6,22M (Jul R$ 2,06M + Ago R$ 1,99M + Set R$ 2,17M). Com R$ 978K em 20 dias, Jul projeta R$ 1,52M — R$ 534K abaixo da meta. O 7.7 entregou R$ 98K (+112%), mas não foi suficiente. Agosto e Setembro precisam compensar. Black Friday em Nov é o verdadeiro ponto de inflexão do H2.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="sec">
-  <div class="sec-ttl">Top 10 Itens — Q2 2026 (Abr–Jun)</div>
-  <table>
-<thead><tr><th>#</th><th>Item</th><th>MLB</th><th>GMV Q2</th><th>SIs</th><th>ASP</th><th>Share</th></tr></thead>
-<tbody><tr><td style='color:#888;font-size:11px'>1</td><td>Cama Colchão Montessoriana Infantil Proteção Lateral Rosa</td><td><a href='https://produto.mercadolivre.com.br/MLB-5864213932' target='_blank'>MLB5864213932</a></td><td>R$552k</td><td>352</td><td>R$1,568</td><td style='color:#888'>11.8%</td></tr><tr><td style='color:#888;font-size:11px'>2</td><td>Sofá Living 3 Lugares Suede Resistente Madeira + Almofadas</td><td><a href='https://produto.mercadolivre.com.br/MLB-5365991654' target='_blank'>MLB5365991654</a></td><td>R$499k</td><td>678</td><td>R$736</td><td style='color:#888'>10.7%</td></tr><tr><td style='color:#888;font-size:11px'>3</td><td>Sofá Cama Colchão Casal Compact Air Moderno Grafite</td><td><a href='https://produto.mercadolivre.com.br/MLB-4304679587' target='_blank'>MLB4304679587</a></td><td>R$293k</td><td>187</td><td>R$1,565</td><td style='color:#888'>6.3%</td></tr><tr><td style='color:#888;font-size:11px'>4</td><td>Cama Colchão Montessoriana Infantil Cinza/Grafite</td><td><a href='https://produto.mercadolivre.com.br/MLB-5901779680' target='_blank'>MLB5901779680</a></td><td>R$276k</td><td>176</td><td>R$1,569</td><td style='color:#888'>5.9%</td></tr><tr><td style='color:#888;font-size:11px'>5</td><td>Cama Colchão Montessoriana Infantil Bege</td><td><a href='https://produto.mercadolivre.com.br/MLB-5903044944' target='_blank'>MLB5903044944</a></td><td>R$239k</td><td>152</td><td>R$1,574</td><td style='color:#888'>5.1%</td></tr><tr><td style='color:#888;font-size:11px'>6</td><td>Cama Colchão Montessoriana Infantil Cinza Claro</td><td><a href='https://produto.mercadolivre.com.br/MLB-4299910923' target='_blank'>MLB4299910923</a></td><td>R$205k</td><td>135</td><td>R$1,517</td><td style='color:#888'>4.4%</td></tr><tr><td style='color:#888;font-size:11px'>7</td><td>Kit Poltrona Living + Sofá Reforçado Madeira Suede</td><td><a href='https://produto.mercadolivre.com.br/MLB-5365913948' target='_blank'>MLB5365913948</a></td><td>R$204k</td><td>170</td><td>R$1,200</td><td style='color:#888'>4.4%</td></tr><tr><td style='color:#888;font-size:11px'>8</td><td>Sofá Cama Colchão Casal Compact Air Cinza Claro</td><td><a href='https://produto.mercadolivre.com.br/MLB-4304337063' target='_blank'>MLB4304337063</a></td><td>R$160k</td><td>102</td><td>R$1,565</td><td style='color:#888'>3.4%</td></tr><tr><td style='color:#888;font-size:11px'>9</td><td>Sofá Cama Colchão Casal Compact Air Bege</td><td><a href='https://produto.mercadolivre.com.br/MLB-5932961222' target='_blank'>MLB5932961222</a></td><td>R$122k</td><td>77</td><td>R$1,588</td><td style='color:#888'>2.6%</td></tr><tr><td style='color:#888;font-size:11px'>10</td><td>Cama Colchão Casal Montessoriana Proteção Lateral Cinza</td><td><a href='https://produto.mercadolivre.com.br/MLB-5983046296' target='_blank'>MLB5983046296</a></td><td>R$91k</td><td>42</td><td>R$2,175</td><td style='color:#888'>2.0%</td></tr></tbody></table>
-</div>
+  <!-- Top 10 Q2 -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Q2 2026 (Abr&ndash;Jun) por GMV</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV Q2</th>
+        <th style="text-align:right">SIs Q2</th>
+        <th style="text-align:right">Ticket M&eacute;dio</th>
+        <th style="text-align:right">Share Q2</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">1</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank"><strong>Cama Montessoriana Infantil + Colch&atilde;o &mdash; Rosa</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5864213932</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 551.871</td>
+          <td style="text-align:right">346</td>
+          <td style="text-align:right">R$ 1.595</td>
+          <td style="text-align:right">11,8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">2</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank"><strong>Sof&aacute; Living 3 Lugares Suede + Almofadas</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5365991654" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5365991654</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 498.586</td>
+          <td style="text-align:right">647</td>
+          <td style="text-align:right">R$ 771</td>
+          <td style="text-align:right">10,7%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">3</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank"><strong>Sof&aacute; Cama CompactAir Casal Grafite Bouclê</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB4304679587</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 292.572</td>
+          <td style="text-align:right">186</td>
+          <td style="text-align:right">R$ 1.573</td>
+          <td style="text-align:right">6,3%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">4</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank"><strong>Cama Montessoriana Infantil + Colch&atilde;o &mdash; Cinza/Grafite</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5901779680</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 272.967</td>
+          <td style="text-align:right">170</td>
+          <td style="text-align:right">R$ 1.606</td>
+          <td style="text-align:right">5,8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">5</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank"><strong>Cama Montessoriana Infantil + Colch&atilde;o &mdash; Bege</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5903044944" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5903044944</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 239.299</td>
+          <td style="text-align:right">147</td>
+          <td style="text-align:right">R$ 1.628</td>
+          <td style="text-align:right">5,1%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">6</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank"><strong>Cama Montessoriana Infantil + Colch&atilde;o &mdash; Cinza Claro</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-4299910923" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB4299910923</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 204.758</td>
+          <td style="text-align:right">129</td>
+          <td style="text-align:right">R$ 1.587</td>
+          <td style="text-align:right">4,4%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">7</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank"><strong>Kit 1 Poltrona Living + Sof&aacute; Refor&ccedil;ado Suede</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5365913948" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5365913948</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 202.755</td>
+          <td style="text-align:right">167</td>
+          <td style="text-align:right">R$ 1.214</td>
+          <td style="text-align:right">4,3%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">8</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank"><strong>Sof&aacute; Cama CompactAir Casal Cinza Claro Bouclê</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB4304337063</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 159.636</td>
+          <td style="text-align:right">102</td>
+          <td style="text-align:right">R$ 1.565</td>
+          <td style="text-align:right">3,4%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">9</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank"><strong>Sof&aacute; Cama CompactAir Casal Bege Bouclê</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5932961222</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 120.795</td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">R$ 1.726</td>
+          <td style="text-align:right">2,6%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px;font-weight:700">10</td>
+          <td>
+            <a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank"><strong>Cama Casal Montessoriana + Colch&atilde;o &mdash; Cinza Claro</strong></a><br>
+            <a href="https://produto.mercadolivre.com.br/MLB-5983046296" target="_blank" style="font-size:10px;color:#3483FA">&#128279; MLB5983046296</a>
+          </td>
+          <td style="text-align:right;font-weight:700">R$ 91.370</td>
+          <td style="text-align:right">42</td>
+          <td style="text-align:right">R$ 2.175</td>
+          <td style="text-align:right">2,0%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="background:#F5FAFF;border:1px solid #C8DFF8;border-radius:10px;padding:12px 18px;margin-top:14px;font-size:12px">
+      &#128269; <strong>Concentração:</strong> Top 2 (Cama Rosa + Sofá Suede) = 22,5% do GMV Q2. Top 10 = 56,8% do GMV Q2 (R$ 4,67M). <strong>Camas Montessoriana</strong> representam 6 dos 10 itens — base do crescimento premiumizado.
+    </div>
+  </div>
 
 </div>
-<script>
-(function(){
-  Chart.register(ChartDataLabels);
-  var gmv=[1630.2, 1546.9, 1786.7, 1317.1, 1766.5, 1597.4];
-  var momPct=gmv.map(function(v,i){return i===0?null:(v/gmv[i-1]-1)*100;});
-  var ctx=document.getElementById('cBAL').getContext('2d');
-  new Chart(ctx,{type:'bar',data:{
-    labels:["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
-    datasets:[
-      {label:'GMV (R$ mil)',data:gmv,
-       backgroundColor:["#B8CCF5","#B8CCF5","#B8CCF5","#3483FA","#3483FA","#3483FA"],
-       borderRadius:6,yAxisID:'y',
-       datalabels:{anchor:'end',align:'end',offset:2,font:{size:11,weight:'800'},
-         formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'%';},
-         color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#00A650':'#F23D4F';}}},
-      {label:'SIs',data:[2150,2252,2154,1471,1853,1542],type:'line',borderColor:'#FF9500',
-       backgroundColor:'rgba(255,149,0,.12)',borderWidth:2,pointRadius:5,
-       pointBackgroundColor:'#FF9500',fill:true,yAxisID:'y1',datalabels:{display:false}}
-    ]
-  },options:{responsive:true,maintainAspectRatio:false,
-    layout:{padding:{top:28}},
-    plugins:{legend:{position:'bottom'}},
-    scales:{
-      y:{position:'left',title:{display:true,text:'GMV (R$ mil)'},
-         ticks:{callback:function(v){return 'R$'+v+'k'}}},
-      y1:{position:'right',title:{display:true,text:'SIs'},grid:{drawOnChartArea:false}}
-    }
-  }});
-})();
-</script>
-</body></html>
+</body>
+</html>
