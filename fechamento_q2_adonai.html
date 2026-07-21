@@ -92,18 +92,18 @@ a{color:#3483FA;text-decoration:none}
       type:'bar',
       data:{labels:labels,datasets:[
         {label:'NMV 2026 (R$)',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2,
-         datalabels:[
-           {anchor:'end',align:'top',offset:26,font:{size:11,weight:'900'},clip:false,
-            backgroundColor:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#E8F8EF':'#FEE8EA';},
+         datalabels:{labels:{
+           mom:{anchor:'end',align:'top',offset:26,font:{size:11,weight:'900'},clip:false,
+            backgroundColor:function(ctx){var p=momPct[ctx.dataIndex];return ctx.dataIndex===0?null:p>=0?'#E8F8EF':'#FEE8EA';},
             borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
-            formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return '';var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'% MoM';},
-            color:function(ctx){var p=momPct[ctx.dataIndex];return p===null?'transparent':p>=0?'#007A3D':'#C62828';}},
-           {anchor:'end',align:'top',offset:4,font:{size:11,weight:'900'},clip:false,
+            formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return null;var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'% MoM';},
+            color:function(ctx){var p=momPct[ctx.dataIndex];return p>=0?'#007A3D':'#C62828';}},
+           yoy:{anchor:'end',align:'top',offset:4,font:{size:11,weight:'900'},clip:false,
             backgroundColor:function(ctx){var y=yoyPct[ctx.dataIndex];return y>=0?'#E8F8EF':'#FEE8EA';},
             borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
             formatter:function(v,ctx){var y=yoyPct[ctx.dataIndex];return(y>=0?'+':'')+y.toFixed(1)+'% YoY';},
             color:function(ctx){return yoyPct[ctx.dataIndex]>=0?'#007A3D':'#C62828';}}
-         ]},
+         }},
         {label:'GMV 2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.13)',borderRadius:5,yAxisID:'yNmv',order:3,datalabels:{display:false}},
         {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,yAxisID:'yNmv',order:1,datalabels:{display:false}},
         {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:4,yAxisID:'ySi',order:0,datalabels:{display:false}},
