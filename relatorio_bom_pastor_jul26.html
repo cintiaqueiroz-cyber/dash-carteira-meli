@@ -82,10 +82,12 @@ a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   (function(){
-    var _ating=[25.1,55.1,123.7,85.6,114.1,90.3,96.8,null,null,null,null,null];
+    var _ating=[25.1,55.1,123.7,85.6,114.1,90.3,62.4,null,null,null,null,null];
+    var _mesMTD=6;
     function fk(v){var n=Number(v);if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K';return 'R$'+n.toFixed(0);}
     var labelsPlugin={id:'gmvLabels',afterDatasetsDraw:function(chart){
       var ctx=chart.ctx;ctx.save();ctx.textAlign='center';
+      // Dataset 0 = 2026: valor + badge atingimento
       var meta0=chart.getDatasetMeta(0);
       meta0.data.forEach(function(pt,i){
         var v=chart.data.datasets[0].data[i];
@@ -103,12 +105,26 @@ a{color:#007A3D;text-decoration:none} a:hover{text-decoration:underline}
           ctx.fillStyle='#fff';ctx.fillText(txt,pt.x,pt.y-12);
         }
       });
+      // Dataset 1 = Projetado: labels em meses alternados após mês atual
+      var meta1=chart.getDatasetMeta(1);
+      ctx.font='bold 10px Arial';ctx.fillStyle='#007A3D';
+      meta1.data.forEach(function(pt,i){
+        if(i<=_mesMTD)return;
+        if(i%2===0)return;
+        var v=chart.data.datasets[1].data[i];
+        if(v===null||v===undefined||isNaN(Number(v)))return;
+        ctx.fillText(fk(Number(v)),pt.x,pt.y-12);
+      });
+      // Mês atual: mostrar Projetado (full month)
+      var ptP=chart.getDatasetMeta(1).data[_mesMTD];
+      if(ptP){var vP=chart.data.datasets[1].data[_mesMTD];if(vP!==null&&!isNaN(Number(vP))){ctx.font='bold 10px Arial';ctx.fillStyle='#007A3D';ctx.fillText(fk(Number(vP)),ptP.x+30,ptP.y-8);}}
       ctx.restore();
     }};
     new Chart(document.getElementById('cGmv'),{
       type:'line',
       data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
-        {label:'2026',data:[628423,1282724,3343109,2297448,3500412,3023292,3578624,null,null,null,null,null],borderColor:'#007A3D',backgroundColor:'rgba(0,122,61,.12)',fill:true,tension:.3,spanGaps:true,pointRadius:5,borderWidth:2},
+        {label:'2026',data:[628423,1282724,3343109,2297448,3500412,3023292,2308789,null,null,null,null,null],borderColor:'#007A3D',backgroundColor:'rgba(0,122,61,.12)',fill:true,tension:.3,spanGaps:true,pointRadius:5,borderWidth:2},
+        {label:'Projetado',data:[null,null,null,null,null,null,3578624,3800000,3500000,4000000,4500000,3800000],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
         {label:'2025',data:[243924,540914,824238,969474,2025448,3291886,1254643,null,null,null,null,null],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,borderWidth:1.5},
         {label:'Meta Desafio',data:[2504833,2326222,2701782,2684775,3067169,3348491,3697296,null,null,null,null,null],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3,borderWidth:1.5}
       ]},
