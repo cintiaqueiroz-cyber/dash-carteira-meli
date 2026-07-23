@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fechamento Q2 2026 — PANORAMA</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.qg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #3483FA}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:28px;font-weight:900;margin-bottom:4px}
+.qc .qm{font-size:12px;color:#888}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic .ic-val{font-size:22px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13px}
+.chart-box{position:relative;height:280px}
+a{color:#3483FA;text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; Fechamento Q2 2026 &mdash; PANORAMA</h1>
+    <div class="sub">KAM: Cintia Faraco Queiroz &middot; Seller ID: 339898288 &middot; Furnishing &amp; Houseware</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-size:13px;opacity:.8">Q2 Atingimento Meta Desafio</div>
+    <div style="font-size:32px;font-weight:900;color:#FFE600">80,7%</div>
+  </div>
+</div>
+<div class="wrap">
+
+  <!-- Cards de Quarter -->
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#E67E00">R$ 5,86M</div>
+      <div class="qm">Meta: R$ 6,99M &middot; Ating: <strong style="color:#E67E00">83,8% &#9888;</strong></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">&#x1F525; Q2 2026 (Abr&ndash;Jun)</div>
+      <div class="qv" style="color:#E67E00">R$ 7,37M</div>
+      <div class="qm">Meta: R$ 9,15M &middot; Ating: <strong style="color:#E67E00">80,7% &#9888;</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) MTD</div>
+      <div class="qv" style="color:#E67E00">R$ 2,42M</div>
+      <div class="qm">Meta Q3: R$ 13,32M &middot; Pace: <strong style="color:#E67E00">18,1%</strong></div>
+    </div>
+  </div>
+
+  <!-- Gr&aacute;fico GMV H1 -->
+  <div class="sec">
+    <div class="sec-ttl">GMV por M&ecirc;s H1 2026 vs Meta Desafio + SIs</div>
+    <div class="chart-box" style="height:320px"><canvas id="cQ"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
+    var nmv26  = [2151930, 1632561, 2073871, 2547719, 2454616, 2372489];
+    var nmv25  = [1391600, 1378483, 2305254, 2025589, 3377860, 3317118];
+    var yoyPct = nmv26.map(function(v,i){return (v/nmv25[i]-1)*100;});
+    var momPct = nmv26.map(function(v,i){return i===0?null:(v/nmv26[i-1]-1)*100;});
+    var meta   = [2416995, 2244647, 2330095, 2340022, 3400039, 3405001];
+    var si26   = [3205, 2355, 2747, 3232, 3038, 2822];
+    var si25   = [2212, 2158, 3453, 2878, 4876, 4573];
+    var colors = nmv26.map(function(v,i){ return i<3?'#B8CCF5':'#3483FA'; });
+    new Chart(document.getElementById('cQ'),{
+      type:'bar',
+      data:{labels:labels,datasets:[
+        {label:'NMV 2026 (R$)',data:nmv26,backgroundColor:colors,borderRadius:5,yAxisID:'yNmv',order:2,datalabels:{display:false}},
+        {label:'GMV 2025',data:nmv25,backgroundColor:'rgba(0,0,0,0.13)',borderRadius:5,yAxisID:'yNmv',order:3,datalabels:{display:false}},
+        {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],pointRadius:4,yAxisID:'yNmv',order:1,datalabels:{display:false}},
+        {label:'SIs 2026',data:si26,type:'line',borderColor:'#FF9500',backgroundColor:'transparent',tension:.3,pointRadius:4,yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}},
+        {label:'_mom',data:nmv26,type:'line',borderWidth:0,pointRadius:0,backgroundColor:'transparent',borderColor:'transparent',yAxisID:'yNmv',order:0,
+         datalabels:{anchor:'end',align:'top',offset:26,font:{size:11,weight:'900'},clip:false,
+          backgroundColor:function(ctx){var i=ctx.dataIndex;if(i===0)return null;return momPct[i]>=0?'#E8F8EF':'#FEE8EA';},
+          borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
+          formatter:function(v,ctx){var i=ctx.dataIndex;if(i===0)return null;var p=momPct[i];return(p>=0?'+':'')+p.toFixed(1)+'% MoM';},
+          color:function(ctx){return momPct[ctx.dataIndex]>=0?'#007A3D':'#C62828';}}},
+        {label:'_yoy',data:nmv26,type:'line',borderWidth:0,pointRadius:0,backgroundColor:'transparent',borderColor:'transparent',yAxisID:'yNmv',order:0,
+         datalabels:{anchor:'end',align:'top',offset:4,font:{size:11,weight:'900'},clip:false,
+          backgroundColor:function(ctx){return yoyPct[ctx.dataIndex]>=0?'#E8F8EF':'#FEE8EA';},
+          borderRadius:4,padding:{top:3,bottom:3,left:5,right:5},
+          formatter:function(v,ctx){var y=yoyPct[ctx.dataIndex];return(y>=0?'+':'')+y.toFixed(1)+'% YoY';},
+          color:function(ctx){return yoyPct[ctx.dataIndex]>=0?'#007A3D':'#C62828';}}}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:60}},
+        clip:false,
+        plugins:{legend:{position:'top',labels:{filter:function(item){return !item.text.startsWith('_');}}},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=1)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}}},
+        scales:{
+          yNmv:{position:'left',ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR')+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+  <!-- Tabela Atingimento por M&ecirc;s -->
+  <div class="sec">
+    <div class="sec-ttl">Atingimento por M&ecirc;s &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th><th>M&ecirc;s</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th style="text-align:right">SIs</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Jan</td>
+          <td style="text-align:right;font-weight:700">R$ 2,15M</td>
+          <td style="text-align:right">R$ 2,42M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">89,0% &#9888;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 265.065</td>
+          <td style="text-align:right">3.205</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Fev</td>
+          <td style="text-align:right;font-weight:700">R$ 1,63M</td>
+          <td style="text-align:right">R$ 2,24M</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">72,7% &#10060;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 612.086</td>
+          <td style="text-align:right">2.355</td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Mar</td>
+          <td style="text-align:right;font-weight:700">R$ 2,07M</td>
+          <td style="text-align:right">R$ 2,33M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">89,0% &#9888;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 256.224</td>
+          <td style="text-align:right">2.747</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Abr</td>
+          <td style="text-align:right;font-weight:700">R$ 2,55M</td>
+          <td style="text-align:right">R$ 2,34M</td>
+          <td style="text-align:right"><span style="background:#E8F8EF;color:#00A650;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">108,9% &#9989;</span></td>
+          <td style="text-align:right;color:#00A650">+R$ 207.697 (acima)</td>
+          <td style="text-align:right">3.232</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Mai</td>
+          <td style="text-align:right;font-weight:700">R$ 2,45M</td>
+          <td style="text-align:right">R$ 3,40M</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">72,2% &#10060;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 945.423</td>
+          <td style="text-align:right">3.038</td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Jun</td>
+          <td style="text-align:right;font-weight:700">R$ 2,37M</td>
+          <td style="text-align:right">R$ 3,41M</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">69,7% &#10060;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 1.032.512</td>
+          <td style="text-align:right">2.822</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Resumo Meta H1 -->
+  <div class="sec">
+    <div class="sec-ttl">Resumo Meta Desafio &mdash; H1 2026</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800;color:#1A5DC8">Q1</td>
+          <td style="text-align:right;font-weight:700">R$ 5,86M</td>
+          <td style="text-align:right">R$ 6,99M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">83,8% &#9888;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 1,13M</td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Abaixo &#9888;</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:800;color:#856404">Q2</td>
+          <td style="text-align:right;font-weight:700">R$ 7,37M</td>
+          <td style="text-align:right">R$ 9,15M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">80,7% &#9888;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 1,77M</td>
+          <td><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Abaixo da meta &#10060;</span></td>
+        </tr>
+        <tr style="background:#F5F5F5">
+          <td style="font-weight:800">H1 Total</td>
+          <td style="text-align:right;font-weight:700">R$ 13,23M</td>
+          <td style="text-align:right">R$ 16,14M</td>
+          <td style="text-align:right"><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">82,0% &#9888;</span></td>
+          <td style="text-align:right;color:#F23D4F">-R$ 2,90M</td>
+          <td><span style="background:#FFF9E0;color:#E67E00;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">Gap a recuperar</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="background:#FEF9F9;border:1px solid #F5C6CB;border-radius:10px;padding:14px 18px;margin-top:16px;font-size:13px">
+      &#9888; <strong>Gap H1:</strong> R$ 2,90M abaixo da meta acumulada H1 &mdash; recupera&ccedil;&atilde;o cr&iacute;tica em Q3 para reposicionar o seller no ranking da carteira. Meta Desafio Q3 = R$ 13,32M.
+    </div>
+  </div>
+
+  <!-- An&aacute;lise & Pr&oacute;ximos Passos -->
+  <div class="sec">
+    <div class="sec-ttl">An&aacute;lise &amp; Pr&oacute;ximos Passos</div>
+    <div class="ig">
+      <div class="ic ok">
+        <div class="ic-ttl">&#9989; Abril &mdash; &uacute;nico m&ecirc;s acima da meta</div>
+        <div class="ic-val">108,9%</div>
+        <p>Abril foi o destaque de Q2 com R$ 2,55M &mdash; &uacute;nico m&ecirc;s acima da meta (108,9%). Crescimento de +22,8% MoM vs mar&ccedil;o e +25,8% YoY. Demonstra capacidade real do seller quando o mix de produtos est&aacute; alinhado.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#128293; <strong>Lever para Q3:</strong> replicar o mix e a din&acirc;mica de Abril &mdash; identificar quais guarda-roupas lideraram o volume naquele m&ecirc;s.
+        </div>
+      </div>
+      <div class="ic nok">
+        <div class="ic-ttl">&#10060; Mai e Jun &mdash; Queda acentuada</div>
+        <div class="ic-val">72,2% / 69,7%</div>
+        <p>Mai (72,2%) e Jun (69,7%) ficaram muito abaixo da meta. A base de 2025 era muito alta para esses meses (R$ 3,38M e R$ 3,32M), criando um YoY de -27% e -28,5%. Sinal de perda de share ou redu&ccedil;&atilde;o de portf&oacute;lio ativo.</p>
+      </div>
+      <div class="ic opp">
+        <div class="ic-ttl">&#128161; Oportunidade &mdash; Volume de SIs cresce</div>
+        <div class="ic-val">+16,2% SIs Q2 YoY</div>
+        <p>Volume de SIs Q2 2026 (9.092) cresceu +16,2% sobre Q1 2026 (7.823). Por&eacute;m caiu vs Q2 2025 (12.327 SIs). Ativar <strong>Product Ads</strong> nos top MLBs (Classic, Honey, Odisseia) pode ampliar visibilidade e recuperar share de mercado.</p>
+        <div class="ok-box" style="margin-top:10px;font-size:12px">
+          &#127919; <strong>A&ccedil;&atilde;o:</strong> focar em Guarda-Roupa Classic (MLB4458206565) que liderou Q2 com R$ 776K.
+        </div>
+      </div>
+      <div class="ic warn">
+        <div class="ic-ttl">&#9888;&#65039; Q3 &mdash; Meta muito agressiva</div>
+        <div class="ic-val">R$ 13,32M</div>
+        <p>Meta Q3 = R$ 13,32M (Jul+Ago+Set). Jul j&aacute; proj. R$ 3,38M (73,5% da meta mensal). O ritmo p&oacute;s-7.7 (R$ 114K/dia) precisa se sustentar nos meses seguintes. A data dupla 8.8 ser&aacute; cr&iacute;tica para Agosto.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 10 Itens Q2 -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Itens &mdash; Q2 2026 (Abr&ndash;Jun) por GMV</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV Q2</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">ASP</th>
+        <th style="text-align:right">Share Q2</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td style="color:#888;font-size:11px">1</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4458206565" target="_blank">Guarda-Roupa Casal Classic 6 Portas 6 Gavetas 100% MDF Cinam Bege</a><br><span style="font-size:10px;color:#999">MLB4458206565</span></td>
+          <td style="text-align:right;font-weight:700">R$ 775.958</td>
+          <td style="text-align:right">583</td>
+          <td style="text-align:right">R$ 1.331</td>
+          <td style="text-align:right">10,5%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">2</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4458215565" target="_blank">Guarda-Roupa Casal Classic 6 Portas 6 Gavetas 100% MDF Com Espelho Bege</a><br><span style="font-size:10px;color:#999">MLB4458215565</span></td>
+          <td style="text-align:right;font-weight:700">R$ 207.134</td>
+          <td style="text-align:right">137</td>
+          <td style="text-align:right">R$ 1.512</td>
+          <td style="text-align:right">2,8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">3</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5933785650" target="_blank">Guarda Roupa Casal Lux&uacute;ria 4 Portas 6 Gavetas Cinamomo Marrom-Claro</a><br><span style="font-size:10px;color:#999">MLB5933785650</span></td>
+          <td style="text-align:right;font-weight:700">R$ 156.809</td>
+          <td style="text-align:right">143</td>
+          <td style="text-align:right">R$ 1.097</td>
+          <td style="text-align:right">2,1%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">4</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-6039402804" target="_blank">Guarda-Roupa Casal Honey 4 Portas 6 Gavetas Com Espelho Preto</a><br><span style="font-size:10px;color:#999">MLB6039402804</span></td>
+          <td style="text-align:right;font-weight:700">R$ 144.512</td>
+          <td style="text-align:right">130</td>
+          <td style="text-align:right">R$ 1.112</td>
+          <td style="text-align:right">2,0%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">5</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5386131772" target="_blank">Guarda-Roupa Modulado Soberano 11 Portas 8 Gavetas Cor Cinza</a><br><span style="font-size:10px;color:#999">MLB5386131772</span></td>
+          <td style="text-align:right;font-weight:700">R$ 133.910</td>
+          <td style="text-align:right">76</td>
+          <td style="text-align:right">R$ 1.762</td>
+          <td style="text-align:right">1,8%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">6</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-6420235396" target="_blank">Guarda-Roupa Casal Honey 4 Portas 6 Gavetas Com Espelho Preto</a><br><span style="font-size:10px;color:#999">MLB6420235396</span></td>
+          <td style="text-align:right;font-weight:700">R$ 111.874</td>
+          <td style="text-align:right">107</td>
+          <td style="text-align:right">R$ 1.046</td>
+          <td style="text-align:right">1,5%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">7</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-5955122962" target="_blank">Guarda Roupa Casal Lux&uacute;ria 4 Portas 6 Gavetas Branco</a><br><span style="font-size:10px;color:#999">MLB5955122962</span></td>
+          <td style="text-align:right;font-weight:700">R$ 107.782</td>
+          <td style="text-align:right">102</td>
+          <td style="text-align:right">R$ 1.056</td>
+          <td style="text-align:right">1,5%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">8</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-4596592997" target="_blank">Guarda-Roupa Casal Odisseia 8 Portas 4 Gavetas Com Espelho Bege</a><br><span style="font-size:10px;color:#999">MLB4596592997</span></td>
+          <td style="text-align:right;font-weight:700">R$ 100.617</td>
+          <td style="text-align:right">82</td>
+          <td style="text-align:right">R$ 1.227</td>
+          <td style="text-align:right">1,4%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">9</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-6226808378" target="_blank">Guarda Roupa Casal Lux&uacute;ria 4 Portas 6 Gavetas Cinamomo Marrom-Claro</a><br><span style="font-size:10px;color:#999">MLB6226808378</span></td>
+          <td style="text-align:right;font-weight:700">R$ 96.414</td>
+          <td style="text-align:right">91</td>
+          <td style="text-align:right">R$ 1.060</td>
+          <td style="text-align:right">1,3%</td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">10</td>
+          <td>&#127761; <a href="https://produto.mercadolivre.com.br/MLB-6258777604" target="_blank">Guarda-Roupa Casal Luxuria 4 Portas 6 Gavetas Com Espelho Branco</a><br><span style="font-size:10px;color:#999">MLB6258777604</span></td>
+          <td style="text-align:right;font-weight:700">R$ 91.081</td>
+          <td style="text-align:right">85</td>
+          <td style="text-align:right">R$ 1.071</td>
+          <td style="text-align:right">1,2%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
