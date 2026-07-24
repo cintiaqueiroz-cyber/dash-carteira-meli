@@ -402,19 +402,23 @@ a{color:#3483FA;text-decoration:none}
     var labels = ["Jul","Ago","Set","Out","Nov","Dez"];
     var h2_25  = [1670566,1252669,1205362,1303580,1788085,1323870];
     var meta26 = [2055501,1990975,2171549,2307595,2353919,1873240];
-    var proj26 = [1544761,null,null,null,null,null]; // Jul projeção, resto a definir
+    var mtd26  = [1128258,null,null,null,null,null]; // Jul MTD real (23 dias)
+    var proj26 = [1520678,null,null,null,null,null]; // Jul projeção mês completo (÷23×31)
     new Chart(document.getElementById('cH2'),{
       type:'bar',
       data:{labels:labels,datasets:[
-        {label:'H2 2025 Realizado',data:h2_25,backgroundColor:'#B8CCF5',borderRadius:5,yAxisID:'yG',order:3,
+        {label:'H2 2025 Realizado',data:h2_25,backgroundColor:'#B8CCF5',borderRadius:5,yAxisID:'yG',order:4,
          datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
            formatter:function(v){return 'R$'+(v/1000).toFixed(0)+'K';},color:'#555'}},
         {label:'Meta Des. 2026',data:meta26,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,
          datalabels:{anchor:'end',align:'top',offset:4,font:{size:10,weight:'700'},
            formatter:function(v){return 'Meta: R$'+(v/1000).toFixed(0)+'K';},color:'#FF7A00'}},
-        {label:'Jul 2026 (proj.)',data:proj26,backgroundColor:'#3483FA',borderRadius:5,yAxisID:'yG',order:2,
+        {label:'Jul 2026 MTD (23d)',data:mtd26,backgroundColor:'#00A650',borderRadius:5,yAxisID:'yG',order:2,
          datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
-           formatter:function(v){return v?'R$'+(v/1000).toFixed(0)+'K':null;},color:'#1A5DC8'}}
+           formatter:function(v){return v?'MTD R$'+(v/1000).toFixed(0)+'K':null;},color:'#007A3A'}},
+        {label:'Jul 2026 Proj. (31d)',data:proj26,backgroundColor:'rgba(52,131,250,0.55)',borderRadius:5,borderWidth:2,borderColor:'#3483FA',yAxisID:'yG',order:3,
+         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+           formatter:function(v){return v?'Proj. R$'+(v/1000).toFixed(0)+'K':null;},color:'#1A5DC8'}}
       ]},
       options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:40}},
         plugins:{legend:{position:'top'},
@@ -445,7 +449,7 @@ a{color:#3483FA;text-decoration:none}
           <td style="text-align:right">R$ 1.670.566</td><td style="text-align:right">2.375</td><td style="text-align:right">R$ 703</td>
           <td style="text-align:right;font-weight:700;color:#FF9500">R$ 2.055.501</td>
           <td style="text-align:right"><span class="warn-c">+23.0%</span></td>
-          <td><span class="pill pl-b">Proj. R$1.54M (75%)</span></td>
+          <td><span class="pill pl-b">MTD R$1.13M &middot; Proj. R$1.52M (74%)</span></td>
         </tr>
         <tr>
           <td style="font-weight:700">Ago</td>
