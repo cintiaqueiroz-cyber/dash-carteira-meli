@@ -569,28 +569,55 @@ a{color:#3483FA;text-decoration:none}
     })();
     </script>
 
+    <!-- Horários BF -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Pico de Vendas por Hora &mdash; 28/Nov/2025</div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+        <div style="background:rgba(255,230,0,.12);border:1px solid rgba(255,230,0,.3);border-radius:8px;padding:8px 14px;font-size:11px;color:#FFE600"><strong style="font-size:16px">20h</strong> &mdash; Pico máx. &middot; 20 ped. &middot; R$28K</div>
+        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong>11h</strong> &middot; 16 ped. &middot; R$23K</div>
+        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong>22h</strong> &middot; 14 ped. &middot; R$20K</div>
+        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong>14h</strong> &middot; 14 ped. &middot; R$18K</div>
+      </div>
+      <div style="position:relative;height:140px"><canvas id="cBFHoras"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var hLabels=["1h","2h","3h","4h","5h","6h","7h","8h","9h","10h","11h","12h","13h","14h","15h","16h","17h","18h","19h","20h","21h","22h"];
+      var hVals=[1812,2209,1430,2550,4198,7643,14309,10628,6719,16794,22970,11245,9513,18305,8069,11791,10835,10547,8285,28103,14127,20395];
+      var hColors=hVals.map(function(v,i){return i===19?'#FFE600':(v>=16000?'#FF9500':'#555')});
+      new Chart(document.getElementById('cBFHoras'),{
+        type:'bar',
+        data:{labels:hLabels,datasets:[{label:'GMV (R$)',data:hVals,backgroundColor:hColors,borderRadius:4,borderSkipped:false}]},
+        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{display:false}},
+          scales:{x:{ticks:{color:'#888',font:{size:9}},grid:{display:false}},
+                  y:{ticks:{display:false},grid:{color:'rgba(255,255,255,.05)'},border:{display:false}}}}
+      });
+    })();
+    </script>
+    <div style="font-size:10px;color:#666;margin-top:4px;margin-bottom:14px">&#9679; Amarelo = pico m&aacute;ximo (20h) &middot; Laranja = horas acima de R$16K</div>
+
     <!-- Top 5 itens BF -->
     <div style="font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Top 5 Itens no dia 28/Nov/2025</div>
     <div style="display:flex;flex-direction:column;gap:6px">
       <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
         <div><span style="color:#FFE600;font-weight:900;margin-right:8px">1</span><a href="https://produto.mercadolivre.com.br/MLB-5864213932" target="_blank" style="color:#aaa;font-size:12px">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; ROSA</a></div>
-        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 18.317</span> <span style="color:#888;font-size:11px">12 SIs</span></div>
+        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 20.463</span> <span style="color:#888;font-size:11px">12 ped. &middot; 13 un.</span></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
-        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">2</span><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR BEGE BOUCLÊ</a></div>
-        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 17.159</span> <span style="color:#888;font-size:11px">12 SIs</span></div>
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">2</span><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR GRAFITE BOUCLÊ</a></div>
+        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 18.889</span> <span style="color:#888;font-size:11px">12 ped. &middot; 12 un.</span></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
-        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">3</span><a href="https://produto.mercadolivre.com.br/MLB-4304679587" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR GRAFITE BOUCLÊ</a></div>
-        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 17.159</span> <span style="color:#888;font-size:11px">12 SIs</span></div>
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">3</span><a href="https://produto.mercadolivre.com.br/MLB-5932961222" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR BEGE BOUCLÊ</a></div>
+        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 18.370</span> <span style="color:#888;font-size:11px">12 ped. &middot; 12 un.</span></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
-        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">4</span><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR CINZA CLARO BOUCLÊ</a></div>
-        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 11.439</span> <span style="color:#888;font-size:11px">7 SIs</span></div>
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">4</span><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank" style="color:#aaa;font-size:12px">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; CINZA/GRAFITE</a></div>
+        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 12.282</span> <span style="color:#888;font-size:11px">8 ped. &middot; 8 un.</span></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
-        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">5</span><a href="https://produto.mercadolivre.com.br/MLB-5901779680" target="_blank" style="color:#aaa;font-size:12px">CAMA MONTESSORIANA INFANTIL PROTE&Ccedil;&Atilde;O LATERAL &mdash; CINZA/GRAFITE</a></div>
-        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 11.272</span> <span style="color:#888;font-size:11px">8 SIs</span></div>
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">5</span><a href="https://produto.mercadolivre.com.br/MLB-4304337063" target="_blank" style="color:#aaa;font-size:12px">SOF&Aacute; CAMA COMPACT AIR CINZA CLARO BOUCLÊ</a></div>
+        <div style="text-align:right;flex-shrink:0"><span style="color:#FFE600;font-weight:900;font-size:14px">R$ 11.963</span> <span style="color:#888;font-size:11px">7 ped. &middot; 8 un.</span></div>
       </div>
     </div>
     <div style="margin-top:14px;background:rgba(255,230,0,.08);border:1px solid rgba(255,230,0,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:#ccc">
