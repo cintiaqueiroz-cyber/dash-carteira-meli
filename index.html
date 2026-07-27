@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 27/07/2026 18:52 -->
+<!-- Build: 27/07/2026 18:59 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -14510,6 +14511,72 @@
 #sidebar .sb-footer{padding:12px 18px;font-size:9.5px;color:rgba(255,255,255,.18);border-top:1px solid rgba(255,255,255,.05);margin-top:8px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR DARK ML ── */
+#sidebar{background:#1A1A1A;border-right:none;box-shadow:3px 0 20px rgba(0,0,0,.25);width:220px;}
+#sidebar .sb-brand{background:#FFE600;padding:16px 18px 14px;display:flex;align-items:center;gap:10px;border-bottom:3px solid #E0C800;}
+#sidebar .sb-brand-icon{width:32px;height:32px;background:#1A1A1A;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:20px;height:20px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:13px;font-weight:900;color:#1A1A1A;line-height:1.2;letter-spacing:-.2px;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:500;color:#555;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:rgba(255,255,255,.07);margin:4px 0;}
+#sidebar .sidebar-header{padding:18px 18px 5px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.25);}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;padding:8px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;border-radius:6px;transition:all .15s;cursor:pointer;margin-bottom:1px;border-left:2px solid transparent;letter-spacing:.2px;}
+#sidebar ul li a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);border-left-color:rgba(255,230,0,.5);}
+#sidebar ul li a.active{background:rgba(255,230,0,.12);color:#FFE600;font-weight:700;border-left-color:#FFE600;}
+#sidebar ul li a .dot{display:none;}
+#sidebar .sb-footer{padding:12px 18px;font-size:9.5px;color:rgba(255,255,255,.18);border-top:1px solid rgba(255,255,255,.05);margin-top:8px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -14519,7 +14586,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 27/07/2026 18:52</span>
+    <span class="update-badge">&#10003; Atualizado 27/07/2026 18:59</span>
   </div>
 </div>
 <div id="sidebar">
@@ -15582,7 +15649,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Julho parcial: 27/30 dias &nbsp;&middot;&nbsp; 27/07/2026 18:52
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Julho parcial: 27/30 dias &nbsp;&middot;&nbsp; 27/07/2026 18:59
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -15621,6 +15688,8 @@ var OPTIN_DATA={"MULTILOJA": {"elegivel": 9383, "optin": 4932}, "ADONAI": {"eleg
 var REAL_VC={"MULTILOJA": {"jan": -4800, "feb": -4643, "mar": -21543, "apr": -22799, "may": -46978, "jun": -26849, "jul": -41318}, "ADONAI": {"jan": -9111, "feb": -21552, "mar": -30455, "apr": -36092, "may": -42531, "jun": -23764, "jul": -18959}, "BALAQUI": {"jan": -713, "feb": -1763, "mar": -6600, "apr": -5636, "may": -15285, "jun": -16510, "jul": -12994}, "CAMA INBOX": {"jan": -10342, "feb": -20830, "mar": -13444, "apr": -15825, "may": -52116, "jun": -61136, "jul": -70702}, "BOM PASTOR": {"jan": -409, "feb": -1687, "mar": -14620, "apr": -16119, "may": -26758, "jun": -16300, "jul": -29433}, "PANORAMA": {"jan": -2163, "feb": -987, "mar": -14015, "apr": -23772, "may": -32170, "jun": -33610, "jul": -41697}, "TONIELQUE": {"jan": -6570, "feb": -9741, "mar": -22649, "apr": -45701, "may": -53479, "jun": -68150, "jul": -62563}, "WEHOUSE": {"jan": -6519, "feb": -5811, "mar": -13333, "apr": -17512, "may": -13081, "jun": -9611, "jul": -15891}, "KING HOUSE": {"jan": -29866, "feb": -20380, "mar": -37399, "apr": -62586, "may": -81654, "jun": -152715, "jul": -178742}, "MOVEIS ARAPONGAS": {"jan": -8559, "feb": -6496, "mar": -6357, "apr": -6183, "may": -5042, "jun": -3609, "jul": -3863}};
 var REAL_DC={"MULTILOJA": {"jan": -12167, "feb": -3409, "mar": -3886, "apr": -3642, "may": -2814, "jun": -5479, "jul": -3570}, "ADONAI": {"jan": -1961, "feb": -348, "mar": -589, "apr": -335, "may": -137, "jun": -388, "jul": -575}, "BALAQUI": {"jan": -4320, "feb": -566, "mar": -546, "apr": -385, "may": -764, "jun": -235, "jul": -80}, "CAMA INBOX": {"jan": -9261, "feb": -581, "mar": -323, "apr": -491, "may": -870, "jun": -1116, "jul": -513}, "BOM PASTOR": {"jan": -8577, "feb": -585, "mar": -1500, "apr": -695, "may": -1758, "jun": -1123, "jul": -285}, "PANORAMA": {"jan": -6693, "feb": -1370, "mar": -1958, "apr": -1608, "may": -1003, "jun": -1780, "jul": -765}, "TONIELQUE": {"jan": -11646, "feb": -3978, "mar": -3709, "apr": -4095, "may": -2121, "jun": -4428, "jul": -1805}, "WEHOUSE": {"jan": -8624, "feb": -523, "mar": -1077, "apr": -756, "may": -504, "jun": -592, "jul": -334}, "KING HOUSE": {"jan": -12703, "feb": -830, "mar": -1554, "apr": -909, "may": -2590, "jun": -1686, "jul": -954}, "MOVEIS ARAPONGAS": {"jan": -1820, "feb": -456, "mar": -406, "apr": -526, "may": -164, "jun": -527, "jul": -109}};
 var REAL_AFF={"MULTILOJA": {"jan": 204470, "feb": 171943, "mar": 252694, "apr": 205983, "may": 380727, "jun": 415937, "jul": 435666}, "ADONAI": {"jan": 63504, "feb": 85069, "mar": 170722, "apr": 99145, "may": 145834, "jun": 145010, "jul": 160892}, "BALAQUI": {"jan": 79526, "feb": 82784, "mar": 120458, "apr": 81787, "may": 154571, "jun": 148842, "jul": 100847}, "CAMA INBOX": {"jan": 259643, "feb": 191967, "mar": 234811, "apr": 315681, "may": 388617, "jun": 455910, "jul": 592445}, "BOM PASTOR": {"jan": 57002, "feb": 96206, "mar": 300683, "apr": 201200, "may": 386039, "jun": 335239, "jul": 311847}, "PANORAMA": {"jan": 100530, "feb": 85198, "mar": 145417, "apr": 165743, "may": 159608, "jun": 184050, "jul": 227402}, "TONIELQUE": {"jan": 189439, "feb": 189285, "mar": 172315, "apr": 191466, "may": 180389, "jun": 217529, "jul": 242718}, "WEHOUSE": {"jan": 178902, "feb": 141550, "mar": 146623, "apr": 116309, "may": 86352, "jun": 79718, "jul": 108136}, "KING HOUSE": {"jan": 294014, "feb": 219194, "mar": 371339, "apr": 302832, "may": 488419, "jun": 586693, "jul": 570814}, "MOVEIS ARAPONGAS": {"jan": 33257, "feb": 37932, "mar": 34143, "apr": 22940, "may": 36260, "jun": 38096, "jul": 55829}};
+var REAL_AFF_LASTCLICK={"MULTILOJA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "ADONAI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "BALAQUI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "CAMA INBOX": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "BOM PASTOR": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "PANORAMA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "TONIELQUE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "WEHOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "KING HOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "MOVEIS ARAPONGAS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}};
+var REAL_AFF_PEDIDOS={"MULTILOJA": {"jan": 1048, "feb": 1027, "mar": 1256, "apr": 1258, "may": 1858, "jun": 2100, "jul": 1948}, "ADONAI": {"jan": 164, "feb": 272, "mar": 461, "apr": 305, "may": 409, "jun": 346, "jul": 401}, "BALAQUI": {"jan": 313, "feb": 382, "mar": 429, "apr": 302, "may": 459, "jun": 398, "jul": 345}, "CAMA INBOX": {"jan": 459, "feb": 360, "mar": 431, "apr": 555, "may": 747, "jun": 881, "jul": 1031}, "BOM PASTOR": {"jan": 120, "feb": 257, "mar": 699, "apr": 467, "may": 786, "jun": 699, "jul": 711}, "PANORAMA": {"jan": 620, "feb": 517, "mar": 715, "apr": 787, "may": 796, "jun": 776, "jul": 1052}, "TONIELQUE": {"jan": 1515, "feb": 1566, "mar": 1255, "apr": 1475, "may": 1534, "jun": 1692, "jul": 1648}, "WEHOUSE": {"jan": 402, "feb": 354, "mar": 490, "apr": 415, "may": 337, "jun": 442, "jul": 599}, "KING HOUSE": {"jan": 578, "feb": 487, "mar": 767, "apr": 713, "may": 986, "jun": 1288, "jul": 1226}, "MOVEIS ARAPONGAS": {"jan": 211, "feb": 273, "mar": 327, "apr": 170, "may": 183, "jun": 217, "jul": 240}};
 var REAL_DXI_LC={"MULTILOJA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 151, "jun": 88, "jul": 1}, "ADONAI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 17, "jun": 15, "jul": 23}, "BALAQUI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 11, "jun": 5, "jul": 8}, "CAMA INBOX": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "BOM PASTOR": {"jan": 0, "feb": 0, "mar": 0, "apr": 6, "may": 171, "jun": 35, "jul": 31}, "PANORAMA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 4, "jun": 0, "jul": 0}, "TONIELQUE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 31, "jun": 176, "jul": 0}, "WEHOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "KING HOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 3, "may": 143, "jun": 564, "jul": 391}, "MOVEIS ARAPONGAS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 25, "jul": 12}};
 var DAILY_NMV_30D={"2026-06-27": 886306.0, "2026-06-28": 969629.0, "2026-06-29": 1145047.0, "2026-06-30": 1029641.0, "2026-07-01": 1219981.0, "2026-07-02": 1106753.0, "2026-07-03": 1072683.0, "2026-07-04": 1009980.0, "2026-07-05": 978717.0, "2026-07-06": 1479754.0, "2026-07-07": 3214060.0, "2026-07-08": 1419735.0, "2026-07-09": 1367234.0, "2026-07-10": 1229845.0, "2026-07-11": 1103661.0, "2026-07-12": 1211007.0, "2026-07-13": 1437141.0, "2026-07-14": 1565122.0, "2026-07-15": 1367107.0, "2026-07-16": 1262442.0, "2026-07-17": 1227209.0, "2026-07-18": 1279714.0, "2026-07-19": 1296911.0, "2026-07-20": 1380901.0, "2026-07-21": 1464120.0, "2026-07-22": 1049431.0, "2026-07-23": 1003519.0, "2026-07-24": 1025901.0, "2026-07-25": 1059875.0, "2026-07-26": 1017277.0, "2026-07-27": 660396.0};
 var REAL_INV_ADS={"MULTILOJA": {"jan": 14750, "feb": 14286, "mar": 15579, "apr": 15280, "may": 17332, "jun": 15802, "jul": 14611}, "ADONAI": {"jan": 11428, "feb": 9763, "mar": 14731, "apr": 13539, "may": 13936, "jun": 11990, "jul": 16306}, "BALAQUI": {"jan": 91210, "feb": 87216, "mar": 86279, "apr": 85260, "may": 115877, "jun": 99257, "jul": 98251}, "CAMA INBOX": {"jan": 504896, "feb": 316980, "mar": 373447, "apr": 476049, "may": 681819, "jun": 657499, "jul": 701008}, "BOM PASTOR": {"jan": 2616, "feb": 22069, "mar": 12045, "apr": 23540, "may": 32540, "jun": 22972, "jul": 27420}, "PANORAMA": {"jan": 6821, "feb": 5782, "mar": 6286, "apr": 6192, "may": 6264, "jun": 6076, "jul": 5447}, "TONIELQUE": {"jan": 69649, "feb": 47623, "mar": 45258, "apr": 50091, "may": 49536, "jun": 48914, "jul": 49088}, "WEHOUSE": {"jan": 63090, "feb": 63138, "mar": 51310, "apr": 57493, "may": 32817, "jun": 31377, "jul": 30994}, "KING HOUSE": {"jan": 61955, "feb": 56635, "mar": 80362, "apr": 61137, "may": 80569, "jun": 114548, "jul": 114882}, "MOVEIS ARAPONGAS": {"jan": 22213, "feb": 14003, "mar": 16012, "apr": 10804, "may": 17250, "jun": 15829, "jul": 12803}};
@@ -16446,25 +16515,33 @@ function buildActions(g,px){
 
 function buildAFF(g,px){
   var el=document.getElementById(px+'-aff-kpis');if(!el)return;
-  var aff=typeof REAL_AFF!=='undefined'?(REAL_AFF[g]||{}):{};
-  var mks=PERIODO&&PERIODO.length>0?PERIODO:(MESES_DONE.length>0?[MESES_DONE[MESES_DONE.length-1]]:[]);
-  var nmvAff=0,nmvTot=0,dxiLC=0;
+  var aff   =typeof REAL_AFF!=='undefined'?(REAL_AFF[g]||{}):{};
+  var affLC =typeof REAL_AFF_LASTCLICK!=='undefined'?(REAL_AFF_LASTCLICK[g]||{}):{};
+  var affPed=typeof REAL_AFF_PEDIDOS!=='undefined'?(REAL_AFF_PEDIDOS[g]||{}):{};
   var dxiData=typeof REAL_DXI_LC!=='undefined'?(REAL_DXI_LC[g]||{}):{};
-  mks.forEach(function(k){nmvAff+=(aff[k]||0);dxiLC+=(dxiData[k]||0);});
-  // NMV total do período
-  mks.forEach(function(k){nmvTot+=((REAL_MENSAL[g]||{})[k]||0);});
+  var mks=PERIODO&&PERIODO.length>0?PERIODO:(MESES_DONE.length>0?[MESES_DONE[MESES_DONE.length-1]]:[]);
+  var nmvAff=0,nmvLC=0,pedidos=0,dxiLC=0,nmvTot=0;
+  mks.forEach(function(k){
+    nmvAff+=(aff[k]||0);
+    nmvLC +=(affLC[k]||0);
+    pedidos+=(affPed[k]||0);
+    dxiLC +=(dxiData[k]||0);
+    nmvTot+=((REAL_MENSAL[g]||{})[k]||0);
+  });
   var pAff=nmvTot>0?nmvAff/nmvTot*100:0;
   function card(val,lbl,sub,color){
-    return '<div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 20px;min-width:160px;flex:1;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)">'
-      +'<div style="font-size:20px;font-weight:800;color:#1A1A1A">'+val+'</div>'
-      +'<div style="font-size:11px;color:#888;margin-top:4px">'+lbl+'</div>'
-      +(sub?'<div style="font-size:11px;font-weight:700;color:'+color+';margin-top:3px">'+sub+'</div>':'')
+    return '<div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:14px 16px;min-width:140px;flex:1;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)">'
+      +'<div style="font-size:18px;font-weight:800;color:#1A1A1A">'+val+'</div>'
+      +'<div style="font-size:10px;color:#888;margin-top:4px">'+lbl+'</div>'
+      +(sub?'<div style="font-size:10px;font-weight:700;color:'+color+';margin-top:3px">'+sub+'</div>':'')
       +'</div>';
   }
   el.innerHTML=
-    card(fmt(nmvAff),'NMV via Afiliados',pAff.toFixed(1)+'% do NMV','#00A650')+
-    card(pAff.toFixed(2)+'%','% Share Afiliados','sobre NMV total','#3483FA')+
-    card(fmtN(dxiLC),'DxI Lightning Cofundado','pedidos no período','#FF7733');
+    card(fmt(nmvAff),'NMV Gerado (Afiliados)',pAff.toFixed(1)+'% do NMV','#00A650')+
+    card(fmt(nmvLC),'NMV LastClick','base de comissão','#43B97F')+
+    card(fmtN(pedidos),'Pedidos via Afiliados','qty no período','#3483FA')+
+    card(pAff.toFixed(1)+'%','% Share Afiliados','sobre NMV total','#888')+
+    card(fmtN(dxiLC),'DxI Lightning Cofundado','pedidos pré-acordo','#FF7733');
 }
 function buildInsights(g,px){
   var el=document.getElementById(px+'-ins-list');
@@ -18127,36 +18204,44 @@ function buildVGAFF(){
   var rankEl=document.getElementById('vg-aff-ranking');
   if(!kpiEl||!rankEl)return;
   var mks=PERIODO&&PERIODO.length>0?PERIODO:(MESES_DONE.length>0?[MESES_DONE[MESES_DONE.length-1]]:[]);
-  var rows=[],totalAff=0,totalNmv=0,totalDxi=0;
+  var rows=[],totalAff=0,totalLC=0,totalPed=0,totalNmv=0,totalDxi=0;
   GRUPOS.forEach(function(g){
-    var aff=(typeof REAL_AFF!=='undefined')?(REAL_AFF[g]||{}):{};
+    var aff   =(typeof REAL_AFF!=='undefined')?(REAL_AFF[g]||{}):{};
+    var affLC =(typeof REAL_AFF_LASTCLICK!=='undefined')?(REAL_AFF_LASTCLICK[g]||{}):{};
+    var affPed=(typeof REAL_AFF_PEDIDOS!=='undefined')?(REAL_AFF_PEDIDOS[g]||{}):{};
     var dxiData=(typeof REAL_DXI_LC!=='undefined')?(REAL_DXI_LC[g]||{}):{};
     var nmvData=REAL_MENSAL[g]||{};
-    var nmvAff=0,nmv=0,dxi=0;
-    mks.forEach(function(k){nmvAff+=(aff[k]||0);nmv+=(nmvData[k]||0);dxi+=(dxiData[k]||0);});
-    totalAff+=nmvAff;totalNmv+=nmv;totalDxi+=dxi;
-    rows.push({g:g,nmvAff:nmvAff,nmv:nmv,dxi:dxi,pct:nmv>0?nmvAff/nmv*100:0});
+    var nmvAff=0,nmvLC=0,ped=0,nmv=0,dxi=0;
+    mks.forEach(function(k){
+      nmvAff+=(aff[k]||0);nmvLC+=(affLC[k]||0);ped+=(affPed[k]||0);
+      nmv+=(nmvData[k]||0);dxi+=(dxiData[k]||0);
+    });
+    totalAff+=nmvAff;totalLC+=nmvLC;totalPed+=ped;totalNmv+=nmv;totalDxi+=dxi;
+    rows.push({g:g,nmvAff:nmvAff,nmvLC:nmvLC,ped:ped,nmv:nmv,dxi:dxi,pct:nmv>0?nmvAff/nmv*100:0});
   });
   rows.sort(function(a,b){return b.nmvAff-a.nmvAff;});
   var pCart=totalNmv>0?totalAff/totalNmv*100:0;
   function card(val,lbl,sub,color){
-    return '<div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:18px 20px;min-width:160px;flex:1;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)">'
-      +'<div style="font-size:22px;font-weight:800;color:#1A1A1A">'+val+'</div>'
-      +'<div style="font-size:11px;color:#888;margin-top:4px">'+lbl+'</div>'
-      +(sub?'<div style="font-size:11px;font-weight:700;color:'+color+';margin-top:3px">'+sub+'</div>':'')
+    return '<div style="background:#fff;border:1px solid #E8E8E8;border-radius:10px;padding:16px 18px;min-width:150px;flex:1;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.05)">'
+      +'<div style="font-size:20px;font-weight:800;color:#1A1A1A">'+val+'</div>'
+      +'<div style="font-size:10px;color:#888;margin-top:4px">'+lbl+'</div>'
+      +(sub?'<div style="font-size:10px;font-weight:700;color:'+color+';margin-top:3px">'+sub+'</div>':'')
       +'</div>';
   }
   kpiEl.innerHTML=
-    card(fmt(totalAff),'NMV Total via Afiliados',pCart.toFixed(1)+'% do NMV Carteira','#00A650')+
-    card(pCart.toFixed(2)+'%','% Share Afiliados','sobre NMV total carteira','#3483FA')+
-    card(fmtN(totalDxi),'DxI Lightning Cofundado','pedidos na carteira','#FF7733')+
-    card(String(rows.filter(function(r){return r.nmvAff>0;}).length),'Sellers com Afiliados','no período','#666');
-  var html='<table style="width:100%;border-collapse:collapse;font-size:12px;">';
+    card(fmt(totalAff),'NMV Gerado (Afiliados)',pCart.toFixed(1)+'% do NMV Carteira','#00A650')+
+    card(fmt(totalLC),'NMV LastClick','base de comissão afiliado','#43B97F')+
+    card(fmtN(totalPed),'Pedidos via Afiliados','qty na carteira','#3483FA')+
+    card(pCart.toFixed(1)+'%','% Share Afiliados','sobre NMV total','#888')+
+    card(fmtN(totalDxi),'DxI Lightning Cofundado','pedidos pré-acordo','#FF7733');
+  var html='<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:4px;">';
   html+='<thead><tr style="border-bottom:2px solid #F0F0F0">';
   html+='<th style="text-align:left;padding:8px 6px;color:#888;font-weight:600">Seller</th>';
-  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">NMV Afiliados</th>';
-  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">% do NMV</th>';
-  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">DxI LC (pedidos)</th>';
+  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">NMV Gerado</th>';
+  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">NMV LastClick</th>';
+  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">Pedidos</th>';
+  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">% NMV</th>';
+  html+='<th style="text-align:right;padding:8px 6px;color:#888;font-weight:600">DxI LC</th>';
   html+='</tr></thead><tbody>';
   rows.forEach(function(r,i){
     if(r.nmvAff<=0)return;
@@ -18164,7 +18249,9 @@ function buildVGAFF(){
     html+='<tr style="background:'+bg+';border-bottom:1px solid #F0F0F0">';
     html+='<td style="padding:8px 6px;font-weight:600;color:#1A1A1A">'+r.g+'</td>';
     html+='<td style="text-align:right;padding:8px 6px;font-weight:700;color:#00A650">'+fmt(r.nmvAff)+'</td>';
-    html+='<td style="text-align:right;padding:8px 6px;color:#3483FA;font-weight:600">'+r.pct.toFixed(1)+'%</td>';
+    html+='<td style="text-align:right;padding:8px 6px;color:#43B97F">'+fmt(r.nmvLC)+'</td>';
+    html+='<td style="text-align:right;padding:8px 6px;color:#3483FA">'+fmtN(r.ped)+'</td>';
+    html+='<td style="text-align:right;padding:8px 6px;color:#888;font-weight:600">'+r.pct.toFixed(1)+'%</td>';
     html+='<td style="text-align:right;padding:8px 6px;color:#FF7733">'+fmtN(r.dxi)+'</td>';
     html+='</tr>';
   });
