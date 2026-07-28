@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BALAQUI — Anúncios Pagos · Mar–Jul 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f3f0;color:#111;padding:2rem 1rem;font-size:15px;line-height:1.6;}
+.tabs-nav{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:2px solid #e0e0d9;max-width:740px;margin-left:auto;margin-right:auto;}
+.tab-btn{padding:.65rem 1.5rem;font-size:13px;font-weight:600;color:#888;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;}
+.tab-btn.active{color:#0b0b0b;border-bottom-color:#0b0b0b;}
+.tab-btn:hover:not(.active){color:#444;}
+.tab-pane{display:none;}.tab-pane.active{display:block;}
+.page{max-width:740px;margin:0 auto;background:#fff;border-radius:16px;padding:2.5rem 2.5rem 2rem;box-shadow:0 2px 16px rgba(0,0,0,.07);}
+
+/* Cabeçalho */
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:2px solid #f0efe9;}
+.brand{font-size:11px;font-weight:700;color:#aaa;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;}
+h1{font-size:22px;font-weight:700;color:#111;margin-bottom:4px;}
+.sub{font-size:13px;color:#777;}
+.date-box{text-align:right;font-size:12px;color:#aaa;line-height:1.8;}
+.date-box strong{font-size:14px;color:#333;display:block;}
+
+/* Links seller */
+.seller-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.btn-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:5px 13px;border-radius:20px;text-decoration:none;border:1.5px solid #ddd;color:#333;background:#fafaf8;transition:all .15s;}
+.btn-link:hover{background:#fff8e6;border-color:#f5a500;color:#b36a00;}
+.btn-link.ads{background:#fff0f0;border-color:#f0c0c0;color:#c02020;}
+.btn-link.ads:hover{background:#ffe0e0;border-color:#e06060;}
+.btn-link svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+/* Bloco de destaque — problema */
+.alert-box{background:#fff4f4;border:1.5px solid #fbc0c0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;display:flex;gap:16px;align-items:flex-start;}
+.alert-icon{font-size:32px;line-height:1;flex-shrink:0;}
+.alert-title{font-size:17px;font-weight:700;color:#c02020;margin-bottom:4px;}
+.alert-body{font-size:13px;color:#555;line-height:1.6;}
+
+/* Cards de número */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.75rem;}
+.card{border-radius:10px;padding:1rem 1.1rem;}
+.card.bad{background:#fff4f4;border:1.5px solid #fbc0c0;}
+.card.ok{background:#f3faf5;border:1.5px solid #9ed4b0;}
+.card.neutral{background:#f7f7f4;border:1.5px solid #ddd;}
+.card label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;color:#888;}
+.card .num{font-size:26px;font-weight:700;line-height:1;}
+.card .num.red{color:#c02020;}
+.card .num.green{color:#0a7e40;}
+.card .num.gray{color:#555;}
+.card .caption{font-size:12px;margin-top:5px;color:#666;}
+.card .arrow{font-size:13px;}
+
+/* Tabela */
+.sec-title{font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:1.75rem;}
+th{text-align:right;font-weight:700;color:#888;padding:6px 8px;border-bottom:2px solid #f0efe9;font-size:11px;text-transform:uppercase;letter-spacing:.03em;}
+th:first-child{text-align:left;}
+td{text-align:right;padding:7px 8px;color:#222;border-bottom:1px solid #f5f5f2;}
+td:first-child{text-align:left;font-weight:600;}
+tr:last-child td{border-bottom:none;}
+.bar-track{background:#ede;border-radius:2px;height:5px;width:100%;margin-top:3px;}
+.bar-fill{height:5px;border-radius:2px;}
+
+/* Gráfico */
+.chart-wrap{position:relative;width:100%;height:200px;margin-bottom:1.75rem;}
+
+/* O que está acontecendo */
+.reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.75rem;}
+.reason{background:#f8f8f5;border-radius:10px;padding:1rem 1.1rem;}
+.reason .icon{font-size:22px;margin-bottom:6px;}
+.reason .rtitle{font-size:13px;font-weight:700;color:#222;margin-bottom:3px;}
+.reason .rbody{font-size:12px;color:#666;line-height:1.5;}
+
+/* O que fazer */
+.steps{margin-bottom:1.75rem;}
+.step{display:flex;gap:14px;align-items:flex-start;padding:.85rem 1rem;border-radius:10px;margin-bottom:8px;background:#fffdf5;border:1.5px solid #f5e090;}
+.step-num{width:26px;height:26px;border-radius:50%;background:#f5a500;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-title{font-size:13px;font-weight:700;color:#222;margin-bottom:2px;}
+.step-body{font-size:12px;color:#666;line-height:1.5;}
+
+/* Rodapé */
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid #f0efe9;font-size:11px;color:#bbb;flex-wrap:wrap;gap:6px;}
+
+@media(max-width:580px){
+  .cards{grid-template-columns:1fr 1fr;}
+  .reason-grid{grid-template-columns:1fr;}
+  .hdr{flex-direction:column;gap:10px;}
+  .page{padding:1.5rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="showTab(1)">📊 BALAQUI · Anúncios</button>
+  <button class="tab-btn" onclick="showTab(2)">⚔️ vs Concorrente</button>
+</div>
+
+<div id="tab1" class="tab-pane active">
+<div class="page">
+
+  <!-- Cabeçalho -->
+  <div class="hdr">
+    <div>
+      <p class="brand">MercadoLivre · Análise KAM · F&amp;H</p>
+      <h1>BALAQUI — Anúncios Pagos</h1>
+      <p class="sub">Loja principal · ID 530094229 · Março a Julho de 2026</p>
+      <div class="seller-links">
+        <a href="https://www.mercadolivre.com.br/perfil/530094229" class="btn-link" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ver loja · 530094229
+        </a>
+        <a href="https://www.mercadolivre.com.br/publicidade/" class="btn-link ads" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          Painel de Anúncios
+        </a>
+      </div>
+    </div>
+    <div class="date-box">
+      <strong>27/07/2026</strong>
+      Cintia Faraco Queiroz<br>KAM F&amp;H
+    </div>
+  </div>
+
+  <!-- Bloco de alerta principal -->
+  <div class="alert-box">
+    <div class="alert-icon">📉</div>
+    <div>
+      <p class="alert-title">Suas impressões caíram 81% em 5 meses</p>
+      <p class="alert-body">Em março seus anúncios apareceram <strong>51 milhões de vezes</strong> para compradores. Em julho, estão aparecendo apenas <strong>9,7 milhões de vezes</strong> — uma queda de 81%. E você está investindo praticamente <strong>o mesmo valor</strong> por mês em anúncios (R$76–106 mil). O problema não é falta de budget.</p>
+    </div>
+  </div>
+
+  <!-- Cards de resumo -->
+  <div class="cards">
+    <div class="card bad">
+      <label>📊 Impressões</label>
+      <div class="num red">–81%</div>
+      <div class="caption">Mar: 51M → Jul: 9,7M</div>
+    </div>
+    <div class="card bad">
+      <label>💸 Custo por 1.000 aparições</label>
+      <div class="num red">+515%</div>
+      <div class="caption">De R$1,49 → R$9,16</div>
+    </div>
+    <div class="card ok">
+      <label>✅ Vendas totais</label>
+      <div class="num green">Mantidas</div>
+      <div class="caption">Orgânico compensou a queda</div>
+    </div>
+  </div>
+
+  <!-- Tabela -->
+  <p class="sec-title">Evolução mês a mês</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Mês</th>
+        <th>Aparições</th>
+        <th>Cliques</th>
+        <th>Investimento</th>
+        <th>Venda via anúncio</th>
+        <th>ROAS</th>
+        <th>Custo / 1.000 apar.</th>
+      </tr>
+    </thead>
+    <tbody id="tbl"></tbody>
+  </table>
+
+  <!-- Gráfico -->
+  <p class="sec-title">Aparições (azul) vs investimento (laranja)</p>
+  <div class="chart-wrap">
+    <canvas id="chart" role="img" aria-label="Aparições caem de 54,5M para 9,7M de março a julho enquanto investimento mantém R$79–106K">Aparições caem enquanto investimento se mantém estável.</canvas>
+  </div>
+
+  <!-- Por que está acontecendo -->
+  <p class="sec-title">Por que isso está acontecendo?</p>
+  <div class="reason-grid">
+    <div class="reason">
+      <div class="icon">🏆</div>
+      <p class="rtitle">A concorrência aumentou</p>
+      <p class="rbody">Mais vendedores disputando os mesmos espaços de anúncio em Cama, Mesa &amp; Banho. Quando há mais concorrência, o preço de cada aparição sobe — como um leilão.</p>
+    </div>
+    <div class="reason">
+      <div class="icon">💰</div>
+      <p class="rtitle">O mesmo dinheiro compra menos</p>
+      <p class="rbody">Com o leilão mais caro, seu investimento mensal continua o mesmo mas rende muito menos aparições. É como se o preço do "espaço" tivesse aumentado 6 vezes.</p>
+    </div>
+    <div class="reason">
+      <div class="icon">🎯</div>
+      <p class="rtitle">Cliques mais qualificados</p>
+      <p class="rbody">Apesar de aparecer menos, quem vê seu anúncio clica mais (CTR foi de 0,4% para 1,6%). Mas o volume total de visitantes via anúncio caiu muito.</p>
+    </div>
+    <div class="reason">
+      <div class="icon">🛡️</div>
+      <p class="rtitle">Vendas orgânicas seguraram</p>
+      <p class="rbody">Sua reputação e posicionamento natural no Mercado Livre compensaram a queda dos anúncios. Isso é positivo, mas tem limite para crescer.</p>
+    </div>
+  </div>
+
+  <!-- O que fazer -->
+  <p class="sec-title">O que fazer agora</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <p class="step-title">Aumentar o lance nos seus produtos campeões</p>
+        <p class="step-body">Identifique os 10–15 produtos que mais vendem e eleve o lance de anúncio neles. No leilão mais disputado, quem dá mais aparece mais. Concentre onde o retorno é garantido.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <p class="step-title">Revisar títulos e descrições dos anúncios</p>
+        <p class="step-body">Anúncios com título bem otimizado (marca + modelo + medida + cor) têm nota de qualidade maior e ficam mais baratos no leilão. Revise os produtos com menor desempenho.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <p class="step-title">Pausar anúncios de produtos parados</p>
+        <p class="step-body">Produtos sem venda nos últimos 30 dias que ainda estão anunciados desperdiçam budget. Pause-os e realoque o valor para os que convertem.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div>
+        <p class="step-title">Acompanhar no painel de anúncios</p>
+        <p class="step-body">Acesse o <a href="https://www.mercadolivre.com.br/publicidade/" target="_blank" style="color:#b36a00;font-weight:600;">Painel de Anúncios do Mercado Livre</a> para ver quais produtos têm maior custo por clique e comparar com concorrentes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Dados: Product Ads · Mercado Livre Brasil · Mar–Jul 2026</span>
+    <span>Elaborado por Cintia Faraco Queiroz · KAM F&amp;H · MercadoLivre</span>
+  </div>
+
+</div>
+</div><!-- /tab1 -->
+
+<div id="tab2" class="tab-pane">
+<div class="page">
+
+  <div class="hdr">
+    <div>
+      <p class="brand">MercadoLivre · Análise KAM · F&amp;H</p>
+      <h1>BALAQUI vs Concorrentes</h1>
+      <p class="sub">Sofá-cama &amp; Camas · Mar–Jul 2026</p>
+      <div class="seller-links">
+        <a href="https://www.mercadolivre.com.br/perfil/530094229" class="btn-link" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          BALAQUI · Ver loja
+        </a>
+      </div>
+    </div>
+    <div class="date-box">
+      <strong>28/07/2026</strong>
+      Cintia Faraco Queiroz<br>KAM F&amp;H
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOCO 1 — SOFÁ-CAMA
+  ══════════════════════════════════════════════════════ -->
+  <div style="border-left:4px solid #1a5fb4;padding-left:1rem;margin-bottom:1.5rem;">
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:#1a5fb4;letter-spacing:.07em;">Categoria 1</p>
+    <p style="font-size:18px;font-weight:700;color:#111;">Sofá-cama</p>
+    <p style="font-size:12px;color:#777;">BALAQUI vs Concorrente A</p>
+  </div>
+
+  <div class="alert-box" style="background:#f0f7ff;border-color:#9ec8f5;">
+    <div class="alert-icon">🔄</div>
+    <div>
+      <p class="alert-title" style="color:#1a5fb4;">O concorrente recuou — a BALAQUI tem espaço para avançar</p>
+      <p class="alert-body">O Concorrente A <strong>cortou 91% do investimento em anúncios</strong> (de R$86K em março para R$8K em julho). Resultado: as vendas dele em sofá-cama despencaram — a BALAQUI <strong>já está vendendo mais que ele em junho e julho</strong>. Essa janela não dura para sempre: é hora de consolidar a liderança.</p>
+    </div>
+  </div>
+
+  <p class="sec-title">Vendas BALAQUI em sofá-cama · Ads e retorno do Concorrente A</p>
+  <table>
+    <thead><tr>
+      <th>Mês</th>
+      <th>BALAQUI · Vendas</th>
+      <th>BALAQUI · Ads</th>
+      <th>Conc. A · Ads</th>
+      <th>Conc. A · ROAS</th>
+      <th>Conc. A · Tendência</th>
+    </tr></thead>
+    <tbody id="tbl_sofas"></tbody>
+  </table>
+
+  <div class="reason-grid" style="margin-bottom:1.75rem;">
+    <div class="reason" style="background:#f0f7ff;border:1px solid #c0d8f5;">
+      <div class="icon">✅</div>
+      <p class="rtitle">BALAQUI lidera em junho e julho</p>
+      <p class="rbody">Em março e abril o concorrente vendia mais. Mas ao cortar os anúncios, perdeu visibilidade. A BALAQUI, mantendo o investimento, assumiu a frente. Manter ou aumentar o budget agora consolida essa posição.</p>
+    </div>
+    <div class="reason">
+      <div class="icon">⚠️</div>
+      <p class="rtitle">Concorrente pode voltar</p>
+      <p class="rbody">O ROAS do Concorrente A chegou a 22x em julho — muito eficiente com pouco gasto. Se ele decidir reinvestir, pode retomar visibilidade rapidamente. Agir agora, antes que isso aconteça, é a melhor janela.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BLOCO 2 — CAMAS / MONTESSORIANA
+  ══════════════════════════════════════════════════════ -->
+  <div style="border-left:4px solid #e07820;padding-left:1rem;margin-bottom:1.5rem;margin-top:2rem;">
+    <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:#e07820;letter-spacing:.07em;">Categoria 2</p>
+    <p style="font-size:18px;font-weight:700;color:#111;">Camas (incl. Montessoriana)</p>
+    <p style="font-size:12px;color:#777;">BALAQUI vs Concorrente B</p>
+  </div>
+
+  <div class="alert-box" style="background:#fff4e6;border-color:#f5c080;">
+    <div class="alert-icon">📈</div>
+    <div>
+      <p class="alert-title" style="color:#8a4a00;">Concorrente crescendo forte — BALAQUI perdendo terreno</p>
+      <p class="alert-body">O Concorrente B cresceu <strong>+58% em vendas de camas</strong> de março a julho, enquanto a BALAQUI <strong>caiu 26%</strong> no mesmo período (de R$671K → R$495K). Com investimento em ads menor e ROAS altíssimo (23x), ele está ganhando posicionamento orgânico. Se a tendência continuar, o gap vai aumentar.</p>
+    </div>
+  </div>
+
+  <p class="sec-title">Vendas BALAQUI em camas · Ads e retorno do Concorrente B</p>
+  <table>
+    <thead><tr>
+      <th>Mês</th>
+      <th>BALAQUI · Vendas</th>
+      <th>BALAQUI · Ads</th>
+      <th>Conc. B · Ads</th>
+      <th>Conc. B · ROAS</th>
+      <th>Conc. B · Tendência</th>
+    </tr></thead>
+    <tbody id="tbl_camas"></tbody>
+  </table>
+
+  <div class="reason-grid" style="margin-bottom:1.75rem;">
+    <div class="reason" style="background:#fff8f0;border:1px solid #f5d080;">
+      <div class="icon">🎯</div>
+      <p class="rtitle">ROAS 23x indica produto com alta demanda</p>
+      <p class="rbody">Um ROAS de 23x com gasto de R$39K significa que cada real investido retorna R$23 em vendas. Isso indica que o produto do Concorrente B tem forte demanda orgânica e converte muito bem. Para competir, a BALAQUI precisa trabalhar o catálogo de camas com SKUs mais específicos.</p>
+    </div>
+    <div class="reason">
+      <div class="icon">🛏️</div>
+      <p class="rtitle">Oportunidade: cama montessoriana</p>
+      <p class="rbody">Dentro da categoria "camas", a montessoriana é um nicho em crescimento. Fortalecer o catálogo nesse segmento — com mais SKUs, fotos melhores e títulos otimizados — pode recuperar relevância orgânica sem exigir muito mais budget.</p>
+    </div>
+  </div>
+
+  <!-- Recomendações finais -->
+  <p class="sec-title">Resumo de ações por categoria</p>
+  <div class="steps">
+    <div class="step" style="background:#f0f7ff;border-color:#9ec8f5;">
+      <div class="step-num" style="background:#1a5fb4;">A</div>
+      <div>
+        <p class="step-title">Sofá-cama: manter e ampliar a liderança agora</p>
+        <p class="step-body">A BALAQUI já está na frente em junho e julho. Aumentar o lance nos produtos de sofá-cama com melhor conversão consolida essa vantagem antes que o Concorrente A retome o investimento.</p>
+      </div>
+    </div>
+    <div class="step" style="background:#fff8f0;border-color:#f5c080;">
+      <div class="step-num" style="background:#e07820;">B</div>
+      <div>
+        <p class="step-title">Camas: revisar catálogo e focar em montessoriana</p>
+        <p class="step-body">O Concorrente B está ganhando com ROAS alto e crescimento orgânico. Melhorar o catálogo de camas (títulos, fotos, segmentação de público) e concentrar ads nos produtos com melhor desempenho são os primeiros passos para estancar a perda de share.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Dados: Product Ads + NMV por categoria · MLB · Mar–Jul 2026</span>
+    <span>Elaborado por Cintia Faraco Queiroz · KAM F&amp;H · MercadoLivre</span>
+  </div>
+
+</div>
+</div><!-- /tab2 -->
+
+<script>
+const data=[
+  {mes:'Mar/26',imp:51012335,cliques:202469,spend:75959,gmv:898812,roas:11.83},
+  {mes:'Abr/26',imp:46827238,cliques:209675,spend:76478,gmv:701185,roas:9.17},
+  {mes:'Mai/26',imp:65606394,cliques:294412,spend:105692,gmv:1020988,roas:9.66},
+  {mes:'Jun/26',imp:26377276,cliques:177124,spend:89412,gmv:868720,roas:9.72},
+  {mes:'Jul MTD',imp:9723114,cliques:157972,spend:89020,gmv:722944,roas:8.12},
+];
+const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
+const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
+const maxI=Math.max(...data.map(d=>d.imp));
+const tbody=document.getElementById('tbl');
+data.forEach(d=>{
+  const cpm=(d.spend/d.imp*1000).toFixed(2);
+  const pct=Math.round(d.imp/maxI*100);
+  const low=d.imp<30e6;
+  const bc=low?'#d03b3b':'#1a5fb4';
+  tbody.innerHTML+=`<tr>
+    <td>${d.mes}</td>
+    <td><div>${fmt(d.imp)}</div><div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${bc};"></div></div></td>
+    <td>${fmt(d.cliques)}</td>
+    <td>${brl(d.spend)}</td>
+    <td>${brl(d.gmv)}</td>
+    <td style="color:${d.roas<9?'#c02020':'#0a7e40'};font-weight:600;">${d.roas.toFixed(1)}x</td>
+    <td style="color:${parseFloat(cpm)>3?'#c02020':'#333'};font-weight:${parseFloat(cpm)>3?'700':'400'}">R$ ${cpm}</td>
+  </tr>`;
+});
+new Chart(document.getElementById('chart'),{
+  data:{
+    labels:data.map(d=>d.mes),
+    datasets:[
+      {type:'bar',label:'Aparições (M)',data:data.map(d=>+(d.imp/1e6).toFixed(1)),
+       backgroundColor:data.map(d=>d.imp<30e6?'rgba(192,32,32,0.8)':'rgba(26,95,180,0.8)'),
+       borderRadius:5,yAxisID:'y',order:2},
+      {type:'line',label:'Investimento (R$ mil)',data:data.map(d=>+(d.spend/1000).toFixed(1)),
+       borderColor:'#e07820',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#e07820',
+       backgroundColor:'rgba(224,120,32,0.07)',tension:0.3,yAxisID:'y2',order:1}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.datasetIndex===0?ctx.parsed.y+'M aparições':'R$'+ctx.parsed.y+'K investido'}}},
+    scales:{
+      x:{ticks:{color:'#999',font:{size:12},autoSkip:false},grid:{color:'#f0efe9'}},
+      y:{position:'left',ticks:{color:'#1a5fb4',font:{size:11},callback:v=>v+'M'},grid:{color:'#f0efe9'},title:{display:true,text:'Aparições',color:'#1a5fb4',font:{size:11}}},
+      y2:{position:'right',ticks:{color:'#e07820',font:{size:11},callback:v=>'R$'+v+'K'},grid:{display:false},title:{display:true,text:'Investimento',color:'#e07820',font:{size:11}}}
+    }
+  }
+});
+
+// ── Tab 2: Sofá-cama — BALAQUI vs Concorrente A (ESPUMATICA) ─────────────────
+const sofas=[
+  {mes:'Mar/26', bNmv:813172,  cNmv:1103288, bSpend:75959,  cSpend:86132, cRoas:10.15},
+  {mes:'Abr/26', bNmv:630361,  cNmv:941077,  bSpend:76478,  cSpend:57704, cRoas:10.07},
+  {mes:'Mai/26', bNmv:877195,  cNmv:1185769, bSpend:105692, cSpend:24196, cRoas:23.53},
+  {mes:'Jun/26', bNmv:857964,  cNmv:493002,  bSpend:89412,  cSpend:13549, cRoas:16.59},
+  {mes:'Jul MTD',bNmv:668375,  cNmv:377694,  bSpend:89020,  cSpend:7834,  cRoas:22.25},
+];
+
+// ── Tab 2: Camas — BALAQUI vs Concorrente B (KEIKO) ──────────────────────────
+const camas=[
+  {mes:'Mar/26', bNmv:670736,  cNmv:801176,  bSpend:75959,  cSpend:24244, cRoas:21.55},
+  {mes:'Abr/26', bNmv:530880,  cNmv:825019,  bSpend:76478,  cSpend:27031, cRoas:22.07},
+  {mes:'Mai/26', bNmv:701892,  cNmv:1098387, bSpend:105692, cSpend:28290, cRoas:26.47},
+  {mes:'Jun/26', bNmv:543287,  cNmv:1025131, bSpend:89412,  cSpend:26483, cRoas:24.70},
+  {mes:'Jul MTD',bNmv:495481,  cNmv:1269310, bSpend:89020,  cSpend:39448, cRoas:23.77},
+];
+
+// Tabela sofás — % variação do concorrente vs março (base)
+const tblSofas=document.getElementById('tbl_sofas');
+const sofasBase=sofas[0].cNmv;
+sofas.forEach((d,i)=>{
+  const pct=i===0?'—':((d.cNmv/sofasBase-1)*100).toFixed(0);
+  const pctTxt=i===0?'—':(+pct>=0?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`:`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
+  tblSofas.innerHTML+=`<tr>
+    <td>${d.mes}</td>
+    <td style="font-weight:600;">${brl(d.bNmv)}</td>
+    <td>${brl(d.bSpend)}</td>
+    <td style="color:${d.cSpend<20000?'#0a7e40':'#555'};font-weight:600;">${brl(d.cSpend)}</td>
+    <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
+    <td>${pctTxt}</td>
+  </tr>`;
+});
+
+// Tabela camas — % variação do concorrente vs março (base)
+const tblCamas=document.getElementById('tbl_camas');
+const camasBase=camas[0].cNmv;
+camas.forEach((d,i)=>{
+  const pct=i===0?'—':((d.cNmv/camasBase-1)*100).toFixed(0);
+  const pctTxt=i===0?'—':(+pct>=0?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`:`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
+  tblCamas.innerHTML+=`<tr>
+    <td>${d.mes}</td>
+    <td style="font-weight:600;">${brl(d.bNmv)}</td>
+    <td>${brl(d.bSpend)}</td>
+    <td>${brl(d.cSpend)}</td>
+    <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
+    <td>${pctTxt}</td>
+  </tr>`;
+});
+
+function buildTab2Charts(){
+  if(window._tab2built) return;
+  window._tab2built=true;
+  // sem gráficos de NMV do concorrente — apenas tabelas com % de variação
+} // fim buildTab2Charts
+
+function showTab(n){
+  document.querySelectorAll('.tab-pane').forEach((p,i)=>{
+    p.classList.toggle('active',i+1===n);
+  });
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    b.classList.toggle('active',i+1===n);
+  });
+  if(n===2) buildTab2Charts();
+}
+</script>
+</body>
+</html>
