@@ -274,19 +274,17 @@ tr:last-child td{border-bottom:none;}
     <div class="alert-icon">🔄</div>
     <div>
       <p class="alert-title" style="color:#1a5fb4;">O concorrente recuou — a BALAQUI tem espaço para avançar</p>
-      <p class="alert-body">O Concorrente A <strong>cortou 91% do investimento em anúncios</strong> (de R$86K em março para R$8K em julho). Resultado: as vendas dele em sofá-cama despencaram — a BALAQUI <strong>já está vendendo mais que ele em junho e julho</strong>. Essa janela não dura para sempre: é hora de consolidar a liderança.</p>
+      <p class="alert-body">O Concorrente A <strong>cortou 91% do investimento em anúncios</strong> ao longo dos últimos meses. Com menos presença nos anúncios, abriu espaço para a BALAQUI ganhar mais visibilidade em sofá-cama. Essa janela não dura para sempre: é hora de consolidar a liderança.</p>
     </div>
   </div>
 
-  <p class="sec-title">Vendas BALAQUI em sofá-cama · Ads e retorno do Concorrente A</p>
+  <p class="sec-title">Vendas e Ads BALAQUI em sofá-cama · ROAS do Concorrente A</p>
   <table>
     <thead><tr>
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
-      <th>Conc. A · Ads</th>
       <th>Conc. A · ROAS</th>
-      <th>Conc. A · Tendência</th>
     </tr></thead>
     <tbody id="tbl_sofas"></tbody>
   </table>
@@ -316,20 +314,18 @@ tr:last-child td{border-bottom:none;}
   <div class="alert-box" style="background:#fff4e6;border-color:#f5c080;">
     <div class="alert-icon">📈</div>
     <div>
-      <p class="alert-title" style="color:#8a4a00;">Concorrente crescendo forte — BALAQUI perdendo terreno</p>
-      <p class="alert-body">O Concorrente B cresceu <strong>+58% em vendas de camas</strong> de março a julho, enquanto a BALAQUI <strong>caiu 26%</strong> no mesmo período (de R$671K → R$495K). Com investimento em ads menor e ROAS altíssimo (23x), ele está ganhando posicionamento orgânico. Se a tendência continuar, o gap vai aumentar.</p>
+      <p class="alert-title" style="color:#8a4a00;">Concorrente ganhando espaço — BALAQUI precisa reagir</p>
+      <p class="alert-body">A BALAQUI <strong>caiu 26% em vendas de camas</strong> de março a julho (de R$671K → R$495K), enquanto o Concorrente B vem crescendo consistentemente no período. Com ROAS altíssimo (23x) e investimento em ads controlado, ele está ganhando posicionamento orgânico. Se a tendência continuar, o gap vai aumentar.</p>
     </div>
   </div>
 
-  <p class="sec-title">Vendas BALAQUI em camas · Ads e retorno do Concorrente B</p>
+  <p class="sec-title">Vendas e Ads BALAQUI em camas · ROAS do Concorrente B</p>
   <table>
     <thead><tr>
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
-      <th>Conc. B · Ads</th>
       <th>Conc. B · ROAS</th>
-      <th>Conc. B · Tendência</th>
     </tr></thead>
     <tbody id="tbl_camas"></tbody>
   </table>
@@ -442,35 +438,25 @@ const camas=[
   {mes:'Jul MTD',bNmv:495481,  cNmv:1269310, bSpend:89020,  cSpend:39448, cRoas:23.77},
 ];
 
-// Tabela sofás — % variação do concorrente vs março (base)
+// Tabela sofás — só BALAQUI + ROAS do concorrente
 const tblSofas=document.getElementById('tbl_sofas');
-const sofasBase=sofas[0].cNmv;
-sofas.forEach((d,i)=>{
-  const pct=i===0?'—':((d.cNmv/sofasBase-1)*100).toFixed(0);
-  const pctTxt=i===0?'—':(+pct>=0?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`:`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
+sofas.forEach(d=>{
   tblSofas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
-    <td style="color:${d.cSpend<20000?'#0a7e40':'#555'};font-weight:600;">${brl(d.cSpend)}</td>
     <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
-    <td>${pctTxt}</td>
   </tr>`;
 });
 
-// Tabela camas — % variação do concorrente vs março (base)
+// Tabela camas — só BALAQUI + ROAS do concorrente
 const tblCamas=document.getElementById('tbl_camas');
-const camasBase=camas[0].cNmv;
-camas.forEach((d,i)=>{
-  const pct=i===0?'—':((d.cNmv/camasBase-1)*100).toFixed(0);
-  const pctTxt=i===0?'—':(+pct>=0?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`:`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
+camas.forEach(d=>{
   tblCamas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
-    <td>${brl(d.cSpend)}</td>
     <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
-    <td>${pctTxt}</td>
   </tr>`;
 });
 
