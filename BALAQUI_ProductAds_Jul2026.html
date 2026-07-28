@@ -274,17 +274,17 @@ tr:last-child td{border-bottom:none;}
     <div class="alert-icon">🔄</div>
     <div>
       <p class="alert-title" style="color:#1a5fb4;">O concorrente recuou — a BALAQUI tem espaço para avançar</p>
-      <p class="alert-body">O Concorrente A <strong>cortou 91% do investimento em anúncios</strong> ao longo dos últimos meses. Com menos presença nos anúncios, abriu espaço para a BALAQUI ganhar mais visibilidade em sofá-cama. Essa janela não dura para sempre: é hora de consolidar a liderança.</p>
+      <p class="alert-body">O Concorrente A <strong>diminuiu o investimento em anúncios</strong> ao longo dos últimos meses. Com menos presença nos anúncios, abriu espaço para a BALAQUI ganhar mais visibilidade em sofá-cama. Essa janela não dura para sempre: é hora de consolidar a liderança.</p>
     </div>
   </div>
 
-  <p class="sec-title">Vendas e Ads BALAQUI em sofá-cama · ROAS do Concorrente A</p>
+  <p class="sec-title">Vendas e Ads BALAQUI em sofá-cama · Eficiência do Concorrente A</p>
   <table>
     <thead><tr>
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
-      <th>Conc. A · ROAS</th>
+      <th>Conc. A · ROAS var.%</th>
     </tr></thead>
     <tbody id="tbl_sofas"></tbody>
   </table>
@@ -319,13 +319,13 @@ tr:last-child td{border-bottom:none;}
     </div>
   </div>
 
-  <p class="sec-title">Vendas e Ads BALAQUI em camas · ROAS do Concorrente B</p>
+  <p class="sec-title">Vendas e Ads BALAQUI em camas · Eficiência do Concorrente B</p>
   <table>
     <thead><tr>
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
-      <th>Conc. B · ROAS</th>
+      <th>Conc. B · ROAS var.%</th>
     </tr></thead>
     <tbody id="tbl_camas"></tbody>
   </table>
@@ -438,25 +438,35 @@ const camas=[
   {mes:'Jul MTD',bNmv:495481,  cNmv:1269310, bSpend:89020,  cSpend:39448, cRoas:23.77},
 ];
 
-// Tabela sofás — só BALAQUI + ROAS do concorrente
+// Tabela sofás — BALAQUI + variação % do ROAS do concorrente vs março
 const tblSofas=document.getElementById('tbl_sofas');
-sofas.forEach(d=>{
+const sofasRoasBase=sofas[0].cRoas;
+sofas.forEach((d,i)=>{
+  const pct=i===0?null:((d.cRoas/sofasRoasBase-1)*100).toFixed(0);
+  const pctTxt=i===0?'—':(+pct>=0
+    ?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`
+    :`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
   tblSofas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
-    <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
+    <td>${pctTxt}</td>
   </tr>`;
 });
 
-// Tabela camas — só BALAQUI + ROAS do concorrente
+// Tabela camas — BALAQUI + variação % do ROAS do concorrente vs março
 const tblCamas=document.getElementById('tbl_camas');
-camas.forEach(d=>{
+const camasRoasBase=camas[0].cRoas;
+camas.forEach((d,i)=>{
+  const pct=i===0?null:((d.cRoas/camasRoasBase-1)*100).toFixed(0);
+  const pctTxt=i===0?'—':(+pct>=0
+    ?`<span style="color:#c02020;font-weight:700;">+${pct}%</span>`
+    :`<span style="color:#0a7e40;font-weight:700;">${pct}%</span>`);
   tblCamas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
-    <td style="color:#0a7e40;font-weight:600;">${d.cRoas.toFixed(1)}x</td>
+    <td>${pctTxt}</td>
   </tr>`;
 });
 
