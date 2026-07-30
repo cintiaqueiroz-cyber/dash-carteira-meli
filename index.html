@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 30/07/2026 14:05 -->
+<!-- Build: 30/07/2026 14:11 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -15984,6 +15985,72 @@
 #sidebar .sb-footer{padding:12px 18px;font-size:9.5px;color:rgba(255,255,255,.18);border-top:1px solid rgba(255,255,255,.05);margin-top:8px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR DARK ML ── */
+#sidebar{background:#1A1A1A;border-right:none;box-shadow:3px 0 20px rgba(0,0,0,.25);width:220px;}
+#sidebar .sb-brand{background:#FFE600;padding:16px 18px 14px;display:flex;align-items:center;gap:10px;border-bottom:3px solid #E0C800;}
+#sidebar .sb-brand-icon{width:32px;height:32px;background:#1A1A1A;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:20px;height:20px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:13px;font-weight:900;color:#1A1A1A;line-height:1.2;letter-spacing:-.2px;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:500;color:#555;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:rgba(255,255,255,.07);margin:4px 0;}
+#sidebar .sidebar-header{padding:18px 18px 5px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:rgba(255,255,255,.25);}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;padding:8px 14px;font-size:12px;font-weight:500;color:rgba(255,255,255,.6);text-decoration:none;border-radius:6px;transition:all .15s;cursor:pointer;margin-bottom:1px;border-left:2px solid transparent;letter-spacing:.2px;}
+#sidebar ul li a:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.9);border-left-color:rgba(255,230,0,.5);}
+#sidebar ul li a.active{background:rgba(255,230,0,.12);color:#FFE600;font-weight:700;border-left-color:#FFE600;}
+#sidebar ul li a .dot{display:none;}
+#sidebar .sb-footer{padding:12px 18px;font-size:9.5px;color:rgba(255,255,255,.18);border-top:1px solid rgba(255,255,255,.05);margin-top:8px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -15993,7 +16060,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 30/07/2026 14:05</span>
+    <span class="update-badge">&#10003; Atualizado 30/07/2026 14:11</span>
   </div>
 </div>
 <div id="sidebar">
@@ -17056,7 +17123,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Julho parcial: 30/30 dias &nbsp;&middot;&nbsp; 30/07/2026 14:05
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Julho parcial: 30/30 dias &nbsp;&middot;&nbsp; 30/07/2026 14:11
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -17073,7 +17140,7 @@ var REAL_MENSAL={"MULTILOJA": {"jan": 3934456, "feb": 3083745, "mar": 3960976, "
 var REAL_SI={"MULTILOJA": {"jan": 7330, "feb": 6104, "mar": 7281, "apr": 6812, "may": 8926, "jun": 9336, "jul": 8889}, "ADONAI": {"jan": 965, "feb": 1466, "mar": 2059, "apr": 1323, "may": 1653, "jun": 1334, "jul": 1433}, "BALAQUI": {"jan": 2479, "feb": 2637, "mar": 2474, "apr": 1635, "may": 2056, "jun": 1679, "jul": 1676}, "CAMA INBOX": {"jan": 2469, "feb": 1812, "mar": 2071, "apr": 2353, "may": 3139, "jun": 3540, "jul": 4253}, "BOM PASTOR": {"jan": 401, "feb": 880, "mar": 2210, "apr": 1551, "may": 2351, "jun": 2046, "jul": 2047}, "PANORAMA": {"jan": 4210, "feb": 3077, "mar": 3527, "apr": 3922, "may": 3755, "jun": 3423, "jul": 4668}, "TONIELQUE": {"jan": 9689, "feb": 8607, "mar": 7105, "apr": 7412, "may": 7370, "jun": 7804, "jul": 7779}, "WEHOUSE": {"jan": 1965, "feb": 1740, "mar": 2133, "apr": 1674, "may": 1305, "jun": 1766, "jul": 2090}, "KING HOUSE": {"jan": 2578, "feb": 2238, "mar": 3217, "apr": 3013, "may": 3594, "jun": 4323, "jul": 4662}, "MOVEIS ARAPONGAS": {"jan": 951, "feb": 1188, "mar": 1465, "apr": 815, "may": 753, "jun": 843, "jul": 846}};
 var REAL_ASP={"MULTILOJA": {"jan": 537, "feb": 505, "mar": 544, "apr": 490, "may": 582, "jun": 602, "jul": 658}, "ADONAI": {"jan": 1012, "feb": 965, "mar": 986, "apr": 1127, "may": 956, "jun": 1050, "jul": 1028}, "BALAQUI": {"jan": 658, "feb": 586, "mar": 723, "apr": 804, "may": 853, "jun": 964, "jul": 886}, "CAMA INBOX": {"jan": 1744, "feb": 1702, "mar": 1860, "apr": 1799, "may": 1768, "jun": 1766, "jul": 1864}, "BOM PASTOR": {"jan": 1567, "feb": 1458, "mar": 1514, "apr": 1482, "may": 1483, "jun": 1523, "jul": 1467}, "PANORAMA": {"jan": 511, "feb": 531, "mar": 588, "apr": 650, "may": 653, "jun": 739, "jul": 735}, "TONIELQUE": {"jan": 367, "feb": 389, "mar": 396, "apr": 400, "may": 390, "jun": 452, "jul": 459}, "WEHOUSE": {"jan": 1244, "feb": 1210, "mar": 1033, "apr": 1045, "may": 853, "jun": 738, "jul": 628}, "KING HOUSE": {"jan": 1474, "feb": 1439, "mar": 1437, "apr": 1496, "may": 1512, "jun": 1540, "jul": 1483}, "MOVEIS ARAPONGAS": {"jan": 554, "feb": 449, "mar": 336, "apr": 404, "may": 463, "jun": 620, "jul": 706}};
 var REAL_TGMV={"MULTILOJA": {}, "ADONAI": {}, "BALAQUI": {}, "CAMA INBOX": {}, "BOM PASTOR": {}, "PANORAMA": {}, "TONIELQUE": {}, "WEHOUSE": {}, "KING HOUSE": {}, "MOVEIS ARAPONGAS": {}};
-var REAL_NMV={"MULTILOJA": {"jan": 3934456, "feb": 3083745, "mar": 3960976, "apr": 3339582, "may": 5190888, "jun": 5617629, "jul": 5845218}, "ADONAI": {"jan": 976320, "feb": 1414140, "mar": 2030298, "apr": 1491421, "may": 1579714, "jun": 1401002, "jul": 1473713}, "BALAQUI": {"jan": 1631294, "feb": 1545445, "mar": 1787888, "apr": 1314304, "may": 1753407, "jun": 1619126, "jul": 1485398}, "CAMA INBOX": {"jan": 4306697, "feb": 3084643, "mar": 3851784, "apr": 4232171, "may": 5548358, "jun": 6250213, "jul": 7929455}, "BOM PASTOR": {"jan": 628423, "feb": 1282724, "mar": 3345099, "apr": 2298023, "may": 3486000, "jun": 3116840, "jul": 3003421}, "PANORAMA": {"jan": 2151931, "feb": 1632562, "mar": 2073871, "apr": 2547719, "may": 2452964, "jun": 2530282, "jul": 3428752}, "TONIELQUE": {"jan": 3555335, "feb": 3346419, "mar": 2813756, "apr": 2965377, "may": 2876981, "jun": 3529815, "jul": 3570284}, "WEHOUSE": {"jan": 2443730, "feb": 2105371, "mar": 2203004, "apr": 1748660, "may": 1113617, "jun": 1303266, "jul": 1313146}, "KING HOUSE": {"jan": 3798898, "feb": 3220968, "mar": 4624004, "apr": 4506950, "may": 5433561, "jun": 6656275, "jul": 6914250}, "MOVEIS ARAPONGAS": {"jan": 527001, "feb": 532969, "mar": 492757, "apr": 328964, "may": 348716, "jun": 523007, "jul": 596964}};
+var REAL_NMV={"MULTILOJA": {"25_jan": 1953933, "25_feb": 3076241, "25_mar": 2481121, "25_apr": 1902492, "25_may": 1900786, "25_jun": 1891495, "25_jul": 2543659, "25_aug": 2234566, "25_sep": 2088080, "25_oct": 3274013, "25_nov": 3762040, "25_dec": 3124929, "jan": 3934456, "feb": 3083745, "mar": 3960976, "apr": 3339582, "may": 5190888, "jun": 5617629, "jul": 5845218}, "ADONAI": {"25_jan": 784584, "25_feb": 523150, "25_mar": 1015360, "25_apr": 1046654, "25_may": 1191999, "25_jun": 1136186, "25_jul": 1537005, "25_aug": 1259964, "25_sep": 1083386, "25_oct": 755604, "25_nov": 2165745, "25_dec": 1143530, "jan": 976320, "feb": 1414140, "mar": 2030298, "apr": 1491421, "may": 1579714, "jun": 1401002, "jul": 1473713}, "BALAQUI": {"25_jan": 1241283, "25_feb": 1044806, "25_mar": 1082418, "25_apr": 1131210, "25_may": 1233363, "25_jun": 1033884, "25_jul": 1671420, "25_aug": 1251571, "25_sep": 1205592, "25_oct": 1303350, "25_nov": 1789985, "25_dec": 1322333, "jan": 1631294, "feb": 1545445, "mar": 1787888, "apr": 1314304, "may": 1753407, "jun": 1619126, "jul": 1485398}, "CAMA INBOX": {"25_jan": 1254957, "25_feb": 1057589, "25_mar": 1298189, "25_apr": 1839982, "25_may": 2234667, "25_jun": 2904979, "25_jul": 4180100, "25_aug": 3138080, "25_sep": 2356639, "25_oct": 3988006, "25_nov": 7306846, "25_dec": 3781595, "jan": 4306697, "feb": 3084643, "mar": 3851784, "apr": 4232171, "may": 5548358, "jun": 6250213, "jul": 7929455}, "BOM PASTOR": {"25_jan": 243924, "25_feb": 540914, "25_mar": 826228, "25_apr": 967484, "25_may": 2027147, "25_jun": 3290187, "25_jul": 1254643, "25_aug": 443265, "25_sep": 1440576, "25_oct": 2376273, "25_nov": 5479842, "25_dec": 735733, "jan": 628423, "feb": 1282724, "mar": 3345099, "apr": 2298023, "may": 3486000, "jun": 3116840, "jul": 3003421}, "PANORAMA": {"25_jan": 1391601, "25_feb": 1378483, "25_mar": 2305255, "25_apr": 2025589, "25_may": 3377860, "25_jun": 3317118, "25_jul": 4417891, "25_aug": 2608760, "25_sep": 2667653, "25_oct": 3133160, "25_nov": 2046672, "25_dec": 1280248, "jan": 2151931, "feb": 1632562, "mar": 2073871, "apr": 2547719, "may": 2452964, "jun": 2530282, "jul": 3428752}, "TONIELQUE": {"25_jan": 3086692, "25_feb": 2360569, "25_mar": 2777151, "25_apr": 2473099, "25_may": 3305344, "25_jun": 3485586, "25_jul": 3363594, "25_aug": 3299100, "25_sep": 3100307, "25_oct": 3195966, "25_nov": 3609963, "25_dec": 2321908, "jan": 3555335, "feb": 3346419, "mar": 2813756, "apr": 2965377, "may": 2876981, "jun": 3529815, "jul": 3570284}, "WEHOUSE": {"25_jan": 1297916, "25_feb": 847986, "25_mar": 1379947, "25_apr": 1082979, "25_may": 1168076, "25_jun": 1790407, "25_jul": 2569685, "25_aug": 2181893, "25_sep": 2211016, "25_oct": 1809910, "25_nov": 3113657, "25_dec": 1721271, "jan": 2443730, "feb": 2105371, "mar": 2203004, "apr": 1748660, "may": 1113617, "jun": 1303266, "jul": 1313146}, "KING HOUSE": {"25_jan": 4003796, "25_feb": 2807302, "25_mar": 3243991, "25_apr": 3269866, "25_may": 2992090, "25_jun": 3346495, "25_jul": 4324689, "25_aug": 3936848, "25_sep": 3966596, "25_oct": 3429660, "25_nov": 8422100, "25_dec": 3757763, "jan": 3798898, "feb": 3220968, "mar": 4624004, "apr": 4506950, "may": 5433561, "jun": 6656275, "jul": 6914250}, "MOVEIS ARAPONGAS": {"25_jan": 1249454, "25_feb": 927074, "25_mar": 1067901, "25_apr": 1092749, "25_may": 1287834, "25_jun": 921500, "25_jul": 1190569, "25_aug": 940261, "25_sep": 602929, "25_oct": 681585, "25_nov": 707332, "25_dec": 354671, "jan": 527001, "feb": 532969, "mar": 492757, "apr": 328964, "may": 348716, "jun": 523007, "jul": 596964}};
 var REAL_ADS_PADS={"MULTILOJA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "ADONAI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "BALAQUI": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "CAMA INBOX": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "BOM PASTOR": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "PANORAMA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "TONIELQUE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "WEHOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "KING HOUSE": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}, "MOVEIS ARAPONGAS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0}};
 var REAL_ADS_DXB={"MULTILOJA": {"jan": 1250, "feb": 1210, "mar": 13497, "apr": 15276, "may": 21080, "jun": 19104, "jul": 24272}, "ADONAI": {"jan": 3829, "feb": 6687, "mar": 19791, "apr": 19044, "may": 23109, "jun": 15913, "jul": 15430}, "BALAQUI": {"jan": 353, "feb": 832, "mar": 4153, "apr": 2901, "may": 8527, "jun": 15018, "jul": 12801}, "CAMA INBOX": {"jan": 7633, "feb": 12272, "mar": 14062, "apr": 9599, "may": 35990, "jun": 36782, "jul": 57790}, "BOM PASTOR": {"jan": 208, "feb": 645, "mar": 10418, "apr": 6676, "may": 8066, "jun": 14099, "jul": 18961}, "PANORAMA": {"jan": 968, "feb": 777, "mar": 13301, "apr": 18255, "may": 22198, "jun": 21534, "jul": 34808}, "TONIELQUE": {"jan": 3119, "feb": 5595, "mar": 23710, "apr": 39570, "may": 39617, "jun": 51362, "jul": 60336}, "WEHOUSE": {"jan": 5802, "feb": 3956, "mar": 14064, "apr": 12775, "may": 9702, "jun": 8783, "jul": 15306}, "KING HOUSE": {"jan": 7529, "feb": 7348, "mar": 24338, "apr": 23432, "may": 35047, "jun": 74091, "jul": 94804}, "MOVEIS ARAPONGAS": {"jan": 2631, "feb": 1934, "mar": 4389, "apr": 3791, "may": 2918, "jun": 1716, "jul": 2620}};
 var REAL_ADS_AUTO={"MULTILOJA": {"jan": 13404, "feb": 19665, "mar": 32231, "apr": 34725, "may": 15402, "jun": 53319, "jul": 33313}, "ADONAI": {"jan": 2295, "feb": 2297, "mar": 1817, "apr": 18238, "may": 952, "jun": 717, "jul": 5902}, "BALAQUI": {"jan": 1533, "feb": 768, "mar": 3086, "apr": 3136, "may": 1073, "jun": 1486, "jul": 3286}, "CAMA INBOX": {"jan": 14008, "feb": 2628, "mar": 9162, "apr": 9621, "may": 9237, "jun": 5043, "jul": 46408}, "BOM PASTOR": {"jan": 265, "feb": 3856, "mar": 654, "apr": 6501, "may": 5586, "jun": 1791, "jul": 1935}, "PANORAMA": {"jan": 2929, "feb": 546, "mar": 4342, "apr": 6144, "may": 3382, "jun": 2255, "jul": 9200}, "TONIELQUE": {"jan": 11088, "feb": 75164, "mar": 5450, "apr": 5214, "may": 7576, "jun": 5011, "jul": 9004}, "WEHOUSE": {"jan": 600, "feb": 3429, "mar": 0, "apr": 17894, "may": 3343, "jun": 61, "jul": 0}, "KING HOUSE": {"jan": 19198, "feb": 42091, "mar": 33270, "apr": 50678, "may": 8396, "jun": 4755, "jul": 8038}, "MOVEIS ARAPONGAS": {"jan": 4439, "feb": 1382, "mar": 2682, "apr": 2581, "may": 936, "jun": 762, "jul": 7748}};
