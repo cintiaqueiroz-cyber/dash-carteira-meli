@@ -105,7 +105,7 @@ tr:last-child td{border-bottom:none;}
     <div>
       <p class="brand">MercadoLivre · Análise KAM · F&amp;H</p>
       <h1>BALAQUI — Anúncios Pagos</h1>
-      <p class="sub">Loja principal · ID 530094229 · Março a Julho de 2026</p>
+      <p class="sub">Loja principal · ID 530094229 · Março a Julho de 2026 · Agosto em andamento</p>
       <div class="seller-links">
         <a href="https://www.mercadolivre.com.br/perfil/530094229" class="btn-link" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -118,7 +118,7 @@ tr:last-child td{border-bottom:none;}
       </div>
     </div>
     <div class="date-box">
-      <strong>28/07/2026</strong>
+      <strong>05/08/2026</strong>
       Cintia Faraco Queiroz<br>KAM F&amp;H
     </div>
   </div>
@@ -233,7 +233,7 @@ tr:last-child td{border-bottom:none;}
   </div>
 
   <div class="footer">
-    <span>Dados: Product Ads · Mercado Livre Brasil · Mar–Jul 2026</span>
+    <span>Dados: Product Ads · Mercado Livre Brasil · Mar–Jul 2026 · Agosto em andamento</span>
     <span>Elaborado por Cintia Faraco Queiroz · KAM F&amp;H · MercadoLivre</span>
   </div>
 
@@ -256,7 +256,7 @@ tr:last-child td{border-bottom:none;}
       </div>
     </div>
     <div class="date-box">
-      <strong>28/07/2026</strong>
+      <strong>05/08/2026</strong>
       Cintia Faraco Queiroz<br>KAM F&amp;H
     </div>
   </div>
@@ -284,6 +284,7 @@ tr:last-child td{border-bottom:none;}
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
+      <th>Posição</th>
     </tr></thead>
     <tbody id="tbl_sofas"></tbody>
   </table>
@@ -297,7 +298,7 @@ tr:last-child td{border-bottom:none;}
     <div class="reason">
       <div class="icon">⚠️</div>
       <p class="rtitle">Concorrente pode voltar</p>
-      <p class="rbody">O ROAS do Concorrente A chegou a 22x em julho — muito eficiente com pouco gasto. Se ele decidir reinvestir, pode retomar visibilidade rapidamente. Agir agora, antes que isso aconteça, é a melhor janela.</p>
+      <p class="rbody">O Concorrente A reduziu muito o investimento em anúncios nos últimos meses — mas seu ROAS continua alto, o que indica eficiência quando anuncia. Se ele decidir reinvestir, pode retomar visibilidade rapidamente. Agir agora é a melhor janela.</p>
     </div>
   </div>
 
@@ -324,6 +325,7 @@ tr:last-child td{border-bottom:none;}
       <th>Mês</th>
       <th>BALAQUI · Vendas</th>
       <th>BALAQUI · Ads</th>
+      <th>Posição</th>
     </tr></thead>
     <tbody id="tbl_camas"></tbody>
   </table>
@@ -331,8 +333,8 @@ tr:last-child td{border-bottom:none;}
   <div class="reason-grid" style="margin-bottom:1.75rem;">
     <div class="reason" style="background:#fff8f0;border:1px solid #f5d080;">
       <div class="icon">🎯</div>
-      <p class="rtitle">ROAS 23x indica produto com alta demanda</p>
-      <p class="rbody">Um ROAS de 23x com gasto de R$39K significa que cada real investido retorna R$23 em vendas. Isso indica que o produto do Concorrente B tem forte demanda orgânica e converte muito bem. Para competir, a BALAQUI precisa trabalhar o catálogo de camas com SKUs mais específicos.</p>
+      <p class="rtitle">Concorrente B converte muito bem</p>
+      <p class="rbody">O Concorrente B investe de forma controlada em anúncios e obtém retorno alto — sinal de que o produto tem forte demanda orgânica e converte bem. Para competir, a BALAQUI precisa trabalhar o catálogo de camas com SKUs mais específicos e melhor posicionamento.</p>
     </div>
     <div class="reason">
       <div class="icon">🛏️</div>
@@ -375,7 +377,7 @@ tr:last-child td{border-bottom:none;}
   </div>
 
   <div class="footer">
-    <span>Dados: Product Ads + NMV por categoria · MLB · Mar–Jul 2026</span>
+    <span>Dados: Product Ads + NMV por categoria · MLB · Mar–Jul 2026 · Posição vs concorrente calculada sobre NMV da categoria</span>
     <span>Elaborado por Cintia Faraco Queiroz · KAM F&amp;H · MercadoLivre</span>
   </div>
 
@@ -388,7 +390,7 @@ const data=[
   {mes:'Abr/26',imp:46827238,cliques:209675,spend:76478,gmv:701185,roas:9.17},
   {mes:'Mai/26',imp:65606394,cliques:294412,spend:105692,gmv:1020988,roas:9.66},
   {mes:'Jun/26',imp:26377276,cliques:177124,spend:89412,gmv:868720,roas:9.72},
-  {mes:'Jul MTD',imp:9723114,cliques:157972,spend:89020,gmv:722944,roas:8.12},
+  {mes:'Jul/26',imp:9723114,cliques:157972,spend:89020,gmv:722944,roas:8.12},
 ];
 const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
 const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
@@ -432,41 +434,50 @@ new Chart(document.getElementById('chart'),{
   }
 });
 
-// ── Tab 2: Sofá-cama — BALAQUI vs Concorrente A (ESPUMATICA) ─────────────────
+// ── Tab 2: Sofá-cama — BALAQUI vs Concorrente A ───────────────────────────────
 const sofas=[
-  {mes:'Mar/26', bNmv:813172,  cNmv:1103288, bSpend:75959,  cSpend:86132, cRoas:10.15},
-  {mes:'Abr/26', bNmv:630361,  cNmv:941077,  bSpend:76478,  cSpend:57704, cRoas:10.07},
-  {mes:'Mai/26', bNmv:877195,  cNmv:1185769, bSpend:105692, cSpend:24196, cRoas:23.53},
-  {mes:'Jun/26', bNmv:857964,  cNmv:493002,  bSpend:89412,  cSpend:13549, cRoas:16.59},
-  {mes:'Jul MTD',bNmv:668375,  cNmv:377694,  bSpend:89020,  cSpend:7834,  cRoas:22.25},
+  {mes:'Mar/26', bNmv:813172,  cNmv:1103288, bSpend:75959},
+  {mes:'Abr/26', bNmv:630361,  cNmv:941077,  bSpend:76478},
+  {mes:'Mai/26', bNmv:877195,  cNmv:1185769, bSpend:105692},
+  {mes:'Jun/26', bNmv:857964,  cNmv:493002,  bSpend:89412},
+  {mes:'Jul/26', bNmv:668375,  cNmv:377694,  bSpend:89020},
 ];
 
-// ── Tab 2: Camas — BALAQUI vs Concorrente B (KEIKO) ──────────────────────────
+// ── Tab 2: Camas — BALAQUI vs Concorrente B ───────────────────────────────────
 const camas=[
-  {mes:'Mar/26', bNmv:670736,  cNmv:801176,  bSpend:75959,  cSpend:24244, cRoas:21.55},
-  {mes:'Abr/26', bNmv:530880,  cNmv:825019,  bSpend:76478,  cSpend:27031, cRoas:22.07},
-  {mes:'Mai/26', bNmv:701892,  cNmv:1098387, bSpend:105692, cSpend:28290, cRoas:26.47},
-  {mes:'Jun/26', bNmv:543287,  cNmv:1025131, bSpend:89412,  cSpend:26483, cRoas:24.70},
-  {mes:'Jul MTD',bNmv:495481,  cNmv:1269310, bSpend:89020,  cSpend:39448, cRoas:23.77},
+  {mes:'Mar/26', bNmv:670736,  cNmv:801176,  bSpend:75959},
+  {mes:'Abr/26', bNmv:530880,  cNmv:825019,  bSpend:76478},
+  {mes:'Mai/26', bNmv:701892,  cNmv:1098387, bSpend:105692},
+  {mes:'Jun/26', bNmv:543287,  cNmv:1025131, bSpend:89412},
+  {mes:'Jul/26', bNmv:495481,  cNmv:1269310, bSpend:89020},
 ];
 
-// Tabela sofás — só BALAQUI
+function farol(bNmv, cNmv){
+  const ratio = bNmv / cNmv;
+  if(ratio >= 1.1)  return '<span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:11px;height:11px;border-radius:50%;background:#0a7e40;flex-shrink:0;"></span><span style="font-size:11px;font-weight:700;color:#0a7e40;">Na frente</span></span>';
+  if(ratio >= 0.85) return '<span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:11px;height:11px;border-radius:50%;background:#e8a020;flex-shrink:0;"></span><span style="font-size:11px;font-weight:700;color:#a06010;">Disputado</span></span>';
+  return '<span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:11px;height:11px;border-radius:50%;background:#c02020;flex-shrink:0;"></span><span style="font-size:11px;font-weight:700;color:#c02020;">Atrás</span></span>';
+}
+
+// Tabela sofás — com semáforo
 const tblSofas=document.getElementById('tbl_sofas');
 sofas.forEach(d=>{
   tblSofas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
+    <td>${farol(d.bNmv, d.cNmv)}</td>
   </tr>`;
 });
 
-// Tabela camas — só BALAQUI
+// Tabela camas — com semáforo
 const tblCamas=document.getElementById('tbl_camas');
 camas.forEach(d=>{
   tblCamas.innerHTML+=`<tr>
     <td>${d.mes}</td>
     <td style="font-weight:600;">${brl(d.bNmv)}</td>
     <td>${brl(d.bSpend)}</td>
+    <td>${farol(d.bNmv, d.cNmv)}</td>
   </tr>`;
 });
 
