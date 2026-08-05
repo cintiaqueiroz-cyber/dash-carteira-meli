@@ -104,7 +104,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     (function(){
       var _ating = [110.9, 93.6, 103.4, 75.9, 119.4, 112.3, 119.1, 23.1, null, null, null, null];
       var _meta  = [3548618.0,3295577.0,3827637.0,4400000.0,4345284.0,4743835.0,5237990.0,5073561.0,5533715.0,5880397.0,5998445.0,4773538.0];
-      var _proj  = [null,null,null,null,null,null,null,7026552,4156705,6535569,7484534,6242135];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -135,27 +134,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               ctx.fillText(txt, pt.x, pt.y-12);
             }
           });
-          // Dataset 1 = Projetado (verde): começa em Jun (skip até mês atual)
-          var meta1=chart.getDatasetMeta(1);
+          // Mês atual: mostrar Meta Desafio
           var _mesMTD=7;
-          ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
-          meta1.data.forEach(function(pt,i){
-            if(i<=_mesMTD)return;
-            if(i%2===0)return;
-            var v=chart.data.datasets[1].data[i];
-            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
-            ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
-          });
-          // Mês atual: mostrar também Projetado e Meta Desafio
-          var ptProj=chart.getDatasetMeta(1).data[_mesMTD];
-          if(ptProj){
-            var vProj=chart.data.datasets[1].data[_mesMTD];
-            if(vProj!==null&&vProj!==undefined&&vProj!=='null'&&!isNaN(Number(vProj))){
-              ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
-              ctx.fillText(fk(Number(vProj)), ptProj.x+28, ptProj.y-8);
-            }
-          }
-          var ptMeta=chart.getDatasetMeta(3).data[_mesMTD];
+          var ptMeta=chart.getDatasetMeta(2).data[_mesMTD];
           if(ptMeta){
             var vMeta=_meta[_mesMTD];
             if(vMeta!==null&&vMeta!==undefined&&vMeta!=='null'&&!isNaN(Number(vMeta))){
@@ -170,7 +151,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
           {label:'2026',data:[3934637.0,3083657.0,3959425.0,3340870.0,5188333.0,5329048.0,6237888.0,1171092.0,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,null,null,null,7026552,4156705,6535569,7484534,6242135],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+
           {label:'2025',data:[1954519.0,3073343.0,2478391.0,1908300.0,1898613.0,1890665.0,2545250.0,2235578.0,2084711.0,3277782.0,3753716.0,3130616.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[3548618.0,3295577.0,3827637.0,4400000.0,4345284.0,4743835.0,5237990.0,5073561.0,5533715.0,5880397.0,5998445.0,4773538.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
