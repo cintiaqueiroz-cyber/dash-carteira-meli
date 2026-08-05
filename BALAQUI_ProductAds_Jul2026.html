@@ -127,8 +127,8 @@ tr:last-child td{border-bottom:none;}
   <div class="alert-box">
     <div class="alert-icon">📉</div>
     <div>
-      <p class="alert-title">Suas impressões caíram 81% em 5 meses</p>
-      <p class="alert-body">Em março seus anúncios apareceram <strong>51 milhões de vezes</strong> para compradores. Em julho, estão aparecendo apenas <strong>9,7 milhões de vezes</strong> — uma queda de 81%. E você está investindo praticamente <strong>o mesmo valor</strong> por mês em anúncios (R$76–106 mil). O problema não é falta de budget.</p>
+      <p class="alert-title">Suas impressões caíram 79% em 5 meses</p>
+      <p class="alert-body">Em março seus anúncios apareceram <strong>54 milhões de vezes</strong> para compradores. Em julho, apareceram apenas <strong>11,3 milhões de vezes</strong> — uma queda de 79%. E o investimento mensal subiu para R$107 mil em julho. <strong>O problema não é falta de budget — o custo por aparição aumentou 6x.</strong></p>
     </div>
   </div>
 
@@ -136,13 +136,13 @@ tr:last-child td{border-bottom:none;}
   <div class="cards">
     <div class="card bad">
       <label>📊 Impressões</label>
-      <div class="num red">–81%</div>
-      <div class="caption">Mar: 51M → Jul: 9,7M</div>
+      <div class="num red">–79%</div>
+      <div class="caption">Mar: 54M → Jul: 11M</div>
     </div>
     <div class="card bad">
       <label>💸 Custo por 1.000 aparições</label>
-      <div class="num red">+515%</div>
-      <div class="caption">De R$1,49 → R$9,16</div>
+      <div class="num red">+534%</div>
+      <div class="caption">De R$1,51 → R$9,57</div>
     </div>
     <div class="card ok">
       <label>✅ Vendas totais</label>
@@ -233,7 +233,7 @@ tr:last-child td{border-bottom:none;}
   </div>
 
   <div class="footer">
-    <span>Dados: Product Ads · Mercado Livre Brasil · Mar–Jul 2026 · Agosto em andamento</span>
+    <span>Dados: BT_ADS_PADS_METRICS_DAILY · BigQuery MLB · Mar–Ago 2026 · * Ago/26 parcial (1–4/ago)</span>
     <span>Elaborado por Cintia Faraco Queiroz · KAM F&amp;H · MercadoLivre</span>
   </div>
 
@@ -386,11 +386,12 @@ tr:last-child td{border-bottom:none;}
 
 <script>
 const data=[
-  {mes:'Mar/26',imp:51012335,cliques:202469,spend:75959,gmv:898812,roas:11.83},
-  {mes:'Abr/26',imp:46827238,cliques:209675,spend:76478,gmv:701185,roas:9.17},
-  {mes:'Mai/26',imp:65606394,cliques:294412,spend:105692,gmv:1020988,roas:9.66},
-  {mes:'Jun/26',imp:26377276,cliques:177124,spend:89412,gmv:868720,roas:9.72},
-  {mes:'Jul/26',imp:9723114,cliques:157972,spend:89020,gmv:722944,roas:8.12},
+  {mes:'Mar/26',  imp:54493258, cliques:222501, spend:82029,  gmv:1053798, roas:12.85},
+  {mes:'Abr/26',  imp:48746335, cliques:221012, spend:79407,  gmv:814325,  roas:10.26},
+  {mes:'Mai/26',  imp:65607516, cliques:295300, spend:105832, gmv:1178359, roas:11.13},
+  {mes:'Jun/26',  imp:26377276, cliques:177242, spend:89412,  gmv:931071,  roas:10.41},
+  {mes:'Jul/26',  imp:11262126, cliques:193821, spend:107727, gmv:969695,  roas:9.00},
+  {mes:'Ago/26*', imp:628265,   cliques:27055,  spend:13887,  gmv:111188,  roas:8.01},
 ];
 const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n;
 const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
