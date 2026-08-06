@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio KING HOUSE - 06/08/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:13px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:10px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:11px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'●';position:absolute;left:0;color:#FFE600;font-size:8px;top:4px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:11px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:11px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; KING HOUSE</h1>
+    <div class="sub">Relatorio de Performance &middot; 06/08/2026 &middot; IDs: 1026459505,1982062711</div>
+  </div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 77%</div>
+</div>
+<div class="wrap">
+  
+    <div class="row">
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 35.9M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 44.5%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">22.622</div><div class="sub">LY: 19.620</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.586,34</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">77%</span></div><div class="sub">Meta Desafio = R$ 46.4M</div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-ttl">Progresso da Meta YTD</div>
+      <div style="margin-bottom:6px;font-size:13px">
+        <b>R$ 35.9M</b> de <b>R$ 46.4M</b> (Meta Desafio) &nbsp;·&nbsp; <span style="color:#00A650;font-weight:700">&#9650; 44.5%</span> vs LY
+      </div>
+      <div class="bar-out" style="height:24px">
+        <div class="bar-in" style="width:77.3%;background:#3483FA"></div>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:4px">77.3% atingido</div>
+    </div>
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card"><div class="lbl">GMV MTD (1-6/8)</div><div class="val">R$ 986K</div><div class="sub">MoM vs Jul: <span style="color:#F23D4F;font-weight:700">&#9660; 32.1%</span> &nbsp;|&nbsp; YoY vs Ago/2025: <span style="color:#00A650;font-weight:700">&#9650; 15.5%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">626</div><div class="sub">dias 1-6</div></div>
+      <div class="card"><div class="lbl">GMV Jul completo</div><div class="val">R$ 7.0M</div><div class="sub">vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 11.0%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Ago</div><div class="val"><span style="color:#F23D4F">12.8%</span></div><div class="sub">R$ 986K de R$ 7.7M &nbsp;·&nbsp; dias 1-6 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 36.0%</span></div></div>
+    </div></div>
+  
+    <div class="sec">
+      <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
+      <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var _ating = [76.4, 69.7, 86.3, 90.1, 108.6, 95.0, 98.7, 12.8, null, null, null, null];
+      var _meta  = [4970454.0,4616027.0,5361269.0,5000000.0,5000000.0,6644563.0,7100000.0,7706558.0,7900927.0,8236915.0,9401862.0,6686168.0];
+      var _proj  = [null,null,null,null,null,null,null,4932400,5728548,4958205,12150575,5442653];
+      function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+      var labelsPlugin = {
+        id:'gmvLabels',
+        afterDatasetsDraw: function(chart){
+          var ctx=chart.ctx;
+          ctx.save();
+          ctx.textAlign='center';
+          // Dataset 0 = 2026 (azul): valor acima + badge % atingimento
+          var meta0=chart.getDatasetMeta(0);
+          meta0.data.forEach(function(pt,i){
+            var v=chart.data.datasets[0].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            var at=_ating[i];
+            // valor GMV — maior e mais acima
+            ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+            // badge % atingimento — maior
+            if(at!==null&&at!==undefined){
+              var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+              var txt=at.toFixed(0)+'%';
+              ctx.font='bold 10px Arial';
+              var tw=ctx.measureText(txt).width+10;
+              ctx.fillStyle=bg;
+              ctx.beginPath();
+              ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5);
+              ctx.fill();
+              ctx.fillStyle='#fff';
+              ctx.fillText(txt, pt.x, pt.y-12);
+            }
+          });
+          // Dataset 1 = Projetado (verde): começa em Jun (skip até mês atual)
+          var meta1=chart.getDatasetMeta(1);
+          var _mesMTD=7;
+          ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+          meta1.data.forEach(function(pt,i){
+            if(i<=_mesMTD)return;
+            if(i%2===0)return;
+            var v=chart.data.datasets[1].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
+          });
+          // Mês atual: mostrar também Projetado e Meta Desafio
+          var ptProj=chart.getDatasetMeta(1).data[_mesMTD];
+          if(ptProj){
+            var vProj=chart.data.datasets[1].data[_mesMTD];
+            if(vProj!==null&&vProj!==undefined&&vProj!=='null'&&!isNaN(Number(vProj))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+              ctx.fillText(fk(Number(vProj)), ptProj.x+28, ptProj.y-8);
+            }
+          }
+          var ptMeta=chart.getDatasetMeta(3).data[_mesMTD];
+          if(ptMeta){
+            var vMeta=_meta[_mesMTD];
+            if(vMeta!==null&&vMeta!==undefined&&vMeta!=='null'&&!isNaN(Number(vMeta))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#CC5500';
+              ctx.fillText(fk(Number(vMeta)), ptMeta.x+28, ptMeta.y-8);
+            }
+          }
+          ctx.restore();
+        }
+      };
+      new Chart(document.getElementById('cGmv'),{
+        type:'line',
+        data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+          {label:'2026',data:[3798872.0,3218970.0,4627801.0,4506950.0,5429563.0,6312546.0,7005055.0,986481.0,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,null,4932400,5728548,4958205,12150575,5442653],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2025',data:[4003952.0,2807147.0,3244026.0,3268027.0,2991572.0,3340994.0,4330446.0,3938997.0,3965320.0,3432086.0,8410668.0,3767422.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+          {label:'Meta Desafio',data:[4970454.0,4616027.0,5361269.0,5000000.0,5000000.0,6644563.0,7100000.0,7706558.0,7900927.0,8236915.0,9401862.0,6686168.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+        ]},
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:50,bottom:20}},
+          plugins:{
+            legend:{position:'top'},
+            tooltip:{callbacks:{label:function(c){
+              var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+              if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+              return lbl;
+            }}}
+          },
+          scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+        },
+        plugins:[labelsPlugin]
+      });
+    })();
+    </script>
+  
+    <div class="sec">
+      <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
+      <div class="chart-box"><canvas id="cSI"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[2383.0,2034.0,2976.0,2785.0,3343.0,3968.0,4507.0,626.0,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[2789.0,1921.0,2260.0,2325.0,2203.0,2380.0,3138.0,2604.0,2510.0,2106.0,5432.0,2529.0],backgroundColor:'#DDE8FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  
+  <!-- INSIGHTS AGOSTO MTD -->
+  <div class="sec">
+    <div class="sec-ttl">Insights &mdash; Ago MTD</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">Queda vs Jul MTD</div>
+        <div style="font-size:22px;font-weight:900;color:#C0001A">-20,6%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">R$927K (1-5/ago) vs R$1,17M (1-5/jul) — ritmo <strong>20% abaixo</strong> do mesmo período do mês anterior.</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">Causa principal</div>
+        <div style="font-size:22px;font-weight:900;color:#B85A00">Sofá Veneza</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Os 2 SKUs do Veneza perderam <strong>R$94K</strong> em 5 dias — linha inteira caindo (Grafite -52% + Cinza -72%).</div>
+      </div>
+      <div style="flex:1;min-width:200px;background:#E6F7EE;border-left:4px solid #00A650;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#007A3D;text-transform:uppercase;margin-bottom:6px">Novos destaque</div>
+        <div style="font-size:22px;font-weight:900;color:#007A3D">Zurique +1.343%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Zurique Marrom saiu de R$5K para R$77K. Colchão Lagras +505%. Parcialmente compensam a queda.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POR QUE O GMV CAIU EM AGOSTO? -->
+  <div class="sec">
+    <div class="sec-ttl">&#128269; Por que o GMV caiu em agosto?</div>
+
+    <div style="background:#1A1A2E;border-radius:12px;padding:20px 24px;margin-bottom:20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;margin-bottom:8px;color:#FFE600">&#128161; O problema principal: o Sofá Veneza (linha inteira) travou</div>
+      <div style="font-size:14px;color:#ddd;line-height:1.6">
+        Os dois modelos do Veneza somavam <strong style="color:#fff">R$151K nos primeiros 5 dias de julho</strong> — e caíram para apenas <strong style="color:#F23D4F">R$57K em agosto</strong>. Isso representa <strong style="color:#FFE600">R$94K a menos em 5 dias</strong>, suficiente para explicar grande parte da queda de -20%. Recomendação imediata: verificar estoque, buybox e PADs em ambas as cores do Veneza.
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #F23D4F;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Veneza Grafite</div>
+        <div style="font-size:11px;color:#aaa">Jul 1-5 &rarr; Ago 1-5</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$81K</span> &rarr; <span style="color:#F23D4F;font-weight:900;font-size:18px">R$38K</span></div>
+        <div style="font-size:11px;color:#F23D4F;margin-top:4px">&#9660; -52,5%</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #F23D4F;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Veneza Cinza</div>
+        <div style="font-size:11px;color:#aaa">Jul 1-5 &rarr; Ago 1-5</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$70K</span> &rarr; <span style="color:#F23D4F;font-weight:900;font-size:18px">R$19K</span></div>
+        <div style="font-size:11px;color:#F23D4F;margin-top:4px">&#9660; -72,4%</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #E67E00;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Cama Alpine King</div>
+        <div style="font-size:11px;color:#aaa">Jul 1-5 &rarr; Ago 1-5</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$30K</span> &rarr; <span style="color:#E67E00;font-weight:900;font-size:18px">R$13K</span></div>
+        <div style="font-size:11px;color:#E67E00;margin-top:4px">&#9660; -56,8%</div>
+      </div>
+      <div style="flex:1;min-width:140px;border-radius:10px;border:2px solid #E67E00;padding:16px;text-align:center">
+        <div style="font-size:12px;color:#888;margin-bottom:6px">Nivus 2,50M Cinza</div>
+        <div style="font-size:11px;color:#aaa">Jul 1-5 &rarr; Ago 1-5</div>
+        <div style="font-size:13px;margin-top:4px"><span style="color:#aaa">R$37K</span> &rarr; <span style="color:#E67E00;font-weight:900;font-size:18px">R$21K</span></div>
+        <div style="font-size:11px;color:#E67E00;margin-top:4px">&#9660; -43,2%</div>
+      </div>
+    </div>
+
+    <!-- Produtos em queda detalhados -->
+    <div style="background:#FEE8EA;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#C0001A;margin-bottom:4px">&#128308; Sofás com queda expressiva — verificar imediatamente</div>
+      <div style="font-size:13px;color:#555;margin-bottom:14px">Queda concentrada na linha Veneza + Nivus + Verona 1,50m. Pode ser perda de buybox, estoque zerado ou PADs desativados.</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Veneza 2,40M Grafite USB</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-5834923568-_JM" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700;text-decoration:none">&#128279; MLB5834923568</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jul 1-5: <strong>R$81K</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Ago 1-5: R$38K &nbsp;<span style="font-size:12px">-52,5%</span></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Veneza 2,40M Cinza USB</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-5834728958-_JM" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700;text-decoration:none">&#128279; MLB5834728958</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jul 1-5: <strong>R$70K</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#C0001A">Ago 1-5: R$19K &nbsp;<span style="font-size:12px">-72,4%</span></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Sofá Nivus 2,50M Cinza Molas</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-4040078892-_JM" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700;text-decoration:none">&#128279; MLB4040078892</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jul 1-5: <strong>R$37K</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#E67E00">Ago 1-5: R$21K &nbsp;<span style="font-size:12px">-43,2%</span></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-size:13px;font-weight:700">Cama Box Alpine King 193x203</div>
+            <a href="https://produto.mercadolivre.com.br/MLB-5733471380-_JM" target="_blank" style="font-size:11px;color:#3483FA;font-weight:700;text-decoration:none">&#128279; MLB5733471380</a>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:#888">Jul 1-5: <strong>R$30K</strong></div>
+            <div style="font-size:16px;font-weight:900;color:#E67E00">Ago 1-5: R$13K &nbsp;<span style="font-size:12px">-56,8%</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:#7A0000;font-weight:700">&#128204; Ação urgente: checar estoque, buybox e PADs do Veneza (Grafite + Cinza). A queda nas duas cores simultaneamente sugere problema de visibilidade ou estoque.</div>
+    </div>
+
+    <!-- O que está crescendo -->
+    <div style="background:#E6F7EE;border-radius:10px;padding:16px 20px;margin-bottom:16px">
+      <div style="font-size:15px;font-weight:900;color:#007A3D;margin-bottom:4px">&#9989; O que está crescendo forte — oportunidade de dobrar a aposta</div>
+      <div style="font-size:13px;color:#555;margin-bottom:12px">Esses produtos estão em alta no início de agosto. Vale reforçar PADs e garantir estoque.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Zurique 2,70M Marrom</div>
+          <a href="https://produto.mercadolivre.com.br/MLB-3411759277-_JM" target="_blank" style="font-size:10px;color:#3483FA;text-decoration:none">&#128279; MLB3411759277</a>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+1.343%</div>
+          <div style="font-size:11px;color:#555">Jul: R$5K &rarr; Ago: R$77K</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Colchão Lagras Solteiro</div>
+          <a href="https://produto.mercadolivre.com.br/MLB-4069847141-_JM" target="_blank" style="font-size:10px;color:#3483FA;text-decoration:none">&#128279; MLB4069847141</a>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+505%</div>
+          <div style="font-size:11px;color:#555">Jul: R$5K &rarr; Ago: R$34K</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:#fff;border-radius:8px;padding:12px 14px;text-align:center">
+          <div style="font-size:13px;font-weight:700">Verona USB 2,30M</div>
+          <a href="https://produto.mercadolivre.com.br/MLB-3916492627-_JM" target="_blank" style="font-size:10px;color:#3483FA;text-decoration:none">&#128279; MLB3916492627</a>
+          <div style="font-size:28px;font-weight:900;color:#00A650;margin:6px 0">+773%</div>
+          <div style="font-size:11px;color:#555">Jul: R$2K &rarr; Ago: R$16K</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ações -->
+    <div style="background:#1A1A2E;border-radius:10px;padding:16px 20px;color:#fff">
+      <div style="font-size:15px;font-weight:900;color:#FFE600;margin-bottom:12px">&#9997;&#65039; O que fazer agora — prioridade alta</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:#F23D4F;color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-top:2px">URGENTE</span>
+          <span style="font-size:13px;color:#eee">Verificar <strong style="color:#fff">estoque e buybox do Veneza</strong> (Grafite + Cinza) — queda -62% nas duas cores juntas não é coincidência. Checar se o anúncio está ativo e com estoque disponível.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:#E67E00;color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-top:2px">ALTA</span>
+          <span style="font-size:13px;color:#eee">Reforçar <strong style="color:#fff">PADs no Zurique Marrom</strong> — está bombando (+1.343%) e pode compensar a queda do Veneza se bem investido.</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <span style="background:#3483FA;color:#fff;font-size:10px;font-weight:900;padding:2px 8px;border-radius:10px;white-space:nowrap;margin-top:2px">MÉDIA</span>
+          <span style="font-size:13px;color:#eee">Checar preço do <strong style="color:#fff">Nivus e Verona 1,50M</strong> — ambos caíram 38-43% simultaneamente. Possível perda de buybox para concorrência.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Ago MTD</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th>
+        <th style="text-align:right">NMV Ago MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="text-align:right">MoM vs Jul</th>
+        <th style="text-align:right">SIs MTD</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Visitas 90d</th>
+        <th style="text-align:right">CVR</th>
+        <th>Status / Log.</th>
+        <th style="text-align:right">PADs YTD</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3411759277" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,70M SUEDE VELUT</a><br>
+              <span style="font-size:10px;color:#999">MLB3411759277</span></td>
+          <td style="text-align:right;font-weight:700">R$ 79K</td>
+          <td style="text-align:right">8.2%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 1378.9%</span></td>
+          <td style="text-align:right">41</td>
+          <td style="text-align:right">R$ 1.932,27</td>
+          <td style="text-align:right">16.844</td>
+          <td style="text-align:right">0.2%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 659</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3582221205" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELUT </a><br>
+              <span style="font-size:10px;color:#999">MLB3582221205</span></td>
+          <td style="text-align:right;font-weight:700">R$ 75K</td>
+          <td style="text-align:right">7.8%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 13.0%</span></td>
+          <td style="text-align:right">47</td>
+          <td style="text-align:right">R$ 1.599,00</td>
+          <td style="text-align:right">256.490</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5834923568" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL GRAFITE USB </a><br>
+              <span style="font-size:10px;color:#999">MLB5834923568</span></td>
+          <td style="text-align:right;font-weight:700">R$ 43K</td>
+          <td style="text-align:right">4.5%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 58.1%</span></td>
+          <td style="text-align:right">27</td>
+          <td style="text-align:right">R$ 1.599,00</td>
+          <td style="text-align:right">206.764</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 75K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4202474367" target="_blank">CAMA BOX KING SIZE ALFORD 193X203X66 BEGE C/ MOLAS</a><br>
+              <span style="font-size:10px;color:#999">MLB4202474367</span></td>
+          <td style="text-align:right;font-weight:700">R$ 35K</td>
+          <td style="text-align:right">3.6%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 13.0%</span></td>
+          <td style="text-align:right">19</td>
+          <td style="text-align:right">R$ 1.859,00</td>
+          <td style="text-align:right">94.190</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 11K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4069847141" target="_blank">COLCHÃO SOLTEIRO LAGRAS 88X188X28 AZUL C/ MOLAS EN</a><br>
+              <span style="font-size:10px;color:#999">MLB4069847141</span></td>
+          <td style="text-align:right;font-weight:700">R$ 34K</td>
+          <td style="text-align:right">3.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 357.1%</span></td>
+          <td style="text-align:right">56</td>
+          <td style="text-align:right">R$ 599,00</td>
+          <td style="text-align:right">12.186</td>
+          <td style="text-align:right">0.5%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-2144737084" target="_blank">CONJUNTO CANTO AMSTERDAM MARROM C/ MOLAS RETRÁTIL/</a><br>
+              <span style="font-size:10px;color:#999">MLB2144737084</span></td>
+          <td style="text-align:right;font-weight:700">R$ 33K</td>
+          <td style="text-align:right">3.4%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 30.0%</span></td>
+          <td style="text-align:right">12</td>
+          <td style="text-align:right">R$ 2.724,00</td>
+          <td style="text-align:right">27.067</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 9K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3411748267" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 1,50M V</a><br>
+              <span style="font-size:10px;color:#999">MLB3411748267</span></td>
+          <td style="text-align:right;font-weight:700">R$ 26K</td>
+          <td style="text-align:right">2.7%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 55.8%</span></td>
+          <td style="text-align:right">22</td>
+          <td style="text-align:right">R$ 1.199,00</td>
+          <td style="text-align:right">245.614</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 7K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4188951993" target="_blank">CAMA BOX KING SIZE LAGRAS 193X203X66 AZUL C/ MOLAS</a><br>
+              <span style="font-size:10px;color:#999">MLB4188951993</span></td>
+          <td style="text-align:right;font-weight:700">R$ 26K</td>
+          <td style="text-align:right">2.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 9.7%</span></td>
+          <td style="text-align:right">13</td>
+          <td style="text-align:right">R$ 1.999,00</td>
+          <td style="text-align:right">34.310</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 27K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-2144730655" target="_blank">CONJUNTO CANTO AMSTERDAM CINZA C/ MOLAS RETRÁTIL/R</a><br>
+              <span style="font-size:10px;color:#999">MLB2144730655</span></td>
+          <td style="text-align:right;font-weight:700">R$ 26K</td>
+          <td style="text-align:right">2.7%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 16.7%</span></td>
+          <td style="text-align:right">9</td>
+          <td style="text-align:right">R$ 2.859,00</td>
+          <td style="text-align:right">115.819</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">R$ 39K</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4040027578" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELUT </a><br>
+              <span style="font-size:10px;color:#999">MLB4040027578</span></td>
+          <td style="text-align:right;font-weight:700">R$ 26K</td>
+          <td style="text-align:right">2.6%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 35.6%</span></td>
+          <td style="text-align:right">16</td>
+          <td style="text-align:right">R$ 1.599,00</td>
+          <td style="text-align:right">131.874</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Jul 1-6 vs Ago 1-6)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Jul MTD 1-6</th>
+            <th style="text-align:right">Ago MTD 1-6</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+            <th style="text-align:center">Status</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5834923568" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL GRAFITE US</a><br>
+                  <span style="font-size:10px;color:#999">MLB5834923568</span></td>
+              <td style="text-align:right">R$ 103K</td>
+              <td style="text-align:right">R$ 43K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 58.1%</span></td>
+              <td style="text-align:right">206.764</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5834728958" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL CINZA USB </a><br>
+                  <span style="font-size:10px;color:#999">MLB5834728958</span></td>
+              <td style="text-align:right">R$ 79K</td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 71.7%</span></td>
+              <td style="text-align:right">88.214</td>
+              <td style="text-align:right">0.4%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3411748267" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 1,50M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3411748267</span></td>
+              <td style="text-align:right">R$ 60K</td>
+              <td style="text-align:right">R$ 26K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 55.8%</span></td>
+              <td style="text-align:right">245.614</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4040078892" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS CINZA MOLAS</a><br>
+                  <span style="font-size:10px;color:#999">MLB4040078892</span></td>
+              <td style="text-align:right">R$ 53K</td>
+              <td style="text-align:right">R$ 23K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 56.0%</span></td>
+              <td style="text-align:right">175.408</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5733471380" target="_blank">CONJUNTO CAMA BOX C/ MOLAS ENSACADAS ALPINE KING</a><br>
+                  <span style="font-size:10px;color:#999">MLB5733471380</span></td>
+              <td style="text-align:right">R$ 37K</td>
+              <td style="text-align:right">R$ 15K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 59.7%</span></td>
+              <td style="text-align:right">43.081</td>
+              <td style="text-align:right">0.5%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3421955107" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M ASCARI VELUT MARR</a><br>
+                  <span style="font-size:10px;color:#999">MLB3421955107</span></td>
+              <td style="text-align:right">R$ 36K</td>
+              <td style="text-align:right">R$ 14K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 59.9%</span></td>
+              <td style="text-align:right">24.869</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3901311318" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL VERONA 1,50M SUEDE VELU</a><br>
+                  <span style="font-size:10px;color:#999">MLB3901311318</span></td>
+              <td style="text-align:right">R$ 20K</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.7%</span></td>
+              <td style="text-align:right">33.978</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3901464226" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL KING HOUSE VERONA 2,00M</a><br>
+                  <span style="font-size:10px;color:#999">MLB3901464226</span></td>
+              <td style="text-align:right">R$ 44K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 43.8%</span></td>
+              <td style="text-align:right">191.072</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-6243957790" target="_blank">COLCHÃO C/ MOLAS ENSACADAS TORONTO CASAL 138X188</a><br>
+                  <span style="font-size:10px;color:#999">MLB6243957790</span></td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 73.1%</span></td>
+              <td style="text-align:right">9.883</td>
+              <td style="text-align:right">0.9%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4040027578" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELU</a><br>
+                  <span style="font-size:10px;color:#999">MLB4040027578</span></td>
+              <td style="text-align:right">R$ 40K</td>
+              <td style="text-align:right">R$ 26K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 35.6%</span></td>
+              <td style="text-align:right">131.874</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5834806266" target="_blank">SOFÁ VENEZA 2,40M RETRÁTIL RECLINÁVEL AZUL USB E</a><br>
+                  <span style="font-size:10px;color:#999">MLB5834806266</span></td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 88.9%</span></td>
+              <td style="text-align:right">3.058</td>
+              <td style="text-align:right">0.8%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4897205372" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,30 CINZA MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB4897205372</span></td>
+              <td style="text-align:right">R$ 18K</td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 75.6%</span></td>
+              <td style="text-align:right">7.246</td>
+              <td style="text-align:right">0.6%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4902893856" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL NAIROBI 2,18M BEGE BOUC</a><br>
+                  <span style="font-size:10px;color:#999">MLB4902893856</span></td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:right">R$ 9K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 57.9%</span></td>
+              <td style="text-align:right">57.231</td>
+              <td style="text-align:right">0.1%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3443676317" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,30M NIVUS CINZA MOLAS</a><br>
+                  <span style="font-size:10px;color:#999">MLB3443676317</span></td>
+              <td style="text-align:right">R$ 17K</td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 62.3%</span></td>
+              <td style="text-align:right">65.531</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4098090564" target="_blank">SOFÁ PREMIUM RETRÁTIL RECLINÁVEL VERONA 200CM VE</a><br>
+                  <span style="font-size:10px;color:#999">MLB4098090564</span></td>
+              <td style="text-align:right">R$ 12K</td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 88.8%</span></td>
+              <td style="text-align:right">50.190</td>
+              <td style="text-align:right">0.1%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Jul 1-6 vs Ago 1-6)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Jul MTD 1-6</th>
+            <th style="text-align:right">Ago MTD 1-6</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+            <th style="text-align:center">Status</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3411759277" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,70M SUEDE VEL</a><br>
+                  <span style="font-size:10px;color:#999">MLB3411759277</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 79K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1378.9%</span></td>
+              <td style="text-align:right">16.844</td>
+              <td style="text-align:right">0.5%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4069847141" target="_blank">COLCHÃO SOLTEIRO LAGRAS 88X188X28 AZUL C/ MOLAS </a><br>
+                  <span style="font-size:10px;color:#999">MLB4069847141</span></td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:right">R$ 34K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 357.1%</span></td>
+              <td style="text-align:right">12.186</td>
+              <td style="text-align:right">1.9%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3916492627" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL VERONA USB E PORTA COPO</a><br>
+                  <span style="font-size:10px;color:#999">MLB3916492627</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 773.0%</span></td>
+              <td style="text-align:right">12.238</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3923965208" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL FRANÇA 2,70M VELUT CINZ</a><br>
+                  <span style="font-size:10px;color:#999">MLB3923965208</span></td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:right">R$ 18K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 117.8%</span></td>
+              <td style="text-align:right">3.230</td>
+              <td style="text-align:right">1.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3582221205" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ATENAS 2,30M SUEDE VELU</a><br>
+                  <span style="font-size:10px;color:#999">MLB3582221205</span></td>
+              <td style="text-align:right">R$ 66K</td>
+              <td style="text-align:right">R$ 75K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.0%</span></td>
+              <td style="text-align:right">256.490</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-2144737084" target="_blank">CONJUNTO CANTO AMSTERDAM MARROM C/ MOLAS RETRÁTI</a><br>
+                  <span style="font-size:10px;color:#999">MLB2144737084</span></td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:right">R$ 33K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 30.0%</span></td>
+              <td style="text-align:right">27.067</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3920483311" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL VERONA 1,80M CINZA MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB3920483311</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 8K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 516.9%</span></td>
+              <td style="text-align:right">8.825</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3446514973" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS MARROM MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB3446514973</span></td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 69.5%</span></td>
+              <td style="text-align:right">39.343</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5792403370" target="_blank">CAMA BOX LAGRAS MOLAS ENSACADAS QUEEN 158X198 KI</a><br>
+                  <span style="font-size:10px;color:#999">MLB5792403370</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 208.5%</span></td>
+              <td style="text-align:right">3.844</td>
+              <td style="text-align:right">1.0%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4015833969" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ACONCHEGO 2,30M BOUCLÊ </a><br>
+                  <span style="font-size:10px;color:#999">MLB4015833969</span></td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 64.6%</span></td>
+              <td style="text-align:right">8.728</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4040015594" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 3,00M NIVUS CINZA MOLAS</a><br>
+                  <span style="font-size:10px;color:#999">MLB4040015594</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 100.0%</span></td>
+              <td style="text-align:right">19.852</td>
+              <td style="text-align:right">0.5%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4069918303" target="_blank">KING HOUSE COLCHÃO ESPUMA D33 CHICAGO SOLTEIRO 8</a><br>
+                  <span style="font-size:10px;color:#999">MLB4069918303</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 62.3%</span></td>
+              <td style="text-align:right">7.749</td>
+              <td style="text-align:right">0.7%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4019591735" target="_blank">SOFÁ LIVING MALIBU 2,30M MARROM BOUCLÊ - KING HO</a><br>
+                  <span style="font-size:10px;color:#999">MLB4019591735</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 68.8%</span></td>
+              <td style="text-align:right">5.059</td>
+              <td style="text-align:right">0.7%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4739741762" target="_blank">SOFÁ CAMA SÉRVIA 2,00M BEGE LINHO RÚSTICO - KING</a><br>
+                  <span style="font-size:10px;color:#999">MLB4739741762</span></td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 12.1%</span></td>
+              <td style="text-align:right">90.344</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5511745434" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,10 CINZA MOLA</a><br>
+                  <span style="font-size:10px;color:#999">MLB5511745434</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 149.2%</span></td>
+              <td style="text-align:right">582</td>
+              <td style="text-align:right">1.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th><th style="text-align:right">Vis. D-60-30</th>
+        <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4014949106" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS ROSE MOLAS </a></td>
+          <td style="text-align:right">7.661</td>
+          <td style="text-align:right">256</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 96.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3901900940" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 1,50M</a></td>
+          <td style="text-align:right">12.108</td>
+          <td style="text-align:right">570</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 95.3%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3441607983" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,30M NIVUS BEGE MOLAS </a></td>
+          <td style="text-align:right">5.167</td>
+          <td style="text-align:right">295</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.3%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3414581049" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 3,00M SUEDE VEL</a></td>
+          <td style="text-align:right">3.844</td>
+          <td style="text-align:right">230</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.0%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4040117252" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 2,50M NIVUS AZUL MOLAS </a></td>
+          <td style="text-align:right">8.552</td>
+          <td style="text-align:right">512</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.0%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3437214687" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL 3,00M NIVUS BEGE MOLAS </a></td>
+          <td style="text-align:right">3.537</td>
+          <td style="text-align:right">307</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 91.3%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3901904350" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 3,00M SUEDE VEL</a></td>
+          <td style="text-align:right">2.862</td>
+          <td style="text-align:right">261</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 90.9%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4086312020" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL KING HOUSE VERONA 2,00M</a></td>
+          <td style="text-align:right">21.711</td>
+          <td style="text-align:right">2.124</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 90.2%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3901468322" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ZURIQUE 2,70M SUEDE VEL</a></td>
+          <td style="text-align:right">3.072</td>
+          <td style="text-align:right">350</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 88.6%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3901326254" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL VERONA 1,50M SUEDE VELU</a></td>
+          <td style="text-align:right">13.990</td>
+          <td style="text-align:right">1.859</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 86.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4086388906" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL VERONA 2,30M SUEDE VELU</a></td>
+          <td style="text-align:right">30.929</td>
+          <td style="text-align:right">4.609</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 85.1%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3932877788" target="_blank">COLCHÃO C MOLAS ENSACADAS TORONTO SOLTEIRO 88X18</a></td>
+          <td style="text-align:right">1.079</td>
+          <td style="text-align:right">165</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 84.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4266191909" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL ACONCHEGO 2,50M BOUCLÊ </a></td>
+          <td style="text-align:right">1.460</td>
+          <td style="text-align:right">224</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 84.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3411793341" target="_blank">SOFÁ RETRÁTIL/RECLINÁVEL PATAGÔNIA 3,00M MARROM </a></td>
+          <td style="text-align:right">280</td>
+          <td style="text-align:right">50</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 82.1%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3411759249" target="_blank">SOFÁ RETRÁTIL RECLINÁVEL DAKAR 3,00M SUEDE VELUT</a></td>
+          <td style="text-align:right">1.125</td>
+          <td style="text-align:right">202</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 82.0%</span></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Análise por Subcategoria (AGG3) — Ago MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Subcategoria</th>
+      <th style="text-align:right">GMV MTD</th>
+      <th style="text-align:right">Unidades</th>
+      <th style="text-align:right">Ticket Médio</th>
+      <th style="text-align:right">Share GMV</th>
+      <th style="text-align:right">Share Unid.</th>
+      <th style="text-align:center">YoY GMV</th>
+      <th style="text-align:center">YoY Unid.</th>
+      <th style="text-align:center">YoY Ticket</th>
+    </tr></thead><tbody><tr>
+          <td>Sofás, Poltronas e Acessórios</td>
+          <td style="text-align:right;font-weight:700">R$ 796K</td>
+          <td style="text-align:right">444</td>
+          <td style="text-align:right">R$ 1.792,51</td>
+          <td style="text-align:right">80.7%</td>
+          <td style="text-align:right">70.9%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 0.2%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 11.5%</span></td>
+        </tr><tr>
+          <td>Colchões e Sommiers</td>
+          <td style="text-align:right;font-weight:700">R$ 99K</td>
+          <td style="text-align:right">55</td>
+          <td style="text-align:right">R$ 1.804,35</td>
+          <td style="text-align:right">10.1%</td>
+          <td style="text-align:right">8.8%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr>
+          <td>Colchões</td>
+          <td style="text-align:right;font-weight:700">R$ 85K</td>
+          <td style="text-align:right">123</td>
+          <td style="text-align:right">R$ 689,67</td>
+          <td style="text-align:right">8.6%</td>
+          <td style="text-align:right">19.6%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 49.1%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 78.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.4%</span></td>
+        </tr><tr>
+          <td>Conjuntos de Sala</td>
+          <td style="text-align:right;font-weight:700">R$ 7K</td>
+          <td style="text-align:right">4</td>
+          <td style="text-align:right">R$ 1.634,00</td>
+          <td style="text-align:right">0.7%</td>
+          <td style="text-align:right">0.6%</td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+          <td style="text-align:center"><span style="color:#bbb">"-"</span></td>
+        </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
+      <td>Total</td>
+      <td style="text-align:right">R$ 986K</td>
+      <td style="text-align:right">626</td>
+      <td style="text-align:right">R$ 1.575,85</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 15.5%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 10.8%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 4.2%</span></td>
+    </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens Ativos</div><div class="val">509</div><div class="sub">total no catálogo ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas Ago MTD</div><div class="val">132</div><div class="sub">26% do ativo</div></div>
+      <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
+      <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
+    </div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
+      <b>Sell-through:</b> 25.9% dos itens ativos tiveram venda nos últimos 90 dias.
+      âš ï¸ Oportunidade: ativar ou revisar itens sem venda.
+    </div></div>
+  <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Modal</th>
+        <th style="text-align:right">GMV Ago MTD</th>
+        <th style="text-align:right">Pedidos MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="min-width:100px">Distribuição</th>
+      </tr></thead><tbody><tr>
+          <td><span class="pill pl-r">OTHER</span></td>
+          <td style="text-align:right;font-weight:700">R$ 921K</td>
+          <td style="text-align:right;color:#555">525</td>
+          <td style="text-align:right">93.4%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:93.4%"></div></div></td>
+        </tr><tr>
+          <td><span class="pill pl-y">XD</span></td>
+          <td style="text-align:right;font-weight:700">R$ 66K</td>
+          <td style="text-align:right;color:#555">101</td>
+          <td style="text-align:right">6.6%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:6.6%"></div></div></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">Investimento em PADs (Product Ads)</div><div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap"><div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#3483FA;font-weight:800">PADs YTD</div><div style="font-size:20px;font-weight:900;color:#3483FA">R$ 608K</div></div><div style="background:#E8F8EF;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#00A650;font-weight:800">GMV PADs YTD</div><div style="font-size:20px;font-weight:900;color:#00A650">R$ 9.3M</div></div><div style="background:#FFF9E0;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#E67E00;font-weight:800">ACOS YTD</div><div style="font-size:20px;font-weight:900;color:#E67E00">6.5%</div></div></div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:left;white-space:nowrap">Mes</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Invest. PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">GMV PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ACOS</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Clicks</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ROI</th></tr></thead><tbody><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jan<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 45K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.5M</td><td style="padding:8px 10px;text-align:right;color:#00A650">2.9%</td><td style="padding:8px 10px;text-align:right;color:#555">102,973</td><td style="padding:8px 10px;text-align:right;color:#555">34.2x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Fev<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 37K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 975K</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.8%</td><td style="padding:8px 10px;text-align:right;color:#555">76,341</td><td style="padding:8px 10px;text-align:right;color:#555">26.1x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mar<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 43K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">3.9%</td><td style="padding:8px 10px;text-align:right;color:#555">80,729</td><td style="padding:8px 10px;text-align:right;color:#555">25.5x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Abr<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 43K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 857K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.0%</td><td style="padding:8px 10px;text-align:right;color:#555">64,677</td><td style="padding:8px 10px;text-align:right;color:#555">20.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mai<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 51K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 806K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.3%</td><td style="padding:8px 10px;text-align:right;color:#555">68,624</td><td style="padding:8px 10px;text-align:right;color:#555">16.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jun<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 118K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.6M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.4%</td><td style="padding:8px 10px;text-align:right;color:#555">192,270</td><td style="padding:8px 10px;text-align:right;color:#555">13.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jul<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 57K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.6%</td><td style="padding:8px 10px;text-align:right;color:#555">85,063</td><td style="padding:8px 10px;text-align:right;color:#555">21.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Ago<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 40K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 877K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.6%</td><td style="padding:8px 10px;text-align:right;color:#555">68,006</td><td style="padding:8px 10px;text-align:right;color:#555">21.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Set<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 41K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 984K</td><td style="padding:8px 10px;text-align:right;color:#00A650">4.1%</td><td style="padding:8px 10px;text-align:right;color:#555">63,449</td><td style="padding:8px 10px;text-align:right;color:#555">24.2x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Out<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 41K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 798K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.1%</td><td style="padding:8px 10px;text-align:right;color:#555">59,248</td><td style="padding:8px 10px;text-align:right;color:#555">19.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Nov<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 112K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.7M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.7%</td><td style="padding:8px 10px;text-align:right;color:#555">129,630</td><td style="padding:8px 10px;text-align:right;color:#555">15.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Dez<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 53K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 644K</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.2%</td><td style="padding:8px 10px;text-align:right;color:#555">67,396</td><td style="padding:8px 10px;text-align:right;color:#555">12.1x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jan<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 62K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 754K</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.2%</td><td style="padding:8px 10px;text-align:right;color:#555">88,508</td><td style="padding:8px 10px;text-align:right;color:#555">12.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Fev<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 57K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 804K</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.0%</td><td style="padding:8px 10px;text-align:right;color:#555">97,702</td><td style="padding:8px 10px;text-align:right;color:#555">14.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mar<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 80K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.9%</td><td style="padding:8px 10px;text-align:right;color:#555">132,992</td><td style="padding:8px 10px;text-align:right;color:#555">12.6x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Abr<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 61K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 892K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.9%</td><td style="padding:8px 10px;text-align:right;color:#555">91,937</td><td style="padding:8px 10px;text-align:right;color:#555">14.6x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mai<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 81K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.5%</td><td style="padding:8px 10px;text-align:right;color:#555">116,269</td><td style="padding:8px 10px;text-align:right;color:#555">15.4x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jun<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 115K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.4%</td><td style="padding:8px 10px;text-align:right;color:#555">172,159</td><td style="padding:8px 10px;text-align:right;color:#555">15.6x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jul<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 134K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.4M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.5%</td><td style="padding:8px 10px;text-align:right;color:#555">272,058</td><td style="padding:8px 10px;text-align:right;color:#555">18.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Ago<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 18K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 359K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.1%</td><td style="padding:8px 10px;text-align:right;color:#555">55,086</td><td style="padding:8px 10px;text-align:right;color:#555">19.7x</td></tr></tbody></table></div><div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_MKP_COMMERCE_ADS_GENERAL (REVENUES) - mesma base do dashboard</div></div>
+  <div class="sec"><div class="sec-ttl"> 📈 Tendências de Mercado 2026 — Oportunidades para este Seller</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">🛏️ Cama Box & Conjuntos <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Cama Box · Box Baú · Pillow Top · Molas Ensacadas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Box Baú em alta: armazenamento integrado viraliza no Pinterest 2026</li><li>Wellness do sono: kits colchão + base ganham preferência por conveniência</li><li>Pillow Top e molas ensacadas em ascensão como upgrade de conforto</li><li>Consumidor migra de box simples para box premium com armazenamento</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><span class="tend-item-name">CAMA BOX KING SIZE ALFORD 193X203X66 B</span><span class="tend-item-val">R$ 35K</span></div><div class="tend-item star"><span class="tend-item-name">COLCHÃO SOLTEIRO LAGRAS 88X188X28 AZUL</span><span class="tend-item-val">R$ 34K</span></div><div class="tend-item star"><span class="tend-item-name">CAMA BOX KING SIZE LAGRAS 193X203X66 A</span><span class="tend-item-val">R$ 26K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">COLCHÃO SOLTEIRO LAGRAS 88X188X28 AZ</span><span class="tend-item-mom" style="color:#00A650">▲+357%</span></div><div class="tend-item up"><span class="tend-item-name">CAMA BOX LAGRAS MOLAS ENSACADAS QUEE</span><span class="tend-item-mom" style="color:#00A650">▲+208%</span></div><div class="tend-item up"><span class="tend-item-name">KING HOUSE COLCHÃO SOLTEIRO LAGRAS 9</span><span class="tend-item-mom" style="color:#00A650">▲+200%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CAMA BOX ALFORD MOLAS ENSACADAS KING</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CAMA BOX KING SIZE ALFORD 193X203X66</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO KING SIZE ALFORD 193X203X28 </span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp b">💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen</div></div></div></div></div>
+</div>
+</body></html>
