@@ -1870,7 +1870,7 @@ function buildCatNMV(){
   if(!bEl)return;
   var d2List=cats.slice().sort(function(a,b){return b.gmv-a.gmv;}).slice(0,15);
   var d2Total=d1Total;
-  bEl.innerHTML='<div style="font-weight:700;font-size:12px;color:#333;margin-bottom:10px">Breakdown D2</div>'
+  bEl.innerHTML='<div style="font-weight:700;font-size:12px;color:#333;margin-bottom:10px">D2</div>'
     +d2List.map(function(c){
       var pct=d2Total>0?(c.gmv/d2Total*100).toFixed(1):0;
       var barW=Math.round(pct/d2List[0].gmv*d2Total/d2Total*100*d2Total/d2List[0].gmv)+'%';
@@ -2032,17 +2032,17 @@ function buildVGUnifiedCards(){
   var uHtml='';
   GRUPOS.forEach(function(g){
     var cor=GRUPO_COLOR[g]||C_BLUE,ytd=ytdReal(g),ymf=ytdMF(g),ymd=ytdMD(g);
-    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd),perfColor=heatBg(pFin);
+    var pFin=pctNum(ytd,ymf),pDes=pctNum(ytd,ymd),perfColor=heatBg(pDes);
     var curGMV=((REAL_MENSAL[g]||{})[curKey]||0),prevGMV=prevKey?((REAL_MENSAL[g]||{})[prevKey]||0):0;
     var mom=prevGMV>0?((curGMV/prevGMV-1)*100):null;
     var g25v=REAL_2025[g]||{},gmv25=PERIODO.reduce(function(s,k){return s+(g25v[k]?g25v[k].gmv:0);},0);
     var yoy=gmv25>0?((ytd/gmv25-1)*100):null;
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
-    uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
-    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">META FIN.</div></div></div>';
-    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Op:'+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
-    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Op.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
-    uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
+    uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pDes.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pDes,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pDes.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">DESAFIO</div></div></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div><div class="u-meta-txt" style="color:#aaa">Meta Op:'+fmtMeta(ymf)+'</div></div></div>';
+    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pDes.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-brow"><span class="u-blbl" style="color:#aaa">Op.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+heatBg(pFin)+';opacity:.5"></div></div><span class="u-bval" style="color:#aaa">'+pFin.toFixed(1)+'%</span></div></div>';
     uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
   });
   var el=document.getElementById('vg-unified-cards');
