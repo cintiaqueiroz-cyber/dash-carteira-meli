@@ -79,10 +79,10 @@ function quarterCardHtml(grupo,q){
   var fillCls=pFin>=100?'pf-green':pFin>=80?'pf-yellow':'pf-red';
   var h='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
   h+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div>';
-  h+='<div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
+  h+='<div class="quarter-meta-line">Meta Op:'+fmt(qMF)+'</div>';
   h+='<div class="quarter-meta-line" style="color:#888;font-size:10px">Meta Des: '+fmt(qMD)+'</div>';
   if(qR>0){
-    h+='<div style="font-size:11px;margin-bottom:5px">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div>';
+    h+='<div style="font-size:11px;margin-bottom:5px">'+pillHtml(qR,qMF)+' Op &nbsp;'+pillHtml(qR,qMD)+' Des</div>';
     h+='<div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';
   }
   h+='</div>';
@@ -320,17 +320,17 @@ function showMes(grupo,prefix,mk,btnEl){
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'MoM',val:momStr,sub:momSub,cls:momCls},
     {label:'YoY vs 2025',val:yoyStr,sub:yoySub,cls:yoyCls},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
-    {label:'Gap Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
+    {label:'Gap Meta Op.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
   ]);
   destroyChart(prefix+'-mes');
   var canEl=document.getElementById(prefix+'-mes-canvas');
   if(!canEl)return;
   chartInstances[prefix+'-mes']=new Chart(canEl.getContext('2d'),{
     type:'bar',
-    data:{labels:['Realizado','Proj.','Meta Fin.','Meta Des.'],
+    data:{labels:['Realizado','Proj.','Meta Op.','Meta Des.'],
           datasets:[{data:[rv,disp,mf,md],backgroundColor:[C_BLUE,'rgba(52,131,250,.4)',C_YELLOW,C_GREEN],borderRadius:6}]},
     options:{indexAxis:'y',responsive:true,animation:false,
              plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return fmt(c.raw);}}}},
@@ -350,7 +350,7 @@ function buildGrupo(g,px){
   var elKpi=document.getElementById(px+'-kpi-row');
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:'NMV',val:fmt(nmvRel),sub:PERIODO.map(function(k){return MESES_PT_CURTO[k];}).join('-'),cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Invest. Total',val:fmt(inv),sub:'ADS+Cupons+Rebates',cls:'purple'},
@@ -646,7 +646,7 @@ function buildBarChart(g,px){
     type:'bar',
     data:{labels:labels,datasets:[
       {label:'Realizado',data:mks.map(function(k){return rm[k]||0;}),backgroundColor:C_BLUE,borderRadius:4,order:2},
-      {label:'Meta Fin.',data:mks.map(function(k){return (META_FIN[g]||{})[k]||0;}),type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:0.3,order:1},
+      {label:'Meta Op.',data:mks.map(function(k){return (META_FIN[g]||{})[k]||0;}),type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:0.3,order:1},
       {label:'Meta Des.',data:mks.map(function(k){return (META_DES[g]||{})[k]||0;}),type:'line',borderColor:C_GREEN,backgroundColor:'transparent',borderWidth:2,borderDash:[5,3],pointRadius:3,tension:0.3,order:1}
     ]},
     options:{responsive:true,animation:false,layout:{padding:{top:22}},
@@ -688,9 +688,9 @@ function buildActions(g,px){
   var acts=[];
 
   // 1. Meta
-  if(pFin<80)acts.push({icon:'📉',title:'Meta Fin. em risco ('+pFin.toFixed(1)+'%)',
+  if(pFin<80)acts.push({icon:'📉',title:'Meta Op. em risco ('+pFin.toFixed(1)+'%)',
     body:'NMV abaixo de 80% da meta (R$'+fmtMeta(mf)+'). Acionar campanhas PRE-ACORDO e SAD para recuperar ritmo.',color:'#F23D4F'});
-  else if(pFin>=100)acts.push({icon:'✅',title:'Meta Financeira atingida!',
+  else if(pFin>=100)acts.push({icon:'✅',title:'Meta Operacional atingida!',
     body:'Continue o ritmo e expanda via novos itens para bater Meta Desafio ('+pDes.toFixed(1)+'%).',color:'#00A650'});
 
   // 2. Itens em queda (top 3 em queda de MoM)
@@ -815,7 +815,7 @@ function buildInsights(g,px){
   }).length;
 
   var ins=[
-    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmtMeta(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
+    {t:pFin.toFixed(1)+'% da Meta Op. ('+fmtMeta(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
     {t:pDes.toFixed(1)+'% da Meta Desafio',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Full SC: '+pFF.toFixed(1)+'% — '+(!pFF?'sem logística flex':'ok'),c:pFF>=40?'g':pFF>=15?'y':'r'}
   ];
@@ -1760,7 +1760,7 @@ function buildHighsLows(){
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
       +'<span style="background:#E6F7EE;color:#00A650;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▲ HIGHS</span>'
     +'</div>'
-    +hlRow('🏆','#FFF9E6',bestFin.g,'Melhor atingimento',bestFin.pFin.toFixed(1)+'% Meta Fin','#00A650')
+    +hlRow('🏆','#FFF9E6',bestFin.g,'Melhor atingimento',bestFin.pFin.toFixed(1)+'% Meta Op','#00A650')
     +hlRow('🛒','#E6F0FF',bestBPC.g,'Melhor BPC',bestBPC.bpc.toFixed(1)+'% buybox','#00A650')
     +hlRow('🚀','#FFF0E6',bestFF.g,'Maior Fulfillment',bestFF.pFF.toFixed(1)+'% FF','#00A650')
     +(bestYoY?hlRow('📊','#E6F7EE',bestYoY.g,'Maior crescimento YoY',(bestYoY.yoy>=0?'+':'')+bestYoY.yoy.toFixed(1)+'% vs 2025','#00A650'):'')
@@ -1771,7 +1771,7 @@ function buildHighsLows(){
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
       +'<span style="background:#FDECEA;color:#F23D4F;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▼ LOWS</span>'
     +'</div>'
-    +hlRow('📉','#FDECEA',worstFin.g,'Menor atingimento',worstFin.pFin.toFixed(1)+'% Meta Fin','#F23D4F')
+    +hlRow('📉','#FDECEA',worstFin.g,'Menor atingimento',worstFin.pFin.toFixed(1)+'% Meta Op','#F23D4F')
     +hlRow('🛒','#FFF0F0',worstBPC.g,'BPC mais cr\u00edtico',worstBPC.bpc.toFixed(1)+'% buybox','#F23D4F')
     +hlRow('🚛','#FFF3E0',worstFF.g,'Menor Fulfillment',worstFF.pFF.toFixed(1)+'% FF','#FF7A00')
     +(worstMoM?hlRow('📋','#FFF5F5',worstMoM.g,'Maior queda MoM',(worstMoM.mom>=0?'+':'')+worstMoM.mom.toFixed(1)+'% vs m\u00eas anterior','#F23D4F'):'')
@@ -1801,8 +1801,8 @@ function buildHighsLows(){
       +'<span style="background:#DDEEFF;color:#3483FA;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">💡 INSIGHTS</span>'
     +'</div>'
     +insRow('💡',above100.length>0
-      ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Financeira YTD.'
-      :'Nenhum grupo atingiu 100% da Meta Financeira ainda — aten\u00e7\u00e3o no ritmo.')
+      ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Operacional YTD.'
+      :'Nenhum grupo atingiu 100% da Meta Operacional ainda — aten\u00e7\u00e3o no ritmo.')
     +(below80.length>0?insRow('⚠️','<strong>'+below80.length+' grupo(s)</strong> abaixo de 80% da meta: '+below80.map(function(s){return s.g+' ('+s.pFin.toFixed(0)+'%)';}).join(', ')+'.'):'')
     +insRow('📈','BPC m\u00e9dio da carteira: <strong>'+avgBPC.toFixed(1)+'%</strong>. '+(avgBPC<80?'Abaixo da refer\u00eancia de 80% \u2014 oportunidade de recupera\u00e7\u00e3o de GMV.':'Dentro da zona de conforto.'))
     +(yoyCart!==null?insRow('📉','Carteira cresceu <strong style="color:'+(yoyCart>=0?'#00A650':'#F23D4F')+'">'+(yoyCart>=0?'+':'')+yoyCart.toFixed(1)+'%</strong> vs mesmo per\u00edodo de 2025.'):'')
@@ -2040,8 +2040,8 @@ function buildVGUnifiedCards(){
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
     uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">META FIN.</div></div></div>';
-    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
-    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Op:'+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
+    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Op.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
     uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
   });
@@ -2082,13 +2082,13 @@ function buildVGLineChart(){
       pointBackgroundColor:lColors[gi%lColors.length],tension:0.3,spanGaps:false,order:1});
   });
 
-  // ÔöÇÔöÇ Meta Financeira Total: linha cinza tracejada
+  // ÔöÇÔöÇ Meta Operacional Total: linha cinza tracejada
   var cumMF=[],cumMv=0;
   MESES_KEYS.forEach(function(mk){
     cumMv+=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
     cumMF.push(cumMv);
   });
-  ds.push({label:'Meta Financeira Total',data:cumMF,borderColor:'#CCCCCC',backgroundColor:'transparent',
+  ds.push({label:'Meta Operacional Total',data:cumMF,borderColor:'#CCCCCC',backgroundColor:'transparent',
     borderDash:[8,4],borderWidth:2,pointRadius:0,tension:0,order:2});
 
   destroyChart('vg-line');
@@ -2249,11 +2249,11 @@ function showVGMes(mk,btnEl){
   document.getElementById('vg-mes-kpi').innerHTML=kpiHtml([
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' dias)':' \u2014 Fechado'),
      val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs Total',        val:fmtN(totalSI),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'Gap Meta Fin.',    val:fmt(totalDisp-totalMF),
+    {label:'Gap Meta Op.',    val:fmt(totalDisp-totalMF),
      sub:totalDisp>=totalMF?'Acima da meta':'Faltam '+fmt(totalMF-totalDisp),
      cls:totalDisp>=totalMF?'green':'red'}
   ]);
@@ -2297,7 +2297,7 @@ function showVGMes(mk,btnEl){
     chartInstances['vg-mes']=new Chart(ctx,{type:'bar',
       data:{labels:GRUPOS.map(function(g){return g.length>12?g.substring(0,12)+'...':g;}),datasets:[
         {label:'Realizado',data:realArr,backgroundColor:C_BLUE,borderRadius:4},
-        {label:'Meta Fin.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4},
+        {label:'Meta Op.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4},
         {label:'Meta Desafio',data:mdArr,backgroundColor:'rgba(0,166,80,.75)',borderRadius:4}
       ]},options:{responsive:true,animation:false,
         plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:16,font:{size:11}}},
@@ -2332,7 +2332,7 @@ function buildVGQuarters(){
     card+='<span style="background:'+sBg+';color:'+sColor+';font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px">'+sLabel+'</span>';
     card+='</div>';
     card+='<div style="font-size:22px;font-weight:900;color:'+mainColor+';letter-spacing:-.5px;margin-bottom:4px">'+(qR>0?fmt(qR):'-')+'</div>';
-    card+='<div style="font-size:11px;color:#888;margin-bottom:2px">Meta Fin: <strong style="color:#555">'+fmt(qMF)+'</strong></div>';
+    card+='<div style="font-size:11px;color:#888;margin-bottom:2px">Meta Op:<strong style="color:#555">'+fmt(qMF)+'</strong></div>';
     card+='<div style="font-size:11px;color:#888;margin-bottom:10px">Meta Des: <strong style="color:#555">'+fmt(qMD)+'</strong></div>';
     if(qR>0){
       card+='<div style="display:flex;gap:6px;margin-bottom:8px">';
@@ -2425,8 +2425,8 @@ function buildVGScorecard(){
 
   var html = '<div class="scorecard-grid">'
     // Row 1
-    +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Fin.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
-    +sc('% META FINANCEIRA',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
+    +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Op.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
+    +sc('% META OPERACIONAL',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
     +sc('SIS YTD',            fmtN(ytdSIv),                 'Unidades vendidas',                                       'sc-blue')
     +sc('NASP (TICKET M\u00c9DIO)', 'R$ '+Math.round(asp).toLocaleString('pt-BR'), 'GMV \u00f7 SIs',                   'sc-blue')
     +sc('INVESTIMENTO TOTAL', fmt(ytdInvT),                  'Inv/GMV: '+pInv.toFixed(2)+'%',                          'sc-blue')
@@ -2518,7 +2518,7 @@ function buildVGInsights(){
   var best=GRUPOS.reduce(function(b,g){return pctNum(ytdReal(g),ytdMF(g))>pctNum(ytdReal(b),ytdMF(b))?g:b;},GRUPOS[0]);
   var worst=GRUPOS.reduce(function(b,g){return pctNum(ytdReal(g),ytdMF(g))<pctNum(ytdReal(b),ytdMF(b))?g:b;},GRUPOS[0]);
   var ins=[
-    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmt(tMF)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
+    {t:pFin.toFixed(1)+'% da Meta Op. ('+fmt(tMF)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
     {t:pDes.toFixed(1)+'% da Meta Desafio ('+fmt(tMD)+')',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Melhor: '+best+' ('+pctNum(ytdReal(best),ytdMF(best)).toFixed(1)+'%)',c:'g'},
     {t:'Atenção: '+worst+' ('+pctNum(ytdReal(worst),ytdMF(worst)).toFixed(1)+'%)',c:'r'}
@@ -2539,7 +2539,7 @@ function buildCorpAcionaveis(){
       title:'BPC cr\u00edtico em '+g+'('+pBPC.toFixed(0)+'%)',
       actions:['Revisar precifica\u00e7\u00e3o dos top 20 itens por GMV sem buybox em cada grupo','Ativar Pre\u00e7o Competitivo Autom\u00e1tico nos itens eleg\u00edveis','Meta semanal: elevar BPC acima de 70% em 2 semanas']});
     if(pFin<80)points.push({pri:'ALTA',border:'#F23D4F',badgeBg:'#FDECEA',badgeColor:'#F23D4F',icon:'📉',
-      title:'Acelerar GMV em: '+g+' ('+pFin.toFixed(0)+'% Meta Fin.)',
+      title:'Acelerar GMV em: '+g+' ('+pFin.toFixed(0)+'% Meta Op.)',
       actions:['Acionar cupons estrat\u00e9gicos nos itens de maior volume para impulsionar convers\u00e3o','Ampliar cat\u00e1logo nos dom\u00ednios de melhor ticket m\u00e9dio','Revisar forecast e replanejar calend\u00e1rio de a\u00e7\u00f5es t\u00e1ticas do quarter']});
     if(pFF<70)points.push({pri:'M\u00c9DIA',border:'#FFB900',badgeBg:'#FFF3CD',badgeColor:'#B07A00',icon:'🚗',
       title:'Fulfillment abaixo de 80%: '+g+'('+pFF.toFixed(0)+'%)',
@@ -2953,30 +2953,91 @@ function buildVisTopCards(items, containerId){
 }
 
 function buildVisCvrOppTable(items, containerId){
-  // Layout Aline: tabela com #, Item ID, Item, Seller, Grupo, D1, Visitas, Vendas, CVR, NMV + seção oportunidades
   var el=document.getElementById(containerId);
   if(!el||!items||!items.length)return;
-  // Filtrar por PERIODO
-  // Usa LIVELISTING como fonte principal quando disponível
   var srcOpp=items.length?items:(typeof LIVELISTING!=='undefined'?LIVELISTING:[]);
+  var visD1=typeof VIS_D1!=='undefined'?VIS_D1:{};
+
+  // ── Top Ofensores em Queda de Visitas (MTD atual vs MTD mês anterior) ─
+  // Agrupa vis_items por item_id por month_key para calcular variação
+  var allVisItems=(typeof VIS_ITEMS!=='undefined'?VIS_ITEMS:[]).concat(typeof LIVELISTING!=='undefined'?LIVELISTING:[]);
+  var byItem={};
+  allVisItems.forEach(function(it){
+    var id=it.mlb_id||it.item_id;
+    if(!id)return;
+    var mk=it.month_key||'';
+    if(!byItem[id])byItem[id]={title:it.title||it.nm||'',grupo:it.grupo||it.g||'',seller:it.seller||'',mlb_id:it.mlb_id||'',months:{}};
+    byItem[id].months[mk]=(byItem[id].months[mk]||0)+(it.visits||0);
+    if(it.title||it.nm)byItem[id].title=it.title||it.nm;
+  });
+  // Meses: mês atual e anterior
+  var curMK=MESES_DONE.length?MESES_DONE[MESES_DONE.length-1]:'';
+  var prevIdx=MESES_DONE.indexOf(curMK)-1;
+  var prevMK=prevIdx>=0?MESES_DONE[prevIdx]:'';
+  var ofensores=[];
+  if(curMK&&prevMK){
+    Object.keys(byItem).forEach(function(id){
+      var it=byItem[id];
+      var vCur=it.months[curMK]||0;
+      var vPrev=it.months[prevMK]||0;
+      if(vPrev>500&&vCur<vPrev){
+        var delta=vCur-vPrev;
+        var pct=vPrev>0?delta/vPrev*100:0;
+        ofensores.push({mlb_id:it.mlb_id,title:it.title,grupo:it.grupo,seller:it.seller,vCur:vCur,vPrev:vPrev,delta:delta,pct:pct});
+      }
+    });
+    ofensores.sort(function(a,b){return a.delta-b.delta;});
+    ofensores=ofensores.slice(0,15);
+  }
+
+  var thS=function(t,al){return '<th style="padding:9px 10px;font-size:10px;font-weight:700;color:#1A1A1A;background:#FFE600;white-space:nowrap;text-align:'+(al||'right')+'">'+t+'</th>';};
+
+  // ── Top Ofensores HTML ─────────────────────────────────────────────────
+  var ofHtml='';
+  if(ofensores.length){
+    var PREV_LBL=MESES_PT_CURTO[MESES_KEYS[MESES_KEYS.indexOf(prevMK)]]||prevMK;
+    var CUR_LBL=MESES_PT_CURTO[MESES_KEYS[MESES_KEYS.indexOf(curMK)]]||curMK;
+    var hdrOf='<thead><tr>'+thS('#','center')+thS('Item','left')+thS('Grupo','left')+thS(PREV_LBL+' Vis.')+thS(CUR_LBL+' Vis.')+thS('Δ Vis.')+thS('Δ %')+'</tr></thead>';
+    var bdyOf='<tbody>'+ofensores.map(function(it,i){
+      var href='https://www.mercadolivre.com.br/p/'+it.mlb_id;
+      var cor=GRUPO_COLOR[it.grupo||'']||'#3483FA';
+      var nm=(it.title||'').substring(0,45)+((it.title||'').length>45?'...':'');
+      var pctCol=it.pct<-30?'#F23D4F':it.pct<-15?'#FFB900':'#888';
+      return '<tr style="background:'+(i%2===0?'#fff':'#FAFAFA')+';border-bottom:1px solid #F0F0F0">'
+        +'<td style="padding:8px 10px;text-align:center;font-size:11px;font-weight:700;color:#F23D4F">'+(i+1)+'</td>'
+        +'<td style="padding:8px 10px;max-width:260px"><a href="'+href+'" target="_blank" style="color:#1A1A1A;text-decoration:none;font-size:11px;font-weight:600">'+nm+'</a></td>'
+        +'<td style="padding:8px 8px"><span style="background:'+cor+'22;color:'+cor+';font-size:9px;font-weight:800;padding:2px 6px;border-radius:8px">'+it.grupo+'</span></td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:11px;color:#888">'+Math.round(it.vPrev).toLocaleString('pt-BR')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:11px;font-weight:700">'+Math.round(it.vCur).toLocaleString('pt-BR')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:11px;font-weight:700;color:#F23D4F">'+Math.round(it.delta).toLocaleString('pt-BR')+'</td>'
+        +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:800;color:'+pctCol+'">'+it.pct.toFixed(1)+'%</td>'
+        +'</tr>';
+    }).join('')+'</tbody>';
+    ofHtml='<div style="margin-bottom:28px">'
+      +'<div style="font-size:13px;font-weight:700;color:#222;margin-bottom:10px;border-bottom:3px solid #F23D4F;padding-bottom:6px">📉 Top Ofensores — Queda de Visitas MTD ('+CUR_LBL+' vs '+PREV_LBL+')</div>'
+      +'<div style="overflow-x:auto;border-radius:8px;border:1px solid #E8E8E8"><table style="width:100%;border-collapse:collapse;font-size:11px">'+hdrOf+bdyOf+'</table></div>'
+      +'</div>';
+  }
+
+  // ── Tabela completa ────────────────────────────────────────────────────
   var sorted=srcOpp.slice().sort(function(a,b){return b.visits-a.visits;}).slice(0,100);
-  // Tabela completa
   var th=function(t,al){return '<th style="padding:9px 10px;font-size:10px;font-weight:700;color:#1A1A1A;background:#FFE600;white-space:nowrap;text-align:'+(al||'right')+'">'+t+'</th>';};
-  var hdr='<thead><tr>'+th('#','center')+th('Item ID','left')+th('Item','left')+th('Seller','left')+th('Grupo','left')+th('D1','left')+th('Visitas')+th('Vendas')+th('CVR')+th('NMV')+'</tr></thead>';
+  var hdr='<thead><tr>'+th('#','center')+th('Item ID','left')+th('Item','left')+th('Grupo','left')+th('D1 Vis.')+th('Visitas MTD')+th('Vendas')+th('CVR')+th('NMV')+'</tr></thead>';
   var bdy='<tbody>'+sorted.map(function(it,i){
     var href=mlLink(it);
     var cvrColor=it.cvr>=3?'#00A650':it.cvr>=1?'#FFB900':'#F23D4F';
     var cor=GRUPO_COLOR[it.grupo||'']||'#3483FA';
     var nm=(it.title||it.nm||'').substring(0,40)+((it.title||it.nm||'').length>40?'...':'');
     var vis=Math.round(it.visits||0).toLocaleString('pt-BR');
+    var d1v=visD1[it.mlb_id||''];
+    var d1Html=d1v>0?'<span style="font-size:11px;font-weight:700">'+Math.round(d1v).toLocaleString('pt-BR')+'</span>':'<span style="color:#ccc">—</span>';
     var rowBg=i%2===0?'#fff':'#FAFAFA';
     return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0">'
       +'<td style="padding:8px 10px;text-align:center;font-size:11px;font-weight:700;color:#3483FA">'+(i+1)+'</td>'
       +'<td style="padding:8px 10px"><a href="'+href+'" target="_blank" style="color:#3483FA;font-size:10px;font-weight:600;text-decoration:none">'+((it.mlb_id||''))+'</a></td>'
       +'<td style="padding:8px 10px;font-size:11px;font-weight:600;color:#1A1A1A;max-width:200px">'+nm+'</td>'
-      +'<td style="padding:8px 10px;font-size:10px;color:#555">'+((it.seller||'').substring(0,18))+'</td>'
       +'<td style="padding:8px 8px"><span style="background:'+cor+'22;color:'+cor+';font-size:9px;font-weight:800;padding:2px 6px;border-radius:8px">'+((it.grupo||''))+'</span></td>'
-      +'<td style="padding:8px 10px;font-size:10px;color:#888">'+(it.domain||'').split(' ')[0]+'</td>'
+      +'<td style="padding:8px 10px;text-align:right">'+d1Html+'</td>'
       +'<td style="padding:8px 10px;text-align:right;font-size:11px;font-weight:700">'+vis+'</td>'
       +'<td style="padding:8px 10px;text-align:right;font-size:11px;color:#555">'+Math.round(it.si||0).toLocaleString('pt-BR')+'</td>'
       +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:800;color:'+cvrColor+'">'+it.cvr.toFixed(1)+'%</td>'
@@ -2985,31 +3046,7 @@ function buildVisCvrOppTable(items, containerId){
   }).join('')+'</tbody>';
   var tbl='<div style="overflow-x:auto;border-radius:8px;border:1px solid #E8E8E8"><table style="width:100%;border-collapse:collapse;font-size:11px">'+hdr+bdy+'</table></div>';
 
-  // Seção oportunidades (visitas altas, CVR baixo)
-  var opp=srcOpp.filter(function(it){return it.visits>=1000&&it.cvr<3;})
-    .sort(function(a,b){return (b.visits*(3-b.cvr))-(a.visits*(3-a.cvr));}).slice(0,20);
-  var oppHtml='';
-  if(opp.length){
-    var thO=function(t,al){return '<th style="padding:8px 10px;font-size:10px;font-weight:700;color:#1A1A1A;background:#FFF3CD;text-align:'+(al||'right')+'">'+t+'</th>';};
-    var hdrO='<thead><tr>'+thO('#','center')+thO('Item','left')+thO('Grupo','left')+thO('Visitas')+thO('CVR')+thO('NMV')+'</tr></thead>';
-    var bdyO='<tbody>'+opp.map(function(it,i){
-      var href=mlLink(it);
-      var cvrC=it.cvr>=3?'#00A650':it.cvr>=1?'#FFB900':'#F23D4F';
-      var rowBg=i%2===0?'#fff':'#FAFAFA';
-      var nm=(it.title||it.nm||'').substring(0,50)+((it.title||it.nm||'').length>50?'...':'');
-      return '<tr style="background:'+rowBg+';border-bottom:1px solid #F0F0F0">'
-        +'<td style="padding:8px 10px;text-align:center;font-size:11px;font-weight:700;color:#3483FA">'+(i+1)+'</td>'
-        +'<td style="padding:8px 10px;max-width:260px"><a href="'+href+'" target="_blank" style="color:#1A1A1A;text-decoration:none;font-size:11px;font-weight:600">'+nm+'</a></td>'
-        +'<td style="padding:8px 10px;font-size:10px;color:#555">'+((it.grupo||''))+'</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:11px;font-weight:700">'+Math.round(it.visits||0).toLocaleString('pt-BR')+'</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:12px;font-weight:800;color:'+cvrC+'">'+it.cvr.toFixed(1)+'%</td>'
-        +'<td style="padding:8px 10px;text-align:right;font-size:11px">'+fmt(it.gmv)+'</td>'
-        +'</tr>';
-    }).join('')+'</tbody>';
-    oppHtml='<div style="margin-top:24px"><div style="font-size:13px;font-weight:700;color:#222;margin-bottom:10px;border-bottom:3px solid #FFE600;padding-bottom:6px">Maior Oportunidade de CVR (visitas altas, CVR baixo)</div>'
-      +'<div style="overflow-x:auto;border-radius:8px;border:1px solid #E8E8E8"><table style="width:100%;border-collapse:collapse;font-size:11px">'+hdrO+bdyO+'</table></div></div>';
-  }
-  el.innerHTML=tbl+oppHtml;
+  el.innerHTML=ofHtml+tbl;
 }
 
 function buildVisitasConversao(){
@@ -3944,7 +3981,7 @@ function buildVGAtingimento(){
         datalabels:{anchor:'end',align:'end',offset:2,font:{size:13,weight:'900'},
           color:function(ctx){return pFinArr[ctx.dataIndex]>=105?'#00A650':pFinArr[ctx.dataIndex]>=80?'#B8860B':'#F23D4F';},
           formatter:function(v,ctx){var s=pFinArr[ctx.dataIndex].toFixed(0)+'%';return ctx.dataIndex===MESES_DONE.length-1?s+' (Proj.)':s;}}},
-      {label:'Meta Fin.',data:mfArr,type:'line',borderColor:'rgba(52,131,250,0.6)',borderWidth:2,borderDash:[6,4],pointRadius:0,backgroundColor:'transparent',order:1,
+      {label:'Meta Op.',data:mfArr,type:'line',borderColor:'rgba(52,131,250,0.6)',borderWidth:2,borderDash:[6,4],pointRadius:0,backgroundColor:'transparent',order:1,
         datalabels:{display:false}},
       {label:'MoM %',data:momArr,type:'line',borderColor:'#3483FA',backgroundColor:'transparent',pointBackgroundColor:'#3483FA',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:6,borderWidth:2,tension:0.3,yAxisID:'y2',spanGaps:false,order:0,
         datalabels:{anchor:'top',align:'top',offset:6,font:{size:11,weight:'bold'},color:'#3483FA',
@@ -4207,7 +4244,7 @@ function buildSellersConsolidated(){
 
   // \u2500\u2500 TABLE 1: Performance por Grupo \u2500\u2500
   var perfRows=[].concat(rows).sort(function(a,b){return a.g.localeCompare(b.g);});
-  var hdr1='<thead><tr>'+th('Nome')+th('Rep','center','50px')+th('NMV','right')+th('SI','right')+th('Invest','right')+th('Inv/NMV','right')+th('Meta Fin','right')+th('% Fin','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
+  var hdr1='<thead><tr>'+th('Nome')+th('Rep','center','50px')+th('NMV','right')+th('SI','right')+th('Invest','right')+th('Inv/NMV','right')+th('Meta Op','right')+th('% Op','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
   var bdy1='<tbody>'+perfRows.map(function(r,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var ac=atingColor(r.ating);
@@ -4229,7 +4266,7 @@ function buildSellersConsolidated(){
 
   // \u2500\u2500 TABLE 2: Ranking de Grupos (MoM / YoY) \u2500\u2500
   var rankRows=[].concat(rows).sort(function(a,b){return b.nmv-a.nmv;});
-  var hdr2='<thead><tr>'+th('#','center','32px')+th('Grupo')+th('NMV','right')+th('MoM','center')+th('YoY','center')+th('Meta Fin','right')+th('% Fin','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
+  var hdr2='<thead><tr>'+th('#','center','32px')+th('Grupo')+th('NMV','right')+th('MoM','center')+th('YoY','center')+th('Meta Op','right')+th('% Op','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
   var bdy2='<tbody>'+rankRows.map(function(r,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var ac=atingColor(r.ating);

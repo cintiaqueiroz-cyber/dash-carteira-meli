@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 09/08/2026 17:05 -->
+<!-- Build: 09/08/2026 17:10 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -23732,6 +23733,73 @@
 #sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR LIGHT ── */
+#sidebar{background:#fff;border-right:1px solid #EBEBEB;box-shadow:none;width:210px;}
+#sidebar .sb-brand{background:#FFE600;padding:14px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0C800;}
+#sidebar .sb-brand-icon{width:28px;height:28px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:16px;height:16px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:400;color:#666;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:#EBEBEB;margin:4px 0;}
+#sidebar .sidebar-header{padding:14px 16px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#AAA;}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;font-weight:400;color:#555;text-decoration:none;border-radius:6px;transition:all .12s;cursor:pointer;margin-bottom:1px;}
+#sidebar ul li a:hover{background:#F5F5F5;color:#1A1A1A;}
+#sidebar ul li a.active{background:#FFF9CC;color:#1A1A1A;font-weight:600;}
+#sidebar ul li a .dot{width:6px;height:6px;border-radius:50%;background:#D0D0D0;flex-shrink:0;display:inline-block;}
+#sidebar ul li a.active .dot{background:#C8A200;}
+#sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -23741,7 +23809,7 @@
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
     <button id="btn-present" onclick="togglePresentation()" style="background:#3483FA;color:#fff;border:none;border-radius:6px;padding:5px 14px;font-size:11px;font-weight:700;cursor:pointer;">&#9654; Apresentar</button>
-    <span class="update-badge">&#10003; Atualizado 09/08/2026 17:05</span>
+    <span class="update-badge">&#10003; Atualizado 09/08/2026 17:10</span>
   </div>
 </div>
 <div id="sidebar">
@@ -23814,7 +23882,7 @@
     <div class="section">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #EBEBEB">
         <span style="font-size:20px">&#128202;</span>
-        <span style="font-size:14px;font-weight:600;color:#1A1A1A">Atingimento Mensal vs Meta Financeira</span>
+        <span style="font-size:14px;font-weight:600;color:#1A1A1A">Atingimento Mensal vs Meta Operacional</span>
       </div>
       <div class="chart-box"><canvas id="vg-ating-chart" style="max-height:320px;"></canvas></div>
     </div>
@@ -24886,7 +24954,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/08/2026 17:05
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 9/30 dias &nbsp;&middot;&nbsp; 09/08/2026 17:10
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -25076,10 +25144,10 @@ function quarterCardHtml(grupo,q){
   var fillCls=pFin>=100?'pf-green':pFin>=80?'pf-yellow':'pf-red';
   var h='<div class="quarter-card '+clr+'"><div class="quarter-label">'+q+' <span class="quarter-badge">'+sLabel+'</span></div>';
   h+='<div class="quarter-real">'+(qR>0?fmt(qR):'-')+'</div>';
-  h+='<div class="quarter-meta-line">Meta Fin: '+fmt(qMF)+'</div>';
+  h+='<div class="quarter-meta-line">Meta Op:'+fmt(qMF)+'</div>';
   h+='<div class="quarter-meta-line" style="color:#888;font-size:10px">Meta Des: '+fmt(qMD)+'</div>';
   if(qR>0){
-    h+='<div style="font-size:11px;margin-bottom:5px">'+pillHtml(qR,qMF)+' Fin &nbsp;'+pillHtml(qR,qMD)+' Des</div>';
+    h+='<div style="font-size:11px;margin-bottom:5px">'+pillHtml(qR,qMF)+' Op &nbsp;'+pillHtml(qR,qMD)+' Des</div>';
     h+='<div class="progress-wrap"><div class="progress-fill '+fillCls+'" style="width:'+Math.min(pFin,100).toFixed(1)+'%"></div></div>';
   }
   h+='</div>';
@@ -25317,17 +25385,17 @@ function showMes(grupo,prefix,mk,btnEl){
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' — MTD ('+DIA_MES+'/'+DIAS_MES_TOTAL+' dias)':' — Fechado'),val:fmt(rv),sub:isCur?'Proj.: '+fmt(disp):'Mês encerrado',cls:'blue'},
     {label:'MoM',val:momStr,sub:momSub,cls:momCls},
     {label:'YoY vs 2025',val:yoyStr,sub:yoySub,cls:yoyCls},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'Investimento',val:fmt(invT),sub:'ADS: '+fmt(invA)+' | Cupons: '+fmt(cup),cls:'purple'},
-    {label:'Gap Meta Fin.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
+    {label:'Gap Meta Op.',val:fmt(disp-mf),sub:disp>=mf?'Acima da meta':'Faltam '+fmt(mf-disp),cls:disp>=mf?'green':'red'}
   ]);
   destroyChart(prefix+'-mes');
   var canEl=document.getElementById(prefix+'-mes-canvas');
   if(!canEl)return;
   chartInstances[prefix+'-mes']=new Chart(canEl.getContext('2d'),{
     type:'bar',
-    data:{labels:['Realizado','Proj.','Meta Fin.','Meta Des.'],
+    data:{labels:['Realizado','Proj.','Meta Op.','Meta Des.'],
           datasets:[{data:[rv,disp,mf,md],backgroundColor:[C_BLUE,'rgba(52,131,250,.4)',C_YELLOW,C_GREEN],borderRadius:6}]},
     options:{indexAxis:'y',responsive:true,animation:false,
              plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return fmt(c.raw);}}}},
@@ -25347,7 +25415,7 @@ function buildGrupo(g,px){
   var elKpi=document.getElementById(px+'-kpi-row');
   if(elKpi)elKpi.innerHTML=kpiHtml([
     {label:'NMV',val:fmt(nmvRel),sub:PERIODO.map(function(k){return MESES_PT_CURTO[k];}).join('-'),cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(mf),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',val:pDes.toFixed(1)+'%',sub:'Meta Des: '+fmtMeta(md),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs',val:fmtN(si),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Invest. Total',val:fmt(inv),sub:'ADS+Cupons+Rebates',cls:'purple'},
@@ -25643,7 +25711,7 @@ function buildBarChart(g,px){
     type:'bar',
     data:{labels:labels,datasets:[
       {label:'Realizado',data:mks.map(function(k){return rm[k]||0;}),backgroundColor:C_BLUE,borderRadius:4,order:2},
-      {label:'Meta Fin.',data:mks.map(function(k){return (META_FIN[g]||{})[k]||0;}),type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:0.3,order:1},
+      {label:'Meta Op.',data:mks.map(function(k){return (META_FIN[g]||{})[k]||0;}),type:'line',borderColor:C_YELLOW,backgroundColor:'transparent',borderWidth:2,pointRadius:4,tension:0.3,order:1},
       {label:'Meta Des.',data:mks.map(function(k){return (META_DES[g]||{})[k]||0;}),type:'line',borderColor:C_GREEN,backgroundColor:'transparent',borderWidth:2,borderDash:[5,3],pointRadius:3,tension:0.3,order:1}
     ]},
     options:{responsive:true,animation:false,layout:{padding:{top:22}},
@@ -25685,9 +25753,9 @@ function buildActions(g,px){
   var acts=[];
 
   // 1. Meta
-  if(pFin<80)acts.push({icon:'📉',title:'Meta Fin. em risco ('+pFin.toFixed(1)+'%)',
+  if(pFin<80)acts.push({icon:'📉',title:'Meta Op. em risco ('+pFin.toFixed(1)+'%)',
     body:'NMV abaixo de 80% da meta (R$'+fmtMeta(mf)+'). Acionar campanhas PRE-ACORDO e SAD para recuperar ritmo.',color:'#F23D4F'});
-  else if(pFin>=100)acts.push({icon:'✅',title:'Meta Financeira atingida!',
+  else if(pFin>=100)acts.push({icon:'✅',title:'Meta Operacional atingida!',
     body:'Continue o ritmo e expanda via novos itens para bater Meta Desafio ('+pDes.toFixed(1)+'%).',color:'#00A650'});
 
   // 2. Itens em queda (top 3 em queda de MoM)
@@ -25812,7 +25880,7 @@ function buildInsights(g,px){
   }).length;
 
   var ins=[
-    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmtMeta(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
+    {t:pFin.toFixed(1)+'% da Meta Op. ('+fmtMeta(ymf)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
     {t:pDes.toFixed(1)+'% da Meta Desafio',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Full SC: '+pFF.toFixed(1)+'% — '+(!pFF?'sem logística flex':'ok'),c:pFF>=40?'g':pFF>=15?'y':'r'}
   ];
@@ -26757,7 +26825,7 @@ function buildHighsLows(){
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
       +'<span style="background:#E6F7EE;color:#00A650;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▲ HIGHS</span>'
     +'</div>'
-    +hlRow('🏆','#FFF9E6',bestFin.g,'Melhor atingimento',bestFin.pFin.toFixed(1)+'% Meta Fin','#00A650')
+    +hlRow('🏆','#FFF9E6',bestFin.g,'Melhor atingimento',bestFin.pFin.toFixed(1)+'% Meta Op','#00A650')
     +hlRow('🛒','#E6F0FF',bestBPC.g,'Melhor BPC',bestBPC.bpc.toFixed(1)+'% buybox','#00A650')
     +hlRow('🚀','#FFF0E6',bestFF.g,'Maior Fulfillment',bestFF.pFF.toFixed(1)+'% FF','#00A650')
     +(bestYoY?hlRow('📊','#E6F7EE',bestYoY.g,'Maior crescimento YoY',(bestYoY.yoy>=0?'+':'')+bestYoY.yoy.toFixed(1)+'% vs 2025','#00A650'):'')
@@ -26768,7 +26836,7 @@ function buildHighsLows(){
     +'<div style="display:flex;align-items:center;gap:7px;margin-bottom:16px">'
       +'<span style="background:#FDECEA;color:#F23D4F;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">▼ LOWS</span>'
     +'</div>'
-    +hlRow('📉','#FDECEA',worstFin.g,'Menor atingimento',worstFin.pFin.toFixed(1)+'% Meta Fin','#F23D4F')
+    +hlRow('📉','#FDECEA',worstFin.g,'Menor atingimento',worstFin.pFin.toFixed(1)+'% Meta Op','#F23D4F')
     +hlRow('🛒','#FFF0F0',worstBPC.g,'BPC mais cr\u00edtico',worstBPC.bpc.toFixed(1)+'% buybox','#F23D4F')
     +hlRow('🚛','#FFF3E0',worstFF.g,'Menor Fulfillment',worstFF.pFF.toFixed(1)+'% FF','#FF7A00')
     +(worstMoM?hlRow('📋','#FFF5F5',worstMoM.g,'Maior queda MoM',(worstMoM.mom>=0?'+':'')+worstMoM.mom.toFixed(1)+'% vs m\u00eas anterior','#F23D4F'):'')
@@ -26798,8 +26866,8 @@ function buildHighsLows(){
       +'<span style="background:#DDEEFF;color:#3483FA;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.3px">💡 INSIGHTS</span>'
     +'</div>'
     +insRow('💡',above100.length>0
-      ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Financeira YTD.'
-      :'Nenhum grupo atingiu 100% da Meta Financeira ainda — aten\u00e7\u00e3o no ritmo.')
+      ?'<strong>'+above100.map(function(s){return s.g;}).join(', ')+'</strong> '+(above100.length===1?'\u00e9 o \u00fanico grupo':'s\u00e3o os grupos')+' acima de 100% da Meta Operacional YTD.'
+      :'Nenhum grupo atingiu 100% da Meta Operacional ainda — aten\u00e7\u00e3o no ritmo.')
     +(below80.length>0?insRow('⚠️','<strong>'+below80.length+' grupo(s)</strong> abaixo de 80% da meta: '+below80.map(function(s){return s.g+' ('+s.pFin.toFixed(0)+'%)';}).join(', ')+'.'):'')
     +insRow('📈','BPC m\u00e9dio da carteira: <strong>'+avgBPC.toFixed(1)+'%</strong>. '+(avgBPC<80?'Abaixo da refer\u00eancia de 80% \u2014 oportunidade de recupera\u00e7\u00e3o de GMV.':'Dentro da zona de conforto.'))
     +(yoyCart!==null?insRow('📉','Carteira cresceu <strong style="color:'+(yoyCart>=0?'#00A650':'#F23D4F')+'">'+(yoyCart>=0?'+':'')+yoyCart.toFixed(1)+'%</strong> vs mesmo per\u00edodo de 2025.'):'')
@@ -27037,8 +27105,8 @@ function buildVGUnifiedCards(){
     uHtml+='<div class="u-card" style="border-left-color:'+perfColor+'">';
     uHtml+='<div class="u-head"><span class="u-dot" style="background:'+cor+'"></span><span class="u-gname">'+g+'</span><span class="u-status-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-body"><div class="u-ring-wrap">'+makeRing(pFin,perfColor,84)+'<div class="u-ring-center"><div class="u-ring-pct" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</div><div class="u-ring-sub" style="font-size:7px;color:#999;text-transform:uppercase;letter-spacing:.3px;font-weight:600">META FIN.</div></div></div>';
-    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Fin: '+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
-    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Fin.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
+    uHtml+='<div class="u-data"><div class="u-gmv-val" style="color:'+cor+'">'+fmt(ytd)+'</div><div class="u-meta-txt">Meta Op:'+fmtMeta(ymf)+'</div><div class="u-meta-txt">Meta Des: '+fmtMeta(ymd)+'</div></div></div>';
+    uHtml+='<div class="u-bars"><div class="u-brow"><span class="u-blbl">Meta Op.</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pFin,100).toFixed(1)+'%;background:'+perfColor+'"></div></div><span class="u-bval" style="color:'+perfColor+'">'+pFin.toFixed(1)+'%</span></div>';
     uHtml+='<div class="u-brow"><span class="u-blbl">Desafio</span><div class="u-bbg"><div class="u-bfill" style="width:'+Math.min(pDes,100).toFixed(1)+'%;background:'+heatBg(pDes)+';opacity:.7"></div></div><span class="u-bval" style="color:'+heatBg(pDes)+'">'+pDes.toFixed(1)+'%</span></div></div>';
     uHtml+='<hr class="u-divider"><div class="u-vars">'+varBadge(mom,'MoM',null)+varBadge(yoy,'YoY','#3483FA')+'</div></div>';
   });
@@ -27079,13 +27147,13 @@ function buildVGLineChart(){
       pointBackgroundColor:lColors[gi%lColors.length],tension:0.3,spanGaps:false,order:1});
   });
 
-  // ÔöÇÔöÇ Meta Financeira Total: linha cinza tracejada
+  // ÔöÇÔöÇ Meta Operacional Total: linha cinza tracejada
   var cumMF=[],cumMv=0;
   MESES_KEYS.forEach(function(mk){
     cumMv+=GRUPOS.reduce(function(s,g){return s+((META_FIN[g]||{})[mk]||0);},0);
     cumMF.push(cumMv);
   });
-  ds.push({label:'Meta Financeira Total',data:cumMF,borderColor:'#CCCCCC',backgroundColor:'transparent',
+  ds.push({label:'Meta Operacional Total',data:cumMF,borderColor:'#CCCCCC',backgroundColor:'transparent',
     borderDash:[8,4],borderWidth:2,pointRadius:0,tension:0,order:2});
 
   destroyChart('vg-line');
@@ -27246,11 +27314,11 @@ function showVGMes(mk,btnEl){
   document.getElementById('vg-mes-kpi').innerHTML=kpiHtml([
     {label:(MESES_PT_MAP[mk]||mk)+(isCur?' \u2014 MTD ('+DIA_MES+'/'+diasTot+' dias)':' \u2014 Fechado'),
      val:fmt(totalReal),sub:isCur?'Proj.: '+fmt(totalDisp):'M\u00eas encerrado',cls:'blue'},
-    {label:'% Meta Financeira',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
+    {label:'% Meta Operacional',val:pFin.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
     {label:'% Meta Desafio',   val:pDes.toFixed(1)+'%',sub:'Meta: '+fmtMeta(totalMD),cls:pDes>=100?'green':pDes>=80?'yellow':'red'},
     {label:'SIs Total',        val:fmtN(totalSI),sub:'NNASP: R$ '+(asp>0?Math.round(asp).toLocaleString('pt-BR'):'--'),cls:'blue'},
     {label:'Investimento Total',val:fmt(totalInv),sub:'ADS + Cupons + Rebates',cls:'purple'},
-    {label:'Gap Meta Fin.',    val:fmt(totalDisp-totalMF),
+    {label:'Gap Meta Op.',    val:fmt(totalDisp-totalMF),
      sub:totalDisp>=totalMF?'Acima da meta':'Faltam '+fmt(totalMF-totalDisp),
      cls:totalDisp>=totalMF?'green':'red'}
   ]);
@@ -27294,7 +27362,7 @@ function showVGMes(mk,btnEl){
     chartInstances['vg-mes']=new Chart(ctx,{type:'bar',
       data:{labels:GRUPOS.map(function(g){return g.length>12?g.substring(0,12)+'...':g;}),datasets:[
         {label:'Realizado',data:realArr,backgroundColor:C_BLUE,borderRadius:4},
-        {label:'Meta Fin.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4},
+        {label:'Meta Op.',data:mfArr,backgroundColor:C_YELLOW,borderRadius:4},
         {label:'Meta Desafio',data:mdArr,backgroundColor:'rgba(0,166,80,.75)',borderRadius:4}
       ]},options:{responsive:true,animation:false,
         plugins:{legend:{position:'top',labels:{usePointStyle:true,pointStyleWidth:16,font:{size:11}}},
@@ -27329,7 +27397,7 @@ function buildVGQuarters(){
     card+='<span style="background:'+sBg+';color:'+sColor+';font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px">'+sLabel+'</span>';
     card+='</div>';
     card+='<div style="font-size:22px;font-weight:900;color:'+mainColor+';letter-spacing:-.5px;margin-bottom:4px">'+(qR>0?fmt(qR):'-')+'</div>';
-    card+='<div style="font-size:11px;color:#888;margin-bottom:2px">Meta Fin: <strong style="color:#555">'+fmt(qMF)+'</strong></div>';
+    card+='<div style="font-size:11px;color:#888;margin-bottom:2px">Meta Op:<strong style="color:#555">'+fmt(qMF)+'</strong></div>';
     card+='<div style="font-size:11px;color:#888;margin-bottom:10px">Meta Des: <strong style="color:#555">'+fmt(qMD)+'</strong></div>';
     if(qR>0){
       card+='<div style="display:flex;gap:6px;margin-bottom:8px">';
@@ -27422,8 +27490,8 @@ function buildVGScorecard(){
 
   var html = '<div class="scorecard-grid">'
     // Row 1
-    +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Fin.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
-    +sc('% META FINANCEIRA',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
+    +sc('GMV YTD',           fmt(ytdGMV),                  pMF.toFixed(1)+'% da Meta Op.',                           pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
+    +sc('% META OPERACIONAL',  pMF.toFixed(1)+'%',           'Meta: '+fmt(ytdMFt),                                      pMF>=100?'sc-green':pMF>=80?'sc-yellow':'sc-red')
     +sc('SIS YTD',            fmtN(ytdSIv),                 'Unidades vendidas',                                       'sc-blue')
     +sc('NASP (TICKET M\u00c9DIO)', 'R$ '+Math.round(asp).toLocaleString('pt-BR'), 'GMV \u00f7 SIs',                   'sc-blue')
     +sc('INVESTIMENTO TOTAL', fmt(ytdInvT),                  'Inv/GMV: '+pInv.toFixed(2)+'%',                          'sc-blue')
@@ -27515,7 +27583,7 @@ function buildVGInsights(){
   var best=GRUPOS.reduce(function(b,g){return pctNum(ytdReal(g),ytdMF(g))>pctNum(ytdReal(b),ytdMF(b))?g:b;},GRUPOS[0]);
   var worst=GRUPOS.reduce(function(b,g){return pctNum(ytdReal(g),ytdMF(g))<pctNum(ytdReal(b),ytdMF(b))?g:b;},GRUPOS[0]);
   var ins=[
-    {t:pFin.toFixed(1)+'% da Meta Fin. ('+fmt(tMF)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
+    {t:pFin.toFixed(1)+'% da Meta Op. ('+fmt(tMF)+')',c:pFin>=100?'g':pFin>=80?'y':'r'},
     {t:pDes.toFixed(1)+'% da Meta Desafio ('+fmt(tMD)+')',c:pDes>=100?'g':pDes>=60?'y':'r'},
     {t:'Melhor: '+best+' ('+pctNum(ytdReal(best),ytdMF(best)).toFixed(1)+'%)',c:'g'},
     {t:'Atenção: '+worst+' ('+pctNum(ytdReal(worst),ytdMF(worst)).toFixed(1)+'%)',c:'r'}
@@ -27536,7 +27604,7 @@ function buildCorpAcionaveis(){
       title:'BPC cr\u00edtico em '+g+'('+pBPC.toFixed(0)+'%)',
       actions:['Revisar precifica\u00e7\u00e3o dos top 20 itens por GMV sem buybox em cada grupo','Ativar Pre\u00e7o Competitivo Autom\u00e1tico nos itens eleg\u00edveis','Meta semanal: elevar BPC acima de 70% em 2 semanas']});
     if(pFin<80)points.push({pri:'ALTA',border:'#F23D4F',badgeBg:'#FDECEA',badgeColor:'#F23D4F',icon:'📉',
-      title:'Acelerar GMV em: '+g+' ('+pFin.toFixed(0)+'% Meta Fin.)',
+      title:'Acelerar GMV em: '+g+' ('+pFin.toFixed(0)+'% Meta Op.)',
       actions:['Acionar cupons estrat\u00e9gicos nos itens de maior volume para impulsionar convers\u00e3o','Ampliar cat\u00e1logo nos dom\u00ednios de melhor ticket m\u00e9dio','Revisar forecast e replanejar calend\u00e1rio de a\u00e7\u00f5es t\u00e1ticas do quarter']});
     if(pFF<70)points.push({pri:'M\u00c9DIA',border:'#FFB900',badgeBg:'#FFF3CD',badgeColor:'#B07A00',icon:'🚗',
       title:'Fulfillment abaixo de 80%: '+g+'('+pFF.toFixed(0)+'%)',
@@ -28978,7 +29046,7 @@ function buildVGAtingimento(){
         datalabels:{anchor:'end',align:'end',offset:2,font:{size:13,weight:'900'},
           color:function(ctx){return pFinArr[ctx.dataIndex]>=105?'#00A650':pFinArr[ctx.dataIndex]>=80?'#B8860B':'#F23D4F';},
           formatter:function(v,ctx){var s=pFinArr[ctx.dataIndex].toFixed(0)+'%';return ctx.dataIndex===MESES_DONE.length-1?s+' (Proj.)':s;}}},
-      {label:'Meta Fin.',data:mfArr,type:'line',borderColor:'rgba(52,131,250,0.6)',borderWidth:2,borderDash:[6,4],pointRadius:0,backgroundColor:'transparent',order:1,
+      {label:'Meta Op.',data:mfArr,type:'line',borderColor:'rgba(52,131,250,0.6)',borderWidth:2,borderDash:[6,4],pointRadius:0,backgroundColor:'transparent',order:1,
         datalabels:{display:false}},
       {label:'MoM %',data:momArr,type:'line',borderColor:'#3483FA',backgroundColor:'transparent',pointBackgroundColor:'#3483FA',pointBorderColor:'#fff',pointBorderWidth:2,pointRadius:6,borderWidth:2,tension:0.3,yAxisID:'y2',spanGaps:false,order:0,
         datalabels:{anchor:'top',align:'top',offset:6,font:{size:11,weight:'bold'},color:'#3483FA',
@@ -29241,7 +29309,7 @@ function buildSellersConsolidated(){
 
   // \u2500\u2500 TABLE 1: Performance por Grupo \u2500\u2500
   var perfRows=[].concat(rows).sort(function(a,b){return a.g.localeCompare(b.g);});
-  var hdr1='<thead><tr>'+th('Nome')+th('Rep','center','50px')+th('NMV','right')+th('SI','right')+th('Invest','right')+th('Inv/NMV','right')+th('Meta Fin','right')+th('% Fin','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
+  var hdr1='<thead><tr>'+th('Nome')+th('Rep','center','50px')+th('NMV','right')+th('SI','right')+th('Invest','right')+th('Inv/NMV','right')+th('Meta Op','right')+th('% Op','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
   var bdy1='<tbody>'+perfRows.map(function(r,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var ac=atingColor(r.ating);
@@ -29263,7 +29331,7 @@ function buildSellersConsolidated(){
 
   // \u2500\u2500 TABLE 2: Ranking de Grupos (MoM / YoY) \u2500\u2500
   var rankRows=[].concat(rows).sort(function(a,b){return b.nmv-a.nmv;});
-  var hdr2='<thead><tr>'+th('#','center','32px')+th('Grupo')+th('NMV','right')+th('MoM','center')+th('YoY','center')+th('Meta Fin','right')+th('% Fin','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
+  var hdr2='<thead><tr>'+th('#','center','32px')+th('Grupo')+th('NMV','right')+th('MoM','center')+th('YoY','center')+th('Meta Op','right')+th('% Op','right')+th('Meta Des','right')+th('% Des','right')+'</tr></thead>';
   var bdy2='<tbody>'+rankRows.map(function(r,i){
     var bg=i%2===0?'#fff':'#FAFAFA';
     var ac=atingColor(r.ating);
