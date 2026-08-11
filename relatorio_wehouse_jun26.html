@@ -240,15 +240,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   <div class="sec">
     <div class="sec-ttl">Insights &mdash; Ago MTD (1&ndash;11/ago)</div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <div style="flex:1;min-width:200px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">GMV vs Jul MTD</div>
-        <div style="font-size:22px;font-weight:900;color:#C0001A">-5.9%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">R$499K (1-11/ago) vs pace de Jul &mdash; queda moderada, n&atilde;o cr&iacute;tica.</div>
+      <div style="flex:1;min-width:200px;background:#E6F7EE;border-left:4px solid #00A650;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#007A3D;text-transform:uppercase;margin-bottom:6px">NMV vs Jul MTD</div>
+        <div style="font-size:22px;font-weight:900;color:#007A3D">+1.5%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">R$492K (1-10/ago) vs R$484K (1-10/jul) &mdash; ritmo levemente positivo, agosto s&oacute;lido.</div>
       </div>
       <div style="flex:1;min-width:200px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">8.8 segurou o m&ecirc;s</div>
         <div style="font-size:22px;font-weight:900;color:#B85A00">14%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">O dia 8.8 (R$ 69K) representa <strong>14%</strong> do GMV acumulado de ago at&eacute; agora — maior dia do m&ecirc;s.</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">O dia 8.8 (R$ 70K) representa <strong>14%</strong> do NMV acumulado de ago (1-10) — maior dia do m&ecirc;s.</div>
       </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">Evolu&ccedil;&atilde;o das datas duplas</div>
@@ -265,9 +265,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   </div>
   <script>
   (function(){
-    var labels=["01/Ago","02/Ago","03/Ago","04/Ago","05/Ago","06/Ago","07/Ago",["08/Ago","⭐ 8.8"],"09/Ago","10/Ago","11/Ago*"];
-    var vals=[39624,58583,51475,44972,53840,38077,40042,69591,41320,49129,13657];
-    var colors=["#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#FF9500","#3483FA","#3483FA","#AACCFF"];
+    var labels=["01/Ago","02/Ago","03/Ago","04/Ago","05/Ago","06/Ago","07/Ago",["08/Ago","⭐ 8.8"],"09/Ago","10/Ago"];
+    var vals=[41349,59768,53275,44972,49497,42420,40042,69820,41320,49129];
+    var colors=["#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#3483FA","#FF9500","#3483FA","#3483FA"];
     new Chart(document.getElementById('cDailyAgo'),{
       type:'bar',
       data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:5,borderSkipped:false}]},
