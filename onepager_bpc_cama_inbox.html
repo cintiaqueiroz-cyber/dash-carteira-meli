@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BPC – Preço Competitivo | CAMA INBOX</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', system-ui, sans-serif; background: #EFEFEF; color: #333; padding: 32px 16px; }
+    .page {
+      background: white; width: 960px; margin: 0 auto 32px;
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.12);
+    }
+
+    /* ── SHARED HEADERS ── */
+    .header { padding: 22px 36px; display: flex; justify-content: space-between; align-items: center; }
+    .header.yellow { background: #FFE600; }
+    .header.dark   { background: #1A1A1A; }
+    .header.mid    { background: #2C2C2C; }
+    .header.navy   { background: #0A2540; }
+    .header h1 { font-size: 24px; font-weight: 800; line-height: 1.1; }
+    .header.yellow h1 { color: #1A1A1A; }
+    .header.dark h1, .header.mid h1, .header.navy h1 { color: #FFE600; }
+    .header-sub { font-size: 13px; margin-top: 3px; }
+    .header.yellow .header-sub { color: #555; }
+    .header.dark .header-sub, .header.mid .header-sub, .header.navy .header-sub { color: #999; }
+    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .seller-badge { padding: 7px 18px; border-radius: 24px; font-size: 14px; font-weight: 800; letter-spacing: 0.8px; }
+    .badge-dark  { background: #1A1A1A; color: #FFE600; }
+    .badge-light { background: #FFE600; color: #1A1A1A; }
+    .date-badge { font-size: 11px; font-weight: 500; }
+    .header.yellow .date-badge { color: #666; }
+    .header.dark .date-badge, .header.mid .date-badge, .header.navy .date-badge { color: #888; }
+
+    /* ── SHARED CONTENT ── */
+    .content { padding: 28px 36px 24px; }
+    .section-title {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.6px; color: #555; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: #EBEBEB; }
+    .note { font-size: 10px; color: #aaa; margin-top: 8px; text-align: right; }
+    .footer {
+      background: #1A1A1A; color: #888; padding: 11px 36px;
+      font-size: 10.5px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer strong { color: #FFE600; }
+
+    /* ════════════════════ PAGE 1 ════════════════════ */
+    .def-box {
+      background: #F0F6FF; border-left: 4px solid #3483FA;
+      padding: 13px 18px; border-radius: 0 8px 8px 0; margin-bottom: 24px;
+    }
+    .def-label { font-size: 11px; font-weight: 700; color: #3483FA; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+    .def-box p { font-size: 12.5px; color: #444; line-height: 1.55; }
+    .def-box strong { color: #1A1A1A; }
+    .kpis { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 26px; }
+    .kpi { border-radius: 12px; padding: 18px 20px; text-align: center; }
+    .kpi.blue   { background: #EBF3FF; border: 1.5px solid #B3D0FF; }
+    .kpi.green  { background: #E6F9EE; border: 1.5px solid #85DBA5; }
+    .kpi.orange { background: #FFF4E5; border: 1.5px solid #FFCC80; }
+    .kpi .kpi-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #777; margin-bottom: 6px; }
+    .kpi .kpi-value { font-size: 38px; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+    .kpi.blue  .kpi-value  { color: #1859C9; }
+    .kpi.green .kpi-value  { color: #007A3D; }
+    .kpi.orange .kpi-value { color: #CC6A00; }
+    .kpi .kpi-sub { font-size: 11px; color: #888; }
+    .trend-pill { display: inline-flex; align-items: center; gap: 4px; background: #E6F9EE; color: #007A3D; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 6px; }
+    .chart-block { margin-bottom: 26px; }
+    .chart-wrap { height: 175px; position: relative; }
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { border-radius: 12px; padding: 18px 20px; }
+    .card.amber { background: #FFF8EC; border: 1.5px solid #FFCC80; }
+    .card.blue  { background: #F0F6FF; border: 1.5px solid #B3D0FF; }
+    .card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 14px; }
+    .card.amber .card-title { color: #CC6A00; }
+    .card.blue  .card-title { color: #1859C9; }
+    .item-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 11px; }
+    .item-row:last-child { margin-bottom: 0; }
+    .icon-circle { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: #FFE5B0; }
+    .step-num { width: 22px; height: 22px; border-radius: 50%; background: #3483FA; color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .item-text { font-size: 12.5px; color: #555; line-height: 1.45; }
+    .item-text strong { color: #1A1A1A; }
+
+    /* ════════════════════ PAGE 2 — CATEGORY ════════════════════ */
+    .cat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+    .cat-card { border-radius: 12px; padding: 18px 20px; }
+    .cat-card.crit  { background: #FFF0F0; border: 2px solid #FFBABA; }
+    .cat-card.warn  { background: #FFF8EC; border: 2px solid #FFCC80; }
+    .cat-card.ok    { background: #E6F9EE; border: 2px solid #85DBA5; }
+    .cat-icon { font-size: 22px; margin-bottom: 6px; }
+    .cat-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .cat-card.crit .cat-name { color: #C0392B; }
+    .cat-card.warn .cat-name { color: #CC6A00; }
+    .cat-card.ok   .cat-name { color: #007A3D; }
+    .cat-bpc { font-size: 36px; font-weight: 800; line-height: 1; }
+    .cat-card.crit .cat-bpc { color: #C0392B; }
+    .cat-card.warn .cat-bpc { color: #CC6A00; }
+    .cat-card.ok   .cat-bpc { color: #007A3D; }
+    .cat-sub { font-size: 10.5px; color: #888; margin-top: 4px; margin-bottom: 10px; }
+    .cat-vis { font-size: 12px; font-weight: 700; }
+    .cat-card.crit .cat-vis { color: #C0392B; }
+    .cat-card.warn .cat-vis { color: #CC6A00; }
+    .cat-card.ok   .cat-vis { color: #007A3D; }
+    .cat-vis-sub { font-size: 10px; color: #aaa; }
+    .cat-pill { display: inline-block; padding: 3px 10px; border-radius: 16px; font-size: 10px; font-weight: 700; margin-top: 8px; }
+    .cat-card.crit .cat-pill { background: #FFEDED; color: #C0392B; }
+    .cat-card.warn .cat-pill { background: #FFF4E5; color: #CC6A00; }
+    .cat-card.ok   .cat-pill { background: #D0F5DE; color: #007A3D; }
+    .cat-chart-wrap { height: 200px; position: relative; margin-bottom: 6px; }
+    .insight-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .insight-box { background: #F8F9FA; border-radius: 10px; padding: 14px 16px; }
+    .insight-box.red    { border-left: 3px solid #E05252; }
+    .insight-box.orange { border-left: 3px solid #E67E00; }
+    .insight-box.green  { border-left: 3px solid #00A650; }
+    .insight-title { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .insight-box.red    .insight-title { color: #C0392B; }
+    .insight-box.orange .insight-title { color: #CC6A00; }
+    .insight-box.green  .insight-title { color: #007A3D; }
+    .insight-text { font-size: 11.5px; color: #555; line-height: 1.45; }
+    .insight-text strong { color: #1A1A1A; }
+
+    /* ════════════════════ PAGE 3 — COMPETITOR ════════════════════ */
+    .rival-ranking { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 22px; }
+    .rrcard { border-radius: 10px; padding: 12px 14px; text-align: center; position: relative; }
+    .rrcard.danger  { background: #FFF0F0; border: 2px solid #E05252; }
+    .rrcard.warning { background: #FFF8EC; border: 2px solid #FFCC80; }
+    .rrcard.ok      { background: #E6F9EE; border: 2px solid #85DBA5; }
+    .rrcard-rank { position: absolute; top: 8px; left: 10px; font-size: 9px; font-weight: 800; color: #AAA; }
+    .rrcard-name { font-size: 11.5px; font-weight: 700; margin-bottom: 6px; margin-top: 10px; }
+    .rrcard.danger  .rrcard-name { color: #C0392B; }
+    .rrcard.warning .rrcard-name { color: #CC6A00; }
+    .rrcard.ok      .rrcard-name { color: #007A3D; }
+    .rrcard-bpc { font-size: 28px; font-weight: 800; line-height: 1; }
+    .rrcard.danger  .rrcard-bpc { color: #C0392B; }
+    .rrcard.warning .rrcard-bpc { color: #CC6A00; }
+    .rrcard.ok      .rrcard-bpc { color: #007A3D; }
+    .rrcard-sub { font-size: 9.5px; color: #999; margin-top: 3px; }
+    .rrcard-trend { font-size: 9.5px; font-weight: 700; margin-top: 5px; }
+    .trend-up   { color: #007A3D; }
+    .trend-down { color: #C0392B; }
+    .trend-flat { color: #999; }
+    .comp-chart-wrap { height: 210px; position: relative; margin-bottom: 6px; }
+    .comp-insights { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .comp-insight { background: #F8F9FA; border-radius: 10px; padding: 14px 16px; }
+    .comp-insight.shopee  { border-left: 4px solid #EE4D2D; }
+    .comp-insight.mag     { border-left: 4px solid #E67E00; }
+    .comp-insight.casas   { border-left: 4px solid #800080; }
+    .comp-insight.extra   { border-left: 4px solid #8B0000; }
+    .ci-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+    .comp-insight.shopee .ci-title { color: #EE4D2D; }
+    .comp-insight.mag    .ci-title { color: #E67E00; }
+    .comp-insight.casas  .ci-title { color: #800080; }
+    .comp-insight.extra  .ci-title { color: #8B0000; }
+    .ci-text { font-size: 11.5px; color: #555; line-height: 1.5; }
+    .ci-text strong { color: #1A1A1A; }
+
+    /* ════════════════════ PAGE 4 — ITEMS ════════════════════ */
+    .rival-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+    .rival-card { border-radius: 10px; padding: 12px 14px; text-align: center; border: 1.5px solid #EEE; }
+    .rival-card.danger  { background: #FFF0F0; border-color: #FFBABA; }
+    .rival-card.warning { background: #FFF8EC; border-color: #FFCC80; }
+    .rival-card.info    { background: #F0F6FF; border-color: #B3D0FF; }
+    .rival-card.minor   { background: #F8F8F8; border-color: #E0E0E0; }
+    .rival-name { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .rival-card.danger  .rival-name { color: #C0392B; }
+    .rival-card.warning .rival-name { color: #CC6A00; }
+    .rival-card.info    .rival-name { color: #1859C9; }
+    .rival-card.minor   .rival-name { color: #555; }
+    .rival-gap { font-size: 19px; font-weight: 800; display: block; }
+    .rival-card.danger  .rival-gap { color: #C0392B; }
+    .rival-card.warning .rival-gap { color: #CC6A00; }
+    .rival-card.info    .rival-gap { color: #1859C9; }
+    .rival-card.minor   .rival-gap { color: #555; }
+    .rival-desc { font-size: 10px; color: #888; margin-top: 3px; }
+    .table-wrapper { overflow-x: auto; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    thead tr { background: #1A1A1A; color: white; }
+    thead th { padding: 10px 12px; text-align: left; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+    tbody tr { border-bottom: 1px solid #F0F0F0; }
+    tbody tr:hover { background: #FAFAFA; }
+    tbody td { padding: 10px 12px; vertical-align: middle; }
+    .badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 10px; font-weight: 700; white-space: nowrap; }
+    .badge.red    { background: #FFEDED; color: #C0392B; }
+    .badge.yellow { background: #FFF4E5; color: #CC6A00; }
+    .badge.green  { background: #E6F9EE; color: #007A3D; }
+    tbody tr.prio-red    { border-left: 3px solid #E05252; }
+    tbody tr.prio-yellow { border-left: 3px solid #E67E00; }
+    tbody tr.prio-green  { border-left: 3px solid #00A650; }
+    .product-link { color: #3483FA; text-decoration: none; font-weight: 600; display: block; max-width: 260px; }
+    .product-link:hover { text-decoration: underline; }
+    .product-sub { font-size: 10px; color: #999; margin-top: 1px; }
+    .price-meli  { font-weight: 700; color: #333; }
+    .price-rival { font-weight: 700; color: #007A3D; }
+    .rival-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px; margin-left: 4px; background: #F0F0F0; color: #555; font-weight: 600; }
+    .rival-tag.shopee   { background: #FFF0EA; color: #EE4D2D; }
+    .rival-tag.magazine { background: #FFF0E5; color: #CC4B00; }
+    .rival-tag.amazon   { background: #E8F4FF; color: #146EB4; }
+    .rival-tag.casas    { background: #FFF0F5; color: #B00060; }
+    .gap-badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .gap-red    { background: #FFEDED; color: #C0392B; }
+    .gap-yellow { background: #FFF4E5; color: #CC6A00; }
+    .gap-green  { background: #E6F9EE; color: #007A3D; }
+    .visits-num { font-weight: 700; color: #3483FA; }
+    .visits-bar { height: 4px; background: #E0E8FF; border-radius: 4px; margin-top: 4px; }
+    .visits-bar-fill { height: 100%; border-radius: 4px; background: #3483FA; }
+    .page-legend { display: flex; gap: 16px; font-size: 11px; color: #888; margin-top: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════
+     PÁGINA 1 — OVERVIEW BPC
+══════════════════════════════ -->
+<div class="page">
+  <div class="header yellow">
+    <div>
+      <h1>BPC — Preço Competitivo</h1>
+      <div class="header-sub">Vertical Furnishing &amp; Houseware · Segmento MELI PRO</div>
+    </div>
+    <div class="header-right">
+      <div class="seller-badge badge-dark">CAMA INBOX</div>
+      <span class="date-badge">Jan – Jul 2026</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="def-box">
+      <div class="def-label">O que é o BPC?</div>
+      <p><strong>Buy Price Competitiveness (BPC)</strong> mede a proporção de visitas em que seu preço está <strong>competitivo</strong> frente a outros marketplaces. Um BPC de 60% significa que em 60% das visitas seu preço era atrativo. As visitas restantes são as <strong>"visitas caras"</strong> — cada uma é uma venda potencial perdida para um concorrente mais barato.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi blue">
+        <div class="kpi-label">BPC Acumulado (Jan–Jul)</div>
+        <div class="kpi-value">39,7%</div>
+        <div class="kpi-sub">do tráfego com preço competitivo</div>
+      </div>
+      <div class="kpi green">
+        <div class="kpi-label">BPC em Julho 2026</div>
+        <div class="kpi-value">58,9%</div>
+        <div class="kpi-sub">melhor mês do ano até agora</div>
+        <div class="trend-pill">▲ +33,4 pp vs. fevereiro</div>
+      </div>
+      <div class="kpi orange">
+        <div class="kpi-label">Visitas com Preço Caro</div>
+        <div class="kpi-value">158 mi</div>
+        <div class="kpi-sub">Jan–Jul 2026 · oportunidade total</div>
+      </div>
+    </div>
+    <div class="chart-block">
+      <div class="section-title">Evolução mensal do BPC &amp; Visitas com preço caro</div>
+      <div class="chart-wrap"><canvas id="bpcChart"></canvas></div>
+      <p class="note">* Julho/26 parcial &nbsp;·&nbsp; Barras = BPC (%) &nbsp;·&nbsp; Linha = Visitas caras (mi)</p>
+    </div>
+    <div class="bottom-grid">
+      <div class="card amber">
+        <div class="card-title">Suas Oportunidades</div>
+        <div class="item-row"><div class="icon-circle">📊</div><div class="item-text"><strong>158 milhões de visitas caras</strong> — cada uma é um cliente que viu seu produto e encontrou preço melhor na concorrência.</div></div>
+        <div class="item-row"><div class="icon-circle">🔥</div><div class="item-text">Os meses de <strong>maio (30 mi)</strong> e <strong>junho (30 mi)</strong> concentraram o maior volume de visitas perdidas por preço.</div></div>
+        <div class="item-row"><div class="icon-circle">🎯</div><div class="item-text">Atingindo <strong>BPC ≥ 65%</strong> de forma consistente, estima-se recuperar <strong>~16 mi de visitas/mês</strong> convertidas em vendas.</div></div>
+        <div class="item-row"><div class="icon-circle">📈</div><div class="item-text">Trajetória <strong>muito positiva</strong>: de 25,5% (fev) a 58,9% (jul). O desafio é superar os <strong>65% de forma sustentada</strong>.</div></div>
+      </div>
+      <div class="card blue">
+        <div class="card-title">Como Melhorar o BPC</div>
+        <div class="item-row"><div class="step-num">1</div><div class="item-text"><strong>Revise os itens prioritários</strong> na página 4 — foco nos de gap alto e mais visitas (Sofás e Camas Box).</div></div>
+        <div class="item-row"><div class="step-num">2</div><div class="item-text"><strong>Ajuste primeiro os "Fácil"</strong> (gap &lt;5%) — pequenas reduções em sofás Max Spring recuperam visitas rapidamente.</div></div>
+        <div class="item-row"><div class="step-num">3</div><div class="item-text"><strong>Ative a reprecificação automática</strong> para monitorar Shopee e Magazine Luiza, os principais concorrentes.</div></div>
+        <div class="item-row"><div class="step-num">4</div><div class="item-text"><strong>Monitore semanalmente</strong> — combine BPC com GMV e conversão para verificar impacto dos ajustes.</div></div>
+        <div class="item-row"><div class="step-num">5</div><div class="item-text"><strong>Priorize itens Full</strong> — entrega rápida + preço competitivo aumentam significativamente a conversão.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>MercadoLivre · KAM Furnishing &amp; Houseware · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Fonte: Competitive Insights D&amp;A · Agosto 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 2 — BPC POR CATEGORIA
+══════════════════════════════ -->
+<div class="page">
+  <div class="header mid">
+    <div>
+      <h1>BPC por Categoria</h1>
+      <div class="header-sub">Onde está a maior oportunidade? · Jan – Ago 2026</div>
+    </div>
+    <div class="header-right">
+      <div class="seller-badge badge-light">CAMA INBOX</div>
+      <span class="date-badge">F&amp;H · MELI PRO</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="section-title">Resumo por categoria — BPC &amp; visitas caras acumuladas</div>
+    <div class="cat-grid">
+      <div class="cat-card crit">
+        <div class="cat-icon">🛋️</div>
+        <div class="cat-name">Furniture</div>
+        <div class="cat-bpc">37,8%</div>
+        <div class="cat-sub">BPC médio Jan–Ago · Living &amp; Diningroom</div>
+        <div class="cat-vis">135,9 mi</div>
+        <div class="cat-vis-sub">visitas com preço caro</div>
+        <div class="cat-pill">⚠ Principal oportunidade</div>
+      </div>
+      <div class="cat-card warn">
+        <div class="cat-icon">🛏️</div>
+        <div class="cat-name">Mattresses &amp; Sommier</div>
+        <div class="cat-bpc">41,4%</div>
+        <div class="cat-sub">BPC médio Jan–Ago · Colchões + Camas Box</div>
+        <div class="cat-vis">48,1 mi</div>
+        <div class="cat-vis-sub">visitas com preço caro</div>
+        <div class="cat-pill">▲ Melhorando (+29 pp em Jul vs Fev)</div>
+      </div>
+      <div class="cat-card ok">
+        <div class="cat-icon">🏠</div>
+        <div class="cat-name">Textiles</div>
+        <div class="cat-bpc">98,0%</div>
+        <div class="cat-sub">BPC médio Jan–Ago · Têxteis Lar</div>
+        <div class="cat-vis">~19 mil</div>
+        <div class="cat-vis-sub">visitas com preço caro (mínimo)</div>
+        <div class="cat-pill">✓ Praticamente sem problema</div>
+      </div>
+    </div>
+    <div class="section-title">Evolução mensal do BPC por categoria · Jan–Ago 2026</div>
+    <div class="cat-chart-wrap"><canvas id="catChart"></canvas></div>
+    <p class="note">* Agosto/26 parcial &nbsp;·&nbsp; Linhas subindo = CAMA INBOX ficando mais competitiva na categoria</p>
+    <div class="insight-grid">
+      <div class="insight-box red">
+        <div class="insight-title">🛋️ Furniture — Urgente</div>
+        <div class="insight-text">Responsável por <strong>74% das visitas caras</strong> (135,9 mi de 184 mi total). BPC de 37,8% indica que mais de 60% do tráfego de sofás e estofados encontra preço mais barato na concorrência. <strong>Prioridade máxima para revisão de preço.</strong></div>
+      </div>
+      <div class="insight-box orange">
+        <div class="insight-title">🛏️ Mattresses — Melhorando</div>
+        <div class="insight-text">BPC saiu de <strong>16,6% em fevereiro</strong> para <strong>59,9% em julho</strong> — evolução de +43 pp em colchões e camas box. Agosto (44,6%) pode ser movimento sazonal. <strong>Manter atenção nos Mattress Sets.</strong></div>
+      </div>
+      <div class="insight-box green">
+        <div class="insight-title">🏠 Textiles — Estável</div>
+        <div class="insight-text">Volume de visitas caras é irrisório (~19 mil). BPC acima de <strong>98%</strong> na maioria dos meses — apenas fevereiro teve queda (15,4%), possivelmente pontual. <strong>Nenhuma ação imediata necessária.</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>Fonte: BPC Competitive Insights D&amp;A · Agregador 1 · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Jan–Ago 2026 · F&amp;H MELI PRO</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 3 — BPC POR CONCORRENTE
+══════════════════════════════ -->
+<div class="page">
+  <div class="header navy">
+    <div>
+      <h1>Análise de Competitividade por Canal</h1>
+      <div class="header-sub">Posicionamento de preço frente aos principais varejistas · Jan – Ago 2026</div>
+    </div>
+    <div class="header-right">
+      <div class="seller-badge badge-light">CAMA INBOX</div>
+      <span class="date-badge">Vertical F&amp;H</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="section-title">Posicionamento por canal — BPC acumulado (quanto maior, mais competitiva é sua posição de preço)</div>
+    <div class="rival-ranking">
+      <div class="rrcard danger">
+        <div class="rrcard-rank">#1 · maior gap</div>
+        <div class="rrcard-name">Camicado Brasil</div>
+        <div class="rrcard-bpc">9,1%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-up">↑ +28 pp em ago (vol. baixo)</div>
+      </div>
+      <div class="rrcard danger">
+        <div class="rrcard-rank">#2</div>
+        <div class="rrcard-name">Extra</div>
+        <div class="rrcard-bpc">14,3%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-up">↑ Subindo desde junho</div>
+      </div>
+      <div class="rrcard danger">
+        <div class="rrcard-rank">#3 · Alta prioridade</div>
+        <div class="rrcard-name">Shopee</div>
+        <div class="rrcard-bpc">29,3%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-up">↑ 4,8% → 48,8% (melhora)</div>
+      </div>
+      <div class="rrcard warning">
+        <div class="rrcard-rank">#4</div>
+        <div class="rrcard-name">Magazine Luiza</div>
+        <div class="rrcard-bpc">32,3%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-up">↑ 21,1% → 48% (melhora)</div>
+      </div>
+      <div class="rrcard warning">
+        <div class="rrcard-rank">#5</div>
+        <div class="rrcard-name">Casas Bahia</div>
+        <div class="rrcard-bpc">33,9%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-up">↑ Virada em jun (+58 pp)</div>
+      </div>
+      <div class="rrcard warning">
+        <div class="rrcard-rank">#6</div>
+        <div class="rrcard-name">Madeira Madeira</div>
+        <div class="rrcard-bpc">46,5%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-down">↓ Leve queda recente</div>
+      </div>
+      <div class="rrcard ok">
+        <div class="rrcard-rank">#7</div>
+        <div class="rrcard-name">Amazon Brazil</div>
+        <div class="rrcard-bpc">48,2%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-flat">→ Estável ~50%</div>
+      </div>
+      <div class="rrcard ok">
+        <div class="rrcard-rank">#8 · posição favorável</div>
+        <div class="rrcard-name">Leroy Merlin</div>
+        <div class="rrcard-bpc">61,4%</div>
+        <div class="rrcard-sub">BPC total Jan–Ago</div>
+        <div class="rrcard-trend trend-flat">→ Geralmente competitivo</div>
+      </div>
+    </div>
+
+    <div class="section-title">Evolução mensal do BPC vs. principais concorrentes · Jan–Ago 2026</div>
+    <div class="comp-chart-wrap"><canvas id="compChart"></canvas></div>
+    <p class="note">* Agosto/26 parcial &nbsp;·&nbsp; Linhas subindo = ganho de competitividade de preço vs esse canal &nbsp;·&nbsp; Leroy Merlin e Amazon omitidos (posição já favorável)</p>
+
+    <div class="comp-insights">
+      <div class="comp-insight shopee">
+        <div class="ci-title">🛒 Shopee — Principal oportunidade de equalização</div>
+        <div class="ci-text">BPC evoluiu de <strong>4,8% → 48,8%</strong> ao longo do ano — avanço expressivo. Ainda há oportunidade de equalização em <strong>7 dos 10 itens de maior tráfego</strong>, com gaps de 20% a 33% nos sofás Thunder e Compact. Prioridade estratégica para ajuste.</div>
+      </div>
+      <div class="comp-insight extra">
+        <div class="ci-title">🏪 Extra — Oportunidade de ajuste consistente</div>
+        <div class="ci-text">BPC acumulado de <strong>14,3%</strong> — o Extra apresenta preços mais baixos na maior parte das visitas. A evolução recente (6,7% mai → <strong>38,1% jun</strong>) demonstra que os ajustes de preço realizados estão gerando resultado. Importante manter o monitoramento.</div>
+      </div>
+      <div class="comp-insight mag">
+        <div class="ci-title">📦 Magazine Luiza — Melhorando</div>
+        <div class="ci-text">BPC subiu de <strong>21,1% (fev) para 48,0% (jul)</strong> — grande evolução nas camas box. Ainda assim, os 4 itens de cama box no Top 10 têm gaps de 10% a 31% vs Magazine. Foco para fechar os últimos gaps e chegar a BPC ≥ 55% vs Magazine.</div>
+      </div>
+      <div class="comp-insight casas">
+        <div class="ci-title">🏠 Casas Bahia — Virada positiva</div>
+        <div class="ci-text">A maior virada: BPC foi de <strong>4,9% (abril) para 62,8% (junho)</strong> — +58 pp em dois meses. Sinal claro de que a estratégia de preço nos itens disputados com Casas Bahia funcionou. Manter essa posição e não deixar o BPC recuar.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>Fonte: BPC by Competitor Over Time · D&amp;A · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Vertical Furnishing &amp; Houseware · Jan–Ago 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     PÁGINA 4 — ITENS PRIORITÁRIOS
+══════════════════════════════ -->
+<div class="page">
+  <div class="header dark">
+    <div>
+      <h1>Itens Prioritários para Revisão de Preço</h1>
+      <div class="header-sub">Top 10 itens com maior volume de visitas caras · ordenados por tráfego</div>
+    </div>
+    <div class="header-right">
+      <div class="seller-badge badge-light">CAMA INBOX</div>
+      <span class="date-badge">Jan – Jul 2026</span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="section-title">Principais concorrentes identificados</div>
+    <div class="rival-grid">
+      <div class="rival-card danger">
+        <div class="rival-name">🛒 Shopee</div>
+        <span class="rival-gap">-20% a -33%</span>
+        <div class="rival-desc">Principal ameaça em sofás<br>Aparece em 7 dos 10 itens</div>
+      </div>
+      <div class="rival-card warning">
+        <div class="rival-name">🏪 Magazine Luiza</div>
+        <span class="rival-gap">-10% a -31%</span>
+        <div class="rival-desc">Ameaça em camas box<br>Aparece em 4 dos 10 itens</div>
+      </div>
+      <div class="rival-card info">
+        <div class="rival-name">📦 Amazon</div>
+        <span class="rival-gap">-3% a -22%</span>
+        <div class="rival-desc">Presença ampla<br>Gaps menores, mas recorrente</div>
+      </div>
+      <div class="rival-card minor">
+        <div class="rival-name">🏠 Casas Bahia</div>
+        <span class="rival-gap">-10% a -15%</span>
+        <div class="rival-desc">Foco em camas box<br>+ Leroy Merlin e Extra</div>
+      </div>
+    </div>
+
+    <div class="section-title">Top 10 itens — visitas caras &amp; gap de preço</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:80px">Prioridade</th>
+            <th>Produto</th>
+            <th style="width:90px;text-align:right">Visitas caras</th>
+            <th style="width:90px;text-align:right">Preço Meli</th>
+            <th style="width:160px">Rival mais barato</th>
+            <th style="width:75px;text-align:center">Gap %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="prio-red">
+            <td><span class="badge red">🔴 Urgente</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4224500903-sofa-retratil-240m-molas-e-espuma-d33-thunder-cama-inbox-cinza-liso-_JM" target="_blank">Sofá Retrátil 2,40m Thunder Cinza</a><div class="product-sub">MLB4224500903 · Sofá</div></td>
+            <td style="text-align:right"><div class="visits-num">42.546</div><div class="visits-bar"><div class="visits-bar-fill" style="width:100%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 1.799</span></td>
+            <td><span class="price-rival">R$ 1.429</span><span class="rival-tag shopee">Shopee</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-red">-20,6%</span></td>
+          </tr>
+          <tr class="prio-yellow">
+            <td><span class="badge yellow">🟡 Médio</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4595657806-cama-box-king-colcho-ortofirm-box-193x203x67-one-face-espuma-d45-cinza-_JM" target="_blank">Cama Box King OrtoFirm D45 Cinza</a><div class="product-sub">MLB4595657806 · Cama Box</div></td>
+            <td style="text-align:right"><div class="visits-num">36.746</div><div class="visits-bar"><div class="visits-bar-fill" style="width:86%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 2.302</span></td>
+            <td><span class="price-rival">R$ 2.059</span><span class="rival-tag magazine">Magazine</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-yellow">-10,6%</span></td>
+          </tr>
+          <tr class="prio-red">
+            <td><span class="badge red">🔴 Urgente</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-3056296992-sofa-3-lugares-retratil-e-reclinavel-cama-inbox-compact-180m-velusoft-cinza-liso-_JM" target="_blank">Sofá 3L Compact 1,80m Cinza</a><div class="product-sub">MLB3056296992 · Sofá</div></td>
+            <td style="text-align:right"><div class="visits-num">35.884</div><div class="visits-bar"><div class="visits-bar-fill" style="width:84%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 1.499</span></td>
+            <td><span class="price-rival">R$ 999</span><span class="rival-tag shopee">Shopee</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-red">-33,4%</span></td>
+          </tr>
+          <tr class="prio-red">
+            <td><span class="badge red">🔴 Urgente</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-3841670777-cama-box-queen-colcho-ortofirm-box-158x198x71-double-face-espuma-d33-dourado-_JM" target="_blank">Cama Box Queen OrtoFirm D33 Dourado</a><div class="product-sub">MLB3841670777 · Cama Box</div></td>
+            <td style="text-align:right"><div class="visits-num">30.393</div><div class="visits-bar"><div class="visits-bar-fill" style="width:71%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 2.289</span></td>
+            <td><span class="price-rival">R$ 1.666</span><span class="rival-tag magazine">Magazine</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-red">-27,2%</span></td>
+          </tr>
+          <tr class="prio-red">
+            <td><span class="badge red">🔴 Urgente</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4224513495-sofa-retratil-210m-molas-e-espuma-d33-thunder-cama-inbox-cinza-liso-_JM" target="_blank">Sofá Retrátil 2,10m Thunder Cinza</a><div class="product-sub">MLB4224513495 · Sofá</div></td>
+            <td style="text-align:right"><div class="visits-num">29.676</div><div class="visits-bar"><div class="visits-bar-fill" style="width:70%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 1.599</span></td>
+            <td><span class="price-rival">R$ 1.269</span><span class="rival-tag shopee">Shopee</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-red">-20,6%</span></td>
+          </tr>
+          <tr class="prio-green">
+            <td><span class="badge green">🟢 Fácil</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4196163559-sofa-retratil-e-reclinavel-250m-molas-ensacadas-max-spring-cafe-liso-_JM" target="_blank">Sofá Max Spring 2,50m Café</a><div class="product-sub">MLB4196163559 · Sofá</div></td>
+            <td style="text-align:right"><div class="visits-num">27.390</div><div class="visits-bar"><div class="visits-bar-fill" style="width:64%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 2.279</span></td>
+            <td><span class="price-rival">R$ 2.199</span><span class="rival-tag amazon">Amazon</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-green">-3,5%</span></td>
+          </tr>
+          <tr class="prio-red">
+            <td><span class="badge red">🔴 Urgente</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4096786172-cama-box-king-colcho-ortofirm-box-193x203x71-double-face-espuma-d33-dourado-_JM" target="_blank">Cama Box King OrtoFirm D33 Dourado</a><div class="product-sub">MLB4096786172 · Cama Box</div></td>
+            <td style="text-align:right"><div class="visits-num">25.673</div><div class="visits-bar"><div class="visits-bar-fill" style="width:60%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 2.437</span></td>
+            <td><span class="price-rival">R$ 1.666</span><span class="rival-tag magazine">Magazine</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-red">-31,6%</span></td>
+          </tr>
+          <tr class="prio-green">
+            <td><span class="badge green">🟢 Fácil</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-4196343139-sofa-retratil-e-reclinavel-250m-molas-ensacadas-max-spring-bege-liso-_JM" target="_blank">Sofá Max Spring 2,50m Bege</a><div class="product-sub">MLB4196343139 · Sofá</div></td>
+            <td style="text-align:right"><div class="visits-num">24.309</div><div class="visits-bar"><div class="visits-bar-fill" style="width:57%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 2.384</span></td>
+            <td><span class="price-rival">R$ 2.299</span><span class="rival-tag shopee">Shopee</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-green">-3,5%</span></td>
+          </tr>
+          <tr class="prio-yellow">
+            <td><span class="badge yellow">🟡 Médio</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-3727568573-cama-box-casal-colcho-ortofirm-box-138x188x71-double-face-espuma-d33-dourado-_JM" target="_blank">Cama Box Casal OrtoFirm D33 Dourado</a><div class="product-sub">MLB3727568573 · Cama Box</div></td>
+            <td style="text-align:right"><div class="visits-num">21.747</div><div class="visits-bar"><div class="visits-bar-fill" style="width:51%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 1.839</span></td>
+            <td><span class="price-rival">R$ 1.639</span><span class="rival-tag casas">Casas Bahia</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-yellow">-10,9%</span></td>
+          </tr>
+          <tr class="prio-green">
+            <td><span class="badge green">🟢 Fácil</span></td>
+            <td><a class="product-link" href="https://produto.mercadolivre.com.br/MLB-3840251795-colcho-casal-ortopedico-black-138x188x32-espuma-d33-preto-_JM" target="_blank">Colchão Casal Black D33 Preto</a><div class="product-sub">MLB3840251795 · Colchão</div></td>
+            <td style="text-align:right"><div class="visits-num">20.225</div><div class="visits-bar"><div class="visits-bar-fill" style="width:48%"></div></div></td>
+            <td style="text-align:right"><span class="price-meli">R$ 1.011</span></td>
+            <td><span class="price-rival">R$ 989</span><span class="rival-tag shopee">Shopee</span></td>
+            <td style="text-align:center"><span class="gap-badge gap-green">-2,2%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="page-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#E05252"></div><span>🔴 Urgente: gap &gt; 15%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E67E00"></div><span>🟡 Médio: gap 5–15%</span></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#00A650"></div><span>🟢 Fácil: gap &lt; 5% — pequena redução já recupera visitas</span></div>
+    </div>
+  </div>
+  <div class="footer">
+    <span>Fonte: BPC Competitive Insights D&amp;A · Seller ID 470109248 · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Gerado em agosto 2026</span>
+  </div>
+</div>
+
+<script>
+/* ── CHART 1: Monthly BPC overview ── */
+new Chart(document.getElementById('bpcChart').getContext('2d'), {
+  data: {
+    labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    datasets: [
+      { type:'bar', label:'BPC (%)', data:[34.9,25.5,31.7,35.6,40.9,46.1,58.9],
+        backgroundColor:[34.9,25.5,31.7,35.6,40.9,46.1,58.9].map(v=>v>=50?'#00A650':v>=38?'#3483FA':'#E05252'),
+        borderRadius:7, yAxisID:'yBPC', order:2 },
+      { type:'line', label:'Visitas caras (mi)', data:[9.1,27.9,25.5,22.6,29.6,30.4,13.1],
+        borderColor:'#E67E00', backgroundColor:'rgba(230,126,0,0.08)', borderWidth:2.5,
+        pointRadius:5, pointBackgroundColor:'#E67E00', pointBorderColor:'white', pointBorderWidth:2,
+        tension:0.35, fill:true, yAxisID:'yVis', order:1 }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    interaction:{ mode:'index', intersect:false },
+    plugins:{ legend:{ position:'top', align:'end', labels:{ font:{size:11,family:'Poppins'}, padding:14, usePointStyle:true, pointStyleWidth:10 } },
+      tooltip:{ callbacks:{ label:(c)=>c.datasetIndex===0?` BPC: ${c.raw.toFixed(1)}%`:` Visitas caras: ${c.raw} mi` } } },
+    scales:{
+      yBPC:{ type:'linear', position:'left', min:0, max:80, grid:{color:'#F2F2F2'},
+        ticks:{callback:v=>v+'%',font:{size:10.5,family:'Poppins'},color:'#3483FA'},
+        title:{display:true,text:'BPC',font:{size:10,family:'Poppins',weight:'700'},color:'#3483FA'} },
+      yVis:{ type:'linear', position:'right', min:0, max:40, grid:{drawOnChartArea:false},
+        ticks:{callback:v=>v+' mi',font:{size:10.5,family:'Poppins'},color:'#E67E00'},
+        title:{display:true,text:'Visitas caras',font:{size:10,family:'Poppins',weight:'700'},color:'#E67E00'} },
+      x:{ grid:{display:false}, ticks:{font:{size:11,family:'Poppins'},color:'#555'} }
+    }
+  }
+});
+
+/* ── CHART 2: BPC by Category ── */
+new Chart(document.getElementById('catChart').getContext('2d'), {
+  type:'line',
+  data:{
+    labels:['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'],
+    datasets:[
+      { label:'🛋️ Furniture', data:[34.6,27.7,32.5,37.1,41.0,43.0,44.7,31.9],
+        borderColor:'#3483FA', borderWidth:2.5, pointRadius:5, pointBackgroundColor:'#3483FA',
+        pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'🛏️ Mattresses & Sommier', data:[35.7,20.1,29.0,30.4,39.8,53.3,59.9,44.6],
+        borderColor:'#E67E00', borderWidth:2.5, pointRadius:5, pointBackgroundColor:'#E67E00',
+        pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'🏠 Textiles', data:[62.1,15.4,76.9,94.9,99.2,98.2,99.3,96.1],
+        borderColor:'#00A650', borderWidth:2, pointRadius:4, pointBackgroundColor:'#00A650',
+        pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false, borderDash:[5,3] }
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{ legend:{position:'top',align:'end',labels:{font:{size:11,family:'Poppins'},padding:16,usePointStyle:true,pointStyleWidth:12}},
+      tooltip:{callbacks:{label:(c)=>` ${c.dataset.label}: ${c.raw.toFixed(1)}%`}} },
+    scales:{
+      y:{min:0,max:110,grid:{color:'#F2F2F2'},ticks:{callback:v=>v+'%',font:{size:10.5,family:'Poppins'},color:'#555'}},
+      x:{grid:{display:false},ticks:{font:{size:10.5,family:'Poppins'},color:'#555'}}
+    }
+  }
+});
+
+/* ── CHART 3: BPC by Competitor ── */
+/* BPC = % visitas onde CAMA INBOX estava competitiva vs esse rival. Linha subindo = você melhora */
+new Chart(document.getElementById('compChart').getContext('2d'), {
+  type:'line',
+  data:{
+    labels:['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'],
+    datasets:[
+      { label:'🛒 Shopee (BPC total 29,3%)',        data:[4.8,8.4,21.5,27.3,32.6,30.5,39.4,48.8],
+        borderColor:'#EE4D2D', borderWidth:3, pointRadius:5, pointBackgroundColor:'#EE4D2D', pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'🏪 Extra (14,3%)',                   data:[14.5,6.9,8.7,9.2,6.7,38.1,37.8,32.2],
+        borderColor:'#8B0000', borderWidth:2, pointRadius:4, pointBackgroundColor:'#8B0000', pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'📦 Magazine Luiza (32,3%)',           data:[40.1,21.1,18.9,22.3,34.3,38.7,48.0,32.0],
+        borderColor:'#E67E00', borderWidth:2.5, pointRadius:5, pointBackgroundColor:'#E67E00', pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'🏠 Casas Bahia (33,9%)',             data:[10.5,7.7,11.1,4.9,23.8,62.8,55.9,32.2],
+        borderColor:'#800080', borderWidth:2, pointRadius:4, pointBackgroundColor:'#800080', pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
+      { label:'🪵 Madeira Madeira (46,5%)',          data:[64.6,66.6,46.3,31.9,43.9,47.7,42.6,38.6],
+        borderColor:'#4a90d9', borderWidth:1.5, pointRadius:3, pointBackgroundColor:'#4a90d9', pointBorderColor:'white', pointBorderWidth:1.5, tension:0.3, fill:false, borderDash:[4,3] }
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{position:'top',align:'end',labels:{font:{size:10,family:'Poppins'},padding:10,usePointStyle:true,pointStyleWidth:10}},
+      tooltip:{callbacks:{label:(c)=>` ${c.dataset.label.split(' (')[0]}: ${c.raw.toFixed(1)}%`}}
+    },
+    scales:{
+      y:{min:0,max:110,grid:{color:'#F2F2F2'},
+        ticks:{callback:v=>v+'%',font:{size:10.5,family:'Poppins'},color:'#555'},
+        title:{display:true,text:'BPC — % visitas competitivas vs rival',font:{size:9.5,family:'Poppins',weight:'700'},color:'#777'}},
+      x:{grid:{display:false},ticks:{font:{size:10.5,family:'Poppins'},color:'#555'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
