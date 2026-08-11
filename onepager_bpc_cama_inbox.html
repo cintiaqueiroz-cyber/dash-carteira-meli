@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BPC – Preço Competitivo | CAMA INBOX</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -255,14 +256,14 @@
     <div class="chart-block">
       <div class="section-title">Evolução mensal do BPC &amp; Visitas com preço caro</div>
       <div class="chart-wrap"><canvas id="bpcChart"></canvas></div>
-      <p class="note">* Julho/26 parcial &nbsp;·&nbsp; Barras = BPC (%) &nbsp;·&nbsp; Linha = Visitas caras (mi)</p>
+      <p class="note">* Ago/26 MTD estimado (barra mais clara) &nbsp;·&nbsp; Barras = BPC (%) &nbsp;·&nbsp; Linha = Visitas caras (mi)</p>
     </div>
     <div class="bottom-grid">
       <div class="card amber">
         <div class="card-title">Suas Oportunidades</div>
         <div class="item-row"><div class="icon-circle">📊</div><div class="item-text"><strong>158 milhões de visitas caras</strong> — cada uma é um cliente que viu seu produto e encontrou preço melhor na concorrência.</div></div>
         <div class="item-row"><div class="icon-circle">🔥</div><div class="item-text">Os meses de <strong>maio (30 mi)</strong> e <strong>junho (30 mi)</strong> concentraram o maior volume de visitas perdidas por preço.</div></div>
-        <div class="item-row"><div class="icon-circle">🎯</div><div class="item-text">Atingindo <strong>BPC ≥ 65%</strong> de forma consistente, estima-se recuperar <strong>~16 mi de visitas/mês</strong> convertidas em vendas.</div></div>
+        <div class="item-row"><div class="icon-circle">🎯</div><div class="item-text">Atingindo <strong>BPC ≥ 60%</strong> (média da categoria), estima-se recuperar <strong>~8 mi de visitas/mês</strong> convertidas em vendas.</div></div>
         <div class="item-row"><div class="icon-circle">📈</div><div class="item-text">Trajetória <strong>muito positiva</strong>: de 25,5% (fev) a 58,9% (jul). O desafio é superar os <strong>65% de forma sustentada</strong>.</div></div>
       </div>
       <div class="card blue">
@@ -271,7 +272,7 @@
         <div class="item-row"><div class="step-num">2</div><div class="item-text"><strong>Ajuste primeiro os "Fácil"</strong> (gap &lt;5%) — pequenas reduções em sofás Max Spring recuperam visitas rapidamente.</div></div>
         <div class="item-row"><div class="step-num">3</div><div class="item-text"><strong>Ative a reprecificação automática</strong> para monitorar Shopee e Magazine Luiza, os principais concorrentes.</div></div>
         <div class="item-row"><div class="step-num">4</div><div class="item-text"><strong>Monitore semanalmente</strong> — combine BPC com GMV e conversão para verificar impacto dos ajustes.</div></div>
-        <div class="item-row"><div class="step-num">5</div><div class="item-text"><strong>Priorize itens Full</strong> — entrega rápida + preço competitivo aumentam significativamente a conversão.</div></div>
+        <div class="item-row"><div class="step-num">5</div><div class="item-text"><strong>Priorize itens ME2</strong> — entrega rápida + preço competitivo aumentam significativamente a conversão.</div></div>
       </div>
     </div>
   </div>
@@ -301,16 +302,16 @@
     <div class="cat-grid">
       <div class="cat-card crit">
         <div class="cat-icon">🛋️</div>
-        <div class="cat-name">Furniture</div>
+        <div class="cat-name">Móveis</div>
         <div class="cat-bpc">37,8%</div>
-        <div class="cat-sub">BPC médio Jan–Ago · Living &amp; Diningroom</div>
+        <div class="cat-sub">BPC médio Jan–Ago · Sala de Jantar e Estar</div>
         <div class="cat-vis">135,9 mi</div>
         <div class="cat-vis-sub">visitas com preço caro</div>
         <div class="cat-pill">⚠ Principal oportunidade</div>
       </div>
       <div class="cat-card warn">
         <div class="cat-icon">🛏️</div>
-        <div class="cat-name">Mattresses &amp; Sommier</div>
+        <div class="cat-name">Colchões e Camas Box</div>
         <div class="cat-bpc">41,4%</div>
         <div class="cat-sub">BPC médio Jan–Ago · Colchões + Camas Box</div>
         <div class="cat-vis">48,1 mi</div>
@@ -319,7 +320,7 @@
       </div>
       <div class="cat-card ok">
         <div class="cat-icon">🏠</div>
-        <div class="cat-name">Textiles</div>
+        <div class="cat-name">Têxteis</div>
         <div class="cat-bpc">98,0%</div>
         <div class="cat-sub">BPC médio Jan–Ago · Têxteis Lar</div>
         <div class="cat-vis">~19 mil</div>
@@ -332,15 +333,15 @@
     <p class="note">* Agosto/26 parcial &nbsp;·&nbsp; Linhas subindo = CAMA INBOX ficando mais competitiva na categoria</p>
     <div class="insight-grid">
       <div class="insight-box red">
-        <div class="insight-title">🛋️ Furniture — Urgente</div>
-        <div class="insight-text">Responsável por <strong>74% das visitas caras</strong> (135,9 mi de 184 mi total). BPC de 37,8% indica que mais de 60% do tráfego de sofás e estofados encontra preço mais barato na concorrência. <strong>Prioridade máxima para revisão de preço.</strong></div>
+        <div class="insight-title">🛋️ Móveis — Urgente</div>
+        <div class="insight-text">Responsável por <strong>74% das visitas caras</strong> (135,9 mi de 184 mi total). BPC de 37,8% indica que mais de 60% do tráfego de sofás e estofados encontra preço mais barato na concorrência. <strong>Prioridade máxima para revisão de preço.</strong><br><span style="color:#C0392B;font-size:10.5px;font-weight:600;">▶ Oportunidade adicional: revisão de matches incorretos (medida, tecido, etc.)</span></div>
       </div>
       <div class="insight-box orange">
-        <div class="insight-title">🛏️ Mattresses — Melhorando</div>
-        <div class="insight-text">BPC saiu de <strong>16,6% em fevereiro</strong> para <strong>59,9% em julho</strong> — evolução de +43 pp em colchões e camas box. Agosto (44,6%) pode ser movimento sazonal. <strong>Manter atenção nos Mattress Sets.</strong></div>
+        <div class="insight-title">🛏️ Colchões e Camas Box — Melhorando</div>
+        <div class="insight-text">BPC saiu de <strong>16,6% em fevereiro</strong> para <strong>59,9% em julho</strong> — evolução de +43 pp em colchões e camas box. Agosto (44,6%) pode ser movimento sazonal. <strong>Manter atenção nos conjuntos cama+colchão.</strong></div>
       </div>
       <div class="insight-box green">
-        <div class="insight-title">🏠 Textiles — Estável</div>
+        <div class="insight-title">🏠 Têxteis — Estável</div>
         <div class="insight-text">Volume de visitas caras é irrisório (~19 mil). BPC acima de <strong>98%</strong> na maioria dos meses — apenas fevereiro teve queda (15,4%), possivelmente pontual. <strong>Nenhuma ação imediata necessária.</strong></div>
       </div>
     </div>
@@ -607,24 +608,43 @@
 
 <script>
 /* ── CHART 1: Monthly BPC overview ── */
+const bpcVals = [34.9, 25.5, 31.7, 35.6, 40.9, 46.1, 58.9, 44.0];
+const visVals  = [9.1,  27.9, 25.5, 22.6, 29.6, 30.4, 13.1,  8.0];
+const barClrs  = bpcVals.map((v, i) =>
+  i === 7 ? 'rgba(52,131,250,0.45)' :
+  v >= 50 ? '#00A650' : v >= 38 ? '#3483FA' : '#E05252'
+);
 new Chart(document.getElementById('bpcChart').getContext('2d'), {
+  plugins: [ChartDataLabels],
   data: {
-    labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26 MTD'],
     datasets: [
-      { type:'bar', label:'BPC (%)', data:[34.9,25.5,31.7,35.6,40.9,46.1,58.9],
-        backgroundColor:[34.9,25.5,31.7,35.6,40.9,46.1,58.9].map(v=>v>=50?'#00A650':v>=38?'#3483FA':'#E05252'),
-        borderRadius:7, yAxisID:'yBPC', order:2 },
-      { type:'line', label:'Visitas caras (mi)', data:[9.1,27.9,25.5,22.6,29.6,30.4,13.1],
+      { type:'bar', label:'BPC (%)', data: bpcVals, backgroundColor: barClrs,
+        borderRadius:7, yAxisID:'yBPC', order:2,
+        datalabels:{ anchor:'end', align:'top', offset:3,
+          formatter: v => v.toFixed(1)+'%',
+          font:{ size:10, weight:'700', family:'Poppins' },
+          color: (ctx) => ctx.dataIndex === 7 ? '#3483FA' :
+            bpcVals[ctx.dataIndex] >= 50 ? '#007A3D' :
+            bpcVals[ctx.dataIndex] >= 38 ? '#1859C9' : '#C0392B'
+        }
+      },
+      { type:'line', label:'Visitas caras (mi)', data: visVals,
         borderColor:'#E67E00', backgroundColor:'rgba(230,126,0,0.08)', borderWidth:2.5,
         pointRadius:5, pointBackgroundColor:'#E67E00', pointBorderColor:'white', pointBorderWidth:2,
-        tension:0.35, fill:true, yAxisID:'yVis', order:1 }
+        tension:0.35, fill:true, yAxisID:'yVis', order:1,
+        datalabels:{ display:false }
+      }
     ]
   },
   options: {
     responsive:true, maintainAspectRatio:false,
     interaction:{ mode:'index', intersect:false },
-    plugins:{ legend:{ position:'top', align:'end', labels:{ font:{size:11,family:'Poppins'}, padding:14, usePointStyle:true, pointStyleWidth:10 } },
-      tooltip:{ callbacks:{ label:(c)=>c.datasetIndex===0?` BPC: ${c.raw.toFixed(1)}%`:` Visitas caras: ${c.raw} mi` } } },
+    plugins:{
+      legend:{ position:'top', align:'end', labels:{ font:{size:11,family:'Poppins'}, padding:14, usePointStyle:true, pointStyleWidth:10 } },
+      tooltip:{ callbacks:{ label:(c)=>c.datasetIndex===0?` BPC: ${c.raw.toFixed(1)}%`:` Visitas caras: ${c.raw} mi` } },
+      datalabels:{}
+    },
     scales:{
       yBPC:{ type:'linear', position:'left', min:0, max:80, grid:{color:'#F2F2F2'},
         ticks:{callback:v=>v+'%',font:{size:10.5,family:'Poppins'},color:'#3483FA'},
@@ -643,13 +663,13 @@ new Chart(document.getElementById('catChart').getContext('2d'), {
   data:{
     labels:['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'],
     datasets:[
-      { label:'🛋️ Furniture', data:[34.6,27.7,32.5,37.1,41.0,43.0,44.7,31.9],
+      { label:'🛋️ Móveis', data:[34.6,27.7,32.5,37.1,41.0,43.0,44.7,31.9],
         borderColor:'#3483FA', borderWidth:2.5, pointRadius:5, pointBackgroundColor:'#3483FA',
         pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
-      { label:'🛏️ Mattresses & Sommier', data:[35.7,20.1,29.0,30.4,39.8,53.3,59.9,44.6],
+      { label:'🛏️ Colchões e Camas Box', data:[35.7,20.1,29.0,30.4,39.8,53.3,59.9,44.6],
         borderColor:'#E67E00', borderWidth:2.5, pointRadius:5, pointBackgroundColor:'#E67E00',
         pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false },
-      { label:'🏠 Textiles', data:[62.1,15.4,76.9,94.9,99.2,98.2,99.3,96.1],
+      { label:'🏠 Têxteis', data:[62.1,15.4,76.9,94.9,99.2,98.2,99.3,96.1],
         borderColor:'#00A650', borderWidth:2, pointRadius:4, pointBackgroundColor:'#00A650',
         pointBorderColor:'white', pointBorderWidth:2, tension:0.3, fill:false, borderDash:[5,3] }
     ]
