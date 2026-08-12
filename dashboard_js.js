@@ -3991,7 +3991,7 @@ function buildVGAtingimento(){
           formatter:function(v){return v===null?'':(v>=0?'+':'')+v+'%';}}}
     ]},
     options:{responsive:true,interaction:{mode:'index',intersect:false},
-      layout:{padding:{top:36,bottom:36}},
+      layout:{padding:{top:56,bottom:56}},
       plugins:{
         datalabels:{display:true},
         legend:{position:'top',labels:{boxWidth:14,font:{size:11},filter:function(item){return item.text!=='';}}},
