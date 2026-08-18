@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPC PIX — Madeira Madeira — 18/08/2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #0b0b0b; font-size: 13px; line-height: 1.5; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 28px 24px 48px; }
+  /* Header */
+  .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid #e1e0d9; padding-bottom: 16px; }
+  .header-left h1 { font-size: 20px; font-weight: 600; color: #0b0b0b; }
+  .header-left p { font-size: 12px; color: #898781; margin-top: 3px; }
+  .header-right { text-align: right; }
+  .header-right .date { font-size: 12px; color: #898781; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; background: #FAECE7; color: #993C1D; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .05em; }
+  .apoio-bar { background: #E6F1FB; border: 1px solid #B5D4F4; border-radius: 8px; padding: 10px 16px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+  .apoio-label { font-size: 10px; font-weight: 700; color: #185FA5; text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; flex-shrink: 0; background: #185FA5; color: #fff; padding: 3px 10px; border-radius: 20px; }
+  .apoio-bar a { font-size: 12px; color: #185FA5; font-weight: 500; word-break: break-all; }
+  .apoio-bar a:hover { text-decoration: underline; }
+  /* KPI grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+  .kpi { background: #fff; border-radius: 10px; border: 0.5px solid #e1e0d9; padding: 12px 14px; }
+  .kpi-label { font-size: 10px; color: #898781; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
+  .kpi-value { font-size: 24px; font-weight: 600; }
+  .kpi-sub { font-size: 10px; color: #898781; margin-top: 2px; }
+  /* Share bar */
+  .share-strip { background: #fff; border: 0.5px solid #e1e0d9; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+  .share-label { font-size: 11px; color: #52514e; white-space: nowrap; flex-shrink: 0; }
+  .share-track { flex: 1; height: 22px; background: #f1efe8; border-radius: 4px; overflow: hidden; position: relative; }
+  .share-fill { height: 100%; background: #0F6E56; border-radius: 4px 0 0 4px; display: flex; align-items: center; padding-left: 10px; }
+  .share-fill span { font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .share-rest { font-size: 11px; color: #898781; white-space: nowrap; flex-shrink: 0; }
+  /* Charts row */
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .chart-box { background: #fff; border: 0.5px solid #e1e0d9; border-radius: 10px; padding: 14px 16px; }
+  .chart-box h3 { font-size: 10px; font-weight: 600; color: #898781; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .bar-lbl { width: 90px; font-size: 11px; color: #52514e; text-align: right; flex-shrink: 0; }
+  .bar-track2 { flex: 1; height: 14px; background: #f1efe8; border-radius: 3px; overflow: hidden; }
+  .bar-fill2 { height: 100%; border-radius: 3px; }
+  .bar-cnt { width: 120px; font-size: 10px; color: #898781; flex-shrink: 0; }
+  /* Section title */
+  .section-title { font-size: 10px; font-weight: 600; color: #898781; text-transform: uppercase; letter-spacing: .06em; margin: 18px 0 8px; }
+  /* Legend */
+  .legend { display: flex; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #52514e; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 11px; background: #fff; border-radius: 10px; overflow: hidden; border: 0.5px solid #e1e0d9; }
+  thead th { background: #f5f5f3; font-size: 10px; font-weight: 600; color: #898781; text-transform: uppercase; letter-spacing: .04em; padding: 8px 10px; text-align: left; border-bottom: 0.5px solid #e1e0d9; white-space: nowrap; }
+  tbody td { padding: 7px 10px; border-bottom: 0.5px solid #f1efe8; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafaf8; }
+  .item-name { font-weight: 500; color: #0b0b0b; display: block; line-height: 1.35; }
+  .item-meta { font-size: 10px; color: #898781; display: block; margin-top: 1px; }
+  a { color: #185FA5; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+  .b-pix { background: #E1F5EE; color: #0F6E56; }
+  .b-sem { background: #FAEEDA; color: #854F0B; }
+  .b-erro { background: #FAECE7; color: #993C1D; }
+  .b-win { background: #EAF3DE; color: #3B6D11; }
+  .pix-sug { font-weight: 700; color: #0F6E56; }
+  .pix-min { font-weight: 700; color: #854F0B; }
+  .gap-val { color: #D85A30; font-weight: 600; }
+  .comp-tag { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 500; }
+  .note { font-size: 10px; color: #898781; margin-top: 2px; line-height: 1.3; max-width: 180px; }
+  .num { font-variant-numeric: tabular-nums; }
+  /* Footer */
+  .footer { margin-top: 32px; padding-top: 12px; border-top: 0.5px solid #e1e0d9; display: flex; justify-content: space-between; align-items: center; }
+  .footer p { font-size: 10px; color: #b4b2a9; }
+  @media print {
+    body { background: #fff; }
+    .page { max-width: 100%; padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>BPC PIX — Madeira Madeira</h1>
+      <p>Análise dos principais ofensores &amp; oportunidades de desconto PIX &mdash; carteira F&amp;H</p>
+    </div>
+    <div class="header-right">
+      <div class="tag">Ofensor BPC PIX</div>
+      <div class="date" style="margin-top:6px;">18/08/2026 &middot; Cintia Queiroz &middot; KAM F&amp;H</div>
+    </div>
+  </div>
+
+  <!-- Link de Apoio -->
+  <div class="apoio-bar">
+    <span class="apoio-label">&#128196; Link de apoio &agrave; an&aacute;lise</span>
+    <a href="https://docs.google.com/spreadsheets/d/19UzKWJ1cttEzVq1E8l4mS_PMvABkFmOfv4QI33Hhj7Q/edit?gid=0#gid=0" target="_blank">
+      BPC_ALL_ABC_PIX &mdash; Planilha completa de refer&ecirc;ncia (Google Sheets)
+    </a>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">Visitas analisadas</div>
+      <div class="kpi-value" style="color:#0b0b0b;">2,29M</div>
+      <div class="kpi-sub">30 itens &middot; 27,3% do total MM</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Total MM EXPENSIVE</div>
+      <div class="kpi-value" style="color:#52514e;">8,39M</div>
+      <div class="kpi-sub">10.918 itens na planilha</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">PIX atual &mdash; aumentar</div>
+      <div class="kpi-value" style="color:#0F6E56;">10 itens</div>
+      <div class="kpi-sub">835.776 visitas</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Sem PIX &mdash; inserir</div>
+      <div class="kpi-value" style="color:#BA7517;">10 itens</div>
+      <div class="kpi-sub">747.903 visitas</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Erros de match</div>
+      <div class="kpi-value" style="color:#993C1D;">9 itens</div>
+      <div class="kpi-sub">639.460 visitas</div>
+    </div>
+  </div>
+
+  <!-- Share bar -->
+  <div class="share-strip">
+    <div class="share-label">30 itens analisados vs total MM EXPENSIVE</div>
+    <div class="share-track">
+      <div class="share-fill" style="width:27.3%"><span>2,29M &mdash; 27,3%</span></div>
+    </div>
+    <div class="share-rest">restante: 6,09M &middot; 10.888 itens</div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-box">
+      <h3>Visitas por competidor</h3>
+      <div class="bar-row"><div class="bar-lbl">Amazon</div><div class="bar-track2"><div class="bar-fill2" style="width:100%;background:#2a78d6;"></div></div><div class="bar-cnt">822.821 &middot; 12 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Leroy Merlin</div><div class="bar-track2"><div class="bar-fill2" style="width:64%;background:#eb6834;"></div></div><div class="bar-cnt">530.263 &middot; 4 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Magalu</div><div class="bar-track2"><div class="bar-fill2" style="width:58%;background:#1baf7a;"></div></div><div class="bar-cnt">480.523 &middot; 7 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Shopee</div><div class="bar-track2"><div class="bar-fill2" style="width:51%;background:#eda100;"></div></div><div class="bar-cnt">416.020 &middot; 6 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">MM.com.br</div><div class="bar-track2"><div class="bar-fill2" style="width:5%;background:#888780;"></div></div><div class="bar-cnt">43.922 &middot; 1 item</div></div>
+    </div>
+    <div class="chart-box">
+      <h3>Visitas por tipo de a&ccedil;&atilde;o</h3>
+      <div class="bar-row"><div class="bar-lbl">PIX atual &#8593;</div><div class="bar-track2"><div class="bar-fill2" style="width:100%;background:#1baf7a;"></div></div><div class="bar-cnt">835.776 &middot; 10 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Inserir PIX</div><div class="bar-track2"><div class="bar-fill2" style="width:90%;background:#eda100;"></div></div><div class="bar-cnt">747.903 &middot; 10 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Erro match</div><div class="bar-track2"><div class="bar-fill2" style="width:77%;background:#D85A30;"></div></div><div class="bar-cnt">639.460 &middot; 9 itens</div></div>
+      <div class="bar-row"><div class="bar-lbl">Ganhando</div><div class="bar-track2"><div class="bar-fill2" style="width:9%;background:#3B6D11;"></div></div><div class="bar-cnt">70.410 &middot; 1 item</div></div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="section-title">Top 30 itens analisados &mdash; PIX sugerido = PIX atual + |gap|</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#1baf7a;"></div> PIX atual &mdash; aumentar (novo % = PIX atual + |gap|)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#eda100;"></div> Sem PIX &mdash; inserir (m&iacute;nimo = |gap|)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#D85A30;"></div> Erro de match &mdash; j&aacute; reportado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#3B6D11;"></div> Ganhando</div>
+  </div>
+
+  <!-- Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Visitas</th>
+        <th>Competidor</th>
+        <th>Pre&ccedil;o Meli</th>
+        <th>Pre&ccedil;o Rival</th>
+        <th>Gap</th>
+        <th>PIX atual</th>
+        <th>PIX sugerido</th>
+        <th>A&ccedil;&atilde;o</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <p>Fonte: BPC_ALL_ABC_PIX &mdash; 18/08/2026 &middot; Dados: meli-bi-data</p>
+    <p>Cintia Faraco Queiroz &middot; KAM Furnishing &amp; Houseware &middot; Mercado Livre</p>
+  </div>
+
+</div>
+
+<script>
+const compColors = {'Amazon':'#2a78d6','Leroy Merlin':'#eb6834','Magalu':'#1baf7a','Shopee':'#eda100','MM.com.br':'#888780'};
+const badgeMap = {
+  'pix':'<span class="badge b-pix">PIX atual ↑</span>',
+  'sem':'<span class="badge b-sem">Inserir PIX</span>',
+  'erro':'<span class="badge b-erro">Erro match</span>',
+  'win':'<span class="badge b-win">Ganhando</span>',
+};
+const items = [
+  {n:1,id:'3679267071',title:'Cômoda 2P 3G Rodial Dunas Wt',brand:'Rodial',visits:294125,comp:'Leroy Merlin',pm:286.77,pr:273.39,gap:-0.047,pix_atual:5,action:'pix'},
+  {n:2,id:'5982862972',title:'Guarda-roupa Casal 3P Espelhada Yescasa CGWT',brand:'Yescasa',visits:119546,comp:'Amazon',pm:1092.49,pr:999.98,gap:-0.085,pix_atual:null,action:'erro',note:'Erro match Amazon · Leroy → Flávia · Shopee → plan Flávia'},
+  {n:3,id:'4246599857',title:'Guarda Roupa Casal Costa Rica Sallêto 3P Espelho',brand:'Sallêto',visits:108833,comp:'Magalu',pm:1069.82,pr:939.98,gap:-0.121,pix_atual:20,action:'pix'},
+  {n:4,id:'3678311567',title:'Rack c/ Painel TV 75\" Yescasa LED',brand:'Yescasa',visits:108251,comp:'Leroy Merlin',pm:966.33,pr:952.92,gap:-0.014,pix_atual:0,action:'sem'},
+  {n:5,id:'5405444212',title:'Guarda-roupa Casal Espelho 6P 2G França Espresso',brand:'Espresso',visits:106652,comp:'Shopee',pm:778.77,pr:708.39,gap:-0.090,pix_atual:0,action:'sem'},
+  {n:6,id:'3298868455',title:'Guarda Roupa Casal 2P Correr 4G Seul Espresso',brand:'Espresso',visits:105051,comp:'Amazon',pm:1629.99,pr:1599.98,gap:-0.018,pix_atual:0,action:'sem'},
+  {n:7,id:'1313023640',title:'Guarda-roupa Solteiro 2P Correr 2G Espelho Yescasa',brand:'Yescasa',visits:104478,comp:'Magalu',pm:788.48,pr:709.98,gap:-0.100,pix_atual:null,action:'erro',note:'Erro match Magalu reportado'},
+  {n:8,id:'5339188278',title:'Armário Cozinha 6P 2G Adelle Yescasa',brand:'Yescasa',visits:84980,comp:'Leroy Merlin',pm:825.52,pr:781.15,gap:-0.054,pix_atual:0,action:'sem'},
+  {n:9,id:'4435572438',title:'Mesa Jantar Vitalic c/ 6 Cadeiras Viero',brand:'Viero',visits:77475,comp:'Shopee',pm:1555.53,pr:1287.91,gap:-0.172,pix_atual:0,action:'sem'},
+  {n:10,id:'5521548780',title:'Guarda-roupa Casal Espelho 6P 2G França Wt Espresso',brand:'Espresso',visits:75681,comp:'Magalu',pm:923.60,pr:799.98,gap:-0.134,pix_atual:null,action:'erro',note:'Erro match Amazon · Leroy → Flávia · Shopee → plan Flávia'},
+  {n:11,id:'3878085991',title:'Guarda-roupa Casal Yescasa Milão 3P Espelho',brand:'Yescasa',visits:75202,comp:'Amazon',pm:1057.77,pr:1019.99,gap:-0.036,pix_atual:15,action:'pix'},
+  {n:12,id:'5414138382',title:'Guarda-roupa Closet Casal MDF 277,7cm Rr Sion',brand:'Rr Móveis',visits:74000,comp:'Shopee',pm:1945.11,pr:1904.39,gap:-0.021,pix_atual:8,action:'pix'},
+  {n:13,id:'5652934458',title:'Guarda-roupa Casal Paris Espresso 8P 4G Cinza',brand:'Espresso',visits:70739,comp:'Amazon',pm:1099.98,pr:1045.47,gap:-0.050,pix_atual:null,action:'erro',note:'Erro match Amazon reportado'},
+  {n:14,id:'4265818579',title:'Armário Multiuso 2P Regente Castanho/Offwhite',brand:'DiretoSim',visits:70410,comp:'Shopee',pm:170.99,pr:161.41,gap:-0.056,pix_atual:null,action:'win',note:'Estamos ganhando'},
+  {n:15,id:'6463954286',title:'Kit 2 Cômodas 5G Espresso Cinamomo/Off White',brand:'Espresso',visits:68928,comp:'Amazon',pm:760.53,pr:703.49,gap:-0.075,pix_atual:0,action:'sem'},
+  {n:16,id:'4709503374',title:'Sala Jantar Mesa Vidro 6 Cadeiras Espanha Yescasa',brand:'Yescasa',visits:68273,comp:'Amazon',pm:1171.10,pr:1044.99,gap:-0.108,pix_atual:null,action:'erro',note:'Erro match Amazon reportado'},
+  {n:17,id:'4637518840',title:'Guarda-roupa Sallêto Cinamomo/Off-white MDF',brand:'Sallêto',visits:67129,comp:'Amazon',pm:903.52,pr:706.77,gap:-0.218,pix_atual:null,action:'erro',note:'Erro match Amazon reportado'},
+  {n:18,id:'4374546521',title:'Rack c/ Painel Gelius TV 85\" LED Rodizios 3G',brand:'Gelius',visits:63615,comp:'Amazon',pm:2009.99,pr:1959.99,gap:-0.025,pix_atual:0,action:'sem'},
+  {n:19,id:'4480473238',title:'Guarda-roupa Casal 6P 2G França Wt Espresso',brand:'Espresso',visits:56793,comp:'Magalu',pm:769.49,pr:752.91,gap:-0.022,pix_atual:8,action:'pix'},
+  {n:20,id:'5770347174',title:'Sala Jantar Mesa MDF 6 Cadeiras Espanha Yescasa Fa',brand:'Yescasa',visits:48512,comp:'Magalu',pm:1084.70,pr:1069.98,gap:-0.014,pix_atual:15,action:'pix'},
+  {n:21,id:'3678313343',title:'Guarda-roupa Sallêto Cinamomo MDF 2P',brand:'Sallêto',visits:47921,comp:'Amazon',pm:782.33,pr:749.98,gap:-0.041,pix_atual:5,action:'pix'},
+  {n:22,id:'3517325465',title:'Guarda Roupa Casal Branco 3P Espelho Demóbile',brand:'Demóbile',visits:46725,comp:'Amazon',pm:999.98,pr:971.98,gap:-0.028,pix_atual:0,action:'sem'},
+  {n:23,id:'4120062181',title:'Mesa Jantar Luanda 180x90cm Vidro/MDF Yescasa',brand:'Yescasa',visits:46355,comp:'Amazon',pm:1671.33,pr:1452.64,gap:-0.131,pix_atual:null,action:'erro',note:'Erro match Amazon reportado'},
+  {n:24,id:'4439731209',title:'Mesa Redonda 4 Cadeiras Tampo MDF Yescasa',brand:'Yescasa',visits:44495,comp:'Shopee',pm:928.57,pr:901.51,gap:-0.029,pix_atual:13,action:'pix'},
+  {n:25,id:'6538989298',title:'Guarda-roupa Reflecta LED 6P 2G Cinamomo Sallêto',brand:'Sallêto',visits:43922,comp:'MM.com.br',pm:965.99,pr:941.15,gap:-0.026,pix_atual:null,action:'erro',note:'Erro match MM.com.br reportado'},
+  {n:26,id:'5455483358',title:'Rack c/ Painel Gelius TV 84\" Luminare Off White',brand:'Gelius',visits:43337,comp:'Amazon',pm:2639.99,pr:2359.98,gap:-0.106,pix_atual:null,action:'erro',note:'Erro match Amazon reportado'},
+  {n:27,id:'5738446168',title:'Sala Jantar Mesa 160x80cm MDF 6 Cadeiras Yescasa',brand:'Yescasa',visits:43143,comp:'Magalu',pm:1085.22,pr:1071.00,gap:-0.013,pix_atual:0,action:'sem'},
+  {n:28,id:'4437548871',title:'Guarda-roupa Infantil Doce Sonho 2P Qmovi',brand:'Qmovi',visits:43083,comp:'Magalu',pm:411.34,pr:399.89,gap:-0.028,pix_atual:0,action:'sem'},
+  {n:29,id:'6099411672',title:'Guarda-roupa Casal Ripado 2P Espelhos 4G Caemmun',brand:'Caemmun',visits:42988,comp:'Shopee',pm:1614.59,pr:1435.19,gap:-0.111,pix_atual:8,action:'pix'},
+  {n:30,id:'4022375409',title:'Guarda-roupas Casal Reflecta 6P c/ Pés Gelius',brand:'Gelius',visits:42907,comp:'Leroy Merlin',pm:6239.99,pr:6093.16,gap:-0.024,pix_atual:15,action:'pix'},
+];
+
+function fmt(n,d=2){return n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmtV(n){return n.toLocaleString('pt-BR');}
+
+const tbody = document.getElementById('tbody');
+items.forEach(it => {
+  const gapAbs = Math.abs(it.gap)*100;
+  const gapStr = '-'+gapAbs.toFixed(1)+'%';
+  const cc = compColors[it.comp]||'#888780';
+  let pixAtual='—', pixSug='—';
+  if(it.action==='pix'){
+    pixAtual=it.pix_atual+'%';
+    pixSug='<span class="pix-sug">▲ '+(it.pix_atual+gapAbs).toFixed(1)+'%</span>';
+  } else if(it.action==='sem'){
+    pixAtual='0%';
+    pixSug='<span class="pix-min">≥ '+gapAbs.toFixed(1)+'%</span>';
+  }
+  const noteHtml=it.note?'<div class="note">'+it.note+'</div>':'';
+  const mlb='https://produto.mercadolivre.com.br/MLB-'+it.id;
+  tbody.innerHTML+='<tr>'+
+    '<td style="color:#b4b2a9;font-size:10px;">'+it.n+'</td>'+
+    '<td><a href="'+mlb+'" target="_blank" class="item-name">'+it.title+'</a>'+
+      '<span class="item-meta"><a href="'+mlb+'" target="_blank">MLB-'+it.id+'</a> · '+it.brand+'</span></td>'+
+    '<td class="num" style="font-weight:600;">'+fmtV(it.visits)+'</td>'+
+    '<td><span class="comp-tag" style="background:'+cc+'22;color:'+cc+';">'+it.comp+'</span></td>'+
+    '<td class="num">R$'+fmt(it.pm)+'</td>'+
+    '<td class="num">R$'+fmt(it.pr)+'</td>'+
+    '<td class="gap-val">'+gapStr+'</td>'+
+    '<td style="color:#52514e;">'+pixAtual+'</td>'+
+    '<td>'+pixSug+'</td>'+
+    '<td>'+badgeMap[it.action]+noteHtml+'</td>'+
+  '</tr>';
+});
+</script>
+</body>
+</html>
