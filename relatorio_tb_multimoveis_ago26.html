@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T&B · MULTIMOVEIS · Análise de Vertical</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --green:#00a650; --green-dark:#008a3e; --gray-ly:#c9c9c9; --gold:#f0b400;
+  --blue:#4285f4; --orange:#ff7a1a; --red:#e33b3b; --dark:#191919;
+  --card-bg:#ffffff; --page-bg:#f4f5f7; --border:#e6e6e6; --text:#222; --muted:#6b7280;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"Proxima Nova",Arial,Helvetica,sans-serif;background:var(--page-bg);color:var(--text);}
+nav{background:var(--dark);display:flex;align-items:center;padding:0 8px;position:sticky;top:0;z-index:50;}
+nav button{background:none;border:none;color:#bdbdbd;padding:16px 18px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.3px;}
+nav button.active{color:#fff;border-bottom:3px solid var(--gold);}
+nav button:hover{color:#fff;}
+main{max-width:1400px;margin:0 auto;padding:20px;}
+.tab{display:none;}
+.tab.active{display:block;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+.kpi{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;border-left:4px solid var(--green);}
+.kpi.c-blue{border-left-color:var(--blue);}
+.kpi.c-gold{border-left-color:var(--gold);}
+.kpi.c-orange{border-left-color:var(--orange);}
+.kpi .lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+.kpi .val{font-size:26px;font-weight:800;margin:4px 0 2px;font-variant-numeric:tabular-nums;}
+.kpi .sub{font-size:12px;color:var(--muted);}
+.kpi .sub.pos{color:var(--green-dark);font-weight:700;}
+.kpi .sub.neg{color:var(--red);font-weight:700;}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px;}
+.card h3{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:#444;margin:0 0 12px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:#232323;}
+thead th{color:#fff;text-align:left;padding:9px 10px;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px;}
+tbody td{padding:9px 10px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;}
+tbody tr:hover{background:#fafafa;}
+tbody tr.hl td{border-bottom:2px solid var(--gold);}
+.pos{color:var(--green-dark);font-weight:700;}
+.neg{color:var(--red);font-weight:700;}
+a.mlb{color:var(--blue);text-decoration:none;font-weight:600;}
+a.mlb:hover{text-decoration:underline;}
+.tag{display:inline-block;background:#e6f6ec;color:var(--green-dark);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;}
+.chart-wrap{position:relative;height:300px;}
+.chart-wrap.tall{height:340px;}
+ul.opps{margin:0;padding-left:18px;font-size:13px;line-height:1.7;}
+ul.opps li{margin-bottom:4px;}
+.txt{font-size:13px;line-height:1.8;}
+.txt b.hl-y{background:#fff3c4;padding:1px 4px;border-radius:3px;}
+.txt b.hl-g{background:#e6f6ec;color:var(--green-dark);padding:1px 4px;border-radius:3px;}
+footer{text-align:center;font-size:11px;color:var(--muted);padding:20px 0;}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,1fr);}.grid2,.grid3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <button class="tabbtn active" data-tab="overview">📊 Overview</button>
+  <button class="tabbtn" data-tab="evolucao">📈 Evolução Mensal</button>
+  <button class="tabbtn" data-tab="linhas">🧩 Linhas &amp; Itens</button>
+  <button class="tabbtn" data-tab="potencial">🎯 Potencial</button>
+</nav>
+
+<main>
+
+<!-- ===================== TAB 1 — OVERVIEW ===================== -->
+<section class="tab active" id="tab-overview">
+  <div class="kpis">
+    <div class="kpi">
+      <div class="lbl">NMV T&amp;B 2026 YTD</div>
+      <div class="val">R$ 19,5M</div>
+      <div class="sub pos">+119% vs H1 2025</div>
+    </div>
+    <div class="kpi c-blue">
+      <div class="lbl">% do mix Multimoveis</div>
+      <div class="val">33,8%</div>
+      <div class="sub">do NMV total 2026 (R$ 57,5M)</div>
+    </div>
+    <div class="kpi c-gold">
+      <div class="lbl">Pedidos T&amp;B 2026</div>
+      <div class="val">28.912</div>
+      <div class="sub">Jan–21/Ago 2026</div>
+    </div>
+    <div class="kpi c-orange">
+      <div class="lbl">ASP médio T&amp;B</div>
+      <div class="val">R$ 673</div>
+      <div class="sub">Baby Bedroom domina (~R$ 673)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>NMV Mensal T&amp;B — 2025 vs 2026 (R$)</h3>
+    <div class="chart-wrap tall"><canvas id="chNmvMensal"></canvas></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Crescimento YoY por mês (%)</h3>
+      <div class="chart-wrap"><canvas id="chYoy"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Mix de NMV por vertical (2026 YTD)</h3>
+      <div class="chart-wrap"><canvas id="chMixVertical"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TAB 2 — EVOLUÇÃO MENSAL ===================== -->
+<section class="tab" id="tab-evolucao">
+  <div class="kpis">
+    <div class="kpi">
+      <div class="lbl">NMV H1 2026</div>
+      <div class="val">R$ 15,1M</div>
+      <div class="sub pos">+119% vs H1 2025 (R$ 6,9M)</div>
+    </div>
+    <div class="kpi c-blue">
+      <div class="lbl">Melhor mês 2026</div>
+      <div class="val">Janeiro</div>
+      <div class="sub pos">R$ 2,82M (+160% YoY)</div>
+    </div>
+    <div class="kpi c-gold">
+      <div class="lbl">Pedidos H1 2026</div>
+      <div class="val">22.819</div>
+      <div class="sub">vs ~13.050 no H1 2025</div>
+    </div>
+    <div class="kpi c-orange">
+      <div class="lbl">Agosto 2026 (parcial · 21 dias)</div>
+      <div class="val">R$ 1,64M</div>
+      <div class="sub">~R$ 2,41M projetado no mês</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Evolução Mensal T&amp;B — Multimoveis</h3>
+    <table>
+      <thead><tr><th>Mês</th><th>NMV 2025 (R$)</th><th>NMV 2026 (R$)</th><th>Pedidos 2026</th><th>YoY %</th><th>MoM % (2026)</th></tr></thead>
+      <tbody id="tblEvolucao"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Pedidos Mensais T&amp;B 2026</h3>
+    <div class="chart-wrap"><canvas id="chPedidos"></canvas></div>
+  </div>
+</section>
+
+<!-- ===================== TAB 3 — LINHAS & ITENS ===================== -->
+<section class="tab" id="tab-linhas">
+  <div class="grid2">
+    <div class="card">
+      <h3>NMV por linha T&amp;B (2026 YTD)</h3>
+      <div class="chart-wrap"><canvas id="chLinhas"></canvas></div>
+    </div>
+    <div class="card">
+      <h3>Top 10 itens por NMV (R$)</h3>
+      <div class="chart-wrap tall"><canvas id="chTopItens"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Top 10 itens · Baby &amp; Bedroom · 2026 YTD</h3>
+    <table>
+      <thead><tr><th>#</th><th>Item (MLB)</th><th>Linha</th><th>NMV (R$)</th><th>Pedidos</th><th>ASP (R$)</th></tr></thead>
+      <tbody id="tblTopItens"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===================== TAB 4 — POTENCIAL ===================== -->
+<section class="tab" id="tab-potencial">
+  <div class="grid3">
+    <div class="card">
+      <h3>📌 Situação atual</h3>
+      <div class="txt">
+        T&amp;B já representa <b class="hl-y">33,8%</b> do NMV total da Multimoveis em 2026 (<b>R$ 19,5M</b> YTD, Jan–21/Ago) — uma vertical estrutural, não emergente como no benchmark analisado.<br><br>
+        O crescimento segue forte mesmo a partir de uma base alta: <b class="hl-g">+119% YoY H1</b> (R$ 15,1M vs R$ 6,9M em H1 2025).<br><br>
+        A categoria é praticamente mono-linha: <b class="hl-y">99,99%</b> do NMV T&amp;B vem de <b>Baby Bedroom</b> — Toys &amp; Games representa apenas R$ 1.450 no ano.
+      </div>
+    </div>
+    <div class="card">
+      <h3>💡 Oportunidades identificadas</h3>
+      <ul class="opps">
+        <li>Mix de portfólio: top itens combinam berços avulsos de alto volume/baixo ticket (ASP ~R$ 400-510) com quartos completos de menor volume/alto ticket (ASP ~R$ 1.550-1.590) — oportunidade de upsell berço → kit completo</li>
+        <li>Toys &amp; Games e demais linhas T&amp;B praticamente inexistentes (R$ 1,4K) — potencial de cross-sell dentro da vertical</li>
+        <li>Desaceleração recente: MoM -19% (Jun) e -41% (Ago parcial) — investigar ruptura de estoque/catálogo nos itens-âncora (berços 3 em 1)</li>
+        <li>Pico em Nov/2025 (R$ 2,63M) sugere sazonalidade de fim de ano — planejar oferta antecipada para Nov–Dez/2026</li>
+        <li>Baby Bedroom é item de alta complexidade logística (volume/fragilidade) — avaliar elegibilidade Full para os berços de maior giro, pode destravar CVR</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🗺️ Agenda estratégica · próximos passos</h3>
+      <ul class="opps">
+        <li><b>Catálogo T&amp;B:</b> mapear SKUs de Toys &amp; Games e Baby Toys &amp; Activity para ativar a linha</li>
+        <li><b>Fulfillment:</b> avaliar elegibilidade Full dos berços 3 em 1 top-giro — impacto em CVR e BPC</li>
+        <li><b>Upsell:</b> revisar combos/PADS para migrar comprador de berço avulso para quarto completo</li>
+        <li><b>Estoque:</b> investigar causa da queda MoM em Jun e Ago (ruptura vs demanda)</li>
+        <li><b>Sazonalidade:</b> planejar entrada em ofertas Dia das Crianças (Out) e Natal (Nov–Dez)</li>
+        <li><b>JBP:</b> incluir meta de NMV T&amp;B para 2026 e OKR de diversificação de linha (reduzir dependência de Baby Bedroom)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Projeção NMV T&amp;B 2026 · tendência de crescimento</h3>
+    <div class="chart-wrap tall"><canvas id="chProjecao"></canvas></div>
+  </div>
+</section>
+
+</main>
+<footer>Fonte: meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB (NMV_FLG) · VERTICAL = 'T &amp; B' · Sellers MULTIMOVEIS (384367575, 2136426616, 1916810773, 1226388620) · Gerado em 21/08/2026</footer>
+
+<script>
+Chart.defaults.font.family = "Arial, Helvetica, sans-serif";
+Chart.defaults.color = "#444";
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+document.querySelectorAll('.tabbtn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+const fmtBRL = v => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+const fmtM   = v => 'R$ ' + (v/1e6).toFixed(1).replace('.',',') + 'M';
+const fmtK   = v => v>=1000 ? (v/1000).toFixed(0)+'K' : String(v);
+
+const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'];
+const nmv2025 = [1083211,1099744,1299522,886122,1146495,1369722,1937617,1863885];
+const nmv2026 = [2818888,2412312,2496604,2726780,2544930,2055174,2777109,1636217];
+const pedidos2026 = [4029,3680,3978,4131,3886,3115,3703,2390];
+const yoy = [160,119,92,208,122,50,43];
+const mom = [null,-14,3,9,-7,-19,35,-41];
+
+// -------- Chart 1: NMV mensal 2025 vs 2026 (combo com linha de tendência) --------
+new Chart(document.getElementById('chNmvMensal'), {
+  type:'bar',
+  data:{
+    labels: meses,
+    datasets:[
+      {label:'NMV 2025', data:nmv2025, backgroundColor:'#c9c9c9', order:2, borderRadius:3},
+      {label:'NMV 2026', data:nmv2026, backgroundColor:'#00a650', order:2, borderRadius:3},
+      {label:'Tendência 2026', data:nmv2026, type:'line', borderColor:'#f0b400', backgroundColor:'#f0b400',
+       borderWidth:2, pointRadius:4, pointBackgroundColor:'#f0b400', tension:.35, order:1, yAxisID:'y'}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    scales:{ y:{ ticks:{ callback:v=>fmtM(v) }, grid:{color:'#eee'} }, x:{ grid:{display:false} } },
+    plugins:{ tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+fmtBRL(c.raw) } } }
+  }
+});
+
+// -------- Chart 2: Crescimento YoY por mês --------
+new Chart(document.getElementById('chYoy'), {
+  type:'bar',
+  data:{
+    labels: meses.slice(0,7),
+    datasets:[{
+      label:'YoY %', data: yoy,
+      backgroundColor: yoy.map((v,i)=> i===6 ? '#ff7a1a' : '#00a650'),
+      borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    scales:{ y:{ ticks:{ callback:v=>'+'+v+'%' }, grid:{color:'#eee'} }, x:{grid:{display:false}} },
+    plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>'+'+c.raw+'%' } } }
+  }
+});
+
+// -------- Chart 3: Mix de NMV por vertical --------
+new Chart(document.getElementById('chMixVertical'), {
+  type:'doughnut',
+  data:{
+    labels:['Furnishing & Houseware','T & B (Baby Bedroom)','Beauty','Construction & Industry','Outros'],
+    datasets:[{
+      data:[36662986,19468013,824571,570830,22612],
+      backgroundColor:['#4285f4','#00a650','#ff7a1a','#8e44ad','#c9c9c9']
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{position:'right'}, tooltip:{ callbacks:{ label:c=> c.label+': '+fmtBRL(c.raw)+' ('+(c.raw/57549012*100).toFixed(1)+'%)' } } }
+  }
+});
+
+// -------- Tabela evolução mensal --------
+const tbl = document.getElementById('tblEvolucao');
+meses.forEach((m,i)=>{
+  const momTxt = mom[i]===null ? '—' : (mom[i]>=0?'+':'')+mom[i]+'%';
+  const momCls = mom[i]===null ? '' : (mom[i]>=0?'pos':'neg');
+  const parcial = i===7 ? ' <span class="tag">parcial</span>' : '';
+  tbl.innerHTML += `<tr${i===7?' class="hl"':''}>
+    <td><b>${m}/2026${parcial}</b></td>
+    <td>${fmtBRL(nmv2025[i])}</td>
+    <td>${fmtBRL(nmv2026[i])}</td>
+    <td>${pedidos2026[i].toLocaleString('pt-BR')}</td>
+    <td class="${yoy[i]>=0?'pos':'neg'}">${i<7?(yoy[i]>=0?'+':'')+yoy[i]+'%':'-12%'}</td>
+    <td class="${momCls}">${momTxt}</td>
+  </tr>`;
+});
+
+// -------- Chart 4: Pedidos mensais --------
+new Chart(document.getElementById('chPedidos'), {
+  type:'bar',
+  data:{ labels: meses, datasets:[{ label:'Pedidos', data: pedidos2026, backgroundColor:'#4285f4', borderRadius:4 }] },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false} },
+    scales:{ y:{ grid:{color:'#eee'} }, x:{grid:{display:false}} }
+  }
+});
+
+// -------- Chart 5: NMV por linha T&B --------
+new Chart(document.getElementById('chLinhas'), {
+  type:'doughnut',
+  data:{
+    labels:['Baby Bedroom','Art & Craft'],
+    datasets:[{ data:[19466563,1450], backgroundColor:['#00a650','#c9c9c9'] }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{position:'right'}, tooltip:{ callbacks:{ label:c=> c.label+': '+fmtBRL(c.raw)+' ('+(c.raw/19468013*100).toFixed(1)+'%)' } } }
+  }
+});
+
+// -------- Top 10 itens --------
+const topItens = [
+  {mlb:'MLB3345515041', titulo:'Berço 3 em 1 com Colchão D18 Incluso Vira Sofá e Minicama 3 Anos de Garantia Multimóveis MP0527C Branco', linha:'Baby Bedroom', nmv:1093016, pedidos:2138},
+  {mlb:'MLB3665713905', titulo:'Quarto Bebê Completo Infantil com Guarda-Roupa Cômoda Berço e Colchão Incluso Pimpolho Multimóveis Branco 3 Anos de Garantia', linha:'Baby Bedroom', nmv:1078615, pedidos:680},
+  {mlb:'MLB4199278778', titulo:'Berço 3 em 1 para Colchão 60 x 130cm Vira Sofá e Minicama 3 Anos de Garantia Multimóveis Branco', linha:'Baby Bedroom', nmv:1057626, pedidos:2698},
+  {mlb:'MLB5885368880', titulo:'Berço Americano 3 em 1 para Colchão 130x70cm Multimóveis 0527PA Madeirado/Branco', linha:'Baby Bedroom', nmv:1004732, pedidos:2276},
+  {mlb:'MLB5879656986', titulo:'Berço Americano 3 em 1 para Colchão 130x70cm Multimóveis 0527PA Branco', linha:'Baby Bedroom', nmv:725076, pedidos:1793},
+  {mlb:'MLB4322093425', titulo:'Quarto de Bebê Completo com Berço Americano 3 em 1 Doçura Multimóveis MP4646 Madeirado/Off White', linha:'Baby Bedroom', nmv:647043, pedidos:411},
+  {mlb:'MLB4273990071', titulo:'Berço Americano 3 em 1 para Colchão 130x70cm Multimóveis 0527PA Off White/Branco', linha:'Baby Bedroom', nmv:524618, pedidos:1290},
+  {mlb:'MLB4912446114', titulo:'Quarto Bebê Completo Infantil com Guarda-Roupa Cômoda Berço e Colchão Incluso Pimpolho Multimóveis Branco 3 Anos de Garantia', linha:'Baby Bedroom', nmv:464980, pedidos:298},
+  {mlb:'MLB5979330756', titulo:'Quarto de Bebê Completo Berço Americano 3 em 1 Encanto Multimóveis MP4581 Madeirado/Off White', linha:'Baby Bedroom', nmv:464022, pedidos:299},
+  {mlb:'MLB4569234202', titulo:'Quarto de Bebê Infantil com Armário Berço-Cômoda e Colchão Incluso Olívia Multimóveis Branco', linha:'Baby Bedroom', nmv:458823, pedidos:552},
+];
+
+new Chart(document.getElementById('chTopItens'), {
+  type:'bar',
+  data:{
+    labels: topItens.map((_,i)=>'#'+(i+1)),
+    datasets:[{ label:'NMV', data: topItens.map(t=>t.nmv), backgroundColor:'#00a650', borderRadius:4 }]
+  },
+  options:{
+    indexAxis:'y', responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:c=>fmtBRL(c.raw) } } },
+    scales:{ x:{ ticks:{ callback:v=>fmtM(v) }, grid:{color:'#eee'} }, y:{grid:{display:false}} }
+  }
+});
+
+const tblTop = document.getElementById('tblTopItens');
+topItens.forEach((t,i)=>{
+  const asp = t.nmv / t.pedidos;
+  const url = 'https://produto.mercadolivre.com.br/' + t.mlb.replace('MLB','MLB-');
+  tblTop.innerHTML += `<tr>
+    <td><b>#${i+1}</b></td>
+    <td><a class="mlb" href="${url}" target="_blank" rel="noopener">${t.mlb}</a><br><span style="color:#666;font-size:12px">${t.titulo}</span></td>
+    <td><span class="tag">${t.linha}</span></td>
+    <td>${fmtBRL(t.nmv)}</td>
+    <td>${t.pedidos.toLocaleString('pt-BR')}</td>
+    <td>${fmtBRL(asp)}</td>
+  </tr>`;
+});
+
+// -------- Chart 6: Projeção --------
+const mesesProj = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const realizado = [2818888,2412312,2496604,2726780,2544930,2055174,2777109,null,null,null,null,null];
+const projetado = [null,null,null,null,null,null,null,2414401,2243118,2417430,3679928,2643837];
+const ref2025   = [1083211,1099744,1299522,886122,1146495,1369722,1937617,1863885,1602227,1726736,2628520,1888455];
+
+new Chart(document.getElementById('chProjecao'), {
+  type:'bar',
+  data:{
+    labels: mesesProj,
+    datasets:[
+      {label:'Realizado 2026', data: realizado, backgroundColor:'#00a650', borderRadius:4},
+      {label:'Projeção 2026 (estimativa)', data: projetado, backgroundColor:'#a9c9fb', borderRadius:4},
+      {label:'2025 (referência)', data: ref2025, type:'line', borderColor:'#999', borderDash:[4,4],
+       pointBackgroundColor:'#999', pointRadius:3, borderWidth:1.5, tension:.35}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    scales:{ y:{ ticks:{ callback:v=>fmtM(v) }, grid:{color:'#eee'} }, x:{grid:{display:false}} },
+    plugins:{ tooltip:{ callbacks:{ label:c=>c.dataset.label+': '+fmtBRL(c.raw) } } }
+  }
+});
+</script>
+
+</body>
+</html>
