@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 24/08/2026 13:45 -->
+<!-- Build: 24/08/2026 13:56 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -32028,6 +32029,73 @@
 #sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR LIGHT ── */
+#sidebar{background:#fff;border-right:1px solid #EBEBEB;box-shadow:none;width:210px;}
+#sidebar .sb-brand{background:#FFE600;padding:14px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0C800;}
+#sidebar .sb-brand-icon{width:28px;height:28px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:16px;height:16px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:400;color:#666;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:#EBEBEB;margin:4px 0;}
+#sidebar .sidebar-header{padding:14px 16px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#AAA;}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;font-weight:400;color:#555;text-decoration:none;border-radius:6px;transition:all .12s;cursor:pointer;margin-bottom:1px;}
+#sidebar ul li a:hover{background:#F5F5F5;color:#1A1A1A;}
+#sidebar ul li a.active{background:#FFF9CC;color:#1A1A1A;font-weight:600;}
+#sidebar ul li a .dot{width:6px;height:6px;border-radius:50%;background:#D0D0D0;flex-shrink:0;display:inline-block;}
+#sidebar ul li a.active .dot{background:#C8A200;}
+#sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -32036,7 +32104,7 @@
   <div class="logo" style="background:#fff;border-radius:8px;padding:4px 8px;height:38px;width:auto;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><img src="data:image/png;base64,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" alt="Mercado Livre" style="height:30px;width:auto;display:block;"/></div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
-    <span class="update-badge">&#10003; Atualizado 24/08/2026 13:45</span>
+    <span class="update-badge">&#10003; Atualizado 24/08/2026 13:56</span>
   </div>
 </div>
 <div id="sidebar">
@@ -32666,7 +32734,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/08/2026 13:45
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/08/2026 13:56
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -32702,8 +32770,6 @@ var REAL_INV_REGULAR={"MULTIMOVEIS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "m
 var REAL_NMV_REL={"MULTIMOVEIS": {"aug": 6627153, "jul": 8888729, "jun": 6268358, "may": 7467731, "apr": 7662087, "mar": 7006101, "feb": 6758465, "jan": 7529031}, "MOVEIS CARRARO": {"aug": 2522859, "jul": 2476964, "jun": 1940078, "may": 1835213, "apr": 1415356, "mar": 1729463, "feb": 1468077, "jan": 1322242}, "LUNNA COLCHOES": {"aug": 3288362, "jul": 4825753, "jun": 4017651, "may": 4423798, "apr": 3853316, "mar": 3593356, "feb": 3046245, "jan": 3113140}, "MADEIRA MADEIRA": {"aug": 37261019, "jul": 58442924, "jun": 49721865, "may": 59487218, "apr": 45148142, "mar": 51017817, "feb": 36968350, "jan": 38236020}};
 var REAL_B2B={"MULTIMOVEIS": {"jan": {"tgmv_b2b": 60035.920145829004, "tgmv_total": 1405992.6369458078, "tsi_b2b": 503.0, "tsi_total": 11586.0}, "feb": {"tgmv_b2b": 50821.37299714, "tgmv_total": 1296444.0013539048, "tsi_b2b": 406.0, "tsi_total": 10583.0}, "mar": {"tgmv_b2b": 62040.729416618, "tgmv_total": 1338427.3076558989, "tsi_b2b": 526.0, "tsi_total": 11198.0}, "apr": {"tgmv_b2b": 74889.749321743, "tgmv_total": 1516891.548399092, "tsi_b2b": 592.0, "tsi_total": 11947.0}, "may": {"tgmv_b2b": 76766.420286627, "tgmv_total": 1498105.063883604, "tsi_b2b": 639.0, "tsi_total": 11737.0}, "jun": {"tgmv_b2b": 42613.223410932005, "tgmv_total": 1226396.362314204, "tsi_b2b": 342.0, "tsi_total": 9855.0}, "jul": {"tgmv_b2b": 59690.087655431, "tgmv_total": 1644556.305034688, "tsi_b2b": 462.0, "tsi_total": 12829.0}, "aug": {"tgmv_b2b": 47609.528885243, "tgmv_total": 1294060.470591101, "tsi_b2b": 358.0, "tsi_total": 9923.0}}, "MOVEIS CARRARO": {"jan": {"tgmv_b2b": 9919.879243987, "tgmv_total": 247236.785551563, "tsi_b2b": 65.0, "tsi_total": 1623.0}, "feb": {"tgmv_b2b": 8896.522367758, "tgmv_total": 281776.863196124, "tsi_b2b": 57.0, "tsi_total": 1758.0}, "mar": {"tgmv_b2b": 10262.605563603, "tgmv_total": 330213.14260556, "tsi_b2b": 84.0, "tsi_total": 2225.0}, "apr": {"tgmv_b2b": 14458.234362211, "tgmv_total": 280470.228454849, "tsi_b2b": 95.0, "tsi_total": 1880.0}, "may": {"tgmv_b2b": 17870.865418326, "tgmv_total": 367756.191830454, "tsi_b2b": 142.0, "tsi_total": 2687.0}, "jun": {"tgmv_b2b": 15661.994583985, "tgmv_total": 378724.128229103, "tsi_b2b": 123.0, "tsi_total": 2813.0}, "jul": {"tgmv_b2b": 22358.385352437, "tgmv_total": 455803.487475458, "tsi_b2b": 181.0, "tsi_total": 3439.0}, "aug": {"tgmv_b2b": 23423.829222583, "tgmv_total": 513684.159772906, "tsi_b2b": 192.0, "tsi_total": 3778.0}}, "LUNNA COLCHOES": {"jan": {"tgmv_b2b": 24136.633473419, "tgmv_total": 581427.570411383, "tsi_b2b": 98.0, "tsi_total": 2297.0}, "feb": {"tgmv_b2b": 19463.68740785, "tgmv_total": 584396.31141835, "tsi_b2b": 72.0, "tsi_total": 2378.0}, "mar": {"tgmv_b2b": 20935.092123854, "tgmv_total": 686907.29819396, "tsi_b2b": 83.0, "tsi_total": 2632.0}, "apr": {"tgmv_b2b": 33025.862152753, "tgmv_total": 763538.814769134, "tsi_b2b": 116.0, "tsi_total": 2777.0}, "may": {"tgmv_b2b": 38810.279133857, "tgmv_total": 887110.474210542, "tsi_b2b": 143.0, "tsi_total": 3220.0}, "jun": {"tgmv_b2b": 37376.38593978, "tgmv_total": 786009.650912125, "tsi_b2b": 127.0, "tsi_total": 2692.0}, "jul": {"tgmv_b2b": 34650.376058189, "tgmv_total": 886015.172071696, "tsi_b2b": 116.0, "tsi_total": 3147.0}, "aug": {"tgmv_b2b": 31449.388706508, "tgmv_total": 632753.752819055, "tsi_b2b": 111.0, "tsi_total": 2351.0}}, "MADEIRA MADEIRA": {"jan": {"tgmv_b2b": 322701.91185312095, "tgmv_total": 7131209.918143354, "tsi_b2b": 1933.0, "tsi_total": 42261.0}, "feb": {"tgmv_b2b": 309756.580988476, "tgmv_total": 7098073.697680328, "tsi_b2b": 1818.0, "tsi_total": 40441.0}, "mar": {"tgmv_b2b": 446913.07408459805, "tgmv_total": 9752778.713114867, "tsi_b2b": 2834.0, "tsi_total": 58729.0}, "apr": {"tgmv_b2b": 438385.50669407, "tgmv_total": 8935111.149511365, "tsi_b2b": 2663.0, "tsi_total": 52400.0}, "may": {"tgmv_b2b": 640943.481459577, "tgmv_total": 11928763.07228023, "tsi_b2b": 3716.0, "tsi_total": 67432.0}, "jun": {"tgmv_b2b": 553993.8016686201, "tgmv_total": 9732959.392333997, "tsi_b2b": 3178.0, "tsi_total": 53626.0}, "jul": {"tgmv_b2b": 612068.744143848, "tgmv_total": 10701124.913837496, "tsi_b2b": 3501.0, "tsi_total": 59912.0}, "aug": {"tgmv_b2b": 420742.29296663596, "tgmv_total": 7355073.967611825, "tsi_b2b": 2216.0, "tsi_total": 39690.0}}};
 var OPTIN_DATA={"MULTIMOVEIS": {"elegivel": 20618, "optin": 9382}, "MOVEIS CARRARO": {"elegivel": 4933, "optin": 4841}, "LUNNA COLCHOES": {"elegivel": 145, "optin": 62}, "MADEIRA MADEIRA": {"elegivel": 284653, "optin": 12683}};
-var REAL_VC={"MULTIMOVEIS": {}, "MOVEIS CARRARO": {}, "LUNNA COLCHOES": {}, "MADEIRA MADEIRA": {}};
-var REAL_DC={"MULTIMOVEIS": {}, "MOVEIS CARRARO": {}, "LUNNA COLCHOES": {}, "MADEIRA MADEIRA": {}};
 var REAL_MARGINS_DM={"MULTIMOVEIS": {"jan": {"f_nmv": 7530645, "fvf_gross": 1201381, "fvf_net": 1201381, "charges_gross": 1201388, "charges_net": 1201388, "vc": 407727, "dc": 248284, "bm": -62195}, "feb": {"f_nmv": 6757856, "fvf_gross": 1068022, "fvf_net": 1068022, "charges_gross": 1068036, "charges_net": 1068036, "vc": 303323, "dc": 128913, "bm": -100602}, "mar": {"f_nmv": 7006145, "fvf_gross": 1102296, "fvf_net": 1101555, "charges_gross": 1102302, "charges_net": 1101562, "vc": 368407, "dc": 217035, "bm": -11671}, "apr": {"f_nmv": 7662471, "fvf_gross": 1148380, "fvf_net": 1148380, "charges_gross": 1148380, "charges_net": 1148380, "vc": 231767, "dc": 16332, "bm": -267363}, "may": {"f_nmv": 7463299, "fvf_gross": 1057599, "fvf_net": 1057599, "charges_gross": 1057607, "charges_net": 1057607, "vc": 192568, "dc": -12445, "bm": -264571}, "jun": {"f_nmv": 6274540, "fvf_gross": 900642, "fvf_net": 900642, "charges_gross": 900642, "charges_net": 900642, "vc": 16148, "dc": -195468, "bm": -404731}, "jul": {"f_nmv": 8418343, "fvf_gross": 1205043, "fvf_net": 1205043, "charges_gross": 1205043, "charges_net": 1205043, "vc": 111100, "dc": -179119, "bm": -484428}, "aug": {"f_nmv": 6512157, "fvf_gross": 948327, "fvf_net": 948327, "charges_gross": 948327, "charges_net": 948327, "vc": 378766, "dc": 240399, "bm": 39919}}, "MOVEIS CARRARO": {"jan": {"f_nmv": 1321338, "fvf_gross": 188678, "fvf_net": 188678, "charges_gross": 188678, "charges_net": 188678, "vc": 21654, "dc": 542, "bm": -54633}, "feb": {"f_nmv": 1468976, "fvf_gross": 208059, "fvf_net": 208059, "charges_gross": 208059, "charges_net": 208059, "vc": 25207, "dc": 1467, "bm": -48616}, "mar": {"f_nmv": 1727494, "fvf_gross": 230561, "fvf_net": 230487, "charges_gross": 230561, "charges_net": 230487, "vc": 51130, "dc": 29413, "bm": -27064}, "apr": {"f_nmv": 1417322, "fvf_gross": 187736, "fvf_net": 187736, "charges_gross": 187736, "charges_net": 187736, "vc": 79764, "dc": 55318, "bm": 2875}, "may": {"f_nmv": 1833457, "fvf_gross": 237575, "fvf_net": 237575, "charges_gross": 237575, "charges_net": 237575, "vc": 67913, "dc": 38980, "bm": -23110}, "jun": {"f_nmv": 1939655, "fvf_gross": 251544, "fvf_net": 251544, "charges_gross": 251544, "charges_net": 251544, "vc": 31895, "dc": -11233, "bm": -76332}, "jul": {"f_nmv": 2332982, "fvf_gross": 294133, "fvf_net": 294133, "charges_gross": 294133, "charges_net": 294133, "vc": 52651, "dc": 8713, "bm": -75961}, "aug": {"f_nmv": 2492333, "fvf_gross": 339028, "fvf_net": 339028, "charges_gross": 339028, "charges_net": 339028, "vc": -1095, "dc": -25711, "bm": -105230}}, "LUNNA COLCHOES": {"jan": {"f_nmv": 3113586, "fvf_gross": 513752, "fvf_net": 513752, "charges_gross": 513752, "charges_net": 513752, "vc": 242961, "dc": 122495, "bm": -6331}, "feb": {"f_nmv": 3046245, "fvf_gross": 502557, "fvf_net": 502557, "charges_gross": 502557, "charges_net": 502557, "vc": 195379, "dc": 88008, "bm": -15965}, "mar": {"f_nmv": 3593357, "fvf_gross": 592842, "fvf_net": 592522, "charges_gross": 592842, "charges_net": 592522, "vc": 289916, "dc": 193007, "bm": 75740}, "apr": {"f_nmv": 3851560, "fvf_gross": 612816, "fvf_net": 612816, "charges_gross": 612816, "charges_net": 612816, "vc": 300578, "dc": 170698, "bm": 28252}, "may": {"f_nmv": 4420298, "fvf_gross": 693889, "fvf_net": 693889, "charges_gross": 693889, "charges_net": 693889, "vc": 295275, "dc": 188047, "bm": 38880}, "jun": {"f_nmv": 4022897, "fvf_gross": 635313, "fvf_net": 635313, "charges_gross": 635313, "charges_net": 635313, "vc": 187529, "dc": 65260, "bm": -68013}, "jul": {"f_nmv": 4542348, "fvf_gross": 712747, "fvf_net": 712747, "charges_gross": 712747, "charges_net": 712747, "vc": 147324, "dc": 15499, "bm": -149225}, "aug": {"f_nmv": 3196777, "fvf_gross": 532396, "fvf_net": 532396, "charges_gross": 532396, "charges_net": 532396, "vc": 309349, "dc": 237969, "bm": 140085}}, "MADEIRA MADEIRA": {"jan": {"f_nmv": 38233128, "fvf_gross": 6171521, "fvf_net": 5405402, "charges_gross": 6180625, "charges_net": 5414484, "vc": 796351, "dc": 226429, "bm": -1343132}, "feb": {"f_nmv": 36981975, "fvf_gross": 5948091, "fvf_net": 5208019, "charges_gross": 5956960, "charges_net": 5216875, "vc": 436356, "dc": -117779, "bm": -1367990}, "mar": {"f_nmv": 51005385, "fvf_gross": 8241504, "fvf_net": 7210276, "charges_gross": 8257984, "charges_net": 7226706, "vc": 236842, "dc": -297185, "bm": -1956281}, "apr": {"f_nmv": 45134409, "fvf_gross": 7147809, "fvf_net": 6218436, "charges_gross": 7165817, "charges_net": 6236438, "vc": 471461, "dc": -158876, "bm": -1830010}, "may": {"f_nmv": 59454405, "fvf_gross": 9215148, "fvf_net": 7824031, "charges_gross": 9231622, "charges_net": 7839776, "vc": 467525, "dc": -191927, "bm": -2215609}, "jun": {"f_nmv": 49767413, "fvf_gross": 7726272, "fvf_net": 6279710, "charges_gross": 7740908, "charges_net": 6292429, "vc": 855638, "dc": 127874, "bm": -1536958}, "jul": {"f_nmv": 54808282, "fvf_gross": 8588269, "fvf_net": 6972660, "charges_gross": 8600346, "charges_net": 6983043, "vc": 821144, "dc": 16035, "bm": -1967940}, "aug": {"f_nmv": 36470695, "fvf_gross": 5982112, "fvf_net": 4851076, "charges_gross": 5993548, "charges_net": 4860833, "vc": 1819153, "dc": 1577462, "bm": 438571}}};
 var REAL_AFF={"MULTIMOVEIS": {"jan": 453155, "feb": 419004, "mar": 477602, "apr": 503943, "may": 505559, "jun": 451334, "jul": 685231, "aug": 546040}, "MOVEIS CARRARO": {"jan": 92321, "feb": 114611, "mar": 161641, "apr": 107459, "may": 203202, "jun": 236543, "jul": 273650, "aug": 395497}, "LUNNA COLCHOES": {"jan": 296718, "feb": 251811, "mar": 361663, "apr": 384004, "may": 472923, "jun": 450420, "jul": 587637, "aug": 399478}, "MADEIRA MADEIRA": {"jan": 2418445, "feb": 2490975, "mar": 4032288, "apr": 3412461, "may": 4889415, "jun": 4210791, "jul": 5033935, "aug": 3546737}};
 var REAL_AFF_LASTCLICK={"MULTIMOVEIS": {"jan": 382912, "feb": 357607, "mar": 446007, "apr": 513434, "may": 524876, "jun": 460671, "jul": 666585, "aug": 591311}, "MOVEIS CARRARO": {"jan": 84393, "feb": 119912, "mar": 156912, "apr": 116953, "may": 220957, "jun": 251107, "jul": 261640, "aug": 412653}, "LUNNA COLCHOES": {"jan": 347500, "feb": 333326, "mar": 404949, "apr": 433032, "may": 532310, "jun": 468536, "jul": 601241, "aug": 428387}, "MADEIRA MADEIRA": {"jan": 2304903, "feb": 2702267, "mar": 4238892, "apr": 3848209, "may": 5170457, "jun": 4388137, "jul": 5035996, "aug": 3919290}};
@@ -32833,8 +32899,6 @@ function ytdFF(g){return PERIODO.reduce(function(s,k){return s+((REAL_FF[g]||{})
 function ytdXD(g){return PERIODO.reduce(function(s,k){return s+((REAL_XD[g]||{})[k]||0);},0);}
 function ytdTGMV(g){return PERIODO.reduce(function(s,k){return s+((REAL_TGMV[g]||{})[k]||0);},0);}
 function ytdNMV(g){return PERIODO.reduce(function(s,k){return s+((REAL_NMV[g]||{})[k]||0);},0);}
-function ytdVC(g){return PERIODO.reduce(function(s,k){return s+((typeof REAL_VC!=='undefined'&&REAL_VC[g]||{})[k]||0);},0);}
-function ytdDC(g){return PERIODO.reduce(function(s,k){return s+((typeof REAL_DC!=='undefined'&&REAL_DC[g]||{})[k]||0);},0);}
 function aprProj(g){
   var cur=MESES_DONE[MESES_DONE.length-1];
   return ((REAL_MENSAL[g]||{})[cur]||0)*FAT_PROJ;
@@ -34871,15 +34935,6 @@ function buildVGKPIs(){
   var nmvSub=fmtN(totalSI)+' itens'
     +(momTGMV!==null?'<br><span style="color:'+momColor+';font-weight:700;font-size:11px">'+(momTGMV>=0?'▲':'▼')+' '+(momTGMV>=0?'+':'')+momTGMV.toFixed(1)+'% MoM</span>':'')
     +(yoyTGMV!==null?'<br><span style="color:'+yoyColor+';font-weight:700;font-size:11px">'+(yoyTGMV>=0?'▲':'▼')+' '+(yoyTGMV>=0?'+':'')+yoyTGMV.toFixed(1)+'% YoY</span>':'');
-  // VC e DC de BT_UE (mesma base que Aline's Grid)
-  var tVC=GRUPOS.reduce(function(s,g){return s+ytdVC(g);},0);
-  var tDC=GRUPOS.reduce(function(s,g){return s+ytdDC(g);},0);
-  // Fallback: se BT_UE não tiver VC/DC, usa cupons/rebates
-  var tCup2=GRUPOS.reduce(function(s,g){return s+ytdCupons(g);},0);
-  var tReb2=GRUPOS.reduce(function(s,g){return s+PERIODO.reduce(function(ss,k){return ss+((REAL_REBATES[g]||{})[k]||0);},0);},0);
-  var vcPct=nmvBase>0?(tVC||tCup2)/nmvBase*100:0;
-  var dcPct=nmvBase>0?(tDC||tReb2)/nmvBase*100:0;
-  var vcAmt=tVC||tCup2, dcAmt=tDC||tReb2;
   var tAds2=GRUPOS.reduce(function(s,g){return s+ytdInvAds(g);},0);
   var adsPctNMV=nmvBase>0?tAds2/nmvBase*100:0;
   var invPctNMV=nmvBase>0?totalInv/nmvBase*100:0;
@@ -34907,8 +34962,6 @@ function buildVGKPIs(){
     }
     return html;
   }
-  var _vcPrev=_pmk?GRUPOS.reduce(function(s,g){return s+((typeof REAL_VC!=='undefined'&&REAL_VC[g]||{})[_pmk]||0);},0):0;
-  var _dcPrev=_pmk?GRUPOS.reduce(function(s,g){return s+((typeof REAL_DC!=='undefined'&&REAL_DC[g]||{})[_pmk]||0);},0):0;
   var _siPrev=_pmk?GRUPOS.reduce(function(s,g){return s+((REAL_SI[g]||{})[_pmk]||0);},0):0;
   var _adsPrev=_pmk?GRUPOS.reduce(function(s,g){return s+((REAL_INV_ADS[g]||{})[_pmk]||0);},0):0;
   var _invPrev=_pmk?GRUPOS.reduce(function(s,g){return s+((REAL_INV_TOT[g]||{})[_pmk]||0);},0):0;
@@ -34922,8 +34975,6 @@ function buildVGKPIs(){
   if(el)el.innerHTML=kpiHtml([
     {label:'NMV',val:fmtNMV(nmvBase),sub:nmvSub,cls:'blue'},
     {label:'% Ating. Meta',val:pFin.toFixed(1)+'%',sub:'Meta Op: '+fmtMeta(totalMF),cls:pFin>=100?'green':pFin>=80?'yellow':'red'},
-    {label:'VC %',val:vcPct.toFixed(1)+'%',sub:fmt(vcAmt)+_kpiBadge(vcAmt,_vcPrev),cls:vcPct<3?'green':vcPct<6?'yellow':'red'},
-    {label:'DC %',val:dcPct.toFixed(1)+'%',sub:fmt(dcAmt)+_kpiBadge(dcAmt,_dcPrev),cls:dcPct<3?'green':dcPct<6?'yellow':'red'},
     {label:'Itens Vendidos',val:fmtN(totalSI),sub:MES_ATUAL_PT+' '+DIA_MES+'/'+DIAS_MES_TOTAL+' dias'+_kpiBadge(totalSI,_siPrev),cls:'blue'},
     {label:'Ticket Médio (NASP)',val:asp>0?'R$ '+Math.round(asp).toLocaleString('pt-BR'):'—',sub:'NMV ÷ Unidades'+_kpiBadge(asp,_aspPrev),cls:'blue'},
     {label:'Invest / NMV',val:invPctNMV.toFixed(1)+'%',sub:'Total: '+fmt(totalInv)+_kpiBadge(totalInv,_invPrev),cls:invPctNMV<5?'green':invPctNMV<8?'yellow':'red'},
