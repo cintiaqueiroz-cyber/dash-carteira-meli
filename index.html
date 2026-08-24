@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 24/08/2026 19:58 -->
+<!-- Build: 24/08/2026 20:04 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -32980,6 +32981,73 @@
 #sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR LIGHT ── */
+#sidebar{background:#fff;border-right:1px solid #EBEBEB;box-shadow:none;width:210px;}
+#sidebar .sb-brand{background:#FFE600;padding:14px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0C800;}
+#sidebar .sb-brand-icon{width:28px;height:28px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:16px;height:16px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:400;color:#666;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:#EBEBEB;margin:4px 0;}
+#sidebar .sidebar-header{padding:14px 16px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#AAA;}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;font-weight:400;color:#555;text-decoration:none;border-radius:6px;transition:all .12s;cursor:pointer;margin-bottom:1px;}
+#sidebar ul li a:hover{background:#F5F5F5;color:#1A1A1A;}
+#sidebar ul li a.active{background:#FFF9CC;color:#1A1A1A;font-weight:600;}
+#sidebar ul li a .dot{width:6px;height:6px;border-radius:50%;background:#D0D0D0;flex-shrink:0;display:inline-block;}
+#sidebar ul li a.active .dot{background:#C8A200;}
+#sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -32988,7 +33056,7 @@
   <div class="logo" style="background:#fff;border-radius:8px;padding:4px 8px;height:38px;width:auto;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><img src="data:image/png;base64,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" alt="Mercado Livre" style="height:30px;width:auto;display:block;"/></div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
-    <span class="update-badge">&#10003; Atualizado 24/08/2026 19:58</span>
+    <span class="update-badge">&#10003; Atualizado 24/08/2026 20:04</span>
   </div>
 </div>
 <div id="sidebar">
@@ -33014,7 +33082,7 @@
 <div id="tab-visao-geral" class="tab-content active">
   <div class="page-title">Cintia Faraco Queiroz</div>
   <div class="page-sub">KAM &nbsp;&middot;&nbsp; 11 grupos &nbsp;&middot;&nbsp; <span id="mes-atual-label">...</span> 2026</div>
-  <div class="sub-tabs" id="vg-inner-tabs"><button class="sub-tab active" onclick="showSubTab('vg','hoje',this)">&#128198; Hoje</button><button class="sub-tab" onclick="showSubTab('vg','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('vg','optin',this)">&#127991; Optin MTD &amp; Afiliados</button><button class="sub-tab" onclick="showSubTab('vg','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('vg','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('vg','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('vg','vis',this)">Visitas &amp; Convers&#227;o</button><button class="sub-tab" onclick="showSubTab('vg','cat',this)">Itens</button><button class="sub-tab" onclick="showSubTab('vg','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('vg','combo',this)">Combo PSJ/PCJ</button></div>
+  <div class="sub-tabs" id="vg-inner-tabs"><button class="sub-tab active" onclick="showSubTab('vg','hoje',this)">&#128198; Hoje</button><button class="sub-tab" onclick="showSubTab('vg','geral',this)">Geral</button><button class="sub-tab" onclick="showSubTab('vg','optin',this)">&#127991; Optin MTD &amp; Afiliados</button><button class="sub-tab" onclick="showSubTab('vg','full',this)">Log&#237;stica</button><button class="sub-tab" onclick="showSubTab('vg','ads',this)">ADS</button><button class="sub-tab" onclick="showSubTab('vg','inv',this)">Investimentos</button><button class="sub-tab" onclick="showSubTab('vg','vis',this)">Visitas &amp; Convers&#227;o</button><button class="sub-tab" onclick="showSubTab('vg','cat',this)">Itens</button><button class="sub-tab" onclick="showSubTab('vg','bpc',this)">BPC</button><button class="sub-tab" onclick="showSubTab('vg','combo',this)">Combo PSJ/PCJ</button><button class="sub-tab" onclick="showSubTab('vg','kanban',this)">&#128203; Kanban</button></div>
 
   <div id="vg-section-hoje" class="sub-section">
     <div id="vg-hoje-header"></div>
@@ -33260,6 +33328,47 @@
     <div class="section"><div class="section-title">BPC % + NMV YoY &mdash; Semanal por Grupo</div><div class="table-wrap" id="vg-bpc-semanal"></div></div>
     <div class="section"><div class="section-title">Top Ofensores &mdash; Carteira Total</div><div class="table-wrap"><table id="vg-bpc-offenders"></table></div></div>
     <div class="section"><div class="section-title">Acion&#225;veis BPC &mdash; Carteira</div><div class="action-row" id="vg-bpc-actions"></div></div>
+  </div>
+
+  <div id="vg-section-kanban" class="sub-section">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap" id="kanban-seller-filter"></div>
+      <button onclick="openKanbanCardModal()" style="background:#FFE600;color:#1A1A1A;border:none;padding:9px 18px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap">+ Nova Oportunidade</button>
+    </div>
+    <div id="kanban-board" style="display:flex;gap:14px;overflow-x:auto;padding-bottom:12px"></div>
+    <div id="kanban-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;align-items:center;justify-content:center">
+      <div style="background:#fff;border-radius:12px;padding:22px 26px;width:400px;max-width:92vw;max-height:88vh;overflow-y:auto">
+        <div style="font-size:15px;font-weight:700;color:#1A1A1A;margin-bottom:14px" id="kanban-modal-title">Nova Oportunidade</div>
+        <input type="hidden" id="kanban-card-id">
+        <div style="margin-bottom:10px">
+          <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:4px">T&#237;tulo</label>
+          <input type="text" id="kanban-f-title" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box">
+        </div>
+        <div style="margin-bottom:10px">
+          <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:4px">Seller</label>
+          <select id="kanban-f-seller" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box"></select>
+        </div>
+        <div style="margin-bottom:10px">
+          <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:4px">Valor (R$)</label>
+          <input type="number" id="kanban-f-valor" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box">
+        </div>
+        <div style="margin-bottom:10px">
+          <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:4px">Link da Ata / Refer&#234;ncia</label>
+          <input type="text" id="kanban-f-link" placeholder="https://..." style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box">
+        </div>
+        <div style="margin-bottom:16px">
+          <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:4px">Notas</label>
+          <textarea id="kanban-f-notas" rows="3" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box;resize:vertical"></textarea>
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:8px">
+          <button id="kanban-f-delete" onclick="deleteKanbanCard()" style="display:none;background:#fff;color:#F23D4F;border:1px solid #F23D4F;padding:9px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer">Excluir</button>
+          <div style="display:flex;gap:8px;margin-left:auto">
+            <button onclick="closeKanbanCardModal()" style="background:#fff;color:#555;border:1px solid #ddd;padding:9px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer">Cancelar</button>
+            <button onclick="saveKanbanCard()" style="background:#1A1A1A;color:#FFE600;border:none;padding:9px 18px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -33618,7 +33727,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/08/2026 19:58
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 24/30 dias &nbsp;&middot;&nbsp; 24/08/2026 20:04
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -33856,6 +33965,7 @@ function showSubTab(prefix,name,btnEl){
     else if(name==='vis'){buildVisitasConversao();}
     else if(name==='optin'){buildOptinMTDTab();}
     else if(name==='combo'){buildCombo();}
+    else if(name==='kanban'){buildKanban();}
     else if(name==='vis'){buildVisitasConversao();}
     else if(name==='hoje'&&!g){buildGMVHoje();}
     else if(name==='preneg'&&!g){buildInvestimentos();setTimeout(buildPreNeg,300);}
@@ -34794,7 +34904,9 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
   var focalMkCat=PERIODO.length===1?PERIODO[0]:curMkCat;
   var focalIdxCat=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'].indexOf(focalMkCat);
   var prevMkCat=focalIdxCat>0?['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'][focalIdxCat-1]:null;
-  // ORDEM LÓGICA: # | Produto | Grupo | GMV | Share | Share Acum | Units | GMV MoM | Units MoM | Preço DE | Preço Atual | Status | Domínio
+  // VC items disponivel (precisa vir antes do header, que consulta hasVC)
+  var hasVC=typeof VC_ITEMS!=='undefined'&&Object.keys(VC_ITEMS).length>0;
+  // ORDEM LÓGICA: # | Produto | Grupo | GMV | Share | Share Acum | Units | GMV MoM | Units MoM | Rebate VC | VC Negativa | Preço DE | Preço Atual | Status | Domínio
   var hdr='<thead><tr>'
     +th('#','center','36px')
     +th('PRODUTO')
@@ -34813,8 +34925,6 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
     +th('DOM\u00cdNIO')
     +'</tr></thead>';
 
-  // VC items disponivel
-  var hasVC=typeof VC_ITEMS!=='undefined'&&Object.keys(VC_ITEMS).length>0;
   // Respeitar a ordem que foi passada (sort já foi feito em renderVGItems/buildSellerCat)
   var sorted=items.slice();
   var cumulative=0;
@@ -34934,7 +35044,7 @@ function renderItemsTable(items, containerId, showGroup, totalGMV){
   }).join('')+'</tbody>';
 
   var paretoCount=sorted.filter(function(it){return it._cumShare<=80.01;}).length;
-  var ncols=showGroup?14:13;
+  var ncols=(showGroup?13:12)+(hasVC?2:0);
   var sumRow='<tr style="background:#F8F8F8;border-top:2px solid #E0E0E0">'
     +'<td colspan="'+(showGroup?3:2)+'" style="padding:10px 12px;font-size:11px;font-weight:700;color:#555">'
     +sorted.length+' itens &nbsp;\u00b7&nbsp; <span style="color:#00A650;font-weight:800">'+paretoCount+' formam 80% do GMV</span></td>'
@@ -38165,6 +38275,173 @@ function buildSellersConsolidated(){
     +'<div style="'+boxStyle+';margin-bottom:24px"><table style="'+tStyle+'">'+hdr1+bdy1+'</table></div>'
     +'<div style="font-size:13px;font-weight:800;color:#1A1A1A;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #FFE600">Ranking de Grupos (MoM / YoY)</div>'
     +'<div style="'+boxStyle+'"><table style="'+tStyle+'">'+hdr2+bdy2+'</table></div>';
+}
+
+// ── Kanban de Oportunidades (persistido em localStorage) ──────────────────
+var KANBAN_STORE_KEY='kam_kanban_cards_v1';
+var KANBAN_STAGES=[
+  {id:'prospeccao',   label:'Prospecção'},
+  {id:'qualificacao', label:'Qualificação'},
+  {id:'proposta',     label:'Proposta'},
+  {id:'negociacao',   label:'Negociação'},
+  {id:'ganho',        label:'Fechado (Ganho)'},
+  {id:'perdido',      label:'Fechado (Perdido)'}
+];
+var _kanbanFilterSeller='all';
+function loadKanbanCards(){
+  try{
+    var raw=window.localStorage.getItem(KANBAN_STORE_KEY);
+    return raw?JSON.parse(raw):[];
+  }catch(e){return [];}
+}
+function saveKanbanCards(cards){
+  try{window.localStorage.setItem(KANBAN_STORE_KEY,JSON.stringify(cards));}catch(e){}
+}
+function kanbanSellerColor(seller){
+  return (typeof GRUPO_COLOR!=='undefined'&&GRUPO_COLOR[seller])||'#888';
+}
+function buildKanban(){
+  var filEl=document.getElementById('kanban-seller-filter');
+  if(filEl){
+    var pillS='font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;color:#555;cursor:pointer;white-space:nowrap';
+    var pillA='font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid #FFE600;background:#FFE600;color:#1A1A1A;cursor:pointer;white-space:nowrap';
+    var opts=['all'].concat(GRUPOS);
+    filEl.innerHTML=opts.map(function(g){
+      var lbl=g==='all'?'Todos':g;
+      var active=g===_kanbanFilterSeller;
+      return '<button style="'+(active?pillA:pillS)+'" onclick="filterKanbanSeller(\''+g+'\',this)">'+lbl+'</button>';
+    }).join('');
+  }
+  renderKanbanBoard();
+}
+function filterKanbanSeller(g,btnEl){
+  _kanbanFilterSeller=g;
+  var filEl=document.getElementById('kanban-seller-filter');
+  if(filEl){
+    var pillS='font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;color:#555;cursor:pointer;white-space:nowrap';
+    var pillA='font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid #FFE600;background:#FFE600;color:#1A1A1A;cursor:pointer;white-space:nowrap';
+    filEl.querySelectorAll('button').forEach(function(b){b.style.cssText=pillS;});
+  }
+  if(btnEl)btnEl.style.cssText='font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;border:1.5px solid #FFE600;background:#FFE600;color:#1A1A1A;cursor:pointer;white-space:nowrap';
+  renderKanbanBoard();
+}
+function kanbanCardHtml(card){
+  var color=kanbanSellerColor(card.seller);
+  var valorHtml=card.valor?('<div style="font-size:13px;font-weight:800;color:#1A1A1A;margin-top:6px">'+fmt(parseFloat(card.valor))+'</div>'):'';
+  var linkHtml=card.link?('<a href="'+card.link+'" target="_blank" style="font-size:10px;color:#3483FA;text-decoration:none;display:inline-block;margin-top:6px">🔗 Ata / Referência</a>'):'';
+  return '<div class="kanban-card" draggable="true" data-id="'+card.id+'" '
+    +'ondragstart="kanbanDragStart(event)" onclick="openKanbanCardModal(\''+card.id+'\')" '
+    +'style="background:#fff;border:1px solid #EBEBEB;border-left:3px solid '+color+';border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:grab;box-shadow:0 1px 3px rgba(0,0,0,.06)">'
+    +'<div style="font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.3">'+(card.title||'(sem título)')+'</div>'
+    +'<div style="font-size:10px;font-weight:700;color:'+color+';margin-top:4px">'+(card.seller||'')+'</div>'
+    +valorHtml+linkHtml
+    +'</div>';
+}
+function renderKanbanBoard(){
+  var board=document.getElementById('kanban-board');
+  if(!board)return;
+  var cards=loadKanbanCards();
+  if(_kanbanFilterSeller!=='all')cards=cards.filter(function(c){return c.seller===_kanbanFilterSeller;});
+  board.innerHTML=KANBAN_STAGES.map(function(st){
+    var stCards=cards.filter(function(c){return (c.stage||'prospeccao')===st.id;});
+    var total=stCards.reduce(function(s,c){return s+(parseFloat(c.valor)||0);},0);
+    return '<div class="kanban-col" data-stage="'+st.id+'" ondragover="kanbanDragOver(event)" ondrop="kanbanDrop(event)" '
+      +'style="min-width:230px;max-width:230px;background:#FAFAFA;border-radius:10px;padding:10px;display:flex;flex-direction:column">'
+      +'<div style="font-size:11px;font-weight:800;color:#1A1A1A;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px;display:flex;justify-content:space-between">'
+        +'<span>'+st.label+'</span><span style="color:#999">'+stCards.length+'</span></div>'
+      +'<div style="font-size:10px;color:#999;margin-bottom:10px">'+(total>0?fmt(total):'')+'</div>'
+      +'<div style="flex:1;min-height:40px">'+stCards.map(kanbanCardHtml).join('')+'</div>'
+      +'</div>';
+  }).join('');
+}
+var _kanbanDragId=null;
+function kanbanDragStart(ev){
+  _kanbanDragId=ev.target.closest('.kanban-card').getAttribute('data-id');
+  ev.dataTransfer.effectAllowed='move';
+}
+function kanbanDragOver(ev){ev.preventDefault();}
+function kanbanDrop(ev){
+  ev.preventDefault();
+  var col=ev.target.closest('.kanban-col');
+  if(!col||!_kanbanDragId)return;
+  var newStage=col.getAttribute('data-stage');
+  var cards=loadKanbanCards();
+  var card=cards.find(function(c){return c.id===_kanbanDragId;});
+  if(card){card.stage=newStage;saveKanbanCards(cards);renderKanbanBoard();}
+  _kanbanDragId=null;
+}
+function openKanbanCardModal(cardId){
+  var overlay=document.getElementById('kanban-modal-overlay');
+  if(!overlay)return;
+  var sellerSel=document.getElementById('kanban-f-seller');
+  if(sellerSel)sellerSel.innerHTML=GRUPOS.map(function(g){return '<option value="'+g+'">'+g+'</option>';}).join('');
+  var delBtn=document.getElementById('kanban-f-delete');
+  if(cardId){
+    var cards=loadKanbanCards();
+    var card=cards.find(function(c){return c.id===cardId;});
+    if(!card)return;
+    document.getElementById('kanban-modal-title').textContent='Editar Oportunidade';
+    document.getElementById('kanban-card-id').value=card.id;
+    document.getElementById('kanban-f-title').value=card.title||'';
+    if(sellerSel)sellerSel.value=card.seller||GRUPOS[0];
+    document.getElementById('kanban-f-valor').value=card.valor||'';
+    document.getElementById('kanban-f-link').value=card.link||'';
+    document.getElementById('kanban-f-notas').value=card.notas||'';
+    if(delBtn)delBtn.style.display='inline-block';
+  } else {
+    document.getElementById('kanban-modal-title').textContent='Nova Oportunidade';
+    document.getElementById('kanban-card-id').value='';
+    document.getElementById('kanban-f-title').value='';
+    if(sellerSel)sellerSel.value=(_kanbanFilterSeller!=='all'?_kanbanFilterSeller:GRUPOS[0]);
+    document.getElementById('kanban-f-valor').value='';
+    document.getElementById('kanban-f-link').value='';
+    document.getElementById('kanban-f-notas').value='';
+    if(delBtn)delBtn.style.display='none';
+  }
+  overlay.style.display='flex';
+}
+function closeKanbanCardModal(){
+  var overlay=document.getElementById('kanban-modal-overlay');
+  if(overlay)overlay.style.display='none';
+}
+function saveKanbanCard(){
+  var title=document.getElementById('kanban-f-title').value.trim();
+  if(!title){alert('Informe um título para a oportunidade.');return;}
+  var id=document.getElementById('kanban-card-id').value;
+  var cards=loadKanbanCards();
+  if(id){
+    var card=cards.find(function(c){return c.id===id;});
+    if(card){
+      card.title=title;
+      card.seller=document.getElementById('kanban-f-seller').value;
+      card.valor=document.getElementById('kanban-f-valor').value;
+      card.link=document.getElementById('kanban-f-link').value.trim();
+      card.notas=document.getElementById('kanban-f-notas').value;
+    }
+  } else {
+    cards.push({
+      id:'kc_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),
+      title:title,
+      seller:document.getElementById('kanban-f-seller').value,
+      valor:document.getElementById('kanban-f-valor').value,
+      link:document.getElementById('kanban-f-link').value.trim(),
+      notas:document.getElementById('kanban-f-notas').value,
+      stage:'prospeccao',
+      createdAt:new Date().toISOString()
+    });
+  }
+  saveKanbanCards(cards);
+  closeKanbanCardModal();
+  renderKanbanBoard();
+}
+function deleteKanbanCard(){
+  var id=document.getElementById('kanban-card-id').value;
+  if(!id)return;
+  if(!confirm('Excluir esta oportunidade?'))return;
+  var cards=loadKanbanCards().filter(function(c){return c.id!==id;});
+  saveKanbanCards(cards);
+  closeKanbanCardModal();
+  renderKanbanBoard();
 }
 
 </script>
