@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 25/08/2026 10:04 -->
+<!-- Build: 25/08/2026 12:33 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -33184,6 +33185,73 @@
 #sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR LIGHT ── */
+#sidebar{background:#fff;border-right:1px solid #EBEBEB;box-shadow:none;width:210px;}
+#sidebar .sb-brand{background:#FFE600;padding:14px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0C800;}
+#sidebar .sb-brand-icon{width:28px;height:28px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:16px;height:16px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:400;color:#666;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:#EBEBEB;margin:4px 0;}
+#sidebar .sidebar-header{padding:14px 16px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#AAA;}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;font-weight:400;color:#555;text-decoration:none;border-radius:6px;transition:all .12s;cursor:pointer;margin-bottom:1px;}
+#sidebar ul li a:hover{background:#F5F5F5;color:#1A1A1A;}
+#sidebar ul li a.active{background:#FFF9CC;color:#1A1A1A;font-weight:600;}
+#sidebar ul li a .dot{width:6px;height:6px;border-radius:50%;background:#D0D0D0;flex-shrink:0;display:inline-block;}
+#sidebar ul li a.active .dot{background:#C8A200;}
+#sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -33192,7 +33260,7 @@
   <div class="logo" style="background:#fff;border-radius:8px;padding:4px 8px;height:38px;width:auto;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAAk1BMVEUAAAAnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3YnL3Y0Om81PH9CSYdQVpBdY5hrcKF4famGirKTl7uhpMOuscy8vtTJy93X2OXk5e7y8vb////Fsh64pyWrnCyekTSRhzuDfEJ2cUppZlFcW1lPUGBBRWfSvRbgyA/t0wf63gASgAO9AAAAEHRSTlMAECAwQFBgcICPn6+/z9/vIxqCigAADTFJREFUeNrswYEAAAAAgKD9qRepAgAAAAAAAAAAmHy6OBAghmEAuMygtLAUIvff3DEzUXLz89O29OWy4lryn6RF3fTDiAemYWiaIk+illftMOOCUkocN/jZiEtjVxdxLl/3MwCjjn2x9CS77IcyODO0ZRKVspsAJo/F06v8ckgGoK+zaLafAblbege3SwaMEdwga2cwsdIHrNwAfdhdqIaL7T/MCoapSYNdf4LePH3OpoAuC3R9sdAXcALoshDXd/RFHGdogypCMUA4+kJeYK6TUKQtlKUv5iTGPJD3T2alb7AYNGG8n3t6E7se5/bF0Zt4HkAI8lPmrURbURiGzr77vLQUKKXQt4s6Ov//dQMRER4UyznO0HuWt7jmNrlNk3QVuEn/UxmgRVA+HdycYP3F87R37bT+xxeyngsCCE4pw3GLH15vfrScL9dW83EPsDgz9w2KLOEAgs3h6n4IYOXvhviDKSM5cCUDegGYNPd95MTB9mkyMQbAJfOWgR8sr01RHMD+2bqaGyAy9yNQArCeHQ7POwBcVVSx9Ud/7SfoiIL6+bfF/vjegjxmqLB9Uzg4PL7W1kNk9CxiwF/7CUXKUWFf1nsclXraqhfZb0d24gDBdvtCOL8sTIuWJ7b2Lwq+kf0d5DJEHy72n14ZcfTAY1X0nuGfDnyBGlpiskQwVGBCSJnqCryy3wVGZ7JBpocPa/zyLP9ZS6sturN48Vv7dSq1uZ+PFN+9yn/vxL0dVvuNZKgRF/MZiOBTsew7K9zs7/GUMbBIypiB6dkEGJ+E8BNSN/tD011+jiYdkoCczUCGn/4EQDjf/owhzFslYJQbzYPAJ192QOi59psESDoPFiHRMQsF7jxxgLWYa7/m4Prt40zNZCDGF08cIHP5suxif738A49X5BNzkOPODwfgTrtW1EZ/OK76OYMw81TACxf44qTgJgSvU8E0ZrAJnhHgs4RAYeUBASs45QBGoEFkl8xknhAY4OPySTC4a8jKSMRST68pQzwrBr57IIHx/Q2Rc9otHCE9kMEV1P0tYQSYsxBoD2IA0Pe3RQJnTlPg6+LHAKQ6v5317kJQqIgB+LG4BBBEkpn/KQQ6CVEjWHwj/A6UOxDCRP8XITDqVDbcvz7+2QILE/AL27pl9VzuAep2/GMhKFKBGuWp7L4F3i9NwP7ctnguUYEnxa2EIBmERhKel55ABHxaehdEp3P3RBwIdSMhEGbQOmq6Df4QACKgywE1cORsSZw+GhQn6wdN5MAHAg6Doabg0vwrZCzn6ILM+mfojFQvJOtH2sfwIQQeRrvfRIGJUINXZmgplXGp9Kl+jUCahI1ZT/i9PAG/gJfR+Yc9wBWdgbMYOHkwSx3Er6d9+rTh2RruT14QUFqa4AGAuDUjkjJhSFwYiPvFQthb5hsA7xdPhALbNEcJ3ji9ZJqs4dA6ESLJ3RkwDPZhgz0AD1Jh20xYeVnwhgiNBsk0A91EWDQxZpGA1fKHIWz+jGM7LJZxCKW14ojcGJgm4JUOQwsDFY7OBCTpuUKYXmGgaDmza0AAOg4vvg/alugZ3N7UYNNK2B6GUuLXugfg4zsPRCAY/4qHiZZfNKyj5MWQASOJXrsE3nlQFLW7wAsQZSYf83Y55CZjeZ8BKQUpzJQDfPehLA4EB5tKEUZHPOSQlB4DKWrsn60zkwFFgCfDkaVttrUERk/2GYRUxdu46G5/CV0zs5nfkLvyojWGChMDjhuIsRAABh1CE3YY4HieHBtGjS9+NEcrBPYLAoezC2SdFU9ipRKG2mBzMbpgLQPyJK1TAUAS6I0L7I5TzhprrcRACwzNzOSd0NdoGEhJWe3Y+eMA58pwORUEhBHdE7VzxKzoJ4FGiUb9p9/xzpsRGQCT3/ihDLDbjeRFmnLibujH4Ly/s9p3l0/+DEm1DEyHbdyYfWGAMkLDOwzg+uD8Ewg/PRqTc2LgGYiqcM8idAig3/OL+Cng4fe19yGs3/s0KOnEwCsatDFvmrDIzuKnWedNphXls1+jsiBsj9N3frbk4JCD4kdK4pfFtJ1M4Xi2/7tvw9In7K9dGKz8+xln2TcMuj0dOVF42OGEX96Ny+OE4On6zad9MySXh+e7Q0YxevG128aPAQg+Xhz6gQbl8eqFwQAIExkCf7k5i3OJYRgMLjPILcgbxv6re7AKM0eeU66//OU4I1yIcBD9ZoGWWJswkb2AkC3st39sP5Rff1C0sO1kfK21SkMQYfvNjQxd1z36RvRaycPp/Su/AOmTw8mqlvH/v1bOECP0YPz5tH/d6uz4J6D5xG3t8jSkML0xChrp+e8TA30+xdCKSvCxIQWPhsLhBRn6d3QkPX7MlU1CI4f18bu/Pa1n9vxxRCWPY0i/9XhyhTO8z9wyOkVcS8eGK/ioWy6UcN1umHF+Qzm2reuImE/poa5bNpTCuCXViJ3erNZ8iqkN5nXZcs/pDeF+VCOo2I+nQlHJV/e3P+/Ui6q25Xk9Kp7Vreb5w86ZKEmrwlCYALIoiO//snfrxROIdN+unqrh11PrqGj4JIEJsWdvT/nDygV+WPksMt/8ae1Lly5dunTp0iW7rLB3fj7NUDxwRsXt3AD0dnIA4ewAlrMDSN8FcAG4AFwAjI8ppejNPtO48O+RYOX0b0g3LdCEy4Y5/aOIs9cU/pOT2tD95OEF2oYQJjoGQDb8J2/p872t1d2O5D2JF6g2NZQNlJ1g7FxqGymskBmsd8HMsjHlqXqmf1i0GBmAS5/us5h1Q61G6bShyiQURqCSPi4cSEd7qJF41VWtmXhNErZkAGSjknm/+rdWKPWRKFyPKqYhygEQvGAgLfe/6R3N1fDI9SVha+U+67+sKF4vEzCl6QblbiO7iQrwyaKsBP8afUhAl+0tTWCrpJX4t1XcxkVuVIgH9Vq66Z4MwHeN7qt9dtdWWvdxGOwEW8LzwR0TN3BNCRxkuQ2Z50McKUXTs8P+5v/bCwDm0GitXsnijk0qvHlCYz33tTLV4U6r2tx8nwb3MZFtFbDsflMoDY+sfzBFBWvdwgBw5CVOFjep57erfotvQvVt9rOPIyszppgmfsXKX5cn/oCBnYeEhOdd3WDlQSc0MTbxAbDc7q8zvpW+Ht2zzYjwdUjT+CzfOlGG4cgj0NqJExr6Sw0x9n4dtEYAcXeoh3JrpyzTDJWZdQffwISDVbjHxmxfIM4KTBwes+EmMAJuiZ2tX1PC3hZqH5neDAGWHeHoCAbgzLvHX7DB90WCuezJd+lu8SG2xpDO1gHSYmX+HAA/Ag8I0L3ZgjI2ye2DfTOoZJkphMgj8RG+JAGw0urmZwDIsnjx/81fWYjdXwBgBwNg4ManAoADdnwA/lMAdkPlJaQxAYRPAeDaeCJo8XsBRCWqDyAfL0Zw8fiLAeAy6X0A8pTkwk0WuusYshoA9QHwhYL/CQBomX4bgLyUIfCbhS9HqwWn4Xj4Cj4igFkgtH4XAK5B3wdAQqMAUFLzyAUblLYvHqBAYDIt8/nLANRa35kyHJEAYDpkbuc9EgDoZ0yQWmPQ0AxHpiYn5b4NIGDalueH9SEAV0U5Cuwf9tgyRfNtnXvdWy+c17berHYF0jjfBcDzXQmTn3N9sTzPpRCWwpNejr8unSvzE2s9Q2vbpMxyDHHFmfnLAI7zU4U6AGx36UB7/5x1c5PSM91MLX8rXFl9H4AK/aywjD50DYziSYwYojK9AFzMTwBQsfuog7E393pAa79/KvbPIyJu1LcB4C4NKhv54ne3fowwhhfCMFp65+U7rEa9lkk3mc4RlW5yR3uDq1Pixf3/eFdcuOkkfz7KL5CfyTePcEfzB0VTTPn+9YN5t5HZ43OZJ8XFs92utV7HfXZYnGqlfd5v4En9Ttn/RN3vKswnrfEWRl269POy4VE8osNd6gzCeSDUyYdTCDYMTwtAl+3cAMK+3LsAXAAuABcAsnedFADXNQKsFf5lIXGI8Ot4AfK4MSBjhpNndLL0Yxv2qAB5VAAeM3o8o+Wl6mx7XIA8JgDd1lGVaj+NML1jOwXIY06Dud4JnB6jWqxOt70C5CEB+HoLfWYeUGfxbbcAeUQA+mF9vS+kxdJv2y1AHg4A9tDwjZ0s58dtvwB5NADYRc+v9pUDrN6SelmAPCIAzV95Zi/TNdsi/QLkEQHwLmteXZsa7+4XIA8HAAewq//4R0J87xcgjwhASwUeBG8WRvvLAuThAKAPwOb/Iu+9IgCukQHgJwYTeMB5ANBjUO8OTqcCoJZnXC/gAZ8A8OMBQB8wj3PuUwBhPADoAzEyD+gDiONnhRsfyCt4gAhALkAeH4DbmNwhALkAeXwAxAGQDKBqn4YH0PoA8wAZQL8AeVgATvAAGUC/AHlYANR6gAygX4A88N7g0niADKBfgDwuAPSBSQSACn9QVrj1gaJkAKj4B+0LtN+JvAFALkAeG4BDD+gDkAuQf6+0vUn36gP44fogdQqQt7/btWMCAAAYBED9W2/awB9y0IAMAAAAAAAAAACwO+r6UjX9KUPTAAAAAElFTkSuQmCC" alt="Mercado Livre" style="height:30px;width:auto;display:block;"/></div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
-    <span class="update-badge">&#10003; Atualizado 25/08/2026 10:04</span>
+    <span class="update-badge">&#10003; Atualizado 25/08/2026 12:33</span>
   </div>
 </div>
 <div id="sidebar">
@@ -33863,7 +33931,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 25/30 dias &nbsp;&middot;&nbsp; 25/08/2026 10:04
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Agosto parcial: 25/30 dias &nbsp;&middot;&nbsp; 25/08/2026 12:33
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -33881,7 +33949,7 @@ var REAL_SI={"MULTIMOVEIS": {"jan": 12628, "feb": 11455, "mar": 12212, "apr": 13
 var REAL_ASP={"MULTIMOVEIS": {"jan": 596, "feb": 590, "mar": 574, "apr": 586, "may": 583, "jun": 575, "jul": 634, "aug": 625}, "MOVEIS CARRARO": {"jan": 730, "feb": 743, "mar": 708, "apr": 677, "may": 626, "jun": 624, "jul": 660, "aug": 637}, "LUNNA COLCHOES": {"jan": 1228, "feb": 1168, "mar": 1243, "apr": 1275, "may": 1267, "jun": 1366, "jul": 1395, "aug": 1291}, "MADEIRA MADEIRA": {"jan": 786, "feb": 787, "mar": 738, "apr": 720, "may": 762, "jun": 815, "jul": 880, "aug": 873}};
 var REAL_TGMV={"MULTIMOVEIS": {"jan": 7530645, "feb": 6757856, "mar": 7006145, "apr": 7662471, "may": 7463299, "jun": 6274540, "jul": 8861070, "aug": 6965247}, "MOVEIS CARRARO": {"jan": 1321338, "feb": 1468976, "mar": 1727494, "apr": 1417322, "may": 1833457, "jun": 1939655, "jul": 2466915, "aug": 2636155}, "LUNNA COLCHOES": {"jan": 3113586, "feb": 3046245, "mar": 3593357, "apr": 3851560, "may": 4420298, "jun": 4022897, "jul": 4815980, "aug": 3386156}, "MADEIRA MADEIRA": {"jan": 38233128, "feb": 36981975, "mar": 51005385, "apr": 45134409, "may": 59452405, "jun": 49763066, "jul": 58222015, "aug": 38831175}};
 var REAL_NMV={"MULTIMOVEIS": {"25_jan": 5332280, "25_feb": 4719023, "25_mar": 4680135, "25_apr": 3611939, "25_may": 4383843, "25_jun": 5019129, "25_jul": 8001574, "25_aug": 8930236, "25_sep": 8559763, "25_oct": 7680590, "25_nov": 10366592, "25_dec": 6806614, "jan": 7531005, "feb": 6757856, "mar": 7006145, "apr": 7667987, "may": 7488433, "jun": 6382599, "jul": 8459571, "aug": 6657129}, "MOVEIS CARRARO": {"25_jan": 1505813, "25_feb": 1094681, "25_mar": 1520268, "25_apr": 1271637, "25_may": 1364430, "25_jun": 2180230, "25_jul": 2481517, "25_aug": 1716066, "25_sep": 1535221, "25_oct": 1122328, "25_nov": 1994042, "25_dec": 1227556, "jan": 1321338, "feb": 1468976, "mar": 1728374, "apr": 1418422, "may": 1848985, "jun": 1985716, "jul": 2355556, "aug": 2640849}, "LUNNA COLCHOES": {"25_jan": 1969283, "25_feb": 2006036, "25_mar": 2116703, "25_apr": 2246703, "25_may": 2447771, "25_jun": 2990939, "25_jul": 3382534, "25_aug": 3400658, "25_sep": 3341466, "25_oct": 3795528, "25_nov": 8043763, "25_dec": 3398649, "jan": 3113586, "feb": 3046245, "mar": 3593357, "apr": 3851560, "may": 4424976, "jun": 4048762, "jul": 4559041, "aug": 3250903}, "MADEIRA MADEIRA": {"25_jan": 22549362, "25_feb": 22038642, "25_mar": 27056596, "25_apr": 26109571, "25_may": 29408054, "25_jun": 31879181, "25_jul": 38930273, "25_aug": 41579566, "25_sep": 37587668, "25_oct": 43445450, "25_nov": 66750911, "25_dec": 32145662, "jan": 38239028, "feb": 36987595, "mar": 51064236, "apr": 45323201, "may": 60287430, "jun": 50734184, "jul": 55144098, "aug": 37801846}};
-var REAL_ADS_PADS={"MULTIMOVEIS": {"jan": 298926, "feb": 310158, "mar": 340597, "apr": 327044, "may": 310441, "jun": 274923, "jul": 438089, "aug": 96034}, "MOVEIS CARRARO": {"jan": 40243, "feb": 57367, "mar": 52837, "apr": 60840, "may": 62477, "jun": 61409, "jul": 68831, "aug": 13124}, "LUNNA COLCHOES": {"jan": 87543, "feb": 92132, "mar": 118019, "apr": 124016, "may": 157439, "jun": 156566, "jul": 144300, "aug": 38317}, "MADEIRA MADEIRA": {"jan": 870056, "feb": 760056, "mar": 919227, "apr": 1310554, "may": 1955490, "jun": 2163353, "jul": 2444751, "aug": 425720}};
+var REAL_ADS_PADS={"MULTIMOVEIS": {"jan": 298926, "feb": 310158, "mar": 340597, "apr": 327044, "may": 310441, "jun": 274923, "jul": 438089, "aug": 342536}, "MOVEIS CARRARO": {"jan": 40243, "feb": 57367, "mar": 52837, "apr": 60840, "may": 62477, "jun": 61409, "jul": 68831, "aug": 51041}, "LUNNA COLCHOES": {"jan": 87543, "feb": 92132, "mar": 118019, "apr": 124016, "may": 157439, "jun": 156566, "jul": 144300, "aug": 129189}, "MADEIRA MADEIRA": {"jan": 870056, "feb": 760056, "mar": 919227, "apr": 1310554, "may": 1955490, "jun": 2163353, "jul": 2444751, "aug": 1714307}};
 var REAL_ADS_DXB={"MULTIMOVEIS": {"jan": 31220, "feb": 34654, "mar": 159425, "apr": 204206, "may": 181044, "jun": 129687, "jul": 163956, "aug": 119924}, "MOVEIS CARRARO": {"jan": 5614, "feb": 5693, "mar": 7028, "apr": 10048, "may": 14750, "jun": 15064, "jul": 14239, "aug": 3772}, "LUNNA COLCHOES": {"jan": 10755, "feb": 11935, "mar": 11025, "apr": 5332, "may": 17888, "jun": 21936, "jul": 48087, "aug": 15782}, "MADEIRA MADEIRA": {"jan": 97464, "feb": 122930, "mar": 374369, "apr": 405281, "may": 575706, "jun": 422931, "jul": 573627, "aug": 545992}};
 var REAL_ADS_AUTO={"MULTIMOVEIS": {"jan": 29942, "feb": 13312, "mar": 17866, "apr": 29938, "may": 18821, "jun": 10880, "jul": 53398, "aug": 53370}, "MOVEIS CARRARO": {"jan": 42452, "feb": 52782, "mar": 9073, "apr": 11919, "may": 1780, "jun": 6940, "jul": 12649, "aug": 5197}, "LUNNA COLCHOES": {"jan": 444, "feb": 599, "mar": 1570, "apr": 2767, "may": 68, "jun": 0, "jul": 2476, "aug": 368}, "MADEIRA MADEIRA": {"jan": 44592, "feb": 98615, "mar": 58204, "apr": 22540, "may": 28454, "jun": 37492, "jul": 37788, "aug": 16051}};
 var REAL_ADS_GMV_PADS={"MULTIMOVEIS": {"jan": 4259991, "feb": 4164752, "mar": 4485086, "apr": 4522007, "may": 4374545, "jun": 3704458, "jul": 5311414, "aug": 4163197}, "MOVEIS CARRARO": {"jan": 681299, "feb": 910696, "mar": 944245, "apr": 791457, "may": 814566, "jun": 904938, "jul": 1143425, "aug": 1094761}, "LUNNA COLCHOES": {"jan": 1005743, "feb": 1236622, "mar": 1681791, "apr": 1868868, "may": 2234663, "jun": 2018103, "jul": 2055561, "aug": 1715214}, "MADEIRA MADEIRA": {"jan": 14601204, "feb": 13507533, "mar": 17242176, "apr": 23148521, "may": 36609656, "jun": 33476198, "jul": 38094837, "aug": 25570756}};
@@ -33906,10 +33974,10 @@ var REAL_AFF_PEDIDOS={"MULTIMOVEIS": {"jan": 2025, "feb": 2042, "mar": 2276, "ap
 var REAL_DXI_LC={"MULTIMOVEIS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 3, "jul": 72, "aug": 80}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 10, "jun": 25, "jul": 51, "aug": 2}, "LUNNA COLCHOES": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 93, "jun": 8, "jul": 291, "aug": 143}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}};
 var REAL_DXI_NMV={"MULTIMOVEIS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 1566, "jul": 40322, "aug": 45407}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 10224, "jun": 17317, "jul": 38259, "aug": 643}, "LUNNA COLCHOES": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 137443, "jun": 8381, "jul": 432167, "aug": 137156}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}};
 var DAILY_NMV_30D={"2026-07-21": 2509476.0, "2026-07-22": 2402975.0, "2026-07-23": 2161567.0, "2026-07-24": 1730097.0, "2026-07-25": 1639574.0, "2026-07-26": 1831185.0, "2026-07-27": 2259449.0, "2026-07-28": 2135582.0, "2026-07-29": 2120825.0, "2026-07-30": 1954530.0, "2026-07-31": 1798083.0, "2026-08-01": 2007930.0, "2026-08-02": 2216642.0, "2026-08-03": 2616383.0, "2026-08-04": 2398403.0, "2026-08-05": 2551891.0, "2026-08-06": 2247369.0, "2026-08-07": 2205583.0, "2026-08-08": 3184348.0, "2026-08-09": 1957844.0, "2026-08-10": 2481605.0, "2026-08-11": 2440684.0, "2026-08-12": 2486200.0, "2026-08-13": 2114939.0, "2026-08-14": 1975550.0, "2026-08-15": 1902865.0, "2026-08-16": 2036792.0, "2026-08-17": 2279048.0, "2026-08-18": 2157049.0, "2026-08-19": 2071767.0, "2026-08-20": 1927685.0, "2026-08-21": 1651195.0, "2026-08-22": 1465968.0, "2026-08-23": 1573700.0, "2026-08-24": 1782355.0, "2026-08-25": 2967.0};
-var REAL_INV_ADS={"MULTIMOVEIS": {"jan": 298926, "feb": 310158, "mar": 340597, "apr": 327044, "may": 310441, "jun": 274923, "jul": 438089, "aug": 96034}, "MOVEIS CARRARO": {"jan": 40243, "feb": 57367, "mar": 52837, "apr": 60840, "may": 62477, "jun": 61409, "jul": 68831, "aug": 13124}, "LUNNA COLCHOES": {"jan": 87543, "feb": 92132, "mar": 118019, "apr": 124016, "may": 157439, "jun": 156566, "jul": 144300, "aug": 38317}, "MADEIRA MADEIRA": {"jan": 870056, "feb": 760056, "mar": 919227, "apr": 1310554, "may": 1955490, "jun": 2163353, "jul": 2444751, "aug": 425720}};
+var REAL_INV_ADS={"MULTIMOVEIS": {"jan": 298926, "feb": 310158, "mar": 340597, "apr": 327044, "may": 310441, "jun": 274923, "jul": 438089, "aug": 342536}, "MOVEIS CARRARO": {"jan": 40243, "feb": 57367, "mar": 52837, "apr": 60840, "may": 62477, "jun": 61409, "jul": 68831, "aug": 51041}, "LUNNA COLCHOES": {"jan": 87543, "feb": 92132, "mar": 118019, "apr": 124016, "may": 157439, "jun": 156566, "jul": 144300, "aug": 129189}, "MADEIRA MADEIRA": {"jan": 870056, "feb": 760056, "mar": 919227, "apr": 1310554, "may": 1955490, "jun": 2163353, "jul": 2444751, "aug": 1714307}};
 var REAL_CUPONS={"MULTIMOVEIS": {"jan": 17676, "feb": 14275, "mar": 12986, "apr": 24226, "may": 40033, "jun": 38154, "jul": 50025, "aug": 70349}, "MOVEIS CARRARO": {"jan": 3982, "feb": 3798, "mar": 7787, "apr": 10201, "may": 23699, "jun": 23427, "jul": 35405, "aug": 69634}, "LUNNA COLCHOES": {"jan": 44555, "feb": 22532, "mar": 16525, "apr": 13268, "may": 16155, "jun": 19953, "jul": 39451, "aug": 43156}, "MADEIRA MADEIRA": {"jan": 222243, "feb": 93339, "mar": 194606, "apr": 260146, "may": 508671, "jun": 377482, "jul": 515220, "aug": 498672}};
 var REAL_REBATES={"MULTIMOVEIS": {"jan": 91621, "feb": 190500, "mar": 109861, "apr": 47303, "may": 45961, "jun": 64178, "jul": 60253, "aug": 27670}, "MOVEIS CARRARO": {"jan": 39230, "feb": 59817, "mar": 71395, "apr": 30504, "may": 65073, "jun": 68194, "jul": 49813, "aug": 58732}, "LUNNA COLCHOES": {"jan": 25930, "feb": 126090, "mar": 109976, "apr": 87010, "may": 153492, "jun": 207807, "jul": 212131, "aug": 87674}, "MADEIRA MADEIRA": {"jan": 1069730, "feb": 1305484, "mar": 1003980, "apr": 1009773, "may": 1401790, "jun": 1265587, "jul": 1995491, "aug": 1238259}};
-var REAL_INV_TOT={"MULTIMOVEIS": {"jan": 580581, "feb": 756148, "mar": 707371, "apr": 647535, "may": 608474, "jun": 558053, "jul": 841492, "aug": 515690}, "MOVEIS CARRARO": {"jan": 224542, "feb": 300358, "mar": 247721, "apr": 177184, "may": 259894, "jun": 285489, "jul": 318677, "aug": 375402}, "LUNNA COLCHOES": {"jan": 209752, "feb": 382376, "mar": 369722, "apr": 340763, "may": 508971, "jun": 616127, "jul": 688292, "aug": 315288}, "MADEIRA MADEIRA": {"jan": 3513756, "feb": 3829233, "mar": 4028109, "apr": 4479456, "may": 6797198, "jun": 6171291, "jul": 7761508, "aug": 4085373}};
+var REAL_INV_TOT={"MULTIMOVEIS": {"jan": 580581, "feb": 756148, "mar": 707371, "apr": 647535, "may": 608474, "jun": 558053, "jul": 841492, "aug": 762192}, "MOVEIS CARRARO": {"jan": 224542, "feb": 300358, "mar": 247721, "apr": 177184, "may": 259894, "jun": 285489, "jul": 318677, "aug": 413319}, "LUNNA COLCHOES": {"jan": 209752, "feb": 382376, "mar": 369722, "apr": 340763, "may": 508971, "jun": 616127, "jul": 688292, "aug": 406160}, "MADEIRA MADEIRA": {"jan": 3513756, "feb": 3829233, "mar": 4028109, "apr": 4479456, "may": 6797198, "jun": 6171291, "jul": 7761508, "aug": 5373960}};
 var REAL_FF={"MULTIMOVEIS": {"jan": 1532, "feb": 2231, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}, "LUNNA COLCHOES": {"jan": 1956789, "feb": 2161783, "mar": 2118022, "apr": 2488037, "may": 3194128, "jun": 2611604, "jul": 3195062, "aug": 2349435}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}};
 var REAL_XD={"MULTIMOVEIS": {"jan": 1611776, "feb": 2180604, "mar": 2672834, "apr": 3244752, "may": 3228876, "jun": 2998894, "jul": 3957044, "aug": 3067320}, "MOVEIS CARRARO": {"jan": 50248, "feb": 70356, "mar": 159005, "apr": 180559, "may": 280721, "jun": 253830, "jul": 250388, "aug": 241901}, "LUNNA COLCHOES": {"jan": 1130168, "feb": 863381, "mar": 1414813, "apr": 1224464, "may": 1161075, "jun": 1337104, "jul": 1529408, "aug": 933837}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}};
 var REAL_SS={"MULTIMOVEIS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}, "LUNNA COLCHOES": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0}};
