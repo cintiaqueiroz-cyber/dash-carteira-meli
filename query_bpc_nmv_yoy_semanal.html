@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Query — BPC + NMV YoY Semanal (Furnishing & Houseware)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', system-ui, sans-serif; background: #EFEFEF; color: #333; padding: 32px 16px; }
+  .page { background: white; max-width: 1000px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,0.12); }
+  .header { background: #1A1A1A; padding: 22px 32px; }
+  .header h1 { color: #FFE600; font-size: 20px; font-weight: 800; }
+  .header p { color: #999; font-size: 12.5px; margin-top: 4px; }
+  .content { padding: 24px 32px 28px; }
+  .note { background: #FFF8EC; border-left: 4px solid #E67E00; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #444; margin-bottom: 18px; line-height: 1.5; }
+  .note strong { color: #1A1A1A; }
+  .copy-btn { display: inline-block; background: #FFE600; color: #1A1A1A; font-weight: 700; font-size: 12.5px; padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; margin-bottom: 14px; }
+  .copy-btn:hover { background: #f5d900; }
+  pre { background: #0D1117; color: #C9D1D9; font-family: 'Courier New', Consolas, monospace; font-size: 12px; line-height: 1.55; padding: 20px 22px; border-radius: 10px; overflow-x: auto; white-space: pre; }
+  .footer { background: #1A1A1A; color: #888; padding: 11px 32px; font-size: 10.5px; display: flex; justify-content: space-between; }
+  .footer strong { color: #FFE600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>Query — BPC + NMV YoY Semanal</h1>
+    <p>Furnishing &amp; Houseware (MLB) · Tabela semanal de Gestão de Oportunidades (MeliPro)</p>
+  </div>
+  <div class="content">
+    <div class="note">Cole esta query no Claude Code/BigQuery e troque apenas as datas marcadas com <strong>&lt;&lt;&lt;</strong> para gerar a leitura da semana desejada.</div>
+    <button class="copy-btn" onclick="copyQuery()">📋 Copiar query</button>
+    <pre id="queryBlock">/* =====================================================================
+   BPC + NMV YoY SEMANAL — Furnishing &amp; Houseware (MLB)
+   Uso: tabela semanal de Gestão de Oportunidades (MeliPro)
+   ---------------------------------------------------------------------
+   Convenções:
+   - Semana = domingo a sábado. Rotular pelo mês do SÁBADO (fim da semana).
+     Ex.: 09–15/ago =&gt; "Ago S3". Só usar semanas completas.
+   - BPC (Buy Box Price Competitiveness) PIX, nível PRODUCT:
+       * FAVORABILITY_TYPE = 'BOX_ALL_ABC_PIX'
+       * MELI_ID_TYPE = 'PRODUCT'  (NUNCA somar ITEM/PRODUCT/UP juntos — infla o denominador)
+       * BPC % = SUM(VISITS_CHEAPER + VISITS_EQUAL) / SUM(VISITS_MATCH)  (ponderado por visitas)
+       * Farol: &lt;50% vermelho | 50–65% amarelo | &gt;65% verde
+   - NMV YoY % = NMV_2026 / NMV_2025 - 1, comparando as MESMAS datas do calendário.
+   - Trocar apenas as DATAS marcadas com &lt;&lt;&lt; para rodar outra semana.
+   ===================================================================== */
+
+-- Mapeamento cust_id -&gt; Grupo de Contas (124 contas Furnishing).
+-- Substitua por sua própria tabela de grupos se preferir.
+WITH mapping AS (
+  SELECT cust_id, grupo FROM UNNEST([
+    STRUCT(171391268 AS cust_id, 'COSTA RICA COLCHÕES' AS grupo),STRUCT(477588032,'EMMA'),STRUCT(262435141,'ESPLANADA'),STRUCT(2014935159,'KEIKO COLCHÕES'),STRUCT(240323499,'MODERNA MOBILIA'),STRUCT(560912973,'ORTHOCRIN'),STRUCT(567667092,'ORTOBOM'),STRUCT(1497628317,'SLEEP CALM'),STRUCT(177964736,'BITLAR'),STRUCT(1056981676,'BITLAR'),STRUCT(302816872,'BITLAR'),STRUCT(2141683246,'BITLAR'),STRUCT(719340889,'BITLAR'),STRUCT(1760437011,'BITLAR'),STRUCT(474700795,'DEVINTEX'),STRUCT(3112983695,'DEVINTEX'),STRUCT(464912032,'ELEMENTS'),STRUCT(246876388,'EVOLUX'),STRUCT(1710407485,'LA MOBILIA'),STRUCT(1074094230,'LA MOBILIA'),STRUCT(1311715571,'LA MOBILIA'),STRUCT(3175092643,'LA MOBILIA'),STRUCT(147072750,'LUVINCO'),STRUCT(1548214195,'MAGAZINE DECOR'),STRUCT(167422739,'MAGAZINE DECOR'),STRUCT(1056888413,'OFICIAL WEBSHOP'),STRUCT(54074489,'OFICIAL WEBSHOP'),STRUCT(683938043,'UTILAR'),STRUCT(777676476,'UTILAR'),STRUCT(765992885,'UTILAR'),STRUCT(1468907285,'UTILAR'),STRUCT(343507342,'UTILAR'),STRUCT(189537188,'UTILAR'),STRUCT(213658244,'BF COLCHÕES'),STRUCT(1479401290,'BF COLCHÕES'),STRUCT(268449929,'CAMA INHOUSE'),STRUCT(361841053,'CAMA INHOUSE'),STRUCT(3032269507,'CAMA INHOUSE'),STRUCT(130704477,'ECONEW'),STRUCT(1223087781,'KAZA MIX'),STRUCT(622556468,'LUCAS HOME'),STRUCT(1746119501,'LUCAS HOME'),STRUCT(1017072559,'LUNNA COLCHÕES'),STRUCT(2287647005,'SONNUS'),STRUCT(1176215393,'ZIDI'),STRUCT(656012015,'ZIDI'),STRUCT(488368250,'ADONAI'),STRUCT(530094229,'BALAQUI'),STRUCT(698931952,'BALAQUI'),STRUCT(1056910428,'BALAQUI'),STRUCT(470109248,'CAMA INBOX'),STRUCT(1982062711,'KING HOUSE'),STRUCT(1026459505,'KING HOUSE'),STRUCT(1630750475,'MOVEIS ARAPONGAS'),STRUCT(455472340,'MOVEIS ARAPONGAS'),STRUCT(1224243540,'MOVEIS ARAPONGAS'),STRUCT(1009033565,'MÓVEIS BOM PASTOR'),STRUCT(1784044230,'MULTILOJA'),STRUCT(226418798,'MULTILOJA'),STRUCT(339898288,'PANORAMA'),STRUCT(407185840,'TONIELQUE'),STRUCT(358180856,'WEHOUSE'),STRUCT(643899158,'GAZIN'),STRUCT(257072993,'GAZIN'),STRUCT(323697852,'GAZIN'),STRUCT(251108429,'CASTOR'),STRUCT(347390199,'CASTOR'),STRUCT(570497172,'COZI-DITALIA'),STRUCT(1378177275,'COZI-DITALIA'),STRUCT(141030308,'MADEIRA MADEIRA'),STRUCT(1915672253,'MADEIRA MADEIRA'),STRUCT(311078705,'MADEIRA MADEIRA'),STRUCT(187308878,'MADEIRA MADEIRA'),STRUCT(2589881419,'WEST WING'),STRUCT(566214003,'PROBEL'),STRUCT(1561372958,'PROBEL'),STRUCT(1131387475,'UMAFLEX'),STRUCT(2138177480,'BYHOUSE'),STRUCT(1985024156,'BYHOUSE'),STRUCT(466866322,'COMPACE'),STRUCT(239719281,'COMPACE'),STRUCT(1993724367,'COMPACE'),STRUCT(177237120,'DROSSI'),STRUCT(28749980,'DROSSI'),STRUCT(251682125,'DROSSI'),STRUCT(306651618,'ESSENCIAL MÓVEIS'),STRUCT(1636240046,'ESSENCIAL MÓVEIS'),STRUCT(1683993595,'ESSENCIAL MÓVEIS'),STRUCT(65968934,'KLM'),STRUCT(1684014689,'KLM'),STRUCT(128163338,'LYAMDECOR'),STRUCT(205812413,'MOVZ'),STRUCT(1049115685,'MOVZ'),STRUCT(273196837,'MPOZENATO'),STRUCT(17050324,'MPOZENATO'),STRUCT(98355168,'MPOZENATO'),STRUCT(383523670,'COLIBRI'),STRUCT(700583148,'DECORISE'),STRUCT(794123311,'KAPPESBERG'),STRUCT(568773774,'LINEA'),STRUCT(1802758219,'MOVEIS PROVINCIA'),STRUCT(2355501248,'OUTLET DAS FABRICAS'),STRUCT(638325656,'OUTLET DAS FABRICAS'),STRUCT(70123968,'OUTLET DAS FABRICAS'),STRUCT(202725990,'CASA ABERTA'),STRUCT(701145835,'CASA ABERTA'),STRUCT(1289467675,'EASY HOUSE'),STRUCT(1428239362,'FIDELITA'),STRUCT(327947804,'MADESA'),STRUCT(1946602164,'MADESA'),STRUCT(1640224648,'MADESA'),STRUCT(1500400225,'MADESA'),STRUCT(1680980383,'MADESA'),STRUCT(124110866,'MOBLY'),STRUCT(472099728,'MÓVEIS CARRARO'),STRUCT(384367575,'MULTIMOVEIS'),STRUCT(2136426616,'MULTIMOVEIS'),STRUCT(1916810773,'MULTIMOVEIS'),STRUCT(1226388620,'MULTIMOVEIS'),STRUCT(760931003,'NESHER'),STRUCT(377486082,'TOK STOK'),STRUCT(433720509,'GRAN BELO'),STRUCT(416540185,'KING STAR'),STRUCT(1161196486,'IDIMEX')
+  ])
+),
+
+------------------------------------------------------------------
+-- BLOCO 1 — BPC % da semana, por grupo (ponderado por visitas)
+------------------------------------------------------------------
+bpc AS (
+  SELECT m.grupo,
+    ROUND(SUM(f.VISITS_CHEAPER + f.VISITS_EQUAL) / NULLIF(SUM(f.VISITS_MATCH),0) * 100, 1) AS bpc_pct
+  FROM meli-bi-data.WHOWNER.BT_COM_FAVORABILITY f
+  JOIN mapping m ON f.CUS_CUST_ID_SEL = m.cust_id
+  WHERE f.SIT_SITE_ID       = 'MLB'
+    AND f.FAVORABILITY_TYPE = 'BOX_ALL_ABC_PIX'
+    AND f.MELI_ID_TYPE      = 'PRODUCT'
+    AND f.VERTICAL          = 'FURNISHING &amp; HOUSEWARE'
+    AND f.TIM_DAY BETWEEN DATE '2026-08-09' AND DATE '2026-08-15'   -- &lt;&lt;&lt; semana (dom–sáb)
+  GROUP BY m.grupo
+),
+
+------------------------------------------------------------------
+-- BLOCO 2 — NMV YoY % da semana, por grupo (mesmas datas 2026 vs 2025)
+------------------------------------------------------------------
+nmv AS (
+  SELECT m.grupo,
+    SUM(IF(o.ORD_CLOSED_DT BETWEEN DATE '2026-08-09' AND DATE '2026-08-15', o.ORD_TOTAL_AMOUNT, 0)) AS nmv_2026,  -- &lt;&lt;&lt; semana atual
+    SUM(IF(o.ORD_CLOSED_DT BETWEEN DATE '2025-08-09' AND DATE '2025-08-15', o.ORD_TOTAL_AMOUNT, 0)) AS nmv_2025   -- &lt;&lt;&lt; mesma semana 2025
+  FROM meli-bi-data.WHOWNER.BT_ORD_ORDERS o
+  JOIN mapping m ON o.ORD_SELLER.ID = m.cust_id
+  WHERE o.SIT_SITE_ID = 'MLB'
+    AND o.ORD_NMV_FLG = TRUE
+    AND (o.ORD_CLOSED_DT BETWEEN DATE '2026-08-09' AND DATE '2026-08-15'
+      OR o.ORD_CLOSED_DT BETWEEN DATE '2025-08-09' AND DATE '2025-08-15')
+  GROUP BY m.grupo
+)
+
+------------------------------------------------------------------
+-- RESULTADO — uma linha por grupo + TOTAL ponderado
+------------------------------------------------------------------
+SELECT
+  COALESCE(b.grupo, n.grupo)                              AS grupo_de_contas,
+  b.bpc_pct                                               AS bpc_semana_pct,
+  ROUND((n.nmv_2026 / NULLIF(n.nmv_2025,0) - 1) * 100, 1) AS nmv_yoy_pct
+FROM bpc b
+FULL OUTER JOIN nmv n USING (grupo)
+
+UNION ALL
+-- Linha TOTAL FURNISHING (BPC ponderado sobre todos os cust_ids; YoY sobre a soma)
+SELECT 'TOTAL FURNISHING',
+  (SELECT ROUND(SUM(VISITS_CHEAPER+VISITS_EQUAL)/NULLIF(SUM(VISITS_MATCH),0)*100,1)
+     FROM meli-bi-data.WHOWNER.BT_COM_FAVORABILITY f JOIN mapping m ON f.CUS_CUST_ID_SEL=m.cust_id
+     WHERE f.SIT_SITE_ID='MLB' AND f.FAVORABILITY_TYPE='BOX_ALL_ABC_PIX' AND f.MELI_ID_TYPE='PRODUCT'
+       AND f.VERTICAL='FURNISHING &amp; HOUSEWARE'
+       AND f.TIM_DAY BETWEEN DATE '2026-08-09' AND DATE '2026-08-15'),           -- &lt;&lt;&lt; semana
+  (SELECT ROUND((SUM(IF(ORD_CLOSED_DT BETWEEN DATE '2026-08-09' AND DATE '2026-08-15',ORD_TOTAL_AMOUNT,0))
+               / NULLIF(SUM(IF(ORD_CLOSED_DT BETWEEN DATE '2025-08-09' AND DATE '2025-08-15',ORD_TOTAL_AMOUNT,0)),0)-1)*100,1)
+     FROM meli-bi-data.WHOWNER.BT_ORD_ORDERS o JOIN mapping m ON o.ORD_SELLER.ID=m.cust_id
+     WHERE o.SIT_SITE_ID='MLB' AND o.ORD_NMV_FLG=TRUE
+       AND ((ORD_CLOSED_DT BETWEEN DATE '2026-08-09' AND DATE '2026-08-15')
+         OR (ORD_CLOSED_DT BETWEEN DATE '2025-08-09' AND DATE '2025-08-15')))
+ORDER BY grupo_de_contas;</pre>
+  </div>
+  <div class="footer">
+    <span>Fonte: BT_COM_FAVORABILITY · BT_ORD_ORDERS · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Query de referência — Boa Prática BPC</span>
+  </div>
+</div>
+<script>
+function copyQuery() {
+  const text = document.getElementById('queryBlock').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+</script>
+</body>
+</html>
