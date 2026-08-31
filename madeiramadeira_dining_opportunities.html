@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MadeiraMadeira — Sala de Jantar Growth Opportunities | Mercado Livre F&H</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --navy:#0a1628; --blue:#1a3a6e; --blue-mid:#2557a7;
+    --yellow:#FFE600; --yellow-soft:#fff7b0;
+    --green:#00a650; --red:#e8001d; --orange:#f5a623; --purple:#7c4dff;
+    --gray-100:#f5f7fa; --gray-200:#e8ecf1; --gray-400:#94a3b8;
+    --gray-600:#4b5563; --gray-900:#111827; --border:#d1d9e6;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:#dde3ec; color:var(--gray-900); font-size:14px; line-height:1.5; }
+
+  .header { background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%); color:#fff; padding:22px 40px; border-bottom:4px solid var(--yellow); position:sticky; top:0; z-index:100; }
+  .header-top { display:flex; justify-content:space-between; align-items:center; max-width:1360px; margin:0 auto; }
+  .header h1 { font-size:20px; font-weight:700; }
+  .header h1 span { color:var(--yellow); }
+  .header .subtitle { font-size:11.5px; opacity:.75; margin-top:2px; }
+
+  .tabs { background:var(--navy); display:flex; overflow-x:auto; padding:0 40px; position:sticky; top:66px; z-index:99; }
+  .tabs-inner { display:flex; max-width:1360px; margin:0 auto; }
+  .tab { padding:11px 14px; cursor:pointer; font-size:11.5px; font-weight:600; color:rgba(255,255,255,.5); border-bottom:3px solid transparent; white-space:nowrap; }
+  .tab b { color:var(--yellow); margin-right:4px; }
+  .tab:hover { color:rgba(255,255,255,.85); }
+  .tab.active { color:#fff; border-bottom-color:var(--yellow); }
+
+  .stage { max-width:1360px; margin:24px auto 60px; padding:0 24px; }
+  .slide { display:none; background:#fff; border-radius:14px; box-shadow:0 4px 24px rgba(10,22,40,.12); min-height:680px; padding:40px 48px 44px; }
+  .slide.active { display:block; }
+  .slide-eyebrow { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--blue-mid); margin-bottom:8px; }
+  .slide-title { font-size:26px; font-weight:800; color:var(--navy); line-height:1.25; max-width:920px; margin-bottom:6px; }
+  .slide-sub { font-size:13px; color:var(--gray-600); margin-bottom:26px; max-width:900px; }
+
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:24px; }
+  .kpi-card { background:var(--gray-100); border-radius:10px; padding:16px 18px; border:1px solid var(--border); }
+  .kpi-card .label { font-size:10.5px; color:var(--gray-600); font-weight:700; text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; }
+  .kpi-card .value { font-size:24px; font-weight:800; color:var(--navy); line-height:1.1; }
+  .kpi-card .sub { font-size:11px; color:var(--gray-600); margin-top:5px; }
+  .kpi-card .src { font-size:9.5px; color:var(--gray-400); margin-top:6px; font-style:italic; }
+  .kpi-card.hi { background:var(--navy); border-color:var(--navy); }
+  .kpi-card.hi .label { color:rgba(255,255,255,.55); }
+  .kpi-card.hi .value { color:var(--yellow); }
+  .kpi-card.hi .sub, .kpi-card.hi .src { color:rgba(255,255,255,.55); }
+  .kpi-card.warn { border-left:4px solid var(--orange); } .kpi-card.warn .value { color:var(--orange); }
+  .kpi-card.ok { border-left:4px solid var(--green); } .kpi-card.ok .value { color:var(--green); }
+  .kpi-card.bad { border-left:4px solid var(--red); } .kpi-card.bad .value { color:var(--red); }
+
+  .section-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.8px; color:var(--blue-mid); margin:22px 0 10px; padding-bottom:5px; border-bottom:2px solid var(--blue-mid); }
+  .section-title:first-child { margin-top:0; }
+
+  .alert { border-radius:8px; padding:12px 16px; margin-bottom:14px; display:flex; gap:10px; font-size:12.5px; }
+  .alert-icon { font-size:16px; flex-shrink:0; }
+  .alert.info { background:#e8f0fe; border-left:4px solid var(--blue-mid); }
+  .alert.warn { background:#fff8e6; border-left:4px solid var(--orange); }
+  .alert.danger { background:#ffeef0; border-left:4px solid var(--red); }
+  .alert.success { background:#e8f5ec; border-left:4px solid var(--green); }
+  .alert.flag { background:#f3f0ff; border-left:4px solid var(--purple); }
+  .alert strong { display:block; margin-bottom:2px; }
+
+  .table-wrap { overflow-x:auto; border-radius:10px; border:1px solid var(--border); margin-bottom:16px; }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:12px; }
+  thead tr { background:var(--navy); color:#fff; }
+  thead th { padding:8px 12px; text-align:left; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; white-space:nowrap; }
+  tbody tr { border-bottom:1px solid var(--gray-200); }
+  tbody tr:last-child { border-bottom:none; }
+  tbody tr:hover { background:var(--gray-100); }
+  tbody td { padding:8px 12px; }
+  tfoot tr { background:var(--blue); color:#fff; font-weight:700; }
+  tfoot td { padding:8px 12px; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .pos { color:var(--green); font-weight:700; } .neg { color:var(--red); font-weight:700; } .neut { color:var(--gray-600); }
+
+  .badge { display:inline-block; padding:2px 8px; border-radius:12px; font-size:10px; font-weight:700; white-space:nowrap; }
+  .badge-blue{background:#dbeafe;color:var(--blue-mid);} .badge-green{background:#d1fae5;color:#047857;}
+  .badge-red{background:#fee2e2;color:#b91c1c;} .badge-orange{background:#ffedd5;color:#c2410c;}
+  .badge-yellow{background:var(--yellow-soft);color:#92400e;} .badge-purple{background:#ede9fe;color:#5b21b6;}
+  .badge-gray{background:#e5e7eb;color:#374151;}
+
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .four-col { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .card { background:var(--gray-100); border-radius:10px; border:1px solid var(--border); padding:16px 18px; }
+  .card h4 { font-size:11.5px; font-weight:700; color:var(--blue-mid); text-transform:uppercase; letter-spacing:.4px; margin-bottom:10px; }
+  .card p, .card li { font-size:12.5px; color:var(--gray-600); line-height:1.7; }
+  .card ul, .card ol { padding-left:16px; }
+
+  .matrix { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px; height:340px; margin-bottom:10px; }
+  .matrix .cell { border-radius:10px; padding:14px 16px; position:relative; overflow:hidden; }
+  .matrix .cell h5 { font-size:11px; text-transform:uppercase; letter-spacing:.5px; font-weight:800; margin-bottom:8px; }
+  .matrix .cell .items { font-size:11px; line-height:1.9; }
+  .matrix .hp { background:#fdecea; border:2px solid var(--red); } .matrix .hp h5{color:var(--red);}
+  .matrix .exp { background:#fff6e0; border:2px solid var(--orange); } .matrix .exp h5{color:#a05a00;}
+  .matrix .def { background:#e6f7ed; border:2px solid var(--green); } .matrix .def h5{color:var(--green);}
+  .matrix .lp { background:#eef1f5; border:2px solid var(--gray-400); } .matrix .lp h5{color:var(--gray-600);}
+  .axis-label-x { text-align:center; font-size:10.5px; color:var(--gray-600); font-weight:700; text-transform:uppercase; margin-top:2px; }
+  .axis-label-y { writing-mode:vertical-rl; transform:rotate(180deg); font-size:10.5px; color:var(--gray-600); font-weight:700; text-transform:uppercase; }
+  .matrix-wrap { display:grid; grid-template-columns:22px 1fr; gap:6px; }
+
+  .footnote { font-size:10.5px; color:var(--gray-400); font-style:italic; margin-top:6px; }
+  .kanban { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .kanban .col h4 { font-size:11px; text-transform:uppercase; letter-spacing:.4px; padding:7px 10px; border-radius:7px; margin-bottom:10px; }
+  .kanban .col.qw h4 { background:#d1fae5; color:#047857; }
+  .kanban .col.sb h4 { background:#dbeafe; color:var(--blue-mid); }
+  .kanban .col.lt h4 { background:#ede9fe; color:#5b21b6; }
+  .task { background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:8px; font-size:11.5px; }
+  .task .impact { font-size:10.5px; font-weight:700; color:var(--navy); margin-top:5px; }
+
+  .nav-btns { display:flex; justify-content:space-between; margin-top:28px; }
+  .nav-btn { background:var(--navy); color:#fff; border:none; padding:9px 18px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; }
+  .nav-btn:hover { background:var(--blue); }
+  .nav-btn:disabled { opacity:.3; cursor:default; }
+
+  .footer { text-align:center; padding:16px; font-size:10.5px; color:var(--gray-400); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>MadeiraMadeira — <span>Sala de Jantar Growth Opportunities</span></h1>
+      <div class="subtitle">Mapa de produto nível NASP — onde estão os gaps e alavancas no domínio de Sala de Jantar (Móveis de Sala e Jantar) no Mercado Livre</div>
+    </div>
+    <div class="subtitle" style="text-align:right;">Category Intelligence · F&amp;H BR<br>Agosto/2026 · Prep. reunião 03/09 15h</div>
+  </div>
+</div>
+
+<div class="tabs"><div class="tabs-inner" id="tabsInner"></div></div>
+
+<div class="stage" id="stage"></div>
+
+<div class="footer">MadeiraMadeira Sala de Jantar Growth Opportunities · Fontes: BigQuery interno Meli — meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB (NMV_FLG), domínio DOM_DOMAIN_AGG2='LIVING &amp; DININGROOM FURNITURE', CUS_CUST_ID_SEL (187308878, 141030308, 1915672253, 311078705) · Jan/25–Ago/26 · BPC: BT_COM_FAVORABILITY (BOX_ALL_ABC_PIX), H1'26</div>
+
+<script>
+const slides = [];
+
+slides.push({
+  n:1, tab:'Executive Summary',
+  eyebrow:'Executive Summary',
+  title:'Sala de Jantar segue crescendo YoY, mas a aceleração perdeu força mês a mês até quase estacionar em agosto',
+  sub:'A MadeiraMadeira consolidou Sala de Jantar como uma de suas categorias mais relevantes dentro do Meli — mas o ritmo de crescimento vem caindo mês a mês desde maio, e agosto foi o primeiro mês com queda real (MoM) em 2026.',
+  body:`
+    <div class="kpi-grid">
+      <div class="kpi-card hi"><div class="label">NMV Sala de Jantar (Ago/26)</div><div class="value">R$10,7M</div><div class="sub pos">+6% YoY</div><div class="src">DM_EFICIENCIA_MLB</div></div>
+      <div class="kpi-card"><div class="label">NMV Jan–Ago/2026</div><div class="value">R$83,3M</div><div class="sub pos">+45% YoY vs Jan–Ago/2025</div><div class="src">DM_EFICIENCIA_MLB</div></div>
+      <div class="kpi-card bad"><div class="label">Variação MoM (Jul→Ago)</div><div class="value">-13,5%</div><div class="sub">Queda em ambas as linhas do domínio</div><div class="src">DM_EFICIENCIA_MLB</div></div>
+      <div class="kpi-card warn"><div class="label">BPC Móveis de Sala e Jantar</div><div class="value">46,0%</div><div class="sub">Abaixo do core de Móveis Organizadores (58,9%)</div><div class="src">BT_COM_FAVORABILITY, H1'26</div></div>
+    </div>
+    <div class="alert info"><div class="alert-icon">🧭</div><div><strong>A tese em uma frase</strong>Sala de Jantar ainda cresce +45% YoY no acumulado do ano, mas a taxa de crescimento caiu de +77% (maio) para +6% (agosto) — e agosto foi o primeiro mês do ano com queda mês a mês. Antes de qualquer plano de aceleração, a reunião de 03/09 precisa diagnosticar se essa desaceleração é sazonal, competitiva (BPC) ou de sortimento.</div></div>
+    <div class="two-col">
+      <div class="card"><h4>Top Insights</h4><ol>
+        <li>Crescimento YoY desacelerou 6 meses seguidos: +77% (mai) → +38% (jun) → +33% (jul) → +6% (ago).</li>
+        <li>Agosto foi o único mês de 2026 com queda MoM (-13,5%) — e a queda atinge as duas linhas do domínio (Conjuntos de Jantar -20% MoM, Racks/Painéis TV -9% MoM).</li>
+        <li>O domínio é praticamente bipartido: Conjuntos/Mesas/Cadeiras de Jantar (44% do NMV) e Racks/Painéis para TV (40%) — juntos, 84% da categoria.</li>
+        <li>BPC de Sala e Jantar (46,0%) é o 2º mais fraco entre os domínios de mobiliário da marca, atrás apenas de Quarto de Bebê — pode estar limitando conversão justamente quando o mercado mais cresce.</li>
+        <li>Mercado cresce mais rápido nas faixas premium (+43 a +56% YoY em R$1.200+) do que nas faixas de entrada (+6 a +17% abaixo de R$600) — e a MadeiraMadeira já tem penetração 3-4x maior nessas faixas altas.</li>
+      </ol></div>
+      <div class="card"><h4>Top Recomendações</h4><ol>
+        <li>Diagnosticar a queda de agosto com o time da MadeiraMadeira: estoque, ruptura de catálogo ou sazonalidade (ver Seção 2).</li>
+        <li>Priorizar melhoria de BPC em Sala e Jantar — repricing e cobertura promocional, dado que o mercado está aquecido e a marca está deixando conversão na mesa.</li>
+        <li>Ampliar sortimento na faixa R$800–1.200 (Alta Prioridade — mercado cresce +41% YoY, penetração da marca ainda modesta).</li>
+        <li>Levar o racional de faixas de preço (Seção 3) para a reunião do dia 03/09 como base de discussão conjunta com a MadeiraMadeira.</li>
+      </ol></div>
+    </div>
+  `
+});
+
+slides.push({
+  n:2, tab:'Diagnóstico: A Desaceleração',
+  eyebrow:'Evolução Mensal e Diagnóstico · Seção 2',
+  title:'A desaceleração é real, recente e atinge as duas principais linhas do domínio ao mesmo tempo',
+  sub:'Base: MadeiraMadeira, domínio Sala de Jantar (Living & Diningroom Furniture), Jan/2025–Ago/2026.',
+  body:`
+    <div class="section-title">NMV mensal — 2025 vs 2026 e crescimento YoY</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Mês</th><th class="num">NMV 2025</th><th class="num">NMV 2026</th><th class="num">YoY %</th><th class="num">MoM % (2026)</th></tr></thead>
+      <tbody>
+        <tr><td>Jan</td><td class="num">R$5,53M</td><td class="num">R$8,00M</td><td class="num pos">+45%</td><td class="num neut">—</td></tr>
+        <tr><td>Fev</td><td class="num">R$5,47M</td><td class="num">R$7,36M</td><td class="num pos">+35%</td><td class="num neg">-8%</td></tr>
+        <tr><td>Mar</td><td class="num">R$6,64M</td><td class="num">R$10,79M</td><td class="num pos">+63%</td><td class="num pos">+47%</td></tr>
+        <tr><td>Abr</td><td class="num">R$7,19M</td><td class="num">R$10,04M</td><td class="num pos">+40%</td><td class="num neg">-7%</td></tr>
+        <tr><td>Mai</td><td class="num">R$7,65M</td><td class="num">R$13,57M</td><td class="num pos">+77%</td><td class="num pos">+35%</td></tr>
+        <tr><td>Jun</td><td class="num">R$8,07M</td><td class="num">R$11,17M</td><td class="num pos">+38%</td><td class="num neg">-18%</td></tr>
+        <tr><td>Jul</td><td class="num">R$9,30M</td><td class="num">R$12,33M</td><td class="num pos">+33%</td><td class="num pos">+10%</td></tr>
+        <tr><td><strong>Ago</strong></td><td class="num">R$10,08M</td><td class="num"><strong>R$10,66M</strong></td><td class="num pos"><strong>+6%</strong></td><td class="num neg"><strong>-14%</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert danger"><div class="alert-icon">📉</div><div><strong>O sinal de alerta</strong>O crescimento YoY caiu 6 meses seguidos — de +77% em maio para apenas +6% em agosto. Isso não é ainda uma categoria em queda (o acumulado do ano segue em +45% YoY), mas a trajetória de desaceleração é a mais acentuada entre as categorias-core da marca, e merece diagnóstico antes da Black Friday e do Natal.</div></div>
+    <div class="section-title">Quem puxou a queda de agosto: as duas linhas do domínio, mês a mês</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Linha</th><th class="num">Abr/26</th><th class="num">Mai/26</th><th class="num">Jun/26</th><th class="num">Jul/26</th><th class="num">Ago/26</th><th class="num">MoM Jul→Ago</th></tr></thead>
+      <tbody>
+        <tr><td>Conjuntos/Mesas/Cadeiras de Jantar</td><td class="num">R$4,80M</td><td class="num">R$6,49M</td><td class="num">R$5,04M</td><td class="num">R$5,63M</td><td class="num">R$4,49M</td><td class="num neg">-20%</td></tr>
+        <tr><td>Racks/Painéis para TV</td><td class="num">R$3,52M</td><td class="num">R$5,06M</td><td class="num">R$4,37M</td><td class="num">R$4,77M</td><td class="num">R$4,36M</td><td class="num neg">-9%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert warn"><div class="alert-icon">⚠</div><div><strong>Leitura</strong>A queda de agosto não é isolada em uma linha — as duas principais linhas do domínio caíram no mês, com Conjuntos de Jantar caindo mais que o dobro (-20% MoM) do que Racks/Painéis (-9% MoM). Isso sugere um fator comum ao domínio (sazonalidade, cobertura promocional ou BPC) mais do que um problema pontual de sortimento em uma linha específica — hipótese a validar com o time da MadeiraMadeira em reunião.</div></div>
+  `
+});
+
+slides.push({
+  n:3, tab:'Onde Estão as Oportunidades',
+  eyebrow:'Matriz de Atratividade × Presença · Seção 3',
+  title:'O mercado cresce mais rápido justamente nas faixas de preço onde a MadeiraMadeira já é mais forte',
+  sub:'Atratividade = crescimento YoY do mercado (90d) na faixa de preço, dentro do domínio Sala de Jantar. Presença = penetração NMV da MadeiraMadeira na faixa (90d).',
+  body:`
+    <div class="matrix-wrap">
+      <div class="axis-label-y">Presença da MadeiraMadeira →</div>
+      <div>
+        <div class="matrix">
+          <div class="cell exp"><h5>Expansão (defender e ganhar densidade)</h5><div class="items">R$1.200-2.000 — mercado +44% YoY, penetração 8,5%<br>R$2.000+ — mercado +56% YoY, penetração 10,3%<br>Ação: ampliar variantes/cores no que já performa</div></div>
+          <div class="cell hp"><h5>Alta Prioridade (mercado crescendo rápido + presença ainda modesta)</h5><div class="items">R$800-1.200 — mercado +41% YoY, penetração 4,5%<br>R$600-800 — mercado +23% YoY, penetração 3,1%</div></div>
+          <div class="cell def"><h5>Defender (fortaleza construída)</h5><div class="items">R$1.200+ concentra 69% do próprio NMV da MadeiraMadeira em Sala de Jantar — posição já sólida no segmento de maior ticket</div></div>
+          <div class="cell lp"><h5>Baixa Prioridade</h5><div class="items">R$400-600 — mercado +6% YoY, penetração 2,7%<br>&lt;R$400 — mercado +17% YoY, penetração 0,7% (entrada, baixo ticket)</div></div>
+        </div>
+        <div class="axis-label-x">← Crescimento do mercado no Meli (90d YoY) →</div>
+      </div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Faixa de preço</th><th class="num">Mercado (90d)</th><th class="num">Cresc. YoY</th><th class="num">MadeiraMadeira (90d)</th><th class="num">Penetração</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td>&lt;R$400</td><td class="num">R$139,6M</td><td class="num pos">+17%</td><td class="num">R$0,9M</td><td class="num">0,7%</td><td><span class="badge badge-gray">Baixa</span></td></tr>
+        <tr><td>R$400-600</td><td class="num">R$68,4M</td><td class="num pos">+6%</td><td class="num">R$1,9M</td><td class="num">2,7%</td><td><span class="badge badge-gray">Baixa</span></td></tr>
+        <tr><td>R$600-800</td><td class="num">R$76,7M</td><td class="num pos">+23%</td><td class="num">R$2,4M</td><td class="num">3,1%</td><td><span class="badge badge-red">Alta</span> Expandir</td></tr>
+        <tr><td>R$800-1.200</td><td class="num">R$117,2M</td><td class="num pos">+41%</td><td class="num">R$5,2M</td><td class="num">4,5%</td><td><span class="badge badge-red">Alta</span> Expandir</td></tr>
+        <tr><td>R$1.200-2.000</td><td class="num">R$131,8M</td><td class="num pos">+44%</td><td class="num">R$11,1M</td><td class="num">8,5%</td><td><span class="badge badge-orange">Média</span> Defender e densificar</td></tr>
+        <tr><td>R$2.000+</td><td class="num">R$119,2M</td><td class="num pos">+56%</td><td class="num">R$12,2M</td><td class="num">10,3%</td><td><span class="badge badge-orange">Média</span> Defender e densificar</td></tr>
+      </tbody>
+    </table></div>
+    <p class="footnote">Mercado = NMV total do domínio Living & Diningroom Furniture no Meli (todos os sellers), últimos 90 dias vs. mesmo período do ano anterior. Fonte: DM_EFICIENCIA_MLB.</p>
+  `
+});
+
+slides.push({
+  n:4, tab:'Perfil de Produto & Ticket',
+  eyebrow:'Perfil de Produto, Ticket e Concorrência · Seção 4',
+  title:'O domínio é bipartido entre Conjuntos de Jantar e Racks/Painéis de TV — com tickets muito distintos',
+  sub:'Base: MadeiraMadeira, domínio Sala de Jantar, últimos 90 dias.',
+  body:`
+    <div class="section-title">Mix de NMV por linha (90d)</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Linha</th><th class="num">NMV (90d)</th><th class="num">Pedidos</th><th class="num">ASP</th><th class="num">% do domínio</th></tr></thead>
+      <tbody>
+        <tr><td>Conjuntos/Mesas/Cadeiras de Jantar</td><td class="num">R$15,0M</td><td class="num">12.689</td><td class="num">R$1.183</td><td class="num">44,4%</td></tr>
+        <tr><td>Racks/Painéis para TV</td><td class="num">R$13,4M</td><td class="num">12.391</td><td class="num">R$1.078</td><td class="num">39,5%</td></tr>
+        <tr><td>Estantes e Prateleiras</td><td class="num">R$3,0M</td><td class="num">5.329</td><td class="num">R$555</td><td class="num">8,8%</td></tr>
+        <tr><td>Sofás e Poltronas</td><td class="num">R$1,7M</td><td class="num">739</td><td class="num">R$2.316</td><td class="num">5,1%</td></tr>
+        <tr><td>Conjuntos de Sala</td><td class="num">R$0,3M</td><td class="num">88</td><td class="num">R$3.238</td><td class="num">0,8%</td></tr>
+        <tr><td>Banquetas/Bancos</td><td class="num">R$0,3M</td><td class="num">352</td><td class="num">R$752</td><td class="num">0,8%</td></tr>
+        <tr><td>Mesas de Centro/Apoio</td><td class="num">R$0,2M</td><td class="num">376</td><td class="num">R$528</td><td class="num">0,6%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="section-title">Top 10 itens por NMV (90d)</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>#</th><th>Item (MLB)</th><th>Linha</th><th class="num">NMV</th><th class="num">Pedidos</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>MLB4071906507 — Rack com Painel Ripado para TV até 90" LED Naturale</td><td>Racks/TV</td><td class="num">R$698K</td><td class="num">358</td></tr>
+        <tr><td>2</td><td>MLB3678311567 — Rack com Painel para TV até 75" LED Pinho/Off White</td><td>Racks/TV</td><td class="num">R$685K</td><td class="num">765</td></tr>
+        <tr><td>3</td><td>MLB5455483358 — Rack Gelius Móveis Luminare até 84" Off White/Naturale</td><td>Racks/TV</td><td class="num">R$682K</td><td class="num">217</td></tr>
+        <tr><td>4</td><td>MLB4374546521 — Rack Gelius até 85" LED, Rodízios e 3 Gavetas</td><td>Racks/TV</td><td class="num">R$664K</td><td class="num">355</td></tr>
+        <tr><td>5</td><td>MLB2839492204 — Rack com Painel até 75" LED Naturale/Off White</td><td>Racks/TV</td><td class="num">R$610K</td><td class="num">401</td></tr>
+        <tr><td>6</td><td>MLB5738446168 — Conjunto Sala de Jantar Mesa 160x80cm 6 Cinza/Bege</td><td>Conjuntos</td><td class="num">R$580K</td><td class="num">596</td></tr>
+        <tr><td>7</td><td>MLB4384467595 — Mesa de Jantar 120x80cm Vidro 4 Cadeiras Mel/Cinza</td><td>Conjuntos</td><td class="num">R$529K</td><td class="num">451</td></tr>
+        <tr><td>8</td><td>MLB5834705710 — Mesa de Jantar 120x80,7cm Vidro 4 Cadeiras Bege</td><td>Conjuntos</td><td class="num">R$505K</td><td class="num">457</td></tr>
+        <tr><td>9</td><td>MLB4435572438 — Mesa de Jantar Vitalic 6 Cadeiras Mel/Cinza</td><td>Conjuntos</td><td class="num">R$475K</td><td class="num">373</td></tr>
+        <tr><td>10</td><td>MLB5770282480 — Conjunto Sala de Jantar Espanha 6 Cadeiras Chocolate</td><td>Conjuntos</td><td class="num">R$461K</td><td class="num">483</td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert info"><div class="alert-icon">🛋️</div><div><strong>Leitura de concorrência (ticket)</strong>ASP de Conjuntos de Jantar (R$1.183) e Racks/TV (R$1.078) são próximos, mas Sofás/Poltronas (R$2.316) e Conjuntos de Sala (R$3.238) têm ticket muito superior com volume ainda residual — possível espaço de expansão de ticket se houver sortimento e competitividade (BPC) para sustentar.</div></div>
+  `
+});
+
+slides.push({
+  n:5, tab:'Gap de Sortimento',
+  eyebrow:'Assortment Gap Analysis · Seção 5',
+  title:'Faixas de R$600 a R$1.200 crescem forte no mercado, mas ainda representam uma fatia pequena do sortimento MadeiraMadeira',
+  sub:'Prioridade por tamanho de mercado × crescimento, com presença atual estimada da MadeiraMadeira (Seção 3).',
+  body:`
+    <div class="table-wrap"><table>
+      <thead><tr><th>Prioridade</th><th>Faixa / Frente</th><th class="num">YoY Mercado</th><th>Motivo da oportunidade</th><th>Recomendação</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-red">P1</span></td><td><strong>R$800-1.200 (Conjuntos e Racks/TV)</strong></td><td class="num pos">+41%</td><td>Maior mercado em R$ entre as faixas de "Alta Prioridade"; penetração da marca ainda em 4,5%</td><td>Ampliar variantes de conjuntos 4/6 cadeiras e racks premium nessa faixa específica</td></tr>
+        <tr><td><span class="badge badge-red">P1</span></td><td><strong>Diagnóstico da queda de agosto</strong></td><td class="num neut">-14% MoM</td><td>Queda atinge as duas linhas do domínio ao mesmo tempo — sinal de fator comum, não de uma linha isolada</td><td>Levar às 15h do dia 03/09: perguntar sobre estoque, cobertura promocional e BPC no período</td></tr>
+        <tr><td><span class="badge badge-orange">P2</span></td><td>R$600-800</td><td class="num pos">+23%</td><td>Segunda faixa de maior crescimento com penetração ainda baixa (3,1%)</td><td>Avaliar sortimento de entrada em conjuntos compactos (2-4 cadeiras) nessa faixa</td></tr>
+        <tr><td><span class="badge badge-orange">P2</span></td><td>BPC Sala e Jantar (46,0%)</td><td class="num neut">n/d</td><td>2º BPC mais fraco entre os domínios de mobiliário da marca — pode estar restringindo conversão no pico de crescimento do mercado</td><td>Repricing e revisão de cobertura promocional específica para o domínio</td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert warn"><div class="alert-icon">⚠</div><div><strong>O que ainda não sabemos</strong>Não temos, nesta análise, o motivo operacional exato da queda de agosto (estoque vs. demanda vs. cobertura promocional) — esse é justamente o ponto central a alinhar na reunião de 03/09 às 15h, usando os dados desta análise como ponto de partida comum.</div></div>
+  `
+});
+
+slides.push({
+  n:6, tab:'Plano de Ação',
+  eyebrow:'Plano de Ação · Preparação Reunião 03/09 · Seção 6',
+  title:'Agenda de 3 blocos para a reunião de 03/09 às 15h com a MadeiraMadeira',
+  sub:'Sequenciamento sugerido, conectando cada bloco a uma seção anterior deste documento.',
+  body:`
+    <div class="three-col">
+      <div class="card"><h4>Bloco 1 — Diagnóstico conjunto</h4>
+        <ul>
+          <li>Apresentar a desaceleração de YoY (Seção 2) e validar com o time da MadeiraMadeira se há explicação de estoque ou catálogo</li>
+          <li>Entender se a queda de agosto (-14% MoM, nas duas linhas) tem causa operacional identificada do lado do seller</li>
+        </ul>
+      </div>
+      <div class="card"><h4>Bloco 2 — Mapa de oportunidade</h4>
+        <ul>
+          <li>Validar a matriz de faixas de preço (Seção 3) com o time comercial da MadeiraMadeira</li>
+          <li>Confirmar se há sortimento/produção disponível para densificar R$800-1.200</li>
+          <li>Alinhar leitura de BPC (46,0%) e possíveis ações de repricing conjunto</li>
+        </ul>
+      </div>
+      <div class="card"><h4>Bloco 3 — Próximos passos</h4>
+        <ul>
+          <li>Definir responsável e prazo para diagnóstico da queda de agosto</li>
+          <li>Combinar teste de 2-3 SKUs novos na faixa R$800-1.200 dentro de 30 dias</li>
+          <li>Agendar checkpoint de acompanhamento pós-BF/Natal (sazonalidade historicamente forte em Nov, conforme padrão de 2025)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-title">Métricas de acompanhamento pós-reunião</div>
+    <div class="four-col">
+      <div class="kpi-card"><div class="label">YoY mensal</div><div class="value">+6% → recuperar</div><div class="sub">Meta: voltar a acelerar em Set/Out</div></div>
+      <div class="kpi-card"><div class="label">MoM Set/2026</div><div class="value">a definir</div><div class="sub">Confirmar se a queda de ago foi pontual</div></div>
+      <div class="kpi-card warn"><div class="label">BPC Sala e Jantar</div><div class="value">46,0% → meta a definir</div><div class="sub">Alinhar meta conjunta na reunião</div></div>
+      <div class="kpi-card"><div class="label">Penetração R$800-1.200</div><div class="value">4,5% → acompanhar</div><div class="sub">Reavaliar em 60-90 dias</div></div>
+    </div>
+  `
+});
+
+const tabsInner = document.getElementById('tabsInner');
+const stage = document.getElementById('stage');
+let current = 0;
+
+slides.forEach((s, i) => {
+  const tab = document.createElement('div');
+  tab.className = 'tab' + (i === 0 ? ' active' : '');
+  tab.innerHTML = '<b>' + s.n + '.</b>' + s.tab;
+  tab.onclick = () => go(i);
+  tabsInner.appendChild(tab);
+
+  const slide = document.createElement('div');
+  slide.className = 'slide' + (i === 0 ? ' active' : '');
+  slide.id = 'slide-' + i;
+  slide.innerHTML =
+    '<div class="slide-eyebrow">' + s.eyebrow + '</div>' +
+    '<div class="slide-title">' + s.title + '</div>' +
+    '<div class="slide-sub">' + s.sub + '</div>' +
+    s.body +
+    '<div class="nav-btns">' +
+      '<button class="nav-btn" id="prev-' + i + '">← Anterior</button>' +
+      '<button class="nav-btn" id="next-' + i + '">Próximo →</button>' +
+    '</div>';
+  stage.appendChild(slide);
+});
+
+Chart.defaults.font.family = "'Segoe UI',system-ui,sans-serif";
+Chart.defaults.color = "#4b5563";
+
+function go(i) {
+  if (i < 0 || i >= slides.length) return;
+  document.querySelectorAll('.tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
+  document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('active', idx === i));
+  current = i;
+  window.scrollTo({top: 0, behavior: 'instant'});
+}
+
+slides.forEach((s, i) => {
+  const prev = document.getElementById('prev-' + i);
+  const next = document.getElementById('next-' + i);
+  if (i === 0) prev.disabled = true;
+  if (i === slides.length - 1) next.disabled = true;
+  prev.onclick = () => go(i - 1);
+  next.onclick = () => go(i + 1);
+});
+</script>
+
+</body>
+</html>
