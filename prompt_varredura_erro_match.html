@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt — Varredura de Erro de Match (BPC)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', system-ui, sans-serif; background: #EFEFEF; color: #333; padding: 32px 16px; }
+  .page { background: white; max-width: 1000px; margin: 0 auto; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 32px rgba(0,0,0,0.12); }
+  .header { background: #1A1A1A; padding: 22px 32px; }
+  .header h1 { color: #FFE600; font-size: 20px; font-weight: 800; }
+  .header p { color: #999; font-size: 12.5px; margin-top: 4px; }
+  .content { padding: 24px 32px 28px; }
+  .note { background: #FFF8EC; border-left: 4px solid #E67E00; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: #444; margin-bottom: 18px; line-height: 1.5; }
+  .note strong { color: #1A1A1A; }
+  .copy-btn { display: inline-block; background: #FFE600; color: #1A1A1A; font-weight: 700; font-size: 12.5px; padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; margin-bottom: 14px; }
+  .copy-btn:hover { background: #f5d900; }
+  pre { background: #0D1117; color: #C9D1D9; font-family: 'Courier New', Consolas, monospace; font-size: 12px; line-height: 1.55; padding: 20px 22px; border-radius: 10px; overflow-x: auto; white-space: pre-wrap; }
+  .footer { background: #1A1A1A; color: #888; padding: 11px 32px; font-size: 10.5px; display: flex; justify-content: space-between; }
+  .footer strong { color: #FFE600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>Prompt — Varredura de Erro de Match (BPC)</h1>
+    <p>Auditoria dos itens mais representativos do portfólio BPC · Rode direto no Claude</p>
+  </div>
+  <div class="content">
+    <div class="note">Cole este prompt completo no Claude (Code ou Cowork com acesso a BigQuery e fetch de páginas). Troque <strong>&lt;SEU_LDAP_AQUI&gt;</strong> pelo seu LDAP/ASESOR antes de rodar. Ajuste "Quantidade de itens" e as palavras-chave de tamanho conforme sua vertical.</div>
+    <button class="copy-btn" onclick="copyPrompt()">📋 Copiar prompt</button>
+    <pre id="promptBlock">Preciso de uma varredura de erro de match nos itens de maior representatividade
+do meu portfólio BPC (Buyer Price Competitiveness) no MercadoLibre.
+
+Meu LDAP/ASESOR: &lt;SEU_LDAP_AQUI&gt;
+Quantidade de itens: Top 20 (pode ajustar se eu pedir outro número)
+
+FONTE DE DADOS (BigQuery):
+Tabela: meli-bi-data.WHOWNER.LK_COMP_FAVORABILITIES_DETAIL
+
+* Só tem o dia atual, sem histórico — não filtrar por data
+* PI só tem o valor 'EXPENSIVE' nessa tabela inteira (não existe CHEAPER/EQUAL
+  populado, mesmo a descrição da coluna dizer que deveria ter)
+
+Query para pegar os itens (rodar sem LIMIT primeiro pra saber o ranking real
+no portfólio completo, e só depois cortar pro top N):
+
+WITH portfolio AS (
+  SELECT FAVORABILITY_TYPE, SELLER_ID, SELLER_NAME, SELLER_SEGMENT,
+         CAST(MELI_ID AS STRING) AS meli_id, CAST(ITE_ITEM_ID AS STRING) AS item_id,
+         TITLE, BRAND, VERTICAL, DOM_AGG_1 AS domain_1, DOM_AGG_2 AS domain_2,
+         PRICE_MELI AS meli_price, COMP_PRICE_RIVAL AS rival_price,
+         PRICE_GAP AS price_gap_pct, VISITS_TOTAL, VISITS_EXPENSIVE,
+         URL_MELI, URL_RIVAL
+  FROM `meli-bi-data.WHOWNER.LK_COMP_FAVORABILITIES_DETAIL`
+  WHERE ASESOR = '&lt;SEU_LDAP_AQUI&gt;'
+    AND FAVORABILITY_TYPE = 'BOX_ALL_ABC'
+    AND PI = 'EXPENSIVE'
+),
+totals AS (SELECT SUM(VISITS_EXPENSIVE) AS total_visits_expensive FROM portfolio)
+SELECT p.*,
+       ROUND(SAFE_DIVIDE(p.VISITS_EXPENSIVE, t.total_visits_expensive) * 100, 2) AS representativity_pct
+FROM portfolio p CROSS JOIN totals t
+ORDER BY representativity_pct DESC
+
+O QUE PRECISO:
+Para cada um dos 20 itens mais representativos, abra o link do concorrente
+(URL_RIVAL) via fetch e extraia o título/nome real do produto ali (og:title,
+&lt;title&gt;, ou heading principal). Compare com o TITLE do MeLi, procurando
+divergência de:
+
+* Tamanho (SOLTEIRO, CASAL, QUEEN, KING, VIÚVA, INFANTIL etc. — ajuste as
+  palavras-chave conforme a vertical dos meus itens)
+* Cor
+* Firmeza/densidade (ex: colchão Firme vs Macio)
+* Tipo de produto (ex: mesa de escritório vs penteadeira)
+
+Classifique cada item:
+
+* OK — produto do concorrente confirma o mesmo tamanho/tipo
+* ERRO CONFIRMADO — conteúdo real da página confirma divergência
+* SUSPEITA — fetch bloqueado (403/500), mas a slug da URL já sugere
+  divergência
+* NÃO VERIFICADO — bloqueado, sem pista nenhuma
+
+Se tiver muitos itens (mais de ~25), divida em lotes e rode em paralelo via
+agentes em background, pra não estourar o contexto abrindo dezenas de páginas
+sequencialmente. Não insista em retry se um site bloquear (ex: Magazine Luiza
+costuma dar 403) — marca como não verificado e segue.
+
+FORMATO DA RESPOSTA:
+Tabela markdown com TODOS os itens (não só os flagados), nesta ordem de
+colunas:
+Ranking (posição real no portfólio completo, não 1-20) | Código Item (MLB +
+item_id) | Seller | Título MeLi | Represent% | Visits Exp. | Gap% | Preço
+MeLi | Preço Rival | Veredito | Info Rival Extraída
+
+Na coluna "Info Rival Extraída", use o formato: "Item no MeLi é [atributo] e
+no competidor é [atributo]" — sempre nomeando o que diverge.
+
+No final, um resumo com a contagem por veredito e destaque nos itens ERRO
+CONFIRMADO e SUSPEITA (são os únicos acionáveis).</pre>
+  </div>
+  <div class="footer">
+    <span>Fonte: LK_COMP_FAVORABILITIES_DETAIL · <strong>cintia.queiroz@mercadolivre.com</strong></span>
+    <span>Boa prática — auditoria de match com Claude</span>
+  </div>
+</div>
+<script>
+function copyPrompt() {
+  const text = document.getElementById('promptBlock').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+</script>
+</body>
+</html>
