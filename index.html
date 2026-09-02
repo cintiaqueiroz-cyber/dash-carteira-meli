@@ -46432,20 +46432,20 @@ function buildVGHeatmap(){
   var hdr='<thead><tr style="background:#3483FA"><th style="text-align:left;padding:11px 14px;color:#fff;font-size:12px;font-weight:700">Grupo</th>';
   MESES_DONE.forEach(function(mk,i){
     var lbl=ms[MESES_KEYS.indexOf(mk)]+(i===MESES_DONE.length-1?' *':'');
-    hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">'+lbl+'<br><span style="font-size:9px;opacity:.75;font-weight:500">%Fin / %Des</span></th>';
+    hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">'+lbl+'<br><span style="font-size:9px;opacity:.75;font-weight:500">%Des</span></th>';
   });
-  hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">YTD<br><span style="font-size:9px;opacity:.75;font-weight:500">%Fin / %Des</span></th></tr></thead>';
+  hdr+='<th style="padding:11px 10px;color:#fff;text-align:center;font-size:12px;font-weight:700">YTD<br><span style="font-size:9px;opacity:.75;font-weight:500">%Des</span></th></tr></thead>';
   var body='<tbody>';
   GRUPOS.forEach(function(g,gi){
-    var r=REAL_MENSAL[g]||{},mf=META_FIN[g]||{},md=META_DES[g]||{},ytd=ytdReal(g);
+    var r=REAL_MENSAL[g]||{},md=META_DES[g]||{},ytd=ytdReal(g);
     body+='<tr style="background:'+(gi%2===0?'#FAFAFA':'#fff')+'"><td style="font-weight:700;font-size:12px;padding:8px 12px;white-space:nowrap">'+g+'<br><span style="font-size:10px;color:#888;font-weight:400">'+fmt(ytd)+'</span></td>';
     MESES_DONE.forEach(function(mk,i){
       var rv=r[mk]||0,isL=(i===MESES_DONE.length-1),dv=isL?rv*FAT_PROJ:rv;
-      var pF=mf[mk]>0?pctNum(dv,mf[mk]):0,pD=md[mk]>0?pctNum(dv,md[mk]):0;
-      body+='<td style="padding:5px 6px;text-align:center"><div style="display:flex;gap:2px;justify-content:center"><span style="background:'+heatBg(pF)+';color:#fff;font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px">'+pF.toFixed(0)+'%</span><span style="background:'+heatBg(pD)+';color:#fff;font-size:9px;padding:1px 4px;border-radius:3px;opacity:.8">'+pD.toFixed(0)+'%</span></div>'+(isL?'<div style="font-size:9px;color:#AAA">proj.</div>':'')+'</td>';
+      var pD=md[mk]>0?pctNum(dv,md[mk]):0;
+      body+='<td style="padding:5px 6px;text-align:center"><div style="display:flex;gap:2px;justify-content:center"><span style="background:'+heatBg(pD)+';color:#fff;font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px">'+pD.toFixed(0)+'%</span></div>'+(isL?'<div style="font-size:9px;color:#AAA">proj.</div>':'')+'</td>';
     });
-    var ytdPF=ytdMF(g)>0?pctNum(ytd,ytdMF(g)):0,ytdPD=ytdMD(g)>0?pctNum(ytd,ytdMD(g)):0;
-    body+='<td style="padding:5px 6px;text-align:center;background:#F5F7FF"><div style="display:flex;gap:2px;justify-content:center"><span style="background:'+heatBg(ytdPF)+';color:#fff;font-weight:800;font-size:11px;padding:2px 6px;border-radius:3px">'+ytdPF.toFixed(0)+'%</span><span style="background:'+heatBg(ytdPD)+';color:#fff;font-size:10px;padding:2px 5px;border-radius:3px;opacity:.8">'+ytdPD.toFixed(0)+'%</span></div></td></tr>';
+    var ytdPD=ytdMD(g)>0?pctNum(ytd,ytdMD(g)):0;
+    body+='<td style="padding:5px 6px;text-align:center;background:#F5F7FF"><div style="display:flex;gap:2px;justify-content:center"><span style="background:'+heatBg(ytdPD)+';color:#fff;font-weight:800;font-size:11px;padding:2px 6px;border-radius:3px">'+ytdPD.toFixed(0)+'%</span></div></td></tr>';
   });
   tbl.innerHTML=hdr+body+'</tbody>';
 }
