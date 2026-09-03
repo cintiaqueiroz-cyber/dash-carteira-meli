@@ -6,11 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<!-- Build: 03/09/2026 19:09 -->
+<!-- Build: 03/09/2026 19:34 -->
 <title>Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
+
 
 
 
@@ -44064,6 +44065,73 @@
 #sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
 
 #loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
+
+
+#filtro-bar{flex-wrap:wrap;overflow:visible;padding:10px 0 12px;background:transparent;border-bottom:none;box-shadow:none;position:static !important;top:auto !important;gap:5px !important;align-items:center;}
+.filtro-label{font-size:12px;font-weight:500;color:#888;margin-right:2px;}
+.filtro-pill{padding:5px 13px;border-radius:20px;border:1px solid #D5D5D5;background:#fff;font-size:12px;font-weight:500;color:#555;cursor:pointer;white-space:nowrap;transition:all .12s;line-height:1.4;}
+.filtro-pill:hover{border-color:#3483FA;color:#3483FA;background:#f0f5ff;}
+.filtro-pill.active{background:#3483FA;color:#fff;border-color:#3483FA;font-weight:600;}
+.filtro-sep{display:none;}
+.filtro-mes{font-size:12px;}
+.ins-bar{background:rgba(52,131,250,.05);border:1px solid rgba(52,131,250,.18);border-radius:10px;padding:11px 16px;margin-bottom:18px;}
+.ins-title{font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.ins-list{display:flex;flex-wrap:wrap;gap:7px;}
+.ins{font-size:11px;font-weight:500;padding:4px 11px;border-radius:20px;border:1px solid #E0E0E0;background:#fff;}
+.ins.r{border-color:rgba(242,61,79,.3);background:rgba(242,61,79,.06);color:#C0392B;}
+.ins.g{border-color:rgba(0,166,80,.3);background:rgba(0,166,80,.06);color:#007A3D;}
+.ins.y{border-color:rgba(255,185,0,.3);background:rgba(255,185,0,.06);color:#856404;}
+#header .logo{background:#fff;border-radius:8px;width:auto;padding:5px 10px;height:38px;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;}
+#header .logo img{height:24px;width:auto;display:block;}
+.chart-box{position:relative;min-height:280px;padding:8px 0;}
+/* ── TREND CARDS ── */
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:12px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:9px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:10.5px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'•';position:absolute;left:0;color:#FFE600;font-weight:900}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:10px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:10px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:9.5px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:10.5px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+
+/* ── SIDEBAR LIGHT ── */
+#sidebar{background:#fff;border-right:1px solid #EBEBEB;box-shadow:none;width:210px;}
+#sidebar .sb-brand{background:#FFE600;padding:14px 16px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0C800;}
+#sidebar .sb-brand-icon{width:28px;height:28px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#sidebar .sb-brand-icon svg{width:16px;height:16px;}
+#sidebar .sb-brand-text{flex:1;min-width:0;}
+#sidebar .sb-brand-title{font-size:12.5px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+#sidebar .sb-brand-sub{font-size:10px;font-weight:400;color:#666;margin-top:1px;}
+#sidebar .sb-divider{height:1px;background:#EBEBEB;margin:4px 0;}
+#sidebar .sidebar-header{padding:14px 16px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#AAA;}
+#sidebar ul{list-style:none;padding:0 8px 6px;}
+#sidebar ul li a{display:flex;align-items:center;gap:8px;padding:7px 10px;font-size:12px;font-weight:400;color:#555;text-decoration:none;border-radius:6px;transition:all .12s;cursor:pointer;margin-bottom:1px;}
+#sidebar ul li a:hover{background:#F5F5F5;color:#1A1A1A;}
+#sidebar ul li a.active{background:#FFF9CC;color:#1A1A1A;font-weight:600;}
+#sidebar ul li a .dot{width:6px;height:6px;border-radius:50%;background:#D0D0D0;flex-shrink:0;display:inline-block;}
+#sidebar ul li a.active .dot{background:#C8A200;}
+#sidebar .sb-footer{padding:10px 16px;font-size:9.5px;color:#BBB;border-top:1px solid #EBEBEB;margin-top:4px;}
+
+#loadingOverlay{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#3483FA;}
 </style>
 </head>
 <body>
@@ -44072,7 +44140,7 @@
   <div class="logo" style="background:#fff;border-radius:8px;padding:4px 8px;height:38px;width:auto;display:flex;align-items:center;justify-content:center;margin-right:14px;flex-shrink:0;"><img src="data:image/png;base64,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" alt="Mercado Livre" style="height:30px;width:auto;display:block;"/></div>
   <span class="title">Gest&#227;o MeliPro | CA &mdash; Cintia Faraco Queiroz</span>
   <div class="subtitle" style="margin-left:auto;display:flex;align-items:center;gap:10px;">
-    <span class="update-badge">&#10003; Atualizado 03/09/2026 19:09</span>
+    <span class="update-badge">&#10003; Atualizado 03/09/2026 19:34</span>
   </div>
 </div>
 <div id="sidebar">
@@ -44752,7 +44820,7 @@
 </div>
 </div>
 <div id="footer">
-  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Setembro parcial: 3/30 dias &nbsp;&middot;&nbsp; 03/09/2026 19:09
+  Fonte: meli-bi-data &nbsp;&middot;&nbsp; Plano 2026 CA v1 &nbsp;&middot;&nbsp; Setembro parcial: 3/30 dias &nbsp;&middot;&nbsp; 03/09/2026 19:34
 </div>
 <script>
 window.onerror=function(msg,src,line,col,err){
@@ -44801,7 +44869,7 @@ var REAL_REBATES={"MULTIMOVEIS": {"jan": 91621, "feb": 190500, "mar": 109861, "a
 var REAL_INV_TOT={"MULTIMOVEIS": {"jan": 581143, "feb": 757151, "mar": 708272, "apr": 650078, "may": 622780, "jun": 566761, "jul": 847586, "aug": 942057, "sep": 21552}, "MOVEIS CARRARO": {"jan": 224542, "feb": 300358, "mar": 247721, "apr": 177184, "may": 259802, "jun": 285489, "jul": 317630, "aug": 513205, "sep": 23965}, "LUNNA COLCHOES": {"jan": 209752, "feb": 382376, "mar": 369722, "apr": 340763, "may": 508971, "jun": 615947, "jul": 687880, "aug": 488264, "sep": 18947}, "MADEIRA MADEIRA": {"jan": 3514312, "feb": 3829610, "mar": 4028550, "apr": 4479953, "may": 6798029, "jun": 6170742, "jul": 7742850, "aug": 6211074, "sep": 96054}};
 var REAL_FF={"MULTIMOVEIS": {"jan": 1532, "feb": 2231, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}, "LUNNA COLCHOES": {"jan": 1956789, "feb": 2161783, "mar": 2118022, "apr": 2488037, "may": 3194128, "jun": 2610105, "jul": 3133516, "aug": 2911681, "sep": 64114}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}};
 var REAL_XD={"MULTIMOVEIS": {"jan": 1611776, "feb": 2180604, "mar": 2672834, "apr": 3244752, "may": 3228876, "jun": 2998894, "jul": 3834711, "aug": 3803131, "sep": 106542}, "MOVEIS CARRARO": {"jan": 50248, "feb": 70356, "mar": 159005, "apr": 180559, "may": 280721, "jun": 253830, "jul": 246508, "aug": 313765, "sep": 11729}, "LUNNA COLCHOES": {"jan": 1130168, "feb": 863381, "mar": 1414813, "apr": 1224464, "may": 1161075, "jun": 1337104, "jul": 1497152, "aug": 1256998, "sep": 46181}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}};
-var REAL_SS={"MULTIMOVEIS": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}, "MOVEIS CARRARO": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}, "LUNNA COLCHOES": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}, "MADEIRA MADEIRA": {"jan": 0, "feb": 0, "mar": 0, "apr": 0, "may": 0, "jun": 0, "jul": 0, "aug": 0, "sep": 0}};
+var REAL_SS={"MULTIMOVEIS": {"jan": 5915715, "feb": 4575618, "mar": 4333269, "apr": 4417337, "may": 4238349, "jun": 3267696, "jul": 4842047, "aug": 4963242, "sep": 201707}, "MOVEIS CARRARO": {"jan": 1271990, "feb": 1397720, "mar": 1570452, "apr": 1234799, "may": 1554197, "jun": 1686245, "jul": 2156343, "aug": 3091978, "sep": 102261}, "LUNNA COLCHOES": {"jan": 26180, "feb": 21081, "mar": 60523, "apr": 140809, "may": 68593, "jun": 68942, "jul": 88107, "aug": 131941, "sep": 1124}, "MADEIRA MADEIRA": {"jan": 38236002, "feb": 36968334, "mar": 51017781, "apr": 45146303, "may": 59461056, "jun": 49673328, "jul": 56644949, "aug": 47764851, "sep": 1107809}};
 var REAL_PED_TOT={"MULTIMOVEIS": {"jan": 81280080, "feb": 81756340, "mar": 84305586, "apr": 84028730, "may": 91574962, "jun": 82754931, "jul": 90055648, "aug": 94143755, "sep": 3162265}, "MOVEIS CARRARO": {"jan": 13964129, "feb": 15662930, "mar": 20686183, "apr": 19120081, "may": 12940961, "jun": 11115981, "jul": 16080888, "aug": 21648056, "sep": 862770}, "LUNNA COLCHOES": {"jan": 5419288, "feb": 5066932, "mar": 5995307, "apr": 5926983, "may": 6774114, "jun": 6672088, "jul": 6542467, "aug": 5900000, "sep": 190257}, "MADEIRA MADEIRA": {"jan": 276585932, "feb": 258122854, "mar": 310633928, "apr": 352687979, "may": 417275826, "jun": 461464978, "jul": 478901329, "aug": 460709463, "sep": 13661260}};
 var REAL_PED_BB={"MULTIMOVEIS": {"jan": 37101256, "feb": 41736106, "mar": 30875809, "apr": 43592629, "may": 37173529, "jun": 38148776, "jul": 49982242, "aug": 38939208, "sep": 1234001}, "MOVEIS CARRARO": {"jan": 8826827, "feb": 11659297, "mar": 10567751, "apr": 14247059, "may": 7840138, "jun": 8180370, "jul": 13905846, "aug": 19059676, "sep": 824449}, "LUNNA COLCHOES": {"jan": 1847337, "feb": 2629569, "mar": 3033320, "apr": 1961008, "may": 4084782, "jun": 4612331, "jul": 4728941, "aug": 2736670, "sep": 58194}, "MADEIRA MADEIRA": {"jan": 93167555, "feb": 123501505, "mar": 136923426, "apr": 152736343, "may": 240006253, "jun": 274614899, "jul": 306234427, "aug": 218082180, "sep": 4370913}};
 var REAL_GMV_BB={"MULTIMOVEIS": {"jan": 3436711, "feb": 3450149, "mar": 2565893, "apr": 3974957, "may": 3031211, "jun": 2888804, "jul": 4810088, "aug": 3620379, "sep": 325397}, "MOVEIS CARRARO": {"jan": 835796, "feb": 1092818, "mar": 883511, "apr": 1054635, "may": 1111664, "jun": 1427721, "jul": 2075766, "aug": 2997791, "sep": 301777}, "LUNNA COLCHOES": {"jan": 1061212, "feb": 1580900, "mar": 1818056, "apr": 1274910, "may": 2667543, "jun": 2776315, "jul": 3410764, "aug": 1994810, "sep": 102802}, "MADEIRA MADEIRA": {"jan": 12879740, "feb": 17687875, "mar": 22487979, "apr": 19551223, "may": 34200460, "jun": 29560284, "jul": 36221728, "aug": 22610047, "sep": 1012926}};
@@ -45814,7 +45882,7 @@ function buildSellerFull(g,px){
   var elKpi=document.getElementById(px+'-full-kpi');
   var kpis=[{label:'% Cross-Docking',val:pctNum(ytdX,ytdG).toFixed(1)+'%',sub:fmt(ytdX),cls:'blue'}];
   if(hasFF)kpis.unshift({label:'% Full (FBM)',val:pctNum(ytdF,ytdG).toFixed(1)+'%',sub:fmt(ytdF),cls:ytdF/Math.max(ytdG,1)>=.6?'green':ytdF/Math.max(ytdG,1)>=.3?'yellow':'red'});
-  if(hasSS)kpis.push({label:'% Self-Service',val:pctNum(ytdS,ytdG).toFixed(1)+'%',sub:fmt(ytdS),cls:'blue'});
+  if(hasSS)kpis.push({label:'% Seller Direto',val:pctNum(ytdS,ytdG).toFixed(1)+'%',sub:fmt(ytdS),cls:'blue'});
   kpis.push({label:'GMV Total',val:fmt(ytdG),sub:'YTD',cls:'blue'});
   if(elKpi)elKpi.innerHTML=kpiHtml(kpis);
   destroyChart(px+'-full');
@@ -45823,7 +45891,7 @@ function buildSellerFull(g,px){
   var datasets=[];
   if(hasFF)datasets.push({label:'Full',data:mks.map(function(k){return ff[k]||0;}),backgroundColor:'#00A650',borderRadius:3});
   datasets.push({label:'XD',data:mks.map(function(k){return xd[k]||0;}),backgroundColor:'#3483FA',borderRadius:3});
-  if(hasSS)datasets.push({label:'SS',data:mks.map(function(k){return ss[k]||0;}),backgroundColor:'#FFB900',borderRadius:3});
+  if(hasSS)datasets.push({label:'Seller Direto',data:mks.map(function(k){return ss[k]||0;}),backgroundColor:'#FFB900',borderRadius:3});
   chartInstances[px+'-full']=new Chart(canEl.getContext('2d'),{
     type:'bar',
     data:{labels:mks.map(function(k){return MESES_PT_CURTO[k];}),datasets:datasets},
@@ -45836,7 +45904,7 @@ function buildSellerFull(g,px){
   var thCols='<th style="'+thSL+'">Mês</th>'
     +(hasFF?'<th style="'+thS+'">Full (FBM)</th>':'')
     +'<th style="'+thS+'">Cross-Docking</th>'
-    +(hasSS?'<th style="'+thS+'">Self-Service</th>':'')
+    +(hasSS?'<th style="'+thS+'">Seller Direto</th>':'')
     +'<th style="'+thS+'">GMV Total</th>'
     +(hasFF?'<th style="'+thS+'">% Full</th>':'')
     +'<th style="'+thS+'">% XD</th>';
@@ -47720,42 +47788,39 @@ function buildLogistica(){
   var tNMV=GRUPOS.reduce(function(a,g){return a+ytdNMV(g);},0)||tGMV;
   var ffTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_FF[g]||{})[k]||0);},0);},0);
   var xdTot=GRUPOS.reduce(function(a,g){return a+ytdXD(g);},0);
-  var ssTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_SS[g]||{})[k]||0);},0);},0);
-  var sdTot=Math.max(0,tGMV-ffTot-xdTot-ssTot);
+  // REAL_SS = PICKING_TYPE 'OTHER' (envio próprio do seller) — o bucket real e dominante,
+  // não 'ME1' (que nunca existe nos dados). É isso que chamamos de "Seller Direto".
+  var sdTot=GRUPOS.reduce(function(a,g){return a+mks.reduce(function(b,k){return b+((REAL_SS[g]||{})[k]||0);},0);},0);
+  // Resíduo de reconciliação entre a métrica de GMV total (NMV) e a soma dos 3 modais
+  // (podem divergir um pouco por metodologia — NMV_FLG vs AGMV_LC). Só exibimos se relevante.
+  var outrosTot=Math.max(0,tGMV-ffTot-xdTot-sdTot);
   var pFF=tNMV>0?ffTot/tNMV*100:0;
   var pXD=tNMV>0?xdTot/tNMV*100:0;
-  var pSS=tNMV>0?ssTot/tNMV*100:0;
   var pSD=tNMV>0?sdTot/tNMV*100:0;
+  var pOutros=tNMV>0?outrosTot/tNMV*100:0;
 
-  var el=document.getElementById('log-kpi-row');
-  if(el)el.innerHTML=kpiHtml([
+  var kpis=[
     {label:'SELLER DIRETO',  val:fmt(sdTot), sub:pSD.toFixed(1)+'% do NMV', cls:'green'},
     {label:'CROSS DOCKING',  val:fmt(xdTot), sub:pXD.toFixed(1)+'% do NMV', cls:'blue'},
     {label:'FULFILLMENT',    val:fmt(ffTot), sub:pFF.toFixed(1)+'% do NMV', cls:pFF>=30?'green':'red'}
-  ]);
+  ];
+  if(pOutros>=1)kpis.push({label:'OUTROS',val:fmt(outrosTot),sub:pOutros.toFixed(1)+'% do NMV',cls:'yellow'});
+  var el=document.getElementById('log-kpi-row');
+  if(el)el.innerHTML=kpiHtml(kpis);
 
-  // Gráfico empilhado — Seller Direto embaixo (verde, dominante), XD e SS em cima
+  // Gráfico empilhado — Seller Direto embaixo (dominante), XD e Full em cima
   destroyChart('log-bar');
   var canEl=document.getElementById('log-bar-chart');
   if(canEl){
-    var sdByMonth=mks.map(function(k){
-      var t=GRUPOS.reduce(function(s,g){return s+((REAL_MENSAL[g]||{})[k]||0);},0);
-      var f=GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);
-      var x=GRUPOS.reduce(function(s,g){return s+((REAL_XD[g]||{})[k]||0);},0);
-      var ss=GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);
-      return Math.max(0,t-f-x-ss);
-    });
+    var sdByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);});
     var xdByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_XD[g]||{})[k]||0);},0);});
-    var ssByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_SS[g]||{})[k]||0);},0);});
     var ffByMonth=mks.map(function(k){return GRUPOS.reduce(function(s,g){return s+((REAL_FF[g]||{})[k]||0);},0);});
 
     var datasets=[];
-    if(ffTot>0)datasets.push({label:'Fulfillment (FBM)',data:ffByMonth,backgroundColor:'#006E35',borderRadius:0,order:1});
-    if(xdTot>0)datasets.push({label:'Cross Docking (XD)',data:xdByMonth,backgroundColor:'#3483FA',borderRadius:0,order:2});
-    var hasSS=ssByMonth.some(function(v){return v>0;});
-    if(hasSS)datasets.push({label:'ME1 (Entrega Padrão)',data:ssByMonth,backgroundColor:'#00A650',borderRadius:0,order:3});
     var hasSD=sdByMonth.some(function(v){return v>0;});
-    if(hasSD)datasets.push({label:'Seller Direto',data:sdByMonth,backgroundColor:'#FFB900',borderRadius:0,order:4});
+    if(hasSD)datasets.push({label:'Seller Direto',data:sdByMonth,backgroundColor:'#FFB900',borderRadius:0,order:1});
+    if(ffTot>0)datasets.push({label:'Fulfillment (FBM)',data:ffByMonth,backgroundColor:'#006E35',borderRadius:0,order:2});
+    if(xdTot>0)datasets.push({label:'Cross Docking (XD)',data:xdByMonth,backgroundColor:'#3483FA',borderRadius:0,order:3});
 
     chartInstances['log-bar']=new Chart(canEl.getContext('2d'),{type:'bar',
       data:{labels:mks.map(function(k){return MESES_LABEL[MESES_KEYS.indexOf(k)];}),datasets:datasets},
