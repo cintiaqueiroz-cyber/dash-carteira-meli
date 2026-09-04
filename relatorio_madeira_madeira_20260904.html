@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio MADEIRA MADEIRA - 04/09/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+.tend-card{background:#fff;border-radius:12px;border:1px solid #E8E8E8;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.tend-card-hdr{padding:12px 14px 10px;border-bottom:2px solid}
+.tend-card-hdr.alta{border-color:#FF6B35;background:#FFF8F5}
+.tend-card-hdr.crescendo{border-color:#3483FA;background:#F0F5FF}
+.tend-card-hdr.estavel{border-color:#00A650;background:#F0FBF5}
+.tend-card-title{font-size:13px;font-weight:900;color:#1A1A1A;display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+.tend-card-sub{font-size:10px;color:#999}
+.tbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:800}
+.tbadge.alta{background:#FFF0E8;color:#E84D00}
+.tbadge.crescendo{background:#E8F0FF;color:#1A5DC8}
+.tbadge.estavel{background:#E8F7EF;color:#007A3D}
+.tend-card-body{padding:10px 14px 12px}
+.tend-sec{font-size:8.5px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:8px}
+.tend-list{list-style:none;margin-bottom:8px}
+.tend-list li{font-size:11px;color:#444;line-height:1.5;padding:1px 0 1px 11px;position:relative}
+.tend-list li::before{content:'●';position:absolute;left:0;color:#FFE600;font-size:8px;top:4px}
+.tend-item{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:6px;background:#FAFAFA;border:1px solid #F0F0F0;margin-bottom:3px}
+.tend-item.up{background:#F0FBF5;border-color:#B8E8C8}
+.tend-item.star{background:#FFFDF0;border-color:#FFE600}
+.tend-item.dn{background:#FEF9F9;border-color:#F8C4C8}
+.tend-item-name{font-size:11px;color:#333;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.tend-item-val{font-size:11px;font-weight:700;color:#1A1A1A;white-space:nowrap;flex-shrink:0}
+.tend-item-mom{font-size:10px;font-weight:800;white-space:nowrap;flex-shrink:0}
+.tend-opp{border-radius:7px;padding:7px 10px;font-size:11px;font-weight:600;margin-top:8px;border-left:3px solid;line-height:1.5}
+.tend-opp.b{background:#F0F5FF;border-color:#3483FA;color:#1A5DC8}
+.tend-opp.y{background:#FFFDF0;border-color:#FFB900;color:#856404}
+.tend-opp.r{background:#FEF9F9;border-color:#F23D4F;color:#C0392B}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; MADEIRA MADEIRA</h1>
+    <div class="sub">Relatorio de Performance &middot; 04/09/2026 &middot; IDs: 187308878,141030308,1915672253,311078705</div>
+  </div>
+  <div class="meta-pill">Meta: 80% YoY &middot; Atingimento: 54%</div>
+</div>
+<div class="wrap">
+  
+    <div class="row">
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 385.4M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 57.5%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">427.518</div><div class="sub">LY: 319.769</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 901,44</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">54%</span></div><div class="sub">Meta Desafio = R$ 709.2M (jan-set)</div></div>
+      <div class="card"><div class="lbl">BPC ABC Set MTD</div><div class="val"><span style="color:#F23D4F">29%</span></div><div class="sub">Buyer Price Competitiveness (geral) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 8.9%</span></div></div>
+      <div class="card"><div class="lbl">BPC PIX Set MTD</div><div class="val"><span style="color:#F23D4F">30%</span></div><div class="sub">Buyer Price Competitiveness (Pix) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 6.0%</span></div></div>
+      <div class="card"><div class="lbl">% Optin</div><div class="val"><span style="color:#F23D4F">5%</span></div><div class="sub">14.727 de 278.010 itens elegíveis</div></div>
+    </div>
+  <div class="row" style="margin-bottom:16px">
+    <div class="row">
+      <div class="card"><div class="lbl">GMV MTD (1-4/9)</div><div class="val">R$ 4.1M</div><div class="sub">MoM vs Ago: <span style="color:#F23D4F;font-weight:700">&#9660; 36.2%</span> &nbsp;|&nbsp; YoY vs Set/2025: <span style="color:#F23D4F;font-weight:700">&#9660; 21.5%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">4.533</div><div class="sub">dias 1-4</div></div>
+      <div class="card"><div class="lbl">GMV Ago completo</div><div class="val">R$ 46.4M</div><div class="sub">vs Jul: <span style="color:#F23D4F;font-weight:700">&#9660; 14.8%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Set</div><div class="val"><span style="color:#F23D4F">4.1%</span></div><div class="sub">R$ 4.1M de R$ 99.6M &nbsp;·&nbsp; dias 1-4 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 69.4%</span></div></div>
+    </div></div>
+  
+    <div class="sec">
+      <div class="sec-ttl">Evolução GMV "-" 2026 vs 2025 vs Meta</div>
+      <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var _ating = [59.9, 62.4, 74.0, 65.9, 76.0, 58.2, 57.8, 50.8, 4.1, null, null, null];
+      var _meta  = [63860000.0,59310000.0,68880000.0,68450000.0,78200000.0,85370000.0,94260000.0,91310000.0,99590000.0,103270000.0,114740000.0,85910000.0];
+      var _proj  = [null,null,null,null,null,null,null,null,30499545,68413792,105113031,50619953];
+      function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+      var labelsPlugin = {
+        id:'gmvLabels',
+        afterDatasetsDraw: function(chart){
+          var ctx=chart.ctx;
+          ctx.save();
+          ctx.textAlign='center';
+          // Dataset 0 = 2026 (azul): valor acima + badge % atingimento
+          var meta0=chart.getDatasetMeta(0);
+          meta0.data.forEach(function(pt,i){
+            var v=chart.data.datasets[0].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            var at=_ating[i];
+            // valor GMV — maior e mais acima
+            ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+            // badge % atingimento — maior
+            if(at!==null&&at!==undefined){
+              var bg=at>=100?'#00A650':at>=80?'#E67E00':'#F23D4F';
+              var txt=at.toFixed(0)+'%';
+              ctx.font='bold 10px Arial';
+              var tw=ctx.measureText(txt).width+10;
+              ctx.fillStyle=bg;
+              ctx.beginPath();
+              ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5);
+              ctx.fill();
+              ctx.fillStyle='#fff';
+              ctx.fillText(txt, pt.x, pt.y-12);
+            }
+          });
+          // Dataset 1 = Projetado (verde): começa em Jun (skip até mês atual)
+          var meta1=chart.getDatasetMeta(1);
+          var _mesMTD=8;
+          ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+          meta1.data.forEach(function(pt,i){
+            if(i<=_mesMTD)return;
+            if(i%2===0)return;
+            var v=chart.data.datasets[1].data[i];
+            if(v===null||v===undefined||v==='null'||isNaN(Number(v)))return;
+            ctx.fillText(fk(Number(v)), pt.x, pt.y-12);
+          });
+          // Mês atual: mostrar também Projetado e Meta Desafio
+          var ptProj=chart.getDatasetMeta(1).data[_mesMTD];
+          if(ptProj){
+            var vProj=chart.data.datasets[1].data[_mesMTD];
+            if(vProj!==null&&vProj!==undefined&&vProj!=='null'&&!isNaN(Number(vProj))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#007A3D';
+              ctx.fillText(fk(Number(vProj)), ptProj.x+28, ptProj.y-8);
+            }
+          }
+          var ptMeta=chart.getDatasetMeta(3).data[_mesMTD];
+          if(ptMeta){
+            var vMeta=_meta[_mesMTD];
+            if(vMeta!==null&&vMeta!==undefined&&vMeta!=='null'&&!isNaN(Number(vMeta))){
+              ctx.font='bold 10px Arial'; ctx.fillStyle='#CC5500';
+              ctx.fillText(fk(Number(vMeta)), ptMeta.x+28, ptMeta.y-8);
+            }
+          }
+          ctx.restore();
+        }
+      };
+      new Chart(document.getElementById('cGmv'),{
+        type:'line',
+        data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+          {label:'2026',data:[38233129.0,36981975.0,51005385.0,45132575.0,59428267.0,49711466.0,54441596.0,46379337.0,4066606.0,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,null,null,30499545,68413792,105113031,50619953],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2025',data:[22549362.0,22038642.0,27056597.0,26109572.0,29408054.0,31879180.0,38930273.0,41579566.0,37587668.0,43445450.0,66750911.0,32145662.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
+          {label:'Meta Desafio',data:[63860000.0,59310000.0,68880000.0,68450000.0,78200000.0,85370000.0,94260000.0,91310000.0,99590000.0,103270000.0,114740000.0,85910000.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
+        ]},
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:50,bottom:20}},
+          plugins:{
+            legend:{position:'top'},
+            tooltip:{callbacks:{label:function(c){
+              var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+              if(c.datasetIndex===0){var at=_ating[c.dataIndex];if(at!==null&&at!==undefined)lbl+=' ('+at.toFixed(1)+'% meta)';}
+              return lbl;
+            }}}
+          },
+          scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+        },
+        plugins:[labelsPlugin]
+      });
+    })();
+    </script>
+  
+    <div class="sec">
+      <div class="sec-ttl">Volume de Itens Vendidos (SIs) "-" 2026 vs 2025</div>
+      <div class="chart-box"><canvas id="cSI"></canvas></div>
+    </div>
+    <script>
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
+      {label:'2026',data:[42255.0,40431.0,58708.0,52392.0,67422.0,53525.0,59528.0,48724.0,4533.0,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[26239.0,26987.0,32831.0,31288.0,33872.0,35192.0,44157.0,47300.0,41903.0,46465.0,68309.0,33943.0],backgroundColor:'#DDE8FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
+  
+  
+    <div class="sec" style="padding:0;overflow:hidden">
+      <div style="background:#00A650;color:#fff;padding:10px 16px;font-weight:700;font-size:14px">
+        &#129309; Programa de Afiliados &mdash; NMV Gerado Set MTD
+      </div>
+      <div class="row" style="padding:16px;margin-bottom:0">
+        <div class="card"><div class="lbl">NMV Gerado (Afiliados)</div><div class="val">R$ 281K</div><div class="sub">6.9% do NMV</div></div>
+        <div class="card"><div class="lbl">Base Comissão (LastClick)</div><div class="val">R$ 281K</div><div class="sub">NMV base p/ calcular comissão</div></div>
+        <div class="card"><div class="lbl">Pedidos via Afiliados</div><div class="val">883</div><div class="sub">qty no período</div></div>
+        <div class="card"><div class="lbl">% Share Afiliados</div><div class="val">6.9%</div><div class="sub">sobre NMV total</div></div>
+        <div class="card"><div class="lbl">DxI LC — Pedidos</div><div class="val">0</div><div class="sub">pré-acordo cofundado</div></div>
+        <div class="card"><div class="lbl">DxI LC — NMV</div><div class="val">R$ 0</div><div class="sub">NMV desses pedidos</div></div>
+      </div>
+    </div>
+  <div class="sec"><div class="sec-ttl"> BPC Semanal - última semana de Ago até hoje</div>
+    <div style="font-size:11px;color:#888;margin-bottom:8px">
+      <b>BPC ABC</b>: comparação geral de preço no box (todas as visitas) &nbsp;&middot;&nbsp;
+      <b>BPC PIX</b>: comparação específica no canal Pix
+    </div>
+    <div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Semana</th><th style="text-align:center">BPC ABC %</th><th style="text-align:center">BPC PIX %</th>
+      </tr></thead>
+      <tbody><tr>
+          <td>23/ago - 29/ago</td>
+          <td style="text-align:center"><span style="background:#F23D4F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px">28.9%</span></td>
+          <td style="text-align:center"><span style="background:#F23D4F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px">30.1%</span></td>
+        </tr><tr>
+          <td>30/ago - 05/set</td>
+          <td style="text-align:center"><span style="background:#F23D4F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px">29.8%</span></td>
+          <td style="text-align:center"><span style="background:#F23D4F;color:#fff;font-weight:700;padding:2px 8px;border-radius:4px">30.8%</span></td>
+        </tr></tbody>
+    </table></div></div>
+  <div class="sec"><div class="sec-ttl"> NMV Diarizado - Set MTD (dia 1-4)</div>
+    <div style="overflow-x:auto;max-height:420px;overflow-y:auto"><table>
+      <thead><tr style="position:sticky;top:0">
+        <th>Dia</th><th style="text-align:right">NMV</th><th style="text-align:right">SIs</th>
+        <th style="text-align:right">NMV Ago (mesmo dia)</th><th style="text-align:center">Var.</th>
+        <th style="text-align:right">Acumulado Set</th>
+      </tr></thead>
+      <tbody><tr>
+          <td>01/Set</td>
+          <td style="text-align:right;font-weight:700">R$ 1.1M</td>
+          <td style="text-align:right">1.223</td>
+          <td style="text-align:right;color:#888">R$ 1.3M</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 14.9%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.1M</td>
+        </tr><tr>
+          <td>02/Set</td>
+          <td style="text-align:right;font-weight:700">R$ 1.1M</td>
+          <td style="text-align:right">1.226</td>
+          <td style="text-align:right;color:#888">R$ 1.5M</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.6%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 2.3M</td>
+        </tr><tr>
+          <td>03/Set</td>
+          <td style="text-align:right;font-weight:700">R$ 1.1M</td>
+          <td style="text-align:right">1.322</td>
+          <td style="text-align:right;color:#888">R$ 1.8M</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 37.9%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 3.4M</td>
+        </tr><tr>
+          <td>04/Set</td>
+          <td style="text-align:right;font-weight:700">R$ 679K</td>
+          <td style="text-align:right">762</td>
+          <td style="text-align:right;color:#888">R$ 1.7M</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 59.4%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 4.1M</td>
+        </tr></tbody>
+    </table></div></div>
+  <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Set MTD</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th>
+        <th style="text-align:right">NMV Set MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="text-align:right">MoM vs Ago</th>
+        <th style="text-align:right">SIs MTD</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Visitas 90d</th>
+        <th style="text-align:right">CVR</th>
+        <th>Status / Log.</th>
+        <th style="text-align:right">PADs YTD</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4121849444" target="_blank">GUARDA ROUPA CASAL 8 PORTAS 4 GAVETAS JATOBÁ YESCA</a><br>
+              <span style="font-size:10px;color:#999">MLB4121849444</span></td>
+          <td style="text-align:right;font-weight:700">R$ 41K</td>
+          <td style="text-align:right">2.4%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 0.7%</span></td>
+          <td style="text-align:right">38</td>
+          <td style="text-align:right">R$ 1.087,39</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4888686172" target="_blank">GUARDA-ROUPA CASAL BRANCO 3 PORTAS CORREDIÇA ESPEL</a><br>
+              <span style="font-size:10px;color:#999">MLB4888686172</span></td>
+          <td style="text-align:right;font-weight:700">R$ 40K</td>
+          <td style="text-align:right">2.3%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 46.6%</span></td>
+          <td style="text-align:right">33</td>
+          <td style="text-align:right">R$ 1.198,67</td>
+          <td style="text-align:right">693.919</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5339055984" target="_blank">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA ESPRE</a><br>
+              <span style="font-size:10px;color:#999">MLB5339055984</span></td>
+          <td style="text-align:right;font-weight:700">R$ 35K</td>
+          <td style="text-align:right">2.0%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 54.6%</span></td>
+          <td style="text-align:right">40</td>
+          <td style="text-align:right">R$ 870,62</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6666913406" target="_blank">GUARDA ROUPA 6 PORTAS 4 GAVETAS LOGAN BRANCO/OLMO </a><br>
+              <span style="font-size:10px;color:#999">MLB6666913406</span></td>
+          <td style="text-align:right;font-weight:700">R$ 34K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 6.4%</span></td>
+          <td style="text-align:right">17</td>
+          <td style="text-align:right">R$ 1.990,59</td>
+          <td style="text-align:right">86.984</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3243278502" target="_blank">GUARDA ROUPA CASAL 8 PORTAS 6 GAVETAS MASTER SANTO</a><br>
+              <span style="font-size:10px;color:#999">MLB3243278502</span></td>
+          <td style="text-align:right;font-weight:700">R$ 32K</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 188.8%</span></td>
+          <td style="text-align:right">25</td>
+          <td style="text-align:right">R$ 1.294,64</td>
+          <td style="text-align:right">84.066</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-g">Ativo</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5703897936" target="_blank">GUARDA-ROUPA SOLTEIRO 4 PORTAS 2 GAVETAS BRANCO MD</a><br>
+              <span style="font-size:10px;color:#999">MLB5703897936</span></td>
+          <td style="text-align:right;font-weight:700">R$ 31K</td>
+          <td style="text-align:right">1.8%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 68.3%</span></td>
+          <td style="text-align:right">22</td>
+          <td style="text-align:right">R$ 1.408,18</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4374546521" target="_blank">RACK COM PAINEL GELIUS PARA TV ATÉ 85 , COM LED, R</a><br>
+              <span style="font-size:10px;color:#999">MLB4374546521</span></td>
+          <td style="text-align:right;font-weight:700">R$ 28K</td>
+          <td style="text-align:right">1.6%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 42.5%</span></td>
+          <td style="text-align:right">13</td>
+          <td style="text-align:right">R$ 2.157,77</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5404270608" target="_blank">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA BRANC</a><br>
+              <span style="font-size:10px;color:#999">MLB5404270608</span></td>
+          <td style="text-align:right;font-weight:700">R$ 26K</td>
+          <td style="text-align:right">1.5%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 66.3%</span></td>
+          <td style="text-align:right">31</td>
+          <td style="text-align:right">R$ 830,84</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5834705710" target="_blank">MESA DE JANTAR 120X80,7CM TAMPO COM VIDRO 4 CADEIR</a><br>
+              <span style="font-size:10px;color:#999">MLB5834705710</span></td>
+          <td style="text-align:right;font-weight:700">R$ 25K</td>
+          <td style="text-align:right">1.4%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 106.6%</span></td>
+          <td style="text-align:right">20</td>
+          <td style="text-align:right">R$ 1.260,40</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4073532145" target="_blank">GUARDA-ROUPA CASAL 3 PORTAS CORRER ESPELHO MDF FOS</a><br>
+              <span style="font-size:10px;color:#999">MLB4073532145</span></td>
+          <td style="text-align:right;font-weight:700">R$ 24K</td>
+          <td style="text-align:right">1.4%</td>
+          <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 69.0%</span></td>
+          <td style="text-align:right">13</td>
+          <td style="text-align:right">R$ 1.829,23</td>
+          <td style="text-align:right">0</td>
+          <td style="text-align:right">0.0%</td>
+          <td><span class="pill pl-r">?</span></td>
+          <td style="text-align:right">-</td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Ago 1-4 vs Set 1-4)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Ago MTD 1-4</th>
+            <th style="text-align:right">Set MTD 1-4</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+            <th style="text-align:center">Status</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5703897936" target="_blank">GUARDA-ROUPA SOLTEIRO 4 PORTAS 2 GAVETAS BRANCO </a><br>
+                  <span style="font-size:10px;color:#999">MLB5703897936</span></td>
+              <td style="text-align:right">R$ 98K</td>
+              <td style="text-align:right">R$ 31K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 68.3%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4073532145" target="_blank">GUARDA-ROUPA CASAL 3 PORTAS CORRER ESPELHO MDF F</a><br>
+                  <span style="font-size:10px;color:#999">MLB4073532145</span></td>
+              <td style="text-align:right">R$ 77K</td>
+              <td style="text-align:right">R$ 24K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 69.0%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4637467600" target="_blank">GUARDA ROUPA CASAL 3 PORTAS 9 GAVETAS LUANA SALL</a><br>
+                  <span style="font-size:10px;color:#999">MLB4637467600</span></td>
+              <td style="text-align:right">R$ 55K</td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 77.2%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5339055984" target="_blank">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA ESP</a><br>
+                  <span style="font-size:10px;color:#999">MLB5339055984</span></td>
+              <td style="text-align:right">R$ 77K</td>
+              <td style="text-align:right">R$ 35K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 54.6%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-6205654636" target="_blank">GUARDA ROUPA CASAL COSTA RICA ESPELHO 3 PORTAS C</a><br>
+                  <span style="font-size:10px;color:#999">MLB6205654636</span></td>
+              <td style="text-align:right">R$ 42K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 94.4%</span></td>
+              <td style="text-align:right">429.797</td>
+              <td style="text-align:right">0.1%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3678311567" target="_blank">RACK COM PAINEL PARA TV ATÉ 75 POLEGADAS COM LED</a><br>
+                  <span style="font-size:10px;color:#999">MLB3678311567</span></td>
+              <td style="text-align:right">R$ 51K</td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 73.8%</span></td>
+              <td style="text-align:right">283.950</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3298868455" target="_blank">GUARDA ROUPA CASAL 2 PORTAS DE CORRER 4 GAVETAS </a><br>
+                  <span style="font-size:10px;color:#999">MLB3298868455</span></td>
+              <td style="text-align:right">R$ 57K</td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 61.9%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4888686172" target="_blank">GUARDA-ROUPA CASAL BRANCO 3 PORTAS CORREDIÇA ESP</a><br>
+                  <span style="font-size:10px;color:#999">MLB4888686172</span></td>
+              <td style="text-align:right">R$ 74K</td>
+              <td style="text-align:right">R$ 40K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 46.6%</span></td>
+              <td style="text-align:right">693.919</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5982862972" target="_blank">GUARDA-ROUPA CASAL 3 PORTAS 1 PORTA ESPELHADA CO</a><br>
+                  <span style="font-size:10px;color:#999">MLB5982862972</span></td>
+              <td style="text-align:right">R$ 49K</td>
+              <td style="text-align:right">R$ 15K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 70.4%</span></td>
+              <td style="text-align:right">226.078</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-6052935470" target="_blank">PENTEADEIRA CAMARIM COM ESPELHO FRANÇA OFF IC OF</a><br>
+                  <span style="font-size:10px;color:#999">MLB6052935470</span></td>
+              <td style="text-align:right">R$ 55K</td>
+              <td style="text-align:right">R$ 22K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 59.2%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-2839492204" target="_blank">RACK COM PAINEL PARA TV ATÉ 75 POLEGADAS COM LED</a><br>
+                  <span style="font-size:10px;color:#999">MLB2839492204</span></td>
+              <td style="text-align:right">R$ 36K</td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.0%</span></td>
+              <td style="text-align:right">193.293</td>
+              <td style="text-align:right">0.1%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5599129486" target="_blank">GUARDA-ROUPA COM MALEIRO BRANCO COM ESPELHO E 2 </a><br>
+                  <span style="font-size:10px;color:#999">MLB5599129486</span></td>
+              <td style="text-align:right">R$ 35K</td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 89.8%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4339523557" target="_blank">ARMÁRIO PARA COZINHA 12 PORTAS 1 GAVETA CLARICE </a><br>
+                  <span style="font-size:10px;color:#999">MLB4339523557</span></td>
+              <td style="text-align:right">R$ 38K</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 80.4%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4071906507" target="_blank">RACK COM PAINEL RIPADO PARA TV ATÉ 90 POLEGADAS </a><br>
+                  <span style="font-size:10px;color:#999">MLB4071906507</span></td>
+              <td style="text-align:right">R$ 31K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 92.6%</span></td>
+              <td style="text-align:right">139.047</td>
+              <td style="text-align:right">0.1%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4035202199" target="_blank">MESA DE JANTAR BASE CONE EM MADEIRA LAMINADA 120</a><br>
+                  <span style="font-size:10px;color:#999">MLB4035202199</span></td>
+              <td style="text-align:right">R$ 29K</td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 92.4%</span></td>
+              <td style="text-align:right">53.663</td>
+              <td style="text-align:right">0.4%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Ago 1-4 vs Set 1-4)</div><div style="overflow-x:auto"><table>
+          <thead><tr>
+            <th>Produto</th>
+            <th style="text-align:right">Ago MTD 1-4</th>
+            <th style="text-align:right">Set MTD 1-4</th>
+            <th style="text-align:center">Var.</th>
+            <th style="text-align:right">Visitas 90d</th>
+            <th style="text-align:right">CVR</th>
+            <th style="text-align:center">Status</th>
+          </tr></thead><tbody><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3243278502" target="_blank">GUARDA ROUPA CASAL 8 PORTAS 6 GAVETAS MASTER SAN</a><br>
+                  <span style="font-size:10px;color:#999">MLB3243278502</span></td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:right">R$ 32K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 188.8%</span></td>
+              <td style="text-align:right">84.066</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5834705710" target="_blank">MESA DE JANTAR 120X80,7CM TAMPO COM VIDRO 4 CADE</a><br>
+                  <span style="font-size:10px;color:#999">MLB5834705710</span></td>
+              <td style="text-align:right">R$ 12K</td>
+              <td style="text-align:right">R$ 25K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 106.6%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4723038097" target="_blank">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA WT </a><br>
+                  <span style="font-size:10px;color:#999">MLB4723038097</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 660.0%</span></td>
+              <td style="text-align:right">88.700</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3547754115" target="_blank">GUARDA-ROUPA INFANTIL BRANCO MAMBEL 4 PORTAS 2 G</a><br>
+                  <span style="font-size:10px;color:#999">MLB3547754115</span></td>
+              <td style="text-align:right">R$ 6K</td>
+              <td style="text-align:right">R$ 17K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 198.1%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4471497097" target="_blank">PENTEADEIRA CAMARIM COM ESPELHO FRANÇA OFF IC OF</a><br>
+                  <span style="font-size:10px;color:#999">MLB4471497097</span></td>
+              <td style="text-align:right">R$ 790</td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1330.8%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5404270608" target="_blank">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA BRA</a><br>
+                  <span style="font-size:10px;color:#999">MLB5404270608</span></td>
+              <td style="text-align:right">R$ 15K</td>
+              <td style="text-align:right">R$ 26K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 66.3%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4070684449" target="_blank">GUARDA-ROUPA CASAL ZARA 279,3CM BRANCO COM ESPEL</a><br>
+                  <span style="font-size:10px;color:#999">MLB4070684449</span></td>
+              <td style="text-align:right">R$ 2K</td>
+              <td style="text-align:right">R$ 13K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 437.0%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4437831939" target="_blank">GUARDA-ROUPA CASAL COM PÉS E ESPELHO 8 PORTAS 4 </a><br>
+                  <span style="font-size:10px;color:#999">MLB4437831939</span></td>
+              <td style="text-align:right">R$ 1K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 789.7%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3898593957" target="_blank">CONJUNTO CANTO ALEMÃO COM BAÚ MESA QUADRADA 90CM</a><br>
+                  <span style="font-size:10px;color:#999">MLB3898593957</span></td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 118.5%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5865996144" target="_blank">CAMA BOX CONJUGADA SOLTEIRO COM AUXILIAR COLCHÕE</a><br>
+                  <span style="font-size:10px;color:#999">MLB5865996144</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 162.3%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5738446168" target="_blank">CONJUNTO SALA DE JANTAR MESA 160X80CM TAMPO MDF </a><br>
+                  <span style="font-size:10px;color:#999">MLB5738446168</span></td>
+              <td style="text-align:right">R$ 10K</td>
+              <td style="text-align:right">R$ 16K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 66.2%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-6877844006" target="_blank">CONJUNTO CANTO BAÚ COM MESA DE JANTAR RETANGULAR</a><br>
+                  <span style="font-size:10px;color:#999">MLB6877844006</span></td>
+              <td style="text-align:right">R$ 3K</td>
+              <td style="text-align:right">R$ 9K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 200.0%</span></td>
+              <td style="text-align:right">5.400</td>
+              <td style="text-align:right">0.8%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4525301428" target="_blank">GUARDA ROUPA CASAL 3 PORTAS 4 GAVETAS COSTA RICA</a><br>
+                  <span style="font-size:10px;color:#999">MLB4525301428</span></td>
+              <td style="text-align:right">R$ 5K</td>
+              <td style="text-align:right">R$ 11K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 133.0%</span></td>
+              <td style="text-align:right">108.553</td>
+              <td style="text-align:right">0.2%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> </td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4403191101" target="_blank">ESTANTE HOME THEATER PARA TVS ATÉ 65 POLEGADAS C</a><br>
+                  <span style="font-size:10px;color:#999">MLB4403191101</span></td>
+              <td style="text-align:right">R$ 920</td>
+              <td style="text-align:right">R$ 7K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 609.7%</span></td>
+              <td style="text-align:right">37.126</td>
+              <td style="text-align:right">0.3%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-5521548780" target="_blank">GUARDA-ROUPA CASAL COM ESPELHO 6 PORTAS 2 GAVETA</a><br>
+                  <span style="font-size:10px;color:#999">MLB5521548780</span></td>
+              <td style="text-align:right">R$ 4K</td>
+              <td style="text-align:right">R$ 9K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 143.9%</span></td>
+              <td style="text-align:right">0</td>
+              <td style="text-align:right">0.0%</td>
+              <td style="text-align:center"><span class="pill pl-r">?</span> </td>
+            </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Produto</th><th style="text-align:right">Vis. D-60-30</th>
+        <th style="text-align:right">Vis. D-30</th><th style="text-align:center">Variação</th>
+      </tr></thead><tbody><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6205654636" target="_blank">GUARDA ROUPA CASAL COSTA RICA ESPELHO 3 PORTAS C</a></td>
+          <td style="text-align:right">133.205</td>
+          <td style="text-align:right">36.773</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 72.4%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4150263513" target="_blank">GUARDA-ROUPA CASAL MDF ESPELHADO 3 PORTAS 6 GAVE</a></td>
+          <td style="text-align:right">29.735</td>
+          <td style="text-align:right">9.252</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 68.9%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4264333953" target="_blank">JOGO DE JANTAR 6 CADEIRAS VIDRO TEMPERADO MDF 16</a></td>
+          <td style="text-align:right">42.016</td>
+          <td style="text-align:right">22.466</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 46.5%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5904513192" target="_blank">SAPATEIRA COM ESPELHO ITABUNA POLITORNO WT BRANC</a></td>
+          <td style="text-align:right">13.473</td>
+          <td style="text-align:right">9.934</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 26.3%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4864743704" target="_blank">QUARTO DE BEBÊ COM GUARDA-ROUPA CÔMODA E BERÇO C</a></td>
+          <td style="text-align:right">9.988</td>
+          <td style="text-align:right">7.599</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 23.9%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3907557273" target="_blank">CONJUNTO DE JANTAR YESCASA 4 CADEIRAS MESA REDON</a></td>
+          <td style="text-align:right">17.578</td>
+          <td style="text-align:right">13.724</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 21.9%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6981280882" target="_blank">GUARDA-ROUPAS CASAL 6 PORTAS COM PÉS E LED ABSOL</a></td>
+          <td style="text-align:right">45.636</td>
+          <td style="text-align:right">36.729</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 19.5%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4073532145" target="_blank">GUARDA-ROUPA CASAL 3 PORTAS CORRER ESPELHO MDF F</a></td>
+          <td style="text-align:right">97.469</td>
+          <td style="text-align:right">79.732</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 18.2%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6877844006" target="_blank">CONJUNTO CANTO BAÚ COM MESA DE JANTAR RETANGULAR</a></td>
+          <td style="text-align:right">4.972</td>
+          <td style="text-align:right">4.193</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 15.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4543902616" target="_blank">CONJUNTO SALA DE JANTAR GENOVA TAMPO VIDRO/MDF C</a></td>
+          <td style="text-align:right">20.643</td>
+          <td style="text-align:right">19.045</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 7.7%</span></td>
+        </tr><tr>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-6222034262" target="_blank">COZINHA PÉROLA COM RODAPÉ 5 PEÇAS TORRE QUENTE C</a></td>
+          <td style="text-align:right">30.364</td>
+          <td style="text-align:right">28.685</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 5.5%</span></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Análise por Subcategoria (AGG3) — Set MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Subcategoria</th>
+      <th style="text-align:right">GMV MTD</th>
+      <th style="text-align:right">Unidades</th>
+      <th style="text-align:right">Ticket Médio</th>
+      <th style="text-align:right">Share GMV</th>
+      <th style="text-align:right">Share Unid.</th>
+      <th style="text-align:center">YoY GMV</th>
+      <th style="text-align:center">YoY Unid.</th>
+      <th style="text-align:center">YoY Ticket</th>
+    </tr></thead><tbody><tr>
+          <td>Aparadores e Cômodas</td>
+          <td style="text-align:right;font-weight:700">R$ 1.7M</td>
+          <td style="text-align:right">1.511</td>
+          <td style="text-align:right">R$ 1.125,42</td>
+          <td style="text-align:right">41.8%</td>
+          <td style="text-align:right">33.3%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 7.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 7.1%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 0.9%</span></td>
+        </tr><tr>
+          <td>Cadeiras, Mesas e Conjuntos de Jantar</td>
+          <td style="text-align:right;font-weight:700">R$ 430K</td>
+          <td style="text-align:right">329</td>
+          <td style="text-align:right">R$ 1.307,44</td>
+          <td style="text-align:right">10.6%</td>
+          <td style="text-align:right">7.3%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 44.5%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 43.4%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 2.1%</span></td>
+        </tr><tr>
+          <td>Armários</td>
+          <td style="text-align:right;font-weight:700">R$ 378K</td>
+          <td style="text-align:right">483</td>
+          <td style="text-align:right">R$ 782,57</td>
+          <td style="text-align:right">9.3%</td>
+          <td style="text-align:right">10.7%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 15.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 16.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 0.8%</span></td>
+        </tr><tr>
+          <td>Camas, Cabeceiras e Criados-mudos</td>
+          <td style="text-align:right;font-weight:700">R$ 330K</td>
+          <td style="text-align:right">356</td>
+          <td style="text-align:right">R$ 926,08</td>
+          <td style="text-align:right">8.1%</td>
+          <td style="text-align:right">7.9%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 20.1%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 20.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 0.1%</span></td>
+        </tr><tr>
+          <td>Racks e Painéis para TV</td>
+          <td style="text-align:right;font-weight:700">R$ 323K</td>
+          <td style="text-align:right">263</td>
+          <td style="text-align:right">R$ 1.227,27</td>
+          <td style="text-align:right">7.9%</td>
+          <td style="text-align:right">5.8%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 10.3%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 7.8%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 2.3%</span></td>
+        </tr><tr>
+          <td>Mesas e Cadeiras de Escritório</td>
+          <td style="text-align:right;font-weight:700">R$ 133K</td>
+          <td style="text-align:right">179</td>
+          <td style="text-align:right">R$ 743,12</td>
+          <td style="text-align:right">3.3%</td>
+          <td style="text-align:right">3.9%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 39.5%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 47.8%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 15.9%</span></td>
+        </tr><tr>
+          <td>Estantes e Prateleiras</td>
+          <td style="text-align:right;font-weight:700">R$ 128K</td>
+          <td style="text-align:right">212</td>
+          <td style="text-align:right">R$ 602,16</td>
+          <td style="text-align:right">3.1%</td>
+          <td style="text-align:right">4.7%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 88.1%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 87.6%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 0.3%</span></td>
+        </tr><tr>
+          <td>Armários e Escaninhos</td>
+          <td style="text-align:right;font-weight:700">R$ 121K</td>
+          <td style="text-align:right">139</td>
+          <td style="text-align:right">R$ 873,69</td>
+          <td style="text-align:right">3.0%</td>
+          <td style="text-align:right">3.1%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 24.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 0.5%</span></td>
+        </tr><tr>
+          <td>Sofás, Poltronas e Acessórios</td>
+          <td style="text-align:right;font-weight:700">R$ 78K</td>
+          <td style="text-align:right">31</td>
+          <td style="text-align:right">R$ 2.524,97</td>
+          <td style="text-align:right">1.9%</td>
+          <td style="text-align:right">0.7%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 5.6%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 29.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 34.1%</span></td>
+        </tr><tr>
+          <td>Penteadeiras</td>
+          <td style="text-align:right;font-weight:700">R$ 64K</td>
+          <td style="text-align:right">81</td>
+          <td style="text-align:right">R$ 793,79</td>
+          <td style="text-align:right">1.6%</td>
+          <td style="text-align:right">1.8%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 5.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 8.0%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 2.7%</span></td>
+        </tr><tr>
+          <td>DRY CONSTRUCTION</td>
+          <td style="text-align:right;font-weight:700">R$ 60K</td>
+          <td style="text-align:right">201</td>
+          <td style="text-align:right">R$ 296,26</td>
+          <td style="text-align:right">1.5%</td>
+          <td style="text-align:right">4.4%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 42.4%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 44.6%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 1.6%</span></td>
+        </tr><tr>
+          <td>Acessórios de Quarto de Bebê</td>
+          <td style="text-align:right;font-weight:700">R$ 47K</td>
+          <td style="text-align:right">26</td>
+          <td style="text-align:right">R$ 1.813,38</td>
+          <td style="text-align:right">1.2%</td>
+          <td style="text-align:right">0.6%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 66.8%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 70.8%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.5%</span></td>
+        </tr><tr>
+          <td>DOORS &amp; GARAGE DOORS</td>
+          <td style="text-align:right;font-weight:700">R$ 39K</td>
+          <td style="text-align:right">71</td>
+          <td style="text-align:right">R$ 555,35</td>
+          <td style="text-align:right">1.0%</td>
+          <td style="text-align:right">1.6%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 69.0%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 65.4%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.5%</span></td>
+        </tr><tr>
+          <td>OUTDOOR CHAIRS &amp; TABLES</td>
+          <td style="text-align:right;font-weight:700">R$ 37K</td>
+          <td style="text-align:right">58</td>
+          <td style="text-align:right">R$ 644,69</td>
+          <td style="text-align:right">0.9%</td>
+          <td style="text-align:right">1.3%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 44.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 93.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></td>
+        </tr><tr>
+          <td>Gabinetes e Armários</td>
+          <td style="text-align:right;font-weight:700">R$ 31K</td>
+          <td style="text-align:right">42</td>
+          <td style="text-align:right">R$ 733,69</td>
+          <td style="text-align:right">0.8%</td>
+          <td style="text-align:right">0.9%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 46.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 61.1%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 37.1%</span></td>
+        </tr><tr>
+          <td>RACKS</td>
+          <td style="text-align:right;font-weight:700">R$ 25K</td>
+          <td style="text-align:right">37</td>
+          <td style="text-align:right">R$ 683,54</td>
+          <td style="text-align:right">0.6%</td>
+          <td style="text-align:right">0.8%</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 42.3%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 36.2%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 9.5%</span></td>
+        </tr><tr>
+          <td>OFFICE EQUIPMENT</td>
+          <td style="text-align:right;font-weight:700">R$ 21K</td>
+          <td style="text-align:right">35</td>
+          <td style="text-align:right">R$ 586,09</td>
+          <td style="text-align:right">0.5%</td>
+          <td style="text-align:right">0.8%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 34.6%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 25.0%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 7.6%</span></td>
+        </tr><tr>
+          <td>Colchões</td>
+          <td style="text-align:right;font-weight:700">R$ 17K</td>
+          <td style="text-align:right">11</td>
+          <td style="text-align:right">R$ 1.584,55</td>
+          <td style="text-align:right">0.4%</td>
+          <td style="text-align:right">0.2%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 59.9%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 8.3%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 74.5%</span></td>
+        </tr><tr>
+          <td>Colchões e Sommiers</td>
+          <td style="text-align:right;font-weight:700">R$ 16K</td>
+          <td style="text-align:right">14</td>
+          <td style="text-align:right">R$ 1.160,14</td>
+          <td style="text-align:right">0.4%</td>
+          <td style="text-align:right">0.3%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 198.6%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 600.0%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 57.3%</span></td>
+        </tr><tr>
+          <td>Berços e Moisés</td>
+          <td style="text-align:right;font-weight:700">R$ 15K</td>
+          <td style="text-align:right">22</td>
+          <td style="text-align:right">R$ 693,68</td>
+          <td style="text-align:right">0.4%</td>
+          <td style="text-align:right">0.5%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 164.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 266.7%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.8%</span></td>
+        </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
+      <td>Total</td>
+      <td style="text-align:right">R$ 4.1M</td>
+      <td style="text-align:right">4.533</td>
+      <td style="text-align:right">R$ 897,11</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.2%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 11.0%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 5.8%</span></td>
+    </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens Ativos</div><div class="val">14.869</div><div class="sub">total no catálogo ativo</div></div>
+      <div class="card"><div class="lbl">Ativos c/ Vendas Set MTD</div><div class="val">1.800</div><div class="sub">12% do ativo</div></div>
+      <div class="card"><div class="lbl">Live Listing (LL)</div><div class="val">0</div><div class="sub">catálogo ML</div></div>
+      <div class="card"><div class="lbl">Super Listing (SL)</div><div class="val">0</div><div class="sub">listagem própria</div></div>
+    </div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:12px 16px;font-size:13px">
+      <b>Sell-through:</b> 12.1% dos itens ativos tiveram venda nos últimos 90 dias.
+      âš ï¸ Oportunidade: ativar ou revisar itens sem venda.
+    </div></div>
+  <div class="sec"><div class="sec-ttl"> Modal Logístico</div><div style="overflow-x:auto"><table>
+      <thead><tr>
+        <th>Modal</th>
+        <th style="text-align:right">GMV Set MTD</th>
+        <th style="text-align:right">Pedidos MTD</th>
+        <th style="text-align:right">Share</th>
+        <th style="min-width:100px">Distribuição</th>
+      </tr></thead><tbody><tr>
+          <td><span class="pill pl-r">OTHER</span></td>
+          <td style="text-align:right;font-weight:700">R$ 4.1M</td>
+          <td style="text-align:right;color:#555">4.731</td>
+          <td style="text-align:right">100.0%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:100.0%"></div></div></td>
+        </tr></tbody></table></div></div>
+  <div class="sec"><div class="sec-ttl">Investimento em PADs (Product Ads)</div><div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap"><div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#3483FA;font-weight:800">PADs YTD</div><div style="font-size:20px;font-weight:900;color:#3483FA">R$ 12.6M</div></div><div style="background:#E8F8EF;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#00A650;font-weight:800">GMV PADs YTD</div><div style="font-size:20px;font-weight:900;color:#00A650">R$ 210.1M</div></div><div style="background:#FFF9E0;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#E67E00;font-weight:800">ACOS YTD</div><div style="font-size:20px;font-weight:900;color:#E67E00">6.0%</div></div></div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:left;white-space:nowrap">Mes</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Invest. PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">GMV PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ACOS</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Clicks</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ROI</th></tr></thead><tbody><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jan<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 362K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 6.4M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.7%</td><td style="padding:8px 10px;text-align:right;color:#555">900,936</td><td style="padding:8px 10px;text-align:right;color:#555">17.6x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Fev<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 435K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 7.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">984,456</td><td style="padding:8px 10px;text-align:right;color:#555">18.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mar<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 579K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 10.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.8%</td><td style="padding:8px 10px;text-align:right;color:#555">1,323,217</td><td style="padding:8px 10px;text-align:right;color:#555">17.3x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Abr<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 545K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 8.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.2%</td><td style="padding:8px 10px;text-align:right;color:#555">964,034</td><td style="padding:8px 10px;text-align:right;color:#555">16.2x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mai<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 508K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 7.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.5%</td><td style="padding:8px 10px;text-align:right;color:#555">707,002</td><td style="padding:8px 10px;text-align:right;color:#555">15.4x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jun<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 461K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 7.8M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.9%</td><td style="padding:8px 10px;text-align:right;color:#555">656,150</td><td style="padding:8px 10px;text-align:right;color:#555">16.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jul<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 601K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 10.3M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.8%</td><td style="padding:8px 10px;text-align:right;color:#555">928,802</td><td style="padding:8px 10px;text-align:right;color:#555">17.2x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Ago<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 796K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 13.4M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.0%</td><td style="padding:8px 10px;text-align:right;color:#555">1,161,561</td><td style="padding:8px 10px;text-align:right;color:#555">16.8x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Set<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 761K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 12.9M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.9%</td><td style="padding:8px 10px;text-align:right;color:#555">1,193,411</td><td style="padding:8px 10px;text-align:right;color:#555">16.9x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Out<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 754K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 13.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.7%</td><td style="padding:8px 10px;text-align:right;color:#555">963,572</td><td style="padding:8px 10px;text-align:right;color:#555">17.4x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Nov<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 1.4M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 24.7M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">1,871,769</td><td style="padding:8px 10px;text-align:right;color:#555">17.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Dez<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 1.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 15.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.2%</td><td style="padding:8px 10px;text-align:right;color:#555">2,082,303</td><td style="padding:8px 10px;text-align:right;color:#555">13.8x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jan<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 871K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 14.6M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.0%</td><td style="padding:8px 10px;text-align:right;color:#555">1,730,831</td><td style="padding:8px 10px;text-align:right;color:#555">16.8x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Fev<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 760K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 13.5M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">1,494,843</td><td style="padding:8px 10px;text-align:right;color:#555">17.8x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mar<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 920K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 17.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.3%</td><td style="padding:8px 10px;text-align:right;color:#555">1,758,816</td><td style="padding:8px 10px;text-align:right;color:#555">18.7x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Abr<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 1.3M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 23.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.7%</td><td style="padding:8px 10px;text-align:right;color:#555">3,105,551</td><td style="padding:8px 10px;text-align:right;color:#555">17.7x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mai<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 2.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 36.6M</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.3%</td><td style="padding:8px 10px;text-align:right;color:#555">4,713,425</td><td style="padding:8px 10px;text-align:right;color:#555">18.7x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jun<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 2.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 33.5M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.5%</td><td style="padding:8px 10px;text-align:right;color:#555">5,860,276</td><td style="padding:8px 10px;text-align:right;color:#555">15.4x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jul<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 2.5M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 38.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.4%</td><td style="padding:8px 10px;text-align:right;color:#555">7,816,956</td><td style="padding:8px 10px;text-align:right;color:#555">15.5x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Ago<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 2.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 31.3M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.5%</td><td style="padding:8px 10px;text-align:right;color:#555">6,983,678</td><td style="padding:8px 10px;text-align:right;color:#555">15.3x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Set<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 132K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.2%</td><td style="padding:8px 10px;text-align:right;color:#555">551,612</td><td style="padding:8px 10px;text-align:right;color:#555">16.3x</td></tr></tbody></table></div><div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_MKP_COMMERCE_ADS_GENERAL (REVENUES) - mesma base do dashboard</div></div>
+  <div class="sec"><div class="sec-ttl"> 📈 Tendências de Mercado 2026 — Oportunidades para este Seller</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"><div class="tend-card"><div class="tend-card-hdr estavel"><div class="tend-card-title">🗄️ Storage & Organização <span class="tbadge estavel">■ Estável</span></div><div class="tend-card-sub">Guarda-Roupas · Cômodas · Sapateiras · Cristaleiras</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Guarda-roupas com espelho integrado e acabamento premium crescem</li><li>Cristaleira volta como peça decorativa de sala — tendência crescente</li><li>Organização doméstica como bem-estar amplia interesse em cômodas modulares</li><li>Paleta: off-white, carvalho claro e cinza antracite</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4121849444-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">GUARDA ROUPA CASAL 8 PORTAS 4 GAVETAS </span></a><span class="tend-item-val">R$ 41K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4888686172-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">GUARDA-ROUPA CASAL BRANCO 3 PORTAS COR</span></a><span class="tend-item-val">R$ 40K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5339055984-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS </span></a><span class="tend-item-val">R$ 35K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">GUARDA-ROUPA CASAL COM PÉS E ESPELHO</span><span class="tend-item-mom" style="color:#00A650">▲+790%</span></div><div class="tend-item up"><span class="tend-item-name">GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETA</span><span class="tend-item-mom" style="color:#00A650">▲+660%</span></div><div class="tend-item up"><span class="tend-item-name">GUARDA-ROUPA CASAL ZARA 279,3CM BRAN</span><span class="tend-item-mom" style="color:#00A650">▲+437%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">GUARDA-ROUPA CASAL SOBERANO 3 PORTAS</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">GUARDA-ROUPA CASAL BRANCO ESPELHO 3 </span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">GUARDA ROUPA CASAL BRANCO COM ESPELH</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp y">💡 Cristaleira: novo item com tração rápida — explorar linha completa de organização de sala</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🛋️ Living & Diningroom <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Sofás · Mesas · Estantes · TV Storage</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Sofás escultóricos com curvas em aceleração — FunHaus e Neo Deco</li><li>Tendência europeia: poltronas, pufes e composições modulares em linho, veludo ou couro</li><li>Paletas 2026: neutros sofisticados (bege, areia, cinza) + terracota e verde-sálvia</li><li>Sofás com armazenamento interno e braços USB lideram apartamentos compactos</li><li>Sofás de couro legítimo com lançamentos fortes em mai/26</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4374546521-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">RACK COM PAINEL GELIUS PARA TV ATÉ 85 </span></a><span class="tend-item-val">R$ 28K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5834705710-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">MESA DE JANTAR 120X80,7CM TAMPO COM VI</span></a><span class="tend-item-val">R$ 25K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3898593957-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CONJUNTO CANTO ALEMÃO COM BAÚ MESA QUA</span></a><span class="tend-item-val">R$ 16K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">ESTANTE HOME THEATER PARA TVS ATÉ 65</span><span class="tend-item-mom" style="color:#00A650">▲+610%</span></div><div class="tend-item up"><span class="tend-item-name">CONJUNTO CANTO BAÚ COM MESA DE JANTA</span><span class="tend-item-mom" style="color:#00A650">▲+200%</span></div><div class="tend-item up"><span class="tend-item-name">MESA DE JANTAR 120X80,7CM TAMPO COM </span><span class="tend-item-mom" style="color:#00A650">▲+149%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">ESTANTE PARA TV 84 POLEGADAS 217,6CM</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CONJUNTO SALA DE JANTAR NÁPOLES TAMP</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">RACK COM PAINEL PARA TV ATÉ 85 POLEG</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp b">💡 Oportunidade: composições modulares e sofás em linho/veludo alinhados com Neo Deco — avaliar expansão de linha</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🍳 Kitchen & Lavanderia <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Armários · Gabinetes de Pia · Lavanderia · Compactos</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>"Fim dos armários tradicionais": prateleiras abertas e cozinhas expostas</li><li>Armários de lavanderia e laundry como mega-tendência de organização</li><li>Cozinhas compactas com cristaleira crescem em studios e aptos</li><li>Paleta: branco aquecido, areia, terracota e verde-musgo</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5403540776-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">ARMÁRIO DE COZINHA 6 PORTAS 2 GAVETAS </span></a><span class="tend-item-val">R$ 22K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5829000326-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">ARMÁRIO DE COZINHA 6 PORTAS 2 GAVETAS </span></a><span class="tend-item-val">R$ 18K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5884325952-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">ARMÁRIO PARA COZINHA 13 PORTAS 2 GAVET</span></a><span class="tend-item-val">R$ 14K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">CONJUNTO GABINETE PARA BANHEIRO SUSP</span><span class="tend-item-mom" style="color:#00A650">▲+266%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">COZINHA PÉROLA COM RODAPÉ 5 PEÇAS TO</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">ARMÁRIO PARA COZINHA 12 PORTAS 1 GAV</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COZINHA MODULADA 6 PORTAS E 2 GAVETA</span><span class="tend-item-mom" style="color:#F23D4F">▼84%</span></div><div class="tend-opp b">💡 Cozinha compacta com cristaleira acelerando +159% — alinhado com tendência cozinha exposta</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🌙 Bedroom & Infantil <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Camas · Montessoriana · Trelicê · Cômodas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Cama montessoriana infantil domina — quarto como santuário de bem-estar</li><li>Camas baixas estilo japonês/escandinavo consolidam-se no Brasil</li><li>Quartos modulados para adultos com espelho em aceleração</li><li>Minimalismo quente: poucos elementos com textura e presença</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-6052935470-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PENTEADEIRA CAMARIM COM ESPELHO FRANÇA</span></a><span class="tend-item-val">R$ 22K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4471497097-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PENTEADEIRA CAMARIM COM ESPELHO FRANÇA</span></a><span class="tend-item-val">R$ 11K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4449583863-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">BELICHE SOLTEIRO ADULTO COM 2 GAVETÕES</span></a><span class="tend-item-val">R$ 7K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">PENTEADEIRA CAMARIM COM ESPELHO FRAN</span><span class="tend-item-mom" style="color:#00A650">▲+1331%</span></div><div class="tend-item up"><span class="tend-item-name">BELICHE SOLTEIRO ADULTO COM 2 GAVETÕ</span><span class="tend-item-mom" style="color:#00A650">▲+240%</span></div><div class="tend-item up"><span class="tend-item-name">PENTEADEIRA CAMARIM 100% MDF 184 X 1</span><span class="tend-item-mom" style="color:#00A650">▲+94%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CAMA CASAL/QUEEN COM CABECEIRA E MES</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CAMA INFANTIL SOLTEIRO MONTESSORIANO</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">CABECEIRA CASAL EXTENSÍVEL ESTOFADA </span><span class="tend-item-mom" style="color:#F23D4F">▼86%</span></div><div class="tend-opp b">💡 Beliche montessoriana e quarto modulado com espelho em forte aceleração — explorar linha</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🍼 Baby Bedroom <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Berços 3 em 1 · Quarto de Bebê Completo · Cômodas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Berço americano 3 em 1 (vira sofá/minicama) domina as buscas — versatilidade e durabilidade</li><li>Quarto de bebê completo (berço+guarda-roupa+cômoda) cresce como compra única</li><li>Garantia estendida (3 anos) como diferencial de conversão</li><li>Paleta neutra (branco, madeirado, off-white) segue líder absoluta</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4864743704-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">QUARTO DE BEBÊ COM GUARDA-ROUPA CÔMODA</span></a><span class="tend-item-val">R$ 10K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4787312214-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">QUARTO DE BEBÊ COMPLETO COM GUARDA ROU</span></a><span class="tend-item-val">R$ 7K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-6250601704-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CONJUNTO QUARTO DE BEBÊ COMPLETO BERÇO</span></a><span class="tend-item-val">R$ 6K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">QUARTO DE BEBÊ COMPLETO 100% MDF COM</span><span class="tend-item-mom" style="color:#00A650">▲+119%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CONJUNTO QUARTO DE BEBÊ COMPLETO BER</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">QUARTO DE BEBÊ COM GUARDA-ROUPA CÔMO</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">BERÇO CONVENCIONAL ESPRESSO MÓVEIS L</span><span class="tend-item-mom" style="color:#F23D4F">▼91%</span></div><div class="tend-opp b">💡 Berço 3 em 1 é o principal driver de GMV do domínio — priorizar ADS e estoque nas variações mais vendidas</div></div></div><div class="tend-card"><div class="tend-card-hdr estavel"><div class="tend-card-title">🖥️ Office & Escritório <span class="tbadge estavel">■ Estável</span></div><div class="tend-card-sub">Estantes Moduladas · Armários de Escritório · Organização</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Home office consolidado impulsiona estantes moduladas com portas e gavetas</li><li>Armários de escritório com vidro retrô (estilo urbano) ganham espaço</li><li>Organização vertical (gaveteiros com rodízio) cresce em espaços pequenos</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3863426277-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">MESA PARA ESCRITÓRIO DIRETOR EM L 6 GA</span></a><span class="tend-item-val">R$ 10K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5018637504-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">ESCRIVANINHA 5 GAVETAS BERLIM YESCASA </span></a><span class="tend-item-val">R$ 4K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4561913190-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">MESA PARA ESCRITÓRIO DIRETOR EM L 6 GA</span></a><span class="tend-item-val">R$ 2K</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">MESA PARA ESCRITÓRIO DIRETOR EM L 6 </span><span class="tend-item-mom" style="color:#F23D4F">▼82%</span></div><div class="tend-item dn"><span class="tend-item-name">ESCRIVANINHA 5 GAVETAS BERLIM YESCAS</span><span class="tend-item-mom" style="color:#F23D4F">▼79%</span></div><div class="tend-item dn"><span class="tend-item-name">MESA PARA ESCRITÓRIO DIRETOR EM L 6 </span><span class="tend-item-mom" style="color:#F23D4F">▼59%</span></div><div class="tend-opp y">💡 Estante modulada com portas e gavetas é o item-chave — considerar variações de cor adicionais</div></div></div><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">🛏️ Cama Box & Conjuntos <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Cama Box · Box Baú · Pillow Top · Molas Ensacadas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Box Baú em alta: armazenamento integrado viraliza no Pinterest 2026</li><li>Wellness do sono: kits colchão + base ganham preferência por conveniência</li><li>Pillow Top e molas ensacadas em ascensão como upgrade de conforto</li><li>Consumidor migra de box simples para box premium com armazenamento</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5865996144-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CAMA BOX CONJUGADA SOLTEIRO COM AUXILI</span></a><span class="tend-item-val">R$ 10K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">CAMA BOX CONJUGADA SOLTEIRO COM AUXI</span><span class="tend-item-mom" style="color:#00A650">▲+162%</span></div><div class="tend-opp b">💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen</div></div></div><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">💤 Colchões <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Espuma D33 · Molas Ensacadas · Ortopédico</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Wellness do sono como investimento em saúde — demanda crescente</li><li>Colchões premium (molas ensacadas, látex) em ascensão</li><li>Envelhecimento da população amplia demanda por conforto</li><li>Black Friday = maior pico de vendas do ano para colchões</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-2037492295-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO QUEEN MOLAS ENSACADAS 158X198X</span></a><span class="tend-item-val">R$ 3K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4410969697-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO CASAL MOLAS ENSACADAS D45 REAL</span></a><span class="tend-item-val">R$ 0</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO CASAL MOLAS ENSACADAS D45 RE</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO QUEEN MOLAS ENSACADAS 158X19</span><span class="tend-item-mom" style="color:#F23D4F">▼79%</span></div><div class="tend-opp r">⚠️ Lacuna: colchão premium R$1.500–R$2.000 — mercado grande, seller sem presença nessa faixa</div></div></div></div></div>
+</div>
+</body></html>
