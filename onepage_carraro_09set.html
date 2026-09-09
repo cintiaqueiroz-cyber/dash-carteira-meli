@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MOVEIS CARRARO — Onepage 09/09</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
@@ -43,17 +44,22 @@ td{padding:7px 10px;border-bottom:1px solid #F0F0F0}
   <div class="warn">⚠️ <b>NMV oficial (F_NMV_LC) de hoje ainda não processou</b> — pipeline com lag para pedidos do mesmo dia. Usando <b>GMV</b> como proxy provisório para o parcial de hoje; o NMV oficial deve atualizar nas próximas horas.</div>
 
   <div class="row">
-    <div class="card"><div class="lbl">GMV Hoje (parcial, até 10:37)</div><div class="val" style="color:#3483FA">R$ 49,1K</div><div class="sub">71 SIs · 46 itens vendidos</div></div>
-    <div class="card"><div class="lbl">NMV 8.8 (dia completo)</div><div class="val">R$ 171,8K</div><div class="sub">254 SIs · 105 itens</div></div>
-    <div class="card"><div class="lbl">NMV 7.7 (dia completo)</div><div class="val">R$ 165,9K</div><div class="sub">253 SIs · 106 itens</div></div>
-    <div class="card"><div class="lbl">NMV 6.6 (dia completo)</div><div class="val">R$ 100,9K</div><div class="sub">173 SIs · 80 itens</div></div>
+    <div class="card"><div class="lbl">GMV Hoje até 10h (mesmo corte)</div><div class="val" style="color:#00A650">R$ 54,4K</div><div class="sub">77 SIs</div></div>
+    <div class="card"><div class="lbl">GMV 8.8 até 10h (mesmo corte)</div><div class="val">R$ 50,6K</div><div class="sub">53 SIs</div></div>
+    <div class="card"><div class="lbl">Variação (mesmo horário)</div><div class="val" style="color:#00A650">▲ +7,5%</div><div class="sub">GMV · SIs: +45%</div></div>
+    <div class="card"><div class="lbl">NMV 8.8 (dia completo, ref.)</div><div class="val">R$ 171,8K</div><div class="sub">254 SIs · 105 itens</div></div>
   </div>
 
   <div class="row">
-    <div class="card"><div class="lbl">NMV Set MTD (até ontem)</div><div class="val" style="color:#00A650">R$ 901K</div><div class="sub">+ R$49,1K hoje (GMV parcial) ≈ R$950K</div></div>
+    <div class="card"><div class="lbl">NMV Set MTD (até ontem)</div><div class="val" style="color:#00A650">R$ 901K</div><div class="sub">+ GMV parcial de hoje</div></div>
     <div class="card"><div class="lbl">NMV YTD 2026</div><div class="val">R$ 16,24M</div><div class="sub">SUM(F_NMV_LC) · GMV_FLG=TRUE</div></div>
     <div class="card"><div class="lbl">Meta Desafio Set/26</div><div class="val">R$ 3,90M</div><div class="sub">pace necessário: ~R$130K/dia</div></div>
-    <div class="card"><div class="lbl">Ritmo SI vs 8.8</div><div class="val" style="color:#FF7A00">28%</div><div class="sub">71 de 254 SIs do dia completo de 8.8 — ainda de manhã</div></div>
+    <div class="card"><div class="lbl">NMV 7.7 / 6.6 (dias completos, ref.)</div><div class="val" style="font-size:18px">R$165,9K / R$100,9K</div><div class="sub">253 SIs / 173 SIs</div></div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-ttl">📈 Vendas por Hora — Hoje (09/09) vs Data Dupla (8.8)</div>
+    <div style="height:280px"><canvas id="chHoras"></canvas></div>
   </div>
 
   <div class="sec">
@@ -76,7 +82,7 @@ td{padding:7px 10px;border-bottom:1px solid #F0F0F0}
   <div class="sec">
     <div class="sec-ttl">💡 Insights &amp; Ações do Dia</div>
 
-    <div class="ins"><span class="ic">📈</span><div class="tx"><span class="pill b">RITMO</span> &nbsp;<b>71 SIs até 10:37</b> representam ~28% do total de SIs de 8.8 (254 no dia completo). Se o ritmo se mantiver constante ao longo do dia, o resultado final pode ficar próximo ou acima da última data dupla — mas ainda é early-day, monitorar ao longo da tarde.</div></div>
+    <div class="ins"><span class="ic">📈</span><div class="tx"><span class="pill g">RITMO</span> &nbsp;Comparando <b>o mesmo horário (até 10h)</b>: hoje já está <b>+7,5% em GMV e +45% em SIs</b> vs 8.8 no mesmo corte — dia começou mais forte que a última data dupla. Se o ritmo se mantiver, hoje pode superar 8.8 no total do dia.</div></div>
 
     <div class="ins"><span class="ic">🤝</span><div class="tx"><span class="pill y">AFILIADOS</span> &nbsp;Ainda <b>0 pedidos via Afiliados hoje</b> (vs R$27.859 gerados em 8.8, um dia comum). <b>Aumente o % de ganho extra na sua campanha de Afiliados neste exato momento.</b> Quanto maior a comissão, mais criadores vão divulgar os seus produtos nas redes sociais hoje. E o melhor: você só paga se vender!</div></div>
 
@@ -87,5 +93,27 @@ td{padding:7px 10px;border-bottom:1px solid #F0F0F0}
   </div>
 
 </div>
+<script>
+(function(){
+  var horas = Array.from({length:24}, function(_,i){return i+'h';});
+  var hoje  = [4673,350,0,1211,1164,2070,5609,9785,18754,10774,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+  var d88   = [3956,0,1157,0,1620,3284,1607,5945,12708,10268,10052,17677,19725,18532,12902,10971,8489,6233,7735,3744,8786,4550,9562,2520];
+  new Chart(document.getElementById('chHoras').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels: horas,
+      datasets: [
+        {label:'Hoje (09/09)', data:hoje, borderColor:'#00A650', backgroundColor:'rgba(0,166,80,.12)', fill:true, tension:.3, spanGaps:false},
+        {label:'Data Dupla (8.8)', data:d88, borderColor:'#3483FA', backgroundColor:'transparent', borderDash:[6,4], tension:.3}
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'top'}},
+      scales:{ y:{ ticks:{ callback:function(v){return 'R$'+(v/1000).toFixed(0)+'k';} } } }
+    }
+  });
+})();
+</script>
 </body>
 </html>
