@@ -74,8 +74,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   
     <div class="row">
       <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 32.2M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 48.1%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">23.228</div><div class="sub">LY: 16.874</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.387,67</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">23.227</div><div class="sub">LY: 16.874</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.387,70</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">77%</span></div><div class="sub">Meta Desafio = R$ 41.6M (jan-set)</div></div>
       <div class="card"><div class="lbl">BPC ALL ABC Set MTD</div><div class="val"><span style="color:#F23D4F">37%</span></div><div class="sub">Buyer Price Competitiveness (geral) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 16.4%</span></div></div>
       <div class="card"><div class="lbl">BPC PIX Set MTD</div><div class="val"><span style="color:#F23D4F">31%</span></div><div class="sub">Buyer Price Competitiveness (Pix) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 41.1%</span></div></div>
@@ -83,10 +83,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-9/9)</div><div class="val">R$ 1.6M</div><div class="sub">MoM vs Ago: <span style="color:#00A650;font-weight:700">&#9650; 0.9%</span> &nbsp;|&nbsp; YoY vs Set/2025: <span style="color:#00A650;font-weight:700">&#9650; 36.4%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.154</div><div class="sub">dias 1-9</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-9/9)</div><div class="val">R$ 1.4M</div><div class="sub">MoM vs Ago: <span style="color:#F23D4F;font-weight:700">&#9660; 3.9%</span> &nbsp;|&nbsp; YoY vs Set/2025: <span style="color:#00A650;font-weight:700">&#9650; 15.8%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.094</div><div class="sub">dias 1-9</div></div>
       <div class="card"><div class="lbl">GMV Ago completo</div><div class="val">R$ 4.1M</div><div class="sub">vs Jul: <span style="color:#F23D4F;font-weight:700">&#9660; 9.8%</span></div></div>
-      <div class="card"><div class="lbl">Meta Desafio Set</div><div class="val"><span style="color:#F23D4F">28.8%</span></div><div class="sub">R$ 1.6M de R$ 5.7M &nbsp;·&nbsp; dias 1-9 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 3.9%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Set</div><div class="val"><span style="color:#F23D4F">24.5%</span></div><div class="sub">R$ 1.4M de R$ 5.7M &nbsp;·&nbsp; dias 1-9 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 18.3%</span></div></div>
     </div></div>
   
     <div class="sec">
@@ -97,7 +97,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     (function(){
       var _ating = [86.0, 78.3, 94.7, 90.0, 99.0, 75.3, 83.3, 80.1, 27.5, null, null, null];
       var _meta  = [3620320.0,3892167.0,3794977.0,4280396.0,4463083.0,5339687.0,5443827.0,5100000.0,5700000.0,6300000.0,9500000.0,6600000.0];
-      var _proj  = [null,null,null,null,null,null,null,null,5478540,5620700,11911802,5032972];
+      var _proj  = [null,null,null,null,null,null,null,null,4654440,5620606,11911603,5032888];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -162,8 +162,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       new Chart(document.getElementById('cGmv'),{
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-          {label:'2026',data:[3113586.0,3046245.0,3593357.0,3851560.0,4420298.0,4021398.0,4532040.0,4087056.0,1567196.0,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,null,null,null,null,5478540,5620700,11911802,5032972],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2026',data:[3113586.0,3046245.0,3593357.0,3851560.0,4420298.0,4021398.0,4532040.0,4087056.0,1566657.0,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,null,null,4654440,5620606,11911603,5032888],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[1969283.0,2006036.0,2116703.0,2246703.0,2447771.0,2990939.0,3382534.0,3400658.0,3341466.0,3795528.0,8043763.0,3398649.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[3620320.0,3892167.0,3794977.0,4280396.0,4463083.0,5339687.0,5443827.0,5100000.0,5700000.0,6300000.0,9500000.0,6600000.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
@@ -191,7 +191,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2297.0,2378.0,2632.0,2777.0,3220.0,2691.0,3140.0,2984.0,1109.0,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2297.0,2378.0,2632.0,2777.0,3220.0,2691.0,3140.0,2984.0,1108.0,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[1282.0,1200.0,1407.0,1583.0,1760.0,2199.0,2580.0,2429.0,2434.0,2806.0,5883.0,2632.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   
@@ -206,25 +206,25 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div style="display:flex;gap:16px;flex-wrap:wrap">
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">GMV 9.9</div>
-        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$ 449.887,00</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">336 SIs</div>
+        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$ 389.614,00</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">325 SIs</div>
       </div>
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs dias normais Set</div>
-        <div style="font-size:24px;font-weight:900;color:#007A3D">+202%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia dias normais: R$ 149.209,38</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+210%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia dias normais: R$ 125.839,75</div>
       </div>
       
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs Data Dupla 8.8</div>
-        <div style="font-size:24px;font-weight:900;color:#007A3D">+45%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">8.8 foi R$ 310K &middot; 229 SIs</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+37%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">8.8 foi R$ 285K &middot; 212 SIs</div>
       </div>
       
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">Atingimento Meta 9.9</div>
-        <div style="font-size:24px;font-weight:900;color:#007A3D">169.53%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">Meta: R$ 265K &middot; Real: R$ 450K</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">146.81%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">Meta: R$ 265K &middot; Real: R$ 390K</div>
       </div>
     </div>
   </div>
@@ -234,18 +234,18 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">Peso do 9.9 no m&ecirc;s</div>
-        <div style="font-size:22px;font-weight:900;color:#1A5DC8">27.4%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">O dia 9.9 (R$ 450K) representa <strong>27.4%</strong> do GMV total de Set at&eacute; agora (R$ 1.6M em 9 dias).</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">27.9%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">O dia 9.9 (R$ 390K) representa <strong>27.9%</strong> do GMV total de Set at&eacute; agora (R$ 1.4M em 9 dias).</div>
       </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">V&eacute;spera j&aacute; sinalizava</div>
-        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 225K</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 186K</div>
         <div style="font-size:12px;color:#444;margin-top:4px">Dia 08/Set (v&eacute;spera) foi o 2&ordm; maior GMV do m&ecirc;s — aquecimento claro na v&eacute;spera da data dupla.</div>
       </div>
       <div style="flex:1;min-width:200px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">Evolu&ccedil;&atilde;o vs 8.8</div>
-        <div style="font-size:22px;font-weight:900;color:#B85A00">+45%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">A data dupla de Set superou Ago em +45% no GMV e +47% em SIs (336 vs 229). Crescimento consistente entre datas duplas.</div>
+        <div style="font-size:22px;font-weight:900;color:#B85A00">+37%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">A data dupla de Set superou Ago em +37% no GMV e +53% em SIs (325 vs 212). Crescimento consistente entre datas duplas.</div>
       </div>
     </div>
   </div>
@@ -256,7 +256,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   <script>
   (function(){
     var labels=["01/Set", "02/Set", "03/Set", "04/Set", "05/Set", "06/Set", "07/Set", "08/Set", ["09/Set", "\u2b50 9.9"]];
-    var vals=[118745, 145412, 120256, 156513, 124959, 140411, 162822, 224557, 449887];
+    var vals=[102216, 126921, 98562, 127915, 108232, 116664, 140341, 185867, 389614];
     var colors=["#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#FF9500"];
     new Chart(document.getElementById('cDailyMes'),{
       type:'bar',
@@ -315,67 +315,67 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead>
       <tbody><tr>
           <td>01/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 119K</td>
-          <td style="text-align:right">89</td>
-          <td style="text-align:right;color:#888">R$ 168K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 29.2%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 119K</td>
+          <td style="text-align:right;font-weight:700">R$ 102K</td>
+          <td style="text-align:right">84</td>
+          <td style="text-align:right;color:#888">R$ 148K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 31.1%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 102K</td>
         </tr><tr>
           <td>02/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 145K</td>
-          <td style="text-align:right">101</td>
-          <td style="text-align:right;color:#888">R$ 194K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 264K</td>
+          <td style="text-align:right;font-weight:700">R$ 127K</td>
+          <td style="text-align:right">97</td>
+          <td style="text-align:right;color:#888">R$ 174K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.1%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 229K</td>
         </tr><tr>
           <td>03/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 120K</td>
-          <td style="text-align:right">98</td>
-          <td style="text-align:right;color:#888">R$ 180K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 33.3%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 384K</td>
+          <td style="text-align:right;font-weight:700">R$ 99K</td>
+          <td style="text-align:right">91</td>
+          <td style="text-align:right;color:#888">R$ 168K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 41.3%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 328K</td>
         </tr><tr>
           <td>04/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 157K</td>
-          <td style="text-align:right">105</td>
-          <td style="text-align:right;color:#888">R$ 175K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.8%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 541K</td>
+          <td style="text-align:right;font-weight:700">R$ 128K</td>
+          <td style="text-align:right">98</td>
+          <td style="text-align:right;color:#888">R$ 154K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.8%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 456K</td>
         </tr><tr>
           <td>05/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 125K</td>
-          <td style="text-align:right">73</td>
-          <td style="text-align:right;color:#888">R$ 139K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.4%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 666K</td>
+          <td style="text-align:right;font-weight:700">R$ 108K</td>
+          <td style="text-align:right">69</td>
+          <td style="text-align:right;color:#888">R$ 124K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 12.8%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 564K</td>
         </tr><tr>
           <td>06/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 140K</td>
-          <td style="text-align:right">102</td>
-          <td style="text-align:right;color:#888">R$ 169K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.9%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 806K</td>
+          <td style="text-align:right;font-weight:700">R$ 117K</td>
+          <td style="text-align:right">95</td>
+          <td style="text-align:right;color:#888">R$ 160K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.0%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 681K</td>
         </tr><tr>
           <td>07/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 163K</td>
-          <td style="text-align:right">105</td>
-          <td style="text-align:right;color:#888">R$ 152K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 6.8%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 969K</td>
+          <td style="text-align:right;font-weight:700">R$ 140K</td>
+          <td style="text-align:right">101</td>
+          <td style="text-align:right;color:#888">R$ 124K</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.4%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 821K</td>
         </tr><tr>
           <td>08/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 225K</td>
-          <td style="text-align:right">145</td>
-          <td style="text-align:right;color:#888">R$ 310K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.5%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.2M</td>
+          <td style="text-align:right;font-weight:700">R$ 186K</td>
+          <td style="text-align:right">134</td>
+          <td style="text-align:right;color:#888">R$ 285K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 34.7%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.0M</td>
         </tr><tr>
           <td>09/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 450K</td>
-          <td style="text-align:right">336</td>
-          <td style="text-align:right;color:#888">R$ 141K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 219.3%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.6M</td>
+          <td style="text-align:right;font-weight:700">R$ 390K</td>
+          <td style="text-align:right">325</td>
+          <td style="text-align:right;color:#888">R$ 117K</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 233.2%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.4M</td>
         </tr></tbody>
     </table></div></div>
   <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Set MTD</div><div style="overflow-x:auto"><table>
@@ -490,10 +490,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3442619235" target="_blank">PILLOW TOP CASAL LUUNA ESSENTIAL MICROFIBRA, DOWN </a><br>
               <span style="font-size:10px;color:#999">MLB3442619235</span></td>
           <td style="text-align:right;font-weight:700">R$ 43K</td>
-          <td style="text-align:right">2.8%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 30.3%</span></td>
-          <td style="text-align:right">81</td>
-          <td style="text-align:right">R$ 536,16</td>
+          <td style="text-align:right">2.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 28.6%</span></td>
+          <td style="text-align:right">80</td>
+          <td style="text-align:right">R$ 536,12</td>
           <td style="text-align:right">15.557</td>
           <td style="text-align:right">0.5%</td>
           <td><span class="pill pl-g">Ativo</span></td>
@@ -706,9 +706,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
                   <span style="font-size:10px;color:#999">MLB3442619235</span></td>
               <td style="text-align:right">R$ 33K</td>
               <td style="text-align:right">R$ 43K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 30.3%</span></td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 28.6%</span></td>
               <td style="text-align:right">15.557</td>
-              <td style="text-align:right">2.8%</td>
+              <td style="text-align:right">2.7%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
             </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-3410404365" target="_blank">COLCHÃO CASAL LUUNA SUPREME FIRME, 4 CAMADAS DE </a><br>
@@ -870,20 +870,20 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td style="text-align:right;font-weight:700">R$ 1.4M</td>
           <td style="text-align:right">806</td>
           <td style="text-align:right">R$ 1.733,07</td>
-          <td style="text-align:right">89.1%</td>
+          <td style="text-align:right">89.2%</td>
           <td style="text-align:right">72.7%</td>
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 22.5%</span></td>
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 8.3%</span></td>
           <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.1%</span></td>
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER COVERS</td>
-          <td style="text-align:right;font-weight:700">R$ 132K</td>
-          <td style="text-align:right">227</td>
-          <td style="text-align:right">R$ 581,58</td>
+          <td style="text-align:right;font-weight:700">R$ 131K</td>
+          <td style="text-align:right">226</td>
+          <td style="text-align:right">R$ 581,77</td>
           <td style="text-align:right">8.4%</td>
-          <td style="text-align:right">20.5%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 171.5%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 180.2%</span></td>
+          <td style="text-align:right">20.4%</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 170.4%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 179.0%</span></td>
           <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 3.1%</span></td>
         </tr><tr>
           <td>PILLOWS</td>
@@ -928,12 +928,12 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
       <td>Total</td>
       <td style="text-align:right">R$ 1.6M</td>
-      <td style="text-align:right">1.109</td>
-      <td style="text-align:right">R$ 1.413,16</td>
+      <td style="text-align:right">1.108</td>
+      <td style="text-align:right">R$ 1.413,95</td>
       <td style="text-align:right">100%</td>
       <td style="text-align:right">100%</td>
       <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 30.0%</span></td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 27.8%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 27.6%</span></td>
       <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1.8%</span></td>
     </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
