@@ -73,9 +73,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
 <div class="wrap">
   
     <div class="row">
-      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 32.2M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 48.0%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">23.219</div><div class="sub">LY: 16.874</div></div>
-      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.387,75</div><div class="sub">YTD 2026</div></div>
+      <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 32.2M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 48.1%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">23.227</div><div class="sub">LY: 16.874</div></div>
+      <div class="card"><div class="lbl">Ticket Médio</div><div class="val">R$ 1.387,67</div><div class="sub">YTD 2026</div></div>
       <div class="card"><div class="lbl">Atingimento Meta</div><div class="val"><span style="color:#F23D4F">77%</span></div><div class="sub">Meta Desafio = R$ 41.6M (jan-set)</div></div>
       <div class="card"><div class="lbl">BPC ALL ABC Set MTD</div><div class="val"><span style="color:#F23D4F">37%</span></div><div class="sub">Buyer Price Competitiveness (geral) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 16.4%</span></div></div>
       <div class="card"><div class="lbl">BPC PIX Set MTD</div><div class="val"><span style="color:#F23D4F">31%</span></div><div class="sub">Buyer Price Competitiveness (Pix) &middot; <span style="color:#F23D4F;font-weight:700">&#9660; 41.1%</span></div></div>
@@ -83,10 +83,10 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
   <div class="row" style="margin-bottom:16px">
     <div class="row">
-      <div class="card"><div class="lbl">GMV MTD (1-9/9)</div><div class="val">R$ 1.4M</div><div class="sub">MoM vs Ago: <span style="color:#F23D4F;font-weight:700">&#9660; 3.9%</span> &nbsp;|&nbsp; YoY vs Set/2025: <span style="color:#00A650;font-weight:700">&#9650; 15.8%</span></div></div>
-      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.094</div><div class="sub">dias 1-9</div></div>
+      <div class="card"><div class="lbl">GMV MTD (1-9/9)</div><div class="val">R$ 1.6M</div><div class="sub">MoM vs Ago: <span style="color:#00A650;font-weight:700">&#9650; 0.9%</span> &nbsp;|&nbsp; YoY vs Set/2025: <span style="color:#00A650;font-weight:700">&#9650; 36.4%</span></div></div>
+      <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">1.154</div><div class="sub">dias 1-9</div></div>
       <div class="card"><div class="lbl">GMV Ago completo</div><div class="val">R$ 4.1M</div><div class="sub">vs Jul: <span style="color:#F23D4F;font-weight:700">&#9660; 9.8%</span></div></div>
-      <div class="card"><div class="lbl">Meta Desafio Set</div><div class="val"><span style="color:#F23D4F">24.5%</span></div><div class="sub">R$ 1.4M de R$ 5.7M &nbsp;·&nbsp; dias 1-9 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 18.3%</span></div></div>
+      <div class="card"><div class="lbl">Meta Desafio Set</div><div class="val"><span style="color:#F23D4F">28.8%</span></div><div class="sub">R$ 1.6M de R$ 5.7M &nbsp;·&nbsp; dias 1-9 &nbsp;·&nbsp; pace: <span style="color:#F23D4F;font-weight:700">&#9660; 3.9%</span></div></div>
     </div></div>
   
     <div class="sec">
@@ -95,9 +95,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     (function(){
-      var _ating = [86.0, 78.3, 94.7, 90.0, 99.0, 75.3, 83.3, 80.1, 27.3, null, null, null];
+      var _ating = [86.0, 78.3, 94.7, 90.0, 99.0, 75.3, 83.3, 80.1, 27.5, null, null, null];
       var _meta  = [3620320.0,3892167.0,3794977.0,4280396.0,4463083.0,5339687.0,5443827.0,5100000.0,5700000.0,6300000.0,9500000.0,6600000.0];
-      var _proj  = [null,null,null,null,null,null,null,null,4654440,5618858,11907899,5031323];
+      var _proj  = [null,null,null,null,null,null,null,null,5478540,5620465,11911304,5032761];
       function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
       var labelsPlugin = {
         id:'gmvLabels',
@@ -162,8 +162,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       new Chart(document.getElementById('cGmv'),{
         type:'line',
         data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-          {label:'2026',data:[3113586.0,3046245.0,3593357.0,3851560.0,4420298.0,4021398.0,4532040.0,4087056.0,1556635.0,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
-          {label:'Projetado',data:[null,null,null,null,null,null,null,null,4654440,5618858,11907899,5031323],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
+          {label:'2026',data:[3113586.0,3046245.0,3593357.0,3851560.0,4420298.0,4021398.0,4532040.0,4087056.0,1565847.0,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+          {label:'Projetado',data:[null,null,null,null,null,null,null,null,5478540,5620465,11911304,5032761],borderColor:'#00A650',backgroundColor:'transparent',borderDash:[5,4],tension:.3,pointRadius:3,borderWidth:2},
           {label:'2025',data:[1969283.0,2006036.0,2116703.0,2246703.0,2447771.0,2990939.0,3382534.0,3400658.0,3341466.0,3795528.0,8043763.0,3398649.0],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3},
           {label:'Meta Desafio',data:[3620320.0,3892167.0,3794977.0,4280396.0,4463083.0,5339687.0,5443827.0,5100000.0,5700000.0,6300000.0,9500000.0,6600000.0],borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[6,3],tension:.3,pointRadius:3}
         ]},
@@ -191,7 +191,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </div>
     <script>
     new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],datasets:[
-      {label:'2026',data:[2297.0,2378.0,2632.0,2777.0,3220.0,2691.0,3140.0,2984.0,1100.0,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2026',data:[2297.0,2378.0,2632.0,2777.0,3220.0,2691.0,3140.0,2984.0,1108.0,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
       {label:'2025',data:[1282.0,1200.0,1407.0,1583.0,1760.0,2199.0,2580.0,2429.0,2434.0,2806.0,5883.0,2632.0],backgroundColor:'#DDE8FF',borderRadius:4}
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})</script>
   
@@ -206,19 +206,19 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div style="display:flex;gap:16px;flex-wrap:wrap">
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">GMV 9.9</div>
-        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$ 389.614,00</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">325 SIs</div>
+        <div style="font-size:24px;font-weight:900;color:#1A1A1A">R$ 449.887,00</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">336 SIs</div>
       </div>
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs dias normais Set</div>
-        <div style="font-size:24px;font-weight:900;color:#007A3D">+210%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia dias normais: R$ 125.839,75</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+233%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">m&eacute;dia dias normais: R$ 135.006,78</div>
       </div>
       
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
         <div style="font-size:10px;color:#555;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs Data Dupla 8.8</div>
-        <div style="font-size:24px;font-weight:900;color:#007A3D">+37%</div>
-        <div style="font-size:10px;color:#555;margin-top:2px">8.8 foi R$ 285K &middot; 212 SIs</div>
+        <div style="font-size:24px;font-weight:900;color:#007A3D">+45%</div>
+        <div style="font-size:10px;color:#555;margin-top:2px">8.8 foi R$ 310K &middot; 229 SIs</div>
       </div>
       
       <div style="background:rgba(255,255,255,.6);border-radius:10px;padding:12px 18px;min-width:120px">
@@ -232,20 +232,25 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div class="sec-ttl">Insights &mdash; Set MTD</div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       
+      <div style="flex:1;min-width:200px;background:#FEE8EA;border-left:4px solid #F23D4F;border-radius:8px;padding:14px 16px">
+        <div style="font-size:11px;font-weight:800;color:#C0001A;text-transform:uppercase;margin-bottom:6px">Momentum p&oacute;s-9.9</div>
+        <div style="font-size:22px;font-weight:900;color:#C0001A">-85.7%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">Ritmo ap&oacute;s a data dupla (R$ 21K/dia) ficou <strong>abaixo</strong> do ritmo pr&eacute;-9.9 (R$ 149K/dia).</div>
+      </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">Peso do 9.9 no m&ecirc;s</div>
-        <div style="font-size:22px;font-weight:900;color:#1A5DC8">27.9%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">O dia 9.9 (R$ 390K) representa <strong>27.9%</strong> do GMV total de Set at&eacute; agora (R$ 1.4M em 9 dias).</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">27.4%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">O dia 9.9 (R$ 450K) representa <strong>27.4%</strong> do GMV total de Set at&eacute; agora (R$ 1.6M em 9 dias).</div>
       </div>
       <div style="flex:1;min-width:200px;background:#F0F5FF;border-left:4px solid #3483FA;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#1A5DC8;text-transform:uppercase;margin-bottom:6px">V&eacute;spera j&aacute; sinalizava</div>
-        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 186K</div>
+        <div style="font-size:22px;font-weight:900;color:#1A5DC8">R$ 225K</div>
         <div style="font-size:12px;color:#444;margin-top:4px">Dia 08/Set (v&eacute;spera) foi o 2&ordm; maior GMV do m&ecirc;s — aquecimento claro na v&eacute;spera da data dupla.</div>
       </div>
       <div style="flex:1;min-width:200px;background:#FFF9E0;border-left:4px solid #E67E00;border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;font-weight:800;color:#B85A00;text-transform:uppercase;margin-bottom:6px">Evolu&ccedil;&atilde;o vs 8.8</div>
-        <div style="font-size:22px;font-weight:900;color:#B85A00">+37%</div>
-        <div style="font-size:12px;color:#444;margin-top:4px">A data dupla de Set superou Ago em +37% no GMV e +53% em SIs (325 vs 212). Crescimento consistente entre datas duplas.</div>
+        <div style="font-size:22px;font-weight:900;color:#B85A00">+45%</div>
+        <div style="font-size:12px;color:#444;margin-top:4px">A data dupla de Set superou Ago em +45% no GMV e +47% em SIs (336 vs 229). Crescimento consistente entre datas duplas.</div>
       </div>
     </div>
   </div>
@@ -256,7 +261,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
   <script>
   (function(){
     var labels=["01/Set", "02/Set", "03/Set", "04/Set", "05/Set", "06/Set", "07/Set", "08/Set", ["09/Set", "\u2b50 9.9"]];
-    var vals=[102216, 126921, 98562, 127915, 108232, 116664, 140341, 185867, 389614];
+    var vals=[118745, 145412, 120256, 156513, 124959, 140411, 162822, 224557, 449887];
     var colors=["#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#3483FA", "#FF9500"];
     new Chart(document.getElementById('cDailyMes'),{
       type:'bar',
@@ -315,67 +320,67 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead>
       <tbody><tr>
           <td>01/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 102K</td>
-          <td style="text-align:right">84</td>
-          <td style="text-align:right;color:#888">R$ 148K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 31.1%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 102K</td>
+          <td style="text-align:right;font-weight:700">R$ 119K</td>
+          <td style="text-align:right">89</td>
+          <td style="text-align:right;color:#888">R$ 168K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 29.2%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 119K</td>
         </tr><tr>
           <td>02/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 127K</td>
-          <td style="text-align:right">97</td>
-          <td style="text-align:right;color:#888">R$ 174K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.1%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 229K</td>
+          <td style="text-align:right;font-weight:700">R$ 145K</td>
+          <td style="text-align:right">101</td>
+          <td style="text-align:right;color:#888">R$ 194K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 25.1%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 264K</td>
         </tr><tr>
           <td>03/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 99K</td>
-          <td style="text-align:right">91</td>
-          <td style="text-align:right;color:#888">R$ 168K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 41.3%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 328K</td>
+          <td style="text-align:right;font-weight:700">R$ 120K</td>
+          <td style="text-align:right">98</td>
+          <td style="text-align:right;color:#888">R$ 180K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 33.3%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 384K</td>
         </tr><tr>
           <td>04/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 128K</td>
-          <td style="text-align:right">98</td>
-          <td style="text-align:right;color:#888">R$ 154K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.8%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 456K</td>
+          <td style="text-align:right;font-weight:700">R$ 157K</td>
+          <td style="text-align:right">105</td>
+          <td style="text-align:right;color:#888">R$ 175K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.8%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 541K</td>
         </tr><tr>
           <td>05/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 108K</td>
-          <td style="text-align:right">69</td>
-          <td style="text-align:right;color:#888">R$ 124K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 12.8%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 564K</td>
+          <td style="text-align:right;font-weight:700">R$ 125K</td>
+          <td style="text-align:right">73</td>
+          <td style="text-align:right;color:#888">R$ 139K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 10.4%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 666K</td>
         </tr><tr>
           <td>06/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 117K</td>
-          <td style="text-align:right">95</td>
-          <td style="text-align:right;color:#888">R$ 160K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.0%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 681K</td>
+          <td style="text-align:right;font-weight:700">R$ 140K</td>
+          <td style="text-align:right">102</td>
+          <td style="text-align:right;color:#888">R$ 169K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 16.9%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 806K</td>
         </tr><tr>
           <td>07/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 140K</td>
-          <td style="text-align:right">101</td>
-          <td style="text-align:right;color:#888">R$ 124K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.4%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 821K</td>
+          <td style="text-align:right;font-weight:700">R$ 163K</td>
+          <td style="text-align:right">105</td>
+          <td style="text-align:right;color:#888">R$ 152K</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 6.8%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 969K</td>
         </tr><tr>
           <td>08/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 186K</td>
-          <td style="text-align:right">134</td>
-          <td style="text-align:right;color:#888">R$ 285K</td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 34.7%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.0M</td>
+          <td style="text-align:right;font-weight:700">R$ 225K</td>
+          <td style="text-align:right">145</td>
+          <td style="text-align:right;color:#888">R$ 310K</td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 27.5%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.2M</td>
         </tr><tr>
           <td>09/Set</td>
-          <td style="text-align:right;font-weight:700">R$ 390K</td>
-          <td style="text-align:right">325</td>
-          <td style="text-align:right;color:#888">R$ 117K</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 233.2%</span></td>
-          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.4M</td>
+          <td style="text-align:right;font-weight:700">R$ 450K</td>
+          <td style="text-align:right">336</td>
+          <td style="text-align:right;color:#888">R$ 141K</td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 219.3%</span></td>
+          <td style="text-align:right;color:#3483FA;font-weight:700">R$ 1.6M</td>
         </tr></tbody>
     </table></div></div>
   <div class="sec"><div class="sec-ttl"> Top 10 Itens por NMV Set MTD</div><div style="overflow-x:auto"><table>
@@ -393,11 +398,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
       </tr></thead><tbody><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-3901877110" target="_blank">COLCHÃO CASAL LUUNA SUPPORT, ESPUMA FIRME, 10 ANOS</a><br>
               <span style="font-size:10px;color:#999">MLB3901877110</span></td>
-          <td style="text-align:right;font-weight:700">R$ 318K</td>
-          <td style="text-align:right">20.4%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 0.8%</span></td>
-          <td style="text-align:right">241</td>
-          <td style="text-align:right">R$ 1.319,12</td>
+          <td style="text-align:right;font-weight:700">R$ 322K</td>
+          <td style="text-align:right">20.6%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 2.1%</span></td>
+          <td style="text-align:right">244</td>
+          <td style="text-align:right">R$ 1.319,49</td>
           <td style="text-align:right">105.034</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-g">Ativo</span></td>
@@ -406,7 +411,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3992149060" target="_blank">COLCHÃO QUEEN LUUNA ORIGINAL FIRME, ESPUMA 26CM CO</a><br>
               <span style="font-size:10px;color:#999">MLB3992149060</span></td>
           <td style="text-align:right;font-weight:700">R$ 163K</td>
-          <td style="text-align:right">10.5%</td>
+          <td style="text-align:right">10.4%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 75.3%</span></td>
           <td style="text-align:right">65</td>
           <td style="text-align:right">R$ 2.514,85</td>
@@ -418,7 +423,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3950434672" target="_blank">COLCHÃO CASAL LUUNA BLUE, ESPUMA 20 CM COM BLOQUEI</a><br>
               <span style="font-size:10px;color:#999">MLB3950434672</span></td>
           <td style="text-align:right;font-weight:700">R$ 159K</td>
-          <td style="text-align:right">10.2%</td>
+          <td style="text-align:right">10.1%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 41.0%</span></td>
           <td style="text-align:right">89</td>
           <td style="text-align:right">R$ 1.784,96</td>
@@ -430,7 +435,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3901322668" target="_blank">COLCHÃO QUEEN LUUNA SUPPORT, ESPUMA FIRME, 10 ANOS</a><br>
               <span style="font-size:10px;color:#999">MLB3901322668</span></td>
           <td style="text-align:right;font-weight:700">R$ 157K</td>
-          <td style="text-align:right">10.1%</td>
+          <td style="text-align:right">10.0%</td>
           <td style="text-align:right"><span style="color:#F23D4F;font-weight:700">&#9660; 3.5%</span></td>
           <td style="text-align:right">105</td>
           <td style="text-align:right">R$ 1.497,57</td>
@@ -442,7 +447,7 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
           <td><a href="https://produto.mercadolivre.com.br/MLB-3427360261" target="_blank">COLCHÃO QUEEN LUUNA ORIGINAL MACIO, ESPUMA 26CM CO</a><br>
               <span style="font-size:10px;color:#999">MLB3427360261</span></td>
           <td style="text-align:right;font-weight:700">R$ 122K</td>
-          <td style="text-align:right">7.9%</td>
+          <td style="text-align:right">7.8%</td>
           <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 82.0%</span></td>
           <td style="text-align:right">49</td>
           <td style="text-align:right">R$ 2.494,82</td>
@@ -477,11 +482,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-5186397328" target="_blank">COLCHÃO QUEEN LUUNA ADAPT, ESPUMA VISCOELÁSTICA MÉ</a><br>
               <span style="font-size:10px;color:#999">MLB5186397328</span></td>
-          <td style="text-align:right;font-weight:700">R$ 54K</td>
-          <td style="text-align:right">3.5%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 71.5%</span></td>
-          <td style="text-align:right">31</td>
-          <td style="text-align:right">R$ 1.735,77</td>
+          <td style="text-align:right;font-weight:700">R$ 58K</td>
+          <td style="text-align:right">3.7%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 83.2%</span></td>
+          <td style="text-align:right">33</td>
+          <td style="text-align:right">R$ 1.742,64</td>
           <td style="text-align:right">13.531</td>
           <td style="text-align:right">0.2%</td>
           <td><span class="pill pl-g">Ativo</span></td>
@@ -491,9 +496,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <span style="font-size:10px;color:#999">MLB3442619235</span></td>
           <td style="text-align:right;font-weight:700">R$ 43K</td>
           <td style="text-align:right">2.8%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 28.6%</span></td>
-          <td style="text-align:right">80</td>
-          <td style="text-align:right">R$ 536,12</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 30.3%</span></td>
+          <td style="text-align:right">81</td>
+          <td style="text-align:right">R$ 536,16</td>
           <td style="text-align:right">15.557</td>
           <td style="text-align:right">0.5%</td>
           <td><span class="pill pl-g">Ativo</span></td>
@@ -501,11 +506,11 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr>
           <td><a href="https://produto.mercadolivre.com.br/MLB-4608884934" target="_blank">PILLOW TOP QUEEN LUUNA ESSENTIAL MICROFIBRA, DOWN </a><br>
               <span style="font-size:10px;color:#999">MLB4608884934</span></td>
-          <td style="text-align:right;font-weight:700">R$ 39K</td>
-          <td style="text-align:right">2.5%</td>
-          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 11.7%</span></td>
-          <td style="text-align:right">63</td>
-          <td style="text-align:right">R$ 625,11</td>
+          <td style="text-align:right;font-weight:700">R$ 40K</td>
+          <td style="text-align:right">2.6%</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">&#9650; 13.6%</span></td>
+          <td style="text-align:right">64</td>
+          <td style="text-align:right">R$ 626,11</td>
           <td style="text-align:right">10.029</td>
           <td style="text-align:right">0.6%</td>
           <td><span class="pill pl-g">Ativo</span></td>
@@ -669,8 +674,8 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td><a href="https://produto.mercadolivre.com.br/MLB-5186397328" target="_blank">COLCHÃO QUEEN LUUNA ADAPT, ESPUMA VISCOELÁSTICA </a><br>
                   <span style="font-size:10px;color:#999">MLB5186397328</span></td>
               <td style="text-align:right">R$ 31K</td>
-              <td style="text-align:right">R$ 54K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 71.5%</span></td>
+              <td style="text-align:right">R$ 58K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 83.2%</span></td>
               <td style="text-align:right">13.531</td>
               <td style="text-align:right">0.9%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
@@ -706,9 +711,9 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
                   <span style="font-size:10px;color:#999">MLB3442619235</span></td>
               <td style="text-align:right">R$ 33K</td>
               <td style="text-align:right">R$ 43K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 28.6%</span></td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 30.3%</span></td>
               <td style="text-align:right">15.557</td>
-              <td style="text-align:right">2.7%</td>
+              <td style="text-align:right">2.8%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
             </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-3410404365" target="_blank">COLCHÃO CASAL LUUNA SUPREME FIRME, 4 CAMADAS DE </a><br>
@@ -718,6 +723,15 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 105.1%</span></td>
               <td style="text-align:right">551</td>
               <td style="text-align:right">2.4%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-3901877110" target="_blank">COLCHÃO CASAL LUUNA SUPPORT, ESPUMA FIRME, 10 AN</a><br>
+                  <span style="font-size:10px;color:#999">MLB3901877110</span></td>
+              <td style="text-align:right">R$ 315K</td>
+              <td style="text-align:right">R$ 322K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 2.1%</span></td>
+              <td style="text-align:right">105.034</td>
+              <td style="text-align:right">1.3%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
             </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-4043498030" target="_blank">COLCHÃO SOLTEIRO LUUNA ESSENTIAL, ESPUMA ERGO FI</a><br>
@@ -738,22 +752,22 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">2.8%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
             </tr><tr>
+              <td><a href="https://produto.mercadolivre.com.br/MLB-4608884934" target="_blank">PILLOW TOP QUEEN LUUNA ESSENTIAL MICROFIBRA, DOW</a><br>
+                  <span style="font-size:10px;color:#999">MLB4608884934</span></td>
+              <td style="text-align:right">R$ 35K</td>
+              <td style="text-align:right">R$ 40K</td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.6%</span></td>
+              <td style="text-align:right">10.029</td>
+              <td style="text-align:right">3.7%</td>
+              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
+            </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-7190616810" target="_blank">TRAVESSEIRO LUUNA DE ESPUMA VISCOELÁSTICA COM CA</a><br>
                   <span style="font-size:10px;color:#999">MLB7190616810</span></td>
               <td style="text-align:right">R$ 5K</td>
               <td style="text-align:right">R$ 10K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 86.2%</span></td>
+              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 90.8%</span></td>
               <td style="text-align:right">3.550</td>
               <td style="text-align:right">2.9%</td>
-              <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
-            </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-4608884934" target="_blank">PILLOW TOP QUEEN LUUNA ESSENTIAL MICROFIBRA, DOW</a><br>
-                  <span style="font-size:10px;color:#999">MLB4608884934</span></td>
-              <td style="text-align:right">R$ 35K</td>
-              <td style="text-align:right">R$ 39K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 11.7%</span></td>
-              <td style="text-align:right">10.029</td>
-              <td style="text-align:right">3.7%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
             </tr><tr>
               <td><a href="https://produto.mercadolivre.com.br/MLB-4232830033" target="_blank">PILLOW TOP LUUNA COOLING TECH QUEEN, PCM TERMORR</a><br>
@@ -764,15 +778,6 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
               <td style="text-align:right">886</td>
               <td style="text-align:right">4.3%</td>
               <td style="text-align:center"><span class="pill pl-g">Ativo</span> <span class="pill pl-b">BB</span></td>
-            </tr><tr>
-              <td><a href="https://produto.mercadolivre.com.br/MLB-5388209236" target="_blank">COLCHÃO KING LUUNA ORIGINAL MACIO TECNOLOGIA COO</a><br>
-                  <span style="font-size:10px;color:#999">MLB5388209236</span></td>
-              <td style="text-align:right">R$ 5K</td>
-              <td style="text-align:right">R$ 8K</td>
-              <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 49.0%</span></td>
-              <td style="text-align:right">308</td>
-              <td style="text-align:right">2.9%</td>
-              <td style="text-align:center"><span class="pill pl-r">paused</span> <span class="pill pl-b">BB</span></td>
             </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> Queda de Visitas - 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
       <thead><tr>
@@ -868,33 +873,33 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     </tr></thead><tbody><tr>
           <td>Colchões</td>
           <td style="text-align:right;font-weight:700">R$ 1.4M</td>
-          <td style="text-align:right">800</td>
-          <td style="text-align:right">R$ 1.734,70</td>
-          <td style="text-align:right">89.2%</td>
+          <td style="text-align:right">805</td>
+          <td style="text-align:right">R$ 1.733,55</td>
+          <td style="text-align:right">89.1%</td>
           <td style="text-align:right">72.7%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 21.7%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 7.5%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 22.4%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 8.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 13.1%</span></td>
         </tr><tr>
           <td>MATTRESSES &amp; SOMMIER COVERS</td>
-          <td style="text-align:right;font-weight:700">R$ 131K</td>
-          <td style="text-align:right">225</td>
-          <td style="text-align:right">R$ 581,29</td>
+          <td style="text-align:right;font-weight:700">R$ 132K</td>
+          <td style="text-align:right">227</td>
+          <td style="text-align:right">R$ 581,58</td>
           <td style="text-align:right">8.4%</td>
           <td style="text-align:right">20.5%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 168.9%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 177.8%</span></td>
-          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 3.2%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 171.5%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 180.2%</span></td>
+          <td style="text-align:center"><span style="color:#F23D4F;font-weight:700">&#9660; 3.1%</span></td>
         </tr><tr>
           <td>PILLOWS</td>
-          <td style="text-align:right;font-weight:700">R$ 22K</td>
-          <td style="text-align:right">69</td>
-          <td style="text-align:right">R$ 323,46</td>
+          <td style="text-align:right;font-weight:700">R$ 23K</td>
+          <td style="text-align:right">70</td>
+          <td style="text-align:right">R$ 322,26</td>
           <td style="text-align:right">1.4%</td>
           <td style="text-align:right">6.3%</td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 71.8%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 68.3%</span></td>
-          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 2.1%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 73.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 70.7%</span></td>
+          <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1.7%</span></td>
         </tr><tr>
           <td>Camas, Cabeceiras e Criados-mudos</td>
           <td style="text-align:right;font-weight:700">R$ 9K</td>
@@ -928,13 +933,13 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         </tr><tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
       <td>Total</td>
       <td style="text-align:right">R$ 1.6M</td>
-      <td style="text-align:right">1.100</td>
-      <td style="text-align:right">R$ 1.415,12</td>
+      <td style="text-align:right">1.108</td>
+      <td style="text-align:right">R$ 1.413,22</td>
       <td style="text-align:right">100%</td>
       <td style="text-align:right">100%</td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 29.1%</span></td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 26.7%</span></td>
-      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1.9%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 29.9%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 27.6%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-weight:700">&#9650; 1.8%</span></td>
     </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl"> Sortimento LL/SL</div>
     <div class="row">
@@ -956,24 +961,24 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
         <th style="min-width:100px">Distribuição</th>
       </tr></thead><tbody><tr>
           <td><span class="pill pl-g">FBM</span></td>
-          <td style="text-align:right;font-weight:700">R$ 803K</td>
-          <td style="text-align:right;color:#555">718</td>
-          <td style="text-align:right">48.7%</td>
-          <td><div class="bar-out"><div class="bar-in" style="width:48.7%"></div></div></td>
+          <td style="text-align:right;font-weight:700">R$ 811K</td>
+          <td style="text-align:right;color:#555">725</td>
+          <td style="text-align:right">48.8%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:48.8%"></div></div></td>
         </tr><tr>
           <td><span class="pill pl-y">XD</span></td>
-          <td style="text-align:right;font-weight:700">R$ 793K</td>
-          <td style="text-align:right;color:#555">387</td>
-          <td style="text-align:right">48.1%</td>
-          <td><div class="bar-out"><div class="bar-in" style="width:48.1%"></div></div></td>
+          <td style="text-align:right;font-weight:700">R$ 796K</td>
+          <td style="text-align:right;color:#555">388</td>
+          <td style="text-align:right">47.9%</td>
+          <td><div class="bar-out"><div class="bar-in" style="width:47.9%"></div></div></td>
         </tr><tr>
           <td><span class="pill pl-r">OTHER</span></td>
           <td style="text-align:right;font-weight:700">R$ 54K</td>
-          <td style="text-align:right;color:#555">54</td>
+          <td style="text-align:right;color:#555">55</td>
           <td style="text-align:right">3.3%</td>
           <td><div class="bar-out"><div class="bar-in" style="width:3.3%"></div></div></td>
         </tr></tbody></table></div></div>
   <div class="sec"><div class="sec-ttl">Investimento em PADs (Product Ads)</div><div style="display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap"><div style="background:#E8F0FE;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#3483FA;font-weight:800">PADs YTD</div><div style="font-size:20px;font-weight:900;color:#3483FA">R$ 1.1M</div></div><div style="background:#E8F8EF;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#00A650;font-weight:800">GMV PADs YTD</div><div style="font-size:20px;font-weight:900;color:#00A650">R$ 15.1M</div></div><div style="background:#FFF9E0;border-radius:8px;padding:10px 14px;flex:1;min-width:110px"><div style="font-size:10px;color:#E67E00;font-weight:800">ACOS YTD</div><div style="font-size:20px;font-weight:900;color:#E67E00">7.3%</div></div></div><div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:left;white-space:nowrap">Mes</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Invest. PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">GMV PADs</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ACOS</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">Clicks</th><th style="padding:8px 10px;background:#3483FA;color:#fff;font-size:10px;font-weight:800;text-align:right;white-space:nowrap">ROI</th></tr></thead><tbody><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jan<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 74K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 670K</td><td style="padding:8px 10px;text-align:right;color:#E67E00">11.1%</td><td style="padding:8px 10px;text-align:right;color:#555">17,836</td><td style="padding:8px 10px;text-align:right;color:#555">9.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Fev<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 74K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 889K</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.3%</td><td style="padding:8px 10px;text-align:right;color:#555">19,678</td><td style="padding:8px 10px;text-align:right;color:#555">12.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mar<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 116K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 862K</td><td style="padding:8px 10px;text-align:right;color:#E67E00">13.4%</td><td style="padding:8px 10px;text-align:right;color:#555">25,130</td><td style="padding:8px 10px;text-align:right;color:#555">7.5x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Abr<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 61K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 632K</td><td style="padding:8px 10px;text-align:right;color:#00A650">9.6%</td><td style="padding:8px 10px;text-align:right;color:#555">12,346</td><td style="padding:8px 10px;text-align:right;color:#555">10.4x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Mai<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 91K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 935K</td><td style="padding:8px 10px;text-align:right;color:#00A650">9.8%</td><td style="padding:8px 10px;text-align:right;color:#555">22,337</td><td style="padding:8px 10px;text-align:right;color:#555">10.2x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jun<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 41K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 739K</td><td style="padding:8px 10px;text-align:right;color:#00A650">5.6%</td><td style="padding:8px 10px;text-align:right;color:#555">11,264</td><td style="padding:8px 10px;text-align:right;color:#555">17.9x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Jul<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 50K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 790K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.4%</td><td style="padding:8px 10px;text-align:right;color:#555">14,768</td><td style="padding:8px 10px;text-align:right;color:#555">15.7x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Ago<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 41K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 623K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.6%</td><td style="padding:8px 10px;text-align:right;color:#555">12,075</td><td style="padding:8px 10px;text-align:right;color:#555">15.1x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Set<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 49K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 792K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.1%</td><td style="padding:8px 10px;text-align:right;color:#555">15,576</td><td style="padding:8px 10px;text-align:right;color:#555">16.3x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Out<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 74K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.7%</td><td style="padding:8px 10px;text-align:right;color:#555">23,371</td><td style="padding:8px 10px;text-align:right;color:#555">14.9x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Nov<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 144K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.9M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.7%</td><td style="padding:8px 10px;text-align:right;color:#555">36,158</td><td style="padding:8px 10px;text-align:right;color:#555">13.0x</td></tr><tr style="background:#FAFAFA;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:400">Dez<span style="font-size:9px;color:#888;margin-left:4px">2025</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 115K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.3M</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.8%</td><td style="padding:8px 10px;text-align:right;color:#555">35,704</td><td style="padding:8px 10px;text-align:right;color:#555">11.4x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jan<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 88K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">8.7%</td><td style="padding:8px 10px;text-align:right;color:#555">28,024</td><td style="padding:8px 10px;text-align:right;color:#555">11.5x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Fev<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 92K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.5%</td><td style="padding:8px 10px;text-align:right;color:#555">39,103</td><td style="padding:8px 10px;text-align:right;color:#555">13.4x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mar<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 118K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.7M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.0%</td><td style="padding:8px 10px;text-align:right;color:#555">59,121</td><td style="padding:8px 10px;text-align:right;color:#555">14.3x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Abr<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 124K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 1.9M</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.6%</td><td style="padding:8px 10px;text-align:right;color:#555">59,564</td><td style="padding:8px 10px;text-align:right;color:#555">15.1x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Mai<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 157K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.0%</td><td style="padding:8px 10px;text-align:right;color:#555">69,838</td><td style="padding:8px 10px;text-align:right;color:#555">14.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jun<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 157K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.0M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.8%</td><td style="padding:8px 10px;text-align:right;color:#555">67,965</td><td style="padding:8px 10px;text-align:right;color:#555">12.9x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Jul<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 144K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.1M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.0%</td><td style="padding:8px 10px;text-align:right;color:#555">56,013</td><td style="padding:8px 10px;text-align:right;color:#555">14.2x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Ago<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 162K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 2.2M</td><td style="padding:8px 10px;text-align:right;color:#00A650">7.5%</td><td style="padding:8px 10px;text-align:right;color:#555">69,488</td><td style="padding:8px 10px;text-align:right;color:#555">13.4x</td></tr><tr style="background:#fff;border-bottom:1px solid #F0F0F0"><td style="padding:8px 10px;font-weight:800">Set<span style="font-size:9px;color:#888;margin-left:4px">2026</span></td><td style="padding:8px 10px;text-align:right;font-weight:700;color:#3483FA">R$ 53K</td><td style="padding:8px 10px;text-align:right;color:#00A650">R$ 783K</td><td style="padding:8px 10px;text-align:right;color:#00A650">6.8%</td><td style="padding:8px 10px;text-align:right;color:#555">22,194</td><td style="padding:8px 10px;text-align:right;color:#555">14.7x</td></tr></tbody></table></div><div style="font-size:10px;color:#888;margin-top:8px">Fonte: DM_MKP_COMMERCE_ADS_GENERAL (REVENUES) - mesma base do dashboard</div></div>
-  <div class="sec"><div class="sec-ttl"> 📈 Tendências de Mercado 2026 — Oportunidades para este Seller</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">💤 Colchões <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Espuma D33 · Molas Ensacadas · Ortopédico</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Wellness do sono como investimento em saúde — demanda crescente</li><li>Colchões premium (molas ensacadas, látex) em ascensão</li><li>Envelhecimento da população amplia demanda por conforto</li><li>Black Friday = maior pico de vendas do ano para colchões</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3901877110-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO CASAL LUUNA SUPPORT, ESPUMA FI</span></a><span class="tend-item-val">R$ 318K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3992149060-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO QUEEN LUUNA ORIGINAL FIRME, ES</span></a><span class="tend-item-val">R$ 163K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3950434672-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO CASAL LUUNA BLUE, ESPUMA 20 CM</span></a><span class="tend-item-val">R$ 159K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">COLCHÃO QUEEN LUUNA ORIGINAL MACIO T</span><span class="tend-item-mom" style="color:#00A650">▲+587%</span></div><div class="tend-item up"><span class="tend-item-name">COLCHÃO QUEEN LUUNA BLUE, ESPUMA 20 </span><span class="tend-item-mom" style="color:#00A650">▲+125%</span></div><div class="tend-item up"><span class="tend-item-name">COLCHÃO CASAL LUUNA SUPREME FIRME, 4</span><span class="tend-item-mom" style="color:#00A650">▲+105%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO CASAL LUUNA ORIGINAL FIRME, </span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO QUEEN LUUNA SUPREME FIRME, 4</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO SOLTEIRO LUUNA ADAPT, ESPUMA</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp r">⚠️ Lacuna: colchão premium R$1.500–R$2.000 — mercado grande, seller sem presença nessa faixa</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🌙 Bedroom & Infantil <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Camas · Montessoriana · Trelicê · Cômodas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Cama montessoriana infantil domina — quarto como santuário de bem-estar</li><li>Camas baixas estilo japonês/escandinavo consolidam-se no Brasil</li><li>Quartos modulados para adultos com espelho em aceleração</li><li>Minimalismo quente: poucos elementos com textura e presença</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3442619235-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP CASAL LUUNA ESSENTIAL MICRO</span></a><span class="tend-item-val">R$ 43K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4608884934-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP QUEEN LUUNA ESSENTIAL MICRO</span></a><span class="tend-item-val">R$ 39K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4608832298-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP KING LUUNA ESSENTIAL MICROF</span></a><span class="tend-item-val">R$ 17K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">PILLOW TOP SOLTEIRO LUUNA ESSENTIAL </span><span class="tend-item-mom" style="color:#00A650">▲+1168%</span></div><div class="tend-item up"><span class="tend-item-name">PROTETOR DE COLCHÃO LUUNA TENCEL SOL</span><span class="tend-item-mom" style="color:#00A650">▲+831%</span></div><div class="tend-item up"><span class="tend-item-name">TRAVESSEIRO LUUNA DE ESPUMA VISCOELÁ</span><span class="tend-item-mom" style="color:#00A650">▲+86%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">PROTETOR DE COLCHÃO COOLING QUEEN IM</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">TRAVESSEIRO LUUNA ESSENTIAL MICROFIB</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">JOGO DE CAMA LUUNA SET ALGODÃO 400 F</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp b">💡 Beliche montessoriana e quarto modulado com espelho em forte aceleração — explorar linha</div></div></div><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">🛏️ Cama Box & Conjuntos <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Cama Box · Box Baú · Pillow Top · Molas Ensacadas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Box Baú em alta: armazenamento integrado viraliza no Pinterest 2026</li><li>Wellness do sono: kits colchão + base ganham preferência por conveniência</li><li>Pillow Top e molas ensacadas em ascensão como upgrade de conforto</li><li>Consumidor migra de box simples para box premium com armazenamento</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5126705888-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CAMA LUUNA BAMBU QUEEN, DESIGN NATURAL</span></a><span class="tend-item-val">R$ 3K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3880521375-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CAMA LUUNA BAMBU CASAL, DESIGN NATURAL</span></a><span class="tend-item-val">R$ 2K</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CAMA LUUNA BAMBU QUEEN, DESIGN NATUR</span><span class="tend-item-mom" style="color:#F23D4F">▼74%</span></div><div class="tend-opp b">💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen</div></div></div></div></div>
+  <div class="sec"><div class="sec-ttl"> 📈 Tendências de Mercado 2026 — Oportunidades para este Seller</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px"><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">💤 Colchões <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Espuma D33 · Molas Ensacadas · Ortopédico</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Wellness do sono como investimento em saúde — demanda crescente</li><li>Colchões premium (molas ensacadas, látex) em ascensão</li><li>Envelhecimento da população amplia demanda por conforto</li><li>Black Friday = maior pico de vendas do ano para colchões</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3901877110-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO CASAL LUUNA SUPPORT, ESPUMA FI</span></a><span class="tend-item-val">R$ 322K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3992149060-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO QUEEN LUUNA ORIGINAL FIRME, ES</span></a><span class="tend-item-val">R$ 163K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3950434672-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">COLCHÃO CASAL LUUNA BLUE, ESPUMA 20 CM</span></a><span class="tend-item-val">R$ 159K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">COLCHÃO QUEEN LUUNA ORIGINAL MACIO T</span><span class="tend-item-mom" style="color:#00A650">▲+587%</span></div><div class="tend-item up"><span class="tend-item-name">COLCHÃO QUEEN LUUNA BLUE, ESPUMA 20 </span><span class="tend-item-mom" style="color:#00A650">▲+125%</span></div><div class="tend-item up"><span class="tend-item-name">COLCHÃO CASAL LUUNA SUPREME FIRME, 4</span><span class="tend-item-mom" style="color:#00A650">▲+105%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO CASAL LUUNA ORIGINAL FIRME, </span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO QUEEN LUUNA SUPREME FIRME, 4</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">COLCHÃO SOLTEIRO LUUNA ADAPT, ESPUMA</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp r">⚠️ Lacuna: colchão premium R$1.500–R$2.000 — mercado grande, seller sem presença nessa faixa</div></div></div><div class="tend-card"><div class="tend-card-hdr alta"><div class="tend-card-title">🌙 Bedroom & Infantil <span class="tbadge alta">🔥 Em alta</span></div><div class="tend-card-sub">Camas · Montessoriana · Trelicê · Cômodas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Cama montessoriana infantil domina — quarto como santuário de bem-estar</li><li>Camas baixas estilo japonês/escandinavo consolidam-se no Brasil</li><li>Quartos modulados para adultos com espelho em aceleração</li><li>Minimalismo quente: poucos elementos com textura e presença</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3442619235-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP CASAL LUUNA ESSENTIAL MICRO</span></a><span class="tend-item-val">R$ 43K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4608884934-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP QUEEN LUUNA ESSENTIAL MICRO</span></a><span class="tend-item-val">R$ 40K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-4608832298-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">PILLOW TOP KING LUUNA ESSENTIAL MICROF</span></a><span class="tend-item-val">R$ 17K</span></div><div class="tend-sec">🚀 Em alta este mês</div><div class="tend-item up"><span class="tend-item-name">PILLOW TOP SOLTEIRO LUUNA ESSENTIAL </span><span class="tend-item-mom" style="color:#00A650">▲+1168%</span></div><div class="tend-item up"><span class="tend-item-name">PROTETOR DE COLCHÃO LUUNA TENCEL SOL</span><span class="tend-item-mom" style="color:#00A650">▲+831%</span></div><div class="tend-item up"><span class="tend-item-name">TRAVESSEIRO LUUNA DE ESPUMA VISCOELÁ</span><span class="tend-item-mom" style="color:#00A650">▲+91%</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">PROTETOR DE COLCHÃO COOLING QUEEN IM</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">TRAVESSEIRO LUUNA ESSENTIAL MICROFIB</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-item dn"><span class="tend-item-name">JOGO DE CAMA LUUNA SET ALGODÃO 400 F</span><span class="tend-item-mom" style="color:#F23D4F">▼100%</span></div><div class="tend-opp b">💡 Beliche montessoriana e quarto modulado com espelho em forte aceleração — explorar linha</div></div></div><div class="tend-card"><div class="tend-card-hdr crescendo"><div class="tend-card-title">🛏️ Cama Box & Conjuntos <span class="tbadge crescendo">📈 Crescendo</span></div><div class="tend-card-sub">Cama Box · Box Baú · Pillow Top · Molas Ensacadas</div></div><div class="tend-card-body"><div class="tend-sec">Tendências</div><ul class="tend-list"><li>Box Baú em alta: armazenamento integrado viraliza no Pinterest 2026</li><li>Wellness do sono: kits colchão + base ganham preferência por conveniência</li><li>Pillow Top e molas ensacadas em ascensão como upgrade de conforto</li><li>Consumidor migra de box simples para box premium com armazenamento</li></ul><div class="tend-sec" style="margin-top:10px;border-top:1px solid #F0F0F0;padding-top:8px">Seus itens neste domínio</div><div class="tend-sec">⭐ Top itens</div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-5126705888-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CAMA LUUNA BAMBU QUEEN, DESIGN NATURAL</span></a><span class="tend-item-val">R$ 3K</span></div><div class="tend-item star"><a href="https://produto.mercadolivre.com.br/MLB-3880521375-item" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="tend-item-name">CAMA LUUNA BAMBU CASAL, DESIGN NATURAL</span></a><span class="tend-item-val">R$ 2K</span></div><div class="tend-sec">📉 Atenção — em queda</div><div class="tend-item dn"><span class="tend-item-name">CAMA LUUNA BAMBU QUEEN, DESIGN NATUR</span><span class="tend-item-mom" style="color:#F23D4F">▼74%</span></div><div class="tend-opp b">💡 Box Baú crescendo +200% a +296% MoM — ativar ADS nos modelos casal/queen</div></div></div></div></div>
 </div>
 </body></html>
