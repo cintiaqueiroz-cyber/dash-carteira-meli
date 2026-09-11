@@ -348,16 +348,42 @@ slides.push({
 
 slides.push({
   n:5, tab:'Gap de Sortimento',
-  eyebrow:'Assortment Gap Analysis · Seção 5',
-  title:'Faixas de R$600 a R$1.200 crescem forte no mercado, mas ainda representam uma fatia pequena do sortimento MadeiraMadeira',
-  sub:'Prioridade por tamanho de mercado × crescimento, com presença atual estimada da MadeiraMadeira (Seção 3).',
+  eyebrow:'Assortment Gap Analysis, por linha · Seção 5',
+  title:'Conjuntos de Jantar tem gap de penetração generalizado; Racks/Painéis tem gaps pontuais em faixas específicas',
+  sub:'Prioridade por tamanho de mercado × crescimento, com presença atual estimada da MadeiraMadeira, separada por linha (Seção 3).',
   body:`
+    <div class="two-col">
+      <div>
+        <div class="section-title">Conjuntos/Mesas/Cadeiras de Jantar</div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Prior.</th><th>Faixa</th><th class="num">YoY</th><th class="num">Penetr.</th><th>Recomendação</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-red">P1</span></td><td><strong>R$1.200-2.000</strong></td><td class="num pos">+44%</td><td class="num">6,9%</td><td>Maior R$ de oportunidade + crescimento rápido; ampliar variantes/cores no que já performa</td></tr>
+            <tr><td><span class="badge badge-red">P1</span></td><td><strong>R$2.000+</strong></td><td class="num pos">+53%</td><td class="num">5,0%</td><td>Mercado acelera mais e marca segue pouco presente; mesmo racional do P1 acima</td></tr>
+            <tr><td><span class="badge badge-orange">P2</span></td><td>R$800-1.200</td><td class="num pos">+35%</td><td class="num">2,3%</td><td>Penetração mais baixa entre as faixas de alto crescimento; ampliar conjuntos 4/6 cadeiras</td></tr>
+            <tr><td><span class="badge badge-gray">P3</span></td><td>R$600-800</td><td class="num pos">+19%</td><td class="num">2,7%</td><td>Crescimento moderado; avaliar sortimento de entrada (2-4 cadeiras)</td></tr>
+            <tr><td><span class="badge badge-gray">P3</span></td><td>R$400-600 e &lt;R$400</td><td class="num pos">+14% a +19%</td><td class="num">0,4-1,9%</td><td>Baixa prioridade — ticket de entrada, crescimento mais lento</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div>
+        <div class="section-title">Racks/Painéis para TV</div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Prior.</th><th>Faixa</th><th class="num">YoY</th><th class="num">Penetr.</th><th>Recomendação</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-red">P1</span></td><td><strong>R$800-1.200</strong></td><td class="num pos">+87%</td><td class="num">19,6%</td><td>Maior crescimento do domínio inteiro; espaço real mesmo já com presença consolidada</td></tr>
+            <tr><td><span class="badge badge-orange">P2</span></td><td>R$600-800</td><td class="num pos">+66%</td><td class="num">5,0%</td><td>Forte crescimento com penetração ainda baixa — gap real de sortimento</td></tr>
+            <tr><td><span class="badge badge-blue">Defender</span></td><td>R$1.200-2.000 e R$2.000+</td><td class="num pos">+45% a +72%</td><td class="num">28-64%</td><td>Posição já dominante — manter sortimento e responsividade de preço</td></tr>
+            <tr><td><span class="badge badge-gray">Monitorar</span></td><td>R$400-600</td><td class="num neg">-25%</td><td class="num">7,3%</td><td>Único recorte do domínio em queda de mercado — investigar causa antes de investir</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="section-title">Temas transversais (ambas as linhas)</div>
     <div class="table-wrap"><table>
-      <thead><tr><th>Prioridade</th><th>Faixa / Frente</th><th class="num">YoY Mercado</th><th>Motivo da oportunidade</th><th>Recomendação</th></tr></thead>
+      <thead><tr><th>Prioridade</th><th>Frente</th><th class="num">Indicador</th><th>Motivo</th><th>Recomendação</th></tr></thead>
       <tbody>
-        <tr><td><span class="badge badge-red">P1</span></td><td><strong>R$800-1.200 (Conjuntos e Racks/TV)</strong></td><td class="num pos">+41%</td><td>Maior mercado em R$ entre as faixas de "Alta Prioridade"; penetração da marca ainda em 4,5%</td><td>Ampliar variantes de conjuntos 4/6 cadeiras e racks premium nessa faixa específica</td></tr>
         <tr><td><span class="badge badge-red">P1</span></td><td><strong>Diagnóstico da queda de agosto</strong></td><td class="num neut">-11% MoM</td><td>Queda atinge as duas linhas do domínio ao mesmo tempo — sinal de fator comum, não de uma linha isolada</td><td>Avaliar estoque, cobertura promocional e BPC no período</td></tr>
-        <tr><td><span class="badge badge-orange">P2</span></td><td>R$600-800</td><td class="num pos">+23%</td><td>Segunda faixa de maior crescimento com penetração ainda baixa (3,1%)</td><td>Avaliar sortimento de entrada em conjuntos compactos (2-4 cadeiras) nessa faixa</td></tr>
         <tr><td><span class="badge badge-orange">P2</span></td><td>BPC Sala e Jantar (46,0%)</td><td class="num neut">n/d</td><td>2º BPC mais fraco entre os domínios de mobiliário da marca — pode estar restringindo conversão no pico de crescimento do mercado</td><td>Repricing e revisão de cobertura promocional específica para o domínio</td></tr>
       </tbody>
     </table></div>
@@ -365,13 +391,13 @@ slides.push({
 });
 
 slides.push({
-  n:6, tab:'Benchmark Madesa',
-  eyebrow:'Gap de Sortimento — MadeiraMadeira × Madesa · Seção 6',
-  title:'MadeiraMadeira e Madesa têm mixes de sortimento praticamente opostos dentro de Sala de Jantar',
+  n:6, tab:'Benchmark Concorrente A',
+  eyebrow:'Gap de Sortimento — MadeiraMadeira × Concorrente A · Seção 6',
+  title:'MadeiraMadeira e Concorrente A têm mixes de sortimento praticamente opostos dentro de Sala de Jantar',
   sub:'Comparação de mix por faixa de preço (% do NMV próprio de cada seller no domínio, 90d) — apenas percentuais, sem valores absolutos.',
   body:`
     <div class="table-wrap"><table>
-      <thead><tr><th>Faixa de preço</th><th class="num">MadeiraMadeira (% do mix)</th><th class="num">Madesa (% do mix)</th><th class="num">Gap (pp)</th></tr></thead>
+      <thead><tr><th>Faixa de preço</th><th class="num">MadeiraMadeira (% do mix)</th><th class="num">Concorrente A (% do mix)</th><th class="num">Gap (pp)</th></tr></thead>
       <tbody>
         <tr><td>&lt;R$400</td><td class="num">2,6%</td><td class="num">3,7%</td><td class="num neg">-1,1</td></tr>
         <tr><td>R$400-600</td><td class="num">5,6%</td><td class="num">4,1%</td><td class="num pos">+1,5</td></tr>
@@ -382,7 +408,7 @@ slides.push({
       </tbody>
     </table></div>
     <p class="footnote">Mix = % do NMV do próprio seller (90d) que cai em cada faixa de preço, dentro do domínio Sala de Jantar (Conjuntos + Racks/Painéis). Não representa participação de mercado nem valores em R$.</p>
-    <div class="alert flag"><div class="alert-icon">🎯</div><div><strong>Leitura</strong>Os dois sortimentos são quase espelhados. A MadeiraMadeira concentra 69,3% do próprio mix em R$1.200+ (perfil premium), enquanto a Madesa concentra 60,3% sozinha na faixa R$800-1.200 — exatamente a faixa que a Seção 5 já apontou como Alta Prioridade (P1) para a MadeiraMadeira expandir. Isso torna a Madesa a referência mais direta de sortimento a observar nessa faixa: um concorrente que construiu ali a maior parte do próprio mix, enquanto a MadeiraMadeira ainda tem presença baixa nela (Seção 3).</div></div>
+    <div class="alert flag"><div class="alert-icon">🎯</div><div><strong>Leitura</strong>Os dois sortimentos são quase espelhados. A MadeiraMadeira concentra 69,3% do próprio mix em R$1.200+ (perfil premium), enquanto o Concorrente A concentra 60,3% sozinho na faixa R$800-1.200 — exatamente a faixa que a Seção 5 já apontou como Alta Prioridade (P1) para a MadeiraMadeira expandir. Isso torna o Concorrente A a referência mais direta de sortimento a observar nessa faixa: um concorrente que construiu ali a maior parte do próprio mix, enquanto a MadeiraMadeira ainda tem presença baixa nela (Seção 3).</div></div>
   `
 });
 
